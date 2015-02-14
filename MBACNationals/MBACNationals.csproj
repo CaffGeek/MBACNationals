@@ -119,6 +119,7 @@
     <Content Include="stepladder_ladies.php" />
     <Content Include="stepladder_men.php" />
     <Content Include="packages.config" />
+    <Content Include="index.copy.php" />
     <None Include="Properties\PublishProfiles\MBACNationals.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -176,6 +177,7 @@
     <Content Include="fonts\bebas___-webfont.svg" />
     <Content Include="images\2014_logo.png" />
     <Content Include="images\2015_logo.png" />
+    <Content Include="images\coming_soon.png" />
     <Content Include="images\facebook_icon.png" />
     <Content Include="images\fairmont_hotel.jpg" />
     <Content Include="images\fairmont_logo.jpg" />
