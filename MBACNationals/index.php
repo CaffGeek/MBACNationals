@@ -1,1 +1,1 @@
-<img src="coming_soon.png" width="100%"/>
+<img src="images/coming_soon.png" width="100%"/>
