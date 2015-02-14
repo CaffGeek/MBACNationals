@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4AFFC6BF-BEF7-443B-BDCB-7D96498A5FC0}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MBACNationals</RootNamespace>
+    <AssemblyName>MBACNationals</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <NuGetPackageImportStamp>013a8959</NuGetPackageImportStamp>
+    <ApplicationInsightsResourceId>/subscriptions/c93870fc-27cf-48dc-88d3-791142fb6245/resourcegroups/Default-Web-NorthCentralUS/providers/microsoft.insights/components/MBACNationals</ApplicationInsightsResourceId>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ApplicationInsights">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.0.13.0-build26067\lib\net40\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights.Extensibility.PerfCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerformanceCollector.0.13.0-build26067\lib\net40\Microsoft.ApplicationInsights.Extensibility.PerfCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.RuntimeTelemetry.0.13.0-build26067\lib\net45\Microsoft.ApplicationInsights.Extensibility.RuntimeTelemetry.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights.Extensibility.Web">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.0.13.0-build26067\lib\net45\Microsoft.ApplicationInsights.Extensibility.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Diagnostics.Instrumentation.Extensions.Intercept">
+      <HintPath>..\packages\Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.0.13.0-build22724\lib\net40\Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Diagnostics.Tracing.EventSource">
+      <HintPath>..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.14-beta\lib\net45\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ApplicationInsights.config" />
+    <None Include="App_Data\PublishProfiles\MBACNationals.pubxml" />
+    <Content Include="centres.php" />
+    <Content Include="contingents.php" />
+    <Content Include="foliogallery-demo.php" />
+    <Content Include="foliogallery-demo2.php" />
+    <Content Include="foliogallery.php" />
+    <Content Include="fonts\bebas___-webfont.eot" />
+    <Content Include="fonts\bebas___-webfont.ttf" />
+    <Content Include="fonts\bebas___-webfont.woff" />
+    <Content Include="footer.php" />
+    <Content Include="header.php" />
+    <Content Include="hotel.php" />
+    <Content Include="images\Forms\2015_MBAC_Nat_Inform_Pkg.pdf" />
+    <Content Include="index.php" />
+    <Content Include="index.php-c4f050ab-1686-42d5-9551-26d93f354e17" />
+    <Content Include="lanedraw.php" />
+    <Content Include="news.php" />
+    <Content Include="photobooth.php" />
+    <Content Include="photos.php" />
+    <Content Include="photos_2.php" />
+    <Content Include="photos_3.php" />
+    <Content Include="photos_4.php" />
+    <Content Include="photos_5.php" />
+    <Content Include="photos_old.php" />
+    <Content Include="photos_social.php" />
+    <Content Include="README.md" />
+    <Content Include="results.php" />
+    <Content Include="schedule.php" />
+    <Content Include="stepladder_ladies.php" />
+    <Content Include="stepladder_men.php" />
+    <Content Include="packages.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <Content Include="website.publishproj" />
+    <Content Include="z_results.php" />
+    <Content Include="z_results2.php" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="albums\June_27\PICT0022.JPG" />
+    <Content Include="albums\June_27\PICT0036.JPG" />
+    <Content Include="albums\June_27\PICT0042.JPG" />
+    <Content Include="albums\June_27\PICT0047.JPG" />
+    <Content Include="albums\June_27\PICT0059.JPG" />
+    <Content Include="albums\June_27\PICT0080.JPG" />
+    <Content Include="albums\June_27\PICT0084.JPG" />
+    <Content Include="albums\June_27\thumbs\PICT0022.JPG" />
+    <Content Include="albums\June_27\thumbs\PICT0036.JPG" />
+    <Content Include="albums\June_27\thumbs\PICT0042.JPG" />
+    <Content Include="albums\June_27\thumbs\PICT0047.JPG" />
+    <Content Include="albums\June_27\thumbs\PICT0059.JPG" />
+    <Content Include="albums\June_27\thumbs\PICT0080.JPG" />
+    <Content Include="albums\June_27\thumbs\PICT0084.JPG" />
+    <Content Include="changelog.txt" />
+    <Content Include="css\1024.css" />
+    <Content Include="css\10cols.css" />
+    <Content Include="css\11cols.css" />
+    <Content Include="css\12cols.css" />
+    <Content Include="css\2cols.css" />
+    <Content Include="css\3cols.css" />
+    <Content Include="css\480.css" />
+    <Content Include="css\4cols.css" />
+    <Content Include="css\5cols.css" />
+    <Content Include="css\6cols.css" />
+    <Content Include="css\768.css" />
+    <Content Include="css\7cols.css" />
+    <Content Include="css\8cols.css" />
+    <Content Include="css\9cols.css" />
+    <Content Include="css\col.css" />
+    <Content Include="css\html5reset.css" />
+    <Content Include="css\main.css" />
+    <Content Include="css\responsivegridsystem.css" />
+    <Content Include="css\stylesheet.css" />
+    <Content Include="favicon.jpg" />
+    <Content Include="foliogallery\foliogallery.css" />
+    <Content Include="foliogallery\foliogallery.js" />
+    <Content Include="foliogallery\jquery.1.11.js" />
+    <Content Include="foliogallery\nav.png" />
+    <Content Include="foliogallery\noimg.png" />
+    <Content Include="foliogallery\pngbg.png" />
+    <Content Include="fonts\bebas___-webfont.svg" />
+    <Content Include="images\2014_logo.png" />
+    <Content Include="images\2015_logo.png" />
+    <Content Include="images\facebook_icon.png" />
+    <Content Include="images\fairmont_hotel.jpg" />
+    <Content Include="images\fairmont_logo.jpg" />
+    <Content Include="images\favicon.ico" />
+    <Content Include="images\Flags\.gif" />
+    <Content Include="images\Flags\ab.gif" />
+    <Content Include="images\Flags\ab_small.gif" />
+    <Content Include="images\Flags\bc.gif" />
+    <Content Include="images\Flags\bc_small.gif" />
+    <Content Include="images\Flags\mb.gif" />
+    <Content Include="images\Flags\mb_small.gif" />
+    <Content Include="images\Flags\nl.gif" />
+    <Content Include="images\Flags\nl_small.gif" />
+    <Content Include="images\Flags\no.gif" />
+    <Content Include="images\Flags\no_small.gif" />
+    <Content Include="images\Flags\qc.gif" />
+    <Content Include="images\Flags\qc_small.gif" />
+    <Content Include="images\Flags\sk.gif" />
+    <Content Include="images\Flags\sk_small.gif" />
+    <Content Include="images\Flags\so.gif" />
+    <Content Include="images\Flags\so_small.gif" />
+    <Content Include="images\Flags\_small.gif" />
+    <Content Include="images\hamburger_blk.gif" />
+    <Content Include="images\header_bkg.jpg" />
+    <Content Include="images\header_image.jpg" />
+    <Content Include="images\header_image_1.jpg" />
+    <Content Include="images\header_image_10.jpg" />
+    <Content Include="images\header_image_11.jpg" />
+    <Content Include="images\header_image_12.jpg" />
+    <Content Include="images\header_image_2.jpg" />
+    <Content Include="images\header_image_3.jpg" />
+    <Content Include="images\header_image_4.jpg" />
+    <Content Include="images\header_image_5.jpg" />
+    <Content Include="images\header_image_6.jpg" />
+    <Content Include="images\header_image_7.jpg" />
+    <Content Include="images\header_image_8.jpg" />
+    <Content Include="images\header_image_9.jpg" />
+    <Content Include="images\hotel_exterior.jpg" />
+    <Content Include="images\hotel_logo.jpg" />
+    <Content Include="images\instagram_icon.png" />
+    <Content Include="images\LinkLogo.jpg" />
+    <Content Include="images\nav_bkg.jpg" />
+    <Content Include="images\nav_bkg.png" />
+    <Content Include="images\Sponsors\2020.jpg" />
+    <Content Include="images\Sponsors\AandM.jpg" />
+    <Content Include="images\Sponsors\AcademyLanes.jpg" />
+    <Content Include="images\Sponsors\BenMoss.jpg" />
+    <Content Include="images\Sponsors\Bigmouth.jpg" />
+    <Content Include="images\Sponsors\BirchwoodNissan.jpg" />
+    <Content Include="images\Sponsors\BostonPizza.jpg" />
+    <Content Include="images\Sponsors\BurlingtonHotel.jpg" />
+    <Content Include="images\Sponsors\CityofWpg.jpg" />
+    <Content Include="images\Sponsors\Cooperators.jpg" />
+    <Content Include="images\Sponsors\CORONATION.jpg" />
+    <Content Include="images\Sponsors\DowntownBiz.jpg" />
+    <Content Include="images\Sponsors\FairmontWPG.jpg" />
+    <Content Include="images\Sponsors\Goldeyes.jpg" />
+    <Content Include="images\Sponsors\Highwood.jpg" />
+    <Content Include="images\Sponsors\HolidayInn.jpg" />
+    <Content Include="images\Sponsors\Labelle.jpg" />
+    <Content Include="images\Sponsors\LibertyTax.jpg" />
+    <Content Include="images\Sponsors\Liquor.jpg" />
+    <Content Include="images\Sponsors\Lotteries.jpg" />
+    <Content Include="images\Sponsors\M5.jpg" />
+    <Content Include="images\Sponsors\MarlinTravel.jpg" />
+    <Content Include="images\Sponsors\Naleway.jpg" />
+    <Content Include="images\Sponsors\Phillips.jpg" />
+    <Content Include="images\Sponsors\Phipps.jpg" />
+    <Content Include="images\Sponsors\roseland.png" />
+    <Content Include="images\Sponsors\Rossmere.jpg" />
+    <Content Include="images\Sponsors\Sanders.jpg" />
+    <Content Include="images\Sponsors\sherwood.jpg" />
+    <Content Include="images\Sponsors\Snap.jpg" />
+    <Content Include="images\Sponsors\Sport.jpg" />
+    <Content Include="images\Sponsors\TNM.jpg" />
+    <Content Include="images\Sponsors\Triline.jpg" />
+    <Content Include="images\Sponsors\TrueNorth.jpg" />
+    <Content Include="images\Sponsors\ventura.jpg" />
+    <Content Include="images\Sponsors\VisionsofGold.jpg" />
+    <Content Include="images\twitter_icon.png" />
+    <Content Include="js\dw_event.js" />
+    <Content Include="js\dw_rotator.js" />
+    <Content Include="js\dw_rotator_aux.js" />
+    <Content Include="js\jquery-1.7.2.min.js" />
+    <Content Include="js\modernizr-2.5.3-min.js" />
+    <Content Include="js\responsive-nav.js" />
+    <Content Include="js\responsive-nav.min.js" />
+    <Content Include="js\responsivegridsystem.js" />
+    <Content Include="js\selectivizr-min.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>60098</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:60422/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.14-beta\build\portable-net45+win8+wpa81\Microsoft.Diagnostics.Tracing.EventSource.Redist.targets" Condition="Exists('..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.14-beta\build\portable-net45+win8+wpa81\Microsoft.Diagnostics.Tracing.EventSource.Redist.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.14-beta\build\portable-net45+win8+wpa81\Microsoft.Diagnostics.Tracing.EventSource.Redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.14-beta\build\portable-net45+win8+wpa81\Microsoft.Diagnostics.Tracing.EventSource.Redist.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.0.13.0-build22724\build\Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.0.13.0-build22724\build\Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.ApplicationInsights.0.13.0-build26067\tools\net40\Microsoft.ApplicationInsights.targets" Condition="Exists('..\packages\Microsoft.ApplicationInsights.0.13.0-build26067\tools\net40\Microsoft.ApplicationInsights.targets')" />
+  <Target Name="EnsureApplicationInsightsImported" BeforeTargets="BeforeBuild" Condition="'$(ApplicationInsightsImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.ApplicationInsights.0.13.0-build26067\tools\net40\Microsoft.ApplicationInsights.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." />
+    <Error Condition="Exists('..\packages\Microsoft.ApplicationInsights.0.13.0-build26067\tools\net40\Microsoft.ApplicationInsights.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." />
+  </Target>
+  <Import Project="..\packages\Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.0.13.0-build22724\build\Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.targets" Condition="Exists('..\packages\Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.0.13.0-build22724\build\Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
