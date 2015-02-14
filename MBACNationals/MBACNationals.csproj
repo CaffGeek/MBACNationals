@@ -119,6 +119,7 @@
     <Content Include="stepladder_ladies.php" />
     <Content Include="stepladder_men.php" />
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\MBACNationals.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
