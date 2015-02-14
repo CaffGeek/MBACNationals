@@ -1,2 +1,2 @@
 # MBACNationals
-Master Bowlers Assocation of Canada National Champtionship
+Master Bowlers Assocation of Canada National Championship
