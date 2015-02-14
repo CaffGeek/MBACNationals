@@ -25,7 +25,7 @@ To those of you joining us in Winnipeg for the National championship, we hope yo
 Best wishes to all of you for success at the upcoming event.
 </p><p>
 Doug Wood<br />
-President, Master Bowlers Association of Manitoba 		test			</p>
+President, Master Bowlers Association of Manitoba 					</p>
 					</div>
 					</div>
 					<div class="section group">
