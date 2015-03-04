@@ -1,1 +1,0 @@
-<img src="images/coming_soon.png" width="100%"/>

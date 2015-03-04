@@ -101,7 +101,6 @@
     <Content Include="header.php" />
     <Content Include="hotel.php" />
     <Content Include="images\Forms\2015_MBAC_Nat_Inform_Pkg.pdf" />
-    <Content Include="index.php" />
     <Content Include="index.php-c4f050ab-1686-42d5-9551-26d93f354e17" />
     <Content Include="lanedraw.php" />
     <Content Include="news.php" />
@@ -119,7 +118,7 @@
     <Content Include="stepladder_ladies.php" />
     <Content Include="stepladder_men.php" />
     <Content Include="packages.config" />
-    <Content Include="index.copy.php" />
+    <Content Include="index.php" />
     <None Include="Properties\PublishProfiles\MBACNationals.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
