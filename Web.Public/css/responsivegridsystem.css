@@ -205,7 +205,7 @@ font-family: 'bebasregular';
 	float: left;
 }
 
-@media screen and (max-width:920px) {
+@media screen and (max-width:980px) {
 
 
 .nav-collapse a:focus, .nav-collapse a:hover {
@@ -230,7 +230,7 @@ font-family: 'bebasregular';
 	width: 100%;
 	display: block
 }
-@media screen and (min-width:920px) {
+@media screen and (min-width:980px) {
 .nav-collapse li {
 	float: none;
 	display: inline-block;
@@ -255,7 +255,7 @@ font-family: 'bebasregular';
 .nav-collapse a:focus {
 	outline: none
 }
-@media screen and (min-width:920px) {
+@media screen and (min-width:980px) {
 
 
 .nav-collapse a {
@@ -274,7 +274,7 @@ color: #007dc4;
 
  }
  
-@media screen and (min-width:920px) {
+@media screen and (min-width:980px) {
 .nav-collapse .active a {
 	-webkit-font-smoothing: subpixel-antialiased;
 }
@@ -290,7 +290,7 @@ color: #007dc4;
 	display: block;
 	overflow: hidden
 }
-@media screen and (min-width:920px) {
+@media screen and (min-width:980px) {
 .js .nav-collapse {
 	position: relative !important;
 	max-height: none
@@ -316,7 +316,7 @@ color: #007dc4;
 	background: transparent url("../images/hamburger_blk.gif") no-repeat 50% 33%
 }
 
-@media screen and (min-width:920px) {
+@media screen and (min-width:980px) {
 .nav-toggle {
 	display: none
 }

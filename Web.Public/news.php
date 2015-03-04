@@ -5,15 +5,15 @@ include "header.php";
 
 			<div class="section group">
 				<div class="col span_3_of_3" style="margin:0px;">
-				<div id="headerImage" style="background-image:url('images/header_image_1.jpg'); "></div>
-				<div id="photoCredit"><strong>Burlington</strong> &bull; Credit: </div>
+				<div id="headerImage" style="background-image:url('images/header_image_2.jpg'); "></div>
+				<div id="photoCredit"><strong>Spencer Smith Park</strong> &bull; Credit: Andrew Lynes - WikiCommons</div>
 				</div>
 			</div>
 
 		<div class="section group content">
 				<div class="col span_1_of_3">
 				<div id="centres_links">
-				<a href="">FEBRUARY</a><br />
+				<a href="">MARCH</a><br />
 <!--				<a href="">MAY</a><br />
 				<a href="">JUNE</a><br />
 				<a href="">JULY</a><br />-->
@@ -22,8 +22,8 @@ include "header.php";
 				<div class="col span_2_of_3"  id="contentArea">
 					
 					<h2>NEWS</h2>
-					<h4>February, 2015<br />National Information for Provincial Presidents</h4><p>Information on the 2015 Nationals<br /> <a href="images/forms/2015_MBAC_Nat_Inform_Pkg.pdf">Download PDF</a></p>
-					<h4>February, 2015<br />Web Site Launch</h4><p>Welcome to the 2015 MBAC Nationals Website, please return for future information.</p>					
+					<h4>March, 2015<br /><span style="color:#cc0000">Discount offered on Souvenir order prior to May 15th</span></h4><p>Order 1 item receive a <strong>5% discount</strong> off pricing shown<br />Order 2 or more items receive a <strong>10% discount</strong> off pricing shown</p>
+					<h4>March, 2015<br />Web Site Launch</h4><p>Welcome to the 2015 MBAC Nationals Website, please return for future information.</p>
 				</div>
 			</div>
 		</div>

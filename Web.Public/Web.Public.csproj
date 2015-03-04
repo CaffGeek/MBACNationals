@@ -100,7 +100,10 @@
     <Content Include="footer.php" />
     <Content Include="header.php" />
     <Content Include="hotel.php" />
+    <Content Include="images\2015PreliminaryLaneDraw.gif" />
+    <Content Include="images\catalogue.jpg" />
     <Content Include="images\Forms\2015_MBAC_Nat_Inform_Pkg.pdf" />
+    <Content Include="images\Souvenir_Order_Form.jpg" />
     <Content Include="index.php-c4f050ab-1686-42d5-9551-26d93f354e17" />
     <Content Include="lanedraw.php" />
     <Content Include="news.php" />
@@ -119,7 +122,13 @@
     <Content Include="stepladder_men.php" />
     <Content Include="packages.config" />
     <Content Include="index.php" />
+    <Content Include="images\Forms\2015PreliminaryLaneDraw.pdf" />
+    <Content Include="images\Forms\Guest_Info.pdf" />
+    <Content Include="images\Forms\souvenirs.pdf" />
+    <Content Include="images\Forms\Souvenir_Order_Form.pdf" />
+    <Content Include="images\Forms\Souvenir_Order_Form.xlsx" />
     <None Include="Properties\PublishProfiles\MBACNationals.pubxml" />
+    <Content Include="souvenirs.php" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

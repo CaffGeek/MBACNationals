@@ -5,8 +5,8 @@ include "header.php";
 
 			<div class="section group">
 				<div class="col span_3_of_3" style="margin:0px;">
-				<div id="headerImage" style="background-image:url('images/header_image_1.jpg'); "></div>
-				<div id="photoCredit"><strong>Burlington</strong> &bull; Credit: </div>
+				<div id="headerImage" style="background-image:url('images/header_image_4.jpg'); "></div>
+				<div id="photoCredit"><strong>James N. Allan Skyway Bridge</strong> &bull; Credit: WikiCommons</div>
 
 
 
@@ -17,7 +17,6 @@ include "header.php";
 				<div class="col span_1_of_3">
 				<div id="centres_links">
 				<a href="#sherwood">Sherwood Centre – Hamilton</a><br />
-				<a href="#roseland">Roseland Bowl – Burlington</a><br />
 				</div>
 				</div>
 				<div class="col span_2_of_3" id="contentArea">
@@ -28,14 +27,7 @@ include "header.php";
 						<div class="section group">
 							<div class="col span_1_of_3 centreLogo"><img src="images/sponsors/Sherwood.jpg" alt="Sherwood Centre" /></div>
 							<div class="col span_2_of_3"><h5>905-383-7641<br />1095 Fennell Ave East, Hamilton, ON</h5><br /><p>Roseland Bowl is a 48 lane bowling centre with computerized scoring.</p><p>For more information, check out their website: <a href="http://www.sherwoodcentre.com/" target="_blank">sherwoodcentre.com</a></p></div>
-						</div>
-					<h4 id="roseland">Roseland Bowl – Burlington</h4>
-					
-						<div class="section group">
-							<div class="col span_1_of_3 centreLogo"><img src="images/sponsors/Roseland.png" alt="Roseland Bowl" /></div>
-							<div class="col span_2_of_3"><h5>(905) 634-9805<br />422 Guelph Line, Burlington, ON</h5><br /><p>Roseland Bowl is a 24 lane bowling centre with computerized scoring.</p><p>For more information, check out their website: <a href="http://www.roselandbowl.ca/" target="_blank">roselandbowl.ca</a></p></div>
-						</div>
-					
+						</div>					
 				</div>
 			</div>
 		</div>

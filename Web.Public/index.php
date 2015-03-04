@@ -6,8 +6,8 @@ include "header.php";
 
 			<div class="section group">
 				<div class="col span_3_of_3" style="margin:0px;">
-				<div id="headerImage" style="background-image:url('images/header_image_1.jpg'); "></div>
-				<div id="photoCredit"><strong>Burlington</strong> &bull; Credit: </div>
+				<div id="headerImage" style="background-image:url('images/header_image_5.jpg'); "></div>
+				<div id="photoCredit"><strong>Burlington, Ontario at Night</strong> &bull; Credit: WikiCommons</div>
 				</div>
 			</div>
 
@@ -16,28 +16,31 @@ include "header.php";
 					<div class="section group">
 					<div class="col span_2_of_2" id="welcome">
 					<h2>WELCOME</h2>
-					<p>Hi Everyone, and Welcome to the 2015 MBAC Nationals Website!
-</p><p>
-The Masters of Manitoba hope you find the site informative, and easy to use, as those were our goals during the construction and design process.
-</p><p>
-To those of you joining us in Winnipeg for the National championship, we hope you enjoy your stay in the Exchange District, the heart of the city, where you will find all sorts of entertainment venues and diverse restaurants to take your mind off the stress of competition.
-</p><p>
-Best wishes to all of you for success at the upcoming event.
-</p><p>
-Doug Wood<br />
-President, Master Bowlers Association of Manitoba 					</p>
+					<p>The Master Bowlers Association of Ontario and its host committee welcome you to Ontario and the Burlington/Hamilton area.  Our group of volunteers is excited and privileged to work on your behalf to put forth a memorable experience for you.</p>
+<p>Our host hotel is the Holiday Inn Burlington Hotel & Conference Centre.  This hotel is a full service facility with an indoor pool, whirlpool, sauna, restaurant, and free high speed internet and features a Holidome atrium.  It is located approximately 20 minutes from the bowling centre that will be hosting our National Championships.  There are several restaurants across from the hotel, a mall less than a10 minute walk and the waterfront a short 5 minute cab ride.  All hotel reservations must be done through the Master Bowlers Association of Ontario.</p>
+<p>Our host bowling centre will be Sherwood Centre, with 48 lanes allows all participants to be in one location allowing guests and provincial contingents access to support their province.</p>
+<p>Our theme for the event is “Las Vegas – Let’s Party”.  We encourage all participants to dress up in Vegas style performer attire; this can be of the Hotel gambling & entertainment style, or your favorite performer in Vegas, or even the street entertainers that are so plentiful in Vegas.  For Ontario night we ask that our female Rookies be attired in Elvis traditional wear, while our male Rookies are attired in typical Vegas Show Girl style. </p>
+<p>We all look forward to seeing you all in June.</p>
+<p>Mike Bates, MBAC Nationals Hosting Chair & Brenda Walters, President, MBAO</p>
 					</div>
 					</div>
 					<div class="section group">
 					<div class="col span_1_of_2" id="news">
 					<h2>NEWS</h2>
-					<h4>February, 2015<br />National Information for Provincial Presidents</h4><p>Information on the 2015 Nationals<br /> <a href="images/forms/2015_MBAC_Nat_Inform_Pkg.pdf">Download PDF</a></p>
-					<h4>February, 2015<br />Web Site Launch</h4><p>Welcome to the 2015 MBAC Nationals Website, please return for future information.</p>
+					<h4>March, 2015<br /><span style="color:#cc0000">Discount offered on Souvenir order prior to May 15th</span></h4><p>Order 1 item receive a <strong>5% discount</strong> off pricing shown</p><p>Order 2 or more items receive a <strong>10% discount</strong> off pricing shown</p>
+					<h4>March, 2015<br />Web Site Launch</h4><p>Welcome to the 2015 MBAC Nationals Website, please return for future information.</p>
 					</div>
 					<div class="col span_1_of_2" id="schedule">
-					<h2>TODAY'S SCHEDULE</h2>
-					<h3 id="day6"></h3>
-					<h4>Coming Soon</h4><p><strong></p>
+					<h2>FORMS</h2>
+					<h4 id="day6">National Information for Provincial Presidents</h4>
+					<p>Information on the 2015 Nationals<br /> <a href="images/forms/2015_MBAC_Nat_Inform_Pkg.pdf" target="_blank">Download PDF</a></p>
+					<h4 id="day6">Guest Information Package</h4>
+					<p>Guest Information for the 2015 Nationals<br /> <a href="images/forms/Guest_Info.pdf" target="_blank">Download PDF</a></p>
+
+					<h2>SCHEDULE</h2>
+					<h3 id="day6">Day 1 - saturday, june 27, 2014</h3>
+<h4>Saturday June 27th - Early Arrivals</h4>
+<p><Strong>11:30 am – 2:00 a.m.</strong><br />Arrivals & Bus Shuttles to Hotel<br />Participants & Guests</p>
 					</div>
 					</div>
 				</div>

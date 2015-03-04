@@ -12,13 +12,13 @@
 <head>
 <meta property="og:url" content="http://nationals2014.manitobamasterbowlers.com" />
 <meta property="og:image" content="http://nationals2014.manitobamasterbowlers.com/images/LinkLogo.jpg" />
-<meta property="og:title" content="2014 Master Bowlers Association National Championships" />
+<meta property="og:title" content="2015 Master Bowlers Association National Championships :: Burlington, ON" />
 
 	<meta charset="utf-8">
 	<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<!--<link rel="icon" href="http://nationals2014.manitobamasterbowlers.com/images/favicon.ico" type="image/x-icon"> 
-<link rel="shortcut icon" href="http://nationals2014.manitobamasterbowlers.com/images/favicon.ico" type="image/x-icon">-->
+<link rel="icon" href="images/favicon.ico" type="image/x-icon"> 
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
 	<title>2015 Master Bowlers Association National Championships :: Burlington, ON</title>
 
@@ -119,7 +119,7 @@ function autoResize(id){
               <li><a href="lanedraw.php">LANE DRAW</a></li>
               <li><a href="photos.php">PHOTOS</a></li>
               <li><a href="contingents.php">CONTINGENTS</a></li>
-<!--			<li><a href="http://www.tnmpromostore.com/default.aspx?business_id=2495&page=main" target="_blank">SOUVENIRS</a></li> -->
+			  <li><a href="souvenirs.php">SOUVENIRS</a></li>
               <li><a href="centres.php">CENTRES</a></li>
               <li><a href="hotel.php">HOTEL</a></li>
             </ul>
