@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{146A4004-73D9-4015-899B-83CBBBD2FFEE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MBACNationalsReadModels</RootNamespace>
+    <AssemblyName>MBACNationalsReadModels</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NDatabase3">
+      <HintPath>..\packages\NDatabase.3.8.0\lib\net45\NDatabase3.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AReadModel.cs" />
+    <Compile Include="ContingentPracticePlanQueries.cs" />
+    <Compile Include="ContingentQueries.cs" />
+    <Compile Include="ContingentTravelPlanQueries.cs" />
+    <Compile Include="ContingentViewQueries.cs" />
+    <Compile Include="ContingentEventHistoryQueries.cs" />
+    <Compile Include="ITeamScoreQueries.cs" />
+    <Compile Include="IParticipantScoreQueries.cs" />
+    <Compile Include="HighScoreQueries.cs" />
+    <Compile Include="IHighScoreQueries.cs" />
+    <Compile Include="IStandingQueries.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ParticipantScoreQueries.cs" />
+    <Compile Include="StandingQueries.cs" />
+    <Compile Include="IMatchQueries.cs" />
+    <Compile Include="IScheduleQueries.cs" />
+    <Compile Include="IContingentEventHistoryQueries.cs" />
+    <Compile Include="IParticipantProfileQueries.cs" />
+    <Compile Include="EntityMissingException.cs" />
+    <Compile Include="IContingentPracticePlanQueries.cs" />
+    <Compile Include="IContingentTravelPlanQueries.cs" />
+    <Compile Include="IContingentViewQueries.cs" />
+    <Compile Include="IContingentQueries.cs" />
+    <Compile Include="IParticipantQueries.cs" />
+    <Compile Include="IReservationQueries.cs" />
+    <Compile Include="MatchQueries.cs" />
+    <Compile Include="ParticipantProfileQueries.cs" />
+    <Compile Include="ParticipantQueries.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ReservationQueries.cs" />
+    <Compile Include="ScheduleQueries.cs" />
+    <Compile Include="TeamScoreQueries.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Edument.CQRS\Edument.CQRS.csproj">
+      <Project>{d2bab57d-225d-4f4c-9410-ed39495a8fe0}</Project>
+      <Name>Edument.CQRS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Events\Events.csproj">
+      <Project>{b195f4c7-41ef-403c-aa05-0018b9df25f8}</Project>
+      <Name>Events</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>MBAC Nationals 2014 :: Winnipeg :: @ViewBag.Title</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/bootstrap/base")
+    @Styles.Render("~/Content/bootstrap/theme")
+</head>
+<body>
+    <div class="container" data-ng-app="app">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="row">
+                    <a href="/"><img src="~/Content/Images/2014_logo.png" /></a>
+                </div>
+                <div class="row">
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    @Html.Partial("_AdminMenuPartial")
+                </div>
+                <div class="row">
+                    <img src="~/Content/Images/header_image.jpg" style="width:100%; top: -5px; position:relative;" />
+                </div>
+            </div>
+        </div>
+
+        @RenderBody()
+
+        <!-- Site footer -->
+        <div class="footer">
+            <p>Site Design &copy; 2013-@System.DateTime.Now.Year Charlene McIvor and Chad Hurd</p>
+            @if (User.IsInRole("Admin"))
+            {
+                @Html.ActionLink("Reports", "Reports", "Admin")
+                @Html.ActionLink("Score Entry", "Entry", "Scores")
+            }
+            @if (User.Identity.Name.Equals("Chad"))
+            {
+                @Html.ActionLink("Rebuild Read Models", "Rebuild", "Admin")
+            }
+        </div>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/custom")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/app")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/FileSaver.js"></script>
+</body>
+</html>

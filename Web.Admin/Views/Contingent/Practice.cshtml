@@ -1,0 +1,24 @@
+﻿<div>
+    <div class="container" data-ng-controller="PracticeController">
+        <h2>{{model.province}} Practice Schedule</h2>
+        
+        <table class="table table-striped table-condensed table-hover ">
+            <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>Alley</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="team in model.teams | orderBy:'Name':true">
+                    <td>{{team.Name}}</td>
+                    <td><select data-ng-model="team.PracticeLocation" data-ng-options="location for location in model.practiceLocations"></select></td>
+                    <td><select data-ng-model="team.PracticeTime" data-ng-options="time as time | hour for time in model.allowedTimes"></select></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a href="#" data-ng-click="savePracticePlan()" class="btn btn-primary btn-large pull-right">Save</a>
+    </div>
+</div>

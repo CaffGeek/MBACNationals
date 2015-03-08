@@ -1,0 +1,86 @@
+@model IEnumerable<WebFrontend.Models.UserProfile>
+@{
+    
+    ViewBag.Title = "Users";
+    var roles = ((string[])ViewBag.Roles).OrderBy(x => x);
+}
+
+<style>
+    #smatable, #smatable td,#smatable th {
+        border: solid 1px gray;
+        padding: 5px;
+    }
+    #smatable th {
+     background-color: darkgray;
+    }
+    
+</style>
+
+<h2>Users</h2>
+
+
+<table id="smatable">
+    <thead>
+        <tr>
+            <th>UserId</th>
+            <th>Username            </th>
+            @foreach (var role in roles)
+            {
+                <th>@role
+                </th>
+            }
+            <th>CreationDate</th>
+            <th>LastPasswordFailureDate</th>
+            <th>PasswordChangedDate</th>
+            <th>PasswordFailuresSinceLastSuccess</th>
+        </tr>
+
+
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>
+                    @user.UserId
+                </td>
+                <td>
+                    @user.UserName
+                </td>
+
+                @foreach (var role in roles)
+                {
+                    <td>
+                        @using (Html.BeginForm("UserToRole", "Main"))
+                        {
+                            <input type="hidden" value="@user.UserName" name="username" />
+                            <input type="hidden" value="@role" name="rolename" />
+                            <input type="checkbox" name="ischecked" onclick="this.form.submit();" value="true" checked="@System.Web.Security.Roles.IsUserInRole(@user.UserName, role)" />
+                            
+                        }
+
+
+                    </td>
+                }
+                <td>
+                    @WebSecurity.GetCreateDate(user.UserName)
+                </td>
+                <td>
+                    @WebSecurity.GetLastPasswordFailureDate(user.UserName)
+                </td>
+                <td>
+                    @WebSecurity.GetPasswordChangedDate(user.UserName)
+                </td>
+                <td>
+                    @WebSecurity.GetPasswordFailuresSinceLastSuccess(user.UserName)
+                </td>
+
+            </tr>  
+        
+        }
+    </tbody>
+</table>
+
+<p>
+    <a href="~/SimpleMembershipAdministration/Main/Roles">Roles</a>
+</p>

@@ -1,0 +1,19 @@
+﻿<button type="button" class="back btn btn-lg" data-ng-click="Back()">Back</button>
+
+<h2>{{model.Division}}</h2>
+<h4>Pick the game</h4>
+
+<div class="row">
+    <div data-ng-repeat="game in model.Schedule.Games | unique: 'Number'">
+        <button type="button" class="col-xs-4 btn btn-lg btn-primary" 
+            data-ng-class="{'btn-success':AllGamesComplete(game.Number)}" 
+            data-ng-hide="AllGamesComplete(game.Number) && !showCompleted" 
+            data-ng-click="Page('Match', { Number: game.Number })"
+            data-ng-if="game.Number <= model.CurrentGame"
+            >{{game.Number}}</button>
+    </div>
+</div>
+
+<h4 class="col-xs-12">
+    <label><input type="checkbox" data-ng-model="showCompleted" />Show Completed</label>
+</h4>

@@ -1,0 +1,16 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <a class="btn btn-primary pull-right" data-ng-click="addGuest();">Add another Guest</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <ul>
+            <li data-ng-repeat="guest in model.Guests">
+                <a data-ng-click="editParticipant(guest);" title="{{guest.Id}}">{{guest.Name}}
+                </a>
+                <span data-ng-show="guest.IsDelegate"><sup>D</sup></span>
+            </li>
+        </ul>
+    </div>
+</div>

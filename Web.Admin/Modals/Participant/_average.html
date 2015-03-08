@@ -1,0 +1,29 @@
+﻿<table class="table table-condensed table-bordered">
+    <thead>
+        <tr>
+            <th colspan="3">Pinfall</th>
+            <th colspan="3">No Of Games</th>
+            <th>National Average</th>
+        </tr>
+        <tr>
+            <th>League</th>
+            <th>Tournament</th>
+            <th>Total</th>
+            <th>League</th>
+            <th>Tournament</th>
+            <th>Total</th>
+            <th>Pinfall / Games</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><input class="form-control" data-ng-model="model.participant.LeaguePinfall" /></td>
+            <td><input class="form-control" data-ng-model="model.participant.TournamentPinfall" /></td>
+            <td>{{model.participant.LeaguePinfall * 1 + model.participant.TournamentPinfall * 1}}</td>
+            <td><input class="form-control" data-ng-model="model.participant.LeagueGames" /></td>
+            <td><input class="form-control" data-ng-model="model.participant.TournamentGames" /></td>
+            <td>{{model.participant.LeagueGames * 1 + model.participant.TournamentGames * 1}}</td>
+            <td>{{((model.participant.LeaguePinfall * 1 + model.participant.TournamentPinfall * 1)/(model.participant.LeagueGames * 1 + model.participant.TournamentGames * 1)) | rounddown}}</td>            
+        </tr>
+    </tbody>
+</table>

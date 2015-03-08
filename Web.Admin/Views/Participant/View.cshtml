@@ -1,0 +1,15 @@
+﻿@model WebFrontend.Models.Participant.View
+
+@{
+    ViewBag.Title = "View";
+}
+
+@section scripts {
+    <script type="text/javascript">
+        $('h2#@Model.Participant.Id').editable("/@ViewContext.RouteData.Values["controller"]/Rename");
+    </script>
+}
+
+<h2 class="edit" id="@Model.Participant.Id">@Model.Participant.Name</h2>
+
+TODO: Show matches, scores, average, etc

@@ -1,0 +1,75 @@
+﻿<div>
+    <div class="container" data-ng-controller="ReservationController">
+        <h2>Drag attendees to assign them to rooms</h2>
+
+        <div class="row clearfix">
+            <h3></h3>
+		    <div class="col-sm-2">
+                <div class="column noHotelRoom" data-droppable="" data-drop="removeFromRoom">
+                    <div id="{{p.Id}}" data-draggable="" data-ng-repeat="p in model.participants | filter:unassignedRoom">{{p.Name}}</div>
+		        </div>    
+                <div>
+                    <address>
+                      <strong>The Fairmont</strong><br>
+                      2 Lombard Place<br>
+                      Winnipeg, MB<br>
+                      <abbr title="Phone">P:</abbr> (204) 957-1350
+                    </address>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <strong>Moderate or Fairmont</strong><br />
+                            <small>Single or Double ($140+tax)<br />
+                            King, Queen or 2 Double<br /></small>
+                        </li>
+                        <li>
+                            <strong>Fairmont GOLD Floor</strong><br />
+                            <small>Single or Double ($240+tax)<br />
+                            King, Queen or 2 Double<br />
+                            Deluxe daily breakfast<br /></small>
+                        </li>
+                        <li>
+                            <strong>1 Bedroom Suite</strong><br />
+                            <small>Single or Double ($240+tax)<br />
+                            King or 2 Double + sofabed<br /></small>
+                        </li>
+                        <li>
+                            <strong>2 Bedroom Suite</strong><br />
+                            <small>Single or Double ($340+tax)<br />
+                            King or 2 Double + sofabed<br /></small>
+                        </li>
+                    </ul>
+                </div>		
+		    </div>
+            
+			<div class="col-sm-10">
+				<div data-ng-repeat="y in [1, 2, 3, 4, 5]" class="hotelRooms">
+					<div data-ng-repeat="x in [1, 2, 3, 4, 5]" class="col-sm-3">
+                        <h6>
+                            Room #{{calcBin(y,x)}}
+                            <select id="binType{{calcBin(y,x)}}" data-ng-model="getRoomByBin(y,x).Type" data-ng-change="setRoomType((y-1)*5+x)">
+                                <option value="Single">Single</option>
+                                <option value="Double">Double</option>
+                                <option value="SingleGold">Single Gold Floor</option>
+                                <option value="DoubleGold">Double Gold Floor</option>
+                                <option value="OneBedSingleSuite">1 Bedroom Single</option>
+                                <option value="OneBedDoubleSuite">1 Bedroom Double</option>
+                                <option value="TwoBedSingleSuite">2 Bedroom Single</option>
+                                <option value="TwoBedDoubleSuite">2 Bedroom Double</option>
+                            </select>
+                        </h6> 
+                        <div id="bin{{calcBin(y,x)}}" data-droppable="{{calcBin(y,x)}}" data-drop="addToRoom">
+                            <div id="{{p.Id}}" data-draggable="" data-ng-repeat="p in model.participants | filter:isThisRoom(y,x)">{{p.Name}}</div>
+                        </div>
+					</div>
+				</div>
+
+                <div>
+                    <h5>Special Instructions</h5>
+                    <textarea data-ng-model="model.instructions" class="col-sm-12"></textarea>
+                    <a href="#" data-ng-click="saveInstructions()" class="btn btn-primary btn-large pull-right">Save Instructions</a>
+                </div>
+			</div>
+	    </div>
+    </div>
+</div>

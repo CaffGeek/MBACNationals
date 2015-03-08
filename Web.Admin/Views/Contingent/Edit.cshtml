@@ -1,0 +1,22 @@
+﻿<div>
+    <div class="container" data-ng-controller="ContingentController">
+        <ul class="nav nav-tabs ">
+            <li><h4 title="{{model.Id}}">{{model.Province}} Contingent</h4></li>
+            <li>
+                <a data-ng-click="viewUrl = '/App/Views/Contingent.html';">Teams</a>
+            </li>
+            <li>
+                <a data-ng-click="viewUrl = '/App/Views/Alternates.html';">Alternates</a>
+            </li>
+            <li>
+                <a data-ng-click="viewUrl = '/App/Views/Guests.html';">Guests</a>
+            </li>
+            <li>
+                <a data-ng-click="viewUrl = '/App/Views/History.html';">History</a>
+            </li>
+        </ul>
+
+        <div class="row" id="view" data-ng-include="" data-src="viewUrl">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+﻿<table class="table table-striped table-condensed table-hover">
+    <thead>
+        <tr>
+            <th>Team</th>
+            <th>Alternate</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody data-ng-repeat="team in model.Teams | filter:isTeam | orderBy:'-1*Name.length'" data-ng-show="team.Id">
+        <tr>
+            <td>{{team.Name}}</td>
+            <td>
+                <select 
+                    data-ng-model="team.Alternate" 
+                    data-ng-options="participant.Id as participant.Name for participant in getAllContingentMembers() | orderBy:'Name'"
+                    data-ng-change="assignAlternateToTeam(team.Alternate, team)">
+                </select>
+            </td>
+            <td>
+                <a href="#" data-ng-click="editAlternate(team.Alternate, team)" data-ng-if="team.Alternate">Set Average Info</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

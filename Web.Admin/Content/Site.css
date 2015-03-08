@@ -1,0 +1,131 @@
+﻿body {
+    font-size: .85em;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    color: #232323;
+	background-image:url(/Content/Images/header_bkg.jpg);
+	background-repeat:repeat-x;
+    background-color: #fff;
+}
+
+#logo { 
+    position:absolute;
+    z-index:20;
+    margin-top:-30px;
+    margin-left:20px;
+}
+
+header, footer, nav, section {
+    display: block;
+}
+
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 75px;
+}
+
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+a {
+    cursor: pointer;
+}
+
+.padding-0 {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+.padding-sm {
+   padding: 2px !important;
+   margin: 2px !important;
+}
+
+.padding-md {
+   padding: 5px !important;
+   margin: 5px !important;
+}
+
+.padding-lg {
+   padding: 10px !important;
+   margin: 10px !important;
+}
+
+div.noHotelRoom {
+    border: 1px black solid;
+    min-height: 20em;
+}
+
+.hotelRooms {
+    width: 100%;
+}
+
+.hotelRooms > div {
+    width: 19%;
+    margin:  .5%;
+    padding: .5%;
+}
+
+.hotelRooms > div > div {
+    border: 1px black solid;
+    overflow-y: auto;
+    height: 6em;
+}
+
+[draggable] {
+    cursor: pointer;
+}
+
+.drag {
+  opacity: 0.5;
+}
+
+.hotelRooms .over {
+  background: #ddd;
+}
+
+.strike {
+  text-decoration: line-through;
+}

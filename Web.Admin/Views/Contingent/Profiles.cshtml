@@ -1,0 +1,150 @@
+﻿<div>
+    <div class="container" data-ng-controller="ParticipantController">
+        <h2>{{model.province}} Singles Profiles</h2>
+        
+        <div class="row clearfix">
+		    <div class="col-sm-2">
+                <div data-ng-repeat="team in model.Teams | filter:includesSinglesRep | orderBy:'-1*Name.length'" data-ng-show="team.Id">
+                    <h4>{{team.Name.replace("Single","")}}</h4>
+                    <a href="" data-ng-click="loadActiveParticipant(team.Bowlers[0])">{{team.Bowlers[0].Name}}</a>
+                </div>
+            </div>
+			<div class="col-sm-8 col-sm-offset-1" id="contentArea">
+                <form class="form-horizontal" role="form" data-ng-if="model.ActiveParticipant.Id">
+                    <h3>{{model.ActiveParticipant.Name}}</h3>
+                    <div class="form-group">
+                        <label for="Age" class="col-sm-4 control-label">Age</label>
+                        <div class="col-sm-8">
+                            <input type="number" class="form-control" id="Age" data-ng-model="model.ActiveParticipant.Age" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="HomeTown" class="col-sm-4 control-label">Home Town</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" id="HomeTown" data-ng-model="model.ActiveParticipant.HomeTown" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="MaritalStatus" class="col-sm-4 control-label">Marital Status</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" id="MaritalStatus" data-ng-model="model.ActiveParticipant.MaritalStatus" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="SpouseName" class="col-sm-4 control-label">Spouse's Name</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" id="SpouseName" data-ng-model="model.ActiveParticipant.SpouseName" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Children" class="col-sm-4 control-label">Names and Ages of Children</label>
+                        <div class="col-sm-8">
+                            <textarea class="form-control" id="Children" data-ng-model="model.ActiveParticipant.Children">
+
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Occupation" class="col-sm-4 control-label">Occupation</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" id="Occupation" data-ng-model="model.ActiveParticipant.Occupation" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="HomeCenter" class="col-sm-4 control-label">Home Bowling Center</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" id="HomeCenter" data-ng-model="model.ActiveParticipant.HomeCenter" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="YearsBowling" class="col-sm-4 control-label">Number of Years Bowling</label>
+                        <div class="col-sm-8">
+                            <input type="number" class="form-control" id="YearsBowling" data-ng-model="model.ActiveParticipant.YearsBowling" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="NumberOfLeagues" class="col-sm-4 control-label">Number of Leagues this Year</label>
+                        <div class="col-sm-8">
+                            <input type="number" class="form-control" id="NumberOfLeagues" data-ng-model="model.ActiveParticipant.NumberOfLeagues" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="HighestAverage" class="col-sm-4 control-label">Highest Average this Year</label>
+                        <div class="col-sm-8">
+                            <input type="number" class="form-control" id="HighestAverage" data-ng-model="model.ActiveParticipant.HighestAverage" />
+                        </div>
+                    </div>
+                    <h3>YBC Involvement</h3>
+                    <div class="form-group">
+                        <label for="YearsCoaching" class="col-sm-4 control-label">Number of Years Coaching</label>
+                        <div class="col-sm-8">
+                            <input type="number" class="form-control" id="YearsCoaching" data-ng-model="model.ActiveParticipant.YearsCoaching" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="BestFinishProvincially" class="col-sm-4 control-label">Best Finish Provincially</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" id="BestFinishProvincially" data-ng-model="model.ActiveParticipant.BestFinishProvincially" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="BestFinishNationally" class="col-sm-4 control-label">Best Finish Nationally</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" id="BestFinishNationally" data-ng-model="model.ActiveParticipant.BestFinishNationally" />
+                        </div>
+                    </div>
+                    <h3>Masters Accomplishments</h3>
+                    <div class="form-group">
+                        <label for="MasterProvincialWins" class="col-sm-4 control-label">Number of Provincial Wins</label>
+                        <div class="col-sm-8">
+                            <input type="number" class="form-control" id="MasterProvincialWins" data-ng-model="model.ActiveParticipant.MasterProvincialWins" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="MastersAchievements" class="col-sm-4 control-label">National Masters Achievements</label>
+                        <div class="col-sm-8">
+                            <textarea class="form-control" id="MastersAchievements" data-ng-model="model.ActiveParticipant.MastersAchievements">
+
+                            </textarea>
+                        </div>
+                    </div>
+                    <h3>Open Accomplishments</h3>
+                    <div class="form-group">
+                        <label for="OpenYears" class="col-sm-4 control-label">Number of Years in the Open</label>
+                        <div class="col-sm-8">
+                            <input type="number" class="form-control" id="OpenYears" data-ng-model="model.ActiveParticipant.OpenYears" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="OpenAchievements" class="col-sm-4 control-label">National Open Achievements</label>
+                        <div class="col-sm-8">
+                            <textarea class="form-control" id="OpenAchievements" data-ng-model="model.ActiveParticipant.OpenAchievements">
+
+                            </textarea>
+                        </div>
+                    </div>
+                    <h3>Other</h3>
+                    <div class="form-group">
+                        <label for="OtherAchievements" class="col-sm-4 control-label">Other Noteworthy Bowling Achievements</label>
+                        <div class="col-sm-8">
+                            <textarea class="form-control" id="OtherAchievements" data-ng-model="model.ActiveParticipant.OtherAchievements">
+
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Hobbies" class="col-sm-4 control-label">Hobbies &amp; Interests</label>
+                        <div class="col-sm-8">
+                            <textarea class="form-control" id="Hobbies" data-ng-model="model.ActiveParticipant.Hobbies">
+
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <a href="#" data-ng-click="saveParticipantProfile()" class="btn btn-primary btn-large pull-right">Save Profile</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

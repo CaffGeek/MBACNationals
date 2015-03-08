@@ -1,0 +1,29 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <h4>Averages</h4>
+        <input data-ng-model="filter.Name" type="text" placeholder="Filter by Name" autofocus>
+        <p>Note that guests, coaches and tournament singles are currently in this list and don't require averages (unless they are alternates).</p>
+        <table data-exportable="Averages" class=" table table-striped table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th>Participant</th>
+                    <th>Tournament<br/>Pinfall</th>
+                    <th>Tournament<br/>Games</th>
+                    <th>League<br/>Pinfall</th>
+                    <th>League<br/>Games</th>
+                    <th>Average</th>
+                </tr>
+            </thead>
+            <tbody data-ng-repeat="participant in model.Participants | orderBy:'Name' | filter:{ Name: filter.Name }" data-ng-if="participant.Name">
+                <tr>
+                    <td>{{participant.Name}}</td>
+                    <td>{{participant.TournamentPinfall}}</td>
+                    <td>{{participant.TournamentGames}}</td>
+                    <td>{{participant.LeaguePinfall}}</td>
+                    <td>{{participant.LeagueGames}}</td>
+                    <td>{{participant.Average}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

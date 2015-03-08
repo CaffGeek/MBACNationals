@@ -1,0 +1,23 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <h4>Participation Plaques</h4>
+        <table data-exportable="Plaques" class="table table-striped table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th data-ng-click="orderBy.Descending = !orderBy.Descending; orderBy.Column = 'Province'">Province</th>
+                    <th data-ng-click="orderBy.Descending = !orderBy.Descending; orderBy.Column = 'TeamName'">Team</th>
+                    <th data-ng-click="orderBy.Descending = !orderBy.Descending; orderBy.Column = 'Name'">Participant</th>
+                    <th data-ng-click="orderBy.Descending = !orderBy.Descending; orderBy.Column = 'YearsQualifying'">Years</th>
+                </tr>
+            </thead>
+            <tbody data-ng-repeat="participant in model.Participants | orderBy:orderBy.Column:orderBy.Descending | filter:plaqueFilter" data-ng-if="participant.Name">
+                <tr>
+                    <td>{{participant.Province}}</td>
+                    <td>{{participant.TeamName}}</td>
+                    <td>{{participant.Name}}</td>
+                    <td>{{participant.YearsQualifying}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿<form class="modal-content">
+    <div class="modal-header">
+        <h3>{{model.title}} <span ng-if="model.participant.IsCoach">Coach</span></h3>
+    </div>
+    <div class="modal-body form-horizontal">
+        <div class="form-group">
+            <label for="name" class="col-sm-3 control-label">Name</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="name" placeholder="Name" data-ng-model="model.participant.Name" autofocus />
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="name" class="col-sm-3 control-label">Delegate</label>
+            <div class="col-sm-9">
+                <input type="checkbox" data-ng-model="model.participant.IsDelegate" />
+            </div>
+        </div>
+        
+        <div data-ng-include="'/Modals/Participant/_guestpackage.html'" data-ng-if="model.participant.IsGuest && !model.participant.IsDelegate"></div>
+
+        <div class="form-group" data-ng-if="!(model.participant.IsGuest)">
+            <label for="name" class="col-sm-3 control-label">Years</label>
+            <div class="col-sm-9">
+                <input type="number" data-ng-model="model.participant.YearsQualifying" min="1" /> (including this)
+            </div>
+        </div>
+
+        <div class="form-group" data-ng-include="'/Modals/Participant/_gender.html'"></div>
+
+        <div class="form-group" data-ng-include="'/Modals/Participant/_shirtsize.html'" data-ng-if="model.team.RequiresShirtSize"></div>
+
+        <div class="form-group table-responsive" data-ng-include="'/Modals/Participant/_average.html'" data-ng-if="model.team.RequiresAverage"></div>
+        
+        <button class="btn btn-danger pull-right" 
+            data-ng-if="model.participant.Id && model.participant.Name && model.team.Alternate"
+            data-ng-click="useAlternate(model.participant, model.team)"
+            >Use Alternate</button>
+    </div>
+    <div class="modal-footer">
+        <a class="btn btn-warning" data-ng-click="cancel()">Cancel</a>
+        <button class="btn btn-primary" data-ng-click="save()">Next</button>
+    </div>
+</form>

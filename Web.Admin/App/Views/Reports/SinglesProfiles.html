@@ -1,0 +1,121 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <h4>Profiles</h4>
+
+        <table data-exportable="Profiles" class="table table-striped table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th>Province</th>
+                    <th>Bowler</th>
+                    <th>Team</th>
+                </tr>
+            </thead>
+            <tbody data-ng-repeat="participant in model.Profiles">
+                <tr>
+                    <td>{{participant.Province}}</td>
+                    <td><h4>{{participant.Name}}</h4></td>
+                    <td>{{participant.Team}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Age</td>
+                    <td>{{participant.Age}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Home Town</td>
+                    <td>{{participant.HomeTown}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Marital Status</td>
+                    <td>{{participant.MaritalStatus}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Spouse's Name</td>
+                    <td>{{participant.SpouseName}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Names and Ages of Children</td>
+                    <td>{{participant.Children}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Occupation</td>
+                    <td>{{participant.Occupation}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Home Bowling Centre</td>
+                    <td>{{participant.HomeCenter}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Number of Years Bowling</td>
+                    <td>{{participant.YearsBowling}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Number of Leagues this Year</td>
+                    <td>{{participant.NumberOfLeagues}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Highest Average this Year</td>
+                    <td>{{participant.HighestAverage}}</td>
+                </tr>
+                <tr><td></td><td colspan="2"><h5>YBC Involvement</h5></td></tr>
+                <tr>
+                    <td></td>
+                    <td>Number of Years Coaching</td>
+                    <td>{{participant.YearsCoaching}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Best Finish Provincially</td>
+                    <td>{{participant.BestFinishProvincially}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Best Finish Nationally</td>
+                    <td>{{participant.BestFinishNationally}}</td>
+                </tr>
+                <tr><td></td><td colspan="2"><h5>Masters Accomplishments</h5></td></tr>
+                <tr>
+                    <td></td>
+                    <td>Number of Provincial Wins</td>
+                    <td>{{participant.MasterProvincialWins}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>National Masters Achievements</td>
+                    <td>{{participant.MastersAchievements}}</td>
+                </tr>
+                <tr><td></td><td colspan="2"><h5>Open Accomplishments</h5></td></tr>
+                <tr>
+                    <td></td>
+                    <td>Number of Years in the Open</td>
+                    <td>{{participant.OpenYears}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>National Open Achievements</td>
+                    <td>{{participant.OpenAchievements}}</td>
+                </tr>
+                <tr><td></td><td colspan="2"><h5>Other</h5></td></tr>
+                <tr>
+                    <td></td>
+                    <td>Other Noteworthy Bowling Achievements</td>
+                    <td>{{participant.OtherAchievements}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Hobbies & Interests</td>
+                    <td>{{participant.Hobbies}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

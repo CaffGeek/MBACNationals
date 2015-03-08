@@ -1,0 +1,15 @@
+﻿@model WebFrontend.Models.Team.View
+
+@{
+    ViewBag.Title = "Team";
+}
+
+@section scripts {
+    <script type="text/javascript">
+        $('h2#@Model.Team.Id').editable("/@ViewContext.RouteData.Values["controller"]/Rename");
+    </script>
+}
+
+<h2 class="edit" id="@Model.Team.Id">@Model.Team.Name</h2>
+
+TODO: Show matches, scores, members, etc

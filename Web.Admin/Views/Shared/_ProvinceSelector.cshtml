@@ -1,0 +1,19 @@
+﻿<div class="row">
+    <div class="col-md-3 col-xs-6" data-ng-repeat="y in [
+        { Code: 'BC', Name: 'British Columbia'},
+        { Code: 'AB', Name: 'Alberta'},
+        { Code: 'SK', Name: 'Saskatchewan'},
+        { Code: 'MB', Name: 'Manitoba'},
+        { Code: 'NO', Name: 'Northern Ontario'},
+        { Code: 'SO', Name: 'Southern Ontario'},
+        { Code: 'QC', Name: 'Quebec'},
+        { Code: 'NL', Name: 'Newfoundland'}
+        ]">
+        <a href="@Url.Action(
+                     ViewContext.RouteData.Values["action"] as String,
+                     ViewContext.RouteData.Values["controller"] as String)/{{y.Code}}">
+            <img src="~/Content/Images/Flags/{{y.Code}}.gif" alt="y.Code" width="192" height="129" />
+            <h6>{{y.Name}}</h6>
+        </a>
+    </div>
+</div>

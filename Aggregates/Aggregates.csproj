@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{42FE290D-7A80-451B-AC4F-A7B34B3B3D3B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MBACNationals</RootNamespace>
+    <AssemblyName>MBACNationals</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Participant\Commands\AssignAlternateToTeam.cs" />
+    <Compile Include="Contingent\Commands\ChangeRoomType.cs" />
+    <Compile Include="Contingent\Commands\RemoveTeam.cs" />
+    <Compile Include="Contingent\Commands\SavePracticePlan.cs" />
+    <Compile Include="Contingent\Commands\SaveTravelPlans.cs" />
+    <Compile Include="Contingent\ContingentCommandHandlers.cs" />
+    <Compile Include="Contingent\ContingentAggregate.cs" />
+    <Compile Include="Contingent\Commands\CreateContingent.cs" />
+    <Compile Include="Contingent\Exceptions\ContingentAlreadyExists.cs" />
+    <Compile Include="Participant\Commands\AddCoachToTeam.cs" />
+    <Compile Include="Participant\Commands\AddParticipantToContingent.cs" />
+    <Compile Include="Participant\Commands\AssignParticipantToRoom.cs" />
+    <Compile Include="Participant\Commands\RemoveParticipantFromRoom.cs" />
+    <Compile Include="Participant\Commands\UpdateParticipant.cs" />
+    <Compile Include="Participant\Commands\RenameParticipant.cs" />
+    <Compile Include="Participant\Commands\UpdateParticipantProfile.cs" />
+    <Compile Include="Participant\Commands\ReplaceParticipant.cs" />
+    <Compile Include="Participant\Exceptions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Participant\Commands\CreateParticipant.cs" />
+    <Compile Include="Participant\ParticipantAggregate.cs" />
+    <Compile Include="Participant\ParticipantCommandHandlers.cs" />
+    <Compile Include="Participant\Commands\AddParticipantToTeam.cs" />
+    <Compile Include="Contingent\Commands\CreateTeam.cs" />
+    <Compile Include="Contingent\Exceptions\TeamAlreadyExists.cs" />
+    <Compile Include="Contingent\Commands\SaveReservationInstructions.cs" />
+    <Compile Include="Scores\Commands\SaveMatch.cs" />
+    <Compile Include="Scores\Commands\SaveMatchResult.cs" />
+    <Compile Include="Scores\Exceptions\MatchAlreadyCreated.cs" />
+    <Compile Include="Scores\Exceptions\MatchAlreadyEntered.cs" />
+    <Compile Include="Scores\ScheduleBuilder.cs" />
+    <Compile Include="Scores\MatchAggregate.cs" />
+    <Compile Include="Scores\ScoresCommandHandlers.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Edument.CQRS\Edument.CQRS.csproj">
+      <Project>{D2BAB57D-225D-4F4C-9410-ED39495A8FE0}</Project>
+      <Name>Edument.CQRS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Events\Events.csproj">
+      <Project>{B195F4C7-41EF-403C-AA05-0018B9DF25F8}</Project>
+      <Name>Events</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

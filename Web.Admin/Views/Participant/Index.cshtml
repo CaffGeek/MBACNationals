@@ -1,0 +1,29 @@
+﻿@model WebFrontend.Models.Participant.Index
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Teams</h2>
+<ul>
+    @foreach (var team in Model.Teams)
+    {
+        <li>
+            @Html.ActionLink(team.Name, "View", "Team", new { @team.Id }, null)
+        </li>
+    }
+</ul>
+
+<h2>Participants</h2>
+<ul>
+    @foreach (var participant in Model.Participants)
+    {
+        <li>
+            @Html.ActionLink(participant.Name, "View", new { @participant.Id })
+        </li>
+    }
+</ul>
+
+@Html.Partial("_CreateParticipant", new MBACNationals.ReadModels.Participants.Participant())
+
+@Html.Partial("_CreateTeam", new MBACNationals.ReadModels.Teams.Team())

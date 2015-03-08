@@ -1,0 +1,11 @@
+﻿<label for="name" class="col-sm-3 control-label">Gender</label>
+<div class="col-sm-9">
+    <label class="radio-inline">
+        <input type="radio" value="M" data-ng-model="model.participant.Gender" data-ng-disabled="model.team.Gender == 'F' && !model.participant.IsCoach">
+        Male
+    </label>
+    <label class="radio-inline">
+        <input type="radio" value="F" data-ng-model="model.participant.Gender" data-ng-disabled="model.team.Gender == 'M' && !model.participant.IsCoach">
+        Female
+    </label>
+</div>

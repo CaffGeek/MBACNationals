@@ -1,0 +1,42 @@
+﻿<div class="form-group">
+    <label for="name" class="col-sm-7 control-label">Complete Guest Package ($125)</label>
+    <div class="col-sm-5">
+        <input type="checkbox" 
+            data-ng-model="model.IsCompletePackage" 
+            data-ng-change="togglePackages(model.IsCompletePackage)" 
+            data-ng-checked="model.participant.Package.ManitobaDinner && model.participant.Package.ManitobaDance && model.participant.Package.FinalBanquet && model.participant.Package.Transportation" />
+    </div>
+</div>
+<div class="form-group">
+    <label for="name" class="col-sm-7 control-label">Manitoba night - dinner & dance ($45)</label>
+    <div class="col-sm-5">
+        <input type="checkbox" 
+            data-ng-model="model.participant.Package.ManitobaDinner" 
+            data-ng-change="model.participant.Package.ManitobaDance = model.participant.Package.ManitobaDinner" 
+            data-ng-disabled="model.IsCompletePackage" />
+    </div>
+</div>
+<div class="form-group">
+    <label for="name" class="col-sm-7 control-label">Manitoba night - dance only ($15)</label>
+    <div class="col-sm-5">
+        <input type="checkbox" 
+            data-ng-model="model.participant.Package.ManitobaDance" 
+            data-ng-disabled="model.participant.Package.ManitobaDinner" />
+    </div>
+</div>
+<div class="form-group">
+    <label for="name" class="col-sm-7 control-label">Final Banquet ($60)</label>
+    <div class="col-sm-5">
+        <input type="checkbox" 
+            data-ng-model="model.participant.Package.FinalBanquet"
+            data-ng-disabled="model.IsCompletePackage" />
+    </div>
+</div>
+<div class="form-group">
+    <label for="name" class="col-sm-7 control-label">Transportation ($25)</label>
+    <div class="col-sm-5">
+        <input type="checkbox" 
+            data-ng-model="model.participant.Package.Transportation"
+            data-ng-disabled="model.IsCompletePackage" />
+    </div>
+</div>
