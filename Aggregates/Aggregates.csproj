@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contingent\Exceptions\ContingentAlreadyExists.cs" />
     <Compile Include="Participant\Commands\AssignAlternateToTeam.cs" />
     <Compile Include="Contingent\Commands\ChangeRoomType.cs" />
     <Compile Include="Contingent\Commands\RemoveTeam.cs" />
@@ -48,7 +49,7 @@
     <Compile Include="Contingent\ContingentCommandHandlers.cs" />
     <Compile Include="Contingent\ContingentAggregate.cs" />
     <Compile Include="Contingent\Commands\CreateContingent.cs" />
-    <Compile Include="Contingent\Exceptions\ContingentAlreadyExists.cs" />
+    <Compile Include="Tournament\Commands\TournamentAlreadyExists.cs" />
     <Compile Include="Participant\Commands\AddCoachToTeam.cs" />
     <Compile Include="Participant\Commands\AddParticipantToContingent.cs" />
     <Compile Include="Participant\Commands\AssignParticipantToRoom.cs" />
@@ -73,6 +74,9 @@
     <Compile Include="Scores\ScheduleBuilder.cs" />
     <Compile Include="Scores\MatchAggregate.cs" />
     <Compile Include="Scores\ScoresCommandHandlers.cs" />
+    <Compile Include="Tournament\Commands\CreateTournament.cs" />
+    <Compile Include="Tournament\TournamentCommandHandlers.cs" />
+    <Compile Include="Tournament\TournamentAggregate.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Edument.CQRS\Edument.CQRS.csproj">
@@ -84,7 +88,9 @@
       <Name>Events</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Tournament\Exceptions\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

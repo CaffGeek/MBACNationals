@@ -229,6 +229,7 @@
     <Content Include="App\Views\ScoreEntry\Game.html" />
     <Content Include="App\Views\ScoreEntry\Division.html" />
     <None Include="app_offline.bak" />
+    <Content Include="Content\Images\2015_logo.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -256,6 +257,7 @@
     <Content Include="Content\Images\Flags\qc.gif" />
     <Content Include="Content\Images\Flags\sk.gif" />
     <Content Include="Content\Images\Flags\so_small.gif" />
+    <Content Include="Content\Images\mbac_logo.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -344,7 +346,8 @@
     <Content Include="Content\fonts\bebas___-webfont.ttf" />
     <Content Include="Content\fonts\bebas___-webfont.woff" />
     <Content Include="App\Controllers\controller.reports.js" />
-    <None Include="Properties\PublishProfiles\nationals2014.manitobamasterbowlers.com.pubxml" />
+    <None Include="Properties\PublishProfiles\MBACNationals - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\MBACNationals - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\bootstrap.js" />
