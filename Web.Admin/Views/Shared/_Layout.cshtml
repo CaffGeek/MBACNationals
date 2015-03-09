@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>MBAC Nationals 2014 :: Winnipeg :: @ViewBag.Title</title>
-
+    <base href="/Setup" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/bootstrap/base")
@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="row">
-                    <a href="/"><img src="~/Content/Images/mbac_logo.png" /></a>
+                    <a href="~/"><img src="~/Content/Images/mbac_logo.png" /></a>
                 </div>
                 <div class="row">
                     @Html.Partial("_LoginPartial")
