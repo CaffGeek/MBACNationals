@@ -26,7 +26,7 @@ include "header.php";
 					
 						<div class="section group">
 							<div class="col span_1_of_3 centreLogo"><img src="images/sponsors/Sherwood.jpg" alt="Sherwood Centre" /></div>
-							<div class="col span_2_of_3"><h5>905-383-7641<br />1095 Fennell Ave East, Hamilton, ON</h5><br /><p>Roseland Bowl is a 48 lane bowling centre with computerized scoring.</p><p>For more information, check out their website: <a href="http://www.sherwoodcentre.com/" target="_blank">sherwoodcentre.com</a></p></div>
+							<div class="col span_2_of_3"><h5>905-383-7641<br />1095 Fennell Ave East, Hamilton, ON</h5><br /><p>Sherwood Centre is a 48 lane bowling centre with computerized scoring.</p><p>For more information, check out their website: <a href="http://www.sherwoodcentre.com/" target="_blank">sherwoodcentre.com</a></p></div>
 						</div>					
 				</div>
 			</div>

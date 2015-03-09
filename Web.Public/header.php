@@ -108,7 +108,7 @@ function autoResize(id){
 				<div class="col span_3_of_3" id="header">
 				<div id="mobileLogo"><img src="images/2015_logo.png" /></div>
 				<div id="logo"><img src="images/2015_logo.png" /></div>
-				<div id="socialLinks">Join Us:&nbsp;&nbsp;<a href="https://www.facebook.com/MBAofCanada" target="_blank"><img src="images/facebook_icon.png" /></a> <a href="https://twitter.com/MBANationals"><img src="images/twitter_icon.png" /></a> <a href="http://instagram.com/mb_master_bowlers"><img src="images/instagram_icon.png" /></a></div>
+				<div id="socialLinks">Join Us:&nbsp;&nbsp;<a href="https://www.facebook.com/MBAofCanada" target="_blank"><img src="images/facebook_icon.png" /></a> <a href="https://twitter.com/MBANationals"><img src="images/twitter_icon.png" /></a> <a href="http://instagram.com/MBACNationals"><img src="images/instagram_icon.png" /></a></div>
 				<div id="navigation">
           <nav class="nav-collapse" >
             <ul>
