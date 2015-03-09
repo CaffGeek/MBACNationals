@@ -275,7 +275,7 @@
     <Content Include="App\Views\ScoreEntry\Match.html" />
     <Content Include="App\Views\ScoreEntry\Game.html" />
     <Content Include="App\Views\ScoreEntry\Division.html" />
-    <None Include="app_offline.bak" />
+    <Content Include="app_offline.bak" />
     <Content Include="Content\Images\2015_logo.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

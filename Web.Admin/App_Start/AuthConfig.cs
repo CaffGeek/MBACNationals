@@ -23,6 +23,6 @@ public static class AuthConfig
         //    appId: "272822649544536",
         //    appSecret: "a32b727e6f6a5564323d6f5538be9a85");
 
-        OAuthWebSecurity.RegisterGoogleClient();
+        //OAuthWebSecurity.RegisterGoogleClient();
     }
 }
