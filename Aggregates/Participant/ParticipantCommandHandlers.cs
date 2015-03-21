@@ -2,6 +2,7 @@
 using Events.Participant;
 using MBACNationals.Contingent;
 using MBACNationals.Participant.Commands;
+using MBACNationals.ReadModels;
 using System;
 using System.Collections;
 using System.Linq;
@@ -21,11 +22,11 @@ namespace MBACNationals.Participant
         IHandleCommand<UpdateParticipantProfile, ParticipantAggregate>,
         IHandleCommand<ReplaceParticipant, ParticipantAggregate>
     {
-        private MessageDispatcher _dispatcher;
+        private ICommandQueries CommandQueries;
 
-        public ParticipantCommandHandlers(MessageDispatcher dispatcher)
+        public ParticipantCommandHandlers(ICommandQueries commandQueries)
         {
-            _dispatcher = dispatcher;
+            CommandQueries = commandQueries;
         }
 
         public IEnumerable Handle(Func<Guid, ParticipantAggregate> al, CreateParticipant command)
@@ -268,7 +269,7 @@ namespace MBACNationals.Participant
         public IEnumerable Handle(Func<Guid, ParticipantAggregate> al, ReplaceParticipant command)
         {
             var agg = al(command.Id);
-            var alternate = _dispatcher.Load<ParticipantAggregate>(command.AlternateId);
+            var alternate = CommandQueries.GetParticipant(command.AlternateId);
             
             yield return new ParticipantReplacedWithAlternate
             {

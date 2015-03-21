@@ -48,6 +48,7 @@
     <Compile Include="ContingentTravelPlanQueries.cs" />
     <Compile Include="ContingentViewQueries.cs" />
     <Compile Include="ContingentEventHistoryQueries.cs" />
+    <Compile Include="ICommandQueries.cs" />
     <Compile Include="ITeamScoreQueries.cs" />
     <Compile Include="IParticipantScoreQueries.cs" />
     <Compile Include="HighScoreQueries.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="IStandingQueries.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ITournamentQueries.cs" />
     <Compile Include="ParticipantScoreQueries.cs" />
     <Compile Include="StandingQueries.cs" />
     <Compile Include="IMatchQueries.cs" />
@@ -79,6 +81,8 @@
     </Compile>
     <Compile Include="ReservationQueries.cs" />
     <Compile Include="ScheduleQueries.cs" />
+    <Compile Include="CommandQueries.cs" />
+    <Compile Include="TournamentQueries.cs" />
     <Compile Include="TeamScoreQueries.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -17,7 +17,7 @@ namespace Edument.CQRS
     /// <typeparam name="TCommandHandler"></typeparam>
     /// <typeparam name="TAggregate"></typeparam>
     public class BDDTest<TCommandHandler, TAggregate>
-        where TCommandHandler : new()
+        //where TCommandHandler : new()
         where TAggregate : Aggregate, new()
     {
         private TCommandHandler sut;
@@ -25,7 +25,12 @@ namespace Edument.CQRS
         [TestInitialize]
         public void BDDTestSetup()
         {
-            sut = new TCommandHandler();
+            //sut = new TCommandHandler();
+        }
+
+        protected void SystemUnderTest(TCommandHandler commandHandler)
+        {
+            sut = commandHandler;
         }
 
         protected void Test(IEnumerable given, Func<TAggregate, object> when, Action<object> then)

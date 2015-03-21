@@ -14,6 +14,6 @@ namespace Edument.CQRS
             Id = id;
         }
 
-        public Guid Id { get; private set; }
+        public virtual Guid Id { get; private set; }
     }
 }

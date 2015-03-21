@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container" data-ng-controller="TournamentController as vm">
+    <div class="row">
+        <div class="col-md-3 col-xs-6" data-ng-repeat="y in vm.model.tournaments">
+            <a href="@Url.Action("Index", "Contingent")/{{y.Year}}">
+                <img src="~/Content/Images/{{y.Year}}_logo.png" alt="y.Year" />
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <input type="text" ng-model="vm.newTournament.Year" />
+        <a class="btn btn-primary" href="" data-ng-click="vm.createTournament()">Create Tournament</a><br />
+    </div>
+</div>

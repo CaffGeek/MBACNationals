@@ -29,9 +29,12 @@ namespace Edument.CQRS
         public void ApplyEvents(IEnumerable events)
         {
             foreach (var e in events)
+            {
+                this.Id = (Guid)e.GetType().GetField("Id").GetValue(e);
                 GetType().GetMethod("ApplyOneEvent")
-                    .MakeGenericMethod(e.GetType())
-                    .Invoke(this, new object[] { e });
+                       .MakeGenericMethod(e.GetType())
+                       .Invoke(this, new object[] { e });
+            }
         }
 
         /// <summary>

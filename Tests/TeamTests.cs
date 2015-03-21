@@ -17,6 +17,7 @@ namespace MBACNationalsTests
         [TestInitialize]
         public void Setup()
         {
+            SystemUnderTest(new ContingentCommandHandlers());
             teamId = Guid.NewGuid();
             contingentId = Guid.NewGuid();
             teamName = "Test Team";
@@ -44,26 +45,26 @@ namespace MBACNationalsTests
                 }));
         }
 
-        //[TestMethod]
-        //public void CanNotDuplicateTeam()
-        //{
-        //    Test(
-        //        Given(new ContingentCreated
-        //        {
-        //            Id = contingentId,
-        //        }, new TeamCreated
-        //        {
-        //            Id = contingentId,
-        //            TeamId = teamId,
-        //            Name = teamName,
-        //        }),
-        //        When(new CreateTeam
-        //        {
-        //            ContingentId = contingentId,
-        //            TeamId = teamId,
-        //            Name = teamName,
-        //        }),
-        //        ThenFailWith<TeamAlreadyExists>());
-        //}
+        [TestMethod]
+        public void CanNotDuplicateTeam()
+        {
+            Test(
+                Given(new ContingentCreated
+                {
+                    Id = contingentId,
+                }, new TeamCreated
+                {
+                    Id = contingentId,
+                    TeamId = teamId,
+                    Name = teamName,
+                }),
+                When(new CreateTeam
+                {
+                    ContingentId = contingentId,
+                    TeamId = teamId,
+                    Name = teamName,
+                }),
+                ThenFailWith<TeamAlreadyExists>());
+        }
     }
 }

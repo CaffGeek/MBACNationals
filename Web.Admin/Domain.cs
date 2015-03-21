@@ -6,6 +6,7 @@ using System.IO;
 using System.Web;
 using MBACNationals.Scores;
 using MBACNationals;
+using MBACNationals.Tournament;
 
 namespace WebFrontend
 {
@@ -15,6 +16,7 @@ namespace WebFrontend
         public static string ReadModelFolder { get; private set; }
 
         public static MessageDispatcher Dispatcher;
+        public static ICommandQueries CommandQueries;
         public static IParticipantQueries ParticipantQueries;
         public static IParticipantProfileQueries ParticipantProfileQueries;
         public static IContingentQueries ContingentQueries;
@@ -29,6 +31,7 @@ namespace WebFrontend
         public static IHighScoreQueries HighScoreQueries;
         public static IParticipantScoreQueries ParticipantScoreQueries;
         public static ITeamScoreQueries TeamScoreQueries;
+        public static ITournamentQueries TournamentQueries;
 
         public static void Setup()
         {
@@ -36,9 +39,13 @@ namespace WebFrontend
             
             Dispatcher = new MessageDispatcher(new SqlEventStore(Properties.Settings.Default.DefaultConnection));
 
-            Dispatcher.ScanInstance(new ParticipantCommandHandlers(Dispatcher));
+            CommandQueries = new CommandQueries(ReadModelFolder);
+            Dispatcher.ScanInstance(CommandQueries);
+
+            Dispatcher.ScanInstance(new ParticipantCommandHandlers(CommandQueries));
             Dispatcher.ScanInstance(new ContingentCommandHandlers());
-            Dispatcher.ScanInstance(new ScoresCommandHandlers(Dispatcher));
+            Dispatcher.ScanInstance(new ScoresCommandHandlers(Dispatcher)); //TODO: Change to CommandQueries
+            Dispatcher.ScanInstance(new TournamentCommandHandlers(CommandQueries));
 
             ParticipantQueries = new ParticipantQueries(ReadModelFolder);
             Dispatcher.ScanInstance(ParticipantQueries);
@@ -81,6 +88,9 @@ namespace WebFrontend
 
             TeamScoreQueries = new TeamScoreQueries(ReadModelFolder);
             Dispatcher.ScanInstance(TeamScoreQueries);
+
+            TournamentQueries = new TournamentQueries(ReadModelFolder);
+            Dispatcher.ScanInstance(TournamentQueries);
 
             if (!Directory.Exists(ReadModelFolder))
             {

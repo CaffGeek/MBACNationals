@@ -34,21 +34,23 @@ namespace MBACNationals.Contingent
         {
             var contingentAggregate = al(command.ContingentId);
 
-            if (!contingentAggregate.Teams.Any(t => t.Name.Equals(command.Name)))
-                yield return new TeamCreated
-                {
-                    Id = command.ContingentId,
-                    TeamId = command.TeamId,
-                    Name = command.Name,
-                    Gender = command.Gender,
-                    SizeLimit = command.SizeLimit,
-                    RequiresShirtSize = command.RequiresShirtSize,
-                    RequiresCoach = command.RequiresCoach,
-                    RequiresAverage = command.RequiresAverage,
-                    RequiresBio = command.RequiresBio,
-                    RequiresGender = command.RequiresGender,
-                    IncludesSinglesRep = command.IncludesSinglesRep
-                };            
+            if (contingentAggregate.Teams.Any(t => t.Name.Equals(command.Name)))
+                throw new TeamAlreadyExists(string.Format("Name: {0} already exists.", command.Name));
+
+            yield return new TeamCreated
+            {
+                Id = command.ContingentId,
+                TeamId = command.TeamId,
+                Name = command.Name,
+                Gender = command.Gender,
+                SizeLimit = command.SizeLimit,
+                RequiresShirtSize = command.RequiresShirtSize,
+                RequiresCoach = command.RequiresCoach,
+                RequiresAverage = command.RequiresAverage,
+                RequiresBio = command.RequiresBio,
+                RequiresGender = command.RequiresGender,
+                IncludesSinglesRep = command.IncludesSinglesRep
+            };            
         }
 
         public IEnumerable Handle(Func<Guid, ContingentAggregate> al, RemoveTeam command)

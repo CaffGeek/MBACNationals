@@ -31,12 +31,14 @@
             LoadSchedule: loadSchedule,
             SaveMatchResult: saveMatchResult,
             LoadMatch: loadMatch,
-            UseAlternate: useAlternate
+            UseAlternate: useAlternate,
+            LoadTournaments: loadTournaments,
+            CreateTournament: createTournament
         };
 
         function saveTeam(team, contingent) {
             //TODO: Use extend
-            return $http.post('/Contingent/CreateTeam', {
+            return $http.post('/Setup/Contingent/CreateTeam', {
                 ContingentId: contingent.Id,
                 TeamId: team.Id,
                 Name: team.Name,
@@ -52,7 +54,7 @@
         }
 
         function removeTeam(team, contingent) {
-            return $http.post('/Contingent/RemoveTeam', {
+            return $http.post('/Setup/Contingent/RemoveTeam', {
                 ContingentId: contingent.Id,
                 TeamId: team.Id
             });
@@ -60,52 +62,52 @@
 
         function saveParticipant(participant) {
             return participant.Id
-                ? $http.post('/Participant/Update', participant)
-                : $http.post('/Participant/Create', participant);
+                ? $http.post('/Setup/Participant/Update', participant)
+                : $http.post('/Setup/Participant/Create', participant);
         }
 
         function assignParticipantToContingent(participant, contingent) {
-            return $http.post('/Contingent/AssignParticipantToContingent', {
+            return $http.post('/Setup/Contingent/AssignParticipantToContingent', {
                 Id: participant.Id,
                 ContingentId: contingent.Id
             });
         }
 
         function assignParticipantToTeam(participant, team) {
-            return $http.post('/Contingent/AssignParticipantToTeam', {
+            return $http.post('/Setup/Contingent/AssignParticipantToTeam', {
                 Id: participant.Id,
                 TeamId: team.Id
             });
         }
 
         function assignAlternateToTeam(participant, team) {
-            return $http.post('/Contingent/AssignAlternateToTeam', {
+            return $http.post('/Setup/Contingent/AssignAlternateToTeam', {
                 Id: participant.Id,
                 TeamId: team.Id
             });
         }
 
         function assignCoachToTeam(participant, team) {
-            return $http.post('/Contingent/AssignCoachToTeam', {
+            return $http.post('/Setup/Contingent/AssignCoachToTeam', {
                 Id: participant.Id,
                 TeamId: team.Id
             });
         }
 
         function loadContingent(province) {
-            return $http.get('/Contingent', {
+            return $http.get('/Setup/Contingent', {
                 params: { province: province }
             });
         };
 
         function loadContingentEvents(province) {
-            return $http.get('/Contingent/History', {
+            return $http.get('/Setup/Contingent/History', {
                 params: { province: province }
             });
         };
 
         function loadTeam(contingent, teamName) {
-            return $http.get('/Contingent/Team', {
+            return $http.get('/Setup/Contingent/Team', {
                 params: {
                     contingent: contingent,
                     teamName: teamName
@@ -114,42 +116,42 @@
         };
 
         function loadParticipant(id) {
-            return $http.get('/Participant', {
+            return $http.get('/Setup/Participant', {
                 params: { id: id }
             });
         };
 
         function loadParticipants(province) {
-            return $http.get('/Participant/Contingent', {
+            return $http.get('/Setup/Participant/Contingent', {
                 params: { province: province }
             });
         };
 
         function loadAllParticipants() {
-            return $http.get('/Participant/All');
+            return $http.get('/Setup/Participant/All');
         };
 
         function assignParticipantToRoom(id, roomNumber) {
-            return $http.post('/Participant/AssignToRoom', {
+            return $http.post('/Setup/Participant/AssignToRoom', {
                 Id: id,
                 RoomNumber: roomNumber
             });
         };
 
         function removeParticipantFromRoom(id) {
-            return $http.post('/Participant/RemoveFromRoom', {
+            return $http.post('/Setup/Participant/RemoveFromRoom', {
                 Id: id
             });
         };
 
         function loadRooms(province) {
-            return $http.get('/Contingent/Rooms', {
+            return $http.get('/Setup/Contingent/Rooms', {
                 params: { province: province }
             });
         };
 
         function changeRoomType(province, roomNumber, type) {
-            return $http.post('/Contingent/ChangeRoomType', {
+            return $http.post('/Setup/Contingent/ChangeRoomType', {
                 Province: province,
                 RoomNumber: roomNumber,
                 Type: type
@@ -157,67 +159,75 @@
         };
 
         function loadTravelPlans(province) {
-            return $http.get('/Contingent/TravelPlans', {
+            return $http.get('/Setup/Contingent/TravelPlans', {
                 params: { province: province }
             });
         };
 
         function saveTravelPlans(travelPlans) {
-            return $http.post('/Contingent/SaveTravelPlans', travelPlans);
+            return $http.post('/Setup/Contingent/SaveTravelPlans', travelPlans);
         };
 
         function loadPracticePlan(province) {
-            return $http.get('/Contingent/PracticePlan', {
+            return $http.get('/Setup/Contingent/PracticePlan', {
                 params: { province: province }
             });
         };
 
         function savePracticePlan(practicePlan) {
-            return $http.post('/Contingent/SavePracticePlan', practicePlan);
+            return $http.post('/Setup/Contingent/SavePracticePlan', practicePlan);
         };
 
         function saveInstructions(province, instructions) {
-            return $http.post('/Contingent/SaveReservationInstructions', {
+            return $http.post('/Setup/Contingent/SaveReservationInstructions', {
                 Province: province,
                 Instructions: instructions
             });
         };
 
         function saveParticipantProfile(participant) {
-            return $http.post('/Participant/Profile', participant);
+            return $http.post('/Setup/Participant/Profile', participant);
         };
 
         function loadParticipantProfile(participant) {
-            return $http.get('/Participant/Profile', {
+            return $http.get('/Setup/Participant/Profile', {
                 params: { id: participant.Id }
             });
         };
 
         function loadProfiles() {
-            return $http.get('/Participant/Profiles');
+            return $http.get('/Setup/Participant/Profiles');
         };
 
         function loadSchedule(division) {
-            return $http.get('/Scores/Schedule', {
+            return $http.get('/Setup/Scores/Schedule', {
                 params: { division: division }
             });
         };
 
         function saveMatchResult(match) {
-            return $http.post('/Scores/SaveMatchResult', match);
+            return $http.post('/Setup/Scores/SaveMatchResult', match);
         };
 
         function loadMatch(match) {
-            return $http.get('/Scores/Match', {
+            return $http.get('/Setup/Scores/Match', {
                 params: { matchId: match.Id }
             });
         };
 
         function useAlternate(participant, team) {
-            return $http.post('/Participant/UseAlternate', {
+            return $http.post('/Setup/Participant/UseAlternate', {
                 Id: participant.Id,
                 AlternateId: team.Alternate
             });
+        };
+
+        function loadTournaments() {
+            return $http.get('/Setup/Tournament/All');
+        };
+
+        function createTournament(tournament) {
+            return $http.post('/Setup/Tournament/Create', tournament);
         };
     };
 

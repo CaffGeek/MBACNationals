@@ -1,14 +1,23 @@
 ﻿using Edument.CQRS;
 using Events.Tournament;
+using MBACNationals.ReadModels;
 using MBACNationals.Tournament.Commands;
 using System;
 using System.Collections;
+using System.Linq;
 
 namespace MBACNationals.Tournament
 {
     public class TournamentCommandHandlers :
         IHandleCommand<CreateTournament, TournamentAggregate>
     {
+        private ICommandQueries CommandQueries;
+
+        public TournamentCommandHandlers(ICommandQueries commandQueries)
+        {
+            CommandQueries = commandQueries;
+        }
+
         public IEnumerable Handle(Func<Guid, TournamentAggregate> al, CreateTournament command)
         {
             var agg = al(command.Id);
@@ -16,7 +25,8 @@ namespace MBACNationals.Tournament
             if (agg.EventsLoaded > 0)
                 throw new TournamentAlreadyExists();
 
-            //TODO: Create simple ReadModel to check if a tournament with this year already exists
+            if (CommandQueries.GetTournaments().Any(x => x.Year.Equals(command.Year)))
+                throw new TournamentAlreadyExists();
 
             yield return new TournamentCreated
             {
