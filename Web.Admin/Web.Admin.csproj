@@ -384,8 +384,6 @@
     <Content Include="Content\fonts\bebas___-webfont.ttf" />
     <Content Include="Content\fonts\bebas___-webfont.woff" />
     <Content Include="App\Controllers\controller.reports.js" />
-    <None Include="Properties\PublishProfiles\MBACNationals - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\MBACNationals - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\bootstrap.js" />
