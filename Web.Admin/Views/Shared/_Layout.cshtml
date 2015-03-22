@@ -43,7 +43,7 @@
                 @Html.ActionLink("Reports", "Reports", "Admin")
                 @Html.ActionLink("Score Entry", "Entry", "Scores")
             }
-            @if (User.Identity.Name.Equals("Chad"))
+            @if (User.Identity.Name.Equals("Chad", StringComparison.OrdinalIgnoreCase))
             {
                 @Html.ActionLink("Rebuild Read Models", "Rebuild", "Admin")
             }

@@ -15,9 +15,11 @@ namespace MBACNationals.Contingent
         IApplyEvent<TravelPlansChanged>,
         IApplyEvent<TeamPracticeRescheduled>,
         IApplyEvent<ReservationInstructionsChanged>,
-        IApplyEvent<ParticipantDesignatedAsAlternate>
+        IApplyEvent<ParticipantDesignatedAsAlternate>,
+        IApplyEvent<ContingentAssignedToTournament>
     {
         public string Province { get; private set; }
+        public Guid TournamentId { get; private set; }
         public List<Team> Teams { get; private set; }
         public List<TravelPlan> TravelPlans { get; private set; }
         public List<HotelRoom> HotelRooms { get; private set; }
@@ -81,6 +83,11 @@ namespace MBACNationals.Contingent
                 return;
 
             team.Apply(e);
+        }
+
+        public void Apply(ContingentAssignedToTournament e)
+        {
+            TournamentId = e.TournamentId;
         }
     }
 

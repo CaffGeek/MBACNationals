@@ -1,6 +1,7 @@
 ﻿using Edument.CQRS;
 using Events.Contingent;
 using MBACNationals.Contingent.Commands;
+using MBACNationals.ReadModels;
 using System;
 using System.Collections;
 using System.Linq;
@@ -14,8 +15,16 @@ namespace MBACNationals.Contingent
         IHandleCommand<ChangeRoomType, ContingentAggregate>,
         IHandleCommand<SaveTravelPlans, ContingentAggregate>,
         IHandleCommand<SavePracticePlan, ContingentAggregate>,
-        IHandleCommand<SaveReservationInstructions, ContingentAggregate>
+        IHandleCommand<SaveReservationInstructions, ContingentAggregate>,
+        IHandleCommand<AssignContingentToTournament, ContingentAggregate>
     {
+        private ICommandQueries CommandQueries;
+
+        public ContingentCommandHandlers(ICommandQueries commandQueries)
+        {
+            CommandQueries = commandQueries;
+        }
+
         public IEnumerable Handle(Func<Guid, ContingentAggregate> al, CreateContingent command)
         {
             var agg = al(command.Id);
@@ -128,6 +137,19 @@ namespace MBACNationals.Contingent
             {
                 Id = command.Id,
                 Instructions = command.Instructions,
+            };
+        }
+
+        public IEnumerable Handle(Func<Guid, ContingentAggregate> al, AssignContingentToTournament command)
+        {
+            var contingentAggregate = al(command.Id);
+            if (!CommandQueries.GetTournaments().Any(x => x.Id == command.TournamentId))
+                throw new TournamentNotFound(string.Format("Tournament with Id '{0}' not found.", command.TournamentId));
+
+            yield return new ContingentAssignedToTournament
+            {
+                Id = command.Id,
+                TournamentId = command.TournamentId
             };
         }
     }

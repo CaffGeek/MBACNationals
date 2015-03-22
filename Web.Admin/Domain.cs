@@ -3,6 +3,7 @@ using MBACNationals.ReadModels;
 using MBACNationals.Participant;
 using MBACNationals.Contingent;
 using System.IO;
+using System.Linq;
 using System.Web;
 using MBACNationals.Scores;
 using MBACNationals;
@@ -43,7 +44,7 @@ namespace WebFrontend
             Dispatcher.ScanInstance(CommandQueries);
 
             Dispatcher.ScanInstance(new ParticipantCommandHandlers(CommandQueries));
-            Dispatcher.ScanInstance(new ContingentCommandHandlers());
+            Dispatcher.ScanInstance(new ContingentCommandHandlers(CommandQueries));
             Dispatcher.ScanInstance(new ScoresCommandHandlers(Dispatcher)); //TODO: Change to CommandQueries
             Dispatcher.ScanInstance(new TournamentCommandHandlers(CommandQueries));
 
@@ -146,6 +147,12 @@ namespace WebFrontend
         {
             var htmFile = HttpContext.Current.Server.MapPath("~/app_offline.htm");
             File.Delete(htmFile);
+        }
+
+        internal static void Assign2014Contingents()
+        {
+            var tournament = CommandQueries.GetTournaments().FirstOrDefault(x => x.Year == "2014");
+            ContingentFix.Assign2014Contingents(Domain.Dispatcher, tournament.Id);
         }
     }
 }

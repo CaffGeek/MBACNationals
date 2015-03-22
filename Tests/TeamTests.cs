@@ -2,7 +2,9 @@
 using Events.Contingent;
 using MBACNationals.Contingent;
 using MBACNationals.Contingent.Commands;
+using MBACNationals.ReadModels;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 
 namespace MBACNationalsTests
@@ -10,6 +12,8 @@ namespace MBACNationalsTests
     [TestClass]
     public class TeamTests : BDDTest<ContingentCommandHandlers, ContingentAggregate>
     {
+        public Mock<ICommandQueries> CommandQueriesMock { get; set; }
+
         private Guid teamId;
         private Guid contingentId;
         private string teamName;
@@ -17,7 +21,8 @@ namespace MBACNationalsTests
         [TestInitialize]
         public void Setup()
         {
-            SystemUnderTest(new ContingentCommandHandlers());
+            CommandQueriesMock = new Mock<ICommandQueries>();
+            SystemUnderTest(new ContingentCommandHandlers(CommandQueriesMock.Object));
             teamId = Guid.NewGuid();
             contingentId = Guid.NewGuid();
             teamName = "Test Team";

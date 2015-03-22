@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BowlingCentre.cs" />
+    <Compile Include="Contingent\ContingentAssignedToTournament.cs" />
     <Compile Include="Contingent\ReservationInstructionsChanged.cs" />
     <Compile Include="Contingent\TeamPracticeRescheduled.cs" />
     <Compile Include="Contingent\RoomTypeChanged.cs" />
