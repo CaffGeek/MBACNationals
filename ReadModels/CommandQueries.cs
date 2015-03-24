@@ -7,45 +7,72 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class CommandQueries : AReadModel,
+    public class CommandQueries : AzureReadModel,
         ICommandQueries,
         ISubscribeTo<TournamentCreated>,
         ISubscribeTo<ParticipantCreated>
     {
         public CommandQueries(string readModelFilePath)
-            : base(readModelFilePath) 
         {
 
         }
 
-        public class Tournament : AEntity
+        public class Tournament
         {
-            public Tournament(Guid id) : base(id) { }
-            public virtual string Year { get; internal set; }
+            public Guid Id { get; set; }
+            public virtual string Year { get; set; }
         }
 
-        public class Participant : AEntity
+        public class Participant
         {
-            public Participant(Guid id) : base(id) { }
-            public virtual Guid ContingentId { get; internal set; }
-            public virtual Guid TeamId { get; internal set; }
-            public virtual string Name { get; internal set; }
-            public virtual int Average { get; internal set; }
+            public Guid Id { get; set; }
+            public virtual Guid ContingentId { get; set; }
+            public virtual Guid TeamId { get; set; }
+            public virtual string Name { get; set; }
+            public virtual int Average { get; set; }
+        }
+
+        private class TSTournament : Entity
+        {
+            public virtual string Year { get; set; }
+        }
+
+        private class TSParticipant : Entity
+        {
+            public virtual Guid ContingentId { get; set; }
+            public virtual Guid TeamId { get; set; }
+            public virtual string Name { get; set; }
+            public virtual int Average { get; set; }
         }
 
         public List<Tournament> GetTournaments()
         {
-            return Read<Tournament>().ToList();
+            return Query<TSTournament>()
+                .Select(x => new Tournament
+                {
+                    Id = Guid.Parse(x.RowKey),
+                    Year = x.Year
+                })
+                .ToList();
         }
 
         public Participant GetParticipant(Guid id)
         {
-            return Read<Participant>(x => x.Id.Equals(id)).FirstOrDefault();
+            var participant = Read<TSParticipant>(Guid.Empty, id);
+            return new Participant 
+            {
+                Id = Guid.Parse(participant.RowKey),
+                TeamId = participant.TeamId,
+                ContingentId = participant.ContingentId,
+                Name = participant.Name,
+                Average = participant.Average
+            };
+                
         }
         
         public void Handle(TournamentCreated e)
         {
-            Create(new Tournament(e.Id)
+            Create(Guid.Empty, e.Id, new TSTournament
             {
                 Year = e.Year
             });
@@ -53,7 +80,7 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ParticipantCreated e)
         {
-            Create(new Participant(e.Id)
+            Create(Guid.Empty, e.Id, new TSParticipant
             {
                 Name = e.Name
             });

@@ -4,8 +4,9 @@
     var contingentController = function ($scope, $http, $q, $location, modalFactory, dataService) {
         var url = $location.absUrl();
         var lastSlash = url.lastIndexOf('/');
-        var province = url.slice(lastSlash+1);
-
+        var province = url.slice(lastSlash + 1);
+        var year = url.slice(lastSlash - 4, lastSlash);
+        
         $scope.viewUrl = '/App/Views/Contingent.html';
 
         $scope.model = {
@@ -14,7 +15,7 @@
         };
 
         if (province) {
-            dataService.LoadContingent(province).
+            dataService.LoadContingent(year, province).
                 success(function (contingent) {
                     $scope.model = contingent;
 

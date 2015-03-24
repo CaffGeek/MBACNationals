@@ -31,7 +31,7 @@ namespace MBACNationalsTests
 
             CommandQueriesMock
                 .Setup(x => x.GetTournaments())
-                .Returns(new List<CommandQueries.Tournament> { new CommandQueries.Tournament(tournamentId) });
+                .Returns(new List<CommandQueries.Tournament> { new CommandQueries.Tournament{ Id = tournamentId} });
 
             Test(
                 Given(new ContingentCreated

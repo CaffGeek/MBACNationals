@@ -20,7 +20,6 @@ namespace WebFrontend
         public static ICommandQueries CommandQueries;
         public static IParticipantQueries ParticipantQueries;
         public static IParticipantProfileQueries ParticipantProfileQueries;
-        public static IContingentQueries ContingentQueries;
         public static IContingentViewQueries ContingentViewQueries;
         public static IContingentTravelPlanQueries ContingentTravelPlanQueries;
         public static IContingentPracticePlanQueries ContingentPracticePlanQueries;
@@ -53,9 +52,6 @@ namespace WebFrontend
 
             ParticipantProfileQueries = new ParticipantProfileQueries(ReadModelFolder);
             Dispatcher.ScanInstance(ParticipantProfileQueries);
-
-            ContingentQueries = new ContingentQueries(ReadModelFolder);
-            Dispatcher.ScanInstance(ContingentQueries);
 
             ContingentViewQueries = new ContingentViewQueries(ReadModelFolder);
             Dispatcher.ScanInstance(ContingentViewQueries);

@@ -22,6 +22,11 @@ namespace MBACNationals.ReadModels
             public string Year { get; internal set; }
         }
 
+        public Tournament GetTournament(string year)
+        {
+            return Read<Tournament>().Where(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+        }
+
         public List<Tournament> GetTournaments()
         {
             return Read<Tournament>().ToList();

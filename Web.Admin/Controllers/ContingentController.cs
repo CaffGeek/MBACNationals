@@ -27,12 +27,13 @@ namespace WebFrontend.Controllers
 
         [RestrictAccessByRouteId] //Province
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        public ActionResult Edit(string province)
+        public ActionResult Edit(string year, string province)
         {
             if (string.IsNullOrWhiteSpace(province))
                 return View("_ProvinceSelector");
 
             ViewBag.Province = province;
+            ViewBag.Year = year;
             return View();
         }
 
@@ -71,11 +72,12 @@ namespace WebFrontend.Controllers
 
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        public JsonResult Index(string province)
+        public JsonResult Index(string year, string province)
         {
             Response.AppendHeader("Access-Control-Allow-Origin", "*");
 
-            var contingent = Domain.ContingentViewQueries.GetContingent(province);
+            var tournament = Domain.TournamentQueries.GetTournament(year);
+            var contingent = Domain.ContingentViewQueries.GetContingent(tournament.Id, province);
 
             if (contingent != null)
                 return Json(contingent, JsonRequestBehavior.AllowGet);
@@ -84,18 +86,19 @@ namespace WebFrontend.Controllers
             command.Id = Guid.NewGuid();
             command.Province = province;
             Domain.Dispatcher.SendCommand(command);
-            contingent = Domain.ContingentViewQueries.GetContingent(province);
+            contingent = Domain.ContingentViewQueries.GetContingent(tournament.Id, province);
 
             return Json(contingent, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        public JsonResult Team(string contingent, string teamName)
+        public JsonResult Team(string year, string contingent, string teamName)
         {
             Response.AppendHeader("Access-Control-Allow-Origin", "*");
 
-            var theContingent = Domain.ContingentViewQueries.GetContingent(contingent);
+            var tournament = Domain.TournamentQueries.GetTournament(year);
+            var theContingent = Domain.ContingentViewQueries.GetContingent(tournament.Id, contingent);
             if (theContingent == null)
                 return null; //TODO: Return an error???
 
@@ -197,12 +200,9 @@ namespace WebFrontend.Controllers
         [RestrictAccessByRouteId]
         public JsonResult ChangeRoomType(ChangeRoomType command)
         {
-            var contingent = Domain.ContingentViewQueries.GetContingent(command.Province);
-
-            if (contingent == null)
+            if (command.Id == null || command.Id.Equals(Guid.Empty))
                 return Json(command);
 
-            command.Id = contingent.Id;
             Domain.Dispatcher.SendCommand(command);
             return Json(command);
         }
@@ -233,12 +233,8 @@ namespace WebFrontend.Controllers
         [RestrictAccessByRouteId]
         public JsonResult SaveReservationInstructions(SaveReservationInstructions command)
         {
-            var contingent = Domain.ContingentViewQueries.GetContingent(command.Province);
-
-            if (contingent == null)
+            if (command.Id == null || command.Id.Equals(Guid.Empty))
                 return Json(command);
-
-            command.Id = contingent.Id;
             
             Domain.Dispatcher.SendCommand(command);
             return Json(command);

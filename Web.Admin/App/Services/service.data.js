@@ -94,9 +94,12 @@
             });
         }
 
-        function loadContingent(province) {
+        function loadContingent(year, province) {
             return $http.get('/Setup/Contingent', {
-                params: { province: province }
+                params: {
+                    year: year,
+                    province: province
+                }
             });
         };
 

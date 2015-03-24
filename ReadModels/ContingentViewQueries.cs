@@ -1,16 +1,16 @@
 ﻿using Edument.CQRS;
 using Events.Contingent;
 using Events.Participant;
-using NDatabase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class ContingentViewQueries : AReadModel,
+    public class ContingentViewQueries : AzureReadModel,
         IContingentViewQueries,
         ISubscribeTo<ContingentCreated>,
+        ISubscribeTo<ContingentAssignedToTournament>,
         ISubscribeTo<TeamCreated>,
         ISubscribeTo<TeamRemoved>,
         ISubscribeTo<ParticipantCreated>,
@@ -26,27 +26,27 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<ParticipantReplacedWithAlternate>
     {
         public ContingentViewQueries(string readModelFilePath)
-            : base(readModelFilePath) 
         {
 
         }
 
-        public class Contingent : AEntity
+        public class Contingent
         {
-            public Contingent(Guid id) : base(id) { }
+            public Guid Id { get; internal set; }
+            public Guid Tournament { get; internal set; }
             public string Province { get; internal set; }
             public IList<Team> Teams { get; internal set; }
             public IList<Participant> Guests { get; internal set; }
         }
 
-        public class Team : AEntity
+        public class Team
         {
-            public Team(Guid id) : base(id) { }
+            public Guid Id { get; internal set; }
             public string Name { get; internal set; }
             public Guid ContingentId { get; internal set; }
             public IList<Participant> Bowlers { get; internal set; }
             public Participant Coach { get; internal set; }
-            public string Alternate { get; internal set; }
+            public Guid Alternate { get; internal set; }
             public string Gender { get; internal set; }
             public int SizeLimit { get; internal set; }
             public bool RequiresShirtSize { get; internal set; }
@@ -57,9 +57,10 @@ namespace MBACNationals.ReadModels
             public bool IncludesSinglesRep { get; internal set; }
         }
 
-        public class Participant : AEntity
+        public class Participant
         {
-            public Participant(Guid id) : base(id) { }
+            public Guid Id { get; internal set; }
+            public Guid TeamId { get; set; }
             public string Name { get; internal set; }
             public bool IsRookie { get; internal set; }
             public bool IsDelegate { get; internal set; }
@@ -68,59 +69,133 @@ namespace MBACNationals.ReadModels
             public string ReplacedBy { get; internal set; }
         }
 
-        public Contingent GetContingent(Guid id)
+        private class TSContingent : Entity
         {
-            return Read<Contingent>(x => x.Id.Equals(id)).FirstOrDefault();
+            public Guid Tournament { get; set; }
+            public string Province { get; set; }
         }
 
-        public Contingent GetContingent(string province)
+        private class TSTeam : Entity
         {
-            return Read<Contingent>(x => x.Province.Equals(province)).FirstOrDefault();            
+            public string Name { get; set; }
+            public Guid Coach { get; set; }
+            public Guid Alternate { get; set; }
+            public string Gender { get; set; }
+            public int SizeLimit { get; set; }
+            public bool RequiresShirtSize { get; set; }
+            public bool RequiresCoach { get; set; }
+            public bool RequiresAverage { get; set; }
+            public bool RequiresBio { get; set; }
+            public bool RequiresGender { get; set; }
+            public bool IncludesSinglesRep { get; set; }
+        }
+
+        private class TSParticipant : Entity
+        {
+            public string Name { get; set; }
+            public Guid TeamId { get; set; }
+            public bool IsRookie { get; set; }
+            public bool IsDelegate { get; set; }
+            public bool IsGuest { get; set; }
+            public int Average { get; set; }
+            public string ReplacedBy { get; set; }
+        }
+        
+        public Contingent GetContingent(Guid tournamentId, string province)
+        {
+            var contingent = Query<TSContingent>(x => x.Tournament == tournamentId && x.Province == province).FirstOrDefault();
+            var bowlers = Query<TSParticipant>(x => x.PartitionKey == contingent.PartitionKey)
+                .Select(x =>
+                {
+                    return new Participant
+                    {
+                        Id = Guid.Parse(x.RowKey),
+                        TeamId = x.TeamId,
+                        Name = x.Name,
+                        Average = x.Average,
+                        IsDelegate = x.IsDelegate,
+                        IsRookie = x.IsRookie,
+                        IsGuest = x.IsGuest,
+                        ReplacedBy = x.ReplacedBy
+                    };
+                }).ToList();
+
+            var teams = Query<TSTeam>(x => x.PartitionKey == contingent.PartitionKey)
+                .Select(x =>
+                {
+                    var coach = bowlers.FirstOrDefault(b => b.Id == x.Coach);
+
+                    return new Team
+                    {
+                        Id = Guid.Parse(x.RowKey),
+                        ContingentId = Guid.Parse(x.PartitionKey),
+                        Name = x.Name,
+                        Gender = x.Gender,
+                        IncludesSinglesRep = x.IncludesSinglesRep,
+                        SizeLimit = x.SizeLimit,
+                        RequiresAverage = x.RequiresAverage,
+                        RequiresBio = x.RequiresBio,
+                        RequiresCoach = x.RequiresCoach,
+                        RequiresGender = x.RequiresGender,
+                        RequiresShirtSize = x.RequiresShirtSize,
+                        Coach = coach,
+                        Bowlers = bowlers.Where(b => b.TeamId == Guid.Parse(x.RowKey)).ToList(),
+                        Alternate = x.Alternate
+                    };
+                }).ToList();
+
+            var guests = bowlers.Where(x => x.IsGuest).ToList();
+
+            return new Contingent
+            {
+                Id = Guid.Parse(contingent.PartitionKey),
+                Province = contingent.Province,
+                Tournament = contingent.Tournament,
+                Teams = teams,
+                Guests = guests
+            };
         }
         
         public void Handle(ContingentCreated e)
         {
-            Create(new Contingent(e.Id)
+            Create(e.Id, e.Id, new TSContingent//(e.Id)
             {
                 Province = e.Province,
-                Teams = new List<Team>(),
-                Guests = new List<Participant>(),
+            });
+        }
+
+        public void Handle(ContingentAssignedToTournament e)
+        {
+            Update<TSContingent>(e.Id, e.Id, contingent =>
+            {
+                contingent.Tournament = e.TournamentId;
             });
         }
 
         public void Handle(TeamCreated e)
         {
-            Update<Contingent>(e.Id, contingent =>
+            Create(e.Id, e.TeamId, new TSTeam
             {
-                contingent.Teams.Add(
-                    new Team(e.TeamId)
-                    {
-                        Name = e.Name,
-                        ContingentId = e.Id,
-                        SizeLimit = e.SizeLimit,
-                        Bowlers = new List<Participant>(),
-                        Gender = e.Gender,
-                        RequiresShirtSize = e.RequiresShirtSize,
-                        RequiresCoach = e.RequiresCoach,
-                        RequiresAverage = e.RequiresAverage,
-                        RequiresBio = e.RequiresBio,
-                        RequiresGender = e.RequiresGender,
-                        IncludesSinglesRep = e.IncludesSinglesRep,
-                    });
+                Name = e.Name,
+                SizeLimit = e.SizeLimit,
+                Gender = e.Gender,
+                RequiresShirtSize = e.RequiresShirtSize,
+                RequiresCoach = e.RequiresCoach,
+                RequiresAverage = e.RequiresAverage,
+                RequiresBio = e.RequiresBio,
+                RequiresGender = e.RequiresGender,
+                IncludesSinglesRep = e.IncludesSinglesRep,
             });
         }
 
         public void Handle(TeamRemoved e)
         {
-            Update<Contingent>(e.Id, contingent =>
-            {
-                contingent.Teams.Remove(contingent.Teams.SingleOrDefault(x => x.Id.Equals(e.TeamId)));
-            });
+            Delete<TSTeam>(e.Id, e.TeamId);
         }
-		
+
         public void Handle(ParticipantCreated e)
         {
-            Create(new Participant(e.Id)
+            Create(Guid.Empty, e.Id, new TSParticipant
             {
                 Name = e.Name,
                 IsDelegate = e.IsDelegate,
@@ -131,128 +206,72 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ParticipantAssignedToContingent e)
         {
-            Update<Contingent>(e.ContingentId, (contingent, odb) =>
-            {
-                var participant = Read<Participant>(x => x.Id.Equals(e.Id), odb).FirstOrDefault();
-                if (participant == null 
-                    || participant.IsGuest == false 
-                    || contingent.Guests.Any(x => x.Id == e.Id))
-                    return;
-
-                contingent.Guests.Add(participant);
-            });
+            var participant = Read<TSParticipant>(Guid.Empty, e.Id);
+            Delete<TSParticipant>(Guid.Empty, e.Id);
+            Create(e.ContingentId, e.Id, participant);
         }
 
         public void Handle(ParticipantAssignedToTeam e)
         {
-            var cntgt = Read<Contingent>(c => c.Teams.Any(t => t.Id.Equals(e.TeamId))).FirstOrDefault();
-            if (cntgt == null)
-                return;
-
-            Update<Contingent>(cntgt.Id, (contingent, odb) => {
-                var team = contingent.Teams.FirstOrDefault(t => t.Id.Equals(e.TeamId));
-                if (team == null)
-                    return;
-
-                var participant = Read<Participant>(x => x.Id.Equals(e.Id), odb).FirstOrDefault();
-                if (participant == null)
-                    return;
-
-                team.Bowlers.Add(participant);
-            });
+            var team = Query<TSTeam>(x => { return x.RowKey == e.TeamId.ToString(); }).FirstOrDefault();
+            var participant = Read<TSParticipant>(Guid.Empty, e.Id);
+            Delete<TSParticipant>(Guid.Empty, e.Id);
+            participant.TeamId = e.TeamId;
+            Create(Guid.Parse(team.PartitionKey), e.Id, participant);
         }
 
         public void Handle(ParticipantDesignatedAsAlternate e)
         {
-            var cntgt = Read<Contingent>(c => c.Teams.Any(t => t.Id.Equals(e.TeamId))).FirstOrDefault();
-            if (cntgt == null)
-                return;
-
-            Update<Contingent>(cntgt.Id, (contingent, odb) =>
+            Update<TSTeam>(e.TeamId, team =>
             {
-                var team = contingent.Teams.FirstOrDefault(t => t.Id.Equals(e.TeamId));
-                if (team == null)
-                    return;
-
-                var participant = Read<Participant>(x => x.Id.Equals(e.Id), odb).FirstOrDefault();
-                if (participant == null)
-                    return;
-
-                team.Alternate = participant.Id.ToString("D");
+                team.Alternate = e.Id;
             });
         }
 
         public void Handle(CoachAssignedToTeam e)
         {
-            var cntgt = Read<Contingent>(c => c.Teams.Any(t => t.Id.Equals(e.TeamId))).FirstOrDefault();
-            if (cntgt == null)
-                return;
-
-            Update<Contingent>(cntgt.Id, (contingent, odb) =>
+            var team = Read<TSTeam>(e.TeamId);
+            
+            //FIX: If coach wasn't assigned to Contingent yet...
+            var coach = Read<TSParticipant>(Guid.Empty, e.Id);
+            if (coach != null)
             {
-                var team = contingent.Teams.FirstOrDefault(t => t.Id.Equals(e.TeamId));
-                if (team == null)
-                    return;
+                Delete<TSParticipant>(Guid.Empty, e.Id);
+                Create(Guid.Parse(team.PartitionKey), e.Id, coach);
+            }
 
-                var participant = Read<Participant>(x => x.Id.Equals(e.Id), odb).FirstOrDefault();
-                if (participant == null)
-                    return;
-
-                team.Coach = participant;
-            });
+            Update<TSTeam>(Guid.Parse(team.PartitionKey), Guid.Parse(team.RowKey), x => x.Coach = e.Id);
         }
 
         public void Handle(ParticipantRenamed e)
         {
-            Update<Participant>(e.Id, x => { x.Name = e.Name; });
+            Update<TSParticipant>(e.Id, x => { x.Name = e.Name; });
         }
 
         public void Handle(ParticipantDelegateStatusGranted e)
         {
-            Update<Participant>(e.Id, x => { x.IsDelegate = true; });
+            Update<TSParticipant>(e.Id, x => { x.IsDelegate = true; });
         }
 
         public void Handle(ParticipantDelegateStatusRevoked e)
         {
-            Update<Participant>(e.Id, x => { x.IsDelegate = false; });
+            Update<TSParticipant>(e.Id, x => { x.IsDelegate = false; });
         }
 
         public void Handle(ParticipantYearsQualifyingChanged e)
         {
-            Update<Participant>(e.Id, x => { x.IsRookie = e.YearsQualifying == 1; });
+            Update<TSParticipant>(e.Id, x => { x.IsRookie = e.YearsQualifying == 1; });
         }
 
         public void Handle(ParticipantAverageChanged e)
         {
-            Update<Participant>(e.Id, x => { x.Average = e.Average; });
+            Update<TSParticipant>(e.Id, x => { x.Average = e.Average; });
         }
 
         public void Handle(ParticipantReplacedWithAlternate e)
         {
-            var contingentId = e.ContingentId;
-            if (contingentId == Guid.Empty)
-            {
-                var team = Read<Team>(x => x.Id == e.TeamId).FirstOrDefault();
-                contingentId = team.ContingentId;
-            }
-
-            Update<Contingent>(contingentId, (contingent, odb) =>
-            {
-                var team = contingent.Teams.FirstOrDefault(t => t.Alternate == e.AlternateId.ToString());
-                if (team == null)
-                    return;
-
-                var participant = Read<Participant>(x => x.Id.Equals(e.Id), odb).FirstOrDefault();
-                if (participant == null)
-                    return;
-
-                var alternate = Read<Participant>(x => x.Id.Equals(e.AlternateId), odb).FirstOrDefault();
-                if (alternate == null)
-                    return;
-
-                team.Bowlers.Add(alternate);
-                participant.ReplacedBy = e.AlternateId.ToString();
-            });
+            Update<TSParticipant>(e.AlternateId, x => x.TeamId = e.TeamId); // Assign Alternate to team
+            Update<TSParticipant>(e.Id, x=> x.ReplacedBy = e.AlternateId.ToString()); // Mark bowler as replaced
         }
     }
 }
