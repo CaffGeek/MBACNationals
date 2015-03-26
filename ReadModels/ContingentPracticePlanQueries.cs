@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class ContingentPracticePlanQueries : AReadModel,
+    public class ContingentPracticePlanQueries : AzureReadModel,
         IContingentPracticePlanQueries,
         ISubscribeTo<ContingentCreated>,
         ISubscribeTo<TeamCreated>,
@@ -14,72 +14,85 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<TeamPracticeRescheduled>
     {
         public ContingentPracticePlanQueries(string readModelFilePath)
-            : base(readModelFilePath) 
         {
 
         }
 
-        public class ContingentPracticePlan : AEntity
+        public class ContingentPracticePlan
         {
-            public ContingentPracticePlan(Guid id) : base(id) { }
+            public Guid Id { get; internal set; }
             public string Province { get; internal set; }
             public IList<Team> Teams { get; internal set; }
         }
 
-        public class Team : AEntity
+        public class Team
         {
-            public Team(Guid id) : base(id) { }
+            public Guid Id { get; internal set; }
             public string Name { get; internal set; }
+            public string PracticeLocation { get; set; }
+            public int PracticeTime { get; set; }
+        }
+
+        private class TSContingentPracticePlan : Entity
+        {
+            public string Province { get; set; }
+        }
+
+        private class TSTeam : Entity
+        {
+            public string Name { get; set; }
             public string PracticeLocation { get; set; }
             public int PracticeTime { get; set; }
         }
 
         public ContingentPracticePlan GetSchedule(string province)
         {
-            return Read<ContingentPracticePlan>(x => x.Province.Equals(province)).FirstOrDefault();
+            var contingentPracticePlan = Query<TSContingentPracticePlan>(x => x.Province.Equals(province, StringComparison.OrdinalIgnoreCase))
+                .FirstOrDefault();
+
+            var teams = Query<TSTeam>(x => x.PartitionKey == contingentPracticePlan.PartitionKey)
+                .Select(x => new Team {
+                    Id = Guid.Parse(x.PartitionKey),
+                    Name = x.Name,
+                    PracticeLocation = x.PracticeLocation,
+                    PracticeTime = x.PracticeTime
+                })
+                .ToList();
+
+            return new ContingentPracticePlan
+            {
+                Id = Guid.Parse(contingentPracticePlan.PartitionKey),
+                Province = contingentPracticePlan.Province,
+                Teams = teams,
+            };
+            //TODO return Read<ContingentPracticePlan>(x => x.Province.Equals(province)).FirstOrDefault();
         }
 
         public void Handle(ContingentCreated e)
         {
-            Create(new ContingentPracticePlan(e.Id)
+            Create(e.Id, e.Id, new TSContingentPracticePlan
             {
-                Province = e.Province,
-                Teams = new List<Team>()
+                Province = e.Province
             });
         }
 
         public void Handle(TeamCreated e)
         {
-            Update<ContingentPracticePlan>(e.Id, x =>
+            Create(e.Id, e.TeamId, new TSTeam
             {
-                var team = new Team(e.TeamId)
-                {
-                    Name = e.Name
-                };
-                x.Teams.Add(team);
+                Name = e.Name
             });
         }
 
         public void Handle(TeamRemoved e)
         {
-            Update<ContingentPracticePlan>(e.Id, (x, odb) =>
-            {
-                var team = Read<Team>(t => t.Id.Equals(e.TeamId), odb).FirstOrDefault();
-                if (team == null)
-                    return;
-
-                x.Teams.Remove(team);
-            });
+            Delete<TSTeam>(e.Id, e.TeamId);
         }
 
         public void Handle(TeamPracticeRescheduled e)
         {
-            Update<ContingentPracticePlan>(e.Id, (x, odb) =>
+            Update<TSTeam>(e.Id, e.TeamId, team =>
             {
-                var team = Read<Team>(t => t.Id.Equals(e.TeamId), odb).FirstOrDefault();
-                if (team == null)
-                    return;
-
                 team.PracticeLocation = e.PracticeLocation;
                 team.PracticeTime = e.PracticeTime;
             });

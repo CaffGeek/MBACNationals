@@ -11,7 +11,7 @@ namespace MBACNationals.ReadModels
     {
         public class Entity : TableEntity
         {
-            public string Type { get; set; }
+            public string AzureEntityType { get; set; }
         }
 
         private CloudTable Table { get; set; }
@@ -34,10 +34,10 @@ namespace MBACNationals.ReadModels
 
             entity.PartitionKey = partition.ToString();
             entity.RowKey = key.ToString();
-            entity.Type = typeof(T).Name;
+            entity.AzureEntityType = typeof(T).Name;
 
-            var table = Table;
-            table.Execute(TableOperation.InsertOrReplace(entity));
+            
+            Table.Execute(TableOperation.InsertOrReplace(entity));
         }
 
         protected T Read<T>(Guid key)
@@ -50,8 +50,8 @@ namespace MBACNationals.ReadModels
         protected T Read<T>(Guid partition, Guid key)
             where T : Entity, new()
         {
-            var table = Table;
-            var tableResults = table.Execute(TableOperation.Retrieve<T>(partition.ToString(), key.ToString()));
+            
+            var tableResults = Table.Execute(TableOperation.Retrieve<T>(partition.ToString(), key.ToString()));
             var entity = (T)tableResults.Result;
             return entity;
         }
@@ -59,15 +59,15 @@ namespace MBACNationals.ReadModels
         protected List<T> Query<T>()
             where T : Entity, new()
         {
-            var table = Table;
-            return table.CreateQuery<T>().Where(x => x.Type.Equals(typeof(T).Name)).ToList();
+            
+            return Table.CreateQuery<T>().Where(x => x.AzureEntityType.Equals(typeof(T).Name)).ToList();
         }
 
         protected List<T> Query<T>(Func<T, bool> predicate)
             where T : Entity, new()
         {
-            var table = Table;
-            return table.CreateQuery<T>().Where(predicate).Where(x => x.Type.Equals(typeof(T).Name)).ToList();
+            
+            return Table.CreateQuery<T>().Where(predicate).Where(x => x.AzureEntityType.Equals(typeof(T).Name)).ToList();
         }
 
         protected void Update<T>(Guid partition, Guid key, Action<T> func)
@@ -75,8 +75,8 @@ namespace MBACNationals.ReadModels
         {
             var entity = Read<T>(partition, key);
             func(entity);
-            var table = Table;
-            table.Execute(TableOperation.Replace(entity));
+
+            Table.Execute(TableOperation.Replace(entity));
         }
 
         protected void Update<T>(Guid key, Action<T> func)
@@ -84,16 +84,16 @@ namespace MBACNationals.ReadModels
         {
             var entity = Read<T>(key);
             func(entity);
-            var table = Table;
-            table.Execute(TableOperation.Replace(entity));
+
+            Table.Execute(TableOperation.Replace(entity));
         }
 
         protected void Delete<T>(Guid partition, Guid key)
             where T : Entity, new()
         {
             var entity = Read<T>(partition, key);
-            var table = Table;
-            table.Execute(TableOperation.Delete(entity));
+            
+            Table.Execute(TableOperation.Delete(entity));
         }
     }
 }

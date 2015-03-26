@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class ContingentTravelPlanQueries : AReadModel,
+    public class ContingentTravelPlanQueries : AzureReadModel,
         IContingentTravelPlanQueries,
         ISubscribeTo<ContingentCreated>,
         ISubscribeTo<TravelPlansChanged>,
@@ -14,21 +14,20 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<ReservationInstructionsChanged>
     {
         public ContingentTravelPlanQueries(string readModelFilePath)
-            : base(readModelFilePath) 
         {
 
         }
 
-        public class ContingentTravelPlans : AEntity
+        public class ContingentTravelPlans
         {
-            public ContingentTravelPlans(Guid id) : base(id) { }
+            public Guid Id { get; internal set; }
             public string Province { get; internal set; }
             public IList<TravelPlan> TravelPlans { get; internal set; }
         }
 
-        public class ContingentRooms : AEntity
+        public class ContingentRooms
         {
-            public ContingentRooms(Guid id) : base(id) { }
+            public Guid Id { get; internal set; }
             public string Province { get; internal set; }
             public IList<HotelRoom> HotelRooms { get; internal set; }
             public string Instructions { get; internal set; }
@@ -49,72 +48,84 @@ namespace MBACNationals.ReadModels
             public string Type { get; internal set; }
         }
 
+        private class TSContingent : Entity
+        {
+            public string Province { get; set; }
+            public string Instructions { get; set; }
+        }
+
+        private class TSTravelPlan : Entity
+        {
+            public string ModeOfTransportation { get; set; }
+            public string When { get; set; }
+            public string FlightNumber { get; set; }
+            public int NumberOfPeople { get; set; }
+            public int Type { get; set; }
+        }
+
+        private class TSHotelRoom : Entity
+        {
+            public int RoomNumber { get; set; }
+            public string Type { get; set; }
+        }
+
         public ContingentTravelPlans GetTravelPlans(string province)
         {
-            return Read<ContingentTravelPlans>(x => x.Province.Equals(province)).FirstOrDefault();
+            return null;//TODO: Read<ContingentTravelPlans>(x => x.Province.Equals(province)).FirstOrDefault();
         }
 
         public ContingentRooms GetRooms(string province)
         {
-            return Read<ContingentRooms>(x => x.Province.Equals(province)).FirstOrDefault();
+            return null;//TODO: Read<ContingentRooms>(x => x.Province.Equals(province)).FirstOrDefault();
         }
 
         public void Handle(ContingentCreated e)
         {
-            Create(new ContingentTravelPlans(e.Id)
+            Create(e.Id, e.Id, new TSContingent
             {
-                Province = e.Province,
-                TravelPlans = new List<TravelPlan>()
-            });
-
-            Create(new ContingentRooms(e.Id)
-            {
-                Province = e.Province,
-                HotelRooms = new List<HotelRoom>()
+                Province = e.Province
             });
         }
 
         public void Handle(TravelPlansChanged e)
         {
-            Update<ContingentTravelPlans>(e.Id, contingent =>
+            //Delete old plans
+            Query<TSTravelPlan>(x => x.PartitionKey == e.Id.ToString())
+                .ForEach(x => Delete<TSTravelPlan>(Guid.Parse(x.PartitionKey), Guid.Parse(x.RowKey)));
+
+            //Create new ones
+            e.TravelPlans.ForEach(plan =>
             {
-                contingent.TravelPlans = e.TravelPlans.Select(x =>
+                Create(e.Id, Guid.NewGuid(), new TSTravelPlan
                 {
-                    return new TravelPlan
-                    {
-                        ModeOfTransportation = x.ModeOfTransportation,
-                        When = x.When.ToString("yyyy-MM-ddTHH:mm"),
-                        FlightNumber = x.FlightNumber,
-                        NumberOfPeople = x.NumberOfPeople,
-                        Type = x.Type
-                    };
-                }).ToList();
+                    ModeOfTransportation = plan.ModeOfTransportation,
+                    When = plan.When.ToString("yyyy-MM-ddTHH:mm"),
+                    FlightNumber = plan.FlightNumber,
+                    NumberOfPeople = plan.NumberOfPeople,
+                    Type = plan.Type
+                });
             });
         }
 
         public void Handle(RoomTypeChanged e)
         {
-            Update<ContingentRooms>(e.Id, contingent =>
+            var roomBytes = BitConverter.GetBytes(e.RoomNumber);
+            var eightBytes = Enumerable
+                .Repeat<Byte>(0, 8 - roomBytes.Length)
+                .Concat(roomBytes)
+                .ToArray();
+            var roomKey = new Guid(0, 0, 0, eightBytes);
+
+            Create(e.Id, roomKey, new TSHotelRoom
             {
-                var room = contingent.HotelRooms.FirstOrDefault(x => x.RoomNumber.Equals(e.RoomNumber));
-                if (room != null)
-                {
-                    room.Type = e.Type;
-                }
-                else
-                {
-                    contingent.HotelRooms.Add(new HotelRoom
-                    {
-                        RoomNumber = e.RoomNumber,
-                        Type = e.Type
-                    });
-                }
-            });         
+                RoomNumber = e.RoomNumber,
+                Type = e.Type,
+            });
         }
 
         public void Handle(ReservationInstructionsChanged e)
         {
-            Update<ContingentRooms>(e.Id, contingent => { contingent.Instructions = e.Instructions; });
+            Update<TSContingent>(e.Id, e.Id, contingent => contingent.Instructions = e.Instructions);
         }
     }
 }
