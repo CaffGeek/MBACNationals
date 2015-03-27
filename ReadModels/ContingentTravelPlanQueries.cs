@@ -71,12 +71,14 @@ namespace MBACNationals.ReadModels
 
         public ContingentTravelPlans GetTravelPlans(string province)
         {
-            return null;//TODO: Read<ContingentTravelPlans>(x => x.Province.Equals(province)).FirstOrDefault();
+            throw new NotImplementedException();
+            //TODO: Read<ContingentTravelPlans>(x => x.Province.Equals(province)).FirstOrDefault();
         }
 
         public ContingentRooms GetRooms(string province)
         {
-            return null;//TODO: Read<ContingentRooms>(x => x.Province.Equals(province)).FirstOrDefault();
+            throw new NotImplementedException();
+            //TODO: Read<ContingentRooms>(x => x.Province.Equals(province)).FirstOrDefault();
         }
 
         public void Handle(ContingentCreated e)
