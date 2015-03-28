@@ -8,33 +8,21 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class TeamScoreQueries : AReadModel,
+    public class TeamScoreQueries : AzureReadModel,
         ITeamScoreQueries,
-        ISubscribeTo<ContingentCreated>,
-        ISubscribeTo<TeamCreated>,
-        ISubscribeTo<ParticipantGameCompleted>,
         ISubscribeTo<TeamGameCompleted>
     {
         public TeamScoreQueries(string readModelFilePath)
-            : base(readModelFilePath)
         {
 
         }
-
-        public class Contingent : AEntity
+        
+        public class Team 
         {
-            public Contingent(Guid id) : base(id) { }
-            public string Province { get; internal set; }
-        }
-
-        public class Team : AEntity
-        {
-            public Team(Guid id) : base(id) { }
+            public Guid Id { get; internal set; }
             public string Name { get; internal set; }
             public string Province { get; internal set; }
             public List<Score> Scores { get; internal set; }
-            public int HighScore { get; internal set; }
-            public int HighPOA { get; internal set; }
         }
 
         public class Score
@@ -54,57 +42,85 @@ namespace MBACNationals.ReadModels
             public decimal OpponentPoints { get; internal set; }
         }
 
+        private class TSMatch : Entity
+        {
+            public Guid Id
+            {
+                get { return Guid.Parse(RowKey); }
+                internal set { RowKey = value.ToString(); }
+            }
+            public Guid TeamId
+            {
+                get { return Guid.Parse(PartitionKey); }
+                internal set { PartitionKey = value.ToString(); }
+            }
+            public string TeamName { get; set; }
+            public string Province { get; set; }
+            public int Number { get; set; }
+            public int Scratch { get; set; }
+            public int POA { get; set; }
+            public bool IsWin { get; set; }
+            public int Lane { get; set; }
+            public string Centre { get; set; }
+            public string Opponent { get; set; }
+            public int OpponentScratch { get; set; }
+            public int OpponentPOA { get; set; }
+            public bool IsPOA { get; set; }
+            public decimal Points { get; set; }
+            public decimal OpponentPoints { get; set; }
+        }
+
+
         public Team GetTeam(Guid id)
         {
-            return Read<Team>(x => x.Id == id).FirstOrDefault();
-        }
-
-        public void Handle(ContingentCreated e)
-        {
-            Create(new Contingent(e.Id)
+            var matches = Query<TSMatch>(x => x.TeamId == id);
+            var firstMatch = matches.First();
+            var scores = matches.Select(x => new Score
             {
-                Province = e.Province
-            });
-        }
+                MatchId = x.Id.ToString(),
+                Number = x.Number,
+                Scratch = x.Scratch,
+                POA = x.POA,
+                IsWin = x.IsWin,
+                Lane = x.Lane,
+                Centre = x.Centre,
+                Opponent = x.Opponent,
+                OpponentScratch = x.OpponentScratch,
+                OpponentPOA = x.OpponentPOA,
+                IsPOA = x.IsPOA,
+                Points = x.Points,
+                OpponentPoints = x.OpponentPoints,
+            }).ToList();
 
-        public void Handle(TeamCreated e)
-        {
-            var contingent = Read<Contingent>(x => x.Id == e.Id).FirstOrDefault();
-
-            Create(new Team(e.TeamId)
+            var team = new Team
             {
-                Name = e.Name,
-                Province = contingent.Province,
-                Scores = new List<Score>()
-            });
-        }
+                Id = id,
+                Name = firstMatch.TeamName,
+                Province = firstMatch.Province,
+                Scores = scores,                
+            };
 
-        public void Handle(ParticipantGameCompleted e)
-        {
-            //TODO:e throw new NotImplementedException();
+            return team;
         }
-
+        
         public void Handle(TeamGameCompleted e)
         {
-            Update<Team>(e.TeamId, x =>
+            Create(e.TeamId, e.Id, new TSMatch
             {
-                x.Scores.RemoveAll(m => m.MatchId == e.Id.ToString());
-                x.Scores.Add(new Score
-                {
-                    MatchId = e.Id.ToString(),
-                    Number = e.Number,
-                    Scratch = e.Score,
-                    POA = e.POA,
-                    IsWin = e.Points > 0 || e.TotalPoints > e.OpponentPoints,
-                    Lane = e.Lane,
-                    Centre = e.Centre,
-                    Opponent = e.Opponent,
-                    OpponentScratch = e.OpponentScore,
-                    OpponentPOA = e.OpponentPOA,
-                    OpponentPoints = e.OpponentPoints,
-                    IsPOA = e.IsPOA,
-                    Points = e.TotalPoints
-                });
+                TeamName = e.Division,
+                Province = e.Contingent,
+                Number = e.Number,
+                Scratch = e.Score,
+                POA = e.POA,
+                IsWin = e.Points > 0 || e.TotalPoints > e.OpponentPoints,
+                Lane = e.Lane,
+                Centre = e.Centre,
+                Opponent = e.Opponent,
+                OpponentScratch = e.OpponentScore,
+                OpponentPOA = e.OpponentPOA,
+                OpponentPoints = e.OpponentPoints,
+                IsPOA = e.IsPOA,
+                Points = e.TotalPoints
             });
         }
     }

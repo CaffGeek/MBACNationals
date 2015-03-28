@@ -6,13 +6,12 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class ScheduleQueries : AReadModel,
+    public class ScheduleQueries : AzureReadModel,
         IScheduleQueries,
         ISubscribeTo<MatchCreated>,
         ISubscribeTo<MatchCompleted>
     {
         public ScheduleQueries(string readModelFilePath)
-            : base(readModelFilePath)
         { }
 
         public class Schedule
@@ -21,8 +20,9 @@ namespace MBACNationals.ReadModels
             public List<Match> Games { get; internal set; }
         }
 
-        public class Match : AEntity
+        public class Match
         {
+            public Guid Id { get; internal set; }
             public string Division { get; internal set; }
             public bool IsPOA { get; internal set; }
             public int Number { get; internal set; }
@@ -34,8 +34,8 @@ namespace MBACNationals.ReadModels
             public bool IsComplete { get; internal set; }
 
             public Match(Guid guid, string division, int number, string away, string home, int lane, BowlingCentre centre, bool isPOA = false)
-                : base(guid)
             {
+                Id = guid;
                 Division = division;
                 IsPOA = isPOA;
                 Number = number;
@@ -48,27 +48,53 @@ namespace MBACNationals.ReadModels
             }
         }
 
+        private class TSMatch : Entity
+        {
+            public Guid MatchId
+            {
+                get { return Guid.Parse(RowKey); }
+                internal set { RowKey = value.ToString(); PartitionKey = value.ToString(); }
+            }
+            public string Division { get; set; }
+            public bool IsPOA { get; set; }
+            public int Number { get; set; }
+            public string Away { get; set; }
+            public string Home { get; set; }
+            public int Lane { get; set; }
+            public string Centre { get; set; }
+            public bool IsComplete { get; set; }
+        }
+
         public ScheduleQueries.Schedule GetSchedule(string division)
         {
+            var matches = Query<TSMatch>(x => x.Division.Equals(division, StringComparison.OrdinalIgnoreCase))
+                .Select(x => new Match(x.MatchId, x.Division, x.Number, x.Away, x.Home, x.Lane, (BowlingCentre)Enum.Parse(typeof(BowlingCentre), x.Centre), x.IsPOA))
+                .ToList();
+
             return new Schedule
             {
                 Division = division,
-                Games = Read<Match>(x => x.Division.Equals(division, StringComparison.OrdinalIgnoreCase)).ToList()
+                Games = matches,
             };
         }
 
         public void Handle(MatchCreated e)
         {
-            var schedule = Read<Match>(x => x.Id == e.Id).FirstOrDefault();
-            if (schedule != null)
-                return;
-
-            Create(new Match(e.Id, e.Division, e.Number, e.Away, e.Home, e.Lane, e.Centre, e.IsPOA));
+            Create(e.Id, e.Id, new TSMatch {
+                Division = e.Division,
+                IsPOA = e.IsPOA,
+                Number = e.Number,
+                Away = e.Away,
+                Home = e.Home,
+                Lane = e.Lane,
+                Centre = e.Centre.ToString(),
+                IsComplete = false,
+            });
         }
 
         public void Handle(MatchCompleted e)
         {
-            Update<Match>(e.Id, x => x.IsComplete = true );
+            Update<TSMatch>(e.Id, e.Id, x => x.IsComplete = true);
         }
     }
 }

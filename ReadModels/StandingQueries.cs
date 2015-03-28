@@ -6,19 +6,18 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class StandingQueries : AReadModel,
+    public class StandingQueries : AzureReadModel,
         IStandingQueries,
         ISubscribeTo<TeamGameCompleted>
     {
         public StandingQueries(string readModelFilePath)
-            : base(readModelFilePath) 
         {
 
         }
 
-        public class Team : AEntity
+        public class Team
         {
-            public Team(Guid id) : base(id) { }
+            public Guid Id { get; internal set; }
             public string TeamId { get; internal set; }
             public string Division { get; internal set; }
             public string Province { get; internal set; }
@@ -38,55 +37,78 @@ namespace MBACNationals.ReadModels
             public bool IsPOA { get; internal set; }
         }
 
+        private class TSMatch : Entity
+        {
+            public Guid TeamId
+            {
+                get { return Guid.Parse(PartitionKey); }
+                internal set { PartitionKey = value.ToString(); }
+            }
+            public Guid MatchId {
+                get { return Guid.Parse(RowKey); }
+                internal set { RowKey = value.ToString(); }
+            }
+            public bool IsPOA { get; set; }
+            public string Division { get; set; }
+            public string Province { get; set; }
+            public int Number { get; set; }
+            public string Opponent { get; set; }
+            public int Score { get; set; }
+            public int POA { get; set; }
+            public double Points { get; set; }
+            public double TotalPoints { get; set; }            
+
+        }
+
         public List<Team> GetDivision(string division)
         {
-            return Read<Team>(x => x.Division == division && !string.IsNullOrWhiteSpace(x.Province)).ToList();
+            var matches = Query<TSMatch>(x => x.Division.Equals(division, StringComparison.OrdinalIgnoreCase));
+
+            var teams = matches
+                .GroupBy(x => x.TeamId)
+                .Select(g => new Team
+                {
+                    Id = g.First().TeamId,
+                    TeamId = g.First().TeamId.ToString(),
+                    Division = g.First().Division,
+                    Province = g.First().Province,
+                    RunningPoints = (decimal)g.Sum(x=>x.TotalPoints),
+                }).ToList();
+
+            foreach (var team in teams)
+            {
+                team.Matches = matches
+                    .Where(m => m.TeamId.Equals(team.Id))
+                    .Select(m => new Match
+                    {
+                        Id = m.MatchId,
+                        IsPOA = m.IsPOA,
+                        Number = m.Number,
+                        Opponent = m.Opponent,
+                        POA = m.POA,
+                        Points = (decimal)m.Points,
+                        Score = m.Score,
+                        TotalPoints = (decimal)m.TotalPoints,
+                    }).ToList();
+            }
+
+            return teams;
         }
         
         public void Handle(TeamGameCompleted e)
         {
-            var team = Read<Team>(x => x.TeamId == e.TeamId.ToString() && x.Division == e.Division).FirstOrDefault();
-
-            if (team == null)
-                Create(new Team(Guid.NewGuid())
-                {
-                    TeamId = e.TeamId.ToString(),
-                    Division = e.Division,
-                    Province = e.Contingent,
-                    RunningPoints = e.TotalPoints,
-                    Matches = new List<Match>
-                    {
-                        new Match
-                        {
-                            Id = e.Id,
-                            Number = e.Number,
-                            Opponent = e.Opponent,
-                            Score = e.Score,
-                            POA = e.POA,
-                            Points = e.Points,
-                            TotalPoints = e.TotalPoints,
-                            IsPOA = e.IsPOA,
-                        }
-                    }
-                });
-            else
-                Update<Team>(team.Id, x =>
-                {
-                    x.Province = e.Contingent;
-                    x.Matches.RemoveAll(m => m.Id == e.Id);
-                    x.Matches.Add(new Match
-                    {
-                        Id = e.Id,
-                        Number = e.Number,
-                        Opponent = e.Opponent,
-                        Score = e.Score,
-                        POA = e.POA,
-                        Points = e.Points,
-                        TotalPoints = e.TotalPoints,
-                        IsPOA = e.IsPOA,
-                    });
-                    x.RunningPoints = x.Matches.Sum(m => m.TotalPoints);
-                });
+            Create(e.TeamId, e.Id, new TSMatch
+            {
+                IsPOA = e.IsPOA,
+                Division = e.Division,
+                Province = e.Contingent,
+                Number = e.Number,
+                Opponent = e.Opponent,
+                Score = e.Score,
+                POA = e.POA,
+                Points = (double)e.Points,
+                TotalPoints = (double)e.TotalPoints,
+            });
         }
     }
 }

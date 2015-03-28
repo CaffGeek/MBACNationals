@@ -6,35 +6,51 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class TournamentQueries : AReadModel,
+    public class TournamentQueries : AzureReadModel,
         ITournamentQueries,
         ISubscribeTo<TournamentCreated>
     {
         public TournamentQueries(string readModelFilePath)
-            : base(readModelFilePath) 
         {
 
         }
 
-        public class Tournament : AEntity
+        public class Tournament
         {
-            public Tournament(Guid id) : base(id) { }
+            public Guid Id { get; internal set; }
             public string Year { get; internal set; }
+        }
+
+        public class TSTournament : Entity
+        {
+            public string Year { get; set; }
         }
 
         public Tournament GetTournament(string year)
         {
-            return Read<Tournament>().Where(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            return Query<TSTournament>(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase))
+                .Select(x => new Tournament
+                {
+                    Id = Guid.Parse(x.RowKey),
+                    Year = x.Year
+                })
+                .FirstOrDefault();
         }
 
         public List<Tournament> GetTournaments()
         {
-            return Read<Tournament>().ToList();
+            return Query<TSTournament>()
+                .Select(x => new Tournament
+                {
+                    Id = Guid.Parse(x.RowKey),
+                    Year = x.Year
+                })
+                .ToList();
         }
         
         public void Handle(TournamentCreated e)
         {
-            Create(new Tournament(e.Id)
+            Create(e.Id, e.Id, new TSTournament
             {
                 Year = e.Year
             });

@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class MatchQueries : AReadModel,
+    public class MatchQueries : AzureReadModel,
         IMatchQueries,
         ISubscribeTo<MatchCreated>,
         ISubscribeTo<ParticipantGameCompleted>,
@@ -15,14 +15,13 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<MatchCompleted>
     {
         public MatchQueries(string readModelFilePath)
-            : base(readModelFilePath) 
         {
 
         }
         
-        public class Match : AEntity
+        public class Match
         {
-            public Match(Guid id) : base(id) { }
+            public Guid Id { get; internal set; }
             public string Division { get; internal set; }
             public bool IsPOA { get; internal set; }
             public int Number { get; internal set; }
@@ -53,25 +52,55 @@ namespace MBACNationals.ReadModels
             public int POA { get; internal set; }
             public decimal Points { get; internal set; }
         }
-        
+
+        private class TSMatch : Entity
+        {
+            public string Division { get; set; }
+            public bool IsPOA { get; set; }
+            public int Number { get; set; }
+            public int Lane { get; set; }
+            public string Centre { get; set; }
+            public bool IsComplete { get; set; }
+
+            public string Away { get; set; }
+            public string AwayId { get; set; }
+            public int AwayScore { get; set; }
+            public int AwayPOA { get; set; }
+            public double AwayPoints { get; set; }
+            public double AwayTotalPoints { get; set; }
+
+            public string Home { get; set; }
+            public string HomeId { get; set; }
+            public int HomeScore { get; set; }
+            public int HomePOA { get; set; }
+            public double HomePoints { get; set; }
+            public double HomeTotalPoints { get; set; }
+        }
+
+        private class TSBowler : Entity
+        {
+            public string Name { get; set; }
+            public string Province { get; set; }
+            public int Position { get; set; }
+            public int Score { get; set; }
+            public int POA { get; set; }
+            public double Points { get; set; }
+        }
+
         public Match GetMatch(Guid matchId)
         {
-            return Read<Match>(x => x.Id == matchId).FirstOrDefault();
+            return null;// Read<Match>(x => x.Id == matchId).FirstOrDefault();
         }
         
         public void Handle(MatchCreated e)
         {
-            var match = Read<Match>(x => x.Id == e.Id).FirstOrDefault();
-            if (match != null)
-                return;
-
-            Create(new Match(e.Id)
+            Create(e.Id, e.Id, new TSMatch
             {
                 Division = e.Division,
                 IsPOA = e.IsPOA,
                 Number = e.Number,
-                Away = new Team { Province = e.Away, Bowlers = new List<Bowler>() },
-                Home = new Team { Province = e.Home, Bowlers = new List<Bowler>() },
+                Away = e.Away,
+                Home = e.Home,
                 Lane = e.Lane,
                 Centre = e.CentreName,
                 IsComplete = false,
@@ -80,46 +109,43 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ParticipantGameCompleted e)
         {
-            Update<Match>(e.Id, x =>
+            Create(e.Id, e.ParticipantId, new TSBowler
             {
-                var team = x.Away.Province == e.Contingent ? x.Away : x.Home;
-                team.Bowlers.RemoveAll(b => b.Id == e.ParticipantId.ToString());
-
-                team.Bowlers.Add(new Bowler
-                {
-                    Id = e.ParticipantId.ToString(),
-                    Name = e.Name,
-                    Position = e.Position,
-                    Score = e.Score,
-                    POA = e.POA,
-                    Points = e.Points
-                });
+                Name = e.Name,
+                Province = e.Contingent,
+                Position = e.Position,
+                Score = e.Score,
+                POA = e.POA,
+                Points = (double)e.Points
             });
         }
 
         public void Handle(TeamGameCompleted e)
         {
-            Update<Match>(e.Id, x =>
+            Update<TSMatch>(e.Id, e.Id, x =>
             {
-                if (x.Away.Province == e.Contingent){
-                    x.Away.Id = e.TeamId.ToString();
-                    x.Away.Score = e.Score;
-                    x.Away.POA = e.POA;
-                    x.Away.Points = e.Points;
-                    x.Away.TotalPoints = e.TotalPoints;
-                } else {
-                    x.Home.Id = e.TeamId.ToString();
-                    x.Home.Score = e.Score;
-                    x.Home.POA = e.POA;
-                    x.Home.Points = e.Points;
-                    x.Home.TotalPoints = e.TotalPoints;
+                if (x.Away == e.Contingent)
+                {
+                    x.AwayId = e.TeamId.ToString();
+                    x.AwayScore = e.Score;
+                    x.AwayPOA = e.POA;
+                    x.AwayPoints = (double)e.Points;
+                    x.AwayTotalPoints = (double)e.TotalPoints;
+                }
+                else
+                {
+                    x.HomeId = e.TeamId.ToString();
+                    x.HomeScore = e.Score;
+                    x.HomePOA = e.POA;
+                    x.HomePoints = (double)e.Points;
+                    x.HomeTotalPoints = (double)e.TotalPoints;
                 }
             });
         }
 
         public void Handle(MatchCompleted e)
         {
-            Update<Match>(e.Id, x => x.IsComplete = true);
+            Update<TSMatch>(e.Id, e.Id, x => x.IsComplete = true);
         }
     }
 }

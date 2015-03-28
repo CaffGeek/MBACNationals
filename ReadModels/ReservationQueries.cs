@@ -7,13 +7,12 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class ReservationQueries : AReadModel,
+    public class ReservationQueries : AzureReadModel,
         IReservationQueries,
         ISubscribeTo<ParticipantCreated>,
         ISubscribeTo<ParticipantRenamed>,
         ISubscribeTo<ParticipantAssignedToRoom>,
         ISubscribeTo<ParticipantRemovedFromRoom>,
-
         ISubscribeTo<ContingentCreated>,
         ISubscribeTo<TeamCreated>,
         ISubscribeTo<ParticipantAssignedToContingent>,
@@ -21,39 +20,63 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<CoachAssignedToTeam>
     {
         public ReservationQueries(string readModelFilePath)
-            : base(readModelFilePath) 
         {
 
         }
 
-        public class Participant : AEntity
+        public class Participant
         {
-            public Participant(Guid id) : base(id) { }
+            public Guid Id { get; internal set; }
             public string Name { get; internal set; }
             public string Province { get; internal set; }
             public int RoomNumber { get; internal set; }
         }
 
-        public class Contingent : AEntity
+        private class TSParticipant : Entity
         {
-            public Contingent(Guid id) : base(id) { }
+            public Guid Id
+            {
+                get { return Guid.Parse(RowKey); }
+                internal set { RowKey = value.ToString(); PartitionKey = value.ToString(); }
+            }
+            public string Name { get; set; }
+            public string Province { get; set; }
+            public int RoomNumber { get; set; }
+        }
+
+        private class TSContingent : Entity
+        {
+            public Guid Id
+            {
+                get { return Guid.Parse(RowKey); }
+                internal set { RowKey = value.ToString(); PartitionKey = value.ToString(); }
+            }
             public string Province { get; internal set; }
         }
 
-        public class Team : AEntity
+        private class TSTeam : Entity
         {
-            public Team(Guid id) : base(id) { }
-            public Guid ContingentId { get; internal set; }
+            public Guid Id
+            {
+                get { return Guid.Parse(RowKey); }
+                internal set { RowKey = value.ToString(); }
+            }
+            public Guid ContingentId
+            {
+                get { return Guid.Parse(PartitionKey); }
+                internal set { PartitionKey = value.ToString(); }
+            }
         }
 
         public List<ReservationQueries.Participant> GetParticipants(string province)
         {
-            return Read<Participant>(x => x.Province == province).ToList();
+            return null;
+            //TODO: return Read<Participant>(x => x.Province == province).ToList();
         }
 
         public void Handle(ParticipantCreated e)
         {
-            Create(new Participant(e.Id)
+            Create(e.Id, e.Id, new TSParticipant
             {
                 Name = e.Name
             });
@@ -61,47 +84,50 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ContingentCreated e)
         {
-            Create(new Contingent(e.Id) { Province = e.Province });
+            Create(e.Id, e.Id, new TSContingent
+            {
+                Province = e.Province
+            });
         }
 
         public void Handle(TeamCreated e)
         {
-            Create(new Team(e.TeamId) { ContingentId = e.Id });
+            Create(e.Id, e.TeamId, new TSTeam());
         }
 
         public void Handle(ParticipantAssignedToContingent e)
         {
-            var contingent = Read<Contingent>(x => x.Id == e.ContingentId).FirstOrDefault();
-            Update<Participant>(e.Id, x => x.Province = contingent.Province);
+            var contingent = Read<TSContingent>(e.ContingentId, e.ContingentId);
+            Update<TSParticipant>(e.Id, e.Id, x => x.Province = contingent.Province);
         }
 
         public void Handle(ParticipantAssignedToTeam e)
         {
-            var team = Read<Team>(x => x.Id == e.TeamId).FirstOrDefault();
-            var contingent = Read<Contingent>(x => x.Id == team.ContingentId).FirstOrDefault();
-            Update<Participant>(e.Id, x => x.Province = contingent.Province);
+            var team = Read<TSTeam>(e.TeamId);
+            var contingent = Read<TSContingent>(team.ContingentId, team.ContingentId);
+            Update<TSParticipant>(e.Id, x => x.Province = contingent.Province);
         }
 
         public void Handle(CoachAssignedToTeam e)
         {
-            var team = Read<Team>(x => x.Id == e.TeamId).FirstOrDefault();
-            var contingent = Read<Contingent>(x => x.Id == team.ContingentId).FirstOrDefault();
-            Update<Participant>(e.Id, x => x.Province = contingent.Province);
+            var team = Read<TSTeam>(e.TeamId);
+            var contingent = Read<TSContingent>(team.ContingentId, team.ContingentId);
+            Update<TSParticipant>(e.Id, x => x.Province = contingent.Province);
         }
 
         public void Handle(ParticipantRenamed e)
         {
-            Update<Participant>(e.Id, x => x.Name = e.Name);
+            Update<TSParticipant>(e.Id, e.Id, x => x.Name = e.Name);
         }
 
         public void Handle(ParticipantAssignedToRoom e)
         {
-            Update<Participant>(e.Id, x => x.RoomNumber = e.RoomNumber);
+            Update<TSParticipant>(e.Id, e.Id, x => x.RoomNumber = e.RoomNumber);
         }
 
         public void Handle(ParticipantRemovedFromRoom e)
         {
-            Update<Participant>(e.Id, x => x.RoomNumber = 0);
+            Update<TSParticipant>(e.Id, e.Id, x => x.RoomNumber = 0);
         }
     }
 }

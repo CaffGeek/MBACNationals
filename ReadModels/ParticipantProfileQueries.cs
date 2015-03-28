@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class ParticipantProfileQueries : AReadModel,
+    public class ParticipantProfileQueries : AzureReadModel,
         IParticipantProfileQueries,
         ISubscribeTo<ContingentCreated>,
         ISubscribeTo<TeamCreated>,
@@ -17,14 +17,13 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<ParticipantAssignedToTeam>
     {
         public ParticipantProfileQueries(string readModelFilePath)
-            : base(readModelFilePath) 
         {
 
         }
 
-        public class Participant : AEntity
+        public class Participant
         {
-            public Participant(Guid id) : base(id) { }
+            public Guid Id { get; internal set; }
             public bool HasProfile { get; internal set; }
             public string Province { get; internal set; }
             public string Team { get; internal set; }
@@ -50,56 +49,81 @@ namespace MBACNationals.ReadModels
             public string Hobbies { get; internal set; }
         }
 
-        public class Contingent : AEntity
+        private class TSContingent : Entity
         {
-            public Contingent(Guid id) : base(id) { }
             public string Province { get; internal set; }
         }
 
-        public class Team : AEntity
+        private class TSTeam : Entity
         {
-            public Team(Guid id) : base(id) { }
-            public string Name { get; internal set; }
-            public string Province { get; internal set; }
+            public string Name { get; set; }
+            public string Province { get; set; }
+        }
+
+        private class TSParticipant : Entity
+        {
+            public bool HasProfile { get; set; }
+            public string Province { get; set; }
+            public string Team { get; set; }
+            public string Name { get; set; }
+            public int Age { get; set; }
+            public string HomeTown { get; set; }
+            public string MaritalStatus { get; set; }
+            public string SpouseName { get; set; }
+            public string Children { get; set; }
+            public string Occupation { get; set; }
+            public string HomeCenter { get; set; }
+            public int YearsBowling { get; set; }
+            public int NumberOfLeagues { get; set; }
+            public int HighestAverage { get; set; }
+            public int YearsCoaching { get; set; }
+            public string BestFinishProvincially { get; set; }
+            public string BestFinishNationally { get; set; }
+            public int MasterProvincialWins { get; set; }
+            public string MastersAchievements { get; set; }
+            public string OpenAchievements { get; set; }
+            public int OpenYears { get; set; }
+            public string OtherAchievements { get; set; }
+            public string Hobbies { get; set; }
         }
 
         public List<Participant> GetProfiles()
         {
-            return Read<Participant>(x => x.HasProfile).ToList();
+            return null; //TODO: Read<Participant>(x => x.HasProfile).ToList();
         }
 
         public Participant GetProfile(Guid id)
         {
-            return Read<Participant>(x => x.Id.Equals(id)).FirstOrDefault();
+            return null; //TODO: Read<Participant>(x => x.Id.Equals(id)).FirstOrDefault();
         }
 
         public void Handle(ContingentCreated e)
         {
-            Create(new Contingent(e.Id) { Province = e.Province });
+            Create(e.Id, e.Id, new TSContingent { Province = e.Province });
         }
 
         public void Handle(TeamCreated e)
         {
-            var contingent = Read<Contingent>(x => x.Id == e.Id).FirstOrDefault();
+            var contingent = Read<TSContingent>(e.Id, e.Id);
             if (contingent == null)
                 return;
 
-            Create(new Team(e.TeamId) { Name = e.Name, Province = contingent.Province });
+            Create(e.Id, e.TeamId, new TSTeam { Name = e.Name, Province = contingent.Province });
         }
 
         public void Handle(ParticipantCreated e)
         {
-            Create(new Participant(e.Id) { Name = e.Name });
+            Create(e.Id, e.Id, new TSParticipant { Name = e.Name });
         }
 
         public void Handle(ParticipantRenamed e)
         {
-            Update<Participant>(e.Id, x => { x.Name = e.Name; });
+            Update<TSParticipant>(e.Id, e.Id, x => x.Name = e.Name);
         }
 
         public void Handle(ParticipantProfileChanged e)
         {
-            Update<Participant>(e.Id, x =>
+            Update<TSParticipant>(e.Id, e.Id, x =>
             {
                 x.HasProfile = true;
                 x.Age = e.Age;
@@ -126,11 +150,12 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ParticipantAssignedToTeam e)
         {
-            var team = Read<Team>(x => x.Id == e.TeamId).FirstOrDefault();
+            var team = Read<TSTeam>(e.TeamId);
             if (team == null)
                 return;
 
-            Update<Participant>(e.Id, x => {
+            Update<TSParticipant>(e.Id, e.Id, x =>
+            {
                 x.Team = team.Name;
                 x.Province = team.Province;
             });
