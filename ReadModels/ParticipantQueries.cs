@@ -1,7 +1,6 @@
 ﻿using Edument.CQRS;
 using Events.Contingent;
 using Events.Participant;
-using NDatabase;
 using System;
 using System.Collections.Generic;
 using System.Linq;

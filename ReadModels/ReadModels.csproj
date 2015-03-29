@@ -49,9 +49,6 @@
     <Reference Include="Microsoft.WindowsAzure.Storage">
       <HintPath>..\packages\WindowsAzure.Storage.4.3.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
     </Reference>
-    <Reference Include="NDatabase3">
-      <HintPath>..\packages\NDatabase.3.8.0\lib\net45\NDatabase3.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -70,7 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AzureReadModel.cs" />
-    <Compile Include="AReadModel.cs" />
     <Compile Include="ContingentPracticePlanQueries.cs" />
     <Compile Include="ContingentTravelPlanQueries.cs" />
     <Compile Include="ContingentViewQueries.cs" />
