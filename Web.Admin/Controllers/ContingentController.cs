@@ -136,7 +136,7 @@ namespace WebFrontend.Controllers
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public JsonResult History(string province)
         {
-            var rooms = Domain.ContingentEventHistoryQueries.GetEvents(province);
+            var rooms = "";//TODO: Domain.ContingentEventHistoryQueries.GetEvents(province);
 
             return Json(rooms, JsonRequestBehavior.AllowGet);
         }

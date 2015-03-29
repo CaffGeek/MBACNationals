@@ -23,7 +23,6 @@ namespace WebFrontend
         public static IContingentViewQueries ContingentViewQueries;
         public static IContingentTravelPlanQueries ContingentTravelPlanQueries;
         public static IContingentPracticePlanQueries ContingentPracticePlanQueries;
-        public static IContingentEventHistoryQueries ContingentEventHistoryQueries;
         public static IReservationQueries ReservationQueries;
         public static IScheduleQueries ScheduleQueries;
         public static IMatchQueries MatchQueries;
@@ -61,9 +60,6 @@ namespace WebFrontend
 
             ContingentPracticePlanQueries = new ContingentPracticePlanQueries(ReadModelFolder);
             Dispatcher.ScanInstance(ContingentPracticePlanQueries);
-
-            ContingentEventHistoryQueries = new ContingentEventHistoryQueries(ReadModelFolder);
-            Dispatcher.ScanInstance(ContingentEventHistoryQueries);
 
             ReservationQueries = new ReservationQueries(ReadModelFolder);
             Dispatcher.ScanInstance(ReservationQueries);

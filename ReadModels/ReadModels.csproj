@@ -74,7 +74,6 @@
     <Compile Include="ContingentPracticePlanQueries.cs" />
     <Compile Include="ContingentTravelPlanQueries.cs" />
     <Compile Include="ContingentViewQueries.cs" />
-    <Compile Include="ContingentEventHistoryQueries.cs" />
     <Compile Include="ICommandQueries.cs" />
     <Compile Include="ITeamScoreQueries.cs" />
     <Compile Include="IParticipantScoreQueries.cs" />
@@ -88,7 +87,6 @@
     <Compile Include="StandingQueries.cs" />
     <Compile Include="IMatchQueries.cs" />
     <Compile Include="IScheduleQueries.cs" />
-    <Compile Include="IContingentEventHistoryQueries.cs" />
     <Compile Include="IParticipantProfileQueries.cs" />
     <Compile Include="EntityMissingException.cs" />
     <Compile Include="IContingentPracticePlanQueries.cs" />

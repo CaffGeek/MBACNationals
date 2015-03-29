@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class ParticipantQueries : AReadModel,
+    public class ParticipantQueries : AzureReadModel,
         IParticipantQueries,
         ISubscribeTo<ParticipantCreated>,
         ISubscribeTo<ParticipantRenamed>,
@@ -26,14 +26,13 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<ContingentCreated>
     {
         public ParticipantQueries(string readModelFilePath)
-            : base(readModelFilePath) 
         {
 
         }
 
-        public class Participant : AEntity
+        public class Participant
         {
-            public Participant(Guid id) : base(id) { }
+            public Guid Id { get; internal set; }
             public string Name { get; internal set; }
             public string Gender { get; internal set; }
             public string ContingentId { get; internal set; }
@@ -54,19 +53,6 @@ namespace MBACNationals.ReadModels
             public string ShirtSize { get; internal set; }
         }
 
-        public class Contingent : AEntity
-        {
-            public Contingent(Guid id) : base(id) { }
-            public string Province { get; internal set; }
-        }
-
-        public class Team : AEntity
-        {
-            public Team(Guid id) : base(id) { }
-            public string Name { get; internal set; }
-            public Guid ContingentId { get; internal set; }
-        }
-
         public class PackageInformation
         {
             public bool ManitobaDinner { get; set; }
@@ -75,19 +61,131 @@ namespace MBACNationals.ReadModels
             public bool Transportation { get; set; }
         }
 
+        private class TSParticipant : Entity
+        {
+            public Guid Id
+            {
+                get { return Guid.Parse(RowKey); }
+                internal set { RowKey = value.ToString(); PartitionKey = value.ToString(); }
+            }
+            public string Name { get; set; }
+            public string Gender { get; set; }
+            public string ContingentId { get; set; }
+            public string Province { get; set; }
+            public string TeamId { get; set; }
+            public string TeamName { get; set; }
+            public bool IsDelegate { get; set; }
+            public bool IsCoach { get; set; }
+            public int YearsQualifying { get; set; }
+            public int LeaguePinfall { get; set; }
+            public int LeagueGames { get; set; }
+            public int TournamentPinfall { get; set; }
+            public int TournamentGames { get; set; }
+            public int Average { get; set; }
+            public int RoomNumber { get; set; }
+            public bool IsGuest { get; set; }
+            public bool ManitobaDinner { get; set; }
+            public bool ManitobaDance { get; set; }
+            public bool FinalBanquet { get; set; }
+            public bool Transportation { get; set; }
+            public string ShirtSize { get; set; }
+        }
+
+        private class TSContingent : Entity
+        {
+            public Guid Id
+            {
+                get { return Guid.Parse(RowKey); }
+                internal set { RowKey = value.ToString(); PartitionKey = value.ToString(); }
+            }
+            public string Province { get; internal set; }
+        }
+        
+        private class TSTeam : Entity
+        {
+            public Guid Id
+            {
+                get { return Guid.Parse(RowKey); }
+                internal set { RowKey = value.ToString(); }
+            }
+            public Guid ContingentId
+            {
+                get { return Guid.Parse(PartitionKey); }
+                internal set { PartitionKey = value.ToString(); }
+            }
+            public string Name { get; set; }
+        }
+        
         public List<Participant> GetParticipants()
         {
-            return Read<Participant>().ToList();
+            return Query<TSParticipant>()
+                .Select(x => new Participant
+                {
+                    Id = x.Id,
+                    TeamId = x.TeamId,
+                    ContingentId = x.ContingentId,
+                    Name = x.Name,
+                    Gender = x.Gender,
+                    Province = x.Province,
+                    TeamName = x.TeamName,
+                    IsDelegate = x.IsDelegate,
+                    IsCoach = x.IsCoach,
+                    YearsQualifying = x.YearsQualifying,
+                    LeaguePinfall = x.LeaguePinfall,
+                    LeagueGames = x.LeagueGames,
+                    TournamentPinfall = x.TournamentPinfall,
+                    TournamentGames = x.TournamentGames,
+                    Average = x.Average,
+                    RoomNumber = x.RoomNumber,
+                    IsGuest = x.IsGuest,
+                    Package = new PackageInformation
+                    {
+                        FinalBanquet = x.FinalBanquet,
+                        ManitobaDance = x.ManitobaDance,
+                        ManitobaDinner = x.ManitobaDinner,
+                        Transportation = x.Transportation,
+                    },
+                    ShirtSize = x.ShirtSize,
+                })
+                .ToList();
         }
 
         public Participant GetParticipant(Guid id)
         {
-            return Read<Participant>(x => x.Id.Equals(id)).FirstOrDefault();
+            var participant = Read<TSParticipant>(id, id);
+            return new Participant
+                {
+                    Id = participant.Id,
+                    TeamId = participant.TeamId,
+                    ContingentId = participant.ContingentId,
+                    Name = participant.Name,
+                    Gender = participant.Gender,
+                    Province = participant.Province,
+                    TeamName = participant.TeamName,
+                    IsDelegate = participant.IsDelegate,
+                    IsCoach = participant.IsCoach,
+                    YearsQualifying = participant.YearsQualifying,
+                    LeaguePinfall = participant.LeaguePinfall,
+                    LeagueGames = participant.LeagueGames,
+                    TournamentPinfall = participant.TournamentPinfall,
+                    TournamentGames = participant.TournamentGames,
+                    Average = participant.Average,
+                    RoomNumber = participant.RoomNumber,
+                    IsGuest = participant.IsGuest,
+                    Package = new PackageInformation
+                    {
+                        FinalBanquet = participant.FinalBanquet,
+                        ManitobaDance = participant.ManitobaDance,
+                        ManitobaDinner = participant.ManitobaDinner,
+                        Transportation = participant.Transportation,
+                    },
+                    ShirtSize = participant.ShirtSize,
+                };
         }
 
         public void Handle(ContingentCreated e)
         {
-            Create(new Contingent(e.Id)
+            Create(e.Id, e.Id, new TSContingent
             {
                 Province = e.Province
             });
@@ -95,23 +193,21 @@ namespace MBACNationals.ReadModels
 
         public void Handle(TeamCreated e)
         {
-            Create(new Team(e.TeamId)
+            Create(e.Id, e.TeamId, new TSTeam
             {
-                ContingentId = e.Id,
                 Name = e.Name
             });
         }
 
         public void Handle(ParticipantCreated e)
         {
-            Create(new Participant(e.Id)
+            Create(e.Id, e.Id, new TSParticipant
             {
                 Name = e.Name,
                 Gender = e.Gender,
                 IsDelegate = e.IsDelegate,
                 YearsQualifying = e.YearsQualifying,
                 IsGuest = e.IsGuest,
-                Package = new PackageInformation(),
                 ContingentId = Guid.Empty.ToString(),
                 TeamId = Guid.Empty.ToString()
             });
@@ -119,16 +215,15 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ParticipantRenamed e)
         {
-            Update<Participant>(e.Id, x => { x.Name = e.Name; });
+            Update<TSParticipant>(e.Id, e.Id, x => x.Name = e.Name);
         }
 
         public void Handle(ParticipantAssignedToContingent e)
         {
-            var contingent = Read<Contingent>(x => x.Id == e.ContingentId).FirstOrDefault();
-            if (contingent == null)
-                return;
+            var contingent = Read<TSContingent>(e.ContingentId, e.ContingentId);
 
-            Update<Participant>(e.Id, x => { 
+            Update<TSParticipant>(e.Id, e.Id, x =>
+            { 
                 x.ContingentId = contingent.Id.ToString();
                 x.Province = contingent.Province;
             });
@@ -136,15 +231,11 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ParticipantAssignedToTeam e)
         {
-            var team = Read<Team>(x => x.Id == e.TeamId).FirstOrDefault();
-            if (team == null)
-                return;
-
-            var contingent = Read<Contingent>(x => x.Id == team.ContingentId).FirstOrDefault();
-            if (contingent == null)
-                return;
-
-            Update<Participant>(e.Id, x => { 
+            var team = Read<TSTeam>(e.TeamId);
+            var contingent = Read<TSContingent>(team.ContingentId, team.ContingentId);
+            
+            Update<TSParticipant>(e.Id, e.Id, x =>
+            { 
                 x.TeamId = team.Id.ToString();
                 x.TeamName = team.Name;
                 x.ContingentId = team.ContingentId.ToString();
@@ -154,15 +245,11 @@ namespace MBACNationals.ReadModels
 
         public void Handle(CoachAssignedToTeam e)
         {
-            var team = Read<Team>(x => x.Id == e.TeamId).FirstOrDefault();
-            if (team == null)
-                return;
+            var team = Read<TSTeam>(e.TeamId);
+            var contingent = Read<TSContingent>(team.ContingentId, team.ContingentId);
 
-            var contingent = Read<Contingent>(x => x.Id == team.ContingentId).FirstOrDefault();
-            if (contingent == null)
-                return;
-
-            Update<Participant>(e.Id, x => {
+            Update<TSParticipant>(e.Id, e.Id, x =>
+            {
                 x.IsCoach = true;
                 x.TeamId = team.Id.ToString();
                 x.TeamName = team.Name;
@@ -173,27 +260,28 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ParticipantGenderReassigned e)
         {
-            Update<Participant>(e.Id, x => { x.Gender = e.Gender; });
+            Update<TSParticipant>(e.Id, e.Id, x => { x.Gender = e.Gender; });
         }
 
         public void Handle(ParticipantDelegateStatusGranted e)
         {
-            Update<Participant>(e.Id, x => { x.IsDelegate = true; });
+            Update<TSParticipant>(e.Id, e.Id, x => { x.IsDelegate = true; });
         }
 
         public void Handle(ParticipantDelegateStatusRevoked e)
         {
-            Update<Participant>(e.Id, x => { x.IsDelegate = false; });
+            Update<TSParticipant>(e.Id, e.Id, x => { x.IsDelegate = false; });
         }
 
         public void Handle(ParticipantYearsQualifyingChanged e)
         {
-            Update<Participant>(e.Id, x => { x.YearsQualifying = e.YearsQualifying; });
+            Update<TSParticipant>(e.Id, e.Id, x => { x.YearsQualifying = e.YearsQualifying; });
         }
 
         public void Handle(ParticipantAverageChanged e)
         {
-            Update<Participant>(e.Id, x => {
+            Update<TSParticipant>(e.Id, e.Id, x =>
+            {
                 x.LeagueGames = e.LeagueGames;
                 x.LeaguePinfall = e.LeaguePinfall;
                 x.TournamentGames = e.TournamentGames;
@@ -204,17 +292,18 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ParticipantGuestPackageChanged e)
         {
-            Update<Participant>(e.Id, x => { 
-                x.Package.ManitobaDinner = e.ManitobaDinner;
-                x.Package.ManitobaDance = e.ManitobaDance;
-                x.Package.FinalBanquet = e.FinalBanquet;
-                x.Package.Transportation = e.Transportation;
+            Update<TSParticipant>(e.Id, e.Id, x =>
+            { 
+                x.ManitobaDinner = e.ManitobaDinner;
+                x.ManitobaDance = e.ManitobaDance;
+                x.FinalBanquet = e.FinalBanquet;
+                x.Transportation = e.Transportation;
             });
         }
 
         public void Handle(ParticipantShirtSizeChanged e)
         {
-            Update<Participant>(e.Id, x => { x.ShirtSize = e.ShirtSize; });
+            Update<TSParticipant>(e.Id, e.Id, x => { x.ShirtSize = e.ShirtSize; });
         }
     }
 }
