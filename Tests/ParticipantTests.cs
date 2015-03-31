@@ -27,7 +27,8 @@ namespace MBACNationalsTests
             name = "John";
             newName = "David";
 
-            var alternateMock = new Mock<CommandQueries.Participant>(alternateId);
+            var alternateMock = new Mock<CommandQueries.Participant>();
+            alternateMock.Object.Id = alternateId;
             alternateMock.SetupGet(x => x.Name).Returns("alternate");
 
             var commandQueriesMock = new Mock<ICommandQueries>();

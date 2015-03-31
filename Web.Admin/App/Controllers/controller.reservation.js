@@ -4,19 +4,20 @@
     var reservationController = function ($scope, $http, $q, $location, modalFactory, dataService) {
         var url = $location.absUrl();
         var lastSlash = url.lastIndexOf('/');
-        var province = url.slice(lastSlash+1);
+        var province = url.slice(lastSlash + 1);
+        var year = url.slice(lastSlash - 4, lastSlash);
 
         $scope.model = {
             participants: [],
             rooms: []
         };
 
-        if (province) {
-            dataService.LoadParticipants(province).
+        if (year && province) {
+            dataService.LoadParticipants(year, province).
                 success(function (participants) {
                     $scope.model.participants = participants;
                 });
-            dataService.LoadRooms(province).
+            dataService.LoadRooms(year, province).
                 success(function (data) {
                     var sparseRooms = [];
 
@@ -61,7 +62,7 @@
 
         $scope.setRoomType = function (roomNumber) {
             var type = $scope.model.rooms[roomNumber].Type;
-            dataService.ChangeRoomType(province, roomNumber, type);
+            dataService.ChangeRoomType(year, province, roomNumber, type);
         }
 
         $scope.addToRoom = function (id, roomNumber) {
@@ -85,7 +86,7 @@
         }
 
         $scope.saveInstructions = function () {
-            dataService.SaveInstructions(province, $scope.model.instructions);
+            dataService.SaveInstructions(year, province, $scope.model.instructions);
         }
     };
 

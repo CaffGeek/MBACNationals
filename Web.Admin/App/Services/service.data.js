@@ -124,9 +124,12 @@
             });
         };
 
-        function loadParticipants(province) {
+        function loadParticipants(year, province) {
             return $http.get('/Setup/Participant/Contingent', {
-                params: { province: province }
+                params: {
+                    year: year,
+                    province: province
+                }
             });
         };
 
@@ -147,23 +150,30 @@
             });
         };
 
-        function loadRooms(province) {
+        function loadRooms(year, province) {
             return $http.get('/Setup/Contingent/Rooms', {
-                params: { province: province }
+                params: {
+                    year: year,
+                    province: province
+                }
             });
         };
 
-        function changeRoomType(province, roomNumber, type) {
+        function changeRoomType(year, province, roomNumber, type) {
             return $http.post('/Setup/Contingent/ChangeRoomType', {
+                Year: year,
                 Province: province,
                 RoomNumber: roomNumber,
                 Type: type
             });
         };
 
-        function loadTravelPlans(province) {
+        function loadTravelPlans(year, province) {
             return $http.get('/Setup/Contingent/TravelPlans', {
-                params: { province: province }
+                params: {
+                    year: year,
+                    province: province
+                }
             });
         };
 
@@ -171,9 +181,12 @@
             return $http.post('/Setup/Contingent/SaveTravelPlans', travelPlans);
         };
 
-        function loadPracticePlan(province) {
+        function loadPracticePlan(year, province) {
             return $http.get('/Setup/Contingent/PracticePlan', {
-                params: { province: province }
+                params: {
+                    year: year,
+                    province: province
+                }
             });
         };
 
@@ -181,8 +194,9 @@
             return $http.post('/Setup/Contingent/SavePracticePlan', practicePlan);
         };
 
-        function saveInstructions(province, instructions) {
+        function saveInstructions(year, province, instructions) {
             return $http.post('/Setup/Contingent/SaveReservationInstructions', {
+                Year: year,
                 Province: province,
                 Instructions: instructions
             });

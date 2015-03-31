@@ -4,7 +4,8 @@
     var participantController = function ($scope, $http, $q, $location, modalFactory, dataService) {
         var url = $location.absUrl();
         var lastSlash = url.lastIndexOf('/');
-        var province = url.slice(lastSlash+1);
+        var province = url.slice(lastSlash + 1);
+        var year = url.slice(lastSlash - 4, lastSlash);
 
         $scope.model = {
             Teams: []
@@ -13,8 +14,8 @@
         $scope.loadActiveParticipant = loadActiveParticipant;
         $scope.saveParticipantProfile = saveParticipantProfile;
         
-        if (province) {
-            dataService.LoadContingent(province).success(function (contingent) {
+        if (year && province) {
+            dataService.LoadContingent(year, province).success(function (contingent) {
                 $scope.model = contingent;
             });
         }

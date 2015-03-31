@@ -16,57 +16,49 @@ namespace WebFrontend.Controllers
 
         [RestrictAccessByRouteId] //Province
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        public ActionResult Reservation(string province)
+        public ActionResult Reservation(string year, string province)
         {
-            if (string.IsNullOrWhiteSpace(province))
-                return View("_ProvinceSelector");
-
-            ViewBag.Province = province;
-            return View();
+            return loadView(year, province);
         }
 
         [RestrictAccessByRouteId] //Province
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public ActionResult Edit(string year, string province)
         {
-            if (string.IsNullOrWhiteSpace(province))
-                return View("_ProvinceSelector");
+            return loadView(year, province);
+        }
 
-            ViewBag.Province = province;
+        [RestrictAccessByRouteId] //Province
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
+        public ActionResult Arrivals(string year, string province)
+        {
+            return loadView(year, province);
+        }
+
+        [RestrictAccessByRouteId] //Province
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
+        public ActionResult Practice(string year, string province)
+        {
+            return loadView(year, province);
+        }
+
+        [RestrictAccessByRouteId] //Province
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
+        public ActionResult Profiles(string year, string province)
+        {
+            return loadView(year, province);
+        }
+
+        private ActionResult loadView(string year, string province)
+        {
+            if (string.IsNullOrWhiteSpace(year))
+                return RedirectToAction("Index", "Tournament");
             ViewBag.Year = year;
-            return View();
-        }
 
-        [RestrictAccessByRouteId] //Province
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        public ActionResult Arrivals(string province)
-        {
             if (string.IsNullOrWhiteSpace(province))
                 return View("_ProvinceSelector");
-
             ViewBag.Province = province;
-            return View();
-        }
 
-        [RestrictAccessByRouteId] //Province
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        public ActionResult Practice(string province)
-        {
-            if (string.IsNullOrWhiteSpace(province))
-                return View("_ProvinceSelector");
-
-            ViewBag.Province = province;
-            return View();
-        }
-
-        [RestrictAccessByRouteId] //Province
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        public ActionResult Profiles(string province)
-        {
-            if (string.IsNullOrWhiteSpace(province))
-                return View("_ProvinceSelector");
-
-            ViewBag.Province = province;
             return View();
         }
 
@@ -75,6 +67,7 @@ namespace WebFrontend.Controllers
         public JsonResult Index(string year, string province)
         {
             Response.AppendHeader("Access-Control-Allow-Origin", "*");
+            province = province.ToUpper();
 
             var tournament = Domain.TournamentQueries.GetTournament(year);
             var contingent = Domain.ContingentViewQueries.GetContingent(tournament.Id, province);
@@ -85,6 +78,7 @@ namespace WebFrontend.Controllers
             var command = new MBACNationals.Contingent.Commands.CreateContingent();
             command.Id = Guid.NewGuid();
             command.Province = province;
+            command.TournamentId = tournament.Id;
             Domain.Dispatcher.SendCommand(command);
             contingent = Domain.ContingentViewQueries.GetContingent(tournament.Id, province);
 

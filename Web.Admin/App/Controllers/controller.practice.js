@@ -4,7 +4,8 @@
     var practiceController = function ($scope, $http, $q, $location, dataService) {
         var url = $location.absUrl();
         var lastSlash = url.lastIndexOf('/');
-        var province = url.slice(lastSlash+1);
+        var province = url.slice(lastSlash + 1);
+        var year = url.slice(lastSlash - 4, lastSlash);
 
         $scope.model = {
             province: province,
@@ -13,8 +14,8 @@
             practiceLocations: ['Rossmere', 'Academy', 'Coronation']
         };
 
-        if (province) {
-            dataService.LoadPracticePlan(province).
+        if (year && province) {
+            dataService.LoadPracticePlan(year, province).
                 success(function (contingentPracticePlan) {
                     $scope.model.id = contingentPracticePlan.Id;
                     $scope.model.province = contingentPracticePlan.Province;

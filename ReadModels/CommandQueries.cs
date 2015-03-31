@@ -19,13 +19,13 @@ namespace MBACNationals.ReadModels
 
         public class Tournament
         {
-            public Guid Id { get; set; }
+            public virtual Guid Id { get; set; }
             public virtual string Year { get; set; }
         }
 
         public class Participant
         {
-            public Guid Id { get; set; }
+            public virtual Guid Id { get; set; }
             public virtual Guid ContingentId { get; set; }
             public virtual Guid TeamId { get; set; }
             public virtual string Name { get; set; }

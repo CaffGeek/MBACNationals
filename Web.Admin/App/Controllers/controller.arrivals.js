@@ -4,20 +4,22 @@
     var arrivalsController = function ($scope, $http, $q, $location, modalFactory, dataService) {
         var url = $location.absUrl();
         var lastSlash = url.lastIndexOf('/');
-        var province = url.slice(lastSlash+1);
+        var province = url.slice(lastSlash + 1);
+        var year = url.slice(lastSlash - 4, lastSlash);
 
         var emptyArrival = { ModeOfTransportation: 'Air', When: '2014-06-28T09:00', Type: 1 };
         var emptyDeparture = { ModeOfTransportation: 'Air', When: '2014-07-03T09:00', Type: 2 };
 
         $scope.model = {
+            year: year,
             province: province,
             travelPlans: [
                 angular.copy(emptyArrival), angular.copy(emptyArrival), angular.copy(emptyArrival),
                 angular.copy(emptyDeparture), angular.copy(emptyDeparture), angular.copy(emptyDeparture)]
         };
 
-        if (province) {
-            dataService.LoadTravelPlans(province).
+        if (year && province) {
+            dataService.LoadTravelPlans(year, province).
                 success(function (contingentTravelPlans) {
                     $scope.model.id = contingentTravelPlans.Id;
                     $scope.model.province = contingentTravelPlans.Province;

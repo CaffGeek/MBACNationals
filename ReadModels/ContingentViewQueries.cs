@@ -104,6 +104,9 @@ namespace MBACNationals.ReadModels
         public Contingent GetContingent(Guid tournamentId, string province)
         {
             var contingent = Query<TSContingent>(x => x.Tournament == tournamentId && x.Province == province).FirstOrDefault();
+            if (contingent == null)
+                return null;
+
             var bowlers = Query<TSParticipant>(x => x.PartitionKey == contingent.PartitionKey)
                 .Select(x =>
                 {

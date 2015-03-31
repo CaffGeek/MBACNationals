@@ -16,7 +16,8 @@ namespace MBACNationalsTests
         [TestInitialize]
         public void Setup()
         {
-            var tournamentMock = new Mock<CommandQueries.Tournament>(Guid.NewGuid());
+            var tournamentMock = new Mock<CommandQueries.Tournament>();
+            tournamentMock.Object.Id = Guid.NewGuid();
             tournamentMock.SetupGet(x => x.Year).Returns("9999");
 
             var commandQueriesMock = new Mock<ICommandQueries>();

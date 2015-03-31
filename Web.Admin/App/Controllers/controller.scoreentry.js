@@ -5,6 +5,7 @@
         var url = $location.absUrl();
         var lastSlash = url.lastIndexOf('/');
         var province = url.slice(lastSlash + 1);
+        var year = url.slice(lastSlash - 4, lastSlash);
 
         var pages = [
             'Division',

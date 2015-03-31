@@ -32,6 +32,12 @@ namespace WebFrontend
             );
 
             routes.MapRoute(
+                name: "Scores",
+                url: "Scores/{action}",
+                defaults: new { controller = "Scores", action = "Index" }
+            );
+
+            routes.MapRoute(
                 name: "Admin",
                 url: "Admin/{action}/{id}",
                 defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional }
@@ -44,9 +50,9 @@ namespace WebFrontend
             );
 
             routes.MapRoute(
-                name: "Scores",
-                url: "Scores/{action}",
-                defaults: new { controller = "Scores", action = "Index" }
+                name: "Participant",
+                url: "Participant/{action}/{id}",
+                defaults: new { controller = "Participant", action = "Index", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(

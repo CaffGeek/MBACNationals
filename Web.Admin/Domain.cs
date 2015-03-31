@@ -84,24 +84,6 @@ namespace WebFrontend
 
             TournamentQueries = new TournamentQueries(ReadModelFolder);
             Dispatcher.ScanInstance(TournamentQueries);
-
-            if (!Directory.Exists(ReadModelFolder))
-            {
-                RebuildReadModels();
-            }
-        }
-        
-        public static void RebuildReadModels()
-        {
-            GoOffline();
-
-            if (Directory.Exists(ReadModelFolder))
-                Directory.Delete(ReadModelFolder, true);
-
-            RebuildSchedule();
-            Dispatcher.RepublishEvents();
-
-            GoOnline();
         }
 
         public static void RebuildReadModel(string readmodel)

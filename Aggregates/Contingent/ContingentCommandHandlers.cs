@@ -37,6 +37,12 @@ namespace MBACNationals.Contingent
                 Id = command.Id,
                 Province = command.Province
             };
+
+            yield return new ContingentAssignedToTournament
+            {
+                Id = command.Id,
+                TournamentId = command.TournamentId
+            };
         }
 
         public IEnumerable Handle(Func<Guid, ContingentAggregate> al, CreateTeam command)

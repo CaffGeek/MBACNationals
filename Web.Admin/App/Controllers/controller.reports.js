@@ -2,9 +2,10 @@
 	"use strict";
 
 	var reportController = function ($scope, $http, $q, $location, modalFactory, dataService) {
-		var url = $location.absUrl();
-		var lastSlash = url.lastIndexOf('/');
-		var province = url.slice(lastSlash+1);
+	    var url = $location.absUrl();
+	    var lastSlash = url.lastIndexOf('/');
+	    var province = url.slice(lastSlash + 1);
+	    var year = url.slice(lastSlash - 4, lastSlash);
 
 		$scope.model = {};
 		$scope.viewUrl = '/App/Views/Reports/Averages.html';
