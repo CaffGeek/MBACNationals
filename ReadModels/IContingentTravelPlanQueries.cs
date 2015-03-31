@@ -2,8 +2,8 @@
 {
     public interface IContingentTravelPlanQueries
     {
-        ContingentTravelPlanQueries.ContingentTravelPlans GetTravelPlans(string province);
+        ContingentTravelPlanQueries.ContingentTravelPlans GetTravelPlans(string year, string province);
 
-        ContingentTravelPlanQueries.ContingentRooms GetRooms(string province);
+        ContingentTravelPlanQueries.ContingentRooms GetRooms(string year, string province);
     }
 }

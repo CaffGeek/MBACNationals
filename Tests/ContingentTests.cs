@@ -14,6 +14,7 @@ namespace MBACNationalsTests
     {
         public Mock<ICommandQueries> CommandQueriesMock { get; set; }
 
+        private Guid tournamentId;
         private Guid contingentId;
         private string contingentProvince;
 
@@ -22,6 +23,7 @@ namespace MBACNationalsTests
         {
             CommandQueriesMock = new Mock<ICommandQueries>();
             SystemUnderTest(new ContingentCommandHandlers(CommandQueriesMock.Object));
+            tournamentId = Guid.NewGuid();
             contingentId = Guid.NewGuid();
             contingentProvince = "ZZ";
         }
@@ -35,11 +37,17 @@ namespace MBACNationalsTests
                 {
                     Id = contingentId,
                     Province = contingentProvince,
+                    TournamentId = tournamentId,
                 }),
                 Then(new ContingentCreated
                 {
                     Id = contingentId,
                     Province = contingentProvince,
+                },
+                new ContingentAssignedToTournament
+                {
+                    Id = contingentId,
+                    TournamentId = tournamentId,
                 }));
         }
 

@@ -46,9 +46,9 @@ namespace WebFrontend.Controllers
 
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        public JsonResult Contingent(string province)
+        public JsonResult Contingent(string year, string province)
         {
-            var participant = Domain.ReservationQueries.GetParticipants(province);
+            var participant = Domain.ReservationQueries.GetParticipants(year, province);
             return Json(participant, JsonRequestBehavior.AllowGet);
         }
 

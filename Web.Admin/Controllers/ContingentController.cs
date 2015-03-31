@@ -101,34 +101,34 @@ namespace WebFrontend.Controllers
 
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        public JsonResult TravelPlans(string province)
+        public JsonResult TravelPlans(string year, string province)
         {
-            var travelPlans = Domain.ContingentTravelPlanQueries.GetTravelPlans(province);
+            var travelPlans = Domain.ContingentTravelPlanQueries.GetTravelPlans(year, province);
 
             return Json(travelPlans, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        public JsonResult Rooms(string province)
+        public JsonResult Rooms(string year, string province)
         {
-            var rooms = Domain.ContingentTravelPlanQueries.GetRooms(province);
+            var rooms = Domain.ContingentTravelPlanQueries.GetRooms(year, province);
 
             return Json(rooms, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        public JsonResult PracticePlan(string province)
+        public JsonResult PracticePlan(string year, string province)
         {
-            var rooms = Domain.ContingentPracticePlanQueries.GetSchedule(province);
+            var rooms = Domain.ContingentPracticePlanQueries.GetSchedule(year, province);
 
             return Json(rooms, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        public JsonResult History(string province)
+        public JsonResult History(string year, string province)
         {
             var rooms = "";//TODO: Domain.ContingentEventHistoryQueries.GetEvents(province);
 

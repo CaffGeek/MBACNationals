@@ -2,6 +2,6 @@
 {
     public interface IContingentPracticePlanQueries
     {
-        ContingentPracticePlanQueries.ContingentPracticePlan GetSchedule(string province);
+        ContingentPracticePlanQueries.ContingentPracticePlan GetSchedule(string year, string province);
     }
 }

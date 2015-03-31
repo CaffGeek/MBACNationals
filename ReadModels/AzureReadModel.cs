@@ -49,8 +49,7 @@ namespace MBACNationals.ReadModels
 
         protected T Read<T>(Guid partition, Guid key)
             where T : Entity, new()
-        {
-            
+        {            
             var tableResults = Table.Execute(TableOperation.Retrieve<T>(partition.ToString(), key.ToString()));
             var entity = (T)tableResults.Result;
             return entity;
@@ -58,16 +57,14 @@ namespace MBACNationals.ReadModels
 
         protected List<T> Query<T>()
             where T : Entity, new()
-        {
-            
+        {            
             return Table.CreateQuery<T>().Where(x => x.AzureEntityType.Equals(typeof(T).Name)).ToList();
         }
 
         protected List<T> Query<T>(Func<T, bool> predicate)
             where T : Entity, new()
-        {
-            
-            return Table.CreateQuery<T>().Where(predicate).Where(x => x.AzureEntityType.Equals(typeof(T).Name)).ToList();
+        {            
+            return Table.CreateQuery<T>().Where(x => x.AzureEntityType.Equals(typeof(T).Name)).Where(predicate).ToList();
         }
 
         protected void Update<T>(Guid partition, Guid key, Action<T> func)

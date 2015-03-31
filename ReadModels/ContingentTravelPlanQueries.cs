@@ -1,5 +1,6 @@
 ﻿using Edument.CQRS;
 using Events.Contingent;
+using Events.Tournament;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,9 @@ namespace MBACNationals.ReadModels
 {
     public class ContingentTravelPlanQueries : AzureReadModel,
         IContingentTravelPlanQueries,
+        ISubscribeTo<TournamentCreated>,
         ISubscribeTo<ContingentCreated>,
+        ISubscribeTo<ContingentAssignedToTournament>,
         ISubscribeTo<TravelPlansChanged>,
         ISubscribeTo<RoomTypeChanged>,
         ISubscribeTo<ReservationInstructionsChanged>
@@ -48,14 +51,35 @@ namespace MBACNationals.ReadModels
             public string Type { get; internal set; }
         }
 
+        private class TSTournament : Entity
+        {
+            public string Year { get; set; }
+            public Guid Id { get; set; }
+        }
+
         private class TSContingent : Entity
         {
+            public Guid Id
+            {
+                get { return Guid.Parse(RowKey); }
+                internal set { RowKey = value.ToString(); }
+            }
+            public Guid TournamentId
+            {
+                get { return Guid.Parse(PartitionKey); }
+                internal set { PartitionKey = value.ToString(); }
+            }
             public string Province { get; set; }
             public string Instructions { get; set; }
         }
 
         private class TSTravelPlan : Entity
         {
+            public Guid ContingentId
+            {
+                get { return Guid.Parse(PartitionKey); }
+                internal set { PartitionKey = value.ToString(); }
+            }
             public string ModeOfTransportation { get; set; }
             public string When { get; set; }
             public string FlightNumber { get; set; }
@@ -65,28 +89,99 @@ namespace MBACNationals.ReadModels
 
         private class TSHotelRoom : Entity
         {
+            public Guid ContingentId
+            {
+                get { return Guid.Parse(PartitionKey); }
+                internal set { PartitionKey = value.ToString(); }
+            }
             public int RoomNumber { get; set; }
             public string Type { get; set; }
         }
 
-        public ContingentTravelPlans GetTravelPlans(string province)
+        public ContingentTravelPlans GetTravelPlans(string year, string province)
         {
-            throw new NotImplementedException();
-            //TODO: Read<ContingentTravelPlans>(x => x.Province.Equals(province)).FirstOrDefault();
+            var tournament = Query<TSTournament>(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+
+            var contingent = Query<TSContingent>(x => 
+                x.TournamentId == tournament.Id 
+                && x.Province.Equals(province, StringComparison.OrdinalIgnoreCase))
+                .FirstOrDefault();
+
+            var travelPlans = Query<TSTravelPlan>(x => x.ContingentId == contingent.Id)
+                .Select(x => new TravelPlan
+                {
+                    ModeOfTransportation = x.ModeOfTransportation,
+                    When = x.When,
+                    FlightNumber = x.FlightNumber,
+                    NumberOfPeople = x.NumberOfPeople,
+                    Type = x.Type
+                }).ToList();
+
+            var contingentTravelPlan = new ContingentTravelPlans
+            {
+                Id = contingent.Id,
+                Province = contingent.Province,
+                TravelPlans = travelPlans,
+            };
+            return contingentTravelPlan;
         }
 
-        public ContingentRooms GetRooms(string province)
+        public ContingentRooms GetRooms(string year, string province)
         {
-            throw new NotImplementedException();
-            //TODO: Read<ContingentRooms>(x => x.Province.Equals(province)).FirstOrDefault();
+            var tournament = Query<TSTournament>(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+
+            var contingent = Query<TSContingent>(x =>
+                x.TournamentId == tournament.Id
+                && x.Province.Equals(province, StringComparison.OrdinalIgnoreCase))
+                .FirstOrDefault();
+
+            var hotelRooms = Query<TSHotelRoom>(x => x.ContingentId == contingent.Id)
+                .Select(x => new HotelRoom
+                {
+                    RoomNumber = x.RoomNumber,
+                    Type = x.Type
+                }).ToList();
+
+            var contingentRooms = new ContingentRooms
+            {
+                Id = contingent.Id,
+                Province = contingent.Province,
+                Instructions = contingent.Instructions,
+                HotelRooms = hotelRooms,
+            };
+            return contingentRooms;
+        }
+
+        public void Handle(TournamentCreated e)
+        {
+            Create(e.Id, e.Id, new TSTournament { Year = e.Year, Id = e.Id });
+
+            //HACK: Track current tournament
+            Create(Guid.Empty, Guid.Empty, new TSTournament { Year = e.Year, Id = e.Id });
         }
 
         public void Handle(ContingentCreated e)
         {
-            Create(e.Id, e.Id, new TSContingent
+            if (string.IsNullOrWhiteSpace(e.Province))
+                return;
+
+            var tournamentId = GetCurrentTournamentId();
+
+            Create(tournamentId, e.Id, new TSContingent
             {
                 Province = e.Province
             });
+        }
+
+        public void Handle(ContingentAssignedToTournament e)
+        {
+            var contingent = Read<TSContingent>(Guid.Empty, e.Id);
+            if (contingent != null)
+            {
+                Delete<TSContingent>(Guid.Empty, e.Id);
+                contingent.TournamentId = e.TournamentId;
+                Create(e.TournamentId, e.Id, contingent);
+            }
         }
 
         public void Handle(TravelPlansChanged e)
@@ -127,7 +222,15 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ReservationInstructionsChanged e)
         {
-            Update<TSContingent>(e.Id, e.Id, contingent => contingent.Instructions = e.Instructions);
+            var tournamentId = GetCurrentTournamentId();
+            Update<TSContingent>(tournamentId, e.Id, contingent => contingent.Instructions = e.Instructions);
+        }
+
+        private Guid GetCurrentTournamentId()
+        {
+            var tournament = Read<TSTournament>(Guid.Empty, Guid.Empty)
+                ?? new TSTournament { Id = Guid.Empty };
+            return tournament.Id;
         }
     }
 }
