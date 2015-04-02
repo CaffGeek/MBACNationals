@@ -142,7 +142,6 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="website.publishproj" />
     <Content Include="z_results.php" />
     <Content Include="z_results2.php" />
   </ItemGroup>
