@@ -89,12 +89,67 @@ namespace MBACNationals.ReadModels
 
         public List<Participant> GetProfiles()
         {
-            return null; //TODO: Read<Participant>(x => x.HasProfile).ToList();
+            var partipants = Query<TSParticipant>(x => x.HasProfile)
+                .Select(x => new Participant
+                {
+                    Id = Guid.Parse(x.RowKey),
+                    HasProfile = x.HasProfile,
+                    Province = x.Province,
+                    Team = x.Team,
+                    Name = x.Name,
+                    Age = x.Age,
+                    HomeTown = x.HomeTown,
+                    MaritalStatus = x.MaritalStatus,
+                    SpouseName = x.SpouseName,
+                    Children = x.Children,
+                    Occupation = x.Occupation,
+                    HomeCenter = x.HomeCenter,
+                    YearsBowling = x.YearsBowling,
+                    NumberOfLeagues = x.NumberOfLeagues,
+                    HighestAverage = x.HighestAverage,
+                    YearsCoaching = x.YearsCoaching,
+                    BestFinishProvincially = x.BestFinishProvincially,
+                    BestFinishNationally = x.BestFinishNationally,
+                    MasterProvincialWins = x.MasterProvincialWins,
+                    MastersAchievements = x.MastersAchievements,
+                    OpenAchievements = x.OpenAchievements,
+                    OpenYears = x.OpenYears,
+                    OtherAchievements = x.OtherAchievements,
+                    Hobbies = x.Hobbies,
+                }).ToList();
+            return partipants;
         }
 
         public Participant GetProfile(Guid id)
         {
-            return null; //TODO: Read<Participant>(x => x.Id.Equals(id)).FirstOrDefault();
+            var participant = Read<TSParticipant>(id, id);
+            return new Participant
+                {
+                    Id = Guid.Parse(participant.RowKey),
+                    HasProfile = participant.HasProfile,
+                    Province = participant.Province,
+                    Team = participant.Team,
+                    Name = participant.Name,
+                    Age = participant.Age,
+                    HomeTown = participant.HomeTown,
+                    MaritalStatus = participant.MaritalStatus,
+                    SpouseName = participant.SpouseName,
+                    Children = participant.Children,
+                    Occupation = participant.Occupation,
+                    HomeCenter = participant.HomeCenter,
+                    YearsBowling = participant.YearsBowling,
+                    NumberOfLeagues = participant.NumberOfLeagues,
+                    HighestAverage = participant.HighestAverage,
+                    YearsCoaching = participant.YearsCoaching,
+                    BestFinishProvincially = participant.BestFinishProvincially,
+                    BestFinishNationally = participant.BestFinishNationally,
+                    MasterProvincialWins = participant.MasterProvincialWins,
+                    MastersAchievements = participant.MastersAchievements,
+                    OpenAchievements = participant.OpenAchievements,
+                    OpenYears = participant.OpenYears,
+                    OtherAchievements = participant.OtherAchievements,
+                    Hobbies = participant.Hobbies,
+                }; 
         }
 
         public void Handle(ContingentCreated e)

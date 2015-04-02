@@ -7,7 +7,7 @@
             Divisions: getDivisionsModal
         };
 
-        function getParticipantModal(participant, team) {
+        function getParticipantModal(year, participant, team) {
             participant = participant || {};
             team = team || {};
 
@@ -18,7 +18,8 @@
                 controller: 'ModalParticipantController',
                 resolve: {
                     participant: function () { return participant; },
-                    team: function () { return team; }
+                    team: function () { return team; },
+                    year: function () { return year; }
                 }
             });
 

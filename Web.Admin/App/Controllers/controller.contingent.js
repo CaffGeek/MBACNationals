@@ -137,7 +137,7 @@
 
         function editParticipant(participant, team) {
             return dataService.LoadParticipant(participant.Id).then(function (data) {
-                return modalFactory.Participant(data.data || participant, team);
+                return modalFactory.Participant(year, data.data || participant, team);
             }).then(function (data) {
                 participant.Name = data.Name;
                 participant.IsDelegate = data.IsDelegate;
@@ -171,7 +171,7 @@
         }
 
         function addGuest() {
-            return modalFactory.Participant({ IsGuest: true }).then(function (data) {
+            return modalFactory.Participant(year, { IsGuest: true }).then(function (data) {
                 $scope.model.Guests.push(data);
                 dataService.AssignParticipantToContingent(data, $scope.model);
             });

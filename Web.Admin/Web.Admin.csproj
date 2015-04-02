@@ -320,6 +320,7 @@
     <Content Include="Content\Images\Flags\qc.gif" />
     <Content Include="Content\Images\Flags\sk.gif" />
     <Content Include="Content\Images\Flags\so_small.gif" />
+    <Content Include="Content\Images\header_image.jpg" />
     <Content Include="Content\Images\mbac_logo.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -382,14 +383,14 @@
     <Content Include="Content\Images\facebook_icon.png" />
     <Content Include="Content\Images\hamburger_blk.gif" />
     <Content Include="Content\Images\header_bkg.jpg" />
-    <Content Include="Content\Images\header_image.jpg" />
     <Content Include="Content\Images\nav_bkg.jpg" />
     <Content Include="Content\Images\nav_bkg.png" />
     <Content Include="Content\Images\twitter_icon.png" />
     <Content Include="Modals\Contingent\Divisions.html" />
     <Content Include="Modals\Participant\_average.html" />
     <Content Include="Modals\Participant\_gender.html" />
-    <Content Include="Modals\Participant\_guestpackage.html" />
+    <Content Include="Modals\Participant\_guestpackage.2014.html" />
+    <Content Include="Modals\Participant\_guestpackage.2015.html" />
     <Content Include="Modals\Participant\_shirtsize.html" />
     <Content Include="Modals\Participant\Edit.html" />
     <Content Include="Properties\Settings.settings">

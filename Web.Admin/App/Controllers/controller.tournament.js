@@ -9,7 +9,7 @@
         };
         
         vm.newTournament = {
-            Year: new Date().getFullYear()
+            
         };
 
         dataService.LoadTournaments()
