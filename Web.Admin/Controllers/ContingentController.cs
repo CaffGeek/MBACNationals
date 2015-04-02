@@ -87,12 +87,12 @@ namespace WebFrontend.Controllers
 
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        public JsonResult Team(string year, string contingent, string teamName)
+        public JsonResult Team(string year, string province, string teamName)
         {
             Response.AppendHeader("Access-Control-Allow-Origin", "*");
 
             var tournament = Domain.TournamentQueries.GetTournament(year);
-            var theContingent = Domain.ContingentViewQueries.GetContingent(tournament.Id, contingent);
+            var theContingent = Domain.ContingentViewQueries.GetContingent(tournament.Id, province);
             if (theContingent == null)
                 return null; //TODO: Return an error???
 

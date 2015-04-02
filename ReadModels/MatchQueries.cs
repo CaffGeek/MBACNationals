@@ -89,7 +89,66 @@ namespace MBACNationals.ReadModels
 
         public Match GetMatch(Guid matchId)
         {
-            return null;// Read<Match>(x => x.Id == matchId).FirstOrDefault();
+            var match = Read<TSMatch>(matchId);
+            var bowlers = Query<TSBowler>(x => x.PartitionKey == matchId.ToString());
+
+            var awayBowlers = bowlers
+                .Where(x => x.Province == match.Away)
+                .Select(x => new Bowler
+                {
+                    Id = x.RowKey,
+                    Name = x.Name,
+                    POA = x.POA,
+                    Points = (decimal)x.Points,
+                    Position = x.Position,
+                    Score = x.Score
+                }).ToList();
+
+            var homeBowlers = bowlers
+                .Where(x => x.Province == match.Home)
+                .Select(x => new Bowler
+                {
+                    Id = x.RowKey,
+                    Name = x.Name,
+                    POA = x.POA,
+                    Points = (decimal)x.Points,
+                    Position = x.Position,
+                    Score = x.Score
+                }).ToList();
+
+            var awayTeam = new Team
+            {
+                Id = match.AwayId,
+                POA = match.AwayPOA,
+                Points = (decimal)match.AwayPoints,
+                Province = match.Away,
+                Score = match.AwayScore,
+                TotalPoints = (decimal)match.AwayTotalPoints,
+                Bowlers = awayBowlers
+            };
+            var homeTeam = new Team
+            {
+                Id = match.HomeId,
+                POA = match.HomePOA,
+                Points = (decimal)match.HomePoints,
+                Province = match.Home,
+                Score = match.HomeScore,
+                TotalPoints = (decimal)match.HomeTotalPoints,
+                Bowlers = homeBowlers
+            };
+
+            return new Match
+            {
+                Id = matchId,
+                Division = match.Division,
+                IsPOA = match.IsPOA,
+                Number = match.Number,
+                Away = awayTeam,
+                Home = homeTeam,
+                Lane = match.Lane,
+                Centre = match.Centre,
+                IsComplete = match.IsComplete
+            };
         }
         
         public void Handle(MatchCreated e)

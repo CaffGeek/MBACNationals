@@ -19,11 +19,11 @@ namespace WebFrontend.Controllers
 
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        public JsonResult Schedule(string division)
+        public JsonResult Schedule(int year, string division)
         {
             Response.AppendHeader("Access-Control-Allow-Origin", "*");
 
-            var schedule = Domain.ScheduleQueries.GetSchedule(division);
+            var schedule = Domain.ScheduleQueries.GetSchedule(year, division);
             return Json(schedule, JsonRequestBehavior.AllowGet);
         }
 

@@ -4,8 +4,7 @@
     var scoreEntryController = function ($scope, $http, $q, $location, modalFactory, dataService) {
         var url = $location.absUrl();
         var lastSlash = url.lastIndexOf('/');
-        var province = url.slice(lastSlash + 1);
-        var year = url.slice(lastSlash - 4, lastSlash);
+        var year = url.slice(lastSlash + 1) || new Date().getFullYear();
 
         var pages = [
             'Division',
@@ -28,7 +27,7 @@
         $scope.Page = function (page, data) {
             switch (page) {
                 case 'Game': {
-                    dataService.LoadSchedule(data.Division).
+                    dataService.LoadSchedule(year, data.Division).
                         success(function (divisionSchedule) {
                             $scope.model.Schedule = divisionSchedule;
                             var currentGame = 1;
@@ -49,8 +48,8 @@
                     $scope.model.HomeProvince = data.Game.Home;
                     
                     $q.all([
-                        dataService.LoadTeam($scope.model.AwayProvince, $scope.model.Division),
-                        dataService.LoadTeam($scope.model.HomeProvince, $scope.model.Division),
+                        dataService.LoadTeam(year, $scope.model.AwayProvince, $scope.model.Division),
+                        dataService.LoadTeam(year, $scope.model.HomeProvince, $scope.model.Division),
                         dataService.LoadMatch(data.Game)
                     ]).then(function (results) {
                         $scope.model.Away = results[0].data;

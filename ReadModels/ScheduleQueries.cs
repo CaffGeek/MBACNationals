@@ -1,5 +1,6 @@
 ﻿using Edument.CQRS;
 using Events.Scores;
+using Events.Tournament;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ namespace MBACNationals.ReadModels
 {
     public class ScheduleQueries : AzureReadModel,
         IScheduleQueries,
+        ISubscribeTo<TournamentCreated>,
         ISubscribeTo<MatchCreated>,
         ISubscribeTo<MatchCompleted>
     {
@@ -55,6 +57,7 @@ namespace MBACNationals.ReadModels
                 get { return Guid.Parse(RowKey); }
                 internal set { RowKey = value.ToString(); PartitionKey = value.ToString(); }
             }
+            public string Year { get; set; }
             public string Division { get; set; }
             public bool IsPOA { get; set; }
             public int Number { get; set; }
@@ -65,10 +68,20 @@ namespace MBACNationals.ReadModels
             public bool IsComplete { get; set; }
         }
 
-        public ScheduleQueries.Schedule GetSchedule(string division)
+        public class TSTournament : Entity
         {
-            var matches = Query<TSMatch>(x => x.Division.Equals(division, StringComparison.OrdinalIgnoreCase))
-                .Select(x => new Match(x.MatchId, x.Division, x.Number, x.Away, x.Home, x.Lane, (BowlingCentre)Enum.Parse(typeof(BowlingCentre), x.Centre), x.IsPOA))
+            public string Year { get; set; }
+            public Guid Id { get; set; }
+        }
+
+        public ScheduleQueries.Schedule GetSchedule(int year, string division)
+        {
+            var matches = Query<TSMatch>(x =>
+                x.Division.Equals(division, StringComparison.OrdinalIgnoreCase)
+                && x.Year.Equals(year.ToString(), StringComparison.OrdinalIgnoreCase))
+                .Select(x => new Match(x.MatchId, x.Division, x.Number, x.Away, x.Home, x.Lane, (BowlingCentre)Enum.Parse(typeof(BowlingCentre), x.Centre), x.IsPOA) { 
+                    IsComplete = x.IsComplete
+                })
                 .ToList();
 
             return new Schedule
@@ -78,10 +91,21 @@ namespace MBACNationals.ReadModels
             };
         }
 
+        public void Handle(TournamentCreated e)
+        {
+            Create(e.Id, e.Id, new TSTournament { Year = e.Year, Id = e.Id });
+
+            //HACK: Track current tournament
+            Create(Guid.Empty, Guid.Empty, new TSTournament { Year = e.Year, Id = e.Id });
+        }
+
         public void Handle(MatchCreated e)
         {
-            Create(e.Id, e.Id, new TSMatch {
+            var tournament = GetCurrentTournament();
+
+            Create(tournament.Id, e.Id, new TSMatch {
                 Division = e.Division,
+                Year = tournament.Year,
                 IsPOA = e.IsPOA,
                 Number = e.Number,
                 Away = e.Away,
@@ -94,7 +118,14 @@ namespace MBACNationals.ReadModels
 
         public void Handle(MatchCompleted e)
         {
-            Update<TSMatch>(e.Id, e.Id, x => x.IsComplete = true);
+            Update<TSMatch>(e.Id, x => x.IsComplete = true);
+        }
+
+        private TSTournament GetCurrentTournament()
+        {
+            var tournament = Read<TSTournament>(Guid.Empty, Guid.Empty)
+                ?? new TSTournament { Id = Guid.Empty, Year = 2014.ToString() };
+            return tournament;
         }
     }
 }

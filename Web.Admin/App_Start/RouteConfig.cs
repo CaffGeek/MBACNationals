@@ -33,8 +33,14 @@ namespace WebFrontend
 
             routes.MapRoute(
                 name: "Scores",
-                url: "Scores/{action}",
-                defaults: new { controller = "Scores", action = "Index" }
+                url: "Scores/{action}/{year}/{division}",
+                defaults: new { controller = "Scores", action = "Index", division = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Scores2",
+                url: "Scores/{action}/{id}",
+                defaults: new { controller = "Scores", action = "Index", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(

@@ -109,10 +109,11 @@
             });
         };
 
-        function loadTeam(contingent, teamName) {
+        function loadTeam(year, province, teamName) {
             return $http.get('/Setup/Contingent/Team', {
                 params: {
-                    contingent: contingent,
+                    year: year,
+                    province: province,
                     teamName: teamName
                 }
             });
@@ -216,10 +217,8 @@
             return $http.get('/Setup/Participant/Profiles');
         };
 
-        function loadSchedule(division) {
-            return $http.get('/Setup/Scores/Schedule', {
-                params: { division: division }
-            });
+        function loadSchedule(year, division) {
+            return $http.get('/Setup/Scores/Schedule/' + year + '/' + division);
         };
 
         function saveMatchResult(match) {

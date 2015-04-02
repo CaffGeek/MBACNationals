@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>MBAC Nationals 2014 :: Winnipeg :: @ViewBag.Title</title>
+    <title>MBAC Nationals :: @ViewBag.Title</title>
     <base href="/Setup" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -41,7 +41,7 @@
             @if (User.IsInRole("Admin"))
             {
                 @Html.ActionLink("Reports", "Reports", "Admin")
-                @Html.ActionLink("Score Entry", "Entry", "Scores")
+                @Html.ActionLink("Score Entry", "Entry", "Scores", new { year = ViewBag.Year }, null)
             }
             @if (User.Identity.Name.Equals("Chad", StringComparison.OrdinalIgnoreCase))
             {

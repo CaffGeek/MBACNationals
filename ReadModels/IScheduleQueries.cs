@@ -2,6 +2,6 @@
 {
     public interface IScheduleQueries
     {
-        ScheduleQueries.Schedule GetSchedule(string division);
+        ScheduleQueries.Schedule GetSchedule(int year, string division);
     }
 }
