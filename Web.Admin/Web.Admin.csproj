@@ -398,6 +398,7 @@
     <Content Include="Modals\Participant\_guestpackage.2015.html" />
     <Content Include="Modals\Participant\_shirtsize.html" />
     <Content Include="Modals\Participant\Edit.html" />
+    <Content Include="Properties\PublishProfiles\MBACNationals - Web Deploy.pubxml.user" />
     <Content Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -415,7 +416,6 @@
     <Content Include="Content\fonts\bebas___-webfont.ttf" />
     <Content Include="Content\fonts\bebas___-webfont.woff" />
     <Content Include="App\Controllers\controller.reports.js" />
-    <None Include="Properties\PublishProfiles\MBACNationals - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\MBACNationals - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\angular-mocks.js" />
