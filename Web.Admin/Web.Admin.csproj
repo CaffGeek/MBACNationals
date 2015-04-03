@@ -269,6 +269,7 @@
     <Content Include="App\Controllers\controller.practice.js" />
     <Content Include="App\Controllers\controller.participant.js" />
     <Content Include="App\Controllers\controller.scoreentry.js" />
+    <Content Include="App\Controllers\controller.rebuild.js" />
     <Content Include="App\Controllers\controller.tournament.js" />
     <Content Include="App\Directives\directive.exportable.js" />
     <Content Include="App\Directives\directive.activemenu.js" />

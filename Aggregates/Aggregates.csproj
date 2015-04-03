@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin\ContingentFix.cs" />
     <Compile Include="Contingent\Commands\AssignContingentToTournament.cs" />
     <Compile Include="Contingent\Exceptions\ContingentAlreadyExists.cs" />
     <Compile Include="Contingent\Exceptions\TournamentNotFound.cs" />

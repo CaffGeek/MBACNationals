@@ -24,12 +24,6 @@ namespace WebFrontend.Controllers
             Domain.RebuildSchedule();
         }
 
-        [Authorize(Users = "Chad")]
-        public void Assign2014Contingents()
-        {
-            Domain.Assign2014Contingents();
-        }
-
         [Authorize(Roles = "Admin")]
         public ActionResult Reports()
         {

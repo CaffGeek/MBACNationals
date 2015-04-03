@@ -1,16 +1,12 @@
-﻿<h2>Rebuild</h2>
+﻿<div>
+    <div class="container" data-ng-controller="RebuildController as vm">
+        <h2>Rebuild</h2>
 
-<a target="_new" href="~/Admin/RebuildModel/CommandQueries">CommandQueries</a><br />
-<a target="_new" href="~/Admin/RebuildModel/ContingentPracticePlanQueries">ContingentPracticePlanQueries</a><br />
-<a target="_new" href="~/Admin/RebuildModel/ContingentTravelPlanQueries">ContingentTravelPlanQueries</a>    <br/>
-<a target="_new" href="~/Admin/RebuildModel/ContingentViewQueries">ContingentViewQueries</a>                <br/>
-<a target="_new" href="~/Admin/RebuildModel/HighScoreQueries">HighScoreQueries</a>                          <br/>
-<a target="_new" href="~/Admin/RebuildModel/MatchQueries">MatchQueries</a>                                  <br/>
-<a target="_new" href="~/Admin/RebuildModel/ParticipantProfileQueries">ParticipantProfileQueries</a>        <br/>
-<a target="_new" href="~/Admin/RebuildModel/ParticipantQueries">ParticipantQueries</a>                      <br/>
-<a target="_new" href="~/Admin/RebuildModel/ParticipantScoreQueries">ParticipantScoreQueries</a>            <br/>
-<a target="_new" href="~/Admin/RebuildModel/ReservationQueries">ReservationQueries</a>                      <br/>
-<a target="_new" href="~/Admin/RebuildModel/ScheduleQueries">ScheduleQueries</a>                            <br/>
-<a target="_new" href="~/Admin/RebuildModel/StandingQueries">StandingQueries</a>                            <br/>
-<a target="_new" href="~/Admin/RebuildModel/TeamScoreQueries">TeamScoreQueries</a>                          <br />
-<a target="_new" href="~/Admin/RebuildModel/TournamentQueries">TournamentQueries</a>                        <br />
+        <a ng-click="vm.Rebuild()">Rebuild All</a>
+        <hr />
+
+        <div ng-repeat="readmodel in vm.readmodels">
+            <a ng-click="vm.Rebuild(readmodel)">{{readmodel.Name}}</a> {{readmodel.Status}}
+        </div>
+    </div>
+</div>

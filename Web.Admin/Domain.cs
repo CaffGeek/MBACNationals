@@ -8,6 +8,8 @@ using System.Web;
 using MBACNationals.Scores;
 using MBACNationals;
 using MBACNationals.Tournament;
+using System.Configuration;
+using Microsoft.WindowsAzure.Storage;
 
 namespace WebFrontend
 {
@@ -90,9 +92,12 @@ namespace WebFrontend
         {
             GoOffline();
 
-            var readModel = Path.Combine(ReadModelFolder, readmodel);
-            if (File.Exists(readModel))
-                File.Delete(readModel);
+            var tableStorageConn = ConfigurationManager.ConnectionStrings["AzureTableStorage"].ConnectionString;
+            var storageAccount = CloudStorageAccount.Parse(tableStorageConn);
+            var tableClient = storageAccount.CreateCloudTableClient();
+            var table = tableClient.GetTableReference(readmodel.ToLower());
+            table.DeleteIfExists();
+            table.Create();
 
             Dispatcher.RepublishEvents(readmodel);
 
@@ -121,12 +126,6 @@ namespace WebFrontend
         {
             var htmFile = HttpContext.Current.Server.MapPath("~/app_offline.htm");
             File.Delete(htmFile);
-        }
-
-        internal static void Assign2014Contingents()
-        {
-            var tournament = CommandQueries.GetTournaments().FirstOrDefault(x => x.Year == "2014");
-            ContingentFix.Assign2014Contingents(Domain.Dispatcher, tournament.Id);
         }
     }
 }
