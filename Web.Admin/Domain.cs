@@ -10,6 +10,8 @@ using MBACNationals;
 using MBACNationals.Tournament;
 using System.Configuration;
 using Microsoft.WindowsAzure.Storage;
+using System.Threading;
+using System;
 
 namespace WebFrontend
 {
@@ -97,7 +99,24 @@ namespace WebFrontend
             var tableClient = storageAccount.CreateCloudTableClient();
             var table = tableClient.GetTableReference(readmodel.ToLower());
             table.DeleteIfExists();
-            table.Create();
+
+            var success = false;
+            while (!success)
+            {
+                try
+                {
+                    table.Create();
+                    success = true;
+                }
+                catch (StorageException e)
+                {
+                    //HACK: Table recreation failed retrying in 5 sec
+                    try
+                    {
+                        Thread.Sleep(5000);
+                    } catch (Exception ex) { }
+                }
+            }
 
             Dispatcher.RepublishEvents(readmodel);
 
