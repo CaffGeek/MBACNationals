@@ -22,6 +22,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Admin", "Web.Admin\Web.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{4306B621-323B-4574-BFBF-2D002491AE1E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITests", "UITests\UITests.csproj", "{0DF77526-1ECC-4A50-94B5-DC687D945258}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITestsFramework", "UITestsFramework\UITestsFramework.csproj", "{E36D0216-8CA1-4AD3-AFDC-0F9396FAC3FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +60,14 @@ Global
 		{4306B621-323B-4574-BFBF-2D002491AE1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4306B621-323B-4574-BFBF-2D002491AE1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4306B621-323B-4574-BFBF-2D002491AE1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DF77526-1ECC-4A50-94B5-DC687D945258}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DF77526-1ECC-4A50-94B5-DC687D945258}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DF77526-1ECC-4A50-94B5-DC687D945258}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DF77526-1ECC-4A50-94B5-DC687D945258}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E36D0216-8CA1-4AD3-AFDC-0F9396FAC3FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E36D0216-8CA1-4AD3-AFDC-0F9396FAC3FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E36D0216-8CA1-4AD3-AFDC-0F9396FAC3FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E36D0216-8CA1-4AD3-AFDC-0F9396FAC3FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
