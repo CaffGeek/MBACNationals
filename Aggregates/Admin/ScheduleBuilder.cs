@@ -5,7 +5,291 @@ using System.Collections.Generic;
 
 namespace MBACNationals
 {
+
     public static class ScheduleBuilder
+    {
+        public static void TournamentMenSingle(MessageDispatcher dispatcher)
+        {
+            var scheduleId = new Guid("");
+            var division = "Tournament Men Single";
+
+            var commands = new List<SaveMatch>
+                {
+                     new SaveMatch(new Guid(""), division,  01, "NO", "NL", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  01, "QC", "MB", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  01, "SO", "AB", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  01, "BC", "SK", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  02, "AB", "SK", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  02, "SO", "BC", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  02, "NL", "MB", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  02, "NO", "QC", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  03, "SO", "MB", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  03, "NO", "SK", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  03, "BC", "QC", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  03, "NL", "AB", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  04, "QC", "AB", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  04, "BC", "NL", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  04, "NO", "SO", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  04, "SK", "MB", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  05, "BC", "NO", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  05, "MB", "AB", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  05, "QC", "SK", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  05, "SO", "NL", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  06, "NL", "QC", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  06, "SK", "SO", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  06, "MB", "NO", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  06, "AB", "BC", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  07, "MB", "BC", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  07, "AB", "NO", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  07, "SK", "NL", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  07, "QC", "SO", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  08, "NL", "NO", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  08, "MB", "QC", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  08, "AB", "SO", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  08, "SK", "BC", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  09, "SK", "AB", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  09, "BC", "SO", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  09, "NL", "MB", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  09, "QC", "NO", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  10, "MB", "SO", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  10, "SK", "NO", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  10, "QC", "BC", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  10, "AB", "NL", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  11, "AB", "QC", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  11, "NL", "BC", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  11, "SO", "NO", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  11, "MB", "SK", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  12, "NO", "BC", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  12, "AB", "MB", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  12, "SK", "QC", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  12, "NL", "SO", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  13, "QC", "NL", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  13, "SO", "SK", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  13, "NO", "MB", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  13, "BC", "AB", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  14, "BC", "MB", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  14, "NO", "AB", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  14, "NL", "SK", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  14, "SO", "QC", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  15, "NO", "NL", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  15, "QC", "MB", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  15, "SO", "AB", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  15, "BC", "SK", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  16, "AB", "SK", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  16, "SO", "BC", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  16, "NL", "MB", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  16, "NO", "QC", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  17, "SO", "MB", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  17, "NO", "SK", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  17, "BC", "QC", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  17, "NL", "AB", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  18, "QC", "AB", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  18, "BC", "NL", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  18, "NO", "SO", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  18, "SK", "MB", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  19, "BC", "NO", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  19, "MB", "AB", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  19, "QC", "SK", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  19, "SO", "NL", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  20, "NL", "QC", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  20, "SK", "SO", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  20, "NO", "MB", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  20, "AB", "BC", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  21, "MB", "BC", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  21, "AB", "NO", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  21, "SK", "NL", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  21, "QC", "SO", 31, BowlingCentre.Sherwood),
+                };
+
+            foreach (var command in commands)
+                try
+                {
+                    dispatcher.SendCommand(command);
+                }
+                catch (MBACNationals.Scores.MatchAlreadyCreated e)
+                {
+                }
+        }
+
+        public static void TournamentLadiesSingle(MessageDispatcher dispatcher)
+        {
+            var scheduleId = new Guid("");
+            var division = "Tournament Ladies Single";
+
+            var commands = new List<SaveMatch>
+                {
+                     new SaveMatch(new Guid(""), division,  01, "NO", "NL", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  01, "QC", "MB", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  01, "SO", "AB", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  01, "BC", "SK", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  02, "AB", "SK", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  02, "SO", "BC", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  02, "NL", "MB", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  02, "NO", "QC", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  03, "SO", "MB", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  03, "NO", "SK", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  03, "BC", "QC", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  03, "NL", "AB", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  04, "QC", "AB", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  04, "BC", "NL", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  04, "NO", "SO", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  04, "SK", "MB", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  05, "BC", "NO", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  05, "MB", "AB", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  05, "QC", "SK", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  05, "SO", "NL", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  06, "NL", "QC", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  06, "SK", "SO", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  06, "MB", "NO", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  06, "AB", "BC", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  07, "MB", "BC", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  07, "AB", "NO", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  07, "SK", "NL", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  07, "QC", "SO", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  08, "NL", "NO", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  08, "MB", "QC", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  08, "AB", "SO", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  08, "SK", "BC", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  09, "SK", "AB", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  09, "BC", "SO", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  09, "NL", "MB", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  09, "QC", "NO", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  10, "MB", "SO", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  10, "SK", "NO", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  10, "QC", "BC", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  10, "AB", "NL", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  11, "AB", "QC", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  11, "NL", "BC", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  11, "SO", "NO", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  11, "MB", "SK", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  12, "NO", "BC", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  12, "AB", "MB", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  12, "SK", "QC", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  12, "NL", "SO", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  13, "QC", "NL", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  13, "SO", "SK", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  13, "NO", "MB", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  13, "BC", "AB", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  14, "BC", "MB", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  14, "NO", "AB", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  14, "NL", "SK", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  14, "SO", "QC", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  15, "NO", "NL", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  15, "QC", "MB", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  15, "SO", "AB", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  15, "BC", "SK", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  16, "AB", "SK", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  16, "SO", "BC", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  16, "NL", "MB", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  16, "NO", "QC", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  17, "SO", "MB", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  17, "NO", "SK", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  17, "BC", "QC", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  17, "NL", "AB", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  18, "QC", "AB", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  18, "BC", "NL", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  18, "NO", "SO", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  18, "SK", "MB", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  19, "BC", "NO", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  19, "MB", "AB", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  19, "QC", "SK", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  19, "SO", "NL", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  20, "NL", "QC", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  20, "SK", "SO", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  20, "NO", "MB", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  20, "AB", "BC", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  21, "MB", "BC", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  21, "AB", "NO", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  21, "SK", "NL", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  21, "QC", "SO", 31, BowlingCentre.Sherwood),
+                };
+
+            foreach (var command in commands)
+                try
+                {
+                    dispatcher.SendCommand(command);
+                }
+                catch (MBACNationals.Scores.MatchAlreadyCreated e)
+                {
+                }
+        }
+
+        public static void TournamentLadies(MessageDispatcher dispatcher)
+        {
+            var scheduleId = new Guid("");
+            var division = "Tournament Ladies";
+
+            var commands = new List<SaveMatch>
+                {
+                     new SaveMatch(new Guid(""), division,  01, "QC", "BC", 09, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  01, "MB", "NL", 11, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  01, "NO", "SK", 13, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  01, "SO", "AB", 15, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  02, "SK", "AB", 09, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  02, "NO", "SO", 11, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  02, "BC", "NL", 13, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  02, "QC", "MB", 15, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  03, "NO", "NL", 09, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  03, "QC", "AB", 11, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  03, "SO", "MB", 13, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  03, "BC", "SK", 15, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  04, "MB", "SK", 09, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  04, "SO", "BC", 11, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  04, "QC", "NO", 13, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  04, "AB", "NL", 15, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  05, "SO", "QC", 09, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  05, "NL", "SK", 11, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  05, "MB", "AB", 13, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  05, "NO", "BC", 15, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  06, "BC", "MB", 09, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  06, "AB", "NO", 11, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  06, "NL", "QC", 13, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  06, "SK", "SO", 15, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  07, "NL", "SO", 33, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  07, "SK", "QC", 35, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  07, "AB", "BC", 37, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  07, "MB", "NO", 39, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  08, "BC", "QC", 33, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  08, "NL", "MB", 35, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  08, "SK", "NO", 37, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  08, "AB", "SO", 39, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  09, "AB", "SK", 33, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  09, "SO", "NO", 35, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  09, "NL", "BC", 37, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  09, "MB", "QC", 39, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  10, "NL", "NO", 33, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  10, "AB", "QC", 35, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  10, "MB", "SO", 37, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  10, "SK", "BC", 39, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  11, "SK", "MB", 33, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  11, "BC", "SO", 35, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  11, "NO", "QC", 37, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  11, "NL", "AB", 39, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  12, "QC", "SO", 33, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  12, "SK", "NL", 35, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  12, "AB", "MB", 37, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  12, "BC", "NO", 39, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  13, "MB", "BC", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  13, "NO", "AB", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  13, "QC", "NL", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  13, "SO", "SK", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  14, "SO", "NL", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  14, "QC", "SK", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  14, "BC", "AB", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  14, "NO", "MB", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  15, "QC", "BC", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  15, "MB", "NL", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  15, "NO", "SK", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  15, "SO", "AB", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  16, "SK", "AB", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  16, "NO", "SO", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  16, "BC", "NL", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  16, "QC", "MB", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  17, "NO", "NL", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  17, "QC", "AB", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  17, "SO", "MB", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  17, "BC", "SK", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  18, "MB", "SK", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  18, "SO", "BC", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  18, "QC", "NO", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  18, "AB", "NL", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  19, "SO", "QC", 41, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  19, "NL", "SK", 43, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  19, "MB", "AB", 45, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  19, "NO", "BC", 47, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  20, "BC", "MB", 41, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  20, "AB", "NO", 43, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  20, "NL", "QC", 45, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  20, "SK", "SO", 47, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  21, "NL", "SO", 41, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  21, "SK", "QC", 43, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  21, "AB", "BC", 45, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  21, "MB", "NO", 47, BowlingCentre.Sherwood),
+                };
+
+            foreach (var command in commands)
+                try
+                {
+                    dispatcher.SendCommand(command);
+                }
+                catch (MBACNationals.Scores.MatchAlreadyCreated e)
+                {
+                }
+        }
+
+        public static void TournamentMen(MessageDispatcher dispatcher)
+        {
+            var scheduleId = new Guid("");
+            var division = "Tournament Men";
+
+            var commands = new List<SaveMatch>
+                {
+                     new SaveMatch(new Guid(""), division,  01, "QC", "BC", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  01, "MB", "NL", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  01, "NO", "SK", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  01, "SO", "AB", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  02, "SK", "AB", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  02, "NO", "SO", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  02, "BC", "NL", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  02, "QC", "MB", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  03, "NO", "NL", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  03, "QC", "AB", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  03, "SO", "MB", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  03, "BC", "SK", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  04, "MB", "SK", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  04, "SO", "BC", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  04, "QC", "NO", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  04, "AB", "NL", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  05, "SO", "QC", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  05, "NL", "SK", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  05, "MB", "AB", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  05, "NO", "BC", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  06, "BC", "MB", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  06, "AB", "NO", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  06, "NL", "QC", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  06, "SK", "SO", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  07, "NL", "SO", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  07, "SK", "QC", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  07, "AB", "BC", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  07, "MB", "NO", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  08, "BC", "QC", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  08, "NL", "MB", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  08, "SK", "NO", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  08, "AB", "SO", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  09, "AB", "SK", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  09, "SO", "NO", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  09, "NL", "BC", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  09, "MB", "QC", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  10, "NL", "NO", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  10, "AB", "QC", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  10, "MB", "SO", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  10, "SK", "BC", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  11, "SK", "MB", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  11, "BC", "SO", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  11, "NO", "QC", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  11, "NL", "AB", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  12, "QC", "SO", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  12, "SK", "NL", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  12, "AB", "MB", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  12, "BC", "NO", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  13, "MB", "BC", 33, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  13, "NO", "AB", 35, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  13, "QC", "NL", 37, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  13, "SO", "SK", 39, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  14, "SO", "NL", 33, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  14, "QC", "SK", 35, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  14, "BC", "AB", 37, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  14, "NO", "MB", 39, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  15, "QC", "BC", 33, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  15, "MB", "NL", 35, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  15, "NO", "SK", 37, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  15, "SO", "AB", 39, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  16, "SK", "AB", 33, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  16, "NO", "SO", 35, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  16, "BC", "NL", 37, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  16, "QC", "MB", 39, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  17, "NO", "NL", 33, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  17, "QC", "AB", 35, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  17, "SO", "MB", 37, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  17, "BC", "SK", 39, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  18, "MB", "SK", 33, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  18, "SO", "BC", 35, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  18, "QC", "NO", 37, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  18, "AB", "NL", 39, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  19, "SO", "QC", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  19, "NL", "SK", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  19, "MB", "AB", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  19, "NO", "BC", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  20, "BC", "MB", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  20, "AB", "NO", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  20, "NL", "QC", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  20, "SK", "SO", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  21, "NL", "SO", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  21, "SK", "QC", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  21, "AB", "BC", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  21, "MB", "NO", 07, BowlingCentre.Sherwood),
+                };
+
+            foreach (var command in commands)
+                try
+                {
+                    dispatcher.SendCommand(command);
+                }
+                catch (MBACNationals.Scores.MatchAlreadyCreated e)
+                {
+                }
+        }
+
+        public static void TeachingLadies(MessageDispatcher dispatcher)
+        {
+            var scheduleId = new Guid("");
+            var division = "Teaching Ladies";
+
+            var commands = new List<SaveMatch>
+                {
+                     new SaveMatch(new Guid(""), division,  01, "QC", "SK", 33, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  01, "SO", "BC", 35, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  01, "NO", "NL", 37, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  01, "MB", "AB", 39, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  02, "NL", "AB", 33, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  02, "NO", "MB", 35, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  02, "SK", "BC", 37, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  02, "QC", "SO", 39, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  03, "NO", "BC", 33, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  03, "QC", "SK", 35, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  03, "MB", "SO", 37, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  03, "SK", "NL", 39, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  04, "SO", "NL", 33, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  04, "MB", "SK", 35, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  04, "QC", "NO", 37, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  04, "AB", "BC", 39, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  05, "MB", "QC", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  05, "BC", "NL", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  05, "SO", "AB", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  05, "NO", "SK", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  06, "SK", "SO", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  06, "AB", "NO", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  06, "BC", "QC", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  06, "NL", "BC", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  07, "BC", "MB", 09, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  07, "NL", "QC", 11, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  07, "AB", "SK", 13, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  07, "NO", "SO", 15, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  08, "SK", "QC", 09, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  08, "BC", "SO", 11, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  08, "NL", "NO", 13, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  08, "AB", "MB", 15, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  09, "AB", "NL", 09, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  09, "MB", "NO", 11, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  09, "BC", "SK", 13, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  09, "SO", "QC", 15, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  10, "BC", "NO", 09, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  10, "SK", "QC", 11, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  10, "SO", "MB", 13, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  10, "NL", "SK", 15, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  11, "NL", "SO", 41, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  11, "SK", "MB", 43, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  11, "NO", "QC", 45, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  11, "BC", "AB", 47, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  12, "QC", "MB", 41, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  12, "NL", "BC", 43, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  12, "AB", "SO", 45, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  12, "SK", "NO", 47, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  13, "SO", "SK", 41, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  13, "NO", "AB", 43, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  13, "QC", "BC", 45, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  13, "MB", "NL", 47, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  14, "MB", "BC", 41, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  14, "QC", "NL", 43, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  14, "SK", "AB", 45, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  14, "SO", "NO", 47, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  15, "QC", "SK", 41, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  15, "SO", "BC", 43, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  15, "NO", "NL", 45, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  15, "MB", "AB", 47, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  16, "NL", "AB", 41, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  16, "NO", "MB", 43, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  16, "SK", "BC", 45, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  16, "QC", "SO", 47, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  17, "NO", "BC", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  17, "QC", "SK", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  17, "MB", "SO", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  17, "SK", "NL", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  18, "SO", "NL", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  18, "MB", "SK", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  18, "QC", "NO", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  18, "AB", "BC", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  19, "MB", "QC", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  19, "BC", "NL", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  19, "SO", "AB", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  19, "NO", "SK", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  20, "SK", "SO", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  20, "AB", "NO", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  20, "BC", "QC", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  20, "NL", "MB", 23, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  21, "BC", "MB", 17, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  21, "NL", "QC", 19, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  21, "AB", "SK", 21, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  21, "NO", "SO", 23, BowlingCentre.Sherwood),
+                };
+
+            foreach (var command in commands)
+                try
+                {
+                    dispatcher.SendCommand(command);
+                }
+                catch (MBACNationals.Scores.MatchAlreadyCreated e)
+                {
+                }
+        }
+
+        public static void TeachingMen(MessageDispatcher dispatcher)
+        {
+            var scheduleId = new Guid("");
+            var division = "Teaching Men";
+
+            var commands = new List<SaveMatch>
+                {
+                     new SaveMatch(new Guid(""), division,  01, "QC", "SK", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  01, "SO", "BC", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  01, "NO", "NL", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  01, "MB", "AB", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  02, "NL", "AB", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  02, "NO", "MB", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  02, "SK", "BC", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  02, "QC", "SO", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  03, "NO", "BC", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  03, "QC", "SK", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  03, "MB", "SO", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  03, "SK", "NL", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  04, "SO", "NL", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  04, "MB", "SK", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  04, "QC", "NO", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  04, "AB", "BC", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  05, "MB", "QC", 33, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  05, "BC", "NL", 35, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  05, "SO", "AB", 37, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  05, "NO", "SK", 39, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  06, "SK", "SO", 33, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  06, "AB", "NO", 35, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  06, "BC", "QC", 37, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  06, "NL", "BC", 39, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  07, "BC", "MB", 41, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  07, "NL", "QC", 43, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  07, "AB", "SK", 45, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  07, "NO", "SO", 47, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  08, "SK", "QC", 41, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  08, "BC", "SO", 43, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  08, "NL", "NO", 45, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  08, "AB", "MB", 47, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  09, "AB", "NL", 41, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  09, "MB", "NO", 43, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  09, "BC", "SK", 45, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  09, "SO", "QC", 47, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  10, "BC", "NO", 41, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  10, "SK", "QC", 43, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  10, "SO", "MB", 45, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  10, "NL", "SK", 47, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  11, "NL", "SO", 09, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  11, "SK", "MB", 11, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  11, "NO", "QC", 13, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  11, "BC", "AB", 15, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  12, "QC", "MB", 09, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  12, "NL", "BC", 11, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  12, "AB", "SO", 13, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  12, "SK", "NO", 15, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  13, "SO", "SK", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  13, "NO", "AB", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  13, "QC", "BC", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  13, "MB", "NL", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  14, "MB", "BC", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  14, "QC", "NL", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  14, "SK", "AB", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  14, "SO", "NO", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  15, "QC", "SK", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  15, "SO", "BC", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  15, "NO", "NL", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  15, "MB", "AB", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  16, "NL", "AB", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  16, "NO", "MB", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  16, "SK", "BC", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  16, "QC", "SO", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  17, "NO", "BC", 41, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  17, "QC", "SK", 43, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  17, "MB", "SO", 45, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  17, "SK", "NL", 47, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  18, "SO", "NL", 41, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  18, "MB", "SK", 43, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  18, "QC", "NO", 45, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  18, "AB", "BC", 47, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  19, "MB", "QC", 09, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  19, "BC", "NL", 11, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  19, "SO", "AB", 13, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  19, "NO", "SK", 15, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  20, "SK", "SO", 09, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  20, "AB", "NO", 11, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  20, "BC", "QC", 13, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  20, "NL", "MB", 15, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  21, "BC", "MB", 09, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  21, "NL", "QC", 11, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  21, "AB", "SK", 13, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  21, "NO", "SO", 15, BowlingCentre.Sherwood),
+                };
+
+            foreach (var command in commands)
+                try
+                {
+                    dispatcher.SendCommand(command);
+                }
+                catch (MBACNationals.Scores.MatchAlreadyCreated e)
+                {
+                }
+        }
+
+        public static void Seniors(MessageDispatcher dispatcher)
+        {
+            var scheduleId = new Guid("");
+            var division = "Seniors";
+
+            var commands = new List<SaveMatch>
+                {
+                     new SaveMatch(new Guid(""), division,  01, "QC", "NL", 41, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  01, "SO", "MB", 43, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  01, "NO", "BC", 45, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  01, "AB", "SK", 47, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  02, "BC", "SK", 41, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  02, "NO", "AB", 43, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  02, "NL", "MB", 45, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  02, "QC", "SO", 47, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  03, "NO", "MB", 41, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  03, "QC", "SK", 43, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  03, "AB", "SO", 45, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  03, "NL", "BC", 47, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  04, "SO", "BC", 41, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  04, "AB", "NL", 43, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  04, "QC", "NO", 45, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  04, "SK", "MB", 47, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  05, "AB", "QC", 41, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  05, "MB", "BC", 43, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  05, "SO", "SK", 45, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  05, "NO", "NL", 47, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  06, "NL", "SO", 41, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  06, "SK", "NO", 43, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  06, "MB", "QC", 45, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  06, "BC", "AB", 47, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  07, "MB", "AB", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  07, "BC", "QC", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  07, "SK", "NL", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  07, "SO", "NO", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  08, "NL", "QC", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  08, "MB", "SO", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  08, "BC", "NO", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  08, "SK", "AB", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  09, "SK", "BC", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  09, "AB", "NO", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  09, "MB", "NL", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  09, "SO", "QC", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  10, "MB", "NO", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  10, "SK", "QC", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  10, "SO", "AB", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  10, "BC", "NL", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  11, "BC", "SO", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  11, "NL", "AB", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  11, "NO", "QC", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  11, "MB", "SK", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  12, "QC", "AB", 01, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  12, "BC", "MB", 03, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  12, "SK", "SO", 05, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  12, "NL", "NO", 07, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  13, "SO", "NL", 09, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  13, "NO", "SK", 11, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  13, "QC", "MB", 13, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  13, "AB", "BC", 15, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  14, "AB", "MB", 09, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  14, "QC", "BC", 11, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  14, "NL", "SK", 13, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  14, "NO", "SO", 15, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  15, "QC", "NL", 09, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  15, "SO", "MB", 11, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  15, "NO", "BC", 13, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  15, "AB", "SK", 15, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  16, "BC", "SK", 09, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  16, "NO", "AB", 11, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  16, "NL", "MB", 13, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  16, "QC", "SO", 15, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  17, "NO", "MB", 09, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  17, "QC", "SK", 11, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  17, "AB", "SO", 13, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  17, "NL", "BC", 15, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  18, "SO", "BC", 09, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  18, "AB", "NL", 11, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  18, "QC", "NO", 13, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  18, "SK", "MB", 15, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  19, "AB", "QC", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  19, "MB", "BC", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  19, "SO", "SK", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  19, "NO", "NL", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  20, "NL", "SO", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  20, "SK", "NO", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  20, "MB", "QC", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  20, "BC", "AB", 31, BowlingCentre.Sherwood),
+                     new SaveMatch(new Guid(""), division,  21, "MB", "AB", 25, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  21, "BC", "QC", 27, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  21, "SK", "NL", 29, BowlingCentre.Sherwood), new SaveMatch(new Guid(""), division,  21, "SO", "NO", 31, BowlingCentre.Sherwood),
+                };
+
+            foreach (var command in commands)
+                try
+                {
+                    dispatcher.SendCommand(command);
+                }
+                catch (MBACNationals.Scores.MatchAlreadyCreated e)
+                {
+                }
+        }
+    }
+
+    public static class ScheduleBuilder2014
     {
         public static void TournamentMenSingle(MessageDispatcher dispatcher)
         {
