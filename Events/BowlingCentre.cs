@@ -5,5 +5,6 @@
         Academy,
         Rossmere,
         Coronation,
+        Sherwood,
     }
 }

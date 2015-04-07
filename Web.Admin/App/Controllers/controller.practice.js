@@ -9,10 +9,21 @@
 
         $scope.model = {
             province: province,
-            allowedTimes: [9, 10, 11, 12, 13, 14, 15],
+            allowedTimes : [],
             teams: [],
-            practiceLocations: ['Rossmere', 'Academy', 'Coronation']
+            practiceLocations: []
         };
+
+        //TODO: Move to some config per year...
+        if (year == 2014) {
+            $scope.model.allowedTimes = [9, 10, 11, 12, 13, 14, 15];
+            $scope.model.practiceLocations = ['Rossmere', 'Academy', 'Coronation'];
+        }
+        else if (year == 2015) {
+            $scope.model.allowedTimes = [11, 12, 13, 14, 15, 16];
+            $scope.model.practiceLocations = ['Sherwood'];
+        }
+            
 
         if (year && province) {
             dataService.LoadPracticePlan(year, province).

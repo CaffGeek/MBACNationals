@@ -13,18 +13,24 @@
             { Name: 'MatchQueries' },
             { Name: 'ParticipantProfileQueries' },
             { Name: 'ParticipantQueries' },
-            { Name: 'ParticipantScoreQueries' },
             { Name: 'ReservationQueries' },
             { Name: 'ScheduleQueries' },
             { Name: 'StandingQueries' },
             { Name: 'TeamScoreQueries' },
-            { Name: 'TournamentQueries' }
+            { Name: 'TournamentQueries' },
+            { Name: 'ParticipantScoreQueries' }
         ];
         
         vm.Rebuild = function (readmodel) {
             if (readmodel) {
                 rebuildModel(readmodel.Name)();
             } else {
+                angular.forEach(vm.readmodels, function (model) {
+                    model.StartedAt = null;
+                    model.CompletedAt = null;
+                    model.Status = null;
+                });
+
                 rebuildModel('CommandQueries')()
                     .then(rebuildModel('ContingentPracticePlanQueries'))
                     .then(rebuildModel('ContingentTravelPlanQueries'))
@@ -33,12 +39,12 @@
                     .then(rebuildModel('MatchQueries'))
                     .then(rebuildModel('ParticipantProfileQueries'))
                     .then(rebuildModel('ParticipantQueries'))
-                    .then(rebuildModel('ParticipantScoreQueries'))
                     .then(rebuildModel('ReservationQueries'))
                     .then(rebuildModel('ScheduleQueries'))
                     .then(rebuildModel('StandingQueries'))
                     .then(rebuildModel('TeamScoreQueries'))
-                    .then(rebuildModel('TournamentQueries'));
+                    .then(rebuildModel('TournamentQueries'))
+                    .then(rebuildModel('ParticipantScoreQueries'));
             }
         };
 
