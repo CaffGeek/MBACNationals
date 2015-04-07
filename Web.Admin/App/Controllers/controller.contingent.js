@@ -7,7 +7,7 @@
         var province = url.slice(lastSlash + 1);
         var year = url.slice(lastSlash - 4, lastSlash);
         
-        $scope.viewUrl = '/App/Views/Contingent.html';
+        $scope.viewUrl = '/Setup/App/Views/Contingent.html';
 
         $scope.model = {
             Teams: [],

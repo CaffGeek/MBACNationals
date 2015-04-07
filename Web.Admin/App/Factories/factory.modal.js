@@ -12,7 +12,7 @@
             team = team || {};
 
             var openModal = $modal.open({
-                templateUrl: '/Modals/Participant/Edit.html',
+                templateUrl: '/Setup/Modals/Participant/Edit.html',
                 backdrop: 'static',
                 windowClass: 'modal',
                 controller: 'ModalParticipantController',
@@ -30,7 +30,7 @@
             divisions = divisions || {};
 
             var openModal = $modal.open({
-                templateUrl: '/Modals/Contingent/Divisions.html',
+                templateUrl: '/Setup/Modals/Contingent/Divisions.html',
                 backdrop: 'static',
                 windowClass: 'modal',
                 controller: 'ModalDivisionsController',

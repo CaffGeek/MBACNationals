@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
 
 namespace MBACNationals.ReadModels
 {
@@ -21,6 +22,12 @@ namespace MBACNationals.ReadModels
             var tableName = this.GetType().Name;
             var tableStorageConn = ConfigurationManager.ConnectionStrings["AzureTableStorage"].ConnectionString;
             var storageAccount = CloudStorageAccount.Parse(tableStorageConn);
+    
+            var servicePoint = ServicePointManager.FindServicePoint(storageAccount.TableEndpoint);
+            servicePoint.UseNagleAlgorithm = false;
+            servicePoint.Expect100Continue = false;
+            servicePoint.ConnectionLimit = 100;
+
             var tableClient = storageAccount.CreateCloudTableClient();
             Table = tableClient.GetTableReference(tableName);
             Table.CreateIfNotExists();
