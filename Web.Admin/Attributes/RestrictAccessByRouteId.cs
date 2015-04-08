@@ -15,14 +15,16 @@ namespace WebFrontend.Attributes
             if (httpContext.User.IsInRole("Admin"))
                 return true;
 
-            return false;//TODO: This is what prevents province logins currently
+            //return false;//TODO: This is what prevents province logins currently
             var handler = httpContext.Handler as MvcHandler;
             var contingent = handler.RequestContext.RouteData.Values["province"] as string;
+            var year = handler.RequestContext.RouteData.Values["year"] as string;
 
             if (string.IsNullOrWhiteSpace(contingent))
                 return true;
 
-            return httpContext.User.IsInRole(contingent);
+            return httpContext.User.IsInRole(contingent)
+                && httpContext.User.IsInRole(year);
         }
     }
 }

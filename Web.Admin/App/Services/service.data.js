@@ -160,9 +160,9 @@
             });
         };
 
-        function changeRoomType(year, province, roomNumber, type) {
+        function changeRoomType(contingentId, province, roomNumber, type) {
             return $http.post('/Setup/Contingent/ChangeRoomType', {
-                Year: year,
+                Id: contingentId,
                 Province: province,
                 RoomNumber: roomNumber,
                 Type: type

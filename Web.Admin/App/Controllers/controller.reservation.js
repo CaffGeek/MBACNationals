@@ -9,7 +9,8 @@
 
         $scope.model = {
             participants: [],
-            rooms: []
+            rooms: [],
+            year: year
         };
 
         if (year && province) {
@@ -26,6 +27,7 @@
                         sparseRooms[i] = room || { RoomNumber: i };
                     }
 
+                    $scope.model.contingentId = data.Id;
                     $scope.model.rooms = sparseRooms;
                     $scope.model.instructions = data.Instructions;
                 });
@@ -62,7 +64,7 @@
 
         $scope.setRoomType = function (roomNumber) {
             var type = $scope.model.rooms[roomNumber].Type;
-            dataService.ChangeRoomType(year, province, roomNumber, type);
+            dataService.ChangeRoomType($scope.model.contingentId, province, roomNumber, type);
         }
 
         $scope.addToRoom = function (id, roomNumber) {
