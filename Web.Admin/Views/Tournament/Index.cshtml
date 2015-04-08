@@ -5,7 +5,7 @@
 <div class="container" data-ng-controller="TournamentController as vm">
     <div class="row">
         <div class="col-md-3 col-xs-6" data-ng-repeat="y in vm.model.tournaments">
-            <a href="@Url.Action("Edit", "Contingent")/{{y.Year}}">
+            <a class="tournament" href="@Url.Action("Edit", "Contingent")/{{y.Year}}">
                 <img src="~/Content/Images/{{y.Year}}_logo.png" alt="y.Year" />
             </a>
         </div>

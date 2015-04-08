@@ -9,7 +9,7 @@
         { Code: 'QC', Name: 'Quebec'},
         { Code: 'NL', Name: 'Newfoundland'}
         ]">
-        <a href="@Url.Action(
+        <a class="province" href="@Url.Action(
                      ViewContext.RouteData.Values["action"] as String,
                      ViewContext.RouteData.Values["controller"] as String)/{{y.Code}}">
             <img src="~/Content/Images/Flags/{{y.Code}}.gif" alt="y.Code" width="192" height="129" />

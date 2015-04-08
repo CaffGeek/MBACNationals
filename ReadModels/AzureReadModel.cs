@@ -17,9 +17,8 @@ namespace MBACNationals.ReadModels
 
         private CloudTable Table { get; set; }
 
-        public AzureReadModel()
+        protected AzureReadModel()
         {
-            var tableName = this.GetType().Name;
             var tableStorageConn = ConfigurationManager.ConnectionStrings["AzureTableStorage"].ConnectionString;
             var storageAccount = CloudStorageAccount.Parse(tableStorageConn);
     
@@ -29,16 +28,13 @@ namespace MBACNationals.ReadModels
             servicePoint.ConnectionLimit = 100;
 
             var tableClient = storageAccount.CreateCloudTableClient();
-            Table = tableClient.GetTableReference(tableName);
-            Table.CreateIfNotExists();
+            var azureTableLocator = new AzureTableLocator(tableClient);
+            Table = azureTableLocator.GetTableFor(GetType());
         }
 
         protected void Create<T>(Guid partition, Guid key, T entity)
             where T : Entity, new()
         {
-            if (partition == null || key == null)
-                return;
-
             entity.PartitionKey = partition.ToString();
             entity.RowKey = key.ToString();
             entity.AzureEntityType = typeof(T).Name;
@@ -50,7 +46,7 @@ namespace MBACNationals.ReadModels
         protected T Read<T>(Guid key)
             where T : Entity, new()
         {
-            var entity = Query<T>(x => { return x.RowKey == key.ToString(); }).FirstOrDefault();
+            var entity = Query<T>(x => x.RowKey == key.ToString()).FirstOrDefault();
             return entity;
         }
 

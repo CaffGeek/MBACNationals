@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
 namespace UITestsFramework
@@ -6,9 +7,11 @@ namespace UITestsFramework
     public static class Browser
     {
         private static string baseUrl = "http://localhost:54055/Setup/";
-        private static readonly IWebDriver webDriver = new ChromeDriver();
+        private static IWebDriver webDriver;
+
         public static void Initialize()
         {
+            webDriver = new ChromeDriver();
             Goto("");
         }
 
@@ -24,6 +27,7 @@ namespace UITestsFramework
 
         public static void Goto(string url)
         {
+            webDriver.Manage().Timeouts().ImplicitlyWait(new TimeSpan(0, 0, 1));
             webDriver.Url = baseUrl + url;
         }
 
