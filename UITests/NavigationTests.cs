@@ -5,20 +5,8 @@ using UITestsFramework.Pages;
 namespace UITests
 {
     [TestClass]
-    public class NavigationTests
+    public class NavigationTests : TestBase
     {
-        [TestInitialize]
-        public void Initialize()
-        {
-            Browser.Initialize();
-        }
-
-        [TestCleanup]
-        public void TestFixtureTearDown()
-        {
-            Browser.Close();
-        }
-
         [TestMethod]
         public void CanLoginAsAdmin()
         {
@@ -33,8 +21,10 @@ namespace UITests
             Pages.Login.Goto();
             Pages.Login.LogInAsAdmin();
 
-            Pages.ContingentPage.Goto();
-            Assert.IsTrue(Pages.ContingentPage.IsAt());
+            Pages.Contingent.Goto();
+            Pages.TournamentSelector.SelectLatestTournament();
+            Pages.ProvinceSelector.Select("MB");
+            Assert.IsTrue(Pages.Contingent.IsAt());
         }
     }
 }

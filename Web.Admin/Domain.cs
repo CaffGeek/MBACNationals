@@ -3,7 +3,6 @@ using MBACNationals.ReadModels;
 using MBACNationals.Participant;
 using MBACNationals.Contingent;
 using System.IO;
-using System.Linq;
 using System.Web;
 using MBACNationals.Scores;
 using MBACNationals;
@@ -17,7 +16,6 @@ namespace WebFrontend
 {
     public static class Domain
     {
-        public static bool IsRebuilding { get; private set; }
         public static string ReadModelFolder { get; private set; }
 
         public static MessageDispatcher Dispatcher;
@@ -97,26 +95,30 @@ namespace WebFrontend
             var tableStorageConn = ConfigurationManager.ConnectionStrings["AzureTableStorage"].ConnectionString;
             var storageAccount = CloudStorageAccount.Parse(tableStorageConn);
             var tableClient = storageAccount.CreateCloudTableClient();
-            var table = tableClient.GetTableReference(readmodel.ToLower());
-            table.DeleteIfExists();
+            
+            //var table = tableClient.GetTableReference(readmodel.ToLower());
+            //table.DeleteIfExists();
+            var azureTableLocator = new AzureTableLocator(tableClient);
+            azureTableLocator.CreateNewTableFor(readmodel.ToLower());
 
-            var success = false;
-            while (!success)
-            {
-                try
-                {
-                    table.Create();
-                    success = true;
-                }
-                catch (StorageException e)
-                {
-                    //HACK: Table recreation failed retrying in 5 sec
-                    try
-                    {
-                        Thread.Sleep(5000);
-                    } catch (Exception ex) { }
-                }
-            }
+            //var success = false;
+            //while (!success)
+            //{
+            //    try
+            //    {
+            //        table.Create();
+            //        success = true;
+            //    }
+            //    catch (StorageException)
+            //    {
+            //        //HACK: Table recreation failed retrying in 5 sec
+            //        try
+            //        {
+            //            Thread.Sleep(5000);
+            //        // ReSharper disable once EmptyGeneralCatchClause
+            //        } catch (Exception) { }
+            //    }
+            //}
 
             Dispatcher.RepublishEvents(readmodel);
 
@@ -125,13 +127,13 @@ namespace WebFrontend
 
         public static void RebuildSchedule()
         {
-            ScheduleBuilder.TournamentMenSingle(Domain.Dispatcher);
-            ScheduleBuilder.TournamentLadiesSingle(Domain.Dispatcher);
-            ScheduleBuilder.TournamentLadies(Domain.Dispatcher);
-            ScheduleBuilder.TournamentMen(Domain.Dispatcher);
-            ScheduleBuilder.TeachingLadies(Domain.Dispatcher);
-            ScheduleBuilder.TeachingMen(Domain.Dispatcher);
-            ScheduleBuilder.Seniors(Domain.Dispatcher);
+            ScheduleBuilder.TournamentMenSingle(Dispatcher);
+            ScheduleBuilder.TournamentLadiesSingle(Dispatcher);
+            ScheduleBuilder.TournamentLadies(Dispatcher);
+            ScheduleBuilder.TournamentMen(Dispatcher);
+            ScheduleBuilder.TeachingLadies(Dispatcher);
+            ScheduleBuilder.TeachingMen(Dispatcher);
+            ScheduleBuilder.Seniors(Dispatcher);
         }
 
         private static void GoOffline()

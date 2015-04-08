@@ -21,9 +21,19 @@ namespace UITestsFramework.Pages
             get { return GetPage<LoginPage>(); }
         }
 
-        public static ContingentPage ContingentPage
+        public static ContingentPage Contingent
         {
             get { return GetPage<ContingentPage>(); }
+        }
+
+        public static TournamentPage TournamentSelector
+        {
+            get { return GetPage<TournamentPage>(); }
+        }
+
+        public static ProvincePage ProvinceSelector
+        {
+            get { return GetPage<ProvincePage>(); }
         }
     }
 }

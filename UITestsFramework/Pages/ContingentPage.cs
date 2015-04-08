@@ -9,7 +9,7 @@
 
         public bool IsAt()
         {
-            return Browser.Title.Contains("About");
+            return Browser.Title.Contains("Contingent");
         }
     }
 }

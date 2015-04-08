@@ -58,7 +58,15 @@ namespace UITestsFramework.Pages
 
         public void Login()
         {
-            loginLink.Click();
+            try
+            {
+                loginLink.Click();
+            }
+            catch (NoSuchElementException)
+            {
+                logoutLink.Click();
+                loginLink.Click();
+            }
         }
 
         public bool LoggedIn()
