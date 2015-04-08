@@ -95,6 +95,7 @@ namespace MBACNationals.ReadModels
             var participants = Query<TSParticipant>(x => x.ContingentId.Equals(contingent.Id))
                 .Select(x => new Participant
                 {
+                    Id = x.Id,
                     Name = x.Name,
                     Province = x.Province,
                     RoomNumber = x.RoomNumber

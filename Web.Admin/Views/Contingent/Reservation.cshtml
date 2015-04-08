@@ -9,36 +9,63 @@
                     <div id="{{p.Id}}" data-draggable="" data-ng-repeat="p in model.participants | filter:unassignedRoom">{{p.Name}}</div>
 		        </div>    
                 <div>
-                    <address>
-                      <strong>The Fairmont</strong><br>
-                      2 Lombard Place<br>
-                      Winnipeg, MB<br>
-                      <abbr title="Phone">P:</abbr> (204) 957-1350
-                    </address>
 
-                    <ul class="list-unstyled">
-                        <li>
-                            <strong>Moderate or Fairmont</strong><br />
-                            <small>Single or Double ($140+tax)<br />
-                            King, Queen or 2 Double<br /></small>
-                        </li>
-                        <li>
-                            <strong>Fairmont GOLD Floor</strong><br />
-                            <small>Single or Double ($240+tax)<br />
-                            King, Queen or 2 Double<br />
-                            Deluxe daily breakfast<br /></small>
-                        </li>
-                        <li>
-                            <strong>1 Bedroom Suite</strong><br />
-                            <small>Single or Double ($240+tax)<br />
-                            King or 2 Double + sofabed<br /></small>
-                        </li>
-                        <li>
-                            <strong>2 Bedroom Suite</strong><br />
-                            <small>Single or Double ($340+tax)<br />
-                            King or 2 Double + sofabed<br /></small>
-                        </li>
-                    </ul>
+                    <span ng-if="model.year == '2015'">
+                        <address>
+                            <strong>Holiday Inn</strong><br>
+                            3063 South Service Rd.<br>
+                            Burlington, ON<br>
+                            <abbr title="Phone">P:</abbr> (905) 639-4443
+                        </address>
+
+                        <ul class="list-unstyled">
+                            <li>1 King Bed, Business</li>
+                            <li>1 Queen Bed, standard w/pullout sofa</li>
+                            <li>2 Double Beds, standard</li>
+                            <li>2 Double Beds, accessible</li>
+                        </ul>
+                    </span>
+                    <span ng-if="model.year == '2014'">
+                        <address>
+                            <strong>The Fairmont</strong><br>
+                            2 Lombard Place<br>
+                            Winnipeg, MB<br>
+                            <abbr title="Phone">P:</abbr> (204) 957-1350
+                        </address>
+
+                        <ul class="list-unstyled">
+                            <li>
+                                <strong>Moderate or Fairmont</strong><br />
+                                <small>
+                                    Single or Double ($140+tax)<br />
+                                    King, Queen or 2 Double<br />
+                                </small>
+                            </li>
+                            <li>
+                                <strong>Fairmont GOLD Floor</strong><br />
+                                <small>
+                                    Single or Double ($240+tax)<br />
+                                    King, Queen or 2 Double<br />
+                                    Deluxe daily breakfast<br />
+                                </small>
+                            </li>
+                            <li>
+                                <strong>1 Bedroom Suite</strong><br />
+                                <small>
+                                    Single or Double ($240+tax)<br />
+                                    King or 2 Double + sofabed<br />
+                                </small>
+                            </li>
+                            <li>
+                                <strong>2 Bedroom Suite</strong><br />
+                                <small>
+                                    Single or Double ($340+tax)<br />
+                                    King or 2 Double + sofabed<br />
+                                </small>
+                            </li>
+                        </ul>
+                    </span>
+
                 </div>		
 		    </div>
             
@@ -48,14 +75,19 @@
                         <h6>
                             Room #{{calcBin(y,x)}}
                             <select id="binType{{calcBin(y,x)}}" data-ng-model="getRoomByBin(y,x).Type" data-ng-change="setRoomType((y-1)*5+x)">
-                                <option value="Single">Single</option>
-                                <option value="Double">Double</option>
-                                <option value="SingleGold">Single Gold Floor</option>
-                                <option value="DoubleGold">Double Gold Floor</option>
-                                <option value="OneBedSingleSuite">1 Bedroom Single</option>
-                                <option value="OneBedDoubleSuite">1 Bedroom Double</option>
-                                <option value="TwoBedSingleSuite">2 Bedroom Single</option>
-                                <option value="TwoBedDoubleSuite">2 Bedroom Double</option>
+                                <option ng-if="model.year == '2015'" value="King">1 King Bed, Business</option>
+                                <option ng-if="model.year == '2015'" value="Queen">1 Queen Bed, w/pullout sofa</option>
+                                <option ng-if="model.year == '2015'" value="TwoDouble">2 Double Beds</option>
+                                <option ng-if="model.year == '2015'" value="TwoDoubleAccessible">2 Double Beds, accessible</option>
+
+                                <option ng-if="model.year == '2014'" value="Single">Single</option>
+                                <option ng-if="model.year == '2014'" value="Double">Double</option>
+                                <option ng-if="model.year == '2014'" value="SingleGold">Single Gold Floor</option>
+                                <option ng-if="model.year == '2014'" value="DoubleGold">Double Gold Floor</option>
+                                <option ng-if="model.year == '2014'" value="OneBedSingleSuite">1 Bedroom Single</option>
+                                <option ng-if="model.year == '2014'" value="OneBedDoubleSuite">1 Bedroom Double</option>
+                                <option ng-if="model.year == '2014'" value="TwoBedSingleSuite">2 Bedroom Single</option>
+                                <option ng-if="model.year == '2014'" value="TwoBedDoubleSuite">2 Bedroom Double</option>
                             </select>
                         </h6> 
                         <div id="bin{{calcBin(y,x)}}" data-droppable="{{calcBin(y,x)}}" data-drop="addToRoom">
