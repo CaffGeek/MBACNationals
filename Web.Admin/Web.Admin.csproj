@@ -495,6 +495,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AzureTableHelper\AzureTableHelper.csproj">
+      <Project>{0077AEB3-E23B-4226-9D9B-3E32DD65353D}</Project>
+      <Name>AzureTableHelper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Edument.CQRS\Edument.CQRS.csproj">
       <Project>{d2bab57d-225d-4f4c-9410-ed39495a8fe0}</Project>
       <Name>Edument.CQRS</Name>
