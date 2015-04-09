@@ -88,7 +88,7 @@
         }
 
         $scope.saveInstructions = function () {
-            dataService.SaveInstructions(year, province, $scope.model.instructions);
+            dataService.SaveInstructions($scope.model.contingentId, province, $scope.model.instructions);
         }
     };
 

@@ -195,9 +195,9 @@
             return $http.post('/Setup/Contingent/SavePracticePlan', practicePlan);
         };
 
-        function saveInstructions(year, province, instructions) {
+        function saveInstructions(contingentId, province, instructions) {
             return $http.post('/Setup/Contingent/SaveReservationInstructions', {
-                Year: year,
+                Id: contingentId,
                 Province: province,
                 Instructions: instructions
             });
