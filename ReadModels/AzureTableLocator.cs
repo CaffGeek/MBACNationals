@@ -68,7 +68,11 @@ namespace MBACNationals.ReadModels
 
             var nameTable = GetNameTable();
             var tableResults = nameTable.Execute(TableOperation.Retrieve<TableName>(typeName, typeName));
-            var entity = (TableName)tableResults.Result;
+            var entity = (TableName)tableResults.Result
+                ?? new TableName(typeName)
+                {
+                    CurrentTableName = typeName
+                };
 
             var regex = new Regex("\\d+$", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
             var currentTableName = entity.CurrentTableName;
@@ -78,6 +82,9 @@ namespace MBACNationals.ReadModels
             {
                 iteration = int.Parse(matches.Value) + 1;
             }
+
+            var currentTable = _tableClient.GetTableReference(currentTableName);
+            currentTable.DeleteIfExistsAsync();
 
             entity.CurrentTableName = typeName + iteration;
             nameTable.Execute(TableOperation.InsertOrReplace(entity));
