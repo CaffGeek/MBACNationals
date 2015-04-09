@@ -15,13 +15,13 @@ namespace MBACNationals.ReadModels
             public string AzureEntityType { get; set; }
         }
 
-        private AzureTableLocator azureTableLocator { get; set; }
+        private AzureTableHelper.AzureTableHelper AzureTableHelper { get; set; }
 
         private CloudTable Table
         {
             get
             {
-                return azureTableLocator.GetTableFor(GetType());
+                return AzureTableHelper.GetTableFor(GetType());
             }
         }
 
@@ -36,7 +36,7 @@ namespace MBACNationals.ReadModels
             servicePoint.ConnectionLimit = 100;
 
             var tableClient = storageAccount.CreateCloudTableClient();
-            azureTableLocator = new AzureTableLocator(tableClient);            
+            AzureTableHelper = new AzureTableHelper.AzureTableHelper(tableClient);            
         }
 
         protected void Create<T>(Guid partition, Guid key, T entity)
