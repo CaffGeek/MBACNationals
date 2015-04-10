@@ -1,6 +1,7 @@
 ﻿using MBACNationals.Tournament.Commands;
 using System;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace WebFrontend.Controllers
 {
@@ -9,6 +10,26 @@ namespace WebFrontend.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            var year = string.Empty;
+            var prov = string.Empty;
+            
+            var roles = Roles.GetRolesForUser(HttpContext.User.Identity.Name);
+            foreach (var role in roles)
+            {
+                int y;
+                if (int.TryParse(role, out y) && y > 1900)
+                    year = role;
+
+                if (role.Length == 2)
+                    prov = role;            
+            }
+
+            if (!string.IsNullOrWhiteSpace(year))
+                if (!string.IsNullOrWhiteSpace(prov))
+                    return RedirectToAction("Edit", "Contingent", new { year = year, province = prov });
+                else
+                    return RedirectToAction("Edit", "Contingent", new { year = year });
+
             return View();
         }
 
