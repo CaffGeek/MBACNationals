@@ -95,30 +95,10 @@ namespace WebFrontend
             var tableStorageConn = ConfigurationManager.ConnectionStrings["AzureTableStorage"].ConnectionString;
             var storageAccount = CloudStorageAccount.Parse(tableStorageConn);
             var tableClient = storageAccount.CreateCloudTableClient();
-            
-            //var table = tableClient.GetTableReference(readmodel.ToLower());
-            //table.DeleteIfExists();
-            var azureTableLocator = new AzureTableLocator(tableClient);
-            azureTableLocator.CreateNewTableFor(readmodel.ToLower());
 
-            //var success = false;
-            //while (!success)
-            //{
-            //    try
-            //    {
-            //        table.Create();
-            //        success = true;
-            //    }
-            //    catch (StorageException)
-            //    {
-            //        //HACK: Table recreation failed retrying in 5 sec
-            //        try
-            //        {
-            //            Thread.Sleep(5000);
-            //        // ReSharper disable once EmptyGeneralCatchClause
-            //        } catch (Exception) { }
-            //    }
-            //}
+            var azureTableHelper = new AzureTableHelper.AzureTableHelper(tableClient);
+            azureTableHelper.DeleteTable(readmodel.ToLower());
+            azureTableHelper.IterateTableNameFor(readmodel.ToLower());
 
             Dispatcher.RepublishEvents(readmodel);
 

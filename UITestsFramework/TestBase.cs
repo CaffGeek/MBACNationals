@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Table;
 
 namespace UITestsFramework
 {
@@ -37,17 +40,35 @@ namespace UITestsFramework
 
         private static void BackupTableStorage()
         {
-            throw new NotImplementedException();
+            var tableClient = GetCloudTableClient();
+            var azureTableHelper = new AzureTableHelper.AzureTableHelper(tableClient);
+            var tableNames = azureTableHelper.GetTableNames();
+            foreach (var tableName in tableNames)
+            {
+                azureTableHelper.BackupTable(tableName.Key);
+            }
         }
 
         private static void DeleteExistingTableStorage()
         {
-            throw new NotImplementedException();
+            var tableClient = GetCloudTableClient();
+            var azureTableHelper = new AzureTableHelper.AzureTableHelper(tableClient);
+            var tableNames = azureTableHelper.GetTableNames();
+            foreach (var tableName in tableNames)
+            {
+                azureTableHelper.DeleteTable(tableName.Key);
+            }
         }
 
         private static void SwitchTableStorageToBackups()
         {
-            throw new NotImplementedException();
+            var tableClient = GetCloudTableClient();
+            var azureTableHelper = new AzureTableHelper.AzureTableHelper(tableClient);
+            var tableNames = azureTableHelper.GetTableNames();
+            foreach (var tableName in tableNames)
+            {
+                azureTableHelper.IterateTableNameFor(tableName.Key);
+            }
         }
 
         private static DateTime GetLastEventTime()
@@ -71,6 +92,14 @@ namespace UITestsFramework
         private static void DeleteNewUsers(DateTime lastEvent)
         {
             //TODO: Execute 
+        }
+
+        private static CloudTableClient GetCloudTableClient()
+        {
+            const string tableStorageConn = "UseDevelopmentStorage=true;";
+            var storageAccount = CloudStorageAccount.Parse(tableStorageConn);
+            var tableClient = storageAccount.CreateCloudTableClient();
+            return tableClient;
         }
     }
 }
