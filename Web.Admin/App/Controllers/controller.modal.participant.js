@@ -7,7 +7,7 @@
         $scope.model.title = team.Name;
         $scope.model.participant = participant || { Package: {} };
         $scope.model.team = team || {};
-        $scope.model.year = year || 2014;
+        $scope.model.year = year || 0;
 
         $scope.save = function () {
             var deferred = $q.defer();
@@ -52,5 +52,5 @@
         };
     };
 
-    app.controller("ModalParticipantController", ["$scope", "$q", "$modalInstance", "dataService", "participant", "team", modalParticipantController]);
+    app.controller("ModalParticipantController", ["$scope", "$q", "$modalInstance", "dataService", "participant", "team", "year", modalParticipantController]);
 }());
