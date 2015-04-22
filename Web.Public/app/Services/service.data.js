@@ -14,19 +14,19 @@
 
         function loadContingent(province) {
             return $http.get('http://mbacnationals.com/Setup/Contingent', {
-                params: { province: province }
+                params: { province: province, year: 2015 }
             });
         };
 
         function loadLaneDraw(division) {
             return $http.get('http://mbacnationals.com/Setup/Scores/Schedule', {
-                params: { division: division }
+                params: { division: division, year: 2015 }
             });
         };
 
         function loadStandings(division) {
             return $http.get('http://mbacnationals.com/Setup/Scores/Standings', {
-                params: { division: division }
+                params: { division: division, year: 2015 }
             });
         };
 
@@ -38,7 +38,7 @@
 
         function loadHighScores(division) {
             return $http.get('http://mbacnationals.com/Setup/Scores/HighScores', {
-                params: { division: division }
+                params: { division: division, year: 2015 }
             });
         };
 
