@@ -10,8 +10,8 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 
 <head>
-<meta property="og:url" content="http://nationals2014.manitobamasterbowlers.com" />
-<meta property="og:image" content="http://nationals2014.manitobamasterbowlers.com/images/LinkLogo.jpg" />
+<meta property="og:url" content="http://mbacnationals.com" />
+<meta property="og:image" content="http://mbacnationals.com/images/LinkLogo.jpg" />
 <meta property="og:title" content="2015 Master Bowlers Association National Championships :: Burlington, ON" />
 
 	<meta charset="utf-8">
