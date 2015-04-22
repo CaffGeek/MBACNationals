@@ -14,21 +14,20 @@ include "header.php";
         <div data-ng-controller="ContingentController">
 				  <div class="col span_4_of_12">
 				    <div id="centres_links">
-				    <a href="">Coming Soon</a>
-	<!--			      <a href="" data-ng-click="loadContingent('BC')">British Columbia</a><br />
+				      <a href="" data-ng-click="loadContingent('BC')">British Columbia</a><br />
 				      <a href="" data-ng-click="loadContingent('AB')">Alberta</a><br />
 				      <a href="" data-ng-click="loadContingent('SK')">Saskatchewan</a><br />
 				      <a href="" data-ng-click="loadContingent('MB')">Manitoba</a><br />
 				      <a href="" data-ng-click="loadContingent('NO')">Northern Ontario</a><br />
 				      <a href="" data-ng-click="loadContingent('SO')">Southern Ontario</a><br />
 				      <a href="" data-ng-click="loadContingent('QC')">Quebec</a><br />
-				      <a href="" data-ng-click="loadContingent('NL')">Newfoundland & Labrador</a>-->
+				      <a href="" data-ng-click="loadContingent('NL')">Newfoundland &amp; Labrador</a>
 				    </div>
 				  </div>
 				  <div class="col span_8_of_12" id="contentArea">
 
-            <h2><!--{{model.Province}} -->Contingents</h2>
-<!--            <p>* Rookie</p>
+            <h2>{{model.Province}} Contingents</h2>
+            <p>* Rookie</p>
 
             <div class="col span_5_of_12" data-ng-repeat="team in model.Teams | orderBy:'-1*Name.length'" data-ng-show="team.Id">
               <h5>{{team.Name}}</h5>
@@ -49,14 +48,14 @@ include "header.php";
                     <span data-ng-show="bowler.IsDelegate">
                       <sup>D</sup>
                     </span>
-                  </span>-->
-                  <!--<span data-ng-if="team.Name.indexOf('Teaching') >= 0 || team.Name.indexOf('Seniors') >= 0" class="col span_1_of_3 text-right">-->
-                 <!-- <span data-ng-if="team.RequiresAverage" class="col span_2_of_12 text-right">
+                  </span>
+                  <span data-ng-if="team.Name.indexOf('Teaching') >= 0 || team.Name.indexOf('Seniors') >= 0" class="col span_1_of_3 text-right">
+                  <span data-ng-if="team.RequiresAverage" class="col span_2_of_12 text-right">
                     {{bowler.Average}}
                   </span>
                 </li>
               </ol>
-            </div>-->
+            </div>
 
 				  </div>
 

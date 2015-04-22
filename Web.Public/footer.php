@@ -6,3 +6,10 @@
 			</div>
 		</footer>
 	</div>
+
+<script src="app/app.js"></script>
+<script src="app/Controllers/controller.contingent.js"></script>
+<script src="app/Controllers/controller.highscores.js"></script>
+<script src="app/Controllers/controller.results.js"></script>
+<script src="app/Controllers/controller.schedule.js"></script>
+<script src="app/Services/service.data.js"></script>

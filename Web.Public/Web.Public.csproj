@@ -40,6 +40,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="app\app.js" />
+    <Content Include="app\Controllers\controller.contingent.js" />
+    <Content Include="app\Controllers\controller.highscores.js" />
+    <Content Include="app\Controllers\controller.results.js" />
+    <Content Include="app\Controllers\controller.schedule.js" />
+    <Content Include="app\Services\service.data.js" />
+    <Content Include="app\Views\highscores.html" />
+    <Content Include="app\Views\Results\Bowler.html" />
+    <Content Include="app\Views\Results\Match.html" />
+    <Content Include="app\Views\Results\Standings.html" />
+    <Content Include="app\Views\Results\Team.html" />
     <Content Include="centres.php" />
     <Content Include="contingents.php" />
     <Content Include="foliogallery-demo.php" />
