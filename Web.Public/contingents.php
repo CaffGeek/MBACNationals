@@ -50,8 +50,9 @@ include "header.php";
                     </span>
                   </span>
                   <span data-ng-if="team.Name.indexOf('Teaching') >= 0 || team.Name.indexOf('Seniors') >= 0" class="col span_1_of_3 text-right">
-                  <span data-ng-if="team.RequiresAverage" class="col span_2_of_12 text-right">
-                    {{bowler.Average}}
+                    <span data-ng-if="team.RequiresAverage" class="col span_2_of_12 text-right">
+                      {{bowler.Average}}
+                    </span>
                   </span>
                 </li>
               </ol>
