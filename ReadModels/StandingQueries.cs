@@ -1,5 +1,7 @@
 ﻿using Edument.CQRS;
+using Events.Contingent;
 using Events.Scores;
+using Events.Tournament;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +10,11 @@ namespace MBACNationals.ReadModels
 {
     public class StandingQueries : AzureReadModel,
         IStandingQueries,
+        ISubscribeTo<TournamentCreated>,
+        ISubscribeTo<ContingentCreated>,
+        ISubscribeTo<ContingentAssignedToTournament>,
+        ISubscribeTo<TeamCreated>,
+        ISubscribeTo<TeamRemoved>,
         ISubscribeTo<TeamGameCompleted>
     {
         public StandingQueries(string readModelFilePath)
@@ -48,6 +55,7 @@ namespace MBACNationals.ReadModels
                 get { return Guid.Parse(RowKey); }
                 internal set { RowKey = value.ToString(); }
             }
+            public Guid TournamentId { get; set; }
             public bool IsPOA { get; set; }
             public string Division { get; set; }
             public string Province { get; set; }
@@ -56,13 +64,44 @@ namespace MBACNationals.ReadModels
             public int Score { get; set; }
             public int POA { get; set; }
             public double Points { get; set; }
-            public double TotalPoints { get; set; }            
+            public double TotalPoints { get; set; }
 
         }
 
-        public List<Team> GetDivision(string division)
+        private class TSTournament : Entity
         {
-            var matches = Query<TSMatch>(x => x.Division.Equals(division, StringComparison.OrdinalIgnoreCase));
+            public Guid TournamentId
+            {
+                get { return Guid.Parse(RowKey); }
+                internal set { RowKey = value.ToString(); PartitionKey = value.ToString(); }
+            }
+            public string Year { get; set; }
+        }
+
+        private class TSContingent : Entity
+        {
+            public Guid TournamentId { get; set; }
+            public string Province { get; set; }
+        }
+
+        private class TSTeam : Entity
+        {
+            public Guid ContingentId
+            {
+                get { return Guid.Parse(PartitionKey); }
+            }
+            public Guid TeamId
+            {
+                get { return Guid.Parse(RowKey); }
+            }
+            public string Name { get; set; }
+        }
+
+        public List<Team> GetDivision(Guid tournamentId, string division)
+        {
+            var matches = Query<TSMatch>(x =>
+                x.TournamentId == tournamentId
+                && x.Division.Equals(division, StringComparison.OrdinalIgnoreCase));
 
             var teams = matches
                 .GroupBy(x => x.TeamId)
@@ -94,11 +133,51 @@ namespace MBACNationals.ReadModels
 
             return teams;
         }
-        
+
+        public void Handle(TournamentCreated e)
+        {
+            Create(e.Id, e.Id, new TSTournament
+            {
+                Year = e.Year
+            });
+        }
+
+        public void Handle(ContingentCreated e)
+        {
+            Create(e.Id, e.Id, new TSContingent
+            {
+                Province = e.Province,
+            });
+        }
+
+        public void Handle(ContingentAssignedToTournament e)
+        {
+            Update<TSContingent>(e.Id, e.Id, contingent =>
+            {
+                contingent.TournamentId = e.TournamentId;
+            });
+        }
+
+        public void Handle(TeamCreated e)
+        {
+            Create(e.Id, e.TeamId, new TSTeam
+            {
+                Name = e.Name,
+            });
+        }
+
+        public void Handle(TeamRemoved e)
+        {
+            Delete<TSTeam>(e.Id, e.TeamId);
+        }
+
         public void Handle(TeamGameCompleted e)
         {
+            var team = Read<TSTeam>(e.TeamId);
+            var contingent = Read<TSContingent>(team.ContingentId, team.ContingentId);
             Create(e.TeamId, e.Id, new TSMatch
             {
+                TournamentId = contingent.TournamentId,
                 IsPOA = e.IsPOA,
                 Division = e.Division,
                 Province = e.Contingent,
