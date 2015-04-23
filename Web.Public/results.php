@@ -14,7 +14,7 @@ include "header.php";
       <div data-ng-controller="ResultsController">
 				<div class="col span_1_of_3">
 				  <div id="centres_links">
-				  <a href="">Coming Soon</a><!--
+				  <!--<a href="">Coming Soon</a>-->
             <a href="#Standings" data-ng-click="viewStandings('Tournament Men Single')">TOURNAMENT MEN SINGLE</a><br />
             <a href="#Standings" data-ng-click="viewStandings('Tournament Ladies Single')">TOURNAMENT LADIES SINGLE</a><br />
             <a href="#Standings" data-ng-click="viewStandings('Tournament Men')">TOURNAMENT MEN</a><br />
@@ -24,17 +24,16 @@ include "header.php";
             <a href="#Standings" data-ng-click="viewStandings('Teaching Men')">TEACHING MEN</a><br />
             <a href="#Standings" data-ng-click="viewStandings('Teaching Ladies')">TEACHING LADIES</a><br />
             <a href="#Standings" data-ng-click="viewStandings('Seniors')">SENIORS</a><br />
-            <a href="#Standings" data-ng-click="viewStandings('Seniors Single')">SENIORS SINGLE</a><br />-->
+            <a href="#Standings" data-ng-click="viewStandings('Seniors Single')">SENIORS SINGLE</a><br />
 				  </div>
 				</div>
         <div class="col span_2_of_3">
           <div class="col span_3_of_3" id="contentArea" data-ng-include="" data-src="viewUrl">
-              <h2>RESULTS</h2>
 
           </div>
-         <!-- <h5 class="text-center">Results are unofficial</h5>-->
+          <h5 class="text-center">Results are unofficial</h5>
         </div>
-			</div>
+      </div>
     </div>
   </div>
 </div>
