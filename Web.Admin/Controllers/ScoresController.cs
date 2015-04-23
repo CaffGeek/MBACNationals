@@ -29,11 +29,12 @@ namespace WebFrontend.Controllers
 
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        public JsonResult Standings(string division)
+        public JsonResult Standings(string year, string division)
         {
             Response.AppendHeader("Access-Control-Allow-Origin", "*");
 
-            var standings = Domain.StandingQueries.GetDivision(division);
+            var tournament = Domain.TournamentQueries.GetTournament(year);
+            var standings = Domain.StandingQueries.GetDivision(tournament.Id, division);
             return Json(standings, JsonRequestBehavior.AllowGet);
         }
 
