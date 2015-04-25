@@ -97,7 +97,7 @@ namespace MBACNationals.ReadModels
             public int RoomNumber { get; set; }
             public string Type { get; set; }
         }
-
+        
         public ContingentTravelPlans GetTravelPlans(string year, string province)
         {
             var tournament = Query<TSTournament>(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
@@ -124,6 +124,35 @@ namespace MBACNationals.ReadModels
                 TravelPlans = travelPlans,
             };
             return contingentTravelPlan;
+        }
+
+        public List<ContingentRooms> GetAllRooms(string year)
+        {
+            var tournament = Query<TSTournament>(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+
+            var contingents = Query<TSContingent>(x => x.TournamentId == tournament.Id);
+
+            var allRooms = new List<ContingentRooms>();
+            foreach (var contingent in contingents)
+            {
+                var hotelRooms = Query<TSHotelRoom>(x => x.ContingentId == contingent.Id)
+                   .Select(x => new HotelRoom
+                   {
+                       RoomNumber = x.RoomNumber,
+                       Type = x.Type
+                   }).ToList();
+
+                var contingentRooms = new ContingentRooms
+                {
+                    Id = contingent.Id,
+                    Province = contingent.Province,
+                    Instructions = contingent.Instructions,
+                    HotelRooms = hotelRooms,
+                };
+                allRooms.Add(contingentRooms);
+            }
+
+            return allRooms;
         }
 
         public ContingentRooms GetRooms(string year, string province)

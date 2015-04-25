@@ -4,21 +4,23 @@
 	var reportController = function ($scope, $http, $q, $location, modalFactory, dataService) {
 	    var url = $location.absUrl();
 	    var lastSlash = url.lastIndexOf('/');
-	    var province = url.slice(lastSlash + 1);
-	    var year = url.slice(lastSlash - 4, lastSlash);
+	    var year = url.slice(lastSlash + 1);
 
-		$scope.model = {};
-		$scope.viewUrl = '/App/Views/Reports/Averages.html';
+	    $scope.model = { year: year };
+		$scope.viewUrl = '/App/Views/Reports/Reservations.html';
 
 		$scope.loadParticipants = loadParticipants;
 		$scope.loadProfiles = loadProfiles;
+		$scope.loadRooms = loadRooms;
 
 		$scope.plaqueFilter = plaqueFilter;
+		$scope.roomTypeFilter = roomTypeFilter;
 
 		loadParticipants();
+		loadRooms();
 
 		function loadParticipants() {
-		    dataService.LoadAllParticipants().then(function (data) {
+		    dataService.LoadAllParticipants($scope.model.year).then(function (data) {
 		        $scope.model.Participants = data.data;
 		    });
 		};
@@ -31,6 +33,16 @@
 		    dataService.LoadProfiles().then(function (data) {
 		        $scope.model.Profiles = data.data;
 		    });
+		};
+
+		function loadRooms() {
+		    dataService.LoadRooms($scope.model.year).then(function (data) {
+		        $scope.model.ContingentRooms = data.data;
+		    });
+		};
+
+		function roomTypeFilter(rooms, type) {
+		    return rooms.filter(function (room) { return room.Type == type; }).length;
 		};
 	};
 

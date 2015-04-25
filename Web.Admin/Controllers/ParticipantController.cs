@@ -7,14 +7,14 @@ namespace WebFrontend.Controllers
 {
     public class ParticipantController : Controller
     {
-        public ActionResult Index()
-        {
-            return View(
-                new WebFrontend.Models.Participant.Index
-                {
-                    Participants = Domain.ParticipantQueries.GetParticipants(),
-                });
-        }
+        //public ActionResult Index()
+        //{
+        //    return View(
+        //        new WebFrontend.Models.Participant.Index
+        //        {
+        //            Participants = Domain.ParticipantQueries.GetParticipants(),
+        //        });
+        //}
 
         public ActionResult View(Guid id)
         {
@@ -38,9 +38,9 @@ namespace WebFrontend.Controllers
 
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        public JsonResult All()
+        public JsonResult All(string year)
         {
-            var participants = Domain.ParticipantQueries.GetParticipants();
+            var participants = Domain.ParticipantQueries.GetParticipants(year);
             return Json(participants, JsonRequestBehavior.AllowGet);
         }
 
