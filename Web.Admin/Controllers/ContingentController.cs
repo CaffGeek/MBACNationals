@@ -112,9 +112,16 @@ namespace WebFrontend.Controllers
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public JsonResult Rooms(string year, string province)
         {
-            var rooms = Domain.ContingentTravelPlanQueries.GetRooms(year, province);
-
-            return Json(rooms, JsonRequestBehavior.AllowGet);
+            if (string.IsNullOrWhiteSpace(province))
+            {
+                var rooms = Domain.ContingentTravelPlanQueries.GetAllRooms(year);
+                return Json(rooms, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                var rooms = Domain.ContingentTravelPlanQueries.GetRooms(year, province);
+                return Json(rooms, JsonRequestBehavior.AllowGet);
+            }
         }
 
         [HttpGet]

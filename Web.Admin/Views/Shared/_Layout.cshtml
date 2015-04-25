@@ -38,15 +38,20 @@
         <!-- Site footer -->
         <div class="footer">
             <p>Site Design &copy; 2013-@System.DateTime.Now.Year Charlene McIvor and Chad Hurd</p>
-            @if (User.IsInRole("Admin"))
-            {
-                @Html.ActionLink("Reports", "Reports", "Admin")
-                @Html.ActionLink("Score Entry", "Entry", "Scores", new { year = ViewBag.Year }, null)
-            }
-            @if (User.Identity.Name.Equals("Chad", StringComparison.OrdinalIgnoreCase))
-            {
-                @Html.ActionLink("Rebuild Read Models", "Rebuild", "Admin")
-            }
+            <ul>
+                @{
+                    var @li = " - ";
+                }
+                @if (User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Reports", "Reports", "Admin", new { year = ViewBag.Year }, null)
+                    @li @Html.ActionLink("Score Entry", "Entry", "Scores", new { year = ViewBag.Year }, null)
+                }
+                @if (User.Identity.Name.Equals("Chad", StringComparison.OrdinalIgnoreCase))
+                {
+                    @li @Html.ActionLink("Rebuild Read Models", "Rebuild", "Admin")
+                }
+            </ul>
         </div>
 
     </div>

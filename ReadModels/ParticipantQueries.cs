@@ -1,6 +1,7 @@
 ﻿using Edument.CQRS;
 using Events.Contingent;
 using Events.Participant;
+using Events.Tournament;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +22,11 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<ParticipantAverageChanged>,
         ISubscribeTo<ParticipantGuestPackageChanged>,
         ISubscribeTo<ParticipantShirtSizeChanged>,
+        ISubscribeTo<ParticipantAssignedToRoom>,
         ISubscribeTo<TeamCreated>,
-        ISubscribeTo<ContingentCreated>
+        ISubscribeTo<ContingentCreated>,
+        ISubscribeTo<ContingentAssignedToTournament>,
+        ISubscribeTo<TournamentCreated>
     {
         public ParticipantQueries(string readModelFilePath)
         {
@@ -97,9 +101,20 @@ namespace MBACNationals.ReadModels
                 get { return Guid.Parse(RowKey); }
                 internal set { RowKey = value.ToString(); PartitionKey = value.ToString(); }
             }
-            public string Province { get; internal set; }
+            public string Province { get; set; }
+            public Guid TournamentId { get; set; }
         }
-        
+
+        private class TSTournament : Entity
+        {
+            public Guid Id
+            {
+                get { return Guid.Parse(RowKey); }
+                internal set { RowKey = value.ToString(); PartitionKey = value.ToString(); }
+            }
+            public string Year { get; set; }
+        }
+
         private class TSTeam : Entity
         {
             public Guid Id
@@ -115,9 +130,13 @@ namespace MBACNationals.ReadModels
             public string Name { get; set; }
         }
         
-        public List<Participant> GetParticipants()
+        public List<Participant> GetParticipants(string year)
         {
+            var tournament = Query<TSTournament>(x => x.Year == year).FirstOrDefault();
+            var contingents = Query<TSContingent>(x => x.TournamentId == tournament.Id);
+
             return Query<TSParticipant>()
+                .Where(x => contingents.Any(c => c.Id.ToString() == x.ContingentId))
                 .Select(x => new Participant
                 {
                     Id = x.Id,
@@ -303,6 +322,24 @@ namespace MBACNationals.ReadModels
         public void Handle(ParticipantShirtSizeChanged e)
         {
             Update<TSParticipant>(e.Id, e.Id, x => { x.ShirtSize = e.ShirtSize; });
+        }
+
+        public void Handle(ParticipantAssignedToRoom e)
+        {
+            Update<TSParticipant>(e.Id, e.Id, x => { x.RoomNumber = e.RoomNumber; });
+        }
+
+        public void Handle(ContingentAssignedToTournament e)
+        {
+            Update<TSContingent>(e.Id, e.Id, x => x.TournamentId = e.TournamentId);
+        }
+
+        public void Handle(TournamentCreated e)
+        {
+            Create(e.Id, e.Id, new TSTournament
+            {
+                Year = e.Year
+            });
         }
     }
 }

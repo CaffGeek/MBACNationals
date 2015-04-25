@@ -134,8 +134,12 @@
             });
         };
 
-        function loadAllParticipants() {
-            return $http.get('/Setup/Participant/All');
+        function loadAllParticipants(year) {
+            return $http.get('/Setup/Participant/All', {
+                params: {
+                    year: year
+                }
+            });
         };
 
         function assignParticipantToRoom(id, roomNumber) {

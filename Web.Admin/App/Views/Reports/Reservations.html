@@ -1,0 +1,51 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <h4>Room Counts</h4>
+        <table data-exportable="RoomCounts" class="table table-striped table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th>Province</th>
+                    <th>Type</th>
+                    <th>Count</th>
+                </tr>
+            </thead>
+            <tbody data-ng-repeat="contingent in model.ContingentRooms">
+                <tr data-ng-repeat="type in contingent.HotelRooms | unique:'Type'">
+                    <td>{{contingent.Province}}</td>
+                    <td>{{type.Type}}</td>
+                    <td>{{roomTypeFilter(contingent.HotelRooms, type.Type)}}</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Special Instructions</td>
+                    <td colspan="3">{{contingent.Instructions}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <h4>Room Assignments</h4>
+        <table data-exportable="Rooms" class="table table-striped table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th>Province</th>
+                    <th>Room</th>
+                    <th>Type</th>
+                    <th>Occupants</th>
+                </tr>
+            </thead>
+            <tbody data-ng-repeat="contingent in model.ContingentRooms">
+                <tr data-ng-repeat="room in contingent.HotelRooms">
+                    <td>{{contingent.Province}}</td>
+                    <td>{{room.RoomNumber}}</td>
+                    <td>{{room.Type}}</td>
+                    <td>
+                        <ul>
+                            <li data-ng-repeat="occupant in model.Participants | filter:{ Province: contingent.Province } | filter:{ RoomNumber: room.RoomNumber }:true">
+                                {{occupant.Name}}
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

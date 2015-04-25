@@ -44,6 +44,12 @@ namespace WebFrontend
             );
 
             routes.MapRoute(
+                name: "Reports",
+                url: "Admin/Reports/{year}",
+                defaults: new { controller = "Admin", action = "Reports" }
+            );
+
+            routes.MapRoute(
                 name: "Admin",
                 url: "Admin/{action}/{id}",
                 defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional }
