@@ -1,6 +1,26 @@
 ﻿<div class="row">
     <div class="col-md-12">
         <h4>Arrivals and Departures</h4>
-        TODO
+        <table data-exportable="TravelPlans" class="table table-striped table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th data-ng-click="orderBy.Descending = !orderBy.Descending; orderBy.Column = 'Province'">Province</th>
+                    <th data-ng-click="orderBy.Descending = !orderBy.Descending; orderBy.Column = 'When'">Date</th>
+                    <th data-ng-click="orderBy.Descending = !orderBy.Descending; orderBy.Column = 'ModeOfTransportation'">Mode</th>
+                    <th data-ng-click="orderBy.Descending = !orderBy.Descending; orderBy.Column = 'FlightNumber'">Info</th>
+                    <th data-ng-click="orderBy.Descending = !orderBy.Descending; orderBy.Column = 'NumberOfPeople'">Number</th>
+                </tr>
+            </thead>
+            <tbody data-ng-repeat="plan in model.FlattenedTravelPlans | orderBy:orderBy.Column:orderBy.Descending">
+                <tr>
+                    <td>{{plan.Province}}</td>
+                    <td>{{plan.When}}</td>
+                    <td>{{plan.ModeOfTransportation}}</td>
+                    <td>{{plan.FlightNumber}}</td>
+                    <td>{{plan.NumberOfPeople}}</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

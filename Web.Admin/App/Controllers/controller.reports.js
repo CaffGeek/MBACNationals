@@ -12,6 +12,7 @@
 		$scope.loadParticipants = loadParticipants;
 		$scope.loadProfiles = loadProfiles;
 		$scope.loadRooms = loadRooms;
+		$scope.loadTravelPlans = loadTravelPlans;
 
 		$scope.plaqueFilter = plaqueFilter;
 		$scope.roomTypeFilter = roomTypeFilter;
@@ -38,6 +39,34 @@
 		function loadRooms() {
 		    dataService.LoadRooms($scope.model.year).then(function (data) {
 		        $scope.model.ContingentRooms = data.data;
+		    });
+		};
+
+		function loadTravelPlans() {
+		    dataService.LoadTravelPlans($scope.model.year).then(function (data) {
+		        var travelPlans = data.data;
+		        var flattenedTravelPlans = [];
+
+		        for (var c = 0; c < travelPlans.length; c++) {
+		            var contingent = travelPlans[c];
+
+		            for (var p = 0; p < contingent.TravelPlans.length; p++) {
+		                var plan = contingent.TravelPlans[p];
+
+		                flattenedTravelPlans.push({
+		                    Province: contingent.Province,
+		                    ModeOfTransportation: plan.ModeOfTransportation,
+		                    When: plan.When,
+		                    FlightNumber: plan.FlightNumber,
+		                    NumberOfPeople: plan.NumberOfPeople,
+		                    Type: plan.Type
+		                });
+		            }
+		        }
+
+		        
+		        $scope.model.TravelPlans = travelPlans;
+		        $scope.model.FlattenedTravelPlans = flattenedTravelPlans.sort(function (a, b) { return a.When < b.When ? -1 : 1; });
 		    });
 		};
 

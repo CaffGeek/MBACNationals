@@ -97,7 +97,37 @@ namespace MBACNationals.ReadModels
             public int RoomNumber { get; set; }
             public string Type { get; set; }
         }
-        
+
+        public List<ContingentTravelPlans> GetAllTravelPlans(string year)
+        {
+            var tournament = Query<TSTournament>(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            var contingents = Query<TSContingent>(x => x.TournamentId == tournament.Id);
+
+            var allPlans = new List<ContingentTravelPlans>();
+            foreach (var contingent in contingents)
+            {
+                var travelPlans = Query<TSTravelPlan>(x => x.ContingentId == contingent.Id)
+                    .Select(x => new TravelPlan
+                    {
+                        ModeOfTransportation = x.ModeOfTransportation,
+                        When = x.When,
+                        FlightNumber = x.FlightNumber,
+                        NumberOfPeople = x.NumberOfPeople,
+                        Type = x.Type
+                    }).ToList();
+
+                var contingentTravelPlan = new ContingentTravelPlans
+                {
+                    Id = contingent.Id,
+                    Province = contingent.Province,
+                    TravelPlans = travelPlans,
+                };
+                allPlans.Add(contingentTravelPlan);
+            }
+
+            return allPlans;
+        }
+
         public ContingentTravelPlans GetTravelPlans(string year, string province)
         {
             var tournament = Query<TSTournament>(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
@@ -129,7 +159,6 @@ namespace MBACNationals.ReadModels
         public List<ContingentRooms> GetAllRooms(string year)
         {
             var tournament = Query<TSTournament>(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
-
             var contingents = Query<TSContingent>(x => x.TournamentId == tournament.Id);
 
             var allRooms = new List<ContingentRooms>();
