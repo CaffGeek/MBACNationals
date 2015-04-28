@@ -66,8 +66,8 @@ var rotator1 = {
     id: 'r1',
     speed: 2000, // default is 4500
     bMouse: true, // pause/resume
-    images: ["Cooperators.jpg", "BurlingtonHotel.jpg", "HolidayInn.jpg"],
-    actions: ["index.html", "index.html", "index.html", "index.html", "index.html", "index.html"]
+    images: ["BurlingtonHotel.jpg", "HolidayInn.jpg", "c4.png", "meridian.jpg", "jackAstors.jpg", "sanders.jpg", "reddarc.jpg", "connectrans.jpg", "bp.jpg", "tourismHamilton.jpg", "hoult.jpg", "gatorTeds.jpg", "phipps.jpg"],
+    actions: ["http://www.tourismburlington.com/stay/hotels-motels/burlington-hotel-association/", "http://www.hiburlington.ca/", "http://www.c4centre.com/", "http://www.meridiancu.ca/find-us/our-locations/Pages/default.aspx?lid=93", "http://jackastors.com/location-map/4/", "http://www.PlayWithSanders.ca", "http://www.red-d-arc.com", "http://www.connectrans.com/en/", "http://bostonpizza.com", "http://www.tourismhamilton.com/", "http://www.houlthellewell.com/", "http://www.gatorteds.ca/", "http://www.phippsbowling.com/"]
 }
 
 // Problems, errors? See http://www.dyn-web.com/tutorials/obj_lit.php#syntax
@@ -108,7 +108,7 @@ function autoResize(id){
 				<div class="col span_3_of_3" id="header">
 				<div id="mobileLogo"><img src="images/2015_logo.png" /></div>
 				<div id="logo"><img src="images/2015_logo.png" /></div>
-				<div id="socialLinks">Join Us:&nbsp;&nbsp;<a href="https://www.facebook.com/MBAofCanada" target="_blank"><img src="images/facebook_icon.png" /></a> <a href="https://twitter.com/MBANationals"><img src="images/twitter_icon.png" /></a> <a href="http://instagram.com/MBACNationals"><img src="images/instagram_icon.png" /></a></div>
+				<div id="socialLinks">Join Us:&nbsp;&nbsp;<a href="https://www.facebook.com/MBAofCanada" target="_blank"><img src="images/facebook_icon.png" /></a> <a href="https://twitter.com/MBANationals" target="_blank"><img src="images/twitter_icon.png" /></a> <a href="http://instagram.com/MBACNationals" target="_blank"><img src="images/instagram_icon.png" /></a></div>
 				<div id="navigation">
           <nav class="nav-collapse" >
             <ul>

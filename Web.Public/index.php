@@ -49,7 +49,7 @@ include "header.php";
 					<div class="col span_2_of_2">
 					<h2>SPONSORS</h2>
 					<div style="height:250px;" class="outerContainer">
-					<div class="innerContainer"><!--<a href="index.html">--><img id="r1" src="images/sponsors/Cooperators.jpg" style="width:100%;" alt="" border="0"><!--</a>--></div>
+					<div class="innerContainer"><a href="http://www.tourismburlington.com/stay/hotels-motels/burlington-hotel-association/"><img id="r1" src="images/sponsors/BurlingtonHotel.jpg" style="width:100%;" alt="" border="0"></a></div>
 					</div>
 
 					</div>
