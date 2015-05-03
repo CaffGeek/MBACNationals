@@ -422,6 +422,7 @@
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Custom\polyfill.classList.js" />
     <Content Include="Scripts\Custom\string.format.js" />
     <Content Include="Scripts\FileSaver.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
