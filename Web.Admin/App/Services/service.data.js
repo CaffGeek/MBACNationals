@@ -217,8 +217,12 @@
             });
         };
 
-        function loadProfiles() {
-            return $http.get('/Setup/Participant/Profiles');
+        function loadProfiles(year) {
+            return $http.get('/Setup/Participant/Profiles/', {
+                params: {
+                    year: year
+                }
+            });
         };
 
         function loadSchedule(year, division) {
