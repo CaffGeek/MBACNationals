@@ -40,17 +40,18 @@
             <p>Site Design &copy; 2013-@System.DateTime.Now.Year Charlene McIvor and Chad Hurd</p>
             <ul>
                 @{
-                    var @li = " - ";
+                    var @spacer = " - ";
                 }
-                @if (User.IsInRole("Admin"))
+                @if (User.IsInRole("Admin") && !string.IsNullOrWhiteSpace(ViewBag.Year))
                 {
-                    @Html.ActionLink("Reports", "Reports", "Admin", new { year = ViewBag.Year }, null)
-                    @li @Html.ActionLink("Score Entry", "Entry", "Scores", new { year = ViewBag.Year }, null)
+                    @spacer @Html.ActionLink("Reports", "Reports", "Admin", new { year = ViewBag.Year }, null)
+                    @spacer @Html.ActionLink("Score Entry", "Entry", "Scores", new { year = ViewBag.Year }, null)
                 }
                 @if (User.Identity.Name.Equals("Chad", StringComparison.OrdinalIgnoreCase))
                 {
-                    @li @Html.ActionLink("Rebuild Read Models", "Rebuild", "Admin")
+                    @spacer @Html.ActionLink("Rebuild Read Models", "Rebuild", "Admin")
                 }
+                @spacer
             </ul>
         </div>
 
