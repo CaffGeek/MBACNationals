@@ -62,9 +62,9 @@ namespace WebFrontend.Controllers
 
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        public JsonResult Profiles()
+        public JsonResult Profiles(int year)
         {
-            var participantProfile = Domain.ParticipantProfileQueries.GetProfiles();
+            var participantProfile = Domain.ParticipantProfileQueries.GetProfiles(year);
             return Json(participantProfile, JsonRequestBehavior.AllowGet);
         }
 

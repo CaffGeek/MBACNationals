@@ -31,7 +31,7 @@
 		}
 
 		function loadProfiles() {
-		    dataService.LoadProfiles().then(function (data) {
+		    dataService.LoadProfiles($scope.model.year).then(function (data) {
 		        $scope.model.Profiles = data.data;
 		    });
 		};
