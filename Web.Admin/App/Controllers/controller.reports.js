@@ -13,6 +13,7 @@
 		$scope.loadProfiles = loadProfiles;
 		$scope.loadRooms = loadRooms;
 		$scope.loadTravelPlans = loadTravelPlans;
+		$scope.loadPracticePlans = loadPracticePlans;
 
 		$scope.plaqueFilter = plaqueFilter;
 		$scope.roomTypeFilter = roomTypeFilter;
@@ -63,10 +64,34 @@
 		                });
 		            }
 		        }
-
 		        
 		        $scope.model.TravelPlans = travelPlans;
 		        $scope.model.FlattenedTravelPlans = flattenedTravelPlans.sort(function (a, b) { return a.When < b.When ? -1 : 1; });
+		    });
+		};
+
+		function loadPracticePlans() {
+		    dataService.LoadPracticePlan($scope.model.year).then(function (data) {
+		        var practicePlans = data.data;
+		        var flattenedPracticePlans = [];
+
+		        for (var c = 0; c < practicePlans.length; c++) {
+		            var contingent = practicePlans[c];
+
+		            for (var p = 0; p < contingent.Teams.length; p++) {
+		                var plan = contingent.Teams[p];
+
+		                flattenedPracticePlans.push({
+		                    Province: contingent.Province,
+		                    Name: plan.Name,
+		                    PracticeTime: plan.PracticeTime,
+		                    PracticeLocation: plan.PracticeLocation
+		                });
+		            }
+		        }
+
+		        $scope.model.PracticePlans = practicePlans;
+		        $scope.model.FlattenedPracticePlans = flattenedPracticePlans;
 		    });
 		};
 

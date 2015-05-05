@@ -74,6 +74,35 @@ namespace MBACNationals.ReadModels
             public string Province { get; set; }
         }
 
+        public List<ContingentPracticePlan> GetAllSchedules(string year)
+        {
+            var tournament = Query<TSTournament>(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            var contingents = Query<TSContingent>(x => x.TournamentId == tournament.Id);
+
+            var contingentPracticePlans = new List<ContingentPracticePlan>();
+            foreach (var contingent in contingents)
+            {
+                var teams = Query<TSTeam>(x => x.ContingentId == contingent.Id)
+                   .Select(x => new Team
+                   {
+                       Id = x.Id,
+                       Name = x.Name,
+                       PracticeLocation = x.PracticeLocation,
+                       PracticeTime = x.PracticeTime
+                   })
+                   .ToList();
+
+                contingentPracticePlans.Add(new ContingentPracticePlan
+                {
+                    Id = contingent.Id,
+                    Province = contingent.Province,
+                    Teams = teams,
+                });
+            }
+
+            return contingentPracticePlans;
+        }
+
         public ContingentPracticePlan GetSchedule(string year, string province)
         {
             var tournament = Query<TSTournament>(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
@@ -84,7 +113,8 @@ namespace MBACNationals.ReadModels
                 .FirstOrDefault();
 
             var teams = Query<TSTeam>(x => x.ContingentId == contingent.Id)
-                .Select(x => new Team {
+                .Select(x => new Team
+                {
                     Id = x.Id,
                     Name = x.Name,
                     PracticeLocation = x.PracticeLocation,

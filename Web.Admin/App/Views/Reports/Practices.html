@@ -1,6 +1,23 @@
 ﻿<div class="row">
     <div class="col-md-12">
         <h4>Practice Times</h4>
-        TODO
+        <table data-exportable="PracticeTimes" class="table table-striped table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th data-ng-click="orderBy.Descending = !orderBy.Descending; orderBy.Column = 'Province'">Province</th>
+                    <th data-ng-click="orderBy.Descending = !orderBy.Descending; orderBy.Column = 'Name'">Team</th>
+                    <th data-ng-click="orderBy.Descending = !orderBy.Descending; orderBy.Column = 'PracticeTime'">Time</th>
+                    <th data-ng-click="orderBy.Descending = !orderBy.Descending; orderBy.Column = 'PracticeLocation'">Location</th>
+                </tr>
+            </thead>
+            <tbody data-ng-repeat="plan in model.FlattenedPracticePlans | orderBy:orderBy.Column:orderBy.Descending">
+                <tr>
+                    <td>{{plan.Province}}</td>
+                    <td>{{plan.Name}}</td>
+                    <td>{{plan.PracticeTime}}</td>
+                    <td>{{plan.PracticeLocation}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
