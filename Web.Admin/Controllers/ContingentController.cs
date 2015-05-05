@@ -135,9 +135,17 @@ namespace WebFrontend.Controllers
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public JsonResult PracticePlan(string year, string province)
         {
-            var rooms = Domain.ContingentPracticePlanQueries.GetSchedule(year, province);
 
-            return Json(rooms, JsonRequestBehavior.AllowGet);
+            if (string.IsNullOrWhiteSpace(province))
+            {
+                var rooms = Domain.ContingentPracticePlanQueries.GetAllSchedules(year);
+                return Json(rooms, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                var rooms = Domain.ContingentPracticePlanQueries.GetSchedule(year, province);
+                return Json(rooms, JsonRequestBehavior.AllowGet);
+            }
         }
 
         [HttpGet]
