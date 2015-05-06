@@ -1,11 +1,11 @@
-﻿<?php 
+<?php 
 include "header.php"; 
 ?>
 
         <div class="section group">
           <div class="col span_3_of_3" style="margin:0px;">
-				<div id="headerImage" style="background-image:url('images/header_image_1.jpg'); "></div>
-				<div id="photoCredit"><strong>Ontario, Canada on Lake Ontario</strong> &bull; Credit: Andrew Lynes - WikiCommons</div>
+				<div id="headerImage" style="background-image:url('images/header_image_6.jpg'); "></div>
+				<div id="photoCredit"><strong>Hamilton Skyline</strong></div>
          </div>
         </div>
 
@@ -23,6 +23,7 @@ include "header.php";
 				<h4 style="color:#cc0000">Discount offered on Souvenir order prior to May 15th</h4><p>Order 1 item receive a <strong>5% discount</strong> off pricing shown<br />Order 2 or more items receive a <strong>10% discount</strong> off pricing shown</p>
               <p><a href="images/forms/souvenirs.pdf" target="_blank">Click here</a> to download the catalogue of available souvenirs</p>
               <p><a href="images/forms/Souvenir_Order_Form.xlsx" target="_blank">Click here</a> to download the order form</p>
+              <p><a href="images/SizingInformation.jpg" target="_blank">Click here</a> to view sizing information.</p>
               <p><a href="images/forms/souvenirs.pdf" target="_blank"><img src="images/catalogue.jpg" alt="catalogue" style="width:48%;margin-right:1%;border:1px solid #ccc;"/></a> <a href="images/forms/Souvenir_Order_Form.xlsx" target="_blank"><img src="images/Souvenir_Order_Form.jpg" alt="Order Form" style="width:48%;border:1px solid #ccc;"/></a></p>
              </div>
           </div>

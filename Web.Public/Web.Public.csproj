@@ -62,10 +62,21 @@
     <Content Include="footer.php" />
     <Content Include="header.php" />
     <Content Include="hotel.php" />
+    <Content Include="images\2015NationalsLaneDraw.jpg" />
     <Content Include="images\2015PreliminaryLaneDraw.gif" />
     <Content Include="images\catalogue.jpg" />
     <Content Include="images\Forms\2015_MBAC_Nat_Inform_Pkg.pdf" />
+    <Content Include="images\SizingInformation.jpg" />
     <Content Include="images\Souvenir_Order_Form.jpg" />
+    <Content Include="images\Sponsors\bp.jpg" />
+    <Content Include="images\Sponsors\c4.png" />
+    <Content Include="images\Sponsors\connectrans.jpg" />
+    <Content Include="images\Sponsors\gatorTeds.jpg" />
+    <Content Include="images\Sponsors\hoult.jpg" />
+    <Content Include="images\Sponsors\jackAstors.jpg" />
+    <Content Include="images\Sponsors\meridian.jpg" />
+    <Content Include="images\Sponsors\reddarc.jpg" />
+    <Content Include="images\Sponsors\tourismHamilton.jpg" />
     <Content Include="index.php-c4f050ab-1686-42d5-9551-26d93f354e17" />
     <Content Include="lanedraw.php" />
     <Content Include="news.php" />
@@ -234,6 +245,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />
+    <Content Include="images\Forms\2015NationalsLaneDraw.pdf" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

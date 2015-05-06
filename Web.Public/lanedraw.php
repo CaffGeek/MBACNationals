@@ -1,4 +1,4 @@
-﻿<?php 
+<?php 
 include "header.php"; 
 ?>
 
@@ -14,7 +14,7 @@ include "header.php";
             <div class="col span_1_of_3">
               <div id="centres_links">
               
-<a href="images/forms/2015PreliminaryLaneDraw.pdf"> DOWNLOAD PDF</a>
+              <a href="images/forms/2015NationalsLaneDraw.pdf" target="_blank"> DOWNLOAD PDF</a>
 <!--                <a href="" data-ng-click="loadLaneDraw('Tournament Men Single')">TOURNAMENT MEN SINGLE</a><br />
                 <a href="" data-ng-click="loadLaneDraw('Tournament Ladies Single')">TOURNAMENT LADIES SINGLE</a><br />
                 <a href="" data-ng-click="loadLaneDraw('Tournament Men')">TOURNAMENT MEN</a><br />
@@ -27,9 +27,8 @@ include "header.php";
             <div class="col span_2_of_3" id="contentArea">
 
               <h2>LANE DRAW</h2>
-              <p><a href="images/forms/2015PreliminaryLaneDraw.pdf" target="_blank">Click here</a> to download a PDF of the Proposed Lane Draw</p>
-              <p>Official Lane Draw - Coming Soon</p>
-              <p><a href="images/forms/2015PreliminaryLaneDraw.pdf" target="_blank"><img src="images/2015PreliminaryLaneDraw.gif" alt="lane draw" style="width:100%;"/></a></p>
+              <p><a href="images/forms/2015NationalsLaneDraw.pdf" target="_blank">Click here</a> to download a PDF of the FINAL Lane Draw</p>
+              <p><a href="images/forms/2015NationalsLaneDraw.pdf" target="_blank"><img src="images/2015NationalsLaneDraw.jpg" alt="lane draw" style="width:100%;"/></a></p>
   <!--            <h4>{{model.Division}}</h4>
               <table style="width: 100%;" class="lanedraw">
                 <tbody data-ng-repeat="game in model.Games | unique:'Number'">
