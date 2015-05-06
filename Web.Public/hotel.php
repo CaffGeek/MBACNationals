@@ -4,8 +4,8 @@ include "header.php";
 
 			<div class="section group">
 				<div class="col span_3_of_3" style="margin:0px;">
-				<div id="headerImage" style="background-image:url('images/header_image_3.jpg'); "></div>
-				<div id="photoCredit"><strong>James N. Allan Skyway Bridge</strong> &bull; Credit: WikiCommons</div>
+				<div id="headerImage" style="background-image:url('images/header_image_8.jpg'); "></div>
+				<div id="photoCredit"><strong>Hamilton, Ontario</strong></div>
 				</div>
 			</div>
 
