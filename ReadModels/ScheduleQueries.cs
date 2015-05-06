@@ -105,7 +105,7 @@ namespace MBACNationals.ReadModels
 
             Create(tournament.Id, e.Id, new TSMatch {
                 Division = e.Division,
-                Year = tournament.Year,
+                Year = string.IsNullOrWhiteSpace(e.Year) ? tournament.Year : e.Year,
                 IsPOA = e.IsPOA,
                 Number = e.Number,
                 Away = e.Away,

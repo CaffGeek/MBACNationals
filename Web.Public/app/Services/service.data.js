@@ -19,7 +19,7 @@
         };
 
         function loadLaneDraw(division) {
-            return $http.get('http://mbacnationals.com/Setup/Scores/Schedule', {
+            return $http.get('http://localhost:60827/Setup/Scores/Schedule', {
                 params: { division: division, year: 2015 }
             });
         };

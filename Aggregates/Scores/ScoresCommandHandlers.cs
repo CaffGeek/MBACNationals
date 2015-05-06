@@ -240,6 +240,8 @@ namespace MBACNationals.Scores
             yield return new MatchCreated
             {
                 Id = command.Id,
+                TournamentId = command.TournamentId,
+                Year = command.Year,
                 Division = command.Division,
                 IsPOA = command.IsPOA,
                 Home = command.Home,

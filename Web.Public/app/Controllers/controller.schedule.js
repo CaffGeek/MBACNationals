@@ -18,6 +18,9 @@
 
             dataService.LoadLaneDraw(division).then(function (data) {
                 $scope.model = data.data;
+                $scope.model.Games.sort(function (a, b) {                    
+                    return a.Number - b.Number;
+                });
                 var lastLocation = '';
                 angular.forEach($scope.model.Games, function (value) {
                     value.ShowLocation = (value.CentreName != lastLocation);
