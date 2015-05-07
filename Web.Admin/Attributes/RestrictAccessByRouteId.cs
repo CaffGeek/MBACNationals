@@ -23,8 +23,8 @@ namespace WebFrontend.Attributes
             if (string.IsNullOrWhiteSpace(contingent))
                 return true;
 
-            return httpContext.User.IsInRole(contingent)
-                && httpContext.User.IsInRole(year);
+            return (httpContext.User.IsInRole(contingent) && httpContext.User.IsInRole(year))
+                || (httpContext.User.IsInRole("Host") && httpContext.User.IsInRole(year));
         }
     }
 }
