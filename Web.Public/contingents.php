@@ -34,26 +34,22 @@ include "header.php";
 
               <ol style="list-style-type:none;">
                 <li data-ng-if="team.Coach.Id">
-                  <span class="col span_9_of_12">
-                    <strong>Coach:</strong> {{team.Coach.Name || 'Vacancy'}}
-                  </span>
-                  <span class="col span_2_of_12 text-right" data-ng-if="team.RequiresAverage">{{totalAverage(team)}}</span>
+                  <span data-ng-if="team.RequiresAverage" style="float:right; font-weight: bold;">{{totalAverage(team)}}</span>
+                  <strong>Coach:</strong> {{team.Coach.Name || 'Vacancy'}}
                 </li>
                 <li data-ng-repeat="bowler in team.Bowlers">
-                  <span class="col span_9_of_12">
-                    {{bowler.Name || 'Vacancy'}}
-                    <span data-ng-show="bowler.IsRookie">
-                      <sup>*</sup>
-                    </span>
-                    <span data-ng-show="bowler.IsDelegate">
-                      <sup>D</sup>
-                    </span>
-                  </span>
-                  <span data-ng-if="team.Name.indexOf('Teaching') >= 0 || team.Name.indexOf('Seniors') >= 0" class="col span_1_of_3 text-right">
-                    <span data-ng-if="team.RequiresAverage" class="col span_2_of_12 text-right">
+                  <span data-ng-if="team.Name.indexOf('Teaching') >= 0 || team.Name.indexOf('Seniors') >= 0" style="float:right;">
+                    <span data-ng-if="team.RequiresAverage" class=" text-right">
                       {{bowler.Average}}
                     </span>
                   </span>
+                  {{bowler.Name || 'Vacancy'}}
+                  <span data-ng-show="bowler.IsRookie">
+                    <sup>*</sup>
+                  </span>
+                  <span data-ng-show="bowler.IsDelegate">
+                    <sup>D</sup>
+                  </span>                  
                 </li>
               </ol>
             </div>
