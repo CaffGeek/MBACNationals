@@ -25,7 +25,7 @@ include "header.php";
 				</div>
 				<div class="col span_2_of_3" id="contentArea">
 					
-					<h2>SCHEDULE (proposed)</h2>
+					<h2>SCHEDULE</h2>
 
 <h3 id="day1">Saturday June 27th - Early Arrivals</h3>
 <h4>11:30 am – 2:00 a.m.</h4><p><Strong>Arrivals & Bus Shuttles to Hotel</strong> Participants & Guests</p>
