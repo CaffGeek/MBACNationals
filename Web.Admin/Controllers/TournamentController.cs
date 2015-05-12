@@ -1,5 +1,6 @@
 ﻿using MBACNationals.Tournament.Commands;
 using System;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -12,8 +13,9 @@ namespace WebFrontend.Controllers
         {
             var year = string.Empty;
             var prov = string.Empty;
+            var user = HttpContext.User;
             
-            var roles = Roles.GetRolesForUser(HttpContext.User.Identity.Name);
+            var roles = Roles.GetRolesForUser(user.Identity.Name);
             foreach (var role in roles)
             {
                 int y;
@@ -25,10 +27,14 @@ namespace WebFrontend.Controllers
             }
 
             if (!string.IsNullOrWhiteSpace(year))
-                if (!string.IsNullOrWhiteSpace(prov))
-                    return RedirectToAction("Edit", "Contingent", new { year = year, province = prov });
-                else
-                    return RedirectToAction("Edit", "Contingent", new { year = year });
+            {
+                if (roles.Contains("ScoreEntry"))
+                    return RedirectToAction("Entry", "Scores", new { year = year });
+
+                return (!string.IsNullOrWhiteSpace(prov))
+                 ? RedirectToAction("Edit", "Contingent", new { year = year, province = prov })
+                 : RedirectToAction("Edit", "Contingent", new { year = year });
+            }
 
             return View();
         }

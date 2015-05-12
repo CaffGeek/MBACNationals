@@ -199,7 +199,7 @@
 
         function navigate(page) {
             $scope.page = page;
-            $scope.viewUrl = '/App/Views/ScoreEntry/' + page + '.html';
+            $scope.viewUrl = '/Setup/App/Views/ScoreEntry/' + page + '.html';
         };
     };
 
