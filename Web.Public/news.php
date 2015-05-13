@@ -22,8 +22,7 @@ include "header.php";
 				<div class="col span_2_of_3"  id="contentArea">
 					
 					<h2>NEWS</h2>
-					<h4>March, 2015<br /><span style="color:#cc0000">Discount offered on Souvenir order prior to May 15th</span></h4><p>Order 1 item receive a <strong>5% discount</strong> off pricing shown<br />Order 2 or more items receive a <strong>10% discount</strong> off pricing shown</p>
-					<h4>March, 2015<br />Web Site Launch</h4><p>Welcome to the 2015 MBAC Nationals Website, please return for future information.</p>
+					<h4><span style="color:#cc0000">ORDER YOUR SOUVENIRS BY MAY 15TH FOR UP TO 10% DISCOUNT</span></h4><p>Order 1 item receive a <strong>5% discount</strong> off pricing shown</p><p>Order 2 or more items receive a <strong>10% discount</strong> off pricing shown</p>
 				</div>
 			</div>
 		</div>
