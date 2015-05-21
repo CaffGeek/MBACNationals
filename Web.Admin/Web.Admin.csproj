@@ -286,6 +286,7 @@
     <Content Include="App\Views\Guests.html" />
     <Content Include="App\Views\Reports\Averages.html" />
     <Content Include="App\Views\Reports\Alternates.html" />
+    <Content Include="App\Views\Reports\Guests.html" />
     <Content Include="App\Views\Reports\Reservations.html" />
     <Content Include="App\Views\Reports\Transportation.html" />
     <Content Include="App\Views\Reports\Practices.html" />
