@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
-
-    var dataService = function ($http) {
+    
+    var dataService = function ($http, providerUrl) {
         return {
             LoadContingent: loadContingent,
             LoadLaneDraw: loadLaneDraw,
@@ -13,47 +13,56 @@
         };
 
         function loadContingent(province) {
-            return $http.get('http://mbacnationals.com/Setup/Contingent', {
+            return $http.get(providerUrl + '/Setup/Contingent', {
                 params: { province: province, year: 2015 }
             });
         };
 
         function loadLaneDraw(division) {
-            return $http.get('http://mbacnationals.com/Setup/Scores/Schedule', {
+            return $http.get(providerUrl + '/Setup/Scores/Schedule', {
                 params: { division: division, year: 2015 }
             });
         };
 
         function loadStandings(division) {
-            return $http.get('http://mbacnationals.com/Setup/Scores/Standings', {
+            return $http.get(providerUrl + '/Setup/Scores/Standings', {
                 params: { division: division, year: 2015 }
             });
         };
 
         function loadMatch(matchId) {
-            return $http.get('http://mbacnationals.com/Setup/Scores/Match', {
+            return $http.get(providerUrl + '/Setup/Scores/Match', {
                 params: { matchId: matchId }
             });
         };
 
         function loadHighScores(division) {
-            return $http.get('http://mbacnationals.com/Setup/Scores/HighScores', {
+            return $http.get(providerUrl + '/Setup/Scores/HighScores', {
                 params: { division: division, year: 2015 }
             });
         };
 
         function loadParticipantScores(participantId) {
-            return $http.get('http://mbacnationals.com/Setup/Scores/Participant', {
+            return $http.get(providerUrl + '/Setup/Scores/Participant', {
                 params: { participantId: participantId }
             });
         };
 
         function loadTeamScores(teamId) {
-            return $http.get('http://mbacnationals.com/Setup/Scores/Team', {
+            return $http.get(providerUrl + '/Setup/Scores/Team', {
                 params: { teamId: teamId }
             });
         };
     };
+    
+    app.factory('providerUrl', ['$location', function providerUrlFactory(location) {
+        var absUrl = location.absUrl();
 
-    app.factory('dataService', ['$http', dataService]);
+        if (absUrl.indexOf('localhost'))
+            return 'http://localhost:60827';
+        else
+            return 'http://mbacnationals.com';
+    }]);
+
+    app.factory('dataService', ['$http', 'providerUrl', dataService]);
 }());
