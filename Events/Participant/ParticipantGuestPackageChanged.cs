@@ -9,5 +9,9 @@ namespace Events.Participant
         public bool ManitobaDance;
         public bool FinalBanquet;
         public bool Transportation;
+        public bool Option1;
+        public bool Option2;
+        public bool Option3;
+        public bool Option4;
     }
 }

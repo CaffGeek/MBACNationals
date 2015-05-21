@@ -50,6 +50,10 @@ namespace MBACNationals.Participant
             public bool ManitobaDance { get; set; }
             public bool FinalBanquet { get; set; }
             public bool Transportation { get; set; }
+            public bool Option1 { get; set; }
+            public bool Option2 { get; set; }
+            public bool Option3 { get; set; }
+            public bool Option4 { get; set; }
         }
 
         public class ProfileDetails
@@ -163,6 +167,10 @@ namespace MBACNationals.Participant
             Package.ManitobaDance = e.ManitobaDance;
             Package.FinalBanquet = e.FinalBanquet;
             Package.Transportation = e.Transportation;
+            Package.Option1 = e.Option1;
+            Package.Option2 = e.Option2;
+            Package.Option3 = e.Option3;
+            Package.Option4 = e.Option4;
         }
 
         public void Apply(ParticipantShirtSizeChanged e)

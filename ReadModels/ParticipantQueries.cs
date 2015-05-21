@@ -62,6 +62,10 @@ namespace MBACNationals.ReadModels
             public bool ManitobaDance { get; set; }
             public bool FinalBanquet { get; set; }
             public bool Transportation { get; set; }
+            public bool Option1 { get; set; }
+            public bool Option2 { get; set; }
+            public bool Option3 { get; set; }
+            public bool Option4 { get; set; }
         }
 
         private class TSParticipant : Entity
@@ -91,6 +95,10 @@ namespace MBACNationals.ReadModels
             public bool ManitobaDance { get; set; }
             public bool FinalBanquet { get; set; }
             public bool Transportation { get; set; }
+            public bool Option1 { get; set; }
+            public bool Option2 { get; set; }
+            public bool Option3 { get; set; }
+            public bool Option4 { get; set; }
             public string ShirtSize { get; set; }
         }
 
@@ -162,6 +170,10 @@ namespace MBACNationals.ReadModels
                         ManitobaDance = x.ManitobaDance,
                         ManitobaDinner = x.ManitobaDinner,
                         Transportation = x.Transportation,
+                        Option1 = x.Option1,
+                        Option2 = x.Option2,
+                        Option3 = x.Option3,
+                        Option4 = x.Option4,
                     },
                     ShirtSize = x.ShirtSize,
                 })
@@ -196,6 +208,10 @@ namespace MBACNationals.ReadModels
                         ManitobaDance = participant.ManitobaDance,
                         ManitobaDinner = participant.ManitobaDinner,
                         Transportation = participant.Transportation,
+                        Option1 = participant.Option1,
+                        Option2 = participant.Option2,
+                        Option3 = participant.Option3,
+                        Option4 = participant.Option4,
                     },
                     ShirtSize = participant.ShirtSize,
                 };
@@ -316,6 +332,10 @@ namespace MBACNationals.ReadModels
                 x.ManitobaDance = e.ManitobaDance;
                 x.FinalBanquet = e.FinalBanquet;
                 x.Transportation = e.Transportation;
+                x.Option1 = e.Option1;
+                x.Option2 = e.Option2;
+                x.Option3 = e.Option3;
+                x.Option4 = e.Option4;
             });
         }
 
