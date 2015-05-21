@@ -138,7 +138,11 @@ namespace MBACNationals.Participant
             if (agg.Package.ManitobaDinner != command.Package.ManitobaDinner
                 || agg.Package.ManitobaDance != command.Package.ManitobaDance
                 || agg.Package.FinalBanquet != command.Package.FinalBanquet
-                || agg.Package.Transportation != command.Package.Transportation)
+                || agg.Package.Transportation != command.Package.Transportation
+                || agg.Package.Option1 != command.Package.Option1
+                || agg.Package.Option2 != command.Package.Option2
+                || agg.Package.Option3 != command.Package.Option3
+                || agg.Package.Option4 != command.Package.Option4)
                 yield return new ParticipantGuestPackageChanged
                 {
                     Id = command.Id,
@@ -146,6 +150,10 @@ namespace MBACNationals.Participant
                     ManitobaDance = command.Package.ManitobaDance,
                     FinalBanquet = command.Package.FinalBanquet,
                     Transportation = command.Package.Transportation,
+                    Option1 = command.Package.Option1,
+                    Option2 = command.Package.Option2,
+                    Option3 = command.Package.Option3,
+                    Option4 = command.Package.Option4,
                 };
         }
 
