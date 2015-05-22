@@ -58,7 +58,7 @@
     app.factory('providerUrl', ['$location', function providerUrlFactory(location) {
         var absUrl = location.absUrl();
 
-        if (absUrl.indexOf('localhost'))
+        if (absUrl.indexOf('localhost') > 0)
             return 'http://localhost:60827';
         else
             return 'http://mbacnationals.com';
