@@ -9,7 +9,7 @@ namespace AzureTableHelper
 {
     public class AzureTableHelper
     {
-        private readonly Dictionary<string, string> _cachedTableNames = new Dictionary<string, string>();
+        private Dictionary<string, string> _cachedTableNames = new Dictionary<string, string>();
         private readonly CloudTableClient _tableClient;
 
         public AzureTableHelper(CloudTableClient tableClient)
@@ -22,8 +22,8 @@ namespace AzureTableHelper
             var nameTable = GetNameTable();
             var tableResults = nameTable.ExecuteQuery(new TableQuery<TableName>());
 
-            //Update cached values with those that are missing
-            foreach (var tableName in tableResults.Where(tableName => !_cachedTableNames.ContainsKey(tableName.RowKey)))
+            _cachedTableNames = new Dictionary<string, string>();
+            foreach (var tableName in tableResults)
             {
                 _cachedTableNames.Add(tableName.RowKey, tableName.CurrentTableName);
             }
@@ -98,7 +98,6 @@ namespace AzureTableHelper
                     };
                     nameTable.Execute(TableOperation.Insert(newTable));
                 }
-                _cachedTableNames.Add(typeName, currentTableName);
             }
 
             return currentTableName;
@@ -142,6 +141,7 @@ namespace AzureTableHelper
 
             entity.CurrentTableName = GetNextTableNameFor(typeName);
             nameTable.Execute(TableOperation.InsertOrReplace(entity));
+            GetTableNames();
 
             return entity.CurrentTableName;
         }
