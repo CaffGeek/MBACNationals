@@ -31,6 +31,9 @@ namespace WebFrontend.Controllers
                 if (roles.Contains("ScoreEntry"))
                     return RedirectToAction("Entry", "Scores", new { year = year });
 
+                if (roles.Contains("Reports"))
+                    return RedirectToAction("Reports", "Admin", new { year = year });
+
                 return (!string.IsNullOrWhiteSpace(prov))
                  ? RedirectToAction("Edit", "Contingent", new { year = year, province = prov })
                  : RedirectToAction("Edit", "Contingent", new { year = year });

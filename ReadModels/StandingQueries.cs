@@ -175,7 +175,24 @@ namespace MBACNationals.ReadModels
         {
             var team = Read<TSTeam>(e.TeamId);
             var contingent = Read<TSContingent>(team.ContingentId, team.ContingentId);
-            Create(e.TeamId, e.Id, new TSMatch
+
+            Guid partitionKey;
+            var isPOASingles = e.IsPOA && e.Division.Contains("Single");
+            if (isPOASingles)
+            {   //HACK: We can't have a duplicate team and match, so for poa singles, we put in a fake teamid
+                var existingEntry = Query<TSMatch>(x => 
+                    x.MatchId == e.Id 
+                    && x.Division.Equals(e.Division, StringComparison.OrdinalIgnoreCase)
+                    && x.Province == e.Contingent
+                    ).FirstOrDefault();
+                partitionKey = (existingEntry == null)
+                    ? Guid.NewGuid()
+                    : existingEntry.TeamId;
+            } else {
+                partitionKey = e.TeamId;
+            }
+
+            Create(partitionKey, e.Id, new TSMatch
             {
                 TournamentId = contingent.TournamentId,
                 IsPOA = e.IsPOA,
