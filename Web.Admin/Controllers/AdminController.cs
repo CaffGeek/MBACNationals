@@ -3,7 +3,7 @@ using WebFrontend.Attributes;
 
 namespace WebFrontend.Controllers
 {
-    [Authorize(Roles = "Admin, Host")]
+    [Authorize(Roles = "Admin, Host, Reports")]
     public class AdminController : Controller
     {
         [Authorize(Users = "Chad")]
