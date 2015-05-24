@@ -3,12 +3,14 @@ using Events.Tournament;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace MBACNationals.ReadModels
 {
     public class TournamentQueries : AzureReadModel,
         ITournamentQueries,
-        ISubscribeTo<TournamentCreated>
+        ISubscribeTo<TournamentCreated>,
+        ISubscribeTo<SponsorCreated>
     {
         public TournamentQueries(string readModelFilePath)
         {
@@ -21,10 +23,37 @@ namespace MBACNationals.ReadModels
             public string Year { get; internal set; }
         }
 
+        public class Sponsor
+        {
+            public Guid Id { get; internal set; }
+            public Guid TournamentId { get; internal set; }
+            public string Name { get; internal set; }
+            public string Website { get; internal set; }
+            public byte[] Image { get; internal set; }
+        }
+
         public class TSTournament : Entity
         {
             public string Year { get; set; }
         }
+
+        public class TSSponsor : Entity
+        {
+            public Guid Id
+            {
+                get { return Guid.Parse(RowKey); }
+                internal set { RowKey = value.ToString(); }
+            }
+            public Guid TournamentId
+            {
+                get { return Guid.Parse(PartitionKey); }
+                internal set { PartitionKey = value.ToString(); }
+            }
+            public string Name { get; set; }
+            public string Website { get; set; }
+        }
+
+        public class TSSponsorLogo : Blob { }
 
         public Tournament GetTournament(string year)
         {
@@ -47,12 +76,33 @@ namespace MBACNationals.ReadModels
                 })
                 .ToList();
         }
-        
+
+        public List<Sponsor> GetSponsors(string year)
+        {
+            //TODO:
+            return new List<Sponsor>();
+        }
+
         public void Handle(TournamentCreated e)
         {
             Create(e.Id, e.Id, new TSTournament
             {
                 Year = e.Year
+            });
+        }
+
+        public void Handle(SponsorCreated e)
+        {
+            Create(e.Id, e.SponsorId, new TSSponsor
+            {
+                Name = e.Name,
+                Website = e.Website
+            });
+
+            Create(new TSSponsorLogo 
+            { 
+                Id = e.SponsorId,
+                Contents = e.Image
             });
         }
     }

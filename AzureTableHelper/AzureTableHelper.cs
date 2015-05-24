@@ -4,9 +4,33 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Microsoft.WindowsAzure.Storage.Table;
 using MoreLinq;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace AzureTableHelper
 {
+    public class AzureBlobHelper
+    {
+        private readonly CloudBlobClient _blobClient;
+
+        public AzureBlobHelper(CloudBlobClient blobClient)
+        {
+            _blobClient = blobClient;
+        }
+
+        public CloudBlobContainer GetContainerFor(Type type)
+        {
+            return GetContainerFor(type.Name);
+        }
+
+        public CloudBlobContainer GetContainerFor(string typeName)
+        {
+            typeName = typeName.ToLowerInvariant();
+            var container = _blobClient.GetContainerReference(typeName);
+            container.CreateIfNotExists();
+            return container;
+        }
+    }
+
     public class AzureTableHelper
     {
         private Dictionary<string, string> _cachedTableNames = new Dictionary<string, string>();
