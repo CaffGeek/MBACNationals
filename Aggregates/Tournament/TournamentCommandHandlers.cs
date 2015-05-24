@@ -9,7 +9,8 @@ using System.Linq;
 namespace MBACNationals.Tournament
 {
     public class TournamentCommandHandlers :
-        IHandleCommand<CreateTournament, TournamentAggregate>
+        IHandleCommand<CreateTournament, TournamentAggregate>,
+        IHandleCommand<CreateSponsor, TournamentAggregate>
     {
         private ICommandQueries CommandQueries;
 
@@ -32,6 +33,21 @@ namespace MBACNationals.Tournament
             {
                 Id = command.Id,
                 Year = command.Year
+            };
+        }
+
+        public IEnumerable Handle(Func<Guid, TournamentAggregate> al, CreateSponsor command)
+        {
+            var tournament = CommandQueries.GetTournaments().FirstOrDefault(x => x.Year == command.Year);
+            var agg = al(tournament.Id);
+
+            yield return new SponsorCreated
+            {
+                Id = tournament.Id,
+                SponsorId = command.Id,
+                Name = command.Name,
+                Website = command.Website,
+                Image = command.Image
             };
         }
     }

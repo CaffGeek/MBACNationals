@@ -1,6 +1,7 @@
 ﻿using Edument.CQRS;
 using Events.Tournament;
 using System;
+using System.Collections.Generic;
 
 namespace MBACNationals.Tournament
 {

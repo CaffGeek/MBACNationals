@@ -1,10 +1,12 @@
 ﻿using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.WindowsAzure.Storage.Blob;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Net;
+using System.IO;
 
 namespace MBACNationals.ReadModels
 {
@@ -15,13 +17,28 @@ namespace MBACNationals.ReadModels
             public string AzureEntityType { get; set; }
         }
 
+        public class Blob
+        {
+            public Guid Id { get; set; }
+            public byte[] Contents { get; set; }
+        }
+
         private AzureTableHelper.AzureTableHelper AzureTableHelper { get; set; }
+        private AzureTableHelper.AzureBlobHelper AzureBlobHelper { get; set; }
 
         private CloudTable Table
         {
             get
             {
                 return AzureTableHelper.GetTableFor(GetType());
+            }
+        }
+
+        private CloudBlobContainer Container
+        {
+            get
+            {
+                return AzureBlobHelper.GetContainerFor(GetType());
             }
         }
 
@@ -36,7 +53,10 @@ namespace MBACNationals.ReadModels
             servicePoint.ConnectionLimit = 100;
 
             var tableClient = storageAccount.CreateCloudTableClient();
-            AzureTableHelper = new AzureTableHelper.AzureTableHelper(tableClient);            
+            AzureTableHelper = new AzureTableHelper.AzureTableHelper(tableClient);
+
+            var blobClient = storageAccount.CreateCloudBlobClient();
+            AzureBlobHelper = new AzureTableHelper.AzureBlobHelper(blobClient);
         }
 
         protected void Create<T>(Guid partition, Guid key, T entity)
@@ -48,6 +68,19 @@ namespace MBACNationals.ReadModels
 
             
             Table.Execute(TableOperation.InsertOrReplace(entity));
+        }
+
+        protected void Create<T>(T blob)
+            where T : Blob, new()
+        {
+            var azureBlobType = typeof(T).Name;
+            var key = azureBlobType + blob.Id;
+            var blockBlob = Container.GetBlockBlobReference(key);
+            
+            using (var stream = new MemoryStream(blob.Contents, writable: false))
+            {
+                blockBlob.UploadFromStream(stream);
+            }
         }
 
         protected T Read<T>(Guid key)

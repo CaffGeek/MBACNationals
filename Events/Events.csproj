@@ -70,6 +70,7 @@
     <Compile Include="Scores\MatchCompleted.cs" />
     <Compile Include="Scores\ParticipantGameCompleted.cs" />
     <Compile Include="Scores\TeamGameCompleted.cs" />
+    <Compile Include="Tournament\SponsorCreated.cs" />
     <Compile Include="Tournament\TournamentCreated.cs" />
   </ItemGroup>
   <ItemGroup>
