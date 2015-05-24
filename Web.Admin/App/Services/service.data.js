@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
 
-    var dataService = function ($http) {
+    var dataService = function ($http, ngUpload) {
         return {
             SaveTeam: saveTeam,
             RemoveTeam: removeTeam,
@@ -33,7 +33,8 @@
             LoadMatch: loadMatch,
             UseAlternate: useAlternate,
             LoadTournaments: loadTournaments,
-            CreateTournament: createTournament
+            CreateTournament: createTournament,
+            SaveSponsor: saveSponsor
         };
 
         function saveTeam(team, contingent) {
@@ -253,7 +254,15 @@
         function createTournament(tournament) {
             return $http.post('/Setup/Tournament/Create', tournament);
         };
+
+        function saveSponsor(year, sponsor) {
+            ngUpload.upload({
+                url: '/Setup/Sponsors/Save/' + year,
+                fields: { id: sponsor.Id, name: sponsor.Name, website: sponsor.Website },
+                file: sponsor.Image
+            });
+        };
     };
 
-    app.factory('dataService', ['$http', dataService]);
+    app.factory('dataService', ['$http', 'Upload', dataService]);
 }());
