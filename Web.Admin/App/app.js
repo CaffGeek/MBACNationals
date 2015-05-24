@@ -3,5 +3,6 @@
 var app = angular.module('app', [
     'ui.bootstrap',
     'numberFilters',
-    'repeatFilters'
+    'repeatFilters',
+    'ngFileUpload'
 ]);

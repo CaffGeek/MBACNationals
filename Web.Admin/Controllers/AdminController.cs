@@ -9,7 +9,6 @@ namespace WebFrontend.Controllers
         [Authorize(Users = "Chad")]
         public ActionResult Rebuild()
         {
-            //Domain.RebuildReadModels();
             return View();
         }
 

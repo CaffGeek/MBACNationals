@@ -232,6 +232,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Attributes\RestrictAccessByRouteId.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\SponsorsController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ContingentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -264,6 +265,7 @@
     <Content Include="App\Controllers\controller.contingent.js" />
     <Content Include="App\Controllers\controller.modal.divisions.js" />
     <Content Include="App\Controllers\controller.modal.participant.js" />
+    <Content Include="App\Controllers\controller.sponsors.js" />
     <Content Include="App\Controllers\controller.reservation.js" />
     <Content Include="App\Controllers\controller.arrivals.js" />
     <Content Include="App\Controllers\controller.practice.js" />
@@ -425,6 +427,9 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Custom\polyfill.classList.js" />
     <Content Include="Scripts\Custom\string.format.js" />
+    <Content Include="Scripts\FileAPI.flash.swf" />
+    <Content Include="Scripts\FileAPI.js" />
+    <Content Include="Scripts\FileAPI.min.js" />
     <Content Include="Scripts\FileSaver.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
@@ -442,6 +447,12 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\ng-file-upload-all.js" />
+    <Content Include="Scripts\ng-file-upload-all.min.js" />
+    <Content Include="Scripts\ng-file-upload-shim.js" />
+    <Content Include="Scripts\ng-file-upload-shim.min.js" />
+    <Content Include="Scripts\ng-file-upload.js" />
+    <Content Include="Scripts\ng-file-upload.min.js" />
     <Content Include="Scripts\ui-bootstrap-0.9.0.js" />
     <Content Include="Scripts\ui-bootstrap-0.9.0.min.js" />
     <Content Include="Scripts\ui-bootstrap-tpls-0.9.0.js" />
@@ -489,6 +500,7 @@
     <Content Include="Views\Shared\_BlankLayout.cshtml" />
     <Content Include="Views\Admin\Rebuild.cshtml" />
     <Content Include="Views\Tournament\Index.cshtml" />
+    <Content Include="Views\Sponsors\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\Entities\" />

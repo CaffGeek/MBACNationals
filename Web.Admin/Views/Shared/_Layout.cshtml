@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>MBAC Nationals :: @ViewBag.Title</title>
+    <title>MBAC Nationals :: @ViewBag.Year</title>
     <base href="/Setup" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -21,6 +21,32 @@
                 <div class="row">
                     @Html.Partial("_LoginPartial")
                 </div>
+                <ul>                    
+                    @if ((User.IsInRole("Admin") || User.IsInRole("Host")) && !string.IsNullOrWhiteSpace(ViewBag.Year))
+                    {
+                        <li>
+                            @Html.ActionLink("Reports", "Reports", "Admin", new { year = ViewBag.Year }, null)
+                        </li>
+                    }
+                    @if ((User.IsInRole("Admin") || User.IsInRole("Host")) && !string.IsNullOrWhiteSpace(ViewBag.Year))
+                    {
+                        <li>
+                            @Html.ActionLink("Sponsors", "List", "Sponsors", new { year = ViewBag.Year }, null)
+                        </li>
+                    }
+                    @if ((User.IsInRole("Admin") || User.IsInRole("ScoreEntry")) && !string.IsNullOrWhiteSpace(ViewBag.Year))
+                    {
+                        <li>
+                            @Html.ActionLink("Score Entry", "Entry", "Scores", new { year = ViewBag.Year }, null)
+                        </li>
+                    }
+                    @if (User.Identity.Name.Equals("Chad", StringComparison.OrdinalIgnoreCase))
+                    {
+                        <li>
+                            @Html.ActionLink("Rebuild Read Models", "Rebuild", "Admin")
+                        </li>
+                    }
+                </ul>
             </div>
             <div class="col-md-9">
                 <div class="row">
@@ -45,6 +71,10 @@
                 @if ((User.IsInRole("Admin") || User.IsInRole("Host")) && !string.IsNullOrWhiteSpace(ViewBag.Year))
                 {
                     @spacer @Html.ActionLink("Reports", "Reports", "Admin", new { year = ViewBag.Year }, null)
+                }
+                @if ((User.IsInRole("Admin") || User.IsInRole("Host")) && !string.IsNullOrWhiteSpace(ViewBag.Year))
+                {
+                    @spacer @Html.ActionLink("Sponsors", "List", "Sponsors", new { year = ViewBag.Year }, null)
                 }
                 @if ((User.IsInRole("Admin") || User.IsInRole("ScoreEntry")) && !string.IsNullOrWhiteSpace(ViewBag.Year))
                 {
