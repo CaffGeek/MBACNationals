@@ -45,21 +45,18 @@ include "header.php";
 				</div>
 				<div class="col span_1_of_3">
 					<div class="section group" id="sponsors">
+            <div data-ng-app="app">
 					<div class="col span_2_of_2">
-					<h2>SPONSORS</h2>
-          <div data-ng-app="app">
-            <div style="height:250px;" data-ng-controller="SponsorsController as vm">
-              <div class="innerContainer">
-                <a href="{{vm.CurrentSponsor.Website}}" target="_blank">
-                  <img ng-src="{{vm.ImageBase}}/Setup/Sponsors/Image/{{vm.CurrentSponsor.Id}}" style="width:100%;" alt="" border="0" />
-                </a>
-              </div>
+              <h2>SPONSORS</h2>
+          <div style="height:250px;" data-ng-controller="SponsorsController as vm">
+            <div class="innerContainer">
+              <a href="{{vm.CurrentSponsor.Website}}" target="_blank">
+                <img ng-src="{{vm.ImageBase}}/Setup/Sponsors/Image/{{vm.CurrentSponsor.Id}}" style="width:100%;" alt="" border="0" />
+              </a>
             </div>
-          </div>            
-	
+          </div>
+          
 					</div>
-					</div>
-          <div data-ng-app="app">
             <div data-ng-controller="HighscoresController">
 					    <div class="section group" id="highScores" data-ng-include="" data-src="'app/views/highscores.html'">
               </div>
@@ -106,6 +103,7 @@ include "header.php";
 					    </ul>
 					
 					    </div>-->
+            </div>
             </div>
           </div>
 				</div>
