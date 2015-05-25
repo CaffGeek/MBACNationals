@@ -34,7 +34,8 @@
             UseAlternate: useAlternate,
             LoadTournaments: loadTournaments,
             CreateTournament: createTournament,
-            SaveSponsor: saveSponsor
+            SaveSponsor: saveSponsor,
+            LoadSponsors: loadSponsors
         };
 
         function saveTeam(team, contingent) {
@@ -256,11 +257,15 @@
         };
 
         function saveSponsor(year, sponsor) {
-            ngUpload.upload({
+            return ngUpload.upload({
                 url: '/Setup/Sponsors/Save/' + year,
                 fields: { id: sponsor.Id, name: sponsor.Name, website: sponsor.Website },
                 file: sponsor.Image
             });
+        };
+
+        function loadSponsors(year) {
+            return $http.get('/Setup/Sponsors/List/' + year);
         };
     };
 

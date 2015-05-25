@@ -26,14 +26,17 @@ namespace MBACNationals.ReadModels
         public class Sponsor
         {
             public Guid Id { get; internal set; }
-            public Guid TournamentId { get; internal set; }
             public string Name { get; internal set; }
             public string Website { get; internal set; }
-            public byte[] Image { get; internal set; }
         }
 
         public class TSTournament : Entity
         {
+            public Guid Id
+            {
+                get { return Guid.Parse(RowKey); }
+                internal set { RowKey = value.ToString(); PartitionKey = value.ToString(); }
+            }
             public string Year { get; set; }
         }
 
@@ -79,8 +82,26 @@ namespace MBACNationals.ReadModels
 
         public List<Sponsor> GetSponsors(string year)
         {
-            //TODO:
-            return new List<Sponsor>();
+            var tournament = Query<TSTournament>(x => x.Year == year).FirstOrDefault();
+            if (tournament == null)
+                return Enumerable.Empty<Sponsor>().ToList();
+
+            var sponsors = Query<TSSponsor>(x => x.TournamentId == tournament.Id)
+                .Select(x => new Sponsor
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Website = x.Website
+                })
+                .ToList();
+
+            return sponsors;
+        }
+
+        public byte[] GetSponsorImage(Guid sponsorId)
+        {
+            var image = ReadBlob<TSSponsorLogo>(sponsorId);
+            return image.Contents;
         }
 
         public void Handle(TournamentCreated e)
