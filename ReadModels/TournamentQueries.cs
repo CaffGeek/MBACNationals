@@ -10,7 +10,8 @@ namespace MBACNationals.ReadModels
     public class TournamentQueries : AzureReadModel,
         ITournamentQueries,
         ISubscribeTo<TournamentCreated>,
-        ISubscribeTo<SponsorCreated>
+        ISubscribeTo<SponsorCreated>,
+        ISubscribeTo<SponsorDeleted>
     {
         public TournamentQueries(string readModelFilePath)
         {
@@ -125,6 +126,11 @@ namespace MBACNationals.ReadModels
                 Id = e.SponsorId,
                 Contents = e.Image
             });
+        }
+
+        public void Handle(SponsorDeleted e)
+        {
+            Delete<TSSponsor>(e.Id, e.SponsorId);
         }
     }
 }

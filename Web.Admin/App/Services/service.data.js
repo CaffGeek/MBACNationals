@@ -35,7 +35,8 @@
             LoadTournaments: loadTournaments,
             CreateTournament: createTournament,
             SaveSponsor: saveSponsor,
-            LoadSponsors: loadSponsors
+            LoadSponsors: loadSponsors,
+            DeleteSponsor: deleteSponsor
         };
 
         function saveTeam(team, contingent) {
@@ -267,6 +268,12 @@
         function loadSponsors(year) {
             return $http.get('/Setup/Sponsors/List/' + year);
         };
+
+        function deleteSponsor(year, id) {
+            return $http.post('/Setup/Sponsors/Delete/' + year, {
+                id: id
+            });
+        }
     };
 
     app.factory('dataService', ['$http', 'Upload', dataService]);

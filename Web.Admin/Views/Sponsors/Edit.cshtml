@@ -7,7 +7,7 @@
                     <img ng-src="/Setup/Sponsors/Image/{{sponsor.Id}}" class="col-xs-12" />
                     <span>{{sponsor.Name}}</span>
                     <a ng-href="{{sponsor.Website}}" title="Visit Sponsor" target="_blank"><i class="glyphicon glyphicon-link"></i></a> 
-                    <a href="#" class="pull-right"><i class="glyphicon glyphicon-trash"></i></a>                    
+                    <a ng-click="vm.DeleteSponsor(sponsor.Id)" class="pull-right"><i class="glyphicon glyphicon-trash"></i></a>                    
                 </li>
             </ul>
             <form class="form-horizontal">

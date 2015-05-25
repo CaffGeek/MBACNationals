@@ -50,15 +50,21 @@ namespace WebFrontend
             );
 
             routes.MapRoute(
-                name: "SponsorsImage",
-                url: "Sponsors/Image/{id}",
-                defaults: new { controller = "Sponsors", action = "Image" }
+                name: "Sponsors",
+                url: "Sponsors/List/{year}",
+                defaults: new { controller = "Sponsors", action = "List" }
             );
 
             routes.MapRoute(
-                name: "Sponsors",
-                url: "Sponsors/{action}/{year}",
-                defaults: new { controller = "Sponsors", action = "List" }
+                name: "SponsorDelete",
+                url: "Sponsors/Delete/{year}",
+                defaults: new { controller = "Sponsors", action = "Delete" }
+            );
+
+            routes.MapRoute(
+                name: "SponsorImage",
+                url: "Sponsors/Image/{id}",
+                defaults: new { controller = "Sponsors", action = "Image" }
             );
 
             routes.MapRoute(

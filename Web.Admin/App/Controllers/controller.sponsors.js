@@ -9,6 +9,7 @@
 	    var vm = this;
 	    vm.Year = year;
 	    vm.SaveSponsor = SaveSponsor;
+	    vm.DeleteSponsor = DeleteSponsor;
 
 	    //    "Burlington Hotel", Website: "http://www.tourismburlington.com/stay/hotels-motels/burlington-hotel-association/" },
         //    "Holiday Inn", Website: "http://www.hiburlington.ca/" },
@@ -51,8 +52,21 @@
                         vm.SponsorName = '';
                         vm.SponsorWebsite = '';
                         vm.SponsorImage = '';
+                        vm.SponsorImages = [];
                     });
 	        }
+	    }
+
+	    function DeleteSponsor(id) {
+	        dataService.DeleteSponsor(vm.Year, id)
+                .then(function (response) {
+                    var sponsor = vm.Sponsors.filter(function (x) { return x.Id == id; })[0];
+                    var idx = vm.Sponsors.indexOf(sponsor);
+                    if (idx < 0)
+                        return;
+
+                    vm.Sponsors.splice(idx, 1);
+                });
 	    }
 	};
 

@@ -10,7 +10,8 @@ namespace MBACNationals.Tournament
 {
     public class TournamentCommandHandlers :
         IHandleCommand<CreateTournament, TournamentAggregate>,
-        IHandleCommand<CreateSponsor, TournamentAggregate>
+        IHandleCommand<CreateSponsor, TournamentAggregate>,
+        IHandleCommand<DeleteSponsor, TournamentAggregate>
     {
         private ICommandQueries CommandQueries;
 
@@ -48,6 +49,18 @@ namespace MBACNationals.Tournament
                 Name = command.Name,
                 Website = command.Website,
                 Image = command.Image
+            };
+        }
+
+        public IEnumerable Handle(Func<Guid, TournamentAggregate> al, DeleteSponsor command)
+        {
+            var tournament = CommandQueries.GetTournaments().FirstOrDefault(x => x.Year == command.Year);
+            var agg = al(tournament.Id);
+
+            yield return new SponsorDeleted
+            {
+                Id = tournament.Id,
+                SponsorId = command.Id,
             };
         }
     }

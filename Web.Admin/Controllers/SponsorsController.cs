@@ -57,5 +57,18 @@ namespace WebFrontend.Controllers
             Domain.Dispatcher.SendCommand(command);
             return Json(command);
         }
+
+        [HttpPost]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
+        public void Delete(string year, string id)
+        {
+            var command = new DeleteSponsor
+            {
+                Id = Guid.Parse(id),
+                Year = year
+            };
+
+            Domain.Dispatcher.SendCommand(command);
+        }
     }
 }
