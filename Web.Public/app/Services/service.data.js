@@ -9,7 +9,8 @@
             LoadMatch: loadMatch,
             LoadHighScores: loadHighScores,
             LoadParticipantScores: loadParticipantScores,
-            LoadTeamScores: loadTeamScores
+            LoadTeamScores: loadTeamScores,
+            LoadSponsors: loadSponsors
         };
 
         function loadContingent(province) {
@@ -52,6 +53,10 @@
             return $http.get(providerUrl + '/Setup/Scores/Team', {
                 params: { teamId: teamId }
             });
+        };
+
+        function loadSponsors() {
+            return $http.get(providerUrl + '/Setup/Sponsors/List/2015');
         };
     };
     

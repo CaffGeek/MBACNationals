@@ -47,10 +47,16 @@ include "header.php";
 					<div class="section group" id="sponsors">
 					<div class="col span_2_of_2">
 					<h2>SPONSORS</h2>
-					<div style="height:250px;" class="outerContainer">
-					<div class="innerContainer"><a href="http://www.tourismburlington.com/stay/hotels-motels/burlington-hotel-association/" target="_blank"><img id="r1" src="images/sponsors/BurlingtonHotel.jpg" style="width:100%;" alt="" border="0"></a></div>
-					</div>
-
+          <div data-ng-app="app">
+            <div style="height:250px;" data-ng-controller="SponsorsController as vm">
+              <div class="innerContainer">
+                <a href="{{vm.CurrentSponsor.Website}}" target="_blank">
+                  <img ng-src="{{vm.ImageBase}}/Setup/Sponsors/Image/{{vm.CurrentSponsor.Id}}" style="width:100%;" alt="" border="0" />
+                </a>
+              </div>
+            </div>
+          </div>            
+	
 					</div>
 					</div>
           <div data-ng-app="app">
@@ -132,6 +138,7 @@ include "footer.php";
 
     <script src="app/app.js"></script>
     <script src="app/Controllers/controller.highscores.js"></script>
+    <script src="app/Controllers/controller.sponsors.js"></script>
     <script src="app/Services/service.data.js"></script>
 <script>
       // Init responsive-nav.js
