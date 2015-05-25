@@ -7,9 +7,9 @@ using WebFrontend.Attributes;
 
 namespace WebFrontend.Controllers
 {
-    [Authorize(Roles = "Admin, Host")]
     public class SponsorsController : Controller
     {
+        [Authorize(Roles = "Admin, Host")]
         public ActionResult Edit(string year)
         {
             ViewBag.Year = year;
@@ -34,6 +34,7 @@ namespace WebFrontend.Controllers
             return new FileStreamResult(new MemoryStream(bytes), "image");
         }
 
+        [Authorize(Roles = "Admin, Host")]
         [System.Web.Http.HttpPost]
         public JsonResult Save(string year)
         {
@@ -58,6 +59,8 @@ namespace WebFrontend.Controllers
             return Json(command);
         }
 
+
+        [Authorize(Roles = "Admin, Host")]
         [HttpPost]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public void Delete(string year, string id)

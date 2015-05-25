@@ -60,24 +60,7 @@
 <link rel="stylesheet" href="css/ex.css" type="text/css">
 <script src="js/dw_event.js" type="text/javascript"></script>
 <script src="js/dw_rotator.js" type="text/javascript"></script>
-<script type="text/javascript">
-var rotator1 = {
-    path: 'images/sponsors/',
-    id: 'r1',
-    speed: 2000, // default is 4500
-    bMouse: true, // pause/resume
-    images: ["BurlingtonHotel.jpg", "HolidayInn.jpg", "c4.png", "meridian.jpg", "jackAstors.jpg", "sanders.jpg", "reddarc.jpg", "connectrans.jpg", "bp.jpg", "tourismHamilton.jpg", "hoult.jpg", "gatorTeds.jpg", "phipps.jpg", "greensAtRenton.jpg", "golfDepot.jpg", "sysco.png", "elmirabowl.jpg"],
-    actions: ["http://www.tourismburlington.com/stay/hotels-motels/burlington-hotel-association/", "http://www.hiburlington.ca/", "http://www.c4centre.com/", "http://www.meridiancu.ca/find-us/our-locations/Pages/default.aspx?lid=93", "http://jackastors.com/location-map/4/", "http://www.PlayWithSanders.ca", "http://www.red-d-arc.com", "http://www.connectrans.com/en/", "http://bostonpizza.com", "http://www.tourismhamilton.com/", "http://www.houlthellewell.com/", "http://www.gatorteds.ca/", "http://www.phippsbowling.com/", "http://www.greensatrenton.com/", "http://www.thegolfdepot.ca/", "http://www.sysco.ca/canada/home.cfm?id=2421", "http://www.elmirabowl.ca/"]
-}
 
-// Problems, errors? See http://www.dyn-web.com/tutorials/obj_lit.php#syntax
-
-function initRotator() {
-    dw_Rotator.setup(rotator1);
-}
-
-dw_Event.add( window, 'load', initRotator);
-</script>
 <script language="JavaScript">
 
 <!--
