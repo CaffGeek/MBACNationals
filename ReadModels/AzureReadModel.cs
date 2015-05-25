@@ -90,6 +90,24 @@ namespace MBACNationals.ReadModels
             return entity;
         }
 
+        protected T ReadBlob<T>(Guid id)
+            where T : Blob, new()
+        {
+            var azureBlobType = typeof(T).Name;
+            var key = azureBlobType + id;
+            var blockBlob = Container.GetBlockBlobReference(key);
+
+            using (var memoryStream = new MemoryStream())
+            {
+                blockBlob.DownloadToStream(memoryStream);
+                return new T()
+                {
+                    Id = id,
+                    Contents = memoryStream.ToArray()
+                };
+            }
+        }
+
         protected T Read<T>(Guid partition, Guid key)
             where T : Entity, new()
         {            

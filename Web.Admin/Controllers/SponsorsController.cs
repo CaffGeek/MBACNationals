@@ -10,10 +10,28 @@ namespace WebFrontend.Controllers
     [Authorize(Roles = "Admin, Host")]
     public class SponsorsController : Controller
     {
-        public ActionResult List(string year)
+        public ActionResult Edit(string year)
         {
             ViewBag.Year = year;
             return View();
+        }
+
+        [HttpGet]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
+        public JsonResult List(string year)
+        {
+            Response.AppendHeader("Access-Control-Allow-Origin", "*");
+            var sponsors = Domain.TournamentQueries.GetSponsors(year);
+            return Json(sponsors, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
+        public FileResult Image(string id)
+        {
+            Response.AppendHeader("Access-Control-Allow-Origin", "*");
+            var bytes = Domain.TournamentQueries.GetSponsorImage(Guid.Parse(id));
+            return new FileStreamResult(new MemoryStream(bytes), "image");
         }
 
         [System.Web.Http.HttpPost]

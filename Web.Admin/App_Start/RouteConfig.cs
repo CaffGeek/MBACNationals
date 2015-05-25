@@ -50,6 +50,12 @@ namespace WebFrontend
             );
 
             routes.MapRoute(
+                name: "SponsorsImage",
+                url: "Sponsors/Image/{id}",
+                defaults: new { controller = "Sponsors", action = "Image" }
+            );
+
+            routes.MapRoute(
                 name: "Sponsors",
                 url: "Sponsors/{action}/{year}",
                 defaults: new { controller = "Sponsors", action = "List" }
