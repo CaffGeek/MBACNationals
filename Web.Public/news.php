@@ -22,8 +22,9 @@ include "header.php";
 				<div class="col span_2_of_3"  id="contentArea">
 					
 					<h2>NEWS</h2>
-					<h4><span style="color:#cc0000">ORDER YOUR SOUVENIRS BY MAY 15TH FOR UP TO 10% DISCOUNT</span></h4><p>Order 1 item receive a <strong>5% discount</strong> off pricing shown</p><p>Order 2 or more items receive a <strong>10% discount</strong> off pricing shown</p>
-				</div>
+					<h4><span style="color:#cc0000">MBAC 2015 National Championships – Souvenier Merchandise</span></h4><p>Pre-Order avaialble through Friday, June 5th so get your orders in soon.</p>
+					<p>If you have already ordered but have not had a confirmation of your order, please re-submit your order and we’ll confirm your request.</p>
+					<p>Thank you.</p>				</div>
 			</div>
 		</div>
 	</div>
