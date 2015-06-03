@@ -8,7 +8,9 @@ namespace MBACNationals.Tournament
     public class TournamentAggregate : Aggregate,
         IApplyEvent<TournamentCreated>,
         IApplyEvent<SponsorCreated>,
-        IApplyEvent<SponsorDeleted>
+        IApplyEvent<SponsorDeleted>,
+        IApplyEvent<NewsCreated>,
+        IApplyEvent<NewsDeleted>
     {
         public string Year { get; private set; }
 
@@ -23,6 +25,16 @@ namespace MBACNationals.Tournament
         }
 
         public void Apply(SponsorDeleted e)
+        {
+            //TODO: nothing at this time
+        }
+
+        public void Apply(NewsCreated e)
+        {
+            //TODO: nothing at this time
+        }
+
+        public void Apply(NewsDeleted e)
         {
             //TODO: nothing at this time
         }

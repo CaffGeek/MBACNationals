@@ -68,6 +68,12 @@ namespace WebFrontend
             );
 
             routes.MapRoute(
+                name: "NewsDelete",
+                url: "News/Delete/{year}",
+                defaults: new { controller = "News", action = "Delete" }
+            );
+
+            routes.MapRoute(
                 name: "Admin",
                 url: "Admin/{action}/{id}",
                 defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional }

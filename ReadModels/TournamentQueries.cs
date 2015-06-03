@@ -11,7 +11,9 @@ namespace MBACNationals.ReadModels
         ITournamentQueries,
         ISubscribeTo<TournamentCreated>,
         ISubscribeTo<SponsorCreated>,
-        ISubscribeTo<SponsorDeleted>
+        ISubscribeTo<SponsorDeleted>,
+        ISubscribeTo<NewsCreated>,
+        ISubscribeTo<NewsDeleted>
     {
         public TournamentQueries(string readModelFilePath)
         {
@@ -29,6 +31,14 @@ namespace MBACNationals.ReadModels
             public Guid Id { get; internal set; }
             public string Name { get; internal set; }
             public string Website { get; internal set; }
+        }
+
+        public class News
+        {
+            public Guid Id { get; internal set; }
+            public string Title { get; internal set; }
+            public string Content { get; internal set; }
+            public DateTime Created { get; internal set; }
         }
 
         public class TSTournament : Entity
@@ -55,6 +65,23 @@ namespace MBACNationals.ReadModels
             }
             public string Name { get; set; }
             public string Website { get; set; }
+        }
+
+        public class TSNews : Entity
+        {
+            public Guid Id
+            {
+                get { return Guid.Parse(RowKey); }
+                internal set { RowKey = value.ToString(); }
+            }
+            public Guid TournamentId
+            {
+                get { return Guid.Parse(PartitionKey); }
+                internal set { PartitionKey = value.ToString(); }
+            }
+            public string Title { get; set; }
+            public string Content { get; set; }
+            public DateTime Created { get; set; }
         }
 
         public class TSSponsorLogo : Blob { }
@@ -92,7 +119,7 @@ namespace MBACNationals.ReadModels
                 {
                     Id = x.Id,
                     Name = x.Name,
-                    Website = x.Website
+                    Website = x.Website,
                 })
                 .ToList();
 
@@ -103,6 +130,25 @@ namespace MBACNationals.ReadModels
         {
             var image = ReadBlob<TSSponsorLogo>(sponsorId);
             return image.Contents;
+        }
+
+        public List<News> GetNews(string year)
+        {
+            var tournament = Query<TSTournament>(x => x.Year == year).FirstOrDefault();
+            if (tournament == null)
+                return Enumerable.Empty<News>().ToList();
+
+            var news = Query<TSNews>(x => x.TournamentId == tournament.Id)
+                .Select(x => new News
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                    Content = x.Content,
+                    Created = x.Created
+                })
+                .ToList();
+
+            return news;
         }
 
         public void Handle(TournamentCreated e)
@@ -131,6 +177,21 @@ namespace MBACNationals.ReadModels
         public void Handle(SponsorDeleted e)
         {
             Delete<TSSponsor>(e.Id, e.SponsorId);
+        }
+
+        public void Handle(NewsCreated e)
+        {
+            Create(e.Id, e.NewsId, new TSNews
+            {
+                Title = e.Title,
+                Content = e.Content,
+                Created = e.Created
+            });
+        }
+
+        public void Handle(NewsDeleted e)
+        {
+            Delete<TSNews>(e.Id, e.NewsId);
         }
     }
 }

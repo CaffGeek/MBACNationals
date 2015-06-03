@@ -10,5 +10,6 @@ namespace MBACNationals.ReadModels
         List<TournamentQueries.Tournament> GetTournaments();
         List<TournamentQueries.Sponsor> GetSponsors(string year);
         byte[] GetSponsorImage(Guid sponsorId);
+        List<TournamentQueries.News> GetNews(string year);
     }
 }

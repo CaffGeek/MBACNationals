@@ -11,7 +11,9 @@ namespace MBACNationals.Tournament
     public class TournamentCommandHandlers :
         IHandleCommand<CreateTournament, TournamentAggregate>,
         IHandleCommand<CreateSponsor, TournamentAggregate>,
-        IHandleCommand<DeleteSponsor, TournamentAggregate>
+        IHandleCommand<DeleteSponsor, TournamentAggregate>,
+        IHandleCommand<CreateNews, TournamentAggregate>,
+        IHandleCommand<DeleteNews, TournamentAggregate>
     {
         private ICommandQueries CommandQueries;
 
@@ -61,6 +63,33 @@ namespace MBACNationals.Tournament
             {
                 Id = tournament.Id,
                 SponsorId = command.Id,
+            };
+        }
+
+        public IEnumerable Handle(Func<Guid, TournamentAggregate> al, CreateNews command)
+        {
+            var tournament = CommandQueries.GetTournaments().FirstOrDefault(x => x.Year == command.Year);
+            var agg = al(tournament.Id);
+
+            yield return new NewsCreated
+            {
+                Id = tournament.Id,
+                NewsId = command.Id,
+                Title = command.Title,
+                Content = command.Content,
+                Created = DateTime.Now
+            };
+        }
+
+        public IEnumerable Handle(Func<Guid, TournamentAggregate> al, DeleteNews command)
+        {
+            var tournament = CommandQueries.GetTournaments().FirstOrDefault(x => x.Year == command.Year);
+            var agg = al(tournament.Id);
+
+            yield return new NewsDeleted
+            {
+                Id = tournament.Id,
+                NewsId = command.Id,
             };
         }
     }

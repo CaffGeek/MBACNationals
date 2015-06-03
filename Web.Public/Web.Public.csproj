@@ -42,6 +42,7 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\Controllers\controller.contingent.js" />
+    <Content Include="app\Controllers\controller.news.js" />
     <Content Include="app\Controllers\controller.sponsors.js" />
     <Content Include="app\Controllers\controller.highscores.js" />
     <Content Include="app\Controllers\controller.results.js" />
@@ -99,7 +100,9 @@
     <Content Include="schedule.php" />
     <Content Include="stepladder_ladies.php" />
     <Content Include="stepladder_men.php" />
-    <Content Include="index.php" />
+    <Content Include="index.php">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="images\Forms\2015PreliminaryLaneDraw.pdf" />
     <Content Include="images\Forms\Guest_Info.pdf" />
     <Content Include="images\Forms\souvenirs.pdf" />

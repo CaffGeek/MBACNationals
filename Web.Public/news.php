@@ -10,22 +10,24 @@ include "header.php";
 				</div>
 			</div>
 
-		<div class="section group content">
-				<div class="col span_1_of_3">
-				<div id="centres_links">
-				<a href="">MARCH</a><br />
-<!--				<a href="">MAY</a><br />
-				<a href="">JUNE</a><br />
-				<a href="">JULY</a><br />-->
-				</div>
-				</div>
-				<div class="col span_2_of_3"  id="contentArea">
-					
-					<h2>NEWS</h2>
-					<h4><span style="color:#cc0000">MBAC 2015 National Championships – Souvenier Merchandise</span></h4><p>Pre-Order avaialble through Friday, June 5th so get your orders in soon.</p>
-					<p>If you have already ordered but have not had a confirmation of your order, please re-submit your order and we’ll confirm your request.</p>
-					<p>Thank you.</p>				</div>
-			</div>
+		<div class="section group content" data-ng-app="app">
+      <div data-ng-controller="NewsController as vm">
+        <div class="col span_1_of_3">
+          <a href="" ng-click="vm.selectedMonth = ''">All</a><br/>
+          <div ng-repeat="month in vm.Months">
+            <a href="" ng-click="vm.selectedMonth = month.name">{{month.name}}</a><br/>
+          </div>
+        </div>
+        <div class="col span_2_of_3">
+        <h2>NEWS</h2>
+          <div ng-repeat="newsItem in vm.News | filter:vm.filterByMonth(vm.selectedMonth)">
+          <h4>
+            <span style="color:#cc0000">{{newsItem.Title}}</span>
+          </h4>
+          <p style="white-space: pre-wrap;">{{newsItem.Content}}</p>
+        </div>
+        </div>
+      </div>
 		</div>
 	</div>
 
@@ -49,10 +51,14 @@ include "footer.php";
 
 	<!-- More Scripts-->
 	<script src="js/responsivegridsystem.js"></script>
-<script>
-      // Init responsive-nav.js
-      var nav = responsiveNav("#nav");
-    </script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.7/angular.js"></script>
+  <script src="app/app.js"></script>
+  <script src="app/Controllers/controller.news.js"></script>
+  <script src="app/Services/service.data.js"></script>
+  <script>
+    // Init responsive-nav.js
+    var nav = responsiveNav("#nav");
+  </script>
 
 </body>
 </html>
