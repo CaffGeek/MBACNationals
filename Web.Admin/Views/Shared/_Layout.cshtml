@@ -34,6 +34,12 @@
                             @Html.ActionLink("Sponsors", "Edit", "Sponsors", new { year = ViewBag.Year }, null)
                         </li>
                     }
+                    @if ((User.IsInRole("Admin") || User.IsInRole("Host")) && !string.IsNullOrWhiteSpace(ViewBag.Year))
+                    {
+                        <li>
+                            @Html.ActionLink("News", "Edit", "News", new { year = ViewBag.Year }, null)
+                        </li>
+                    }
                     @if ((User.IsInRole("Admin") || User.IsInRole("ScoreEntry")) && !string.IsNullOrWhiteSpace(ViewBag.Year))
                     {
                         <li>
@@ -75,6 +81,10 @@
                 @if ((User.IsInRole("Admin") || User.IsInRole("Host")) && !string.IsNullOrWhiteSpace(ViewBag.Year))
                 {
                     @spacer @Html.ActionLink("Sponsors", "Edit", "Sponsors", new { year = ViewBag.Year }, null)
+                }
+                @if ((User.IsInRole("Admin") || User.IsInRole("Host")) && !string.IsNullOrWhiteSpace(ViewBag.Year))
+                {
+                    @spacer @Html.ActionLink("News", "Edit", "News", new { year = ViewBag.Year }, null)
                 }
                 @if ((User.IsInRole("Admin") || User.IsInRole("ScoreEntry")) && !string.IsNullOrWhiteSpace(ViewBag.Year))
                 {

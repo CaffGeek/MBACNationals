@@ -47,7 +47,9 @@ namespace WebFrontend
                         "~/Scripts/angular.*",
                         "~/Scripts/ui-bootstrap-tpls-0.9.0.js",
 					    "~/Scripts/ng-file-upload-shim.min.js",
-					    "~/Scripts/ng-file-upload.min.js"));
+                        "~/Scripts/ng-file-upload.min.js",
+                        "~/Scripts/moment.min.js",
+                        "~/Scripts/angular-moment.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                         "~/App/Filters/filter.*",

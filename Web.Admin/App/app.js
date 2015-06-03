@@ -4,5 +4,6 @@ var app = angular.module('app', [
     'ui.bootstrap',
     'numberFilters',
     'repeatFilters',
-    'ngFileUpload'
+    'ngFileUpload',
+    'angularMoment'
 ]);

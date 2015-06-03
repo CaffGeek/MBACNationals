@@ -54,6 +54,8 @@
     <Compile Include="Contingent\ContingentCommandHandlers.cs" />
     <Compile Include="Contingent\ContingentAggregate.cs" />
     <Compile Include="Contingent\Commands\CreateContingent.cs" />
+    <Compile Include="Tournament\Commands\CreateNews.cs" />
+    <Compile Include="Tournament\Commands\DeleteNews.cs" />
     <Compile Include="Tournament\Commands\DeleteSponsor.cs" />
     <Compile Include="Tournament\Commands\CreateSponsor.cs" />
     <Compile Include="Tournament\Commands\TournamentAlreadyExists.cs" />

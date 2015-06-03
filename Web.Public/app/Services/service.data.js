@@ -10,7 +10,8 @@
             LoadHighScores: loadHighScores,
             LoadParticipantScores: loadParticipantScores,
             LoadTeamScores: loadTeamScores,
-            LoadSponsors: loadSponsors
+            LoadSponsors: loadSponsors,
+            LoadNews: loadNews
         };
 
         function loadContingent(province) {
@@ -57,6 +58,10 @@
 
         function loadSponsors() {
             return $http.get(providerUrl + '/Setup/Sponsors/List/2015');
+        };
+
+        function loadNews() {
+            return $http.get(providerUrl + '/Setup/News/List/2015');
         };
     };
     

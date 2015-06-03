@@ -11,26 +11,29 @@ include "header.php";
 				</div>
 			</div>
 
-			<div class="section group content">
+			<div class="section group content" data-ng-app="app">
 				<div class="col span_2_of_3">
 					<div class="section group">
-					<div class="col span_2_of_2" id="welcome">
-					<h2>WELCOME</h2>
-					<p>The Master Bowlers Association of Ontario and its host committee welcome you to Ontario and the Burlington/Hamilton area.  Our group of volunteers is excited and privileged to work on your behalf to put forth a memorable experience for you.</p>
-<p>Our host hotel is the Holiday Inn Burlington Hotel & Conference Centre.  This hotel is a full service facility with an indoor pool, whirlpool, sauna, restaurant, and free high speed internet and features a Holidome atrium.  It is located approximately 20 minutes from the bowling centre that will be hosting our National Championships.  There are several restaurants across from the hotel, a mall less than a10 minute walk and the waterfront a short 5 minute cab ride.  All hotel reservations must be done through the Master Bowlers Association of Ontario.</p>
-<p>Our host bowling centre will be Sherwood Centre, with 48 lanes allows all participants to be in one location allowing guests and provincial contingents access to support their province.</p>
-<p>Our theme for the event is “Las Vegas – Let’s Party”.  We encourage all participants to dress up in Vegas style performer attire; this can be of the Hotel gambling & entertainment style, or your favorite performer in Vegas, or even the street entertainers that are so plentiful in Vegas.  For Ontario night we ask that our female Rookies be attired in Elvis traditional wear, while our male Rookies are attired in typical Vegas Show Girl style. </p>
-<p>We all look forward to seeing you all in June.</p>
-<p>Mike Bates, MBAC Nationals Hosting Chair & Brenda Walters, President, MBAO</p>
-					</div>
+					  <div class="col span_2_of_2" id="welcome">
+					    <h2>WELCOME</h2>
+					    <p>The Master Bowlers Association of Ontario and its host committee welcome you to Ontario and the Burlington/Hamilton area.  Our group of volunteers is excited and privileged to work on your behalf to put forth a memorable experience for you.</p>
+              <p>Our host hotel is the Holiday Inn Burlington Hotel & Conference Centre.  This hotel is a full service facility with an indoor pool, whirlpool, sauna, restaurant, and free high speed internet and features a Holidome atrium.  It is located approximately 20 minutes from the bowling centre that will be hosting our National Championships.  There are several restaurants across from the hotel, a mall less than a10 minute walk and the waterfront a short 5 minute cab ride.  All hotel reservations must be done through the Master Bowlers Association of Ontario.</p>
+              <p>Our host bowling centre will be Sherwood Centre, with 48 lanes allows all participants to be in one location allowing guests and provincial contingents access to support their province.</p>
+              <p>Our theme for the event is “Las Vegas – Let’s Party”.  We encourage all participants to dress up in Vegas style performer attire; this can be of the Hotel gambling & entertainment style, or your favorite performer in Vegas, or even the street entertainers that are so plentiful in Vegas.  For Ontario night we ask that our female Rookies be attired in Elvis traditional wear, while our male Rookies are attired in typical Vegas Show Girl style. </p>
+              <p>We all look forward to seeing you all in June.</p>
+              <p>Mike Bates, MBAC Nationals Hosting Chair & Brenda Walters, President, MBAO</p>
+					  </div>
 					</div>
 					<div class="section group">
-					<div class="col span_1_of_2" id="news">
-					<h2>NEWS</h2>
-					<h4><span style="color:#cc0000">MBAC 2015 National Championships – Souvenier Merchandise</span></h4><p>Pre-Order avaialble through Friday, June 5th so get your orders in soon.</p>
-					<p>If you have already ordered but have not had a confirmation of your order, please re-submit your order and we’ll confirm your request.</p>
-					<p>Thank you.</p>
-					</div>
+					<div class="col span_1_of_2" id="news" data-ng-controller="NewsController as vm">
+					  <h2>NEWS</h2>
+            <div ng-repeat="newsItem in vm.News">
+              <h4>
+                <span style="color:#cc0000">{{newsItem.Title}}</span>
+              </h4>
+              <p style="white-space: pre-wrap;">{{newsItem.Content}}</p> 
+            </div>
+          </div>
 					<div class="col span_1_of_2" id="schedule">
 					<h2>FORMS</h2>
 					<h4 id="day6">National Information for Provincial Presidents</h4>
@@ -40,72 +43,28 @@ include "header.php";
 
 					<h2>SCHEDULE</h2>
 					<h3 id="day6">Day 1 - saturday, june 27, 2014</h3>
-<h4>Saturday June 27th - Early Arrivals</h4>
-<p><Strong>11:30 am – 2:00 a.m.</strong><br />Arrivals & Bus Shuttles to Hotel<br />Participants & Guests</p>
+          <h4>Saturday June 27th - Early Arrivals</h4>
+          <p><Strong>11:30 am – 2:00 a.m.</strong><br />Arrivals & Bus Shuttles to Hotel<br />Participants & Guests</p>
 					</div>
 					</div>
 				</div>
 				<div class="col span_1_of_3">
 					<div class="section group" id="sponsors">
-            <div data-ng-app="app">
-					<div class="col span_2_of_2">
-              <h2>SPONSORS</h2>
-          <div style="height:250px;" data-ng-controller="SponsorsController as vm">
-            <div class="innerContainer">
-              <a href="{{vm.CurrentSponsor.Website}}" target="_blank">
-                <img ng-src="{{vm.ImageBase}}/Setup/Sponsors/Image/{{vm.CurrentSponsor.Id}}" style="width:100%;" alt="" border="0" />
-              </a>
-            </div>
-          </div>
-          
-					</div>
-            <div data-ng-controller="HighscoresController">
-					    <div class="section group" id="highScores" data-ng-include="" data-src="'app/views/highscores.html'">
+            <div>
+					    <div class="col span_2_of_2">
+                <h2>SPONSORS</h2>
+                <div style="height:250px;" data-ng-controller="SponsorsController as vm">
+                  <div class="innerContainer">
+                    <a href="{{vm.CurrentSponsor.Website}}" target="_blank">
+                      <img ng-src="{{vm.ImageBase}}/Setup/Sponsors/Image/{{vm.CurrentSponsor.Id}}" style="width:100%;" alt="" border="0" />
+                    </a>
+                  </div>
+                </div>          
+					    </div>
+              <div data-ng-controller="HighscoresController">
+					      <div class="section group" id="highScores" data-ng-include="" data-src="'app/views/highscores.html'">
+                </div>
               </div>
-					    <!--<div class="col span_2_of_2">
-					    <h2>HIGH SCORES</h2>
-					    <h4>Tournament Division</h4>
-					    <h5>Men</h5>
-					    <ul>
-					    <li>Name - 000</li>
-					    <li>Name - 000</li>
-					    <li>Name - 000</li>
-					    </ul>
-					    <h5>Women</h5>
-					    <ul>
-					    <li>Name - 000</li>
-					    <li>Name - 000</li>
-					    <li>Name - 000</li>
-					    </ul>
-					    <h4>Teaching Division</h4>
-					    <h5>Men</h5>
-					    <ul>
-					    <li>Name - 000</li>
-					    <li>Name - 000</li>
-					    <li>Name - 000</li>
-					    </ul>
-					    <h5>Women</h5>
-					    <ul>
-					    <li>Name - 000</li>
-					    <li>Name - 000</li>
-					    <li>Name - 000</li>
-					    </ul>
-					    <h4>Seniors</h4>
-					    <h5>Men</h5>
-					    <ul>
-					    <li>Name - 000</li>
-					    <li>Name - 000</li>
-					    <li>Name - 000</li>
-					    </ul>
-					    <h5>Women</h5>
-					    <ul>
-					    <li>Name - 000</li>
-					    <li>Name - 000</li>
-					    <li>Name - 000</li>
-					    </ul>
-					
-					    </div>-->
-            </div>
             </div>
           </div>
 				</div>
@@ -139,8 +98,9 @@ include "footer.php";
     <script src="app/app.js"></script>
     <script src="app/Controllers/controller.highscores.js"></script>
     <script src="app/Controllers/controller.sponsors.js"></script>
+    <script src="app/Controllers/controller.news.js"></script>
     <script src="app/Services/service.data.js"></script>
-<script>
+    <script>
       // Init responsive-nav.js
       var nav = responsiveNav("#nav");
     </script>

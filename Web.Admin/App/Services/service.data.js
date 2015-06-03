@@ -36,7 +36,10 @@
             CreateTournament: createTournament,
             SaveSponsor: saveSponsor,
             LoadSponsors: loadSponsors,
-            DeleteSponsor: deleteSponsor
+            DeleteSponsor: deleteSponsor,
+            SaveNews: saveNews,
+            LoadNews: loadNews,
+            DeleteNews: deleteNews
         };
 
         function saveTeam(team, contingent) {
@@ -273,7 +276,21 @@
             return $http.post('/Setup/Sponsors/Delete/' + year, {
                 id: id
             });
-        }
+        };
+
+        function saveNews(year, news) {
+            return $http.post('/Setup/News/Save/' + year, news);
+        };
+
+        function loadNews(year) {
+            return $http.post('/Setup/News/List/' + year);
+        };
+
+        function deleteNews(year, id) {
+            return $http.post('/Setup/News/Delete/' + year, {
+                id: id
+            });
+        };
     };
 
     app.factory('dataService', ['$http', 'Upload', dataService]);
