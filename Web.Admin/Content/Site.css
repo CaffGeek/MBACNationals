@@ -2,7 +2,7 @@
     font-size: .85em;
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     color: #232323;
-	background-image:url(/Setup/Content/Images/header_bkg.jpg);
+	/*background-image:url(/Setup/Content/Images/header_bkg.jpg);*/
 	background-repeat:repeat-x;
     background-color: #fff;
 }
@@ -139,4 +139,8 @@ div.noHotelRoom {
 .occupant {
     display: block;
     background-color: rgba(255,255,255,0);
+}
+
+a.navbar-brand {
+    padding: 0px;
 }

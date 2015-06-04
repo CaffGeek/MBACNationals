@@ -1274,7 +1274,6 @@
     <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
     <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
     <Content Include="Views\Contingent\Reservation.cshtml" />
-    <Content Include="Views\Shared\_AdminMenuPartial.cshtml" />
     <Content Include="Views\Contingent\Arrivals.cshtml" />
     <Content Include="Views\Contingent\Practice.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
