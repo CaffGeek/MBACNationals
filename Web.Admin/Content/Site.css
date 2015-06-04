@@ -2,8 +2,11 @@
     font-size: .85em;
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     color: #232323;
-	/*background-image:url(/Setup/Content/Images/header_bkg.jpg);*/
-	background-repeat:repeat-x;
+	background:url(/Setup/Content/Images/background.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     background-color: #fff;
 }
 

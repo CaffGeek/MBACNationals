@@ -315,6 +315,7 @@
     <Content Include="Content\bootstrap\themes\justified-nav.css" />
     <Content Include="Content\fonts\bebas___-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Images\background.jpg" />
     <Content Include="Content\Images\Flags\ab.gif" />
     <Content Include="Content\Images\Flags\ab_small.gif" />
     <Content Include="Content\Images\Flags\bc.gif" />
