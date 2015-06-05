@@ -1288,6 +1288,7 @@
     <Content Include="Views\Sponsors\Edit.cshtml" />
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Scores\Stepladder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App\Entities\" />

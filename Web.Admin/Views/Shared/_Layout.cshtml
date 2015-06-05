@@ -51,10 +51,18 @@
                             @Html.ActionLink("Reports", "Reports", "Admin", new { year = ViewBag.Year }, null)
                         </li>
                     }
-                    @if ((User.IsInRole("Admin") || User.IsInRole("ScoreEntry")) && !string.IsNullOrWhiteSpace(ViewBag.Year))
+                    @if ((User.IsInRole("Admin") || User.IsInRole("Host") || User.IsInRole("ScoreEntry")) && !string.IsNullOrWhiteSpace(ViewBag.Year))
                     {
-                        <li>
-                            @Html.ActionLink("Score Entry", "Entry", "Scores", new { year = ViewBag.Year }, null)
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Score Entry <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    @Html.ActionLink("Tournament Scores", "Entry", "Scores", new { year = ViewBag.Year }, null)
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Stepladder", "Stepladder", "Scores", new { year = ViewBag.Year }, null)
+                                </li>
+                            </ul>
                         </li>
                     }
                     @if (User.Identity.Name.Equals("Chad", StringComparison.OrdinalIgnoreCase))
