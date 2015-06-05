@@ -11,8 +11,14 @@ namespace WebFrontend.Controllers
             return RedirectToAction("Entry");
         }
 
-        [Authorize(Roles = "ScoreEntry, Admin")]
+        [Authorize(Roles = "ScoreEntry, Host, Admin")]
         public ActionResult Entry()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "ScoreEntry, Host, Admin")]
+        public ActionResult Stepladder()
         {
             return View();
         }
