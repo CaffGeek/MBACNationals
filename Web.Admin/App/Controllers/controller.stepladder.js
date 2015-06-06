@@ -14,10 +14,9 @@
         vm.Matches = [
             {
                 Home: 'bowler1',
-                HomeShots: 'XXX2/x5-5r/l/a22xxx', //281
+                HomeShots: '2112XX2/x5-5r/l/a22xxx', //251
                 Away: 'bowler2',
-                AwayShots: 'xxxxxxxxxxxxxx', //450
-                //AwayShots: 'x5/x5/x5/x5/x5/x',    //300
+                AwayShots: 'xxx12/x5/x5/x5/x',    //327
                 Created: new Date()
             }
         ];
@@ -54,11 +53,13 @@
                 '   </div>' +
                 '</div>',
             link: function (scope, element, attrs) {
-                scope.$watch('shots', function() {
+                scope.$watch('shots', function () {
                     scope.shots = scope.shots.toUpperCase();
 
-                    //TODO: Translate shots into a nice game object with frames...and score properly
-                    //TODO: Update template to use that nice game object
+                    var shots = [];
+                    for (var i = 0; i < scope.shots.length; i++)
+                        shots.push(scope.shots[i] === '1' ? scope.shots[i] + scope.shots[++i] : scope.shots[i]);
+                    
                     scope.game = { frames: [], score: 0 };
 
                     var calcShotScore = function (shots, i) {
@@ -68,6 +69,7 @@
                             case 'X': return 15;
                             case 'R': return 13;
                             case 'L': return 13;
+                            case 'D': return 12;
                             case 'A': return 11;
                             case 'C': return 10;
                             case 'S': return 8;
@@ -80,22 +82,23 @@
 
                     var currentFrame = { number: 1, shots: [], score: 0 };
                     scope.game.frames.push(currentFrame);
-                    for (var i = 0; i < scope.shots.length && currentFrame.number <= 10; i++) {
-                        var shot = scope.shots[i];
-                        var shotScore = calcShotScore(scope.shots, i);
+                    for (var i = 0; i < shots.length && currentFrame.number <= 10; i++) {
+                        var shot = shots[i];
+
+                        var shotScore = calcShotScore(shots, i);
                         currentFrame.shots.push(shot);
-                        if (currentFrame.number === 10 && scope.shots[i + 1]) currentFrame.shots.push(scope.shots[i + 1]);
-                        if (currentFrame.number === 10 && scope.shots[i + 2]) currentFrame.shots.push(scope.shots[i + 2]);
+                        if (currentFrame.number === 10 && shots[i + 1]) currentFrame.shots.push(shots[i + 1]); //<-- HERE
+                        if (currentFrame.number === 10 && shots[i + 2]) currentFrame.shots.push(shots[i + 2]); //<-- HERE
                         
                         currentFrame.score += shotScore;
                                                 
-                        if (shot === 'x' || currentFrame.number === 10) {
-                            if (scope.shots[i + 1]) currentFrame.score += calcShotScore(scope.shots, i + 1);
-                            if (scope.shots[i + 2]) currentFrame.score += calcShotScore(scope.shots, i + 2);
+                        if (shot === 'X' || currentFrame.number === 10) {
+                            if (shots[i + 1]) currentFrame.score += calcShotScore(shots, i + 1);  //<-- HERE
+                            if (shots[i + 2]) currentFrame.score += calcShotScore(shots, i + 2);  //<-- HERE
                         }
 
-                        if (shot === '/' && scope.shots[i + 1])
-                            currentFrame.score += calcShotScore(scope.shots, i + 1);
+                        if (shot === '/' && shots[i + 1])
+                            currentFrame.score += calcShotScore(shots, i + 1); //<-- HERE
 
                         if (currentFrame.shots.length === 3 || currentFrame.score >= 15) {
                             scope.game.score += currentFrame.score;

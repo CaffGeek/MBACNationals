@@ -25,11 +25,11 @@
     <div data-ng-repeat="match in vm.Matches">
         <div>
             <div class="row">
-                Enter Shots: <input type="text" ng-model="match.HomeShots" size="30" maxlength="30"/>
+                Enter Shots: <input type="text" ng-model="match.HomeShots" size="35" maxlength="40"/>
                 <bowlinggame shots="match.HomeShots" name="match.Home" />
             </div>
             <div class="row">
-                Enter Shots: <input type="text" ng-model="match.AwayShots" size="30" maxlength="30" />
+                Enter Shots: <input type="text" ng-model="match.AwayShots" size="35" maxlength="40" />
                 <bowlinggame shots="match.AwayShots" name="match.Away" />
             </div>
         </div>
