@@ -267,6 +267,7 @@
     <Content Include="App\Controllers\controller.modal.divisions.js" />
     <Content Include="App\Controllers\controller.modal.participant.js" />
     <Content Include="App\Controllers\controller.news.js" />
+    <Content Include="App\Controllers\controller.stepladder.js" />
     <Content Include="App\Controllers\controller.sponsors.js" />
     <Content Include="App\Controllers\controller.reservation.js" />
     <Content Include="App\Controllers\controller.arrivals.js" />
@@ -302,6 +303,7 @@
     <Content Include="App\Views\ScoreEntry\Match.html" />
     <Content Include="App\Views\ScoreEntry\Game.html" />
     <Content Include="App\Views\ScoreEntry\Division.html" />
+    <Content Include="App\Views\Stepladder\List.html" />
     <Content Include="app_offline.bak" />
     <Content Include="Content\Images\2015_logo.png" />
     <Content Include="Content\bootstrap-theme.css" />
