@@ -22,7 +22,16 @@
 
 <h4>Past Matches</h4>
 <div class="row">
-        list matches here
     <div data-ng-repeat="match in vm.Matches">
+        <div>
+            <div class="row">
+                <input type="text" ng-model="match.HomeShots" />
+                <bowlinggame shots="match.HomeShots" name="match.Home" />
+            </div>
+            <div class="row">
+                <input type="text" ng-model="match.AwayShots" />
+                <bowlinggame shots="match.AwayShots" name="match.Away" />
+            </div>
+        </div>
     </div>
 </div>
