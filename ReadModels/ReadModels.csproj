@@ -71,6 +71,7 @@
     <Compile Include="ContingentTravelPlanQueries.cs" />
     <Compile Include="ContingentViewQueries.cs" />
     <Compile Include="ICommandQueries.cs" />
+    <Compile Include="IStepladderQueries.cs" />
     <Compile Include="ITeamScoreQueries.cs" />
     <Compile Include="IParticipantScoreQueries.cs" />
     <Compile Include="HighScoreQueries.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="ReservationQueries.cs" />
     <Compile Include="ScheduleQueries.cs" />
     <Compile Include="CommandQueries.cs" />
+    <Compile Include="StepladderQueries.cs" />
     <Compile Include="TournamentQueries.cs" />
     <Compile Include="TeamScoreQueries.cs" />
   </ItemGroup>

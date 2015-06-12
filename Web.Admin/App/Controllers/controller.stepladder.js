@@ -7,10 +7,20 @@
         var year = url.slice(lastSlash + 1) || new Date().getFullYear();
 
         var vm = this;
+        vm.createMatch = createMatch;
+        vm.updateMatch = updateMatch;
 
         var page = "list";
         vm.viewUrl = '/Setup/App/Views/Stepladder/' + page + '.html';
-        
+
+        dataService.LoadAllParticipants(year).then(function (data) {
+            var participants = data.data
+            vm.Singles = participants.filter(function (x) {
+                return x.TeamName && x.TeamName.indexOf('Tournament') > -1 &&
+                    x.TeamName.indexOf('Single') > -1;
+            });
+        });
+
         vm.Matches = [
             {
                 Home: 'bowler1',
@@ -20,8 +30,26 @@
                 Created: new Date()
             }
         ];
+        dataService.GetStepladderMatches(year).then(function (data) {
+            vm.Matches = data.data;
+        });
 
+        function createMatch(home, away) {
+            if (!home || !away || home.Id == away.Id)
+                return;
 
+            dataService.CreateStepladderMatch(year, home, away)
+                .then(function (response) {
+                    alert(response); //TODO:
+                });
+        };
+
+        function updateMatch(match) {
+            dataService.UpdateStepladderMatch(match)
+                .then(function (response) {
+                    //TODO:
+                });
+        };
     };
 
     app.controller("StepladderController", ["$http", "$location", "dataService", stepladderController]);
@@ -31,26 +59,18 @@
             restrict: 'E',
             replace: true,
             scope: {
-                name: '=',
                 shots: '='
             },
             template: '<div class="row game">' +
-                '   <div class="col-sm-2 name">{{name}}</div>' +
-                '   <div class="col-sm-10 score">' +
-                '       <table class="frame col-sm-1" ng-repeat="frame in game.frames">' +
-                '           <tr class="number"><td colspan="3">{{frame.number}}</td></tr>' +
-                '           <tr class="shots">' +
-                '               <td class="shot">{{frame.shots[0]}}</td>' +
-                '               <td class="shot">{{frame.shots[1]}}</td>' +
-                '               <td class="shot">{{frame.shots[2]}}</td>' +
-                '           </tr>' +
-                '           <tr class="score"><td colspan="3">{{frame.runningScore}}</td></tr>' +
-                '       </table>' +
-                '       <div class="col-sm-1">' +
-                '           <div class="row">Score</div>' +
-                '           <div class="row">{{game.score}}</div>' +
-                '       </div>' +
-                '   </div>' +
+                '   <table class="frame col-xs-1" ng-repeat="frame in game.frames">' +
+                '       <tr class="number"><td colspan="3">{{frame.number}}</td></tr>' +
+                '       <tr class="shots">' +
+                '           <td class="shot">{{frame.shots[0]}}</td>' +
+                '           <td class="shot">{{frame.shots[1]}}</td>' +
+                '           <td class="shot">{{frame.shots[2]}}</td>' +
+                '       </tr>' +
+                '       <tr class="score"><td colspan="3">{{frame.runningScore}}</td></tr>' +
+                '   </table>' +
                 '</div>',
             link: function (scope, element, attrs) {
                 scope.$watch('shots', function () {

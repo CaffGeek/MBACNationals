@@ -5,17 +5,22 @@ using MBACNationals.Scores.Commands;
 using System;
 using System.Linq;
 using System.Collections;
+using MBACNationals.ReadModels;
 
 namespace MBACNationals.Scores
 {
     public class ScoresCommandHandlers :
         IHandleCommand<SaveMatchResult, MatchAggregate>,
-        IHandleCommand<SaveMatch, MatchAggregate>
+        IHandleCommand<SaveMatch, MatchAggregate>,
+        IHandleCommand<CreateStepladderMatch, StepladderMatchAggregate>,
+        IHandleCommand<UpdateStepladderMatch, StepladderMatchAggregate>
     {
         private MessageDispatcher _dispatcher;
+        private ICommandQueries CommandQueries;
 
-        public ScoresCommandHandlers(MessageDispatcher dispatcher)
+        public ScoresCommandHandlers(ICommandQueries commandQueries, MessageDispatcher dispatcher)
         {
+            CommandQueries = commandQueries;
             _dispatcher = dispatcher;
         }
 
@@ -253,11 +258,47 @@ namespace MBACNationals.Scores
             };            
         }
 
+        public IEnumerable Handle(Func<Guid, StepladderMatchAggregate> al, CreateStepladderMatch command)
+        {
+            var agg = al(command.Id);
+
+            if (agg.EventsLoaded > 0)
+                throw new MatchAlreadyCreated();
+
+            var tournament = CommandQueries.GetTournaments().FirstOrDefault(x => x.Year == command.Year);
+            var awayBowler = CommandQueries.GetParticipant(command.AwayBowlerId);
+            var homeBowler = CommandQueries.GetParticipant(command.HomeBowlerId);
+
+            yield return new StepladderMatchCreated
+            {
+                Id = command.Id,
+                TournamentId = tournament.Id,
+                Year = command.Year,
+                Away = awayBowler.Id,
+                AwayBowler = awayBowler.Name,
+                Home = homeBowler.Id,
+                HomeBowler = homeBowler.Name,
+            };            
+        }
+
         public decimal CalculatePoint(int score, int opponentScore, decimal maxPoint)
         {
             return score > opponentScore ? maxPoint
                         : score == opponentScore ? maxPoint / 2m
                         : 0m;
+        }
+
+        public IEnumerable Handle(Func<Guid, StepladderMatchAggregate> al, UpdateStepladderMatch command)
+        {
+            var agg = al(command.Id);
+
+            yield return new StepladderMatchUpdated
+            {
+                Id = command.Id,
+                TournamentId = command.TournamentId,
+                HomeShots = command.HomeShots,
+                AwayShots = command.AwayShots
+            };            
         }
     }
 }

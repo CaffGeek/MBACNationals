@@ -69,6 +69,8 @@
     <Compile Include="Scores\MatchCreated.cs" />
     <Compile Include="Scores\MatchCompleted.cs" />
     <Compile Include="Scores\ParticipantGameCompleted.cs" />
+    <Compile Include="Scores\StepladderMatchUpdated.cs" />
+    <Compile Include="Scores\StepladderMatchCreated.cs" />
     <Compile Include="Scores\TeamGameCompleted.cs" />
     <Compile Include="Tournament\NewsDeleted.cs" />
     <Compile Include="Tournament\NewsCreated.cs" />

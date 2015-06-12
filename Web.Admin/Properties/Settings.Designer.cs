@@ -26,7 +26,7 @@ namespace WebFrontend.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.167;Initial Catalog=MBAC;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.169;Initial Catalog=MBAC;Integrated Security=True")]
         public string DefaultConnection {
             get {
                 return ((string)(this["DefaultConnection"]));

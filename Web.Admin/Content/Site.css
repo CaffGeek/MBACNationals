@@ -148,18 +148,19 @@ a.navbar-brand {
     padding: 0px;
 }
 
-div.game > .score {
+div.game {
     text-align: center;
+    margin-right: 0px;
+    margin-left: 0px;
 }
-div.game > .score .frame {
+div.game .frame {
     border-collapse: collapse;
-    background: white;
     border: 1px solid black;
 }
-div.game > .score .frame .number {
+div.game .frame .number {
 }
-div.game > .score .frame .shots {
+div.game .frame .shots {
     border: 1px solid black;
 }
-div.game > .score .frame .shots .shot {
+div.game .frame .shots .shot {
 }

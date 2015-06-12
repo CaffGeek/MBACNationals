@@ -33,6 +33,7 @@ namespace WebFrontend
         public static IParticipantScoreQueries ParticipantScoreQueries;
         public static ITeamScoreQueries TeamScoreQueries;
         public static ITournamentQueries TournamentQueries;
+        public static IStepladderQueries StepladderQueries;
 
         public static void Setup()
         {
@@ -45,7 +46,7 @@ namespace WebFrontend
 
             Dispatcher.ScanInstance(new ParticipantCommandHandlers(CommandQueries));
             Dispatcher.ScanInstance(new ContingentCommandHandlers(CommandQueries));
-            Dispatcher.ScanInstance(new ScoresCommandHandlers(Dispatcher)); //TODO: Change to CommandQueries
+            Dispatcher.ScanInstance(new ScoresCommandHandlers(CommandQueries, Dispatcher)); //TODO: Refactor Dispatcher out of Handler
             Dispatcher.ScanInstance(new TournamentCommandHandlers(CommandQueries));
 
             ParticipantQueries = new ParticipantQueries(ReadModelFolder);
@@ -86,6 +87,9 @@ namespace WebFrontend
 
             TournamentQueries = new TournamentQueries(ReadModelFolder);
             Dispatcher.ScanInstance(TournamentQueries);
+
+            StepladderQueries = new StepladderQueries();
+            Dispatcher.ScanInstance(StepladderQueries);
         }
 
         public static void RebuildReadModel(string readmodel)

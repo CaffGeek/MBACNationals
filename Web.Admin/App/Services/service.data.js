@@ -39,7 +39,10 @@
             DeleteSponsor: deleteSponsor,
             SaveNews: saveNews,
             LoadNews: loadNews,
-            DeleteNews: deleteNews
+            DeleteNews: deleteNews,
+            CreateStepladderMatch: createStepladderMatch,
+            GetStepladderMatches: getStepladderMatches,
+            UpdateStepladderMatch: updateStepladderMatch
         };
 
         function saveTeam(team, contingent) {
@@ -290,6 +293,22 @@
             return $http.post('/Setup/News/Delete/' + year, {
                 id: id
             });
+        };
+
+        function createStepladderMatch(year, home, away) {
+            return $http.post('/Setup/Scores/CreateStepladderMatch/' + year, {
+                Year: year,
+                HomeBowlerId: home.Id,
+                AwayBowlerId: away.Id,
+            });
+        };
+
+        function getStepladderMatches(year) {
+            return $http.get('/Setup/Scores/StepladderMatches/' + year);
+        };
+
+        function updateStepladderMatch(match) {
+            return $http.post('/Setup/Scores/UpdateStepladderMatch', match);
         };
     };
 
