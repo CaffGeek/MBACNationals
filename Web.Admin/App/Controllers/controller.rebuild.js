@@ -16,6 +16,7 @@
             { Name: 'ReservationQueries' },
             { Name: 'ScheduleQueries' },
             { Name: 'StandingQueries' },
+            { Name: 'StepladderQueries' },
             { Name: 'TeamScoreQueries' },
             { Name: 'TournamentQueries' },
             { Name: 'ParticipantScoreQueries' }
@@ -42,6 +43,7 @@
                     .then(rebuildModel('ReservationQueries'))
                     .then(rebuildModel('ScheduleQueries'))
                     .then(rebuildModel('StandingQueries'))
+                    .then(rebuildModel('StepladderQueries'))
                     .then(rebuildModel('TeamScoreQueries'))
                     .then(rebuildModel('TournamentQueries'))
                     .then(rebuildModel('ParticipantScoreQueries'));

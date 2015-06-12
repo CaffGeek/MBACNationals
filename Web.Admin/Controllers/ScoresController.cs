@@ -18,8 +18,9 @@ namespace WebFrontend.Controllers
         }
 
         [Authorize(Roles = "ScoreEntry, Host, Admin")]
-        public ActionResult Stepladder()
+        public ActionResult Stepladder(string year)
         {
+            ViewBag.Year = year;
             return View();
         }
 
@@ -86,9 +87,36 @@ namespace WebFrontend.Controllers
             return Json(hightScores, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
+        public JsonResult StepladderMatches(string year)
+        {
+            Response.AppendHeader("Access-Control-Allow-Origin", "*");
+
+            var matches = Domain.StepladderQueries.GetMatches(year);
+            return Json(matches, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         [Authorize(Roles = "ScoreEntry, Admin")]
         public JsonResult SaveMatchResult(SaveMatchResult command)
+        {
+            Domain.Dispatcher.SendCommand(command);
+            return Json(command);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "ScoreEntry, Admin")]
+        public JsonResult CreateStepladderMatch(CreateStepladderMatch command)
+        {
+            command.Id = Guid.NewGuid();
+            Domain.Dispatcher.SendCommand(command);
+            return Json(command);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "ScoreEntry, Admin")]
+        public JsonResult UpdateStepladderMatch(UpdateStepladderMatch command)
         {
             Domain.Dispatcher.SendCommand(command);
             return Json(command);
