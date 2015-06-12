@@ -52,6 +52,7 @@
     <Content Include="app\Views\Results\Bowler.html" />
     <Content Include="app\Views\Results\Match.html" />
     <Content Include="app\Views\Results\Standings.html" />
+    <Content Include="app\Views\Results\Stepladder.html" />
     <Content Include="app\Views\Results\Team.html" />
     <Content Include="centres.php" />
     <Content Include="contingents.php" />
