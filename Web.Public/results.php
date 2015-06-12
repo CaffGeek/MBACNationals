@@ -25,6 +25,8 @@ include "header.php";
             <a href="#Standings" data-ng-click="viewStandings('Teaching Ladies')">TEACHING LADIES</a><br />
             <a href="#Standings" data-ng-click="viewStandings('Seniors')">SENIORS</a><br />
             <a href="#Standings" data-ng-click="viewStandings('Seniors Single')">SENIORS SINGLE</a><br />
+            <hr/>
+            <a href="#Standings" data-ng-click="viewStepladder()">STEPLADDER</a><br />
 				  </div>
 				</div>
         <div class="col span_2_of_3">

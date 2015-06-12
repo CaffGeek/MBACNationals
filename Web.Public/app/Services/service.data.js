@@ -6,6 +6,7 @@
             LoadContingent: loadContingent,
             LoadLaneDraw: loadLaneDraw,
             LoadStandings: loadStandings,
+            LoadStepladder: loadStepladder,
             LoadMatch: loadMatch,
             LoadHighScores: loadHighScores,
             LoadParticipantScores: loadParticipantScores,
@@ -31,6 +32,12 @@
                 params: { division: division, year: 2015 }
             });
         };
+
+        function loadStepladder() {
+            return $http.get(providerUrl + '/Setup/Scores/StepladderMatches', {
+                params: { year: 2015 }
+            });
+        }
 
         function loadMatch(matchId) {
             return $http.get(providerUrl + '/Setup/Scores/Match', {
