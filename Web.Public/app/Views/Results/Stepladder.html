@@ -2,10 +2,6 @@
 
 <div class="row">
     <div data-ng-repeat="match in model" class="panel panel-default" style="padding:10px;">
-        <h4>{{match.HomeName}}</h4>
-        <bowlinggame shots="match.HomeShots" />
-        <h4>{{match.AwayName}}</h4>
-        <bowlinggame shots="match.AwayShots" />
-        <hr />
+        <h4>{{match.HomeName}}</h4> vs <h4>{{match.AwayName}}</h4>
     </div>
 </div>
