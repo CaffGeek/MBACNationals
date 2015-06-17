@@ -42,7 +42,8 @@
             DeleteNews: deleteNews,
             CreateStepladderMatch: createStepladderMatch,
             GetStepladderMatches: getStepladderMatches,
-            UpdateStepladderMatch: updateStepladderMatch
+            UpdateStepladderMatch: updateStepladderMatch,
+            DeleteStepladderMatch: deleteStepladderMatch
         };
 
         function saveTeam(team, contingent) {
@@ -309,6 +310,10 @@
 
         function updateStepladderMatch(match) {
             return $http.post('/Setup/Scores/UpdateStepladderMatch', match);
+        };
+
+        function deleteStepladderMatch(match) {
+            return $http.post('/Setup/Scores/DeleteStepladderMatch/', match);
         };
     };
 

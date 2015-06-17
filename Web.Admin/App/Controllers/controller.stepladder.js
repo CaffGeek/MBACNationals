@@ -9,6 +9,7 @@
         var vm = this;
         vm.createMatch = createMatch;
         vm.updateMatch = updateMatch;
+        vm.deleteMatch = deleteMatch;
 
         var page = "list";
         vm.viewUrl = '/Setup/App/Views/Stepladder/' + page + '.html';
@@ -40,16 +41,29 @@
 
             dataService.CreateStepladderMatch(year, home, away)
                 .then(function (response) {
-                    alert(response); //TODO:
+                    vm.Matches.push(response.data);
                 });
         };
 
         function updateMatch(match) {
-            dataService.UpdateStepladderMatch(match)
-                .then(function (response) {
-                    //TODO:
-                });
+            dataService.UpdateStepladderMatch(match);
+            //TODO: Something on error
         };
+
+        function deleteMatch(match) {
+            if (!confirm('Are you sure you want to delete this match between ' + match.HomeName + ' and ' + match.AwayName + '?'))
+                return;
+            dataService.DeleteStepladderMatch(match)
+                .then(function (response) {
+                    var matchId = response.data.Id;
+                    var match = vm.Matches.filter(function (x) { return x.Id == matchId; })[0];
+                    var idx = vm.Matches.indexOf(match);
+                    if (idx < 0)
+                        return;
+
+                    vm.Matches.splice(idx, 1);
+                });
+        }
     };
 
     app.controller("StepladderController", ["$http", "$location", "dataService", stepladderController]);
@@ -107,18 +121,18 @@
 
                         var shotScore = calcShotScore(shots, i);
                         currentFrame.shots.push(shot);
-                        if (currentFrame.number === 10 && shots[i + 1]) currentFrame.shots.push(shots[i + 1]); //<-- HERE
-                        if (currentFrame.number === 10 && shots[i + 2]) currentFrame.shots.push(shots[i + 2]); //<-- HERE
+                        if (currentFrame.number === 10 && shots[i + 1]) currentFrame.shots.push(shots[i + 1]);
+                        if (currentFrame.number === 10 && shots[i + 2]) currentFrame.shots.push(shots[i + 2]);
                         
                         currentFrame.score += shotScore;
                                                 
                         if (shot === 'X' || currentFrame.number === 10) {
-                            if (shots[i + 1]) currentFrame.score += calcShotScore(shots, i + 1);  //<-- HERE
-                            if (shots[i + 2]) currentFrame.score += calcShotScore(shots, i + 2);  //<-- HERE
+                            if (shots[i + 1]) currentFrame.score += calcShotScore(shots, i + 1); 
+                            if (shots[i + 2]) currentFrame.score += calcShotScore(shots, i + 2); 
                         }
 
                         if (shot === '/' && shots[i + 1])
-                            currentFrame.score += calcShotScore(shots, i + 1); //<-- HERE
+                            currentFrame.score += calcShotScore(shots, i + 1);
 
                         if (currentFrame.shots.length === 3 || currentFrame.score >= 15) {
                             scope.game.score += currentFrame.score;

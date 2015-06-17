@@ -1,5 +1,6 @@
 ﻿using MBACNationals.Scores.Commands;
 using System;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace WebFrontend.Controllers
@@ -111,12 +112,22 @@ namespace WebFrontend.Controllers
         {
             command.Id = Guid.NewGuid();
             Domain.Dispatcher.SendCommand(command);
-            return Json(command);
+            var match = Domain.StepladderQueries.GetMatches(command.Year)
+                .FirstOrDefault(x => x.Id == command.Id);
+            return Json(match);
         }
 
         [HttpPost]
         [Authorize(Roles = "ScoreEntry, Admin")]
         public JsonResult UpdateStepladderMatch(UpdateStepladderMatch command)
+        {
+            Domain.Dispatcher.SendCommand(command);
+            return Json(command);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "ScoreEntry, Admin")]
+        public JsonResult DeleteStepladderMatch(DeleteStepladderMatch command)
         {
             Domain.Dispatcher.SendCommand(command);
             return Json(command);

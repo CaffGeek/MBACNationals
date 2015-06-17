@@ -13,7 +13,8 @@ namespace MBACNationals.Scores
         IHandleCommand<SaveMatchResult, MatchAggregate>,
         IHandleCommand<SaveMatch, MatchAggregate>,
         IHandleCommand<CreateStepladderMatch, StepladderMatchAggregate>,
-        IHandleCommand<UpdateStepladderMatch, StepladderMatchAggregate>
+        IHandleCommand<UpdateStepladderMatch, StepladderMatchAggregate>,
+        IHandleCommand<DeleteStepladderMatch, StepladderMatchAggregate>
     {
         private MessageDispatcher _dispatcher;
         private ICommandQueries CommandQueries;
@@ -268,7 +269,7 @@ namespace MBACNationals.Scores
             var tournament = CommandQueries.GetTournaments().FirstOrDefault(x => x.Year == command.Year);
             var awayBowler = CommandQueries.GetParticipant(command.AwayBowlerId);
             var homeBowler = CommandQueries.GetParticipant(command.HomeBowlerId);
-
+            
             yield return new StepladderMatchCreated
             {
                 Id = command.Id,
@@ -278,6 +279,7 @@ namespace MBACNationals.Scores
                 AwayBowler = awayBowler.Name,
                 Home = homeBowler.Id,
                 HomeBowler = homeBowler.Name,
+                Gender = homeBowler.Gender
             };            
         }
 
@@ -298,6 +300,17 @@ namespace MBACNationals.Scores
                 TournamentId = command.TournamentId,
                 HomeShots = command.HomeShots,
                 AwayShots = command.AwayShots
+            };            
+        }
+
+        public IEnumerable Handle(Func<Guid, StepladderMatchAggregate> al, DeleteStepladderMatch command)
+        {
+            var agg = al(command.Id);
+
+            yield return new StepladderMatchDeleted
+            {
+                Id = command.Id,
+                TournamentId = command.TournamentId
             };            
         }
     }

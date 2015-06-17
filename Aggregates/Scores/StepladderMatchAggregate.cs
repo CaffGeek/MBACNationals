@@ -6,7 +6,8 @@ namespace MBACNationals.Scores
 {
     public class StepladderMatchAggregate : Aggregate,
         IApplyEvent<StepladderMatchCreated>,
-        IApplyEvent<StepladderMatchUpdated>
+        IApplyEvent<StepladderMatchUpdated>,
+        IApplyEvent<StepladderMatchDeleted>
     {
         public Guid TournamentId { get; private set; }
         public string Year { get; private set; }
@@ -20,6 +21,11 @@ namespace MBACNationals.Scores
         }
 
         public void Apply(StepladderMatchUpdated e)
+        {
+            //TODO:
+        }
+
+        public void Apply(StepladderMatchDeleted e)
         {
             //TODO:
         }

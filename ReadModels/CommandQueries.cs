@@ -10,7 +10,9 @@ namespace MBACNationals.ReadModels
     public class CommandQueries : AzureReadModel,
         ICommandQueries,
         ISubscribeTo<TournamentCreated>,
-        ISubscribeTo<ParticipantCreated>
+        ISubscribeTo<ParticipantCreated>,
+        ISubscribeTo<ParticipantGenderReassigned>,
+        ISubscribeTo<ParticipantRenamed>
     {
         public CommandQueries(string readModelFilePath)
         {
@@ -30,6 +32,7 @@ namespace MBACNationals.ReadModels
             public virtual Guid TeamId { get; set; }
             public virtual string Name { get; set; }
             public virtual int Average { get; set; }
+            public virtual string Gender { get; set; }
         }
 
         private class TSTournament : Entity
@@ -43,6 +46,7 @@ namespace MBACNationals.ReadModels
             public virtual Guid TeamId { get; set; }
             public virtual string Name { get; set; }
             public virtual int Average { get; set; }
+            public virtual string Gender { get; set; }
         }
 
         public List<Tournament> GetTournaments()
@@ -65,7 +69,8 @@ namespace MBACNationals.ReadModels
                 TeamId = participant.TeamId,
                 ContingentId = participant.ContingentId,
                 Name = participant.Name,
-                Average = participant.Average
+                Average = participant.Average,
+                Gender = participant.Gender
             };
                 
         }
@@ -82,8 +87,19 @@ namespace MBACNationals.ReadModels
         {
             Create(Guid.Empty, e.Id, new TSParticipant
             {
-                Name = e.Name
+                Name = e.Name,
+                Gender = e.Gender
             });
+        }
+
+        public void Handle(ParticipantGenderReassigned e)
+        {
+            Update<TSParticipant>(Guid.Empty, e.Id, x => x.Gender = e.Gender);
+        }
+
+        public void Handle(ParticipantRenamed e)
+        {
+            Update<TSParticipant>(Guid.Empty, e.Id, x => x.Name = e.Name);
         }
     }
 }
