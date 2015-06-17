@@ -22,15 +22,8 @@
             });
         });
 
-        vm.Matches = [
-            {
-                Home: 'bowler1',
-                HomeShots: '2112XX2/x5-5r/l/a22xxx', //251
-                Away: 'bowler2',
-                AwayShots: 'xxx12/x5/x5/x5/x',    //327
-                Created: new Date()
-            }
-        ];
+        vm.Matches = [];
+
         dataService.GetStepladderMatches(year).then(function (data) {
             vm.Matches = data.data;
         });
@@ -85,17 +78,28 @@
                 '       </tr>' +
                 '       <tr class="score"><td colspan="3">{{frame.runningScore}}</td></tr>' +
                 '   </table>' +
+                '   <table class="frame col-xs-1">' +
+                '       <tr class="number"><td colspan="3">T</td></tr>' +
+                '       <tr class="score"><td colspan="3">&nbsp;</td></tr>' +
+                '       <tr class="score"><td colspan="3">{{game.score - ((game.fouls || 0) * 15)}}</td></tr>' +
+                '   </table>' +
                 '</div>',
             link: function (scope, element, attrs) {
                 scope.$watch('shots', function () {
                     scope.shots = scope.shots.toUpperCase();
+                    scope.game = { frames: [], score: 0, fouls: 0 };
 
                     var shots = [];
-                    for (var i = 0; i < scope.shots.length; i++)
-                        shots.push(scope.shots[i] === '1' ? scope.shots[i] + scope.shots[++i] : scope.shots[i]);
+                    for (var i = 0; i < scope.shots.length; i++) {
+                        if (scope.shots[i] === '1') {
+                            shots.push(scope.shots[i] + scope.shots[++i]);
+                        } else if (scope.shots[i] === 'F') {
+                            scope.game.fouls++;
+                        } else {
+                            shots.push(scope.shots[i]);
+                        }
+                    }
                     
-                    scope.game = { frames: [], score: 0 };
-
                     var calcShotScore = function (shots, i) {
                         var shot = shots[i];
 
@@ -121,28 +125,28 @@
 
                         var shotScore = calcShotScore(shots, i);
                         currentFrame.shots.push(shot);
-                        if (currentFrame.number === 10 && shots[i + 1]) currentFrame.shots.push(shots[i + 1]);
-                        if (currentFrame.number === 10 && shots[i + 2]) currentFrame.shots.push(shots[i + 2]);
-                        
+                                                
                         currentFrame.score += shotScore;
                                                 
-                        if (shot === 'X' || currentFrame.number === 10) {
-                            if (shots[i + 1]) currentFrame.score += calcShotScore(shots, i + 1); 
-                            if (shots[i + 2]) currentFrame.score += calcShotScore(shots, i + 2); 
+                        if (shot === 'X' && currentFrame.number != 10) {
+                            if (shots[i + 1])
+                                currentFrame.score += calcShotScore(shots, i + 1);
+                            if (shots[i + 2])
+                                currentFrame.score += calcShotScore(shots, i + 2);
                         }
 
-                        if (shot === '/' && shots[i + 1])
+                        if (shot === '/' && shots[i + 1] && currentFrame.number != 10) {
                             currentFrame.score += calcShotScore(shots, i + 1);
+                        }
 
-                        if (currentFrame.shots.length === 3 || currentFrame.score >= 15) {
+                        if (currentFrame.shots.length === 3 || (currentFrame.score >= 15 && currentFrame.number != 10)) {
                             scope.game.score += currentFrame.score;
                             currentFrame.runningScore = scope.game.score;
 
-                            if (currentFrame.number === 10)
-                                break;
-
-                            currentFrame = { number: currentFrame.number + 1, shots: [], score: 0 };
-                            scope.game.frames.push(currentFrame);
+                            if (currentFrame.number !== 10) {
+                                currentFrame = { number: currentFrame.number + 1, shots: [], score: 0 };
+                                scope.game.frames.push(currentFrame);
+                            }
                         }
                     }
                 });
