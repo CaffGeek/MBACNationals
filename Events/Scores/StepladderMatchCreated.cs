@@ -12,5 +12,6 @@ namespace Events.Scores
         public Guid Home;
         public string AwayBowler;
         public string HomeBowler;
+        public string Gender;
     }
 }

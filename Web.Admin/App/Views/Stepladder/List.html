@@ -22,13 +22,29 @@
     <button type="submit" class="btn btn-default">Create Match</button>
 </form>
 
-<h4>Past Matches</h4>
 <div class="row">
-    <div data-ng-repeat="match in vm.Matches" class="panel panel-default" style="padding:10px;">
-        {{match.HomeName}} <input type="text" ng-model="match.HomeShots" ng-change="vm.updateMatch(match)" size="35" maxlength="40" />
-        <bowlinggame shots="match.HomeShots" />
-        <hr />
-        {{match.AwayName}} <input type="text" ng-model="match.AwayShots" ng-change="vm.updateMatch(match)" size="35" maxlength="40" />
-        <bowlinggame shots="match.AwayShots" />        
+    <div class="col-lg-6">
+        <h4>Mens Stepladder</h4>
+        <ul class="list-unstyled">
+            <li data-ng-repeat="match in vm.Matches | filter:{Gender:'M'}" class="panel panel-body">
+                {{match.HomeName}} <input type="text" ng-model="match.HomeShots" ng-change="vm.updateMatch(match)" size="35" maxlength="40" />
+                <bowlinggame shots="match.HomeShots" />
+                {{match.AwayName}} <input type="text" ng-model="match.AwayShots" ng-change="vm.updateMatch(match)" size="35" maxlength="40" />
+                <bowlinggame shots="match.AwayShots" />
+                <a href="" data-ng-click="vm.deleteMatch(match)" class="pull-right"><i class="glyphicon glyphicon-trash"></i></a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-lg-6">
+        <h4>Ladies Stepladder</h4>
+        <ul class="list-unstyled">
+            <li data-ng-repeat="match in vm.Matches | filter:{Gender:'F'}" class="panel panel-body">
+                {{match.HomeName}} <input type="text" ng-model="match.HomeShots" ng-change="vm.updateMatch(match)" size="35" maxlength="40" />
+                <bowlinggame shots="match.HomeShots" />
+                {{match.AwayName}} <input type="text" ng-model="match.AwayShots" ng-change="vm.updateMatch(match)" size="35" maxlength="40" />
+                <bowlinggame shots="match.AwayShots" />
+                <a href="" data-ng-click="vm.deleteMatch(match)" class="pull-right"><i class="glyphicon glyphicon-trash"></i></a>
+            </li>
+        </ul>
     </div>
 </div>

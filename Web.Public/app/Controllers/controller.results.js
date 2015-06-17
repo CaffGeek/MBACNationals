@@ -131,18 +131,18 @@
 
                         var shotScore = calcShotScore(shots, i);
                         currentFrame.shots.push(shot);
-                        if (currentFrame.number === 10 && shots[i + 1]) currentFrame.shots.push(shots[i + 1]); //<-- HERE
-                        if (currentFrame.number === 10 && shots[i + 2]) currentFrame.shots.push(shots[i + 2]); //<-- HERE
+                        if (currentFrame.number === 10 && shots[i + 1]) currentFrame.shots.push(shots[i + 1]);
+                        if (currentFrame.number === 10 && shots[i + 2]) currentFrame.shots.push(shots[i + 2]);
 
                         currentFrame.score += shotScore;
 
                         if (shot === 'X' || currentFrame.number === 10) {
-                            if (shots[i + 1]) currentFrame.score += calcShotScore(shots, i + 1);  //<-- HERE
-                            if (shots[i + 2]) currentFrame.score += calcShotScore(shots, i + 2);  //<-- HERE
+                            if (shots[i + 1]) currentFrame.score += calcShotScore(shots, i + 1); 
+                            if (shots[i + 2]) currentFrame.score += calcShotScore(shots, i + 2); 
                         }
 
                         if (shot === '/' && shots[i + 1])
-                            currentFrame.score += calcShotScore(shots, i + 1); //<-- HERE
+                            currentFrame.score += calcShotScore(shots, i + 1);
 
                         if (currentFrame.shots.length === 3 || currentFrame.score >= 15) {
                             scope.game.score += currentFrame.score;

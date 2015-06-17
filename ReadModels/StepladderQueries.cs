@@ -11,7 +11,8 @@ namespace MBACNationals.ReadModels
         IStepladderQueries,
         ISubscribeTo<TournamentCreated>,
         ISubscribeTo<StepladderMatchCreated>,
-        ISubscribeTo<StepladderMatchUpdated>
+        ISubscribeTo<StepladderMatchUpdated>,
+        ISubscribeTo<StepladderMatchDeleted>
     {
         public class Match
         {
@@ -25,6 +26,7 @@ namespace MBACNationals.ReadModels
             public string AwayName { get; internal set; }
             public string AwayShots { get; internal set; }
             public bool IsComplete { get; internal set; }
+            public string Gender { get; internal set; }
         }
 
         public class TSTournament : Entity
@@ -57,6 +59,7 @@ namespace MBACNationals.ReadModels
             public string AwayName { get; set; }
             public string AwayShots { get; set; }
             public bool IsComplete { get; set; }
+            public string Gender { get; set; }
         }
 
 
@@ -78,7 +81,8 @@ namespace MBACNationals.ReadModels
                     AwayId = x.AwayId,
                     AwayName = x.AwayName,
                     AwayShots = x.AwayShots,
-                    IsComplete = x.IsComplete
+                    IsComplete = x.IsComplete,
+                    Gender = x.Gender
                 }).ToList();
         }
 
@@ -101,6 +105,7 @@ namespace MBACNationals.ReadModels
                 AwayId = e.Away,
                 AwayName = e.AwayBowler,
                 AwayShots = string.Empty,
+                Gender = e.Gender
             });
         }
 
@@ -111,6 +116,11 @@ namespace MBACNationals.ReadModels
                 x.AwayShots = e.AwayShots;
                 x.HomeShots = e.HomeShots;
             });
+        }
+
+        public void Handle(StepladderMatchDeleted e)
+        {
+            Delete<TSMatch>(e.TournamentId, e.Id);
         }
     }
 }
