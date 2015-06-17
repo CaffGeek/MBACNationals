@@ -27,6 +27,8 @@ namespace MBACNationals.ReadModels
             public string AwayShots { get; internal set; }
             public bool IsComplete { get; internal set; }
             public string Gender { get; internal set; }
+            public DateTime Created { get; internal set; }
+            public DateTime Updated { get; internal set; }
         }
 
         public class TSTournament : Entity
@@ -60,6 +62,8 @@ namespace MBACNationals.ReadModels
             public string AwayShots { get; set; }
             public bool IsComplete { get; set; }
             public string Gender { get; set; }
+            public DateTime Created { get; set; }
+            public DateTime Updated { get; set; }
         }
 
 
@@ -82,7 +86,8 @@ namespace MBACNationals.ReadModels
                     AwayName = x.AwayName,
                     AwayShots = x.AwayShots,
                     IsComplete = x.IsComplete,
-                    Gender = x.Gender
+                    Gender = x.Gender,
+                    Created = x.Created,
                 }).ToList();
         }
 
@@ -105,7 +110,8 @@ namespace MBACNationals.ReadModels
                 AwayId = e.Away,
                 AwayName = e.AwayBowler,
                 AwayShots = string.Empty,
-                Gender = e.Gender
+                Gender = e.Gender,
+                Created = e.Created,
             });
         }
 
@@ -115,6 +121,7 @@ namespace MBACNationals.ReadModels
             {
                 x.AwayShots = e.AwayShots;
                 x.HomeShots = e.HomeShots;
+                x.Updated = e.Updated;
             });
         }
 

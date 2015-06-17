@@ -1,7 +1,8 @@
 ﻿<h2 id="Standings">STEPLADDER</h2>
 
+<a href="#Standings" data-ng-click="viewStepladder()">REFRESH</a><br />
 <div class="row">
-    <div data-ng-repeat="match in model" class="panel panel-default" style="padding:10px;">
+    <div data-ng-repeat="match in model | orderBy: 'Created': true" class="panel panel-default" style="padding:10px;">
         <h4>{{match.HomeName}}</h4>
         <bowlinggame shots="match.HomeShots" />
         <h4>{{match.AwayName}}</h4>

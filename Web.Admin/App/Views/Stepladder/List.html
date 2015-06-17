@@ -26,7 +26,7 @@
     <div class="col-lg-6">
         <h4>Mens Stepladder</h4>
         <ul class="list-unstyled">
-            <li data-ng-repeat="match in vm.Matches | filter:{Gender:'M'}" class="panel panel-body">
+            <li data-ng-repeat="match in vm.Matches | filter:{Gender:'M'} | orderBy: 'Created': true" class="panel panel-body">
                 {{match.HomeName}} <input type="text" ng-model="match.HomeShots" ng-change="vm.updateMatch(match)" size="35" maxlength="40" />
                 <bowlinggame shots="match.HomeShots" />
                 {{match.AwayName}} <input type="text" ng-model="match.AwayShots" ng-change="vm.updateMatch(match)" size="35" maxlength="40" />
@@ -38,7 +38,7 @@
     <div class="col-lg-6">
         <h4>Ladies Stepladder</h4>
         <ul class="list-unstyled">
-            <li data-ng-repeat="match in vm.Matches | filter:{Gender:'F'}" class="panel panel-body">
+            <li data-ng-repeat="match in vm.Matches | filter:{Gender:'F'} | orderBy: 'Created': true" class="panel panel-body">
                 {{match.HomeName}} <input type="text" ng-model="match.HomeShots" ng-change="vm.updateMatch(match)" size="35" maxlength="40" />
                 <bowlinggame shots="match.HomeShots" />
                 {{match.AwayName}} <input type="text" ng-model="match.AwayShots" ng-change="vm.updateMatch(match)" size="35" maxlength="40" />

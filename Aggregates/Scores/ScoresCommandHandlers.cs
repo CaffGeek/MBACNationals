@@ -279,7 +279,8 @@ namespace MBACNationals.Scores
                 AwayBowler = awayBowler.Name,
                 Home = homeBowler.Id,
                 HomeBowler = homeBowler.Name,
-                Gender = homeBowler.Gender
+                Gender = homeBowler.Gender,
+                Created = DateTime.Now,
             };            
         }
 
@@ -299,8 +300,9 @@ namespace MBACNationals.Scores
                 Id = command.Id,
                 TournamentId = command.TournamentId,
                 HomeShots = command.HomeShots,
-                AwayShots = command.AwayShots
-            };            
+                AwayShots = command.AwayShots,
+                Updated = DateTime.Now,
+            };
         }
 
         public IEnumerable Handle(Func<Guid, StepladderMatchAggregate> al, DeleteStepladderMatch command)

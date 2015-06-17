@@ -13,5 +13,6 @@ namespace Events.Scores
         public string AwayBowler;
         public string HomeBowler;
         public string Gender;
+        public DateTime Created;
     }
 }
