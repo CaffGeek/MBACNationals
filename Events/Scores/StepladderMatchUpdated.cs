@@ -8,5 +8,6 @@ namespace Events.Scores
         public Guid TournamentId;
         public string AwayShots;
         public string HomeShots;
+        public DateTime Updated;
     }
 }
