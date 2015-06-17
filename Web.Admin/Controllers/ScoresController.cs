@@ -99,7 +99,7 @@ namespace WebFrontend.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "ScoreEntry, Admin")]
+        [Authorize(Roles = "ScoreEntry, Host, Admin")]
         public JsonResult SaveMatchResult(SaveMatchResult command)
         {
             Domain.Dispatcher.SendCommand(command);
@@ -107,7 +107,7 @@ namespace WebFrontend.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "ScoreEntry, Admin")]
+        [Authorize(Roles = "ScoreEntry, Host, Admin")]
         public JsonResult CreateStepladderMatch(CreateStepladderMatch command)
         {
             command.Id = Guid.NewGuid();
@@ -118,7 +118,7 @@ namespace WebFrontend.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "ScoreEntry, Admin")]
+        [Authorize(Roles = "ScoreEntry, Host, Admin")]
         public JsonResult UpdateStepladderMatch(UpdateStepladderMatch command)
         {
             Domain.Dispatcher.SendCommand(command);
@@ -126,7 +126,7 @@ namespace WebFrontend.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "ScoreEntry, Admin")]
+        [Authorize(Roles = "ScoreEntry, Host, Admin")]
         public JsonResult DeleteStepladderMatch(DeleteStepladderMatch command)
         {
             Domain.Dispatcher.SendCommand(command);
