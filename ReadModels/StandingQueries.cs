@@ -97,6 +97,16 @@ namespace MBACNationals.ReadModels
             public string Name { get; set; }
         }
 
+        private class TSSingle : Entity
+        {
+            public Guid TeamId
+            {
+                get { return Guid.Parse(RowKey); }
+                internal set { RowKey = value.ToString(); PartitionKey = value.ToString(); }
+            }
+            public Guid SingleTeamId { get; set; }
+        }
+
         public List<Team> GetDivision(Guid tournamentId, string division)
         {
             var matches = Query<TSMatch>(x =>
@@ -179,15 +189,29 @@ namespace MBACNationals.ReadModels
             Guid partitionKey;
             var isPOASingles = e.IsPOA && e.Division.Contains("Single");
             if (isPOASingles)
-            {   //HACK: We can't have a duplicate team and match, so for poa singles, we put in a fake teamid
-                var existingEntry = Query<TSMatch>(x => 
-                    x.MatchId == e.Id 
-                    && x.Division.Equals(e.Division, StringComparison.OrdinalIgnoreCase)
-                    && x.Province == e.Contingent
-                    ).FirstOrDefault();
-                partitionKey = (existingEntry == null)
-                    ? Guid.NewGuid()
-                    : existingEntry.TeamId;
+            {   
+                //Does the team have a translation for the single yet?
+                var existingTranslation = Read<TSSingle>(e.TeamId, e.TeamId);
+                if (existingTranslation == null)
+                {//No, create one
+                    existingTranslation = new TSSingle
+                    { 
+                        TeamId = e.TeamId,
+                        SingleTeamId = Guid.NewGuid() 
+                    };
+                    Create(e.TeamId, e.TeamId, existingTranslation);
+                }
+                partitionKey = existingTranslation.SingleTeamId;
+            
+                ////HACK: We can't have a duplicate team and match, so for poa singles, we put in a fake teamid
+                //var existingEntry = Query<TSMatch>(x => 
+                //    x.MatchId == e.Id 
+                //    && x.Division.Equals(e.Division, StringComparison.OrdinalIgnoreCase)
+                //    && x.Province == e.Contingent
+                //    ).FirstOrDefault();
+                //partitionKey = (existingEntry == null)
+                //    ? Guid.NewGuid()
+                //    : existingEntry.TeamId;
             } else {
                 partitionKey = e.TeamId;
             }
