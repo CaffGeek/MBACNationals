@@ -17,19 +17,14 @@ font : 100%/1.4 'lucida sans unicode', 'lucida grande', 'Trebuchet MS', verdana,
 /*  LINKS  ============================================================================= */
 
 
-a:link {
+a:link, a:visited {
 color: #000000;
-text-decoration:dotted;
-}
-
-a:visited {
-color: #000000;
-text-decoration:dotted;
+text-decoration:underline;
+text-decoration-style:dotted;
 
 }
 
-a:hover {text-decoration:underline;}
-a:active {text-decoration:underline;}
+a:hover, a:active {text-decoration-style:solid;}
 
 /*  HEADINGS  ============================================================================= */
 
