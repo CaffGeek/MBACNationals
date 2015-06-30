@@ -141,6 +141,15 @@ namespace MBACNationals.ReadModels
                     }).ToList();
             }
 
+            foreach (var single in Query<TSSingle>())
+            {
+                var team = teams.FirstOrDefault(t => t.TeamId == single.SingleTeamId.ToString());
+                if (team == null)
+                    continue;
+
+                team.TeamId = single.TeamId.ToString();
+            }
+
             return teams;
         }
 
@@ -185,7 +194,7 @@ namespace MBACNationals.ReadModels
         {
             var team = Read<TSTeam>(e.TeamId);
             var contingent = Read<TSContingent>(team.ContingentId, team.ContingentId);
-
+            
             Guid partitionKey;
             var isPOASingles = e.IsPOA && e.Division.Contains("Single");
             if (isPOASingles)
@@ -202,16 +211,6 @@ namespace MBACNationals.ReadModels
                     Create(e.TeamId, e.TeamId, existingTranslation);
                 }
                 partitionKey = existingTranslation.SingleTeamId;
-            
-                ////HACK: We can't have a duplicate team and match, so for poa singles, we put in a fake teamid
-                //var existingEntry = Query<TSMatch>(x => 
-                //    x.MatchId == e.Id 
-                //    && x.Division.Equals(e.Division, StringComparison.OrdinalIgnoreCase)
-                //    && x.Province == e.Contingent
-                //    ).FirstOrDefault();
-                //partitionKey = (existingEntry == null)
-                //    ? Guid.NewGuid()
-                //    : existingEntry.TeamId;
             } else {
                 partitionKey = e.TeamId;
             }
