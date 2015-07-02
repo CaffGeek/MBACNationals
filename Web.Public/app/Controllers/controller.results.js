@@ -27,7 +27,8 @@
         };
 
         function viewStepladder() {
-            $scope.viewUrl = '/app/Views/Results/Stepladder.html';
+            var x = new Date();
+            $scope.viewUrl = '/app/Views/Results/Stepladder.html?x='+x.toString();
 
             dataService.LoadStepladder().then(function (data) {
                 $scope.model = data.data;
