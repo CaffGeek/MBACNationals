@@ -101,7 +101,7 @@ function autoResize(id){
               <li><a href="schedule.php">SCHEDULE</a></li>
               <li><a href="lanedraw.php">LANE DRAW</a></li>
               <!--<li><a href="photos.php">PHOTOS</a></li>-->
-			  <li><a href="https://www.facebook.com/MBAofCanada/photos_stream">PHOTOS</a></li>
+			  <li><a href="https://www.facebook.com/MBAofCanada">PHOTOS</a></li>
               <li><a href="contingents.php">CONTINGENTS</a></li>
 			  <li><a href="souvenirs.php">SOUVENIRS</a></li>
               <li><a href="centres.php">CENTRES</a></li>
