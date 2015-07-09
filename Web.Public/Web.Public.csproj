@@ -86,6 +86,28 @@
     <Content Include="images\Sponsors\sysco.png" />
     <Content Include="images\Sponsors\tourismHamilton.jpg" />
     <Content Include="index.php-c4f050ab-1686-42d5-9551-26d93f354e17" />
+    <Content Include="js\galleria\galleria-1.4.2.js" />
+    <Content Include="js\galleria\galleria-1.4.2.min.js" />
+    <Content Include="js\galleria\plugins\facebook\galleria.facebook.js" />
+    <Content Include="js\galleria\plugins\facebook\loader.gif" />
+    <Content Include="js\galleria\plugins\flickr\flickr-demo.html" />
+    <Content Include="js\galleria\plugins\flickr\flickr-loader.gif" />
+    <Content Include="js\galleria\plugins\flickr\galleria.flickr.js" />
+    <Content Include="js\galleria\plugins\flickr\galleria.flickr.min.js" />
+    <Content Include="js\galleria\plugins\flickr\loader.gif" />
+    <Content Include="js\galleria\plugins\history\galleria.history.js" />
+    <Content Include="js\galleria\plugins\history\galleria.history.min.js" />
+    <Content Include="js\galleria\plugins\history\history-demo.html" />
+    <Content Include="js\galleria\plugins\picasa\galleria.picasa.js" />
+    <Content Include="js\galleria\plugins\picasa\galleria.picasa.min.js" />
+    <Content Include="js\galleria\plugins\picasa\loader.gif" />
+    <Content Include="js\galleria\plugins\picasa\picasa-demo.html" />
+    <Content Include="js\galleria\themes\classic\classic-demo.html" />
+    <Content Include="js\galleria\themes\classic\classic-loader.gif" />
+    <Content Include="js\galleria\themes\classic\classic-map.png" />
+    <Content Include="js\galleria\themes\classic\galleria.classic.css" />
+    <Content Include="js\galleria\themes\classic\galleria.classic.js" />
+    <Content Include="js\galleria\themes\classic\galleria.classic.min.js" />
     <Content Include="lanedraw.php" />
     <Content Include="news.php" />
     <Content Include="photobooth.php" />
@@ -96,9 +118,20 @@
     <Content Include="photos_5.php" />
     <Content Include="photos_old.php" />
     <Content Include="photos_social.php" />
+    <Content Include="photos_teams.php" />
+    <Content Include="photos_winners.php" />
     <Content Include="README.md" />
     <Content Include="results.php" />
     <Content Include="schedule.php" />
+    <Content Include="scripts\FileAPI.flash.swf" />
+    <Content Include="scripts\FileAPI.js" />
+    <Content Include="scripts\FileAPI.min.js" />
+    <Content Include="scripts\ng-file-upload-all.js" />
+    <Content Include="scripts\ng-file-upload-all.min.js" />
+    <Content Include="scripts\ng-file-upload-shim.js" />
+    <Content Include="scripts\ng-file-upload-shim.min.js" />
+    <Content Include="scripts\ng-file-upload.js" />
+    <Content Include="scripts\ng-file-upload.min.js" />
     <Content Include="stepladder_ladies.php" />
     <Content Include="stepladder_men.php" />
     <Content Include="index.php">
@@ -256,6 +289,8 @@
   <ItemGroup>
     <Content Include="web.config" />
     <Content Include="images\Forms\2015NationalsLaneDraw.pdf" />
+    <Content Include="js\galleria\LICENSE" />
+    <Content Include="js\galleria\plugins\README.md" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
