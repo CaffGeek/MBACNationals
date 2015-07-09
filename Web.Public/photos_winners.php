@@ -52,7 +52,7 @@ Galleria.run('#galleria', {
  height: 550,
  lightbox: true,
  facebookOptions: {
-   max: 50,
+   max: 100,
    facebook_access_token: '871325676235910|5640fa457799c71eeace0176717512b2'
  }
 });
