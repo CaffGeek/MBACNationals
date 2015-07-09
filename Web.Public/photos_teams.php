@@ -20,7 +20,7 @@ include "header.php";
 				</div>
 				<div class="col span_2_of_3" id="contentArea">
 					
-					<h2>PHOTOS - Participation Awards</h2>
+					<h2>PHOTOS - Team / Singles</h2>
 					<div id="galleria"></div>
 					
 				</div>
