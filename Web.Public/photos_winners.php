@@ -20,7 +20,7 @@ include "header.php";
 				</div>
 				<div class="col span_2_of_3" id="contentArea">
 					
-					<h2>PHOTOS - Participation Awards</h2>
+					<h2>PHOTOS - Victory Banquet Awards</h2>
 					<div id="galleria"></div>
 					
 				</div>
@@ -48,7 +48,7 @@ include "footer.php";
 <script>
 Galleria.loadTheme('js/galleria/themes/classic/galleria.classic.min.js');
 Galleria.run('#galleria', {
- facebook: 'album:550955281636472',
+ facebook: 'album:967253180006678',
  height: 550,
  lightbox: true,
  facebookOptions: {
