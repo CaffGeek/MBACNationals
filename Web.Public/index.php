@@ -15,13 +15,9 @@ include "header.php";
 				<div class="col span_2_of_3">
 					<div class="section group">
 					  <div class="col span_2_of_2" id="welcome">
-					    <h2>WELCOME</h2>
-					    <p>The Master Bowlers Association of Ontario and its host committee welcome you to Ontario and the Burlington/Hamilton area.  Our group of volunteers is excited and privileged to work on your behalf to put forth a memorable experience for you.</p>
-              <p>Our host hotel is the Holiday Inn Burlington Hotel & Conference Centre.  This hotel is a full service facility with an indoor pool, whirlpool, sauna, restaurant, and free high speed internet and features a Holidome atrium.  It is located approximately 20 minutes from the bowling centre that will be hosting our National Championships.  There are several restaurants across from the hotel, a mall less than a10 minute walk and the waterfront a short 5 minute cab ride.  All hotel reservations must be done through the Master Bowlers Association of Ontario.</p>
-              <p>Our host bowling centre will be Sherwood Centre, with 48 lanes allows all participants to be in one location allowing guests and provincial contingents access to support their province.</p>
-              <p>Our theme for the event is “Las Vegas – Let’s Party”.  We encourage all participants to dress up in Vegas style performer attire; this can be of the Hotel gambling & entertainment style, or your favorite performer in Vegas, or even the street entertainers that are so plentiful in Vegas.  For Ontario night we ask that our female Rookies be attired in Elvis traditional wear, while our male Rookies are attired in typical Vegas Show Girl style. </p>
-              <p>We all look forward to seeing you all in June.</p>
-              <p>Mike Bates, MBAC Nationals Hosting Chair & Brenda Walters, President, MBAO</p>
+					    <h2>THANK YOU</h2>
+					    <p>Our host committee would like to thank you all for coming to Burlington/Hamilton. We hope you all had a great time with memories that will last for ever. Congratulations to the winners, and to all who participated, you represented your province proud. Hope you all enjoy the rest of the summer and see you back on the lanes in the fall.</p>
+              
 					  </div>
 					</div>
 					<div class="section group">
