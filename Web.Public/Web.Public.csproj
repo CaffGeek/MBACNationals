@@ -119,6 +119,7 @@
     <Content Include="photos_old.php" />
     <Content Include="photos_social.php" />
     <Content Include="photos_teams.php" />
+    <Content Include="photos_vegas.php" />
     <Content Include="photos_winners.php" />
     <Content Include="README.md" />
     <Content Include="results.php" />
