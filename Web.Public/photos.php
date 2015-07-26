@@ -15,6 +15,7 @@ include "header.php";
 				<div id="centres_links">
 				<a href="photos.php">Participation Awards</a><br />
 				<a href="photos_teams.php">Teams & Singles</a><br />
+				<a href="photos_vegas.php">Vegas Night</a><br />
 				<a href="photos_Winners.php">Victory Banquet</a><br /> 
 				</div>
 				</div>
