@@ -124,6 +124,11 @@
     <Content Include="README.md" />
     <Content Include="results.php" />
     <Content Include="schedule.php" />
+    <Content Include="scripts\angular-mocks.js" />
+    <Content Include="scripts\angular-ui-router.js" />
+    <Content Include="scripts\angular-ui-router.min.js" />
+    <Content Include="scripts\angular.js" />
+    <Content Include="scripts\angular.min.js" />
     <Content Include="scripts\FileAPI.flash.swf" />
     <Content Include="scripts\FileAPI.js" />
     <Content Include="scripts\FileAPI.min.js" />
@@ -292,6 +297,8 @@
     <Content Include="images\Forms\2015NationalsLaneDraw.pdf" />
     <Content Include="js\galleria\LICENSE" />
     <Content Include="js\galleria\plugins\README.md" />
+    <Content Include="packages.config" />
+    <Content Include="scripts\angular.min.js.map" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

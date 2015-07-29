@@ -12,13 +12,13 @@
 <tbody data-ng-repeat="team in model | orderBy:'RunningPoints':true">
     <tr>
     <th>
-        <a href="" data-ng-click="viewTeam(team)">
+        <a href="" ui-sref="team({ team: team.Id })">
             <div style="display:block;">{{team.Province}}</div>
             <img src="images/flags/{{team.Province}}_small.gif" width="36" />
         </a>
     </th>
     <td data-ng-repeat="i in getRange(minGame, maxGame)">
-        <a href="" data-ng-if="findMatchByNumber(team, i)" data-ng-click="viewMatch(findMatchByNumber(team, i))">
+        <a href="" data-ng-if="findMatchByNumber(team, i)" ui-sref="match({ match: findMatchByNumber(team, i).Id })">
             <div>{{findMatchByNumber(team, i).Score}} <span data-ng-if="findMatchByNumber(team, i).IsPOA">({{findMatchByNumber(team, i).POA}})</span></div>
             <div style="white-space: nowrap;">{{findMatchByNumber(team, i).TotalPoints}} vs {{findMatchByNumber(team, i).Opponent}}</div>
         </a>
