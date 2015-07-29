@@ -36,7 +36,7 @@
     </thead>
     <tbody>
         <tr data-ng-repeat="score in model.Scores">
-            <td><a href="#" data-ng-click="viewMatch(score)">{{score.IsWin ? 'W' : 'L'}} ({{score.Points}}-{{score.OpponentPoints}})</a></td>
+            <td><a href="#" ui-sref="match({ match: score.MatchId })">{{score.IsWin ? 'W' : 'L'}} ({{score.Points}}-{{score.OpponentPoints}})</a></td>
             <td>{{score.Scratch}} <span data-ng-if="score.IsPOA">({{score.POA}})</span></td>
             <td>vs {{score.Opponent}}</td>
             <td>{{score.OpponentScratch}} <span data-ng-if="score.IsPOA">({{score.OpponentPOA}})</span></td>

@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
 
-    var resultsController = function ($scope, $http, dataService) {
+    var resultsController = function ($scope, $http, dataService, $stateParams) {
         $scope.model = {};
 
         $scope.minGame = 1;
@@ -13,14 +13,24 @@
         $scope.viewStepladder = viewStepladder;
 
         $scope.findMatchByNumber = findMatchByNumber;
-        
-        viewStandings('Tournament Men Single');
-                
-        function viewStandings(division) {
-            $scope.viewUrl = '/app/Views/Results/Standings.html';
-            $scope.model.Division = division;
 
-            dataService.LoadStandings(division).then(function (data) {
+        $scope.model.Division = $stateParams.division;
+        $scope.model.MatchId = $stateParams.match;
+        $scope.model.TeamId = $stateParams.team;
+        $scope.model.BowlerId = $stateParams.bowler;
+
+        if ($scope.model.MatchId)
+            viewMatch();
+        else if ($scope.model.BowlerId)
+            viewBowler();
+        else if ($scope.model.TeamId)
+            viewTeam();
+        else //if ($scope.model.Division)
+            viewStandings();
+                
+        function viewStandings() {
+            var division = $scope.model.Division || 'Tournament Men Single';
+            dataService.LoadStandings($scope.model.Division).then(function (data) {
                 $scope.model = data.data;
                 $scope.model.Division = division;
             });
@@ -35,18 +45,15 @@
             });
         }
 
-        function viewMatch(match) {
-            $scope.viewUrl = '/app/Views/Results/Match.html';
-            $scope.model.MatchId = match.MatchId || match.Id;
-
+        function viewMatch() {
             dataService.LoadMatch($scope.model.MatchId).then(function (data) {
                 $scope.model = data.data;
             });
         };
 
         function viewTeam(team) {
-            $scope.viewUrl = '/app/Views/Results/Team.html';
-            $scope.model.TeamId = team.TeamId || team.Id;
+            //$scope.viewUrl = '/app/Views/Results/Team.html';
+            //$scope.model.TeamId = team.TeamId || team.Id;
 
             dataService.LoadTeamScores($scope.model.TeamId).then(function (data) {
                 $scope.model = data.data;
@@ -54,8 +61,8 @@
         };
 
         function viewBowler(bowler) {
-            $scope.viewUrl = '/app/Views/Results/Bowler.html';
-            $scope.model.BowlerId = bowler.BowlerId || bowler.Id;
+            //$scope.viewUrl = '/app/Views/Results/Bowler.html';
+            //$scope.model.BowlerId = bowler.BowlerId || bowler.Id;
 
             dataService.LoadParticipantScores($scope.model.BowlerId).then(function (data) {
                 $scope.model = data.data;
@@ -77,7 +84,7 @@
         };
     };
 
-    app.controller("ResultsController", ["$scope", "$http", "dataService", resultsController]);
+    app.controller("ResultsController", ["$scope", "$http", "dataService", "$stateParams", resultsController]);
 
     app.directive('bowlinggame', ['$parse', function ($compile) {
         return {

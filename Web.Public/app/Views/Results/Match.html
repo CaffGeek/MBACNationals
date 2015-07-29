@@ -4,7 +4,7 @@
 
 <div class="col span_5_of_12">
     <img class="span_3_of_3" src="/images/flags/{{model.Away.Province}}.gif" style="max-height:121px" />
-    <h4><a href="" data-ng-click="viewTeam(model.Away)">{{model.Away.Province}}</a></h4>
+    <h4><a href="" ui-sref="team({ team: model.Away.Id })">{{model.Away.Province}}</a></h4>
     
     <table style="width:100%">
         <tr>
@@ -14,7 +14,7 @@
             <td class="text-right"><h4>{{model.Away.Points}}</h4></td>
         </tr>
         <tr data-ng-repeat="bowler in model.Away.Bowlers | orderBy:'Position'">
-            <th class="text-left"><a href="" data-ng-click="viewBowler(bowler)">{{bowler.Name}}</a></th>
+            <th class="text-left"><a href="" ui-sref="bowler({ bowler: bowler.Id })">{{bowler.Name}}</a></th>
             <td class="text-right">{{bowler.Score}}</td>
             <td class="text-right" data-ng-if="model.IsPOA">{{bowler.POA}}</td>
             <td class="text-right">{{bowler.Points}}</td>
@@ -26,7 +26,7 @@
 
 <div class="col span_5_of_12">
     <img class="span_3_of_3" src="/images/flags/{{model.Home.Province}}.gif" style="max-height:121px" />
-    <h4><a href="" data-ng-click="viewTeam(model.Home)">{{model.Home.Province}}</a></h4>
+    <h4><a href="" ui-sref="team({ team: model.Home.Id })">{{model.Home.Province}}</a></h4>
     
     <table style="width:100%">
         <tr>
@@ -36,7 +36,7 @@
             <td class="text-right"><h4>{{model.Home.Points}}</h4></td>
         </tr>
         <tr data-ng-repeat="bowler in model.Home.Bowlers | orderBy:'Position'">
-            <th class="text-left"><a href="" data-ng-click="viewBowler(bowler)">{{bowler.Name}}</a></th>
+            <th class="text-left"><a href="" ui-sref="bowler({ bowler: bowler.Id })">{{bowler.Name}}</a></th>
             <td class="text-right">{{bowler.Score}}</td>
             <td class="text-right" data-ng-if="model.IsPOA">{{bowler.POA}}</td>
             <td class="text-right">{{bowler.Points}}</td>
