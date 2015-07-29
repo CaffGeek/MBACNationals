@@ -28,7 +28,7 @@ namespace MBACNationals.ReadModels
             public int NationalGames { get; internal set; }
             public int NationalTotal { get; internal set; }
             public int NationalAverage { get; internal set; }
-            public int NationalWins { get; internal set; }
+            public decimal NationalWins { get; internal set; }
             public List<Score> Scores { get; internal set; }
             public int HighScore { get; internal set; }
             public int HighPOA { get; internal set; }
@@ -40,7 +40,7 @@ namespace MBACNationals.ReadModels
             public int Number { get; internal set; }
             public int Scratch { get; internal set; }
             public int POA { get; internal set; }
-            public bool IsWin { get; internal set; }
+            public string WinLossTie { get; internal set; }
             public int Lane { get; internal set; }
             public string Centre { get; internal set; }
             public string OpponentName { get; internal set; }
@@ -64,7 +64,7 @@ namespace MBACNationals.ReadModels
             public int NationalGames { get; set; }
             public int NationalTotal { get; set; }
             public int NationalAverage { get; set; }
-            public int NationalWins { get; set; }
+            public double NationalWins { get; set; }
             public int HighScore { get; set; }
             public int HighPOA { get; set; }
         }
@@ -84,7 +84,7 @@ namespace MBACNationals.ReadModels
             public int Number { get; set; }
             public int Scratch { get; set; }
             public int POA { get; set; }
-            public bool IsWin { get; set; }
+            public string WinLossTie { get; set; }
             public int Lane { get; set; }
             public string Centre { get; set; }
             public string OpponentName { get; set; }
@@ -103,7 +103,7 @@ namespace MBACNationals.ReadModels
                     Number = x.Number,
                     Scratch = x.Scratch,
                     POA = x.POA,
-                    IsWin = x.IsWin,
+                    WinLossTie = x.WinLossTie,
                     Lane = x.Lane,
                     Centre = x.Centre,
                     OpponentProvince = x.OpponentProvince,
@@ -124,7 +124,7 @@ namespace MBACNationals.ReadModels
                 NationalGames = tsp.NationalGames,
                 NationalTotal = tsp.NationalTotal,
                 NationalAverage = tsp.NationalAverage,
-                NationalWins = tsp.NationalWins,
+                NationalWins = (decimal)tsp.NationalWins,
                 Scores = scores,
                 HighScore = scores.Max(x => x.Scratch),
                 HighPOA = scores.Max(x => x.POA),
@@ -156,7 +156,9 @@ namespace MBACNationals.ReadModels
                        Number = e.Number,
                        Scratch = e.Score,
                        POA = e.POA,
-                       IsWin = e.Points > 0,
+                       WinLossTie = e.IsPOA 
+                        ? (e.POA > e.OpponentPOA ? "W" : e.POA < e.OpponentPOA ? "L" : "T")
+                        : (e.Score > e.OpponentScore ? "W" : e.Score < e.OpponentScore ? "L" : "T"),
                        Lane = e.Lane,
                        Centre = e.Centre,
                        OpponentProvince = e.Opponent,
@@ -174,7 +176,7 @@ namespace MBACNationals.ReadModels
                     x.NationalGames += 1;
                     x.NationalTotal += e.Score;
                     x.NationalAverage = x.NationalTotal / x.NationalGames;
-                    x.NationalWins += (e.Points > 0 ? 1 : 0);
+                    x.NationalWins += (double)(e.Points > 0M ? ( e.Points % 1M == 0M ? 1M : .5M) : 0M);
                 });
             }
             else
@@ -184,7 +186,9 @@ namespace MBACNationals.ReadModels
                     x.Name = e.Name;
                     x.NationalTotal = x.NationalTotal - game.Scratch + e.Score;
                     x.NationalAverage = x.NationalTotal / x.NationalGames;
-                    x.NationalWins = x.NationalWins - (game.IsWin ? 1 : 0) + (e.Points > 0 ? 1 : 0);
+                    x.NationalWins = x.NationalWins
+                        - (double)(game.WinLossTie == "W" ? 1M : game.WinLossTie == "T" ? .5M : 0M)
+                        + (double)(e.Points > 0 ? (e.Points % 1M == 0M ? 1M : .5M) : 0M);
                 });
             }
         }
