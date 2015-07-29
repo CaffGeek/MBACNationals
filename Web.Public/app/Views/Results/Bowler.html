@@ -24,12 +24,7 @@
                 <span data-ng-if="score.IsPOA">({{score.OpponentPOA}})</span>
             </td>
             <td>
-                <span ng-if="score.IsPOA && score.POA  > score.OpponentPOA">W</span>
-                <span ng-if="score.IsPOA && score.POA  < score.OpponentPOA">L</span>
-                <span ng-if="score.IsPOA && score.POA == score.OpponentPOA">T</span>
-                <span ng-if="!score.IsPOA && score.Scratch  > score.OpponentScratch">W</span>
-                <span ng-if="!score.IsPOA && score.Scratch  < score.OpponentScratch">L</span>
-                <span ng-if="!score.IsPOA && score.Scratch == score.OpponentScratch">T</span>
+                {{score.WinLossTie}}
             </td>
         </tr>
     </tbody>
