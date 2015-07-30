@@ -31,7 +31,7 @@ namespace MBACNationals.ReadModels
             public int Number { get; internal set; }
             public int Scratch { get; internal set; }
             public int POA { get; internal set; }
-            public bool IsWin { get; internal set; }
+            public string WinLossTie { get; internal set; }
             public int Lane { get; internal set; }
             public string Centre { get; internal set; }
             public string Opponent { get; internal set; }
@@ -59,15 +59,15 @@ namespace MBACNationals.ReadModels
             public int Number { get; set; }
             public int Scratch { get; set; }
             public int POA { get; set; }
-            public bool IsWin { get; set; }
+            public string WinLossTie { get; set; }
             public int Lane { get; set; }
             public string Centre { get; set; }
             public string Opponent { get; set; }
             public int OpponentScratch { get; set; }
             public int OpponentPOA { get; set; }
             public bool IsPOA { get; set; }
-            public decimal Points { get; set; }
-            public decimal OpponentPoints { get; set; }
+            public double Points { get; set; }
+            public double OpponentPoints { get; set; }
         }
 
 
@@ -81,15 +81,15 @@ namespace MBACNationals.ReadModels
                 Number = x.Number,
                 Scratch = x.Scratch,
                 POA = x.POA,
-                IsWin = x.IsWin,
+                WinLossTie = x.WinLossTie,
                 Lane = x.Lane,
                 Centre = x.Centre,
                 Opponent = x.Opponent,
                 OpponentScratch = x.OpponentScratch,
                 OpponentPOA = x.OpponentPOA,
                 IsPOA = x.IsPOA,
-                Points = x.Points,
-                OpponentPoints = x.OpponentPoints,
+                Points = (decimal)x.Points,
+                OpponentPoints = (decimal)x.OpponentPoints,
             }).ToList();
 
             var team = new Team
@@ -112,15 +112,17 @@ namespace MBACNationals.ReadModels
                 Number = e.Number,
                 Scratch = e.Score,
                 POA = e.POA,
-                IsWin = e.Points > 0 || e.TotalPoints > e.OpponentPoints,
+                WinLossTie = e.TotalPoints > e.OpponentPoints
+                    ? "W" : e.TotalPoints < e.OpponentPoints
+                    ? "L" : "T",
                 Lane = e.Lane,
                 Centre = e.Centre,
                 Opponent = e.Opponent,
                 OpponentScratch = e.OpponentScore,
                 OpponentPOA = e.OpponentPOA,
-                OpponentPoints = e.OpponentPoints,
+                OpponentPoints = (double)e.OpponentPoints,
                 IsPOA = e.IsPOA,
-                Points = e.TotalPoints
+                Points = (double)e.TotalPoints
             });
         }
     }
