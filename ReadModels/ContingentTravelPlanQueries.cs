@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class ContingentTravelPlanQueries : AzureReadModel,
+    public class ContingentTravelPlanQueries : BaseReadModel<ContingentTravelPlanQueries>,
         IContingentTravelPlanQueries,
         ISubscribeTo<TournamentCreated>,
         ISubscribeTo<ContingentCreated>,
@@ -16,11 +16,6 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<RoomTypeChanged>,
         ISubscribeTo<ReservationInstructionsChanged>
     {
-        public ContingentTravelPlanQueries(string readModelFilePath)
-        {
-
-        }
-
         public class ContingentTravelPlans
         {
             public Guid Id { get; internal set; }
@@ -100,13 +95,13 @@ namespace MBACNationals.ReadModels
 
         public List<ContingentTravelPlans> GetAllTravelPlans(string year)
         {
-            var tournament = Query<TSTournament>(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
-            var contingents = Query<TSContingent>(x => x.TournamentId == tournament.Id);
+            var tournament = Storage.Query<TSTournament>(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            var contingents = Storage.Query<TSContingent>(x => x.TournamentId == tournament.Id);
 
             var allPlans = new List<ContingentTravelPlans>();
             foreach (var contingent in contingents)
             {
-                var travelPlans = Query<TSTravelPlan>(x => x.ContingentId == contingent.Id)
+                var travelPlans = Storage.Query<TSTravelPlan>(x => x.ContingentId == contingent.Id)
                     .Select(x => new TravelPlan
                     {
                         ModeOfTransportation = x.ModeOfTransportation,
@@ -130,14 +125,14 @@ namespace MBACNationals.ReadModels
 
         public ContingentTravelPlans GetTravelPlans(string year, string province)
         {
-            var tournament = Query<TSTournament>(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            var tournament = Storage.Query<TSTournament>(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
 
-            var contingent = Query<TSContingent>(x => 
+            var contingent = Storage.Query<TSContingent>(x => 
                 x.TournamentId == tournament.Id 
                 && x.Province.Equals(province, StringComparison.OrdinalIgnoreCase))
                 .FirstOrDefault();
 
-            var travelPlans = Query<TSTravelPlan>(x => x.ContingentId == contingent.Id)
+            var travelPlans = Storage.Query<TSTravelPlan>(x => x.ContingentId == contingent.Id)
                 .Select(x => new TravelPlan
                 {
                     ModeOfTransportation = x.ModeOfTransportation,
@@ -158,13 +153,13 @@ namespace MBACNationals.ReadModels
 
         public List<ContingentRooms> GetAllRooms(string year)
         {
-            var tournament = Query<TSTournament>(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
-            var contingents = Query<TSContingent>(x => x.TournamentId == tournament.Id);
+            var tournament = Storage.Query<TSTournament>(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            var contingents = Storage.Query<TSContingent>(x => x.TournamentId == tournament.Id);
 
             var allRooms = new List<ContingentRooms>();
             foreach (var contingent in contingents)
             {
-                var hotelRooms = Query<TSHotelRoom>(x => x.ContingentId == contingent.Id)
+                var hotelRooms = Storage.Query<TSHotelRoom>(x => x.ContingentId == contingent.Id)
                    .Select(x => new HotelRoom
                    {
                        RoomNumber = x.RoomNumber,
@@ -186,14 +181,14 @@ namespace MBACNationals.ReadModels
 
         public ContingentRooms GetRooms(string year, string province)
         {
-            var tournament = Query<TSTournament>(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            var tournament = Storage.Query<TSTournament>(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
 
-            var contingent = Query<TSContingent>(x =>
+            var contingent = Storage.Query<TSContingent>(x =>
                 x.TournamentId == tournament.Id
                 && x.Province.Equals(province, StringComparison.OrdinalIgnoreCase))
                 .FirstOrDefault();
 
-            var hotelRooms = Query<TSHotelRoom>(x => x.ContingentId == contingent.Id)
+            var hotelRooms = Storage.Query<TSHotelRoom>(x => x.ContingentId == contingent.Id)
                 .Select(x => new HotelRoom
                 {
                     RoomNumber = x.RoomNumber,
@@ -212,10 +207,10 @@ namespace MBACNationals.ReadModels
 
         public void Handle(TournamentCreated e)
         {
-            Create(e.Id, e.Id, new TSTournament { Year = e.Year, Id = e.Id });
+            Storage.Create(e.Id, e.Id, new TSTournament { Year = e.Year, Id = e.Id });
 
             //HACK: Track current tournament
-            Create(Guid.Empty, Guid.Empty, new TSTournament { Year = e.Year, Id = e.Id });
+            Storage.Create(Guid.Empty, Guid.Empty, new TSTournament { Year = e.Year, Id = e.Id });
         }
 
         public void Handle(ContingentCreated e)
@@ -225,7 +220,7 @@ namespace MBACNationals.ReadModels
 
             var tournamentId = GetCurrentTournamentId();
 
-            Create(tournamentId, e.Id, new TSContingent
+            Storage.Create(tournamentId, e.Id, new TSContingent
             {
                 Province = e.Province
             });
@@ -233,25 +228,25 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ContingentAssignedToTournament e)
         {
-            var contingent = Read<TSContingent>(Guid.Empty, e.Id);
+            var contingent = Storage.Read<TSContingent>(Guid.Empty, e.Id);
             if (contingent != null)
             {
-                Delete<TSContingent>(Guid.Empty, e.Id);
+                Storage.Delete<TSContingent>(Guid.Empty, e.Id);
                 contingent.TournamentId = e.TournamentId;
-                Create(e.TournamentId, e.Id, contingent);
+                Storage.Create(e.TournamentId, e.Id, contingent);
             }
         }
 
         public void Handle(TravelPlansChanged e)
         {
-            //Delete old plans
-            Query<TSTravelPlan>(x => x.PartitionKey == e.Id.ToString())
-                .ForEach(x => Delete<TSTravelPlan>(Guid.Parse(x.PartitionKey), Guid.Parse(x.RowKey)));
+            //Storage.Delete<TS old plans
+            Storage.Query<TSTravelPlan>(x => x.PartitionKey == e.Id.ToString())
+                .ForEach(x => Storage.Delete<TSTravelPlan>(Guid.Parse(x.PartitionKey), Guid.Parse(x.RowKey)));
 
             //Create new ones
             e.TravelPlans.ForEach(plan =>
             {
-                Create(e.Id, Guid.NewGuid(), new TSTravelPlan
+                Storage.Create(e.Id, Guid.NewGuid(), new TSTravelPlan
                 {
                     ModeOfTransportation = plan.ModeOfTransportation,
                     When = plan.When.ToString("yyyy-MM-ddTHH:mm"),
@@ -271,7 +266,7 @@ namespace MBACNationals.ReadModels
                 .ToArray();
             var roomKey = new Guid(0, 0, 0, eightBytes);
 
-            Create(e.Id, roomKey, new TSHotelRoom
+            Storage.Create(e.Id, roomKey, new TSHotelRoom
             {
                 RoomNumber = e.RoomNumber,
                 Type = e.Type,
@@ -281,12 +276,12 @@ namespace MBACNationals.ReadModels
         public void Handle(ReservationInstructionsChanged e)
         {
             var tournamentId = GetCurrentTournamentId();
-            Update<TSContingent>(tournamentId, e.Id, contingent => contingent.Instructions = e.Instructions);
+            Storage.Update<TSContingent>(tournamentId, e.Id, contingent => contingent.Instructions = e.Instructions);
         }
 
         private Guid GetCurrentTournamentId()
         {
-            var tournament = Read<TSTournament>(Guid.Empty, Guid.Empty)
+            var tournament = Storage.Read<TSTournament>(Guid.Empty, Guid.Empty)
                 ?? new TSTournament { Id = Guid.Empty };
             return tournament.Id;
         }

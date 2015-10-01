@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class StandingQueries : AzureReadModel,
+    public class StandingQueries : BaseReadModel<StandingQueries>,
         IStandingQueries,
         ISubscribeTo<TournamentCreated>,
         ISubscribeTo<ContingentCreated>,
@@ -17,11 +17,6 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<TeamRemoved>,
         ISubscribeTo<TeamGameCompleted>
     {
-        public StandingQueries(string readModelFilePath)
-        {
-
-        }
-
         public class Team
         {
             public Guid Id { get; internal set; }
@@ -109,7 +104,7 @@ namespace MBACNationals.ReadModels
 
         public List<Team> GetDivision(Guid tournamentId, string division)
         {
-            var matches = Query<TSMatch>(x =>
+            var matches = Storage.Query<TSMatch>(x =>
                 x.TournamentId == tournamentId
                 && x.Division.Equals(division, StringComparison.OrdinalIgnoreCase));
 
@@ -141,7 +136,7 @@ namespace MBACNationals.ReadModels
                     }).ToList();
             }
 
-            foreach (var single in Query<TSSingle>())
+            foreach (var single in Storage.Query<TSSingle>())
             {
                 var team = teams.FirstOrDefault(t => t.TeamId == single.SingleTeamId.ToString());
                 if (team == null)
@@ -155,7 +150,7 @@ namespace MBACNationals.ReadModels
 
         public void Handle(TournamentCreated e)
         {
-            Create(e.Id, e.Id, new TSTournament
+            Storage.Create(e.Id, e.Id, new TSTournament
             {
                 Year = e.Year
             });
@@ -163,7 +158,7 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ContingentCreated e)
         {
-            Create(e.Id, e.Id, new TSContingent
+            Storage.Create(e.Id, e.Id, new TSContingent
             {
                 Province = e.Province,
             });
@@ -171,7 +166,7 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ContingentAssignedToTournament e)
         {
-            Update<TSContingent>(e.Id, e.Id, contingent =>
+            Storage.Update<TSContingent>(e.Id, e.Id, contingent =>
             {
                 contingent.TournamentId = e.TournamentId;
             });
@@ -179,7 +174,7 @@ namespace MBACNationals.ReadModels
 
         public void Handle(TeamCreated e)
         {
-            Create(e.Id, e.TeamId, new TSTeam
+            Storage.Create(e.Id, e.TeamId, new TSTeam
             {
                 Name = e.Name,
             });
@@ -187,20 +182,20 @@ namespace MBACNationals.ReadModels
 
         public void Handle(TeamRemoved e)
         {
-            Delete<TSTeam>(e.Id, e.TeamId);
+            Storage.Delete<TSTeam>(e.Id, e.TeamId);
         }
 
         public void Handle(TeamGameCompleted e)
         {
-            var team = Read<TSTeam>(e.TeamId);
-            var contingent = Read<TSContingent>(team.ContingentId, team.ContingentId);
+            var team = Storage.Read<TSTeam>(e.TeamId);
+            var contingent = Storage.Read<TSContingent>(team.ContingentId, team.ContingentId);
             
             Guid partitionKey;
             var isPOASingles = e.IsPOA && e.Division.Contains("Single");
             if (isPOASingles)
             {   
                 //Does the team have a translation for the single yet?
-                var existingTranslation = Read<TSSingle>(e.TeamId, e.TeamId);
+                var existingTranslation = Storage.Read<TSSingle>(e.TeamId, e.TeamId);
                 if (existingTranslation == null)
                 {//No, create one
                     existingTranslation = new TSSingle
@@ -208,14 +203,14 @@ namespace MBACNationals.ReadModels
                         TeamId = e.TeamId,
                         SingleTeamId = Guid.NewGuid() 
                     };
-                    Create(e.TeamId, e.TeamId, existingTranslation);
+                    Storage.Create(e.TeamId, e.TeamId, existingTranslation);
                 }
                 partitionKey = existingTranslation.SingleTeamId;
             } else {
                 partitionKey = e.TeamId;
             }
 
-            Create(partitionKey, e.Id, new TSMatch
+            Storage.Create(partitionKey, e.Id, new TSMatch
             {
                 TournamentId = contingent.TournamentId,
                 IsPOA = e.IsPOA,

@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class ContingentViewQueries : AzureReadModel,
+    public class ContingentViewQueries : BaseReadModel<ContingentViewQueries>,
         IContingentViewQueries,
         ISubscribeTo<ContingentCreated>,
         ISubscribeTo<ContingentAssignedToTournament>,
@@ -25,11 +25,6 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<ParticipantAverageChanged>,
         ISubscribeTo<ParticipantReplacedWithAlternate>
     {
-        public ContingentViewQueries(string readModelFilePath)
-        {
-
-        }
-
         public class Contingent
         {
             public Guid Id { get; internal set; }
@@ -103,11 +98,11 @@ namespace MBACNationals.ReadModels
         
         public Contingent GetContingent(Guid tournamentId, string province)
         {
-            var contingent = Query<TSContingent>(x => x.Tournament == tournamentId && x.Province == province).FirstOrDefault();
+            var contingent = Storage.Query<TSContingent>(x => x.Tournament == tournamentId && x.Province == province).FirstOrDefault();
             if (contingent == null)
                 return null;
 
-            var bowlers = Query<TSParticipant>(x => x.PartitionKey == contingent.PartitionKey)
+            var bowlers = Storage.Query<TSParticipant>(x => x.PartitionKey == contingent.PartitionKey)
                 .Select(x =>
                 {
                     return new Participant
@@ -123,7 +118,7 @@ namespace MBACNationals.ReadModels
                     };
                 }).ToList();
 
-            var teams = Query<TSTeam>(x => x.PartitionKey == contingent.PartitionKey)
+            var teams = Storage.Query<TSTeam>(x => x.PartitionKey == contingent.PartitionKey)
                 .Select(x =>
                 {
                     var coach = bowlers.FirstOrDefault(b => b.Id == x.Coach);
@@ -161,7 +156,7 @@ namespace MBACNationals.ReadModels
         
         public void Handle(ContingentCreated e)
         {
-            Create(e.Id, e.Id, new TSContingent//(e.Id)
+            Storage.Create(e.Id, e.Id, new TSContingent//(e.Id)
             {
                 Province = e.Province,
             });
@@ -169,7 +164,7 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ContingentAssignedToTournament e)
         {
-            Update<TSContingent>(e.Id, e.Id, contingent =>
+            Storage.Update<TSContingent>(e.Id, e.Id, contingent =>
             {
                 contingent.Tournament = e.TournamentId;
             });
@@ -177,7 +172,7 @@ namespace MBACNationals.ReadModels
 
         public void Handle(TeamCreated e)
         {
-            Create(e.Id, e.TeamId, new TSTeam
+            Storage.Create(e.Id, e.TeamId, new TSTeam
             {
                 Name = e.Name,
                 SizeLimit = e.SizeLimit,
@@ -193,12 +188,12 @@ namespace MBACNationals.ReadModels
 
         public void Handle(TeamRemoved e)
         {
-            Delete<TSTeam>(e.Id, e.TeamId);
+            Storage.Delete<TSTeam>(e.Id, e.TeamId);
         }
 
         public void Handle(ParticipantCreated e)
         {
-            Create(Guid.Empty, e.Id, new TSParticipant
+            Storage.Create(Guid.Empty, e.Id, new TSParticipant
             {
                 Name = e.Name,
                 IsDelegate = e.IsDelegate,
@@ -209,23 +204,23 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ParticipantAssignedToContingent e)
         {
-            var participant = Read<TSParticipant>(Guid.Empty, e.Id);
-            Delete<TSParticipant>(Guid.Empty, e.Id);
-            Create(e.ContingentId, e.Id, participant);
+            var participant = Storage.Read<TSParticipant>(Guid.Empty, e.Id);
+            Storage.Delete<TSParticipant>(Guid.Empty, e.Id);
+            Storage.Create(e.ContingentId, e.Id, participant);
         }
 
         public void Handle(ParticipantAssignedToTeam e)
         {
-            var team = Query<TSTeam>(x => { return x.RowKey == e.TeamId.ToString(); }).FirstOrDefault();
-            var participant = Read<TSParticipant>(Guid.Empty, e.Id);
-            Delete<TSParticipant>(Guid.Empty, e.Id);
+            var team = Storage.Query<TSTeam>(x => { return x.RowKey == e.TeamId.ToString(); }).FirstOrDefault();
+            var participant = Storage.Read<TSParticipant>(Guid.Empty, e.Id);
+            Storage.Delete<TSParticipant>(Guid.Empty, e.Id);
             participant.TeamId = e.TeamId;
-            Create(Guid.Parse(team.PartitionKey), e.Id, participant);
+            Storage.Create(Guid.Parse(team.PartitionKey), e.Id, participant);
         }
 
         public void Handle(ParticipantDesignatedAsAlternate e)
         {
-            Update<TSTeam>(e.TeamId, team =>
+            Storage.Update<TSTeam>(e.TeamId, team =>
             {
                 team.Alternate = e.Id;
             });
@@ -233,48 +228,48 @@ namespace MBACNationals.ReadModels
 
         public void Handle(CoachAssignedToTeam e)
         {
-            var team = Read<TSTeam>(e.TeamId);
+            var team = Storage.Read<TSTeam>(e.TeamId);
             
             //FIX: If coach wasn't assigned to Contingent yet...
-            var coach = Read<TSParticipant>(Guid.Empty, e.Id);
+            var coach = Storage.Read<TSParticipant>(Guid.Empty, e.Id);
             if (coach != null)
             {
-                Delete<TSParticipant>(Guid.Empty, e.Id);
-                Create(Guid.Parse(team.PartitionKey), e.Id, coach);
+                Storage.Delete<TSParticipant>(Guid.Empty, e.Id);
+                Storage.Create(Guid.Parse(team.PartitionKey), e.Id, coach);
             }
 
-            Update<TSTeam>(Guid.Parse(team.PartitionKey), Guid.Parse(team.RowKey), x => x.Coach = e.Id);
+            Storage.Update<TSTeam>(Guid.Parse(team.PartitionKey), Guid.Parse(team.RowKey), x => x.Coach = e.Id);
         }
 
         public void Handle(ParticipantRenamed e)
         {
-            Update<TSParticipant>(e.Id, x => { x.Name = e.Name; });
+            Storage.Update<TSParticipant>(e.Id, x => { x.Name = e.Name; });
         }
 
         public void Handle(ParticipantDelegateStatusGranted e)
         {
-            Update<TSParticipant>(e.Id, x => { x.IsDelegate = true; });
+            Storage.Update<TSParticipant>(e.Id, x => { x.IsDelegate = true; });
         }
 
         public void Handle(ParticipantDelegateStatusRevoked e)
         {
-            Update<TSParticipant>(e.Id, x => { x.IsDelegate = false; });
+            Storage.Update<TSParticipant>(e.Id, x => { x.IsDelegate = false; });
         }
 
         public void Handle(ParticipantYearsQualifyingChanged e)
         {
-            Update<TSParticipant>(e.Id, x => { x.IsRookie = e.YearsQualifying == 1; });
+            Storage.Update<TSParticipant>(e.Id, x => { x.IsRookie = e.YearsQualifying == 1; });
         }
 
         public void Handle(ParticipantAverageChanged e)
         {
-            Update<TSParticipant>(e.Id, x => { x.Average = e.Average; });
+            Storage.Update<TSParticipant>(e.Id, x => { x.Average = e.Average; });
         }
 
         public void Handle(ParticipantReplacedWithAlternate e)
         {
-            Update<TSParticipant>(e.AlternateId, x => x.TeamId = e.TeamId); // Assign Alternate to team
-            Update<TSParticipant>(e.Id, x=> x.ReplacedBy = e.AlternateId.ToString()); // Mark bowler as replaced
+            Storage.Update<TSParticipant>(e.AlternateId, x => x.TeamId = e.TeamId); // Assign Alternate to team
+            Storage.Update<TSParticipant>(e.Id, x=> x.ReplacedBy = e.AlternateId.ToString()); // Mark bowler as replaced
         }
     }
 }

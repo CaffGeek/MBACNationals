@@ -1,44 +1,23 @@
+using Microsoft.WindowsAzure.Storage.Table;
+using MoreLinq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Microsoft.WindowsAzure.Storage.Table;
-using MoreLinq;
-using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace AzureTableHelper
 {
-    public class AzureBlobHelper
-    {
-        private readonly CloudBlobClient _blobClient;
-
-        public AzureBlobHelper(CloudBlobClient blobClient)
-        {
-            _blobClient = blobClient;
-        }
-
-        public CloudBlobContainer GetContainerFor(Type type)
-        {
-            return GetContainerFor(type.Name);
-        }
-
-        public CloudBlobContainer GetContainerFor(string typeName)
-        {
-            typeName = typeName.ToLowerInvariant();
-            var container = _blobClient.GetContainerReference(typeName);
-            container.CreateIfNotExists();
-            return container;
-        }
-    }
-
     public class AzureTableHelper
     {
-        private Dictionary<string, string> _cachedTableNames = new Dictionary<string, string>();
+        private static Dictionary<string, string> _cachedTableNames = new Dictionary<string, string>();
+
         private readonly CloudTableClient _tableClient;
 
         public AzureTableHelper(CloudTableClient tableClient)
         {
             _tableClient = tableClient;
+
+            GetTableNames();
         }
 
         public Dictionary<string, string> GetTableNames()
@@ -88,10 +67,7 @@ namespace AzureTableHelper
         public CloudTable GetTableFor(string typeName)
         {
             var currentTableName = GetTableNameFor(typeName);
-            var currentTable = _tableClient.GetTableReference(currentTableName);
-            currentTable.CreateIfNotExists();
-
-            return currentTable;
+            return _tableClient.GetTableReference(currentTableName);
         }
 
         public string GetTableNameFor(string typeName)
@@ -165,15 +141,19 @@ namespace AzureTableHelper
 
             entity.CurrentTableName = GetNextTableNameFor(typeName);
             nameTable.Execute(TableOperation.InsertOrReplace(entity));
-            GetTableNames();
 
+            _cachedTableNames[typeName] = entity.CurrentTableName;
+            var table = GetTableFor(typeName);
+            table.CreateIfNotExists();
+            
             return entity.CurrentTableName;
         }
 
         public void DeleteTable(string typeName)
         {
             var table = _tableClient.GetTableReference(typeName);
-            table.DeleteIfExistsAsync();
+            //table.DeleteIfExistsAsync();
+            table.Delete();
         }
 
         public string BackupTable(string typeName)

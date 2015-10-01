@@ -7,15 +7,12 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class ScheduleQueries : AzureReadModel,
+    public class ScheduleQueries : BaseReadModel<ScheduleQueries>,
         IScheduleQueries,
         ISubscribeTo<TournamentCreated>,
         ISubscribeTo<MatchCreated>,
         ISubscribeTo<MatchCompleted>
     {
-        public ScheduleQueries(string readModelFilePath)
-        { }
-
         public class Schedule
         {
             public string Division { get; internal set; }
@@ -68,7 +65,7 @@ namespace MBACNationals.ReadModels
             public bool IsComplete { get; set; }
         }
 
-        public class TSTournament : Entity
+        private class TSTournament : Entity
         {
             public string Year { get; set; }
             public Guid Id { get; set; }
@@ -76,7 +73,7 @@ namespace MBACNationals.ReadModels
 
         public ScheduleQueries.Schedule GetSchedule(int year, string division)
         {
-            var matches = Query<TSMatch>(x =>
+            var matches = Storage.Query<TSMatch>(x =>
                 x.Division.Equals(division, StringComparison.OrdinalIgnoreCase)
                 && x.Year.Equals(year.ToString(), StringComparison.OrdinalIgnoreCase))
                 .Select(x => new Match(x.MatchId, x.Division, x.Number, x.Away, x.Home, x.Lane, (BowlingCentre)Enum.Parse(typeof(BowlingCentre), x.Centre), x.IsPOA) { 
@@ -93,17 +90,17 @@ namespace MBACNationals.ReadModels
 
         public void Handle(TournamentCreated e)
         {
-            Create(e.Id, e.Id, new TSTournament { Year = e.Year, Id = e.Id });
+            Storage.Create(e.Id, e.Id, new TSTournament { Year = e.Year, Id = e.Id });
 
             //HACK: Track current tournament
-            Create(Guid.Empty, Guid.Empty, new TSTournament { Year = e.Year, Id = e.Id });
+            Storage.Create(Guid.Empty, Guid.Empty, new TSTournament { Year = e.Year, Id = e.Id });
         }
 
         public void Handle(MatchCreated e)
         {
             var tournament = GetCurrentTournament();
 
-            Create(tournament.Id, e.Id, new TSMatch {
+            Storage.Create(tournament.Id, e.Id, new TSMatch {
                 Division = e.Division,
                 Year = string.IsNullOrWhiteSpace(e.Year) ? tournament.Year : e.Year,
                 IsPOA = e.IsPOA,
@@ -118,12 +115,12 @@ namespace MBACNationals.ReadModels
 
         public void Handle(MatchCompleted e)
         {
-            Update<TSMatch>(e.Id, x => x.IsComplete = true);
+            Storage.Update<TSMatch>(e.Id, x => x.IsComplete = true);
         }
 
         private TSTournament GetCurrentTournament()
         {
-            var tournament = Read<TSTournament>(Guid.Empty, Guid.Empty)
+            var tournament = Storage.Read<TSTournament>(Guid.Empty, Guid.Empty)
                 ?? new TSTournament { Id = Guid.Empty, Year = 2014.ToString() };
             return tournament;
         }

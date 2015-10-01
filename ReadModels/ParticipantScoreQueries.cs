@@ -7,17 +7,12 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class ParticipantScoreQueries : AzureReadModel,
+    public class ParticipantScoreQueries : BaseReadModel<ParticipantScoreQueries>,
         IParticipantScoreQueries,
         ISubscribeTo<ParticipantCreated>,
         ISubscribeTo<ParticipantAverageChanged>,
         ISubscribeTo<ParticipantGameCompleted>
     {
-        public ParticipantScoreQueries(string readModelFilePath)
-        {
-
-        }
-
         public class Participant
         {
             public Guid Id { get; internal set; }
@@ -96,7 +91,7 @@ namespace MBACNationals.ReadModels
 
         public ParticipantScoreQueries.Participant GetParticipant(Guid id)
         {
-            var scores = Query<TSGame>(x => x.ParticipantId == id)
+            var scores = Storage.Query<TSGame>(x => x.ParticipantId == id)
                 .Select(x => new Score
                 {
                     MatchId = x.Id.ToString(),
@@ -113,7 +108,7 @@ namespace MBACNationals.ReadModels
                     IsPOA = x.IsPOA
                 }).ToList();
 
-            var tsp = Read<TSParticipant>(id, id);
+            var tsp = Storage.Read<TSParticipant>(id, id);
             return new Participant
             {
                 Id = tsp.Id,
@@ -133,7 +128,7 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ParticipantCreated e)
         {
-            Create(e.Id, e.Id, new TSParticipant
+            Storage.Create(e.Id, e.Id, new TSParticipant
             {
                 Name = e.Name
             });
@@ -141,15 +136,15 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ParticipantAverageChanged e)
         {
-            Update<TSParticipant>(e.Id, e.Id, x => x.Average = e.Average);
+            Storage.Update<TSParticipant>(e.Id, e.Id, x => x.Average = e.Average);
         }
 
         public void Handle(ParticipantGameCompleted e)
         {
-            var game = Read<TSGame>(e.ParticipantId, e.Id);
+            var game = Storage.Read<TSGame>(e.ParticipantId, e.Id);
             if (game == null)
             {
-                Create<TSGame>(e.ParticipantId, e.Id, new TSGame
+                Storage.Create<TSGame>(e.ParticipantId, e.Id, new TSGame
                    {
                        Id = e.Id,
                        ParticipantId = e.ParticipantId,
@@ -168,7 +163,7 @@ namespace MBACNationals.ReadModels
                        IsPOA = e.IsPOA
                    });
 
-                Update<TSParticipant>(e.ParticipantId, e.ParticipantId, x =>
+                Storage.Update<TSParticipant>(e.ParticipantId, e.ParticipantId, x =>
                 {
                     x.Name = e.Name;
                     x.Division = e.Division;
@@ -181,7 +176,7 @@ namespace MBACNationals.ReadModels
             }
             else
             {
-                Update<TSParticipant>(e.ParticipantId, e.ParticipantId, x =>
+                Storage.Update<TSParticipant>(e.ParticipantId, e.ParticipantId, x =>
                 {
                     x.Name = e.Name;
                     x.NationalTotal = x.NationalTotal - game.Scratch + e.Score;

@@ -76,9 +76,18 @@ namespace Edument.CQRS
             }
         }
 
+        private static Dictionary<string, XmlSerializer> xmlSerializers = new Dictionary<string, XmlSerializer>();
         private object DeserializeEvent(string typeName, string data)
         {
-            var ser = new XmlSerializer(Type.GetType(typeName));
+            var ser = xmlSerializers.ContainsKey(typeName)
+                ? xmlSerializers[typeName] : null;
+
+            if (ser == null)
+            { 
+                ser = new XmlSerializer(Type.GetType(typeName));
+                xmlSerializers.Add(typeName, ser);
+            }
+
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(data));
             ms.Seek(0, SeekOrigin.Begin);
             return ser.Deserialize(ms);

@@ -7,18 +7,13 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class MatchQueries : AzureReadModel,
+    public class MatchQueries : BaseReadModel<MatchQueries>,
         IMatchQueries,
         ISubscribeTo<MatchCreated>,
         ISubscribeTo<ParticipantGameCompleted>,
         ISubscribeTo<TeamGameCompleted>,
         ISubscribeTo<MatchCompleted>
     {
-        public MatchQueries(string readModelFilePath)
-        {
-
-        }
-        
         public class Match
         {
             public Guid Id { get; internal set; }
@@ -89,8 +84,8 @@ namespace MBACNationals.ReadModels
 
         public Match GetMatch(Guid matchId)
         {
-            var match = Read<TSMatch>(matchId);
-            var bowlers = Query<TSBowler>(x => x.PartitionKey == matchId.ToString());
+            var match = Storage.Read<TSMatch>(matchId);
+            var bowlers = Storage.Query<TSBowler>(x => x.PartitionKey == matchId.ToString());
 
             var awayBowlers = bowlers
                 .Where(x => x.Province == match.Away)
@@ -153,7 +148,7 @@ namespace MBACNationals.ReadModels
         
         public void Handle(MatchCreated e)
         {
-            Create(e.Id, e.Id, new TSMatch
+            Storage.Create(e.Id, e.Id, new TSMatch
             {
                 Division = e.Division,
                 IsPOA = e.IsPOA,
@@ -168,7 +163,7 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ParticipantGameCompleted e)
         {
-            Create(e.Id, e.ParticipantId, new TSBowler
+            Storage.Create(e.Id, e.ParticipantId, new TSBowler
             {
                 Name = e.Name,
                 Province = e.Contingent,
@@ -181,7 +176,7 @@ namespace MBACNationals.ReadModels
 
         public void Handle(TeamGameCompleted e)
         {
-            Update<TSMatch>(e.Id, e.Id, x =>
+            Storage.Update<TSMatch>(e.Id, e.Id, x =>
             {
                 if (x.Away == e.Contingent)
                 {
@@ -204,7 +199,7 @@ namespace MBACNationals.ReadModels
 
         public void Handle(MatchCompleted e)
         {
-            Update<TSMatch>(e.Id, e.Id, x => x.IsComplete = true);
+            Storage.Update<TSMatch>(e.Id, e.Id, x => x.IsComplete = true);
         }
     }
 }
