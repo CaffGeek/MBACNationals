@@ -152,8 +152,7 @@ namespace AzureTableHelper
         public void DeleteTable(string typeName)
         {
             var table = _tableClient.GetTableReference(typeName);
-            //table.DeleteIfExistsAsync();
-            table.Delete();
+            table.DeleteIfExistsAsync();
         }
 
         public string BackupTable(string typeName)
