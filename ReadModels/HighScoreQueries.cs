@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class HighScoreQueries : AzureReadModel,
+    public class HighScoreQueries : BaseReadModel<HighScoreQueries>,
         IHighScoreQueries,
         ISubscribeTo<TournamentCreated>,
         ISubscribeTo<ParticipantGameCompleted>
@@ -29,11 +29,6 @@ namespace MBACNationals.ReadModels
                 Name = "Senior"
             }};
 
-        public HighScoreQueries(string readModelFilePath)
-        {
-
-        }
-        
         public class Division
         {
             public Guid Id { get; internal set; }
@@ -51,7 +46,7 @@ namespace MBACNationals.ReadModels
             public int POA { get; internal set; }
         }
 
-        public class TSScore : Entity
+        private class TSScore : Entity
         {
             public Guid TournamentId { get; set; }
             public Guid DivisionId { get; set; }
@@ -61,7 +56,7 @@ namespace MBACNationals.ReadModels
             public int POA { get;  set; }
         }
 
-        public class TSTournament : Entity
+        private class TSTournament : Entity
         {
             public string Year { get; set; }
             public Guid Id { get; set; }
@@ -75,7 +70,7 @@ namespace MBACNationals.ReadModels
             if (division == null)
                 return null;
 
-            var scores = Query<TSScore>(score => score.DivisionId == division.Id && score.TournamentId == tournamentId)
+            var scores = Storage.Query<TSScore>(score => score.DivisionId == division.Id && score.TournamentId == tournamentId)
                 .Select(x => new Score
                 {
                     ParticipantId = x.RowKey,
@@ -98,7 +93,7 @@ namespace MBACNationals.ReadModels
         public void Handle(TournamentCreated e)
         {
             //HACK: Track current tournament
-            Create(Guid.Empty, Guid.Empty, new TSTournament { Year = e.Year, Id = e.Id });
+            Storage.Create(Guid.Empty, Guid.Empty, new TSTournament { Year = e.Year, Id = e.Id });
         }
 
         public void Handle(ParticipantGameCompleted e)
@@ -112,7 +107,7 @@ namespace MBACNationals.ReadModels
             if (division.Name.Contains("Tournament") && e.Score < 275) return;
             if (!division.Name.Contains("Tournament") && e.POA < 75) return;
 
-            Create(e.Id, e.ParticipantId, new TSScore
+            Storage.Create(e.Id, e.ParticipantId, new TSScore
             {
                 TournamentId = tournamentId,
                 DivisionId = division.Id,
@@ -125,7 +120,7 @@ namespace MBACNationals.ReadModels
 
         private Guid GetCurrentTournamentId()
         {
-            var tournament = Read<TSTournament>(Guid.Empty, Guid.Empty)
+            var tournament = Storage.Read<TSTournament>(Guid.Empty, Guid.Empty)
                 ?? new TSTournament { Id = Guid.Empty };
             return tournament.Id;
         }

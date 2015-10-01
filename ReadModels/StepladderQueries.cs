@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class StepladderQueries : AzureReadModel,
+    public class StepladderQueries : BaseReadModel<StepladderQueries>,
         IStepladderQueries,
         ISubscribeTo<TournamentCreated>,
         ISubscribeTo<StepladderMatchCreated>,
@@ -31,7 +31,7 @@ namespace MBACNationals.ReadModels
             public DateTime Updated { get; internal set; }
         }
 
-        public class TSTournament : Entity
+        private class TSTournament : Entity
         {
             public Guid Id
             {
@@ -69,11 +69,11 @@ namespace MBACNationals.ReadModels
 
         public List<Match> GetMatches(string year)
         {
-            var tournament = Query<TSTournament>(x => x.Year == year).FirstOrDefault();
+            var tournament = Storage.Query<TSTournament>(x => x.Year == year).FirstOrDefault();
             if (tournament == null)
                 return Enumerable.Empty<Match>().ToList();
 
-            return Query<TSMatch>(x => x.TournamentId == tournament.Id)
+            return Storage.Query<TSMatch>(x => x.TournamentId == tournament.Id)
                 .Select(x => new Match
                 {
                     Id = x.MatchId,
@@ -93,7 +93,7 @@ namespace MBACNationals.ReadModels
 
         public void Handle(TournamentCreated e)
         {
-            Create(e.Id, e.Id, new TSTournament
+            Storage.Create(e.Id, e.Id, new TSTournament
             {
                 Year = e.Year
             });
@@ -101,7 +101,7 @@ namespace MBACNationals.ReadModels
 
         public void Handle(StepladderMatchCreated e)
         {
-            Create(e.TournamentId, e.Id, new TSMatch
+            Storage.Create(e.TournamentId, e.Id, new TSMatch
             {
                 Year = e.Year,
                 HomeId = e.Home,
@@ -117,7 +117,7 @@ namespace MBACNationals.ReadModels
 
         public void Handle(StepladderMatchUpdated e)
         {
-            Update<TSMatch>(e.TournamentId, e.Id, x =>
+            Storage.Update<TSMatch>(e.TournamentId, e.Id, x =>
             {
                 x.AwayShots = e.AwayShots;
                 x.HomeShots = e.HomeShots;
@@ -127,7 +127,7 @@ namespace MBACNationals.ReadModels
 
         public void Handle(StepladderMatchDeleted e)
         {
-            Delete<TSMatch>(e.TournamentId, e.Id);
+            Storage.Delete<TSMatch>(e.TournamentId, e.Id);
         }
     }
 }

@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AzureBlobHelper.cs" />
     <Compile Include="AzureTableHelper.cs" />
     <Compile Include="MoreLinq\MoreEnumerable.Batch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

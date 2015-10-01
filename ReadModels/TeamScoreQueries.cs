@@ -8,15 +8,10 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class TeamScoreQueries : AzureReadModel,
+    public class TeamScoreQueries : BaseReadModel<TeamScoreQueries>,
         ITeamScoreQueries,
         ISubscribeTo<TeamGameCompleted>
     {
-        public TeamScoreQueries(string readModelFilePath)
-        {
-
-        }
-        
         public class Team 
         {
             public Guid Id { get; internal set; }
@@ -73,7 +68,7 @@ namespace MBACNationals.ReadModels
 
         public Team GetTeam(Guid id)
         {
-            var matches = Query<TSMatch>(x => x.TeamId == id);
+            var matches = Storage.Query<TSMatch>(x => x.TeamId == id);
             var firstMatch = matches.First();
             var scores = matches.Select(x => new Score
             {
@@ -105,7 +100,7 @@ namespace MBACNationals.ReadModels
         
         public void Handle(TeamGameCompleted e)
         {
-            Create(e.TeamId, e.Id, new TSMatch
+            Storage.Create(e.TeamId, e.Id, new TSMatch
             {
                 TeamName = e.Division,
                 Province = e.Contingent,

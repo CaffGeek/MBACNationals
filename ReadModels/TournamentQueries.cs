@@ -7,7 +7,7 @@ using System.Text;
 
 namespace MBACNationals.ReadModels
 {
-    public class TournamentQueries : AzureReadModel,
+    public class TournamentQueries : BaseReadModel<TournamentQueries>,
         ITournamentQueries,
         ISubscribeTo<TournamentCreated>,
         ISubscribeTo<SponsorCreated>,
@@ -15,11 +15,6 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<NewsCreated>,
         ISubscribeTo<NewsDeleted>
     {
-        public TournamentQueries(string readModelFilePath)
-        {
-
-        }
-
         public class Tournament
         {
             public Guid Id { get; internal set; }
@@ -41,7 +36,7 @@ namespace MBACNationals.ReadModels
             public DateTime Created { get; internal set; }
         }
 
-        public class TSTournament : Entity
+        private class TSTournament : Entity
         {
             public Guid Id
             {
@@ -51,7 +46,7 @@ namespace MBACNationals.ReadModels
             public string Year { get; set; }
         }
 
-        public class TSSponsor : Entity
+        private class TSSponsor : Entity
         {
             public Guid Id
             {
@@ -67,7 +62,7 @@ namespace MBACNationals.ReadModels
             public string Website { get; set; }
         }
 
-        public class TSNews : Entity
+        private class TSNews : Entity
         {
             public Guid Id
             {
@@ -88,7 +83,7 @@ namespace MBACNationals.ReadModels
 
         public Tournament GetTournament(string year)
         {
-            return Query<TSTournament>(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase))
+            return Storage.Query<TSTournament>(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase))
                 .Select(x => new Tournament
                 {
                     Id = Guid.Parse(x.RowKey),
@@ -99,7 +94,7 @@ namespace MBACNationals.ReadModels
 
         public List<Tournament> GetTournaments()
         {
-            return Query<TSTournament>()
+            return Storage.Query<TSTournament>()
                 .Select(x => new Tournament
                 {
                     Id = Guid.Parse(x.RowKey),
@@ -110,11 +105,11 @@ namespace MBACNationals.ReadModels
 
         public List<Sponsor> GetSponsors(string year)
         {
-            var tournament = Query<TSTournament>(x => x.Year == year).FirstOrDefault();
+            var tournament = Storage.Query<TSTournament>(x => x.Year == year).FirstOrDefault();
             if (tournament == null)
                 return Enumerable.Empty<Sponsor>().ToList();
 
-            var sponsors = Query<TSSponsor>(x => x.TournamentId == tournament.Id)
+            var sponsors = Storage.Query<TSSponsor>(x => x.TournamentId == tournament.Id)
                 .Select(x => new Sponsor
                 {
                     Id = x.Id,
@@ -128,17 +123,17 @@ namespace MBACNationals.ReadModels
 
         public byte[] GetSponsorImage(Guid sponsorId)
         {
-            var image = ReadBlob<TSSponsorLogo>(sponsorId);
+            var image = Storage.ReadBlob<TSSponsorLogo>(sponsorId);
             return image.Contents;
         }
 
         public List<News> GetNews(string year)
         {
-            var tournament = Query<TSTournament>(x => x.Year == year).FirstOrDefault();
+            var tournament = Storage.Query<TSTournament>(x => x.Year == year).FirstOrDefault();
             if (tournament == null)
                 return Enumerable.Empty<News>().ToList();
 
-            var news = Query<TSNews>(x => x.TournamentId == tournament.Id)
+            var news = Storage.Query<TSNews>(x => x.TournamentId == tournament.Id)
                 .Select(x => new News
                 {
                     Id = x.Id,
@@ -153,7 +148,7 @@ namespace MBACNationals.ReadModels
 
         public void Handle(TournamentCreated e)
         {
-            Create(e.Id, e.Id, new TSTournament
+            Storage.Create(e.Id, e.Id, new TSTournament
             {
                 Year = e.Year
             });
@@ -161,13 +156,13 @@ namespace MBACNationals.ReadModels
 
         public void Handle(SponsorCreated e)
         {
-            Create(e.Id, e.SponsorId, new TSSponsor
+            Storage.Create(e.Id, e.SponsorId, new TSSponsor
             {
                 Name = e.Name,
                 Website = e.Website
             });
 
-            Create(new TSSponsorLogo 
+            Storage.Create(new TSSponsorLogo 
             { 
                 Id = e.SponsorId,
                 Contents = e.Image
@@ -176,12 +171,12 @@ namespace MBACNationals.ReadModels
 
         public void Handle(SponsorDeleted e)
         {
-            Delete<TSSponsor>(e.Id, e.SponsorId);
+            Storage.Delete<TSSponsor>(e.Id, e.SponsorId);
         }
 
         public void Handle(NewsCreated e)
         {
-            Create(e.Id, e.NewsId, new TSNews
+            Storage.Create(e.Id, e.NewsId, new TSNews
             {
                 Title = e.Title,
                 Content = e.Content,
@@ -191,7 +186,7 @@ namespace MBACNationals.ReadModels
 
         public void Handle(NewsDeleted e)
         {
-            Delete<TSNews>(e.Id, e.NewsId);
+            Storage.Delete<TSNews>(e.Id, e.NewsId);
         }
     }
 }

@@ -7,18 +7,13 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class CommandQueries : AzureReadModel,
+    public class CommandQueries : BaseReadModel<CommandQueries>,
         ICommandQueries,
         ISubscribeTo<TournamentCreated>,
         ISubscribeTo<ParticipantCreated>,
         ISubscribeTo<ParticipantGenderReassigned>,
         ISubscribeTo<ParticipantRenamed>
     {
-        public CommandQueries(string readModelFilePath)
-        {
-
-        }
-
         public class Tournament
         {
             public virtual Guid Id { get; set; }
@@ -51,7 +46,7 @@ namespace MBACNationals.ReadModels
 
         public List<Tournament> GetTournaments()
         {
-            return Query<TSTournament>()
+            return Storage.Query<TSTournament>()
                 .Select(x => new Tournament
                 {
                     Id = Guid.Parse(x.RowKey),
@@ -62,7 +57,7 @@ namespace MBACNationals.ReadModels
 
         public Participant GetParticipant(Guid id)
         {
-            var participant = Read<TSParticipant>(Guid.Empty, id);
+            var participant = Storage.Read<TSParticipant>(Guid.Empty, id);
             return new Participant 
             {
                 Id = Guid.Parse(participant.RowKey),
@@ -77,7 +72,7 @@ namespace MBACNationals.ReadModels
         
         public void Handle(TournamentCreated e)
         {
-            Create(Guid.Empty, e.Id, new TSTournament
+            Storage.Create(Guid.Empty, e.Id, new TSTournament
             {
                 Year = e.Year
             });
@@ -85,7 +80,7 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ParticipantCreated e)
         {
-            Create(Guid.Empty, e.Id, new TSParticipant
+            Storage.Create(Guid.Empty, e.Id, new TSParticipant
             {
                 Name = e.Name,
                 Gender = e.Gender
@@ -94,12 +89,12 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ParticipantGenderReassigned e)
         {
-            Update<TSParticipant>(Guid.Empty, e.Id, x => x.Gender = e.Gender);
+            Storage.Update<TSParticipant>(Guid.Empty, e.Id, x => x.Gender = e.Gender);
         }
 
         public void Handle(ParticipantRenamed e)
         {
-            Update<TSParticipant>(Guid.Empty, e.Id, x => x.Name = e.Name);
+            Storage.Update<TSParticipant>(Guid.Empty, e.Id, x => x.Name = e.Name);
         }
     }
 }

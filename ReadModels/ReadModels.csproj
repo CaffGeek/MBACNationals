@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AzureReadModel.cs" />
+    <Compile Include="BaseReadModel.cs" />
     <Compile Include="ContingentPracticePlanQueries.cs" />
     <Compile Include="ContingentTravelPlanQueries.cs" />
     <Compile Include="ContingentViewQueries.cs" />

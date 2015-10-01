@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class ParticipantProfileQueries : AzureReadModel,
+    public class ParticipantProfileQueries : BaseReadModel<ParticipantProfileQueries>,
         IParticipantProfileQueries,
         ISubscribeTo<TournamentCreated>,
         ISubscribeTo<ContingentCreated>,
@@ -19,11 +19,6 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<ParticipantProfileChanged>,
         ISubscribeTo<ParticipantAssignedToTeam>
     {
-        public ParticipantProfileQueries(string readModelFilePath)
-        {
-
-        }
-
         public class Participant
         {
             public Guid Id { get; internal set; }
@@ -119,10 +114,10 @@ namespace MBACNationals.ReadModels
 
         public List<Participant> GetProfiles(int year)
         {
-            var tournament = Query<TSTournament>(x => x.Year == year.ToString()).FirstOrDefault();
-            var contingents = Query<TSContingent>(x => x.TournamentId == tournament.Id);
+            var tournament = Storage.Query<TSTournament>(x => x.Year == year.ToString()).FirstOrDefault();
+            var contingents = Storage.Query<TSContingent>(x => x.TournamentId == tournament.Id);
 
-            var partipants = Query<TSParticipant>(x => x.HasProfile)
+            var partipants = Storage.Query<TSParticipant>(x => x.HasProfile)
                 .Where(x => contingents.Any(c => c.Id == x.ContingentId))
                 .Select(x => new Participant
                 {
@@ -156,7 +151,7 @@ namespace MBACNationals.ReadModels
 
         public Participant GetProfile(Guid id)
         {
-            var participant = Read<TSParticipant>(id, id);
+            var participant = Storage.Read<TSParticipant>(id, id);
             return new Participant
                 {
                     Id = Guid.Parse(participant.RowKey),
@@ -188,7 +183,7 @@ namespace MBACNationals.ReadModels
 
         public void Handle(TournamentCreated e)
         {
-            Create(e.Id, e.Id, new TSTournament
+            Storage.Create(e.Id, e.Id, new TSTournament
             {
                 Year = e.Year
             });
@@ -196,36 +191,36 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ContingentCreated e)
         {
-            Create(e.Id, e.Id, new TSContingent { Province = e.Province });
+            Storage.Create(e.Id, e.Id, new TSContingent { Province = e.Province });
         }
 
         public void Handle(ContingentAssignedToTournament e)
         {
-            Update<TSContingent>(e.Id, e.Id, x => x.TournamentId = e.TournamentId);
+            Storage.Update<TSContingent>(e.Id, e.Id, x => x.TournamentId = e.TournamentId);
         }
 
         public void Handle(TeamCreated e)
         {
-            var contingent = Read<TSContingent>(e.Id, e.Id);
+            var contingent = Storage.Read<TSContingent>(e.Id, e.Id);
             if (contingent == null)
                 return;
 
-            Create(e.Id, e.TeamId, new TSTeam { Name = e.Name, Province = contingent.Province });
+            Storage.Create(e.Id, e.TeamId, new TSTeam { Name = e.Name, Province = contingent.Province });
         }
 
         public void Handle(ParticipantCreated e)
         {
-            Create(e.Id, e.Id, new TSParticipant { Name = e.Name });
+            Storage.Create(e.Id, e.Id, new TSParticipant { Name = e.Name });
         }
 
         public void Handle(ParticipantRenamed e)
         {
-            Update<TSParticipant>(e.Id, e.Id, x => x.Name = e.Name);
+            Storage.Update<TSParticipant>(e.Id, e.Id, x => x.Name = e.Name);
         }
 
         public void Handle(ParticipantProfileChanged e)
         {
-            Update<TSParticipant>(e.Id, e.Id, x =>
+            Storage.Update<TSParticipant>(e.Id, e.Id, x =>
             {
                 x.HasProfile = true;
                 x.Age = e.Age;
@@ -252,11 +247,11 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ParticipantAssignedToTeam e)
         {
-            var team = Read<TSTeam>(e.TeamId);
+            var team = Storage.Read<TSTeam>(e.TeamId);
             if (team == null)
                 return;
 
-            Update<TSParticipant>(e.Id, e.Id, x =>
+            Storage.Update<TSParticipant>(e.Id, e.Id, x =>
             {
                 x.Team = team.Name;
                 x.Province = team.Province;
