@@ -192,11 +192,12 @@ namespace AzureTableHelper
 
         private CloudTable GetNameTable()
         {
+            //You need to install Azure Storage Emulator from: https://azure.microsoft.com/en-us/downloads/
             var nameTable = _tableClient.GetTableReference("zzzTableNames");
             nameTable.CreateIfNotExists();
             return nameTable;
         }
-        
+
         public class TableName : TableEntity
         {
             public TableName() { }
