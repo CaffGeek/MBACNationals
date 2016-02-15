@@ -182,3 +182,8 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+
+**/web.Debug.config
+**/web.Release.config
+**/Web.Debug.config
+**/Web.Release.config
