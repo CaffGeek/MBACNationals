@@ -187,3 +187,4 @@ FakesAssemblies/
 **/web.Release.config
 **/Web.Debug.config
 **/Web.Release.config
+**/ConnectionStrings.config
