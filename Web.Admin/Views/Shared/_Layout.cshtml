@@ -31,7 +31,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="~/"><img src="~/Content/Images/mbac_logo.png" height="50" /></a>
+                <a class="navbar-brand" href="~/Setup"><img src="~/Content/Images/mbac_logo.png" height="50" /></a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -45,7 +45,7 @@
                     }
                     else
                     {
-                        <li><a href="~/">Home</a></li>
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     }
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
