@@ -17,7 +17,7 @@
             </div>
         </div>
         
-        <div data-ng-include="'/Setup/Modals/Participant/_guestpackage.' + model.year + '.html'" data-ng-if="model.participant.IsGuest && !model.participant.IsDelegate"></div>
+        <div data-ng-include="'/Modals/Participant/_guestpackage.' + model.year + '.html'" data-ng-if="model.participant.IsGuest && !model.participant.IsDelegate"></div>
 
         <div class="form-group" data-ng-if="!(model.participant.IsGuest)">
             <label for="name" class="col-sm-3 control-label">Years</label>
@@ -26,11 +26,11 @@
             </div>
         </div>
 
-        <div class="form-group" data-ng-include="'/Setup/Modals/Participant/_gender.html'"></div>
+        <div class="form-group" data-ng-include="'/Modals/Participant/_gender.html'"></div>
 
-        <div class="form-group" data-ng-include="'/Setup/Modals/Participant/_shirtsize.html'" data-ng-if="model.team.RequiresShirtSize"></div>
+        <div class="form-group" data-ng-include="'/Modals/Participant/_shirtsize.html'" data-ng-if="model.team.RequiresShirtSize"></div>
 
-        <div class="form-group table-responsive" data-ng-include="'/Setup/Modals/Participant/_average.html'" data-ng-if="model.title.indexOf('Single') < 0"></div>
+        <div class="form-group table-responsive" data-ng-include="'/Modals/Participant/_average.html'" data-ng-if="model.title.indexOf('Single') < 0"></div>
         
         <button class="btn btn-danger pull-right" 
             data-ng-if="model.participant.Id && model.participant.Name && model.team.Alternate"

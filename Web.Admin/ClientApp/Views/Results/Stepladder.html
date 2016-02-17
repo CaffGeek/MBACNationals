@@ -1,0 +1,72 @@
+﻿<h2 id="Standings">STEPLADDER</h2>
+
+<!--<a href="#Standings" data-ng-click="viewStepladder()">REFRESH</a><br />-->
+<a href="http://m.ustream.tv/channel/2015-club-tour?utm_campaign=ustre.am&utm_source=ustre.am%2F1lhBR&utm_medium=social&utm_content=20150701082829"
+   target="new">WATCH LIVE!</a><br />
+<div class="row">
+    <table>
+        <thead>
+            <tr>
+                <th colspan="2">Mens</th>
+                <th colspan="2">Ladies</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Kevin Clark</td>                  <td>348</td>
+                <td>Nathalie Parent</td>              <td>229</td>
+            </tr>
+            <tr>
+                <td>Ken Byrne</td>                    <td>220</td>
+                <td>Meagan Gallicano</td>             <td>173</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td>Kevin Clark</td>                 <td>207</td>
+                <td>Nathalie Parent</td>             <td>243</td>
+            </tr>
+            <tr>
+                <td>Ken Byrne</td>                   <td>203</td>
+                <td>Meagan Gallicano</td>            <td>227</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td>Geoff Stevens</td>               <td>315</td>
+                <td>Karen Armstrong</td>             <td>204</td>
+            </tr>
+            <tr>
+                <td>Kevin Clark</td>                 <td>221</td>
+                <td>Nathalie Parent</td>             <td>195</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td>Geoff Stevens</td>               <td>249</td>
+                <td>Karen Armstrong</td>             <td>178</td>
+            </tr>
+            <tr>
+                <td>Kevin Clark</td>                 <td>211</td>
+                <td>Nathalie Parent</td>             <td>247</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td></td><td></td>
+                <td>Karen Armstrong</td>             <td>254</td>
+            </tr>
+            <tr>
+                <td></td><td></td>
+                <td>Nathalie Parent</td>             <td>198</td>
+            </tr>
+        </tbody>
+    </table>
+    <div data-ng-repeat="match in model | orderBy: 'Created': true" class="panel panel-default" style="padding:10px;">
+        <h4>{{match.HomeName}}</h4>
+        <bowlinggame shots="match.HomeShots" />
+        <h4>{{match.AwayName}}</h4>
+        <bowlinggame shots="match.AwayShots" />
+        <hr />
+    </div>
+</div>

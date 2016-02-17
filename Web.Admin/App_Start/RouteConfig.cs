@@ -15,85 +15,85 @@ namespace WebFrontend
             
             routes.MapRoute(
                 name: "Home",
-                url: "",
+                url: "Setup",
                 defaults: new { controller = "Home", action = "Index" }
             );
 
             routes.MapRoute(
                 name: "Contingent",
-                url: "Contingent/{action}/{year}/{province}",
+                url: "Setup/Contingent/{action}/{year}/{province}",
                 defaults: new { controller = "Contingent", action = "Index", year = UrlParameter.Optional, province = UrlParameter.Optional }
             );
 
             routes.MapRoute(
                 name: "Account",
-                url: "Account/{action}",
+                url: "Setup/Account/{action}",
                 defaults: new { controller = "Account", action = "Login" }
             );
 
             routes.MapRoute(
                 name: "Scores",
-                url: "Scores/{action}/{year}/{division}",
+                url: "Setup/Scores/{action}/{year}/{division}",
                 defaults: new { controller = "Scores", action = "Index", division = UrlParameter.Optional }
             );
 
             routes.MapRoute(
                 name: "Scores2",
-                url: "Scores/{action}/{id}",
+                url: "Setup/Scores/{action}/{id}",
                 defaults: new { controller = "Scores", action = "Index", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
                 name: "Reports",
-                url: "Admin/Reports/{year}",
+                url: "Setup/Admin/Reports/{year}",
                 defaults: new { controller = "Admin", action = "Reports" }
             );
 
             routes.MapRoute(
                 name: "Sponsors",
-                url: "Sponsors/List/{year}",
+                url: "Setup/Sponsors/List/{year}",
                 defaults: new { controller = "Sponsors", action = "List" }
             );
 
             routes.MapRoute(
                 name: "SponsorDelete",
-                url: "Sponsors/Delete/{year}",
+                url: "Setup/Sponsors/Delete/{year}",
                 defaults: new { controller = "Sponsors", action = "Delete" }
             );
 
             routes.MapRoute(
                 name: "SponsorImage",
-                url: "Sponsors/Image/{id}",
+                url: "Setup/Sponsors/Image/{id}",
                 defaults: new { controller = "Sponsors", action = "Image" }
             );
 
             routes.MapRoute(
                 name: "NewsDelete",
-                url: "News/Delete/{year}",
+                url: "Setup/News/Delete/{year}",
                 defaults: new { controller = "News", action = "Delete" }
             );
 
             routes.MapRoute(
                 name: "Admin",
-                url: "Admin/{action}/{id}",
+                url: "Setup/Admin/{action}/{id}",
                 defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
                 name: "Tournament",
-                url: "Tournament/{action}/{id}",
+                url: "Setup/Tournament/{action}/{id}",
                 defaults: new { controller = "Tournament", action = "Index", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
                 name: "Participant",
-                url: "Participant/{action}/{id}",
+                url: "Setup/Participant/{action}/{id}",
                 defaults: new { controller = "Participant", action = "Index", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{year}/{id}",
+                url: "Setup/{controller}/{action}/{year}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }

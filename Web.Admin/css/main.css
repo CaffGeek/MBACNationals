@@ -1,0 +1,32 @@
+﻿.alt {
+    background: #e9e9e9;
+}
+
+.centreLogo img {width:100%;}
+
+.pointer {
+    cursor: pointer;
+}
+
+.text-right {
+    text-align: right;
+}
+
+div.game {
+    text-align: center;
+    margin-right: 0px;
+    margin-left: 0px;
+    display: block;    
+}
+div.game .frame {
+    border-collapse: collapse;
+    border: 1px solid black;
+    display: inline-block;
+    width: 9%;  
+}
+div.game .frame .number {
+}
+div.game .frame .shots {
+}
+div.game .frame .shots .shot {
+}

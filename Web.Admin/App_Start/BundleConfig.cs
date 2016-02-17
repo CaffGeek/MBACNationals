@@ -52,12 +52,12 @@ namespace WebFrontend
                         "~/Scripts/angular-moment.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                        "~/App/Filters/filter.*",
-                        "~/App/app.js",
-                        "~/App/Controllers/controller.*",
-                        "~/App/Directives/directive.*",
-                        "~/App/Factories/factory.*",
-                        "~/App/Services/service.*"));
+                        "~/AdminApp/Filters/filter.*",
+                        "~/AdminApp/app.js",
+                        "~/AdminApp/Controllers/controller.*",
+                        "~/AdminApp/Directives/directive.*",
+                        "~/AdminApp/Factories/factory.*",
+                        "~/AdminApp/Services/service.*"));
         }
     }
 }
