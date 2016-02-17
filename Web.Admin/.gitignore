@@ -183,7 +183,6 @@ UpgradeLog*.htm
 # Microsoft Fakes
 FakesAssemblies/
 
-**/web.Debug.config
-**/web.Release.config
-**/Web.Debug.config
-**/Web.Release.config
+**/[Ww]eb.[Dd]ebug.config
+**/[Ww]eb.[Rr]elease.config
+**/ConnectionStrings.config
