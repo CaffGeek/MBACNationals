@@ -340,6 +340,7 @@
     <Content Include="2015\css\main.css" />
     <Content Include="2015\css\responsivegridsystem.css" />
     <Content Include="2015\css\stylesheet.css" />
+    <Content Include="ConnectionStrings.config" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.jpg" />
     <Content Include="2015\foliogallery-demo.php" />
@@ -1573,9 +1574,6 @@
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Scores\Stepladder.cshtml" />
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="2014\" />
