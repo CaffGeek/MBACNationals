@@ -670,7 +670,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ConnectionStrings.config" />
     <Content Include="fonts\bebas___-webfont.eot" />
     <Content Include="fonts\bebas___-webfont.ttf" />
     <Content Include="fonts\bebas___-webfont.woff" />
