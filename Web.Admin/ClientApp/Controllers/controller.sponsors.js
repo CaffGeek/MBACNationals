@@ -1,9 +1,9 @@
 ﻿(function () {
     "use strict";
 
-    var sponsorsController = function (dataService, providerUrl, $timeout) {
+    var sponsorsController = function (dataService, $timeout) {
         var vm = this;
-        vm.ImageBase = providerUrl;
+        vm.ImageBase = '';
         vm.CurrentIndex = 0;
 
         dataService.LoadSponsors().then(function (response) {
@@ -23,5 +23,5 @@
         };
     };
 
-    app.controller("SponsorsController", ["dataService", "providerUrl", "$timeout", sponsorsController]);
+    app.controller("SponsorsController", ["dataService", "$timeout", sponsorsController]);
 }());

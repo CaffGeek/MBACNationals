@@ -45,6 +45,7 @@ namespace WebFrontend
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                         "~/Scripts/angular.*",
+                        "~/Scripts/angular-ui-router.js",
                         "~/Scripts/ui-bootstrap-tpls-0.9.0.js",
 					    "~/Scripts/ng-file-upload-shim.min.js",
                         "~/Scripts/ng-file-upload.min.js",

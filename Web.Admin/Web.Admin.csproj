@@ -303,17 +303,6 @@
     <Content Include="2014\albums\June_27\thumbs\PICT0059.JPG" />
     <Content Include="2014\albums\June_27\thumbs\PICT0080.JPG" />
     <Content Include="2014\albums\June_27\thumbs\PICT0084.JPG" />
-    <Content Include="2014\app\app.js" />
-    <Content Include="2014\app\Controllers\controller.contingent.js" />
-    <Content Include="2014\app\Controllers\controller.highscores.js" />
-    <Content Include="2014\app\Controllers\controller.results.js" />
-    <Content Include="2014\app\Controllers\controller.schedule.js" />
-    <Content Include="2014\app\Services\service.data.js" />
-    <Content Include="2014\app\Views\highscores.html" />
-    <Content Include="2014\app\Views\Results\Bowler.html" />
-    <Content Include="2014\app\Views\Results\Match.html" />
-    <Content Include="2014\app\Views\Results\Standings.html" />
-    <Content Include="2014\app\Views\Results\Team.html" />
     <Content Include="2014\centres.php" />
     <Content Include="2014\colorbox\colorbox.css" />
     <Content Include="2014\colorbox\images\border.png" />
