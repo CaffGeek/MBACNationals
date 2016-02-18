@@ -49,9 +49,9 @@
 	<link rel="stylesheet" href="css/stylesheet.css" media="all">
 
 	<!-- Responsive Stylesheets -->
-	<link rel="stylesheet" media="only screen and (max-width: 1024px) and (min-width: 769px)" href="/css/1024.css">
-	<link rel="stylesheet" media="only screen and (max-width: 768px) and (min-width: 481px)" href="/css/768.css">
-	<link rel="stylesheet" media="only screen and (max-width: 480px)" href="/css/480.css">
+	<link rel="stylesheet" media="only screen and (max-width: 1024px) and (min-width: 769px)" href="css/1024.css">
+	<link rel="stylesheet" media="only screen and (max-width: 768px) and (min-width: 481px)" href="css/768.css">
+	<link rel="stylesheet" media="only screen and (max-width: 480px)" href="css/480.css">
 
 	<!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements and feature detects -->
 	<script src="js/modernizr-2.5.3-min.js"></script>

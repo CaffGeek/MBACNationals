@@ -91,11 +91,11 @@ include "footer.php";
 
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.7/angular.js"></script>
 
-    <script src="ClientApp/app.js"></script>
-    <script src="ClientApp/Controllers/controller.highscores.js"></script>
-    <script src="ClientApp/Controllers/controller.sponsors.js"></script>
-    <script src="ClientApp/Controllers/controller.news.js"></script>
-    <script src="ClientApp/Services/service.data.js"></script>
+    <script src="/ClientApp/app.js"></script>
+    <script src="/ClientApp/Controllers/controller.highscores.js"></script>
+    <script src="/ClientApp/Controllers/controller.sponsors.js"></script>
+    <script src="/ClientApp/Controllers/controller.news.js"></script>
+    <script src="/ClientApp/Services/service.data.js"></script>
     <script>
       // Init responsive-nav.js
       var nav = responsiveNav("#nav");
