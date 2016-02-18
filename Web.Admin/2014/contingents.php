@@ -115,11 +115,9 @@ include "footer.php";
 	<!-- More Scripts-->
 	<script src="js/responsivegridsystem.js"></script>
 
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.7/angular.js"></script>
-
-    <script src="app/app.js"></script>
-    <script src="app/Controllers/controller.contingent.js"></script>
-    <script src="app/Services/service.data.js"></script>
+    <script src="/ClientApp/app.js"></script>
+    <script src="/ClientApp/Controllers/controller.contingent.js"></script>
+    <script src="/ClientApp/Services/service.data.js"></script>
 
     <script>
       // Init responsive-nav.js

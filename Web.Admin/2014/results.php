@@ -44,16 +44,16 @@ include "header.php";
       <div data-ng-controller="ResultsController">
 				<div class="col span_1_of_3">
 				  <div id="centres_links">
-            <a href="#Standings" data-ng-click="viewStandings('Tournament Men Single')">TOURNAMENT MEN SINGLE</a><br />
-            <a href="#Standings" data-ng-click="viewStandings('Tournament Ladies Single')">TOURNAMENT LADIES SINGLE</a><br />
-            <a href="#Standings" data-ng-click="viewStandings('Tournament Men')">TOURNAMENT MEN</a><br />
-            <a href="#Standings" data-ng-click="viewStandings('Tournament Ladies')">TOURNAMENT LADIES</a><br />
-            <a href="#Standings" data-ng-click="viewStandings('Teaching Men Single')">TEACHING MEN SINGLE</a><br />
-            <a href="#Standings" data-ng-click="viewStandings('Teaching Ladies Single')">TEACHING LADIES SINGLE</a><br />
-            <a href="#Standings" data-ng-click="viewStandings('Teaching Men')">TEACHING MEN</a><br />
-            <a href="#Standings" data-ng-click="viewStandings('Teaching Ladies')">TEACHING LADIES</a><br />
-            <a href="#Standings" data-ng-click="viewStandings('Seniors')">SENIORS</a><br />
-            <a href="#Standings" data-ng-click="viewStandings('Seniors Single')">SENIORS SINGLE</a><br />
+            <a ui-sref="standings({division: 'Tournament Men Single'})">TOURNAMENT MEN SINGLE</a><br />
+            <a ui-sref="standings({division: 'Tournament Ladies Single'})">TOURNAMENT LADIES SINGLE</a><br />
+            <a ui-sref="standings({division: 'Tournament Men'})">TOURNAMENT MEN</a><br />
+            <a ui-sref="standings({division: 'Tournament Ladies'})">TOURNAMENT LADIES</a><br />
+            <a ui-sref="standings({division: 'Teaching Men Single'})">TEACHING MEN SINGLE</a><br />
+            <a ui-sref="standings({division: 'Teaching Ladies Single'})">TEACHING LADIES SINGLE</a><br />
+            <a ui-sref="standings({division: 'Teaching Men'})">TEACHING MEN</a><br />
+            <a ui-sref="standings({division: 'Teaching Ladies'})">TEACHING LADIES</a><br />
+            <a ui-sref="standings({division: 'Seniors'})">SENIORS</a><br />
+            <a ui-sref="standings({division: 'Seniors Single'})">SENIORS SINGLE</a><br />
 				  </div>
 				</div>
         <div class="col span_2_of_3">
@@ -88,11 +88,9 @@ include "footer.php";
 	<!-- More Scripts-->
 	<script src="js/responsivegridsystem.js"></script>
 
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.7/angular.js"></script>
-
-    <script src="app/app.js"></script>
-    <script src="app/Controllers/controller.results.js"></script>
-    <script src="app/Services/service.data.js"></script>
+    <script src="/ClientApp/app.js"></script>
+    <script src="/ClientApp/Controllers/controller.results.js"></script>
+    <script src="/ClientApp/Services/service.data.js"></script>
 <script>
       // Init responsive-nav.js
       var nav = responsiveNav("#nav");

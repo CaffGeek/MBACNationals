@@ -58,7 +58,7 @@ include "header.php";
                 </div>          
 					    </div>
               <div data-ng-controller="HighscoresController">
-					      <div class="section group" id="highScores" data-ng-include="" data-src="'app/views/highscores.html'">
+					      <div class="section group" id="highScores" data-ng-include="" data-src="'/ClientApp/views/highscores.html'">
                 </div>
               </div>
             </div>
@@ -88,8 +88,6 @@ include "footer.php";
 
 	<!-- More Scripts-->
 	<script src="js/responsivegridsystem.js"></script>
-
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.7/angular.js"></script>
 
     <script src="/ClientApp/app.js"></script>
     <script src="/ClientApp/Controllers/controller.highscores.js"></script>

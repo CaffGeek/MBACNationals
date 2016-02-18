@@ -1,7 +1,14 @@
 ﻿(function () {
     "use strict";
     
-    var dataService = function ($http, providerUrl) {
+    var dataService = function ($http, $location) {
+        //var currentYear = 2014;
+
+        var url = $location.absUrl();
+        var host = $location.host();
+        var firstSlash = url.indexOf('/', url.indexOf(host)) + 1;
+        var currentYear = url.slice(firstSlash, firstSlash + 4);
+
         return {
             LoadContingent: loadContingent,
             LoadLaneDraw: loadLaneDraw,
@@ -16,70 +23,61 @@
         };
 
         function loadContingent(province) {
-            return $http.get(providerUrl + '/Setup/Contingent', {
-                params: { province: province, year: 2015 }
+            return $http.get('/Setup/Contingent', {
+                params: { province: province, year: currentYear }
             });
         };
 
         function loadLaneDraw(division) {
-            return $http.get(providerUrl + '/Setup/Scores/Schedule', {
-                params: { division: division, year: 2015 }
+            return $http.get('/Setup/Scores/Schedule', {
+                params: { division: division, year: currentYear }
             });
         };
 
         function loadStandings(division) {
-            return $http.get(providerUrl + '/Setup/Scores/Standings', {
-                params: { division: division, year: 2015 }
+            return $http.get('/Setup/Scores/Standings', {
+                params: { division: division, year: currentYear }
             });
         };
 
         function loadStepladder() {
-            return $http.get(providerUrl + '/Setup/Scores/StepladderMatches', {
-                params: { year: 2015 }
+            return $http.get('/Setup/Scores/StepladderMatches', {
+                params: { year: currentYear }
             });
         }
 
         function loadMatch(matchId) {
-            return $http.get(providerUrl + '/Setup/Scores/Match', {
+            return $http.get('/Setup/Scores/Match', {
                 params: { matchId: matchId }
             });
         };
 
         function loadHighScores(division) {
-            return $http.get(providerUrl + '/Setup/Scores/HighScores', {
-                params: { division: division, year: 2015 }
+            return $http.get('/Setup/Scores/HighScores', {
+                params: { division: division, year: currentYear }
             });
         };
 
         function loadParticipantScores(participantId) {
-            return $http.get(providerUrl + '/Setup/Scores/Participant', {
+            return $http.get('/Setup/Scores/Participant', {
                 params: { participantId: participantId }
             });
         };
 
         function loadTeamScores(teamId) {
-            return $http.get(providerUrl + '/Setup/Scores/Team', {
+            return $http.get('/Setup/Scores/Team', {
                 params: { teamId: teamId }
             });
         };
 
         function loadSponsors() {
-            return $http.get(providerUrl + '/Setup/Sponsors/List/2015');
+            return $http.get('/Setup/Sponsors/List/' + currentYear);
         };
 
         function loadNews() {
-            return $http.get(providerUrl + '/Setup/News/List/2015');
+            return $http.get('/Setup/News/List/' + currentYear);
         };
     };
     
-    app.factory('providerUrl', ['$location', function providerUrlFactory(location) {
-        var absUrl = location.absUrl();
-
-        if (absUrl.indexOf('localhost') > 0)
-            return 'http://localhost:60827';
-        else
-            return 'http://mbacnationals.com';
-    }]);
-
-    app.factory('dataService', ['$http', 'providerUrl', dataService]);
+    app.factory('dataService', ['$http', '$location', dataService]);
 }());

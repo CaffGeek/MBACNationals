@@ -108,7 +108,7 @@ President, Master Bowlers Association of Manitoba 					</p>
 					</div>
           <div data-ng-app="app">
             <div data-ng-controller="HighscoresController">
-					    <div class="section group" id="highScores" data-ng-include="" data-src="'app/views/highscores.html'">
+					    <div class="section group" id="highScores" data-ng-include="" data-src="'/ClientApp/views/highscores.html'">
               </div>
 					    <!--<div class="col span_2_of_2">
 					    <h2>HIGH SCORES</h2>
@@ -181,11 +181,9 @@ include "footer.php";
 	<!-- More Scripts-->
 	<script src="js/responsivegridsystem.js"></script>
 
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.7/angular.js"></script>
-
-    <script src="app/app.js"></script>
-    <script src="app/Controllers/controller.highscores.js"></script>
-    <script src="app/Services/service.data.js"></script>
+    <script src="/ClientApp/app.js"></script>
+    <script src="/ClientApp/Controllers/controller.highscores.js"></script>
+    <script src="/ClientApp/Services/service.data.js"></script>
 <script>
       // Init responsive-nav.js
       var nav = responsiveNav("#nav");

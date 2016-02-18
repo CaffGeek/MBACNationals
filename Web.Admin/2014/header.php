@@ -10,6 +10,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 
 <head>
+    <script src="/bundles/angular"></script>
 <meta property="og:url" content="http://nationals2014.manitobamasterbowlers.com" />
 <meta property="og:image" content="http://nationals2014.manitobamasterbowlers.com/images/LinkLogo.jpg" />
 <meta property="og:title" content="2014 Master Bowlers Association National Championships" />
@@ -57,7 +58,6 @@
 	<script src="js/modernizr-2.5.3-min.js"></script>
 	<script src="js/responsive-nav.js"></script>
 
-<link rel="stylesheet" href="css/ex.css" type="text/css">
 <script src="js/dw_event.js" type="text/javascript"></script>
 <script src="js/dw_rotator.js" type="text/javascript"></script>
 <script type="text/javascript">

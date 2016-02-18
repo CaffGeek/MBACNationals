@@ -55,8 +55,6 @@ include "footer.php";
     <!-- More Scripts-->
     <script src="js/responsivegridsystem.js"></script>
 
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.7/angular.js"></script>
-
     <script src="/ClientApp/app.js"></script>
     <script src="/ClientApp/Controllers/controller.schedule.js"></script>
     <script src="/ClientApp/Services/service.data.js"></script>

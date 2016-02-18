@@ -27,5 +27,5 @@
         });        
     };
 
-    app.controller("NewsController", ["dataService", "providerUrl", "$timeout", newsController]);
+    app.controller("NewsController", ["dataService", "$timeout", newsController]);
 }());
