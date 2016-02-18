@@ -1573,6 +1573,9 @@
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Scores\Stepladder.cshtml" />
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="2014\" />
