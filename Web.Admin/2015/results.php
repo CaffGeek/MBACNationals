@@ -64,12 +64,12 @@ include "footer.php";
 	<!-- More Scripts-->
 	<script src="js/responsivegridsystem.js"></script>
 
-    <script src="scripts\angular.min.js"></script>
-    <script src="scripts\angular-ui-router.min.js"></script>
+    <script src="/scripts/angular.min.js"></script>
+    <script src="/scripts/angular-ui-router.min.js"></script>
 
-    <script src="ClientApp/app.js"></script>
-    <script src="ClientApp/Controllers/controller.results.js"></script>
-    <script src="ClientApp/Services/service.data.js"></script>
+    <script src="/ClientApp/app.js"></script>
+    <script src="/ClientApp/Controllers/controller.results.js"></script>
+    <script src="/ClientApp/Services/service.data.js"></script>
 <script>
       // Init responsive-nav.js
       var nav = responsiveNav("#nav");
