@@ -1981,6 +1981,8 @@
     <Content Include="2015\albums\June_27\thumbs\PICT0084.JPG" />
     <Content Include="2015\fonts\bebas___-webfont.svg" />
     <Content Include="2015\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="2016\index.html" />
+    <Content Include="2016\SiteSample_2016.jpg" />
     <Content Include="ClientApp\app.js" />
     <Content Include="ClientApp\Controllers\controller.contingent.js" />
     <Content Include="ClientApp\Controllers\controller.highscores.js" />
@@ -3288,7 +3290,6 @@
     <Content Include="Views\Scores\Stepladder.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="2016\" />
     <Folder Include="AdminApp\Entities\" />
   </ItemGroup>
   <ItemGroup>
