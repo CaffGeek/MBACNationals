@@ -57,9 +57,10 @@ include "header.php";
 				  </div>
 				</div>
         <div class="col span_2_of_3">
-          <div class="col span_3_of_3" id="contentArea" data-ng-include="" data-src="viewUrl">
+          <div ui-view=""></div>
+          <!--<div class="col span_3_of_3" id="contentArea" data-ng-include="" data-src="viewUrl">
 
-          </div>
+          </div>-->
           <h5 class="text-center">Results are unofficial</h5>
         </div>
 			</div>
