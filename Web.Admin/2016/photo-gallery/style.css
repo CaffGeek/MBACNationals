@@ -1,0 +1,81 @@
+/* CSS Document */
+*{padding:0; margin:0;}
+body {
+	background:url(bg.jpg);
+	}
+#wrap {
+	 
+	margin:0 auto; 
+	width:1124px; 
+	overflow:hidden;
+	text-align:center;
+	padding:0 0 20px 20px;
+}
+h3{	
+	font-family:Arial, Helvetica, sans-serif; 
+	font-size:48px; 
+	font-weight:normal; 
+	color:#fff; 
+	text-shadow:1px 1px 0 #ada89a;
+	padding:35px 20px 0 0px;
+	margin-left:-25px;
+}
+p {
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:13px; 
+	font-style:italic;
+	padding:10px 0 10px 0;
+	text-shadow:1px 1px 0 #ebebeb;
+}
+
+ul {
+	padding:20px 0 20px 0; 
+	margin:0 auto;}
+
+
+ul li {
+	list-style:none; 
+	float:left; 
+	position:relative; 
+	background:url(loading.png) no-repeat;
+	background-position:100px 100px;
+	}
+
+ul li a img {
+	border:0;
+	padding:10px 10px 9px 10px; 
+	background:#ffffff; 
+	/*margin-bottom:20px;
+	margin-left:24px;*/
+	}
+
+
+ul li span {
+	background:url(magnify.png);
+	width:27px; 
+	height:26px; 
+	position:absolute; 
+	/*left:250px; 
+	top:-3px; */
+	}
+ul li img {
+	box-shadow: 0 0 7px #807a72; 
+	-moz-box-shadow: 0 0 7px #807a72; 
+	-webkit-box-shadow: 0 0 7px #807a72;
+	border-radius:4px; 
+	-moz-border-radius:4px; 
+	-webkit-border-radius:4px;
+}
+
+
+ul li {height:250px; width:250px; margin:8px;}
+ul li img {margin:15px 0 0 0;}
+ul li.tall img{margin:0 0 0 15px;}
+ul li span {left:222px; top:8px;}
+ul li.tall span {left:210px; top:-6px;}
+
+
+
+
+
+
