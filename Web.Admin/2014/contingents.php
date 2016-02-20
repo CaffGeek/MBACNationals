@@ -66,6 +66,15 @@ include "header.php";
                 <li data-ng-if="team.Coach.Id">
                   <span class="col span_9_of_12">
                     <strong>Coach:</strong> {{team.Coach.Name || 'Vacancy'}}
+                    <span data-ng-show="team.Coach.IsRookie">
+                      <sup>*</sup>
+                    </span>
+                    <span data-ng-show="team.Coach.IsDelegate">
+                      <sup>D</sup>
+                    </span>
+                    <span data-ng-show="team.Coach.IsManager">
+                      <sup>D</sup>
+                    </span>
                   </span>
                   <span class="col span_2_of_12 text-right" data-ng-if="team.RequiresAverage">{{totalAverage(team)}}</span>
                 </li>
@@ -76,6 +85,9 @@ include "header.php";
                       <sup>*</sup>
                     </span>
                     <span data-ng-show="bowler.IsDelegate">
+                      <sup>D</sup>
+                    </span>
+                    <span data-ng-show="bowler.IsManager">
                       <sup>D</sup>
                     </span>
                   </span>

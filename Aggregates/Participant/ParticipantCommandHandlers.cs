@@ -42,6 +42,7 @@ namespace MBACNationals.Participant
                 Name = command.Name,
                 Gender = command.Gender,
                 IsDelegate = command.IsDelegate,
+                IsManager = command.IsManager,
                 YearsQualifying = command.YearsQualifying,
                 IsGuest = command.IsGuest,
             };
@@ -101,6 +102,18 @@ namespace MBACNationals.Participant
 
             if (agg.IsDelegate != command.IsDelegate && !command.IsDelegate)
                 yield return new ParticipantDelegateStatusRevoked
+                {
+                    Id = command.Id
+                };
+
+            if (agg.IsManager != command.IsManager && command.IsManager)
+                yield return new ParticipantManagerStatusGranted
+                {
+                    Id = command.Id
+                };
+
+            if (agg.IsManager != command.IsManager && !command.IsManager)
+                yield return new ParticipantManagerStatusRevoked
                 {
                     Id = command.Id
                 };

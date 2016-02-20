@@ -14,6 +14,8 @@ namespace MBACNationals.Participant
         IApplyEvent<ParticipantGenderReassigned>,
         IApplyEvent<ParticipantDelegateStatusGranted>,
         IApplyEvent<ParticipantDelegateStatusRevoked>,
+        IApplyEvent<ParticipantManagerStatusGranted>,
+        IApplyEvent<ParticipantManagerStatusRevoked>,
         IApplyEvent<ParticipantYearsQualifyingChanged>,
         IApplyEvent<ParticipantAverageChanged>,
         IApplyEvent<ParticipantAssignedToRoom>,
@@ -28,6 +30,7 @@ namespace MBACNationals.Participant
         public string Name { get; private set; }
         public string Gender { get; private set; }
         public bool IsDelegate { get; private set; }
+        public bool IsManager { get; private set; }
         public bool IsGuest { get; private set; }
         public bool IsCoach { get; private set; }
         public bool IsAlternate { get; private set; }
@@ -130,6 +133,16 @@ namespace MBACNationals.Participant
         public void Apply(ParticipantDelegateStatusRevoked e)
         {
             IsDelegate = false;
+        }
+
+        public void Apply(ParticipantManagerStatusGranted e)
+        {
+            IsManager = true;
+        }
+
+        public void Apply(ParticipantManagerStatusRevoked e)
+        {
+            IsManager = false;
         }
 
         public void Apply(ParticipantYearsQualifyingChanged e)
