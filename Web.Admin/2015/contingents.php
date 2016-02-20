@@ -30,7 +30,9 @@ include "header.php";
             <p>* Rookie</p>
 
             <div class="col span_5_of_12" data-ng-repeat="team in model.Teams | orderBy:'-1*Name.length'" data-ng-show="team.Id">
-              <h5>{{team.Name}}</h5>
+              <h5>
+                <a href="results.php#/team/{{team.Id}}">{{team.Name || 'Vacancy'}}</a>
+              </h5>
 
               <ol style="list-style-type:none;">
                 <li data-ng-if="team.Coach.Id">                  
@@ -51,7 +53,7 @@ include "header.php";
                       {{bowler.Average}}
                     </span>
                   </span>
-                  {{bowler.Name || 'Vacancy'}}
+                  <a href="results.php#/bowler/{{bowler.Id}}">{{bowler.Name || 'Vacancy'}}</a>
                   <span data-ng-show="bowler.IsRookie">
                     <sup>*</sup>
                   </span>
