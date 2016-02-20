@@ -45,6 +45,7 @@ namespace MBACNationals.Participant
                 IsManager = command.IsManager,
                 YearsQualifying = command.YearsQualifying,
                 IsGuest = command.IsGuest,
+                Birthday = command.Birthday,
             };
 
             yield return new ParticipantAverageChanged
@@ -167,6 +168,13 @@ namespace MBACNationals.Participant
                     Option2 = command.Package.Option2,
                     Option3 = command.Package.Option3,
                     Option4 = command.Package.Option4,
+                };
+
+            if (command.Birthday.HasValue && agg.Birthday != command.Birthday)
+                yield return new ParticipantBirthdayChanged
+                {
+                    Id = command.Id,
+                    Birthday = command.Birthday.Value,
                 };
         }
 

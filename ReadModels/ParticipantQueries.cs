@@ -25,6 +25,7 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<ParticipantGuestPackageChanged>,
         ISubscribeTo<ParticipantShirtSizeChanged>,
         ISubscribeTo<ParticipantAssignedToRoom>,
+        ISubscribeTo<ParticipantBirthdayChanged>,
         ISubscribeTo<TeamCreated>,
         ISubscribeTo<ContingentCreated>,
         ISubscribeTo<ContingentAssignedToTournament>,
@@ -52,6 +53,7 @@ namespace MBACNationals.ReadModels
             public bool IsGuest { get; internal set; }
             public PackageInformation Package { get; internal set; }
             public string ShirtSize { get; internal set; }
+            public DateTime? Birthday { get; internal set; }
         }
 
         public class PackageInformation
@@ -99,6 +101,7 @@ namespace MBACNationals.ReadModels
             public bool Option3 { get; set; }
             public bool Option4 { get; set; }
             public string ShirtSize { get; set; }
+            public DateTime? Birthday { get; set; }
         }
 
         private class TSContingent : Entity
@@ -176,6 +179,7 @@ namespace MBACNationals.ReadModels
                         Option4 = x.Option4,
                     },
                     ShirtSize = x.ShirtSize,
+                    Birthday = x.Birthday,
                 })
                 .ToList();
         }
@@ -215,6 +219,7 @@ namespace MBACNationals.ReadModels
                         Option4 = participant.Option4,
                     },
                     ShirtSize = participant.ShirtSize,
+                    Birthday = participant.Birthday,
                 };
         }
 
@@ -371,6 +376,11 @@ namespace MBACNationals.ReadModels
             {
                 Year = e.Year
             });
+        }
+
+        public void Handle(ParticipantBirthdayChanged e)
+        {
+            Storage.Update<TSParticipant>(e.Id, e.Id, x => x.Birthday = e.Birthday);
         }
     }
 }

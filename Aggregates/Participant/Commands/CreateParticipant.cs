@@ -17,6 +17,7 @@ namespace MBACNationals.Participant.Commands
         public bool IsGuest { get; set; }
         public PackageInformation Package { get; set; }
         public string ShirtSize { get; set; }
+        public DateTime? Birthday { get; set; }
 
         public class PackageInformation
         {

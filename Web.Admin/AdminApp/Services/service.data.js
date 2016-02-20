@@ -130,9 +130,13 @@
         };
 
         function loadParticipant(id) {
-            return $http.get('/Setup/Participant', {
-                params: { id: id }
-            });
+            return $http
+                .get('/Setup/Participant', {
+                    params: { id: id }
+                })
+                .success(function (data) {
+                    data.Birthday = new Date(parseInt(('' + data.Birthday).substr(6)));
+                });
         };
 
         function loadParticipants(year, province) {

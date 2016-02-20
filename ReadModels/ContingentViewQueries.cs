@@ -25,7 +25,8 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<ParticipantManagerStatusRevoked>,
         ISubscribeTo<ParticipantYearsQualifyingChanged>,
         ISubscribeTo<ParticipantAverageChanged>,
-        ISubscribeTo<ParticipantReplacedWithAlternate>
+        ISubscribeTo<ParticipantReplacedWithAlternate>,
+        ISubscribeTo<ParticipantBirthdayChanged>
     {
         public class Contingent
         {
@@ -65,6 +66,7 @@ namespace MBACNationals.ReadModels
             public bool IsGuest { get; internal set; }
             public int Average { get; internal set; }
             public string ReplacedBy { get; internal set; }
+            public DateTime? Birthday { get; internal set; }
         }
 
         private class TSContingent : Entity
@@ -98,6 +100,7 @@ namespace MBACNationals.ReadModels
             public bool IsGuest { get; set; }
             public int Average { get; set; }
             public string ReplacedBy { get; set; }
+            public DateTime? Birthday { get; set; }
         }
         
         public Contingent GetContingent(Guid tournamentId, string province)
@@ -119,7 +122,8 @@ namespace MBACNationals.ReadModels
                         IsManager = x.IsManager,
                         IsRookie = x.IsRookie,
                         IsGuest = x.IsGuest,
-                        ReplacedBy = x.ReplacedBy
+                        ReplacedBy = x.ReplacedBy,
+                        Birthday = x.Birthday,
                     };
                 }).ToList();
 
@@ -203,7 +207,8 @@ namespace MBACNationals.ReadModels
                 Name = e.Name,
                 IsDelegate = e.IsDelegate,
                 IsRookie = e.YearsQualifying == 1,
-                IsGuest = e.IsGuest
+                IsGuest = e.IsGuest,
+                Birthday = e.Birthday,
             });
         }
 
@@ -285,6 +290,11 @@ namespace MBACNationals.ReadModels
         {
             Storage.Update<TSParticipant>(e.AlternateId, x => x.TeamId = e.TeamId); // Assign Alternate to team
             Storage.Update<TSParticipant>(e.Id, x=> x.ReplacedBy = e.AlternateId.ToString()); // Mark bowler as replaced
+        }
+
+        public void Handle(ParticipantBirthdayChanged e)
+        {
+            Storage.Update<TSParticipant>(e.Id, x => { x.Birthday = e.Birthday; });
         }
     }
 }
