@@ -57,6 +57,7 @@
     <Compile Include="Participant\ParticipantGuestPackageChanged.cs" />
     <Compile Include="Participant\ParticipantProfileChanged.cs" />
     <Compile Include="Participant\ParticipantRemovedFromRoom.cs" />
+    <Compile Include="Participant\ParticipantBirthdayChanged.cs" />
     <Compile Include="Participant\ParticipantReplacedWithAlternate.cs" />
     <Compile Include="Participant\ParticipantShirtSizeChanged.cs" />
     <Compile Include="Participant\ParticipantYearsQualifyingChanged.cs" />

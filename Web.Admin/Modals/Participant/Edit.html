@@ -35,6 +35,13 @@
 
         <div class="form-group" data-ng-include="'/Modals/Participant/_gender.html'"></div>
 
+        <div class="form-group">
+            <label for="name" class="col-sm-3 control-label">Birthday (optional)</label>
+            <div class="col-sm-9">
+                <input type="date" data-ng-model="model.participant.Birthday" />
+            </div>
+        </div>
+
         <div class="form-group" data-ng-include="'/Modals/Participant/_shirtsize.html'" data-ng-if="model.team.RequiresShirtSize"></div>
 
         <div class="form-group table-responsive" data-ng-include="'/Modals/Participant/_average.html'" data-ng-if="model.title.indexOf('Single') < 0"></div>

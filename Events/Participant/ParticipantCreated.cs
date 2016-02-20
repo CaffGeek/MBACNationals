@@ -11,5 +11,6 @@ namespace Events.Participant
         public bool IsManager;
         public int YearsQualifying;
         public bool IsGuest;
+        public DateTime? Birthday;
     }
 }
