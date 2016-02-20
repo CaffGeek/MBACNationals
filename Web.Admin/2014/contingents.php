@@ -76,7 +76,6 @@ include "header.php";
                       <sup>D</sup>
                     </span>
                   </span>
-                  <span class="col span_2_of_12 text-right" data-ng-if="team.RequiresAverage">{{totalAverage(team)}}</span>
                 </li>
                 <li data-ng-repeat="bowler in team.Bowlers">
                   <span class="col span_9_of_12">
@@ -95,6 +94,10 @@ include "header.php";
                   <span data-ng-if="team.RequiresAverage" class="col span_2_of_12 text-right">
                     {{bowler.Average}}
                   </span>
+                </li>
+                <li>
+                  <span class="col span_9_of_12"></span>
+                  <span class="col span_2_of_12 text-right" data-ng-if="team.RequiresAverage" style="font-weight: bold;">{{totalAverage(team)}}</span>
                 </li>
               </ol>
             </div>
