@@ -2,8 +2,6 @@
     "use strict";
     
     var dataService = function ($http, $location) {
-        //var currentYear = 2014;
-
         var url = $location.absUrl();
         var host = $location.host();
         var firstSlash = url.indexOf('/', url.indexOf(host)) + 1;

@@ -2,6 +2,6 @@
 {
     public interface IHighScoreQueries
     {
-        HighScoreQueries.Division GetDivision(string division);
+        HighScoreQueries.Division GetDivision(string division, int year);
     }
 }
