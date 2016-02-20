@@ -21,6 +21,8 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<ParticipantRenamed>,
         ISubscribeTo<ParticipantDelegateStatusGranted>,
         ISubscribeTo<ParticipantDelegateStatusRevoked>,
+        ISubscribeTo<ParticipantManagerStatusGranted>,
+        ISubscribeTo<ParticipantManagerStatusRevoked>,
         ISubscribeTo<ParticipantYearsQualifyingChanged>,
         ISubscribeTo<ParticipantAverageChanged>,
         ISubscribeTo<ParticipantReplacedWithAlternate>
@@ -59,6 +61,7 @@ namespace MBACNationals.ReadModels
             public string Name { get; internal set; }
             public bool IsRookie { get; internal set; }
             public bool IsDelegate { get; internal set; }
+            public bool IsManager { get; internal set; }
             public bool IsGuest { get; internal set; }
             public int Average { get; internal set; }
             public string ReplacedBy { get; internal set; }
@@ -91,6 +94,7 @@ namespace MBACNationals.ReadModels
             public Guid TeamId { get; set; }
             public bool IsRookie { get; set; }
             public bool IsDelegate { get; set; }
+            public bool IsManager { get; set; }
             public bool IsGuest { get; set; }
             public int Average { get; set; }
             public string ReplacedBy { get; set; }
@@ -112,6 +116,7 @@ namespace MBACNationals.ReadModels
                         Name = x.Name,
                         Average = x.Average,
                         IsDelegate = x.IsDelegate,
+                        IsManager = x.IsManager,
                         IsRookie = x.IsRookie,
                         IsGuest = x.IsGuest,
                         ReplacedBy = x.ReplacedBy
@@ -254,6 +259,16 @@ namespace MBACNationals.ReadModels
         public void Handle(ParticipantDelegateStatusRevoked e)
         {
             Storage.Update<TSParticipant>(e.Id, x => { x.IsDelegate = false; });
+        }
+
+        public void Handle(ParticipantManagerStatusGranted e)
+        {
+            Storage.Update<TSParticipant>(e.Id, x => { x.IsManager = true; });
+        }
+
+        public void Handle(ParticipantManagerStatusRevoked e)
+        {
+            Storage.Update<TSParticipant>(e.Id, x => { x.IsManager = false; });
         }
 
         public void Handle(ParticipantYearsQualifyingChanged e)

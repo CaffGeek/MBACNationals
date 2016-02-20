@@ -48,6 +48,7 @@
     <Compile Include="Contingent\TravelPlansChanged.cs" />
     <Compile Include="Contingent\ContingentCreated.cs" />
     <Compile Include="Contingent\TeamRemoved.cs" />
+    <Compile Include="Participant\ParticipantManagerStatusChanged.cs" />
     <Compile Include="Participant\ParticipantDesignatedAsAlternate.cs" />
     <Compile Include="Participant\CoachAssignedToTeam.cs" />
     <Compile Include="Participant\ParticipantAssignedToContingent.cs" />

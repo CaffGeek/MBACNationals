@@ -36,6 +36,15 @@ include "header.php";
                 <li data-ng-if="team.Coach.Id">
                   <span data-ng-if="team.RequiresAverage" style="float:right; font-weight: bold;">{{totalAverage(team)}}</span>
                   <strong>Coach:</strong> {{team.Coach.Name || 'Vacancy'}}
+                  <span data-ng-show="team.Coach.IsRookie">
+                    <sup>*</sup>
+                  </span>
+                  <span data-ng-show="team.Coach.IsDelegate">
+                    <sup>D</sup>
+                  </span>
+                  <span data-ng-show="team.Coach.IsManager">
+                    <sup>M</sup>
+                  </span>
                 </li>
                 <li data-ng-repeat="bowler in team.Bowlers">
                   <span data-ng-if="team.Name.indexOf('Teaching') >= 0 || team.Name.indexOf('Seniors') >= 0" style="float:right;">
@@ -49,7 +58,10 @@ include "header.php";
                   </span>
                   <span data-ng-show="bowler.IsDelegate">
                     <sup>D</sup>
-                  </span>                  
+                  </span>
+                  <span data-ng-show="bowler.IsManager">
+                    <sup>M</sup>
+                  </span>
                 </li>
               </ol>
             </div>

@@ -8,6 +8,7 @@ namespace MBACNationals.Participant.Commands
         public string Name { get; set; }
         public string Gender { get; set; }
         public bool IsDelegate { get; set; }
+        public bool IsManager { get; set; }
         public int YearsQualifying { get; set; }
         public int LeagueGames { get; set; }
         public int LeaguePinfall { get; set; }

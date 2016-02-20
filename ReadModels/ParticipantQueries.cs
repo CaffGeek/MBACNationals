@@ -18,6 +18,8 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<ParticipantGenderReassigned>,
         ISubscribeTo<ParticipantDelegateStatusGranted>,
         ISubscribeTo<ParticipantDelegateStatusRevoked>,
+        ISubscribeTo<ParticipantManagerStatusGranted>,
+        ISubscribeTo<ParticipantManagerStatusRevoked>,
         ISubscribeTo<ParticipantYearsQualifyingChanged>,
         ISubscribeTo<ParticipantAverageChanged>,
         ISubscribeTo<ParticipantGuestPackageChanged>,
@@ -38,6 +40,7 @@ namespace MBACNationals.ReadModels
             public string TeamId { get; internal set; }
             public string TeamName { get; internal set; }
             public bool IsDelegate { get; internal set; }
+            public bool IsManager { get; internal set; }
             public bool IsCoach { get; internal set; }
             public int YearsQualifying { get; internal set; }
             public int LeaguePinfall { get; internal set; }
@@ -77,6 +80,7 @@ namespace MBACNationals.ReadModels
             public string TeamId { get; set; }
             public string TeamName { get; set; }
             public bool IsDelegate { get; set; }
+            public bool IsManager { get; set; }
             public bool IsCoach { get; set; }
             public int YearsQualifying { get; set; }
             public int LeaguePinfall { get; set; }
@@ -150,6 +154,7 @@ namespace MBACNationals.ReadModels
                     Province = x.Province,
                     TeamName = x.TeamName,
                     IsDelegate = x.IsDelegate,
+                    IsManager = x.IsManager,
                     IsCoach = x.IsCoach,
                     YearsQualifying = x.YearsQualifying,
                     LeaguePinfall = x.LeaguePinfall,
@@ -188,6 +193,7 @@ namespace MBACNationals.ReadModels
                     Province = participant.Province,
                     TeamName = participant.TeamName,
                     IsDelegate = participant.IsDelegate,
+                    IsManager = participant.IsManager,
                     IsCoach = participant.IsCoach,
                     YearsQualifying = participant.YearsQualifying,
                     LeaguePinfall = participant.LeaguePinfall,
@@ -300,6 +306,16 @@ namespace MBACNationals.ReadModels
         public void Handle(ParticipantDelegateStatusRevoked e)
         {
             Storage.Update<TSParticipant>(e.Id, e.Id, x => { x.IsDelegate = false; });
+        }
+
+        public void Handle(ParticipantManagerStatusGranted e)
+        {
+            Storage.Update<TSParticipant>(e.Id, e.Id, x => { x.IsManager = true; });
+        }
+
+        public void Handle(ParticipantManagerStatusRevoked e)
+        {
+            Storage.Update<TSParticipant>(e.Id, e.Id, x => { x.IsManager = false; });
         }
 
         public void Handle(ParticipantYearsQualifyingChanged e)

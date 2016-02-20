@@ -14,6 +14,7 @@
 				<a data-ng-click="editParticipant(team.Coach, team);" title="{{team.Coach.Id}}">{{team.Coach.Name || 'Vacancy'}}</a>
                 <span data-ng-show="team.Coach.IsRookie"><sup>R</sup></span>
                 <span data-ng-show="team.Coach.IsDelegate"><sup>D</sup></span>
+                <span data-ng-show="team.Coach.IsManager"><sup>M</sup></span>
             </span>
             <ol>
                 <li data-ng-repeat="bowler in team.Bowlers">
@@ -21,6 +22,7 @@
                     <span data-ng-if="bowler.Average">- {{bowler.Average}}</span>
                     <span data-ng-show="bowler.IsRookie"><sup>R</sup></span>
                     <span data-ng-show="bowler.IsDelegate"><sup>D</sup></span>
+                    <span data-ng-show="bowler.IsManager"><sup>M</sup></span>
                 </li>
             </ol>
         </div>
