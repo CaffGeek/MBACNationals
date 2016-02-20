@@ -2092,6 +2092,7 @@
     <Content Include="2015\css\responsivegridsystem.css" />
     <Content Include="2015\css\stylesheet.css" />
     <Content Include="ConnectionStrings.config" />
+    <Content Include="Content\Images\2016_logo.png" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.jpg" />
     <Content Include="2015\foliogallery-demo.php" />

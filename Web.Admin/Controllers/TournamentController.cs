@@ -48,7 +48,8 @@ namespace WebFrontend.Controllers
         {
             Response.AppendHeader("Access-Control-Allow-Origin", "*");
 
-            var tournaments = Domain.TournamentQueries.GetTournaments();
+            var tournaments = Domain.TournamentQueries.GetTournaments()
+                .OrderByDescending(x => x.Year);
 
             return Json(tournaments, JsonRequestBehavior.AllowGet);
         }
