@@ -44,7 +44,7 @@ include 'header.php';
           <p>Coming soon</p>
 		<h2>Follow Us</h2>
           <p>Newsletter Signup</p>
-          <p>Facebook feed</p>
+          <div class="fb-page" data-href="https://www.facebook.com/MBAofCanada/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/MBAofCanada/"><a href="https://www.facebook.com/MBAofCanada/">Master Bowlers Association of Canada</a></blockquote></div></div>
 
           <p>Twitter Feed</p>
 
