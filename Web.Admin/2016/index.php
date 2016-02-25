@@ -44,8 +44,8 @@ include 'header.php';
           <p>Coming soon</p>
 		<h2>Follow Us</h2>
           <p>Newsletter Signup</p>
-         <iframe width="200" height="122" src="https://my.sendinblue.com/users/subscribe/js_id/2dew5/id/1" frameborder="0" scrolling="auto" allowfullscreen style="display: block;margin-left: auto;margin-right: auto;"></iframe>	
-          <div class="fb-page" data-href="https://www.facebook.com/MBAofCanada/" data-tabs="timeline" data-height="300" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/MBAofCanada/"><a href="https://www.facebook.com/MBAofCanada/">Master Bowlers Association of Canada</a></blockquote></div></div>
+         <iframe width="200" height="122" src="https://my.sendinblue.com/users/subscribe/js_id/2dew5/id/1" frameborder="0" scrolling="auto" allowfullscreen style="display: block;text-align:left;"></iframe>	
+          <div class="fb-page" data-href="https://www.facebook.com/MBAofCanada/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/MBAofCanada/"><a href="https://www.facebook.com/MBAofCanada/">Master Bowlers Association of Canada</a></blockquote></div></div>
 
           <div><a class="twitter-timeline" href="https://twitter.com/MBANationals" data-widget-id="702222211382259713">Tweets by @MBANationals</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>
 
