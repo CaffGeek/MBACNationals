@@ -71,8 +71,8 @@
         			<a class="dropdown-toggle" data-toggle="dropdown" href="#">History
         			<span class="caret"></span></a>
         			<ul class="dropdown-menu">
-          				<li><a href="http://mbacnationals.com/2015/" target="_blank">2015 - Southern Ontario</a></li>
-          				<li><a href="http://mbacnationals.com/2014/" target="_blank">2014 - Winnipeg</a></li>
+          				<li><a href="/2015/" target="_blank">2015 - SO</a></li>
+          				<li><a href="/2014/" target="_blank">2014 - MB</a></li>
 			        </ul>
       			</li>
     </ul>
