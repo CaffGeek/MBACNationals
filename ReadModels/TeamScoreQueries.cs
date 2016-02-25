@@ -10,7 +10,8 @@ namespace MBACNationals.ReadModels
 {
     public class TeamScoreQueries : BaseReadModel<TeamScoreQueries>,
         ITeamScoreQueries,
-        ISubscribeTo<TeamGameCompleted>
+        ISubscribeTo<TeamGameCompleted>,
+        ISubscribeTo<ParticipantAssignedToTeam>
     {
         public class Team 
         {
@@ -65,7 +66,16 @@ namespace MBACNationals.ReadModels
             public double OpponentPoints { get; set; }
         }
 
-
+        private class TSTeamSingle : Entity
+        {
+            public Guid TeamId
+            {
+                get { return Guid.Parse(RowKey); }
+                internal set { RowKey = value.ToString(); PartitionKey = value.ToString(); }
+            }
+            public Guid SingleId { get; set; }
+        }
+        
         public Team GetTeam(Guid id)
         {
             var matches = Storage.Query<TSMatch>(x => x.TeamId == id);
@@ -97,10 +107,30 @@ namespace MBACNationals.ReadModels
 
             return team;
         }
+
+        public void Handle(ParticipantAssignedToTeam e)
+        {
+            var teamSingle = Storage.Read<TSTeamSingle>(e.TeamId);
+            
+            //First teammember becomes the single
+            if (teamSingle == null)
+            {
+                Storage.Create(e.TeamId, e.TeamId, new TSTeamSingle{ SingleId = e.Id });
+            }
+        }
         
         public void Handle(TeamGameCompleted e)
         {
-            Storage.Create(e.TeamId, e.Id, new TSMatch
+            var teamId = e.TeamId;
+
+            //HACK: Old TeamGameCompleted events used teamid instead of bowlerid for POA singles 8'(
+            if ((e.Division.Contains("Teaching") || e.Division.Contains("Senior")) && e.Division.Contains("Single"))
+            {
+                var teamSingle = Storage.Read<TSTeamSingle>(e.TeamId);
+                if (teamSingle != null) teamId = teamSingle.SingleId;
+            }
+
+            Storage.Create(teamId, e.Id, new TSMatch
             {
                 TeamName = e.Division,
                 Province = e.Contingent,
