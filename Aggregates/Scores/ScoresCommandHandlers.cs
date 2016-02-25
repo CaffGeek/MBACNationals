@@ -33,6 +33,7 @@ namespace MBACNationals.Scores
 
             if (match.IsPOA)
             {
+                //TODO: Single might no longer be first bowler if they are replaced
                 var awayBowler = command.Away.Bowlers.First();
                 var homeBowler = command.Home.Bowlers.First();
 
@@ -45,6 +46,8 @@ namespace MBACNationals.Scores
                 var awaySinglePoints = CalculatePoint(awayPOA, homePOA, 2);
                 var homeSinglePoints = CalculatePoint(homePOA, awayPOA, 2);
 
+                //TODO: something that fixes up existing Commands TeamIds for POA singles
+                
                 //Away
                 yield return new TeamGameCompleted
                 {
@@ -53,7 +56,7 @@ namespace MBACNationals.Scores
                     Division = agg.Division + " Single",
                     Contingent = match.Away,
                     Opponent = match.Home,
-                    TeamId = command.Away.Id,
+                    TeamId = awayBowler.Id,
                     Score = awayBowler.Score,
                     POA = awayPOA,
                     Points = awaySinglePoints,
@@ -61,7 +64,7 @@ namespace MBACNationals.Scores
                     TotalPoints = awaySinglePoints,
                     OpponentScore = homeBowler.Score,
                     OpponentPOA = homePOA,
-                    Lane = match.Lane + 1,
+                    Lane = match.Lane,
                     Centre = match.CentreName,
                     IsPOA = match.IsPOA
                 };
@@ -74,7 +77,7 @@ namespace MBACNationals.Scores
                     Division = agg.Division + " Single",
                     Contingent = match.Home,
                     Opponent = match.Away,
-                    TeamId = command.Home.Id,
+                    TeamId = homeBowler.Id,
                     Score = homeBowler.Score,
                     POA = homePOA,
                     Points = homeSinglePoints,
