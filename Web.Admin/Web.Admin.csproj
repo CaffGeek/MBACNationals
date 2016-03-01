@@ -2056,6 +2056,12 @@
     <Content Include="2016\photo-gallery\scripts\timthumb.php" />
     <Content Include="2016\photo-gallery\style.css" />
     <Content Include="2016\schedule.php" />
+    <Content Include="2016\centres.php" />
+    <Content Include="2016\lanedraw.php" />
+    <Content Include="2016\results.php" />
+    <Content Include="2016\news.php" />
+    <Content Include="2016\contingents.php" />
+    <Content Include="2016\photos.php" />
     <Content Include="ClientApp\app.js" />
     <Content Include="ClientApp\Controllers\controller.contingent.js" />
     <Content Include="ClientApp\Controllers\controller.highscores.js" />
