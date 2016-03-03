@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
+    <script src="/bundles/angular"></script>
 <meta property="og:url" content="http://mbacnationals.com" />
 <meta property="og:image" content="http://mbacnationals.com/images/LinkLogo.jpg" />
 <meta property="og:title" content="2016 Master Bowlers Association National Championships :: Surrey • Langley • Cloverdale, BC" />
