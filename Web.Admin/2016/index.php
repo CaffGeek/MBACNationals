@@ -19,20 +19,19 @@ include 'header.php';
     <div class="container">
     	
       <!-- Example row of columns -->
-      <div class="row">
+      <div class="row" data-ng-app="app">
         <div class="col-md-8">
         <h2>Welcome</h2>
           <p>Welcome to the online home of the 2016 Master Bowlers Association of Canada Nationals, taking place June 27 - July 3, 2016 in Surrey, Langley and Cloverdale, BC.</p>
         	<div class="row">
-        		<div class="col-md-6">
+        		<div class="col-md-6" data-ng-controller="NewsController as vm">
           <h2>News</h2>
           <div ng-repeat="newsItem in vm.News">
               <h4>
                 <span class="newsHeader">{{newsItem.Title}}</span>
               </h4>
-              <p style="white-space: pre-wrap;">{{newsItem.Content}}</p> 
-            </div>
-          </div>
+              <p style="white-space: pre-wrap;">{{newsItem.Content}}</p>
+        	</div>
           <p><a class="btn btn-default" href="news.php" role="button">More News</a></p>
        			</div>       		
         		<div class="col-md-6">
@@ -46,19 +45,19 @@ include 'header.php';
        		</div>	
         </div>
         <div class="col-md-4">
-         <h2>SPONSORS</h2>
+         <!--<h2>SPONSORS</h2>
                 <div style="height:250px;" data-ng-controller="SponsorsController as vm">
                   <div class="innerContainer">
                     <a href="{{vm.CurrentSponsor.Website}}" target="_blank">
                       <img ng-src="{{vm.ImageBase}}/Setup/Sponsors/Image/{{vm.CurrentSponsor.Id}}" style="width:100%;" alt="" border="0" />
                     </a>
                   </div>
-                </div>          
+                </div>   -->       
 		<h2>Follow Us</h2>
          <h3>Newsletter</h3>
          <!-- SendinBlue Signup Form HTML Code -->
 
-<div id="sib_embed_signup" style="padding: 10px;">
+<div id="sib_embed_signup">
     <div class="wrapper" style="position:relative;margin-left: auto;margin-right: auto;">
         <input type="hidden" id="sib_embed_signup_lang" value="en">
         <input type="hidden" id="sib_embed_invalid_email_message" value="That email address is not valid. Please try again">
@@ -76,9 +75,9 @@ include 'header.php';
   		    <h3 id="company-name" ></h3>
                 </div>
                     <div class="description editable" data-editfield="newsletter_description" ></div>
-                    <div class="view-messages" style=" margin:5px 0;"> </div>
+                    <div class="view-messages" > </div>
                         <!-- an email as primary -->
-            <div class="primary-group email-group forms-builder-group ui-sortable" style="">
+            <div class="primary-group email-group forms-builder-group ui-sortable" >
                             <div class="row mandatory-email">
                                 <input type="text" name="email" id="email" value="">
                                 <div style="clear:both;"></div>

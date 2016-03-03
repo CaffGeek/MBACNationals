@@ -55,8 +55,8 @@ include "header.php";
                       <img ng-src="{{vm.ImageBase}}/Setup/Sponsors/Image/{{vm.CurrentSponsor.Id}}" style="width:100%;" alt="" border="0" />
                     </a>
                   </div>
-                </div>          
-					    </div>
+                </div>  
+</div>
               <div data-ng-controller="HighscoresController">
 					      <div class="section group" id="highScores" data-ng-include="" data-src="'/ClientApp/views/highscores.html'">
                 </div>
