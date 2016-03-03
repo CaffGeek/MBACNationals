@@ -27,6 +27,10 @@
     <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script type='text/javascript' src='https://my.sendinblue.com/public/theme/version3/js/subscribe-validate.js'></script>
+	<script type='text/javascript'>
+	    jQuery.noConflict(true);
+	</script>
     <script src="bootstrap/js/ie10-viewport-bug-workaround.js"></script>
     <script>
     $(window).scroll(function() {
