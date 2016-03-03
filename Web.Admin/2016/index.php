@@ -45,14 +45,14 @@ include 'header.php';
        		</div>	
         </div>
         <div class="col-md-4">
-         <!--<h2>SPONSORS</h2>
+         <h2>SPONSORS</h2>
                 <div style="height:250px;" data-ng-controller="SponsorsController as vm">
                   <div class="innerContainer">
                     <a href="{{vm.CurrentSponsor.Website}}" target="_blank">
                       <img ng-src="{{vm.ImageBase}}/Setup/Sponsors/Image/{{vm.CurrentSponsor.Id}}" style="width:100%;" alt="" border="0" />
                     </a>
                   </div>
-                </div>   -->       
+                </div>      
 		<h2>Follow Us</h2>
          <h3>Newsletter</h3>
          <!-- SendinBlue Signup Form HTML Code -->
