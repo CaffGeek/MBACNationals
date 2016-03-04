@@ -8,7 +8,7 @@ include 'header.php';
     	<div class="row">
         	<div class="col-md-12">
     			<div id="logo" class="shadowed" style="position: absolute;left: 50%; transform: translate(-50%, 0);margin-top:-35px;position:absolute;z-index:10;"><img src="images/2016_Logo.png" alt="2016 Masters Nationals" /></div>
-    			<div id="headerImage" style="margin-top:15px;background-size:cover;background-position:center center;height:375px;background-image:url('images/header_image_8.png'); "></div>
+    			<div id="headerImage" style="margin-top:15px;background-size:cover;background-position:center center;height:375px;background-image:url('images/header_image_8.jpg'); "></div>
 				<div id="photoCredit"><strong>Carnival Rides at 2010 Cloverdale Rodeo</strong> &bull; Credit: Denise M, WikiCommons</div>
 			</div>
 		</div>
