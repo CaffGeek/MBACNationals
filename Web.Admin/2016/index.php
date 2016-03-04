@@ -90,8 +90,8 @@ include 'header.php';
                     <div class="view-messages" > </div>
                         <!-- an email as primary -->
             <div class="primary-group email-group forms-builder-group ui-sortable" >
-                            <div class="row mandatory-email">
-                                <input class="newsletter" type="text" name="email" id="email" value="">
+                            <div class="mandatory-email">
+                                <input type="text" name="email" id="email" value="">
                                 <div style="clear:both;"></div>
                                 <div class="hidden-btns">
                                     <a class="btn move" href="#"><i class="icon-move"></i></a><br>
