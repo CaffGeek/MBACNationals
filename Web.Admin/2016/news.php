@@ -8,8 +8,8 @@ include 'header.php';
     	<div class="row">
         	<div class="col-md-12">
     			<div id="logo" class="shadowed" style="position: absolute;left: 50%; transform: translate(-50%, 0);margin-top:-35px;position:absolute;z-index:10;"><img src="images/2016_Logo.png" alt="2016 Masters Nationals" /></div>
-    			<div id="headerImage" style="margin-top:15px;background-size:cover;background-position:center center;height:375px;background-image:url('images/header_1.png'); "></div>
-				<div id="photoCredit"><strong>Burlington, Ontario at Night</strong> &bull; Credit: WikiCommons</div>
+    			<div id="headerImage" style="margin-top:15px;background-size:cover;background-position:center center;height:375px;background-image:url('images/header_image_6.png'); "></div>
+				<div id="photoCredit"><strong>King George Boulevard Bridge over Nicomekl River</strong> &bull; Credit: WikiCommons</div>
 			</div>
 		</div>
 </div>
@@ -32,7 +32,7 @@ include 'header.php';
         <div class="col-md-10">
         <div ng-repeat="newsItem in vm.News | filter:vm.filterByMonth(vm.selectedMonth)">
           <h4>
-            <span style="color:#cc0000">{{newsItem.Title}}</span>
+            <span class="newsHeader">{{newsItem.Title}}</span>
           </h4>
           <p style="white-space: pre-wrap;">{{newsItem.Content}}</p>
         </div>
