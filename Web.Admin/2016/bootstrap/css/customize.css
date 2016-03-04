@@ -39,6 +39,9 @@ h4 { font-size: 14px;
 	}
 
 .newsheader {color: #428BCA; }
+
+input #email {margin-left:15px;}
+
 .btn-default { 
   color: #FFFFFF; 
   background-color: #ccc; 
