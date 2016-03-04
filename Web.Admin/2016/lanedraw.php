@@ -29,14 +29,15 @@ include 'header.php';
                 <li><a href="" data-ng-click="loadLaneDraw('Teaching Men')">TEACHING MEN</a></li>
                 <li><a href="" data-ng-click="loadLaneDraw('Teaching Ladies')">TEACHING LADIES</a></li>
                 <li><a href="" data-ng-click="loadLaneDraw('Seniors')">SENIORS</a></li>
-                <hr />
-                <li><a href="images/forms/2015NationalsLaneDraw.pdf" target="_blank"> DOWNLOAD PDF</a></li>
+                <!--<hr />
+                <li><a href="images/forms/2015NationalsLaneDraw.pdf" target="_blank"> DOWNLOAD PDF</a></li>-->
     	</ul>
           
         </div>
         <div class="col-md-10">
         <h2>LANE DRAW</h2>
-              <h4>{{model.Division}}</h4>
+        <p>Coming Soon<p>
+         <!--     <h4>{{model.Division}}</h4>
               <table style="width: 100%;" class="lanedraw">
                 <tbody data-ng-repeat="game in model.Games | unique:'Number'">
                   <tr data-ng-show="game.ShowLocation">
@@ -99,7 +100,7 @@ include 'header.php';
                     </td>
                   </tr>
                 </tbody>
-              </table>
+              </table>-->
       </div>
       </div>
 
