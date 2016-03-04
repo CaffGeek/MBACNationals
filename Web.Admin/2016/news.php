@@ -45,6 +45,3 @@ include 'footer.php';
 
 ?>
 
-  <script src="/ClientApp/app.js"></script>
-  <script src="/ClientApp/Controllers/controller.news.js"></script>
-  <script src="/ClientApp/Services/service.data.js"></script>

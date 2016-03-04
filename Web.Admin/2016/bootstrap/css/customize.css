@@ -40,7 +40,7 @@ h4 { font-size: 14px;
 
 .newsheader {color: #428BCA; }
 
-input #email {margin-left:15px;}
+.newsletter input[type=text] {margin-left:15px;}
 
 .btn-default { 
   color: #FFFFFF; 
