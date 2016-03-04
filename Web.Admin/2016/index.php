@@ -8,8 +8,8 @@ include 'header.php';
     	<div class="row">
         	<div class="col-md-12">
     			<div id="logo" class="shadowed" style="position: absolute;left: 50%; transform: translate(-50%, 0);margin-top:-35px;position:absolute;z-index:10;"><img src="images/2016_Logo.png" alt="2016 Masters Nationals" /></div>
-    			<div id="headerImage" style="margin-top:15px;background-size:cover;background-position:center center;height:375px;background-image:url('images/header_1.png'); "></div>
-				<div id="photoCredit"><!--<strong>Burlington, Ontario at Night</strong> &bull; -->Credit: WikiCommons</div>
+    			<div id="headerImage" style="margin-top:15px;background-size:cover;background-position:center center;height:375px;background-image:url('images/header_image_1.png'); "></div>
+				<div id="photoCredit"><strong>Floating Planters, Holland Park, Surrey</strong> &bull; Credit: Waferboard, Flickr Commons</div>
 			</div>
 		</div>
 </div>
@@ -19,11 +19,11 @@ include 'header.php';
     <div class="container">
     	
       <!-- Example row of columns -->
-      <div class="row" data-ng-app="app">
+      <div class="row">
         <div class="col-md-8">
         <h2>Welcome</h2>
           <p>Welcome to the online home of the 2016 Master Bowlers Association of Canada Nationals, taking place June 27 - July 3, 2016 in Surrey, Langley and Cloverdale, BC.</p>
-        	<div class="row">
+        	<div class="row" data-ng-app="app">
         		<div class="col-md-6" data-ng-controller="NewsController as vm">
           <h2>News</h2>
           <div ng-repeat="newsItem in vm.News">
@@ -67,7 +67,7 @@ include 'header.php';
         </div>
         <form class="description" id="theform" name="theform" action="https://my.sendinblue.com/users/subscribeembed/js_id/2dew5/id/1" onsubmit="return false;">
             <input type="hidden" name="js_id" id="js_id" value="2dew5"><input type="hidden" name="listid" id="listid" value="2"><input type="hidden" name="from_url" id="from_url" value="yes"><input type="hidden" name="hdn_email_txt" id="hdn_email_txt" value="">
-            <div class="container rounded">
+            <div class="newsletterSignup">
                 
                <input class="hidden" type="hidden" name="req_hid" id="req_hid" value="">
                <div class="header">
@@ -97,13 +97,13 @@ include 'header.php';
 </div>
 
 <!-- End : SendinBlue Signup Form HTML Code -->	
-         
+<hr />
          
          
           <div class="fb-page" style="margin-bottom:15px;" data-href="https://www.facebook.com/MBAofCanada/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/MBAofCanada/"><a href="https://www.facebook.com/MBAofCanada/">Master Bowlers Association of Canada</a></blockquote></div></div>
-			
+<hr />			
           <div><a class="twitter-timeline" href="https://twitter.com/MBANationals" data-widget-id="702222211382259713">Tweets by @MBANationals</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>
-
+<hr />
           <div data-ng-controller="HighscoresController">
 					      <div class="section group" id="highScores" data-ng-include="" data-src="'/ClientApp/views/highscores.html'">
                 </div>
