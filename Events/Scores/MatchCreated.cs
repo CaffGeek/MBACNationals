@@ -14,6 +14,7 @@ namespace Events.Scores
         public string Away;
         public string Home;
         public int Lane;
+        public string Slot;
         public BowlingCentre Centre;
         public string CentreName;
     }

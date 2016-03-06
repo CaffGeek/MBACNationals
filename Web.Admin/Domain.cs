@@ -109,13 +109,13 @@ namespace WebFrontend
 
         public static void RebuildSchedule()
         {
-            ScheduleBuilder.TournamentMenSingle(Dispatcher);
-            ScheduleBuilder.TournamentLadiesSingle(Dispatcher);
-            ScheduleBuilder.TournamentLadies(Dispatcher);
-            ScheduleBuilder.TournamentMen(Dispatcher);
-            ScheduleBuilder.TeachingLadies(Dispatcher);
-            ScheduleBuilder.TeachingMen(Dispatcher);
-            ScheduleBuilder.Seniors(Dispatcher);
+            ScheduleBuilder.TournamentMenSingle(CommandQueries, Dispatcher);
+            ScheduleBuilder.TournamentLadiesSingle(CommandQueries, Dispatcher);
+            ScheduleBuilder.TournamentLadies(CommandQueries, Dispatcher);
+            ScheduleBuilder.TournamentMen(CommandQueries, Dispatcher);
+            ScheduleBuilder.TeachingLadies(CommandQueries, Dispatcher);
+            ScheduleBuilder.TeachingMen(CommandQueries, Dispatcher);
+            ScheduleBuilder.Seniors(CommandQueries, Dispatcher);
         }
 
         private static void GoOffline()

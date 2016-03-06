@@ -258,6 +258,7 @@ namespace MBACNationals.Scores
                 Centre = command.Centre,
                 CentreName = command.CentreName,
                 Lane = command.Lane,
+                Slot = command.Slot,
                 Number = command.Number
             };            
         }
