@@ -73,16 +73,15 @@ schedule();
 
 </script>
 	<!-- More Scripts-->
-	<script src="js/responsivegridsystem.js"></script>
 
     <script src="/ClientApp/app.js"></script>
+    <script src="/ClientApp/Controllers/controller.contingent.js"></script>
     <script src="/ClientApp/Controllers/controller.highscores.js"></script>
-    <script src="/ClientApp/Controllers/controller.sponsors.js"></script>
     <script src="/ClientApp/Controllers/controller.news.js"></script>
+    <script src="/ClientApp/Controllers/controller.results.js"></script>
+    <script src="/ClientApp/Controllers/controller.schedule.js"></script>
+    <script src="/ClientApp/Controllers/controller.sponsors.js"></script>
     <script src="/ClientApp/Services/service.data.js"></script>
-    <script>
-      // Init responsive-nav.js
-      var nav = responsiveNav("#nav");
-    </script>
+      
   </body>
 </html>

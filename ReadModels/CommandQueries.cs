@@ -1,5 +1,6 @@
 ﻿using Edument.CQRS;
 using Events.Participant;
+using Events.Scores;
 using Events.Tournament;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,8 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<TournamentCreated>,
         ISubscribeTo<ParticipantCreated>,
         ISubscribeTo<ParticipantGenderReassigned>,
-        ISubscribeTo<ParticipantRenamed>
+        ISubscribeTo<ParticipantRenamed>,
+        ISubscribeTo<MatchCreated>
     {
         public class Tournament
         {
@@ -30,6 +32,23 @@ namespace MBACNationals.ReadModels
             public virtual string Gender { get; set; }
         }
 
+        public class Match
+        {
+            public virtual Guid Id { get; set; }
+            public virtual string Year { get; set; }
+            public virtual string Division { get; set; }
+            public virtual int Number { get; set; }
+            public virtual string Slot { get; set; }
+            public virtual bool IsPOA { get; set; }
+            public virtual int Lane { get; set; }
+            public virtual string Centre { get; set; }
+            public virtual string Away { get; set; }
+            public virtual string AwayId { get; set; }
+            public virtual string Home { get; set; }
+            public virtual string HomeId { get; set; }
+            
+        }
+
         private class TSTournament : Entity
         {
             public virtual string Year { get; set; }
@@ -42,6 +61,26 @@ namespace MBACNationals.ReadModels
             public virtual string Name { get; set; }
             public virtual int Average { get; set; }
             public virtual string Gender { get; set; }
+        }
+
+        private class TSMatch : Entity
+        {
+            public Guid MatchId
+            {
+                get { return Guid.Parse(RowKey); }
+                internal set { RowKey = value.ToString(); PartitionKey = value.ToString(); }
+            }
+            public string Year { get; set; }
+            public string Division { get; set; }
+            public int Number { get; set; }
+            public string Slot { get; set; }
+            public bool IsPOA { get; set; }
+            public int Lane { get; set; }
+            public string Centre { get; set; }
+            public string Away { get; set; }
+            public string AwayId { get; set; }
+            public string Home { get; set; }
+            public string HomeId { get; set; }
         }
 
         public List<Tournament> GetTournaments()
@@ -69,6 +108,31 @@ namespace MBACNationals.ReadModels
             };
                 
         }
+
+        public Match GetMatch(string year, string division, int game, string slot)
+        {
+            return Storage.Query<TSMatch>(x =>
+                x.Year.Equals(year, StringComparison.OrdinalIgnoreCase)
+                && x.Division.Equals(division, StringComparison.OrdinalIgnoreCase)
+                && x.Number == game
+                && x.Slot.Equals(slot, StringComparison.OrdinalIgnoreCase))
+                .Select(x => new Match
+                {
+                    Id = Guid.Parse(x.RowKey),
+                    Year = x.Year,
+                    Division = x.Division,
+                    Number = x.Number,
+                    Slot = x.Slot,
+                    Lane = x.Lane,
+                    Centre = x.Centre,
+                    IsPOA = x.IsPOA,
+                    Away = x.Away,
+                    AwayId = x.AwayId,
+                    Home = x.Home,
+                    HomeId = x.HomeId,
+                })
+                .FirstOrDefault();
+        }
         
         public void Handle(TournamentCreated e)
         {
@@ -95,6 +159,22 @@ namespace MBACNationals.ReadModels
         public void Handle(ParticipantRenamed e)
         {
             Storage.Update<TSParticipant>(Guid.Empty, e.Id, x => x.Name = e.Name);
+        }
+
+        public void Handle(MatchCreated e)
+        {
+            Storage.Create(e.Id, e.Id, new TSMatch
+            {
+                Division = e.Division,
+                Year = e.Year,
+                IsPOA = e.IsPOA,
+                Number = e.Number,
+                Away = e.Away,
+                Home = e.Home,
+                Lane = e.Lane,
+                Centre = e.Centre.ToString(),
+                Slot = e.Slot
+            });
         }
     }
 }
