@@ -298,7 +298,7 @@ namespace MBACNationals
         public static void TeachingLadies(ICommandQueries commandQueries, MessageDispatcher dispatcher)
         {
             var division = "Teaching Ladies";
-            var isPoa = trues;
+            var isPoa = true;
             var game = 0;
             var lane = 0;
             Func<int, string, string, int, string, SaveMatch> build;
@@ -412,7 +412,7 @@ namespace MBACNationals
                 }
                 catch (MBACNationals.Scores.MatchAlreadyCreated e)
                 {
-                }v
+                }
         }
     }
 
