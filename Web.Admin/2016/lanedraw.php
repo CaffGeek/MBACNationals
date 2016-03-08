@@ -55,7 +55,7 @@ include 'header.php';
                     <th class="alt" data-ng-if="HasGames('QC')">QC</th>
                     <th class=""    data-ng-if="HasGames('NL')">NL</th>
                   </tr>
-                  <tr>
+                  <tr class="game">
                     <td>{{game.Number}}</td>
                     <td data-ng-if="HasGames('BC')" class="alt">
                       <div data-ng-if="Opponent('BC', game.Number)+'' != ''">
