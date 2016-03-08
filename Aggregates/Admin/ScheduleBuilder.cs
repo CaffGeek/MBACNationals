@@ -39,9 +39,9 @@ namespace MBACNationals
                 build(++game, "BC", "QC", lane = 17, "A"), build(game, "NL", "SO", lane += 2, "B"), build(game, "MB", "SK", lane += 2, "C"), build(game, "AB", "NO", lane += 2, "D"),
                 build(++game, "NL", "NO", lane = 17, "A"), build(game, "SK", "BC", lane += 2, "B"), build(game, "AB", "SO", lane += 2, "C"), build(game, "QC", "MB", lane += 2, "D"),
                 build(++game, "AB", "SK", lane = 17, "A"), build(game, "NO", "MB", lane += 2, "B"), build(game, "QC", "NL", lane += 2, "C"), build(game, "SO", "BC", lane += 2, "D"),
-                build(++game, "BC", "MB", lane = 17, "A"), build(game, "NL", "AB", lane += 2, "B"), build(game, "NO", "SO", lane += 2, "C"), build(game, "SK", "MB", lane += 2, "D"),
-                build(++game, "SO", "SK", lane = 17, "A"), build(game, "QC", "NO", lane += 2, "B"), build(game, "MB", "NL", lane += 2, "C"), build(game, "AB", "BC", lane += 2, "D"),
-                build(++game, "MB", "AB", lane = 17, "A"), build(game, "BC", "NL", lane += 2, "B"), build(game, "SK", "NO", lane += 2, "C"), build(game, "SO", "QC", lane += 2, "D"),
+                build(++game, "MB", "BC", lane = 17, "A"), build(game, "AB", "NL", lane += 2, "B"), build(game, "SO", "NO", lane += 2, "C"), build(game, "QC", "SK", lane += 2, "D"),
+                build(++game, "SK", "SO", lane = 17, "A"), build(game, "NO", "QC", lane += 2, "B"), build(game, "NL", "MB", lane += 2, "C"), build(game, "BC", "AB", lane += 2, "D"),
+                build(++game, "AB", "MB", lane = 17, "A"), build(game, "NL", "BC", lane += 2, "B"), build(game, "NO", "SK", lane += 2, "C"), build(game, "SO", "QC", lane += 2, "D"),
             });
 
             build = MatchBuilder(commandQueries, division, BowlingCentre.Cloverdale, isPoa);
@@ -53,7 +53,7 @@ namespace MBACNationals
                 build(++game, "SK", "AB", lane = 03, "A"), build(game, "MB", "NO", lane += 2, "B"), build(game, "NL", "QC", lane += 2, "C"), build(game, "BC", "SO", lane += 2, "D"),
                 build(++game, "QC", "SO", lane = 03, "A"), build(game, "NL", "BC", lane += 2, "B"), build(game, "NO", "SK", lane += 2, "C"), build(game, "AB", "MB", lane += 2, "D"),
                 build(++game, "MB", "BC", lane = 03, "A"), build(game, "QC", "SK", lane += 2, "B"), build(game, "AB", "NL", lane += 2, "C"), build(game, "SO", "NO", lane += 2, "D"),
-                build(++game, "NO", "QC", lane = 03, "A"), build(game, "BC", "AB", lane += 2, "B"), build(game, "SK", "SO", lane += 2, "C"), build(game, "NL", "MB", lane += 2, "D"),
+                build(++game, "NO", "QC", lane = 03, "A"), build(game, "BC", "AB", lane += 2, "B"), build(game, "SK", "SO", lane += 2, "C"), build(game, "MB", "NL", lane += 2, "D"),
             });
 
             build = MatchBuilder(commandQueries, division, BowlingCentre.Willowbrook, isPoa);
@@ -65,7 +65,7 @@ namespace MBACNationals
                 build(++game, "SO", "MB", lane = 13, "A"), build(game, "QC", "AB", lane += 2, "B"), build(game, "NO", "BC", lane += 2, "C"), build(game, "SK", "NL", lane += 2, "D"),
                 build(++game, "AB", "BC", lane = 13, "A"), build(game, "MB", "NL", lane += 2, "B"), build(game, "SO", "SK", lane += 2, "C"), build(game, "QC", "NO", lane += 2, "D"),
                 build(++game, "SK", "QC", lane = 13, "A"), build(game, "NO", "SO", lane += 2, "B"), build(game, "BC", "MB", lane += 2, "C"), build(game, "NL", "AB", lane += 2, "D"),
-                build(++game, "MB", "AB", lane = 13, "A"), build(game, "BC", "NL", lane += 2, "B"), build(game, "SK", "NO", lane += 2, "C"), build(game, "SO", "QC", lane += 2, "D"),
+                build(++game, "MB", "AB", lane = 13, "A"), build(game, "NL", "BC", lane += 2, "B"), build(game, "SK", "NO", lane += 2, "C"), build(game, "SO", "QC", lane += 2, "D"),
             });
 
             foreach (var command in commands)
@@ -94,9 +94,9 @@ namespace MBACNationals
                 build(++game, "BC", "QC", lane = 17, "A"), build(game, "NL", "SO", lane += 2, "B"), build(game, "MB", "SK", lane += 2, "C"), build(game, "AB", "NO", lane += 2, "D"),
                 build(++game, "NL", "NO", lane = 17, "A"), build(game, "SK", "BC", lane += 2, "B"), build(game, "AB", "SO", lane += 2, "C"), build(game, "QC", "MB", lane += 2, "D"),
                 build(++game, "AB", "SK", lane = 17, "A"), build(game, "NO", "MB", lane += 2, "B"), build(game, "QC", "NL", lane += 2, "C"), build(game, "SO", "BC", lane += 2, "D"),
-                build(++game, "BC", "MB", lane = 17, "A"), build(game, "NL", "AB", lane += 2, "B"), build(game, "NO", "SO", lane += 2, "C"), build(game, "SK", "MB", lane += 2, "D"),
-                build(++game, "SO", "SK", lane = 17, "A"), build(game, "QC", "NO", lane += 2, "B"), build(game, "MB", "NL", lane += 2, "C"), build(game, "AB", "BC", lane += 2, "D"),
-                build(++game, "MB", "AB", lane = 17, "A"), build(game, "BC", "NL", lane += 2, "B"), build(game, "SK", "NO", lane += 2, "C"), build(game, "SO", "QC", lane += 2, "D"),
+                build(++game, "MB", "BC", lane = 17, "A"), build(game, "AB", "NL", lane += 2, "B"), build(game, "SO", "NO", lane += 2, "C"), build(game, "QC", "SK", lane += 2, "D"),
+                build(++game, "SK", "SO", lane = 17, "A"), build(game, "NO", "QC", lane += 2, "B"), build(game, "NL", "MB", lane += 2, "C"), build(game, "BC", "AB", lane += 2, "D"),
+                build(++game, "AB", "MB", lane = 17, "A"), build(game, "NL", "BC", lane += 2, "B"), build(game, "NO", "SK", lane += 2, "C"), build(game, "SO", "QC", lane += 2, "D"),
             });
 
             build = MatchBuilder(commandQueries, division, BowlingCentre.Cloverdale, isPoa);
@@ -108,7 +108,7 @@ namespace MBACNationals
                 build(++game, "SK", "AB", lane = 03, "A"), build(game, "MB", "NO", lane += 2, "B"), build(game, "NL", "QC", lane += 2, "C"), build(game, "BC", "SO", lane += 2, "D"),
                 build(++game, "QC", "SO", lane = 03, "A"), build(game, "NL", "BC", lane += 2, "B"), build(game, "NO", "SK", lane += 2, "C"), build(game, "AB", "MB", lane += 2, "D"),
                 build(++game, "MB", "BC", lane = 03, "A"), build(game, "QC", "SK", lane += 2, "B"), build(game, "AB", "NL", lane += 2, "C"), build(game, "SO", "NO", lane += 2, "D"),
-                build(++game, "NO", "QC", lane = 03, "A"), build(game, "BC", "AB", lane += 2, "B"), build(game, "SK", "SO", lane += 2, "C"), build(game, "NL", "MB", lane += 2, "D"),
+                build(++game, "NO", "QC", lane = 03, "A"), build(game, "BC", "AB", lane += 2, "B"), build(game, "SK", "SO", lane += 2, "C"), build(game, "MB", "NL", lane += 2, "D"),
             });
 
             build = MatchBuilder(commandQueries, division, BowlingCentre.Willowbrook, isPoa);
@@ -120,7 +120,7 @@ namespace MBACNationals
                 build(++game, "SO", "MB", lane = 13, "A"), build(game, "QC", "AB", lane += 2, "B"), build(game, "NO", "BC", lane += 2, "C"), build(game, "SK", "NL", lane += 2, "D"),
                 build(++game, "AB", "BC", lane = 13, "A"), build(game, "MB", "NL", lane += 2, "B"), build(game, "SO", "SK", lane += 2, "C"), build(game, "QC", "NO", lane += 2, "D"),
                 build(++game, "SK", "QC", lane = 13, "A"), build(game, "NO", "SO", lane += 2, "B"), build(game, "BC", "MB", lane += 2, "C"), build(game, "NL", "AB", lane += 2, "D"),
-                build(++game, "MB", "AB", lane = 13, "A"), build(game, "BC", "NL", lane += 2, "B"), build(game, "SK", "NO", lane += 2, "C"), build(game, "SO", "QC", lane += 2, "D"),
+                build(++game, "MB", "AB", lane = 13, "A"), build(game, "NL", "BC", lane += 2, "B"), build(game, "SK", "NO", lane += 2, "C"), build(game, "SO", "QC", lane += 2, "D"),
             });
 
             foreach (var command in commands)
@@ -220,7 +220,7 @@ namespace MBACNationals
                 build(++game, "QC", "SO", lane = 13, "A"), build(game, "AB", "NO", lane += 2, "B"), build(game, "SK", "NL", lane += 2, "C"), build(game, "MB", "BC", lane += 2, "D"),
                 build(++game, "AB", "NL", lane = 13, "A"), build(game, "MB", "QC", lane += 2, "B"), build(game, "BC", "SO", lane += 2, "C"), build(game, "NO", "SK", lane += 2, "D"),
                 build(++game, "SK", "MB", lane = 13, "A"), build(game, "NL", "BC", lane += 2, "B"), build(game, "NO", "QC", lane += 2, "C"), build(game, "AB", "SO", lane += 2, "D"),
-                build(++game, "BC", "NO", lane = 13, "A"), build(game, "SO", "SK", lane += 2, "B"), build(game, "MB", "AB", lane += 2, "C"), build(game, "NO", "QC", lane += 2, "D"),
+                build(++game, "BC", "NO", lane = 13, "A"), build(game, "SO", "SK", lane += 2, "B"), build(game, "MB", "AB", lane += 2, "C"), build(game, "NL", "QC", lane += 2, "D"),
                 build(++game, "NL", "MB", lane = 13, "A"), build(game, "QC", "AB", lane += 2, "B"), build(game, "SO", "NO", lane += 2, "C"), build(game, "BC", "SK", lane += 2, "D"),
             });
 
@@ -287,8 +287,8 @@ namespace MBACNationals
             build = MatchBuilder(commandQueries, division, BowlingCentre.Scottsdale, isPoa);
             commands.AddRange(new List<SaveMatch>
             {
-                build(++game, "MB", "SK", lane = 09, "A"), build(game, "QC", "BC", lane += 2, "B"), build(game, "SO", "NL", lane += 2, "C"), build(game, "NO", "AB", lane += 2, "D"),
                 build(++game, "SO", "AB", lane = 09, "A"), build(game, "NL", "NO", lane += 2, "B"), build(game, "BC", "SK", lane += 2, "C"), build(game, "QC", "MB", lane += 2, "D"),
+                build(++game, "MB", "SK", lane = 09, "A"), build(game, "QC", "BC", lane += 2, "B"), build(game, "SO", "NL", lane += 2, "C"), build(game, "NO", "AB", lane += 2, "D"),
                 build(++game, "NL", "QC", lane = 09, "A"), build(game, "AB", "SK", lane += 2, "B"), build(game, "MB", "NO", lane += 2, "C"), build(game, "SO", "BC", lane += 2, "D"),
                 build(++game, "NO", "BC", lane = 09, "A"), build(game, "MB", "SO", lane += 2, "B"), build(game, "AB", "QC", lane += 2, "C"), build(game, "SK", "NL", lane += 2, "D"),
                 build(++game, "AB", "MB", lane = 09, "A"), build(game, "BC", "NL", lane += 2, "B"), build(game, "SK", "NO", lane += 2, "C"), build(game, "QC", "SO", lane += 2, "D"),
@@ -347,8 +347,8 @@ namespace MBACNationals
             build = MatchBuilder(commandQueries, division, BowlingCentre.Willowbrook, isPoa);
             commands.AddRange(new List<SaveMatch>
             {
-                build(++game, "MB", "SK", lane = 03, "A"), build(game, "QC", "BC", lane += 2, "B"), build(game, "SO", "NL", lane += 2, "C"), build(game, "NO", "AB", lane += 2, "D"),
                 build(++game, "SO", "AB", lane = 03, "A"), build(game, "NL", "NO", lane += 2, "B"), build(game, "BC", "SK", lane += 2, "C"), build(game, "QC", "MB", lane += 2, "D"),
+                build(++game, "MB", "SK", lane = 03, "A"), build(game, "QC", "BC", lane += 2, "B"), build(game, "SO", "NL", lane += 2, "C"), build(game, "NO", "AB", lane += 2, "D"),
                 build(++game, "NL", "QC", lane = 03, "A"), build(game, "AB", "SK", lane += 2, "B"), build(game, "MB", "NO", lane += 2, "C"), build(game, "SO", "BC", lane += 2, "D"),
                 build(++game, "NO", "BC", lane = 03, "A"), build(game, "MB", "SO", lane += 2, "B"), build(game, "AB", "QC", lane += 2, "C"), build(game, "SK", "NL", lane += 2, "D"),
                 build(++game, "AB", "MB", lane = 03, "A"), build(game, "BC", "NL", lane += 2, "B"), build(game, "SK", "NO", lane += 2, "C"), build(game, "QC", "SO", lane += 2, "D"),
