@@ -67,6 +67,15 @@ namespace MBACNationals
                 build(++game, "SK", "QC", lane = 13, "A"), build(game, "NO", "SO", lane += 2, "B"), build(game, "BC", "MB", lane += 2, "C"), build(game, "NL", "AB", lane += 2, "D"),
                 build(++game, "MB", "AB", lane = 13, "A"), build(game, "BC", "NL", lane += 2, "B"), build(game, "SK", "NO", lane += 2, "C"), build(game, "SO", "QC", lane += 2, "D"),
             });
+
+            foreach (var command in commands)
+                try
+                {
+                    dispatcher.SendCommand(command);
+                }
+                catch (MBACNationals.Scores.MatchAlreadyCreated e)
+                {
+                }
         }
 
         public static void TournamentLadiesSingle(ICommandQueries commandQueries, MessageDispatcher dispatcher)
@@ -113,6 +122,15 @@ namespace MBACNationals
                 build(++game, "SK", "QC", lane = 13, "A"), build(game, "NO", "SO", lane += 2, "B"), build(game, "BC", "MB", lane += 2, "C"), build(game, "NL", "AB", lane += 2, "D"),
                 build(++game, "MB", "AB", lane = 13, "A"), build(game, "BC", "NL", lane += 2, "B"), build(game, "SK", "NO", lane += 2, "C"), build(game, "SO", "QC", lane += 2, "D"),
             });
+
+            foreach (var command in commands)
+                try
+                {
+                    dispatcher.SendCommand(command);
+                }
+                catch (MBACNationals.Scores.MatchAlreadyCreated e)
+                {
+                }
         }
 
         public static void TournamentMen(ICommandQueries commandQueries, MessageDispatcher dispatcher)

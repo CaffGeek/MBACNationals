@@ -166,7 +166,7 @@ namespace MBACNationals.ReadModels
             Storage.Create(e.Id, e.Id, new TSMatch
             {
                 Division = e.Division,
-                Year = e.Year,
+                Year = e.Year ?? "2014",
                 IsPOA = e.IsPOA,
                 Number = e.Number,
                 Away = e.Away,
