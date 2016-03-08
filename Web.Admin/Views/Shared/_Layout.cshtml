@@ -37,11 +37,11 @@
                 <ul class="nav navbar-nav">
                     @if (!string.IsNullOrWhiteSpace(ViewBag.Year) && !string.IsNullOrWhiteSpace(ViewBag.Province))
                     {
-                        <li><a href="~/Contingent/Edit/@ViewBag.Year/@ViewBag.Province">Contingent</a></li>
-                        <li><a href="~/Contingent/Reservation/@ViewBag.Year/@ViewBag.Province">Reservations</a></li>
-                        <li><a href="~/Contingent/Arrivals/@ViewBag.Year/@ViewBag.Province">Travel</a></li>
-                        <li><a href="~/Contingent/Practice/@ViewBag.Year/@ViewBag.Province">Practice</a></li>
-                        <li><a href="~/Contingent/Profiles/@ViewBag.Year/@ViewBag.Province">Profiles</a></li>
+                        <li><a href="~/Setup/Contingent/Edit/@ViewBag.Year/@ViewBag.Province">Contingent</a></li>
+                        <li><a href="~/Setup/Contingent/Reservation/@ViewBag.Year/@ViewBag.Province">Reservations</a></li>
+                        <li><a href="~/Setup/Contingent/Arrivals/@ViewBag.Year/@ViewBag.Province">Travel</a></li>
+                        <li><a href="~/Setup/Contingent/Practice/@ViewBag.Year/@ViewBag.Province">Practice</a></li>
+                        <li><a href="~/Setup/Contingent/Profiles/@ViewBag.Year/@ViewBag.Province">Profiles</a></li>
                     }
                     else
                     {
