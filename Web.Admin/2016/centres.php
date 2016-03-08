@@ -34,7 +34,7 @@ include 'header.php';
 					
 						<div class="container">
 							<div class="row">
-								<div class="col-md-3 col-sm-3 centreLogo">Logo</div>
+								<div class="col-md-3 col-sm-3 centreLogo"><img src="images/Clover.jpg" alt="Clover Lanes" /></div>
 								<div class="col-md-9 col-sm-9 centreDetails">
 								<p><strong>604-574-4601<br />
 								5814 - 176A Street, Surrey, BC<br /></strong>
@@ -46,7 +46,7 @@ include 'header.php';
 					
 						<div class="container">
 							<div class="row">
-								<div class="col-md-3 col-sm-3 centreLogo">Logo</div>
+								<div class="col-md-3 col-sm-3 centreLogo"><img src="images/Scottsdale.jpg" alt="Scottsdale Lanes" /></div>
 								<div class="col-md-9 col-sm-9 centreDetails">
 								<p><strong>604-596-3924<br />
 								12033 - 84th Avenue, Surrey, BC<br /></strong>
@@ -59,7 +59,7 @@ include 'header.php';
 					
 						<div class="container">
 							<div class="row">
-								<div class="col-md-3 col-sm-3 centreLogo">Logo</div>
+								<div class="col-md-3 col-sm-3 centreLogo"><img src="Willowbrook.jpg" alt="Willowbrook Lanes" /></div>
 								<div class="col-md-9 col-sm-9 centreDetails">
 								<p><strong>604-533-2695<br />
 								6350 – 196th Street, Langley, BC</strong><br />
