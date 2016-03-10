@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -252,6 +252,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Attributes\RestrictAccessByRouteId.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HelpController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\SponsorsController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -1993,16 +1994,16 @@
     <Content Include="2016\images\2016_Logo.png" />
     <Content Include="2016\images\background.jpg" />
     <Content Include="2016\images\header_1.png" />
-	<Content Include="2016\images\header_image_1.jpg" />
-	<Content Include="2016\images\header_image_2.jpg" />
-	<Content Include="2016\images\header_image_3.jpg" />
-	<Content Include="2016\images\header_image_4.jpg" />
-	<Content Include="2016\images\header_image_5.jpg" />
-	<Content Include="2016\images\header_image_6.jpg" />
-	<Content Include="2016\images\header_image_7.jpg" />
-	<Content Include="2016\images\header_image_8.jpg" />
-	<Content Include="2016\images\header_image_9.jpg" />
-	<Content Include="2016\images\header_image_10.jpg" />
+    <Content Include="2016\images\header_image_1.jpg" />
+    <Content Include="2016\images\header_image_2.jpg" />
+    <Content Include="2016\images\header_image_3.jpg" />
+    <Content Include="2016\images\header_image_4.jpg" />
+    <Content Include="2016\images\header_image_5.jpg" />
+    <Content Include="2016\images\header_image_6.jpg" />
+    <Content Include="2016\images\header_image_7.jpg" />
+    <Content Include="2016\images\header_image_8.jpg" />
+    <Content Include="2016\images\header_image_9.jpg" />
+    <Content Include="2016\images\header_image_10.jpg" />
     <Content Include="2016\images\sheraton.jpg" />
     <Content Include="2016\images\Sheraton_Logo.png" />
     <Content Include="2016\images\Clover.jpg" />
@@ -3395,6 +3396,7 @@
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Scores\Stepladder.cshtml" />
+    <Content Include="Views\Help\ScoreEntry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminApp\Entities\" />
