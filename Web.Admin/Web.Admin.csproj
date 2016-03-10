@@ -2113,6 +2113,11 @@
     <Content Include="2015\css\stylesheet.css" />
     <Content Include="ConnectionStrings.config" />
     <Content Include="Content\Images\2016_logo.png" />
+    <Content Include="Content\Images\Help\ScoreEntry\Division.png" />
+    <Content Include="Content\Images\Help\ScoreEntry\Game.png" />
+    <Content Include="Content\Images\Help\ScoreEntry\Match.png" />
+    <Content Include="Content\Images\Help\ScoreEntry\Scores.png" />
+    <Content Include="Content\Images\Help\ScoreEntry\Result.png" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.jpg" />
     <Content Include="2015\foliogallery-demo.php" />
