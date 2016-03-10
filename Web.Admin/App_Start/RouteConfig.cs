@@ -92,6 +92,12 @@ namespace WebFrontend
             );
 
             routes.MapRoute(
+                name: "Help",
+                url: "Setup/Help/{action}",
+                defaults: new { controller = "Help", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "Setup/{controller}/{action}/{year}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
