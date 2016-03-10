@@ -14,6 +14,11 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
             templateUrl: "/ClientApp/views/results/standings.html",
             controller: "ResultsController"
         })
+        .state('stepladder', {
+            url: "/stepladder/{year}",
+            templateUrl: "/ClientApp/views/results/stepladder.html",
+            controller: "ResultsController"
+        })
         .state('match', {
             url: "/match/{match}",
             templateUrl: "/ClientApp/views/results/match.html",

@@ -37,9 +37,6 @@
         };
 
         function viewStepladder() {
-            var x = new Date();
-            $scope.viewUrl = '/app/Views/Results/Stepladder.html?x='+x.toString();
-
             dataService.LoadStepladder().then(function (data) {
                 $scope.model = data.data;
             });
@@ -89,7 +86,7 @@
     app.directive('bowlinggame', ['$parse', function ($compile) {
         return {
             restrict: 'E',
-            replace: true,
+            replace: false,
             scope: {
                 shots: '='
             },
@@ -106,7 +103,7 @@
                 '</div>',
             link: function (scope, element, attrs) {
                 scope.$watch('shots', function () {
-                    scope.shots = scope.shots.toUpperCase();
+                    scope.shots = (scope.shots || '').toUpperCase();
                     scope.game = { frames: [], score: 0, fouls: 0 };
 
                     var shots = [];

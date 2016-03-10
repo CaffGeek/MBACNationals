@@ -28,9 +28,9 @@
         <ul class="list-unstyled">
             <li data-ng-repeat="match in vm.Matches | filter:{Gender:'M'} | orderBy: 'Created': true" class="panel panel-body">
                 {{match.HomeName}} <input type="text" ng-model="match.HomeShots" ng-change="vm.updateMatch(match)" size="35" maxlength="40" />
-                <bowlinggame shots="match.HomeShots" />
+                <div><bowlinggame shots="match.HomeShots" /></div>
                 {{match.AwayName}} <input type="text" ng-model="match.AwayShots" ng-change="vm.updateMatch(match)" size="35" maxlength="40" />
-                <bowlinggame shots="match.AwayShots" />
+                <div><bowlinggame shots="match.AwayShots" /></div>
                 <a href="" data-ng-click="vm.deleteMatch(match)" class="pull-right"><i class="glyphicon glyphicon-trash"></i></a>
             </li>
         </ul>
@@ -40,9 +40,9 @@
         <ul class="list-unstyled">
             <li data-ng-repeat="match in vm.Matches | filter:{Gender:'F'} | orderBy: 'Created': true" class="panel panel-body">
                 {{match.HomeName}} <input type="text" ng-model="match.HomeShots" ng-change="vm.updateMatch(match)" size="35" maxlength="40" />
-                <bowlinggame shots="match.HomeShots" />
+                <div><bowlinggame shots="match.HomeShots" /></div>
                 {{match.AwayName}} <input type="text" ng-model="match.AwayShots" ng-change="vm.updateMatch(match)" size="35" maxlength="40" />
-                <bowlinggame shots="match.AwayShots" />
+                <div><bowlinggame shots="match.AwayShots" /></div>
                 <a href="" data-ng-click="vm.deleteMatch(match)" class="pull-right"><i class="glyphicon glyphicon-trash"></i></a>
             </li>
         </ul>

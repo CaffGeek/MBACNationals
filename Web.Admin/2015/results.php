@@ -14,7 +14,6 @@ include "header.php";
       <div data-ng-controller="ResultsController">
 				<div class="col span_1_of_3">
 				  <div id="centres_links">
-				  <!--<a href="">Coming Soon</a>-->
             <a ui-sref="standings({division: 'Tournament Men Single'})">TOURNAMENT MEN SINGLE</a><br />
             <a ui-sref="standings({division: 'Tournament Ladies Single'})">TOURNAMENT LADIES SINGLE</a><br />
             <a ui-sref="standings({division: 'Tournament Men'})">TOURNAMENT MEN</a><br />
@@ -28,14 +27,12 @@ include "header.php";
             
             
             <hr/>
-            <a href="#Standings" data-ng-click="viewStepladder()">STEPLADDER</a><br />
+            <a ui-sref="stepladder({year: '2015'})">STEPLADDER</a>
+            <br />
 				  </div>
 				</div>
         <div class="col span_2_of_3">
           <div ui-view=""></div>
-          <!--<div class="col span_3_of_3" id="contentArea" data-ng-include="" data-src="viewUrl">
-
-          </div>-->
           <h5 class="text-center">Results are unofficial</h5>
         </div>
       </div>
