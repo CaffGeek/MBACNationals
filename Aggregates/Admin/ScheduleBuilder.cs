@@ -160,7 +160,7 @@ namespace MBACNationals
                 build(++game, "QC", "SO", lane = 01, "A"), build(game, "AB", "NO", lane += 2, "B"), build(game, "SK", "NL", lane += 2, "C"), build(game, "MB", "BC", lane += 2, "D"),
                 build(++game, "AB", "NL", lane = 01, "A"), build(game, "MB", "QC", lane += 2, "B"), build(game, "BC", "SO", lane += 2, "C"), build(game, "NO", "SK", lane += 2, "D"),
                 build(++game, "SK", "MB", lane = 01, "A"), build(game, "NL", "BC", lane += 2, "B"), build(game, "NO", "QC", lane += 2, "C"), build(game, "AB", "SO", lane += 2, "D"),
-                build(++game, "BC", "NO", lane = 01, "A"), build(game, "SO", "SK", lane += 2, "B"), build(game, "MB", "AB", lane += 2, "C"), build(game, "NO", "QC", lane += 2, "D"),
+                build(++game, "BC", "NO", lane = 01, "A"), build(game, "SO", "SK", lane += 2, "B"), build(game, "MB", "AB", lane += 2, "C"), build(game, "NL", "QC", lane += 2, "D"),
                 build(++game, "NL", "MB", lane = 01, "A"), build(game, "QC", "AB", lane += 2, "B"), build(game, "SO", "NO", lane += 2, "C"), build(game, "BC", "SK", lane += 2, "D"),
             });
 
