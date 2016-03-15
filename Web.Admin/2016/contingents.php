@@ -78,8 +78,7 @@ include 'header.php';
                 </li>
               </ol>
             </div> -->  
-      </div>
-
+      
 <?php
 
 include 'footer.php';
