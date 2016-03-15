@@ -38,6 +38,8 @@ h4 { font-size: 14px;
 	margin-top:15px;
 	}
 
+.dropdown-menu {font-size:11px;}
+
 .newsheader {color: #428BCA; }
 
 .newsletter input[type=text] {margin-left:15px;}
@@ -234,6 +236,8 @@ border-right: none;
 .lanedraw td, .lanedraw th {padding:2px;}
 
 .lanedraw h4 {border:0px;}
+
+.centreLogo {padding:20px 0;}
 
 .centreLogo img {width:100%;}
 
