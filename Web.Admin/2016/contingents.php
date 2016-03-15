@@ -79,7 +79,7 @@ include 'header.php';
               </ol>
             </div> -->  
       </div>
-
+</div>
 <?php
 
 include 'footer.php';
