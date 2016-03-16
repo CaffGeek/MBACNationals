@@ -237,7 +237,10 @@ border-right: none;
 
 .lanedraw h4 {border:0px;}
 
-.centreLogo, .centreDetails {padding:20px 0;}
+.centreLogo, .centreDetails {padding:20px 20px;}
+@media (min-width: 768px) {
+.centreLogo, .centreDetails {padding:20px 10px;}
+}
 
 .centreLogo img {width:100%;}
 
