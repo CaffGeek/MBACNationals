@@ -11,7 +11,7 @@
                 <li><a href="lanedraw.php">Lane Draw</a></li>
                 <li><a href="photos.php">Photos</a></li>
                 <li><a href="contingents.php">Contingents</a></li>
-                <li><a href="souvenirs.php">Souvenirs</a></li>
+                <li><a href="http://www.mbaofbc.com/shopping-cart.html">Souvenirs</a></li>
                 <li><a href="centres.php">Centres</a></li>
                 <li><a href="hotel.php">Hotel</a></li>
     	</ul>
