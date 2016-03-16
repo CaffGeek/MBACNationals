@@ -66,7 +66,6 @@ include 'header.php';
 								For more information, check out their website: <a href="http://willowbrooklanes.ca" target="_blank">http://willowbrooklanes.ca</a></p>
 								</div>
 				      		</div>
-				      	</div>
 
 
 <?php
