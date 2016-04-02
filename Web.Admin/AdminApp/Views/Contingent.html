@@ -16,8 +16,13 @@
                 <span data-ng-show="team.Coach.IsDelegate"><sup>D</sup></span>
                 <span data-ng-show="team.Coach.IsManager"><sup>M</sup></span>
             </span>
-            <ol>
-                <li data-ng-repeat="bowler in team.Bowlers">
+            <ol dnd-list="team.Bowlers"
+                dnd-allowed-types="[team.Id]">
+                <li value="{{bowler.QualifyingPosition}}" data- data-ng-repeat="bowler in team.Bowlers"
+                    dnd-draggable="bowler"
+                    dnd-type="team.Id"
+                    dnd-effect-allowed="move"
+                    dnd-moved="moveParticipant(team, $index)">
                     <a data-ng-class="{strike: bowler.ReplacedBy}" data-ng-click="editParticipant(bowler, team);" title="{{bowler.Id}}">{{bowler.Name || 'Vacancy'}}</a>
                     <span data-ng-if="bowler.Average">- {{bowler.Average}}</span>
                     <span data-ng-show="bowler.IsRookie"><sup>R</sup></span>

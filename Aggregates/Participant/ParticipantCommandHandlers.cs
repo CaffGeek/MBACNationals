@@ -5,6 +5,7 @@ using MBACNationals.Participant.Commands;
 using MBACNationals.ReadModels;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MBACNationals.Participant
@@ -20,7 +21,8 @@ namespace MBACNationals.Participant
         IHandleCommand<AssignParticipantToRoom, ParticipantAggregate>,
         IHandleCommand<RemoveParticipantFromRoom, ParticipantAggregate>,
         IHandleCommand<UpdateParticipantProfile, ParticipantAggregate>,
-        IHandleCommand<ReplaceParticipant, ParticipantAggregate>
+        IHandleCommand<ReplaceParticipant, ParticipantAggregate>,
+        IHandleCommand<ReorderParticipant, ParticipantAggregate>
     {
         private ICommandQueries CommandQueries;
 
@@ -195,12 +197,24 @@ namespace MBACNationals.Participant
             var agg = al(command.Id);
 
             if (agg.TeamId != command.TeamId)
+            {
                 yield return new ParticipantAssignedToTeam
-                    {
-                        Id = command.Id,
-                        TeamId = command.TeamId,
-                        Name = agg.Name
-                    };
+                {
+                    Id = command.Id,
+                    TeamId = command.TeamId,
+                    Name = agg.Name
+                };
+
+                var participants = CommandQueries.GetTeamParticipants(command.TeamId)
+                    ?? new List<CommandQueries.Participant>();
+
+                yield return new ParticipantQualifyingPositionChanged
+                {
+                    Id = command.Id,
+                    TeamId = command.TeamId,
+                    QualifyingPosition = participants.Count + 1
+                };
+            }
         }
 
         public IEnumerable Handle(Func<Guid, ParticipantAggregate> al, AssignAlternateToTeam command)
@@ -309,6 +323,18 @@ namespace MBACNationals.Participant
                 AlternateId = command.AlternateId,
                 AlternateName = alternate.Name,
                 Average = alternate.Average
+            };
+        }
+
+        public IEnumerable Handle(Func<Guid, ParticipantAggregate> al, ReorderParticipant command)
+        {
+            var agg = al(command.Id);
+
+            yield return new ParticipantQualifyingPositionChanged
+            {
+                Id = command.Id,
+                TeamId = command.TeamId,
+                QualifyingPosition = command.QualifyingPosition
             };
         }
     }

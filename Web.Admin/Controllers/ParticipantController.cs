@@ -7,15 +7,6 @@ namespace WebFrontend.Controllers
 {
     public class ParticipantController : Controller
     {
-        //public ActionResult Index()
-        //{
-        //    return View(
-        //        new WebFrontend.Models.Participant.Index
-        //        {
-        //            Participants = Domain.ParticipantQueries.GetParticipants(),
-        //        });
-        //}
-
         public ActionResult View(Guid id)
         {
             return View(
@@ -100,6 +91,15 @@ namespace WebFrontend.Controllers
         [HttpPost]
         [RestrictAccessByRouteId]
         public JsonResult RemoveFromRoom(RemoveParticipantFromRoom command)
+        {
+            Domain.Dispatcher.SendCommand(command);
+
+            return Json(command);
+        }
+
+        [HttpPost]
+        [RestrictAccessByRouteId]
+        public JsonResult ReorderParticipant(ReorderParticipant command)
         {
             Domain.Dispatcher.SendCommand(command);
 

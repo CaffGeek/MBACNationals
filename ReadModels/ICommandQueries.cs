@@ -9,6 +9,8 @@ namespace MBACNationals.ReadModels
         
         CommandQueries.Participant GetParticipant(Guid guid);
 
+        List<CommandQueries.Participant> GetTeamParticipants(Guid teamId);
+
         CommandQueries.Match GetMatch(string year, string division, int game, string slot);
     }
 }

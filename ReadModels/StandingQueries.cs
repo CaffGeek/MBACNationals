@@ -17,6 +17,7 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<TeamCreated>,
         ISubscribeTo<TeamRemoved>,
         ISubscribeTo<ParticipantAssignedToTeam>,
+        ISubscribeTo<ParticipantQualifyingPositionChanged>,
         ISubscribeTo<TeamGameCompleted>
     {
         public class Team
@@ -193,9 +194,19 @@ namespace MBACNationals.ReadModels
             
             //First teammember becomes the single
             if (teamSingle == null)
-            {
                 Storage.Create(e.TeamId, e.TeamId, new TSTeamSingle{ SingleId = e.Id });
-            }
+        }
+
+        public void Handle(ParticipantQualifyingPositionChanged e)
+        {
+            if (e.QualifyingPosition != 1)
+                return;
+
+            var teamSingle = Storage.Read<TSTeamSingle>(e.TeamId);
+            if (teamSingle == null)
+                Storage.Create(e.TeamId, e.TeamId, new TSTeamSingle { SingleId = e.Id });
+            else
+                Storage.Update<TSTeamSingle>(e.TeamId, e.TeamId, x => x.SingleId = e.Id);
         }
 
         public void Handle(TeamGameCompleted e)

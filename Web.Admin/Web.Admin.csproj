@@ -2282,6 +2282,7 @@
     <Content Include="2015\photos_winners.php" />
     <Content Include="2015\results.php" />
     <Content Include="2015\schedule.php" />
+    <Content Include="Scripts\angular-drag-and-drop-lists.min.js" />
     <Content Include="Scripts\angular-ui-router.js" />
     <Content Include="Scripts\angular-ui-router.min.js" />
     <Content Include="z-scripts\ai.0.15.0-build46802.js" />

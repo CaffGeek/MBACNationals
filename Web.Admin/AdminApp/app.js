@@ -5,5 +5,6 @@ var app = angular.module('app', [
     'numberFilters',
     'repeatFilters',
     'ngFileUpload',
-    'angularMoment'
+    'angularMoment',
+    'dndLists'
 ]);

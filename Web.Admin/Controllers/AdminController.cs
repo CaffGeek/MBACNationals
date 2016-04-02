@@ -24,6 +24,12 @@ namespace WebFrontend.Controllers
             Domain.RebuildSchedule();
         }
 
+        [Authorize(Users = "Chad")]
+        public void RebuildQualifyingPositions()
+        {
+            Domain.RebuildQualifyingPositions();
+        }
+
         public ActionResult Reports()
         {
             return View();

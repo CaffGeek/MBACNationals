@@ -55,6 +55,7 @@
     <Compile Include="Participant\ParticipantAssignedToRoom.cs" />
     <Compile Include="Participant\ParticipantAverageChanged.cs" />
     <Compile Include="Participant\ParticipantGuestPackageChanged.cs" />
+    <Compile Include="Participant\ParticipantQualifyingPositionChanged.cs" />
     <Compile Include="Participant\ParticipantProfileChanged.cs" />
     <Compile Include="Participant\ParticipantRemovedFromRoom.cs" />
     <Compile Include="Participant\ParticipantBirthdayChanged.cs" />

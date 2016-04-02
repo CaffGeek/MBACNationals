@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\QualifyingPositionFixer.cs" />
     <Compile Include="Contingent\Commands\AssignContingentToTournament.cs" />
     <Compile Include="Contingent\Exceptions\ContingentAlreadyExists.cs" />
     <Compile Include="Contingent\Exceptions\TournamentNotFound.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Contingent\ContingentCommandHandlers.cs" />
     <Compile Include="Contingent\ContingentAggregate.cs" />
     <Compile Include="Contingent\Commands\CreateContingent.cs" />
+    <Compile Include="Participant\Commands\ReorderParticipant.cs" />
     <Compile Include="Scores\Commands\CreateStepladderMatch.cs" />
     <Compile Include="Scores\Commands\DeleteStepladderMatch.cs" />
     <Compile Include="Scores\Commands\UpdateStepladderMatch.cs" />

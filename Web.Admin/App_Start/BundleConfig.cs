@@ -50,7 +50,8 @@ namespace WebFrontend
 					    "~/Scripts/ng-file-upload-shim.min.js",
                         "~/Scripts/ng-file-upload.min.js",
                         "~/Scripts/moment.min.js",
-                        "~/Scripts/angular-moment.min.js"));
+                        "~/Scripts/angular-moment.min.js",
+                        "~/Scripts/angular-drag-and-drop-lists.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                         "~/AdminApp/Filters/filter.*",

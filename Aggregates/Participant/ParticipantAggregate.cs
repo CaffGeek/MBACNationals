@@ -24,7 +24,8 @@ namespace MBACNationals.Participant
         IApplyEvent<ParticipantShirtSizeChanged>,
         IApplyEvent<ParticipantProfileChanged>,
         IApplyEvent<ParticipantReplacedWithAlternate>,
-        IApplyEvent<ParticipantBirthdayChanged>
+        IApplyEvent<ParticipantBirthdayChanged>,
+        IApplyEvent<ParticipantQualifyingPositionChanged>
     {
         public Guid TeamId { get; private set; }
         public Guid ContingentId { get; private set; }
@@ -48,6 +49,7 @@ namespace MBACNationals.Participant
         public ProfileDetails Profile { get; private set; }
         public Guid ReplacedBy { get; private set; }
         public DateTime? Birthday { get; private set; }
+        public int QualifyingPosition { get; set; }
 
         public class PackageInformation
         {
@@ -225,6 +227,11 @@ namespace MBACNationals.Participant
         public void Apply(ParticipantBirthdayChanged e)
         {
             Birthday = e.Birthday;
+        }
+
+        public void Apply(ParticipantQualifyingPositionChanged e)
+        {
+            QualifyingPosition = e.QualifyingPosition;
         }
     }
 }
