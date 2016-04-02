@@ -9,9 +9,11 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
     <script src="/bundles/angular"></script>
-<meta property="og:url" content="http://mbacnationals.com" />
-<meta property="og:image" content="http://mbacnationals.com/images/LinkLogo.jpg" />
+<meta property="og:url" content="http://mbacnationals.com/2016/index.php" />
+<meta property="og:image" content="http://mbacnationals.com/2016/images/2016_Logo.png" />
 <meta property="og:title" content="2016 Master Bowlers Association National Championships :: Surrey • Langley • Cloverdale, BC" />
+<meta property="og:description" content="Home of the 2016 Master Bowlers Association of Canada Nationals, taking place June 27 - July 3, 2016 in Surrey, Langley and Cloverdale, BC." />
+
 <link rel="icon" href="images/favicon.ico" type="image/x-icon"> 
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
@@ -65,7 +67,7 @@
                 <li><a href="lanedraw.php">Lane Draw</a></li>
                 <li><a href="photos.php">Photos</a></li>
                 <li><a href="contingents.php">Contingents</a></li>
-                <!--<li><a href="souvenirs.php">Souvenirs</a></li>-->
+                <li><a href="http://www.mbaofbc.com/shopping-cart.html">Souvenirs</a></li>
                 <li><a href="centres.php">Centres</a></li>
                 <li><a href="hotel.php">Hotel</a></li>
                 <li class="dropdown">
