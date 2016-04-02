@@ -34,6 +34,7 @@
         $scope.addGuest = addGuest;
         $scope.isTeam = isTeam;
         $scope.loadHistory = loadHistory;
+        $scope.moveParticipant = moveParticipant;
 
         function isTeam(x) {
             return x.SizeLimit > 1;
@@ -181,7 +182,19 @@
             dataService.LoadContingentEvents(province).then(function (data) {
                 $scope.model.Events = data.data;
             });
-        }
+        };
+
+        function moveParticipant(team, index) {
+            team.Bowlers.splice(index, 1);
+
+            angular.forEach(team.Bowlers, function (bowler, index) {
+                console.log(index + bowler.Name);
+
+                dataService.ReorderTeam(team, bowler, index + 1).then(function (data) {
+                    bowler.QualifyingPosition = data.data.QualifyingPosition;
+                });
+            });            
+        };
     };
 
     app.controller("ContingentController", ["$scope", "$http", "$q", "$location", "modalFactory", "dataService", contingentController]);

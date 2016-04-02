@@ -118,6 +118,12 @@ namespace WebFrontend
             ScheduleBuilder.Seniors(CommandQueries, Dispatcher);
         }
 
+        public static void RebuildQualifyingPositions()
+        {
+            //HACK: This is a one time fix for environments to historically add missing Qualifying Position events
+            QualifyingPositionFixer.Execute(CommandQueries, ContingentViewQueries, Dispatcher);
+        }
+
         private static void GoOffline()
         {
             var bakFile = HttpContext.Current.Server.MapPath("~/app_offline.bak");

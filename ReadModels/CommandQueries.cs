@@ -14,6 +14,8 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<ParticipantCreated>,
         ISubscribeTo<ParticipantGenderReassigned>,
         ISubscribeTo<ParticipantRenamed>,
+        ISubscribeTo<ParticipantAssignedToTeam>,
+        ISubscribeTo<ParticipantQualifyingPositionChanged>,
         ISubscribeTo<MatchCreated>
     {
         public class Tournament
@@ -30,6 +32,7 @@ namespace MBACNationals.ReadModels
             public virtual string Name { get; set; }
             public virtual int Average { get; set; }
             public virtual string Gender { get; set; }
+            public virtual int QualifyingPosition { get; set; }
         }
 
         public class Match
@@ -61,6 +64,7 @@ namespace MBACNationals.ReadModels
             public virtual string Name { get; set; }
             public virtual int Average { get; set; }
             public virtual string Gender { get; set; }
+            public virtual int QualifyingPosition { get; set;}
         }
 
         private class TSMatch : Entity
@@ -104,9 +108,25 @@ namespace MBACNationals.ReadModels
                 ContingentId = participant.ContingentId,
                 Name = participant.Name,
                 Average = participant.Average,
-                Gender = participant.Gender
-            };
-                
+                Gender = participant.Gender,
+                QualifyingPosition = participant.QualifyingPosition
+            };                
+        }
+
+        public List<Participant> GetTeamParticipants(Guid teamId)
+        {
+            return Storage.Query<TSParticipant>(x => x.TeamId == teamId)
+                .Select(x => new Participant
+                {
+                    Id = Guid.Parse(x.RowKey),
+                    TeamId = x.TeamId,
+                    ContingentId = x.ContingentId,
+                    Name = x.Name,
+                    Average = x.Average,
+                    Gender = x.Gender,
+                    QualifyingPosition = x.QualifyingPosition
+                })
+                .ToList();
         }
 
         public Match GetMatch(string year, string division, int game, string slot)
@@ -175,6 +195,16 @@ namespace MBACNationals.ReadModels
                 Centre = e.Centre.ToString(),
                 Slot = e.Slot
             });
+        }
+
+        public void Handle(ParticipantAssignedToTeam e)
+        {
+            Storage.Update<TSParticipant>(Guid.Empty, e.Id, x => x.TeamId = e.TeamId);
+        }
+
+        public void Handle(ParticipantQualifyingPositionChanged e)
+        {
+            Storage.Update<TSParticipant>(Guid.Empty, e.Id, x => x.QualifyingPosition = e.QualifyingPosition);
         }
     }
 }

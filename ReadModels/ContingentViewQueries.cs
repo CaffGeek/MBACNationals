@@ -26,7 +26,8 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<ParticipantYearsQualifyingChanged>,
         ISubscribeTo<ParticipantAverageChanged>,
         ISubscribeTo<ParticipantReplacedWithAlternate>,
-        ISubscribeTo<ParticipantBirthdayChanged>
+        ISubscribeTo<ParticipantBirthdayChanged>,
+        ISubscribeTo<ParticipantQualifyingPositionChanged>
     {
         public class Contingent
         {
@@ -67,6 +68,7 @@ namespace MBACNationals.ReadModels
             public int Average { get; internal set; }
             public string ReplacedBy { get; internal set; }
             public DateTime? Birthday { get; internal set; }
+            public int QualifyingPosition { get; internal set; }
         }
 
         private class TSContingent : Entity
@@ -101,6 +103,7 @@ namespace MBACNationals.ReadModels
             public int Average { get; set; }
             public string ReplacedBy { get; set; }
             public DateTime? Birthday { get; set; }
+            public int QualifyingPosition { get; set; }
         }
         
         public Contingent GetContingent(Guid tournamentId, string province)
@@ -124,8 +127,11 @@ namespace MBACNationals.ReadModels
                         IsGuest = x.IsGuest,
                         ReplacedBy = x.ReplacedBy,
                         Birthday = x.Birthday,
+                        QualifyingPosition = x.QualifyingPosition
                     };
-                }).ToList();
+                })
+                //.OrderBy(x => x.QualifyingPosition)
+                .ToList();
 
             var teams = Storage.Query<TSTeam>(x => x.PartitionKey == contingent.PartitionKey)
                 .Select(x =>
@@ -223,8 +229,12 @@ namespace MBACNationals.ReadModels
         {
             var team = Storage.Query<TSTeam>(x => { return x.RowKey == e.TeamId.ToString(); }).FirstOrDefault();
             var participant = Storage.Read<TSParticipant>(Guid.Empty, e.Id);
+            var currentTeammates = Storage.Query<TSParticipant>(x => x.TeamId == e.TeamId)
+                ?? new List<TSParticipant>();
+
             Storage.Delete<TSParticipant>(Guid.Empty, e.Id);
             participant.TeamId = e.TeamId;
+            participant.QualifyingPosition = currentTeammates.Count + 1;
             Storage.Create(Guid.Parse(team.PartitionKey), e.Id, participant);
         }
 
@@ -295,6 +305,11 @@ namespace MBACNationals.ReadModels
         public void Handle(ParticipantBirthdayChanged e)
         {
             Storage.Update<TSParticipant>(e.Id, x => { x.Birthday = e.Birthday; });
+        }
+
+        public void Handle(ParticipantQualifyingPositionChanged e)
+        {
+            Storage.Update<TSParticipant>(e.Id, x => { x.QualifyingPosition = e.QualifyingPosition; });
         }
     }
 }

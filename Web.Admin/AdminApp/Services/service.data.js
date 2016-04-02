@@ -18,6 +18,7 @@
             LoadAllParticipants: loadAllParticipants,
             AssignParticipantToRoom: assignParticipantToRoom,
             RemoveParticipantFromRoom: removeParticipantFromRoom,
+            ReorderTeam: reorderTeam,
             LoadRooms: loadRooms,
             ChangeRoomType: changeRoomType,
             SaveInstructions: saveInstructions,
@@ -166,6 +167,15 @@
         function removeParticipantFromRoom(id) {
             return $http.post('/Setup/Participant/RemoveFromRoom', {
                 Id: id
+            });
+        };
+
+        function reorderTeam(team, bowler, position) {
+            return $http.post('/Setup/Participant/ReorderParticipant', {
+                Id: bowler.Id,
+                TeamId: team.Id,
+                Name: bowler.Name,
+                QualifyingPosition: position
             });
         };
 
