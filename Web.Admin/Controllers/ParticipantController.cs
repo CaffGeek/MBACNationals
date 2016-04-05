@@ -37,6 +37,14 @@ namespace WebFrontend.Controllers
 
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
+        public JsonResult Alternates(string year)
+        {
+            var alternates = Domain.ParticipantQueries.GetAlternates(year);
+            return Json(alternates, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public JsonResult Contingent(string year, string province)
         {
             var participant = Domain.ReservationQueries.GetParticipants(year, province);
@@ -101,6 +109,8 @@ namespace WebFrontend.Controllers
         [RestrictAccessByRouteId]
         public JsonResult ReorderParticipant(ReorderParticipant command)
         {
+            //TODO: Instead of ordering the rest of the team from the UI, 
+            //      condier doing it from here???
             Domain.Dispatcher.SendCommand(command);
 
             return Json(command);

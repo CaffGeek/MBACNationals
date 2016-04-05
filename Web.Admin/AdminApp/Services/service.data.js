@@ -16,6 +16,7 @@
             LoadParticipant: loadParticipant,
             LoadParticipants: loadParticipants,
             LoadAllParticipants: loadAllParticipants,
+            LoadAlternates: loadAlternates,
             AssignParticipantToRoom: assignParticipantToRoom,
             RemoveParticipantFromRoom: removeParticipantFromRoom,
             ReorderTeam: reorderTeam,
@@ -151,6 +152,14 @@
 
         function loadAllParticipants(year) {
             return $http.get('/Setup/Participant/All', {
+                params: {
+                    year: year
+                }
+            });
+        };
+
+        function loadAlternates(year) {
+            return $http.get('/Setup/Participant/Alternates', {
                 params: {
                     year: year
                 }

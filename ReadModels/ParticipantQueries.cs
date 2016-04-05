@@ -26,6 +26,7 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<ParticipantShirtSizeChanged>,
         ISubscribeTo<ParticipantAssignedToRoom>,
         ISubscribeTo<ParticipantBirthdayChanged>,
+        ISubscribeTo<ParticipantDesignatedAsAlternate>,
         ISubscribeTo<TeamCreated>,
         ISubscribeTo<ContingentCreated>,
         ISubscribeTo<ContingentAssignedToTournament>,
@@ -54,6 +55,7 @@ namespace MBACNationals.ReadModels
             public PackageInformation Package { get; internal set; }
             public string ShirtSize { get; internal set; }
             public DateTime? Birthday { get; internal set; }
+            public bool IsAlternate { get; set; }
         }
 
         public class PackageInformation
@@ -138,12 +140,17 @@ namespace MBACNationals.ReadModels
                 internal set { PartitionKey = value.ToString(); }
             }
             public string Name { get; set; }
+            public Guid Alternate { get; set; }
+            public string AlternateName { get; set; }
         }
         
         public List<Participant> GetParticipants(string year)
         {
             var tournament = Storage.Query<TSTournament>(x => x.Year == year).FirstOrDefault();
             var contingents = Storage.Query<TSContingent>(x => x.TournamentId == tournament.Id);
+            var alternates = Storage.Query<TSTeam>()
+                .Select(x => x.Alternate)
+                .ToList();
 
             return Storage.Query<TSParticipant>()
                 .Where(x => contingents.Any(c => c.Id.ToString() == x.ContingentId))
@@ -180,6 +187,7 @@ namespace MBACNationals.ReadModels
                     },
                     ShirtSize = x.ShirtSize,
                     Birthday = x.Birthday,
+                    IsAlternate = alternates.Any(a => a == x.Id)
                 })
                 .ToList();
         }
@@ -187,6 +195,8 @@ namespace MBACNationals.ReadModels
         public Participant GetParticipant(Guid id)
         {
             var participant = Storage.Read<TSParticipant>(id, id);
+            var alternates = Storage.Query<TSTeam>(t => t.Alternate == id);
+
             return new Participant
                 {
                     Id = participant.Id,
@@ -220,7 +230,62 @@ namespace MBACNationals.ReadModels
                     },
                     ShirtSize = participant.ShirtSize,
                     Birthday = participant.Birthday,
+                    IsAlternate = alternates.Any()
                 };
+        }
+
+        public List<Participant> GetAlternates(string year)
+        {
+            var tournament = Storage.Query<TSTournament>(x => x.Year == year).FirstOrDefault();
+            var contingents = Storage.Query<TSContingent>(x => x.TournamentId == tournament.Id);
+            var teams = Storage.Query<TSTeam>()
+                .Where(x => contingents.Any(c => c.Id == x.ContingentId))
+                .ToList();
+            
+            var alternates = Storage.Query<TSParticipant>()
+                .Where(x => teams.Any(t => t.Alternate == x.Id))                
+                .ToList();
+
+            return (from team in teams
+                    join alternate in alternates
+                     on team.Alternate equals alternate.Id into a
+                    from d in a.DefaultIfEmpty()
+                    where d != null
+                    select new Participant
+                    {
+                        Id = d.Id,
+                        TeamId = d.TeamId,
+                        ContingentId = d.ContingentId,
+                        Name = d.Name,
+                        Gender = d.Gender,
+                        Province = d.Province,
+                        TeamName = team.Name,
+                        IsDelegate = d.IsDelegate,
+                        IsManager = d.IsManager,
+                        IsCoach = d.IsCoach,
+                        YearsQualifying = d.YearsQualifying,
+                        LeaguePinfall = d.LeaguePinfall,
+                        LeagueGames = d.LeagueGames,
+                        TournamentPinfall = d.TournamentPinfall,
+                        TournamentGames = d.TournamentGames,
+                        Average = d.Average,
+                        RoomNumber = d.RoomNumber,
+                        IsGuest = d.IsGuest,
+                        Package = new PackageInformation
+                        {
+                            FinalBanquet = d.FinalBanquet,
+                            ManitobaDance = d.ManitobaDance,
+                            ManitobaDinner = d.ManitobaDinner,
+                            Transportation = d.Transportation,
+                            Option1 = d.Option1,
+                            Option2 = d.Option2,
+                            Option3 = d.Option3,
+                            Option4 = d.Option4,
+                        },
+                        ShirtSize = d.ShirtSize,
+                        Birthday = d.Birthday,
+                        IsAlternate = true
+                    }).ToList();
         }
 
         public void Handle(ContingentCreated e)
@@ -280,6 +345,16 @@ namespace MBACNationals.ReadModels
                 x.TeamName = team.Name;
                 x.ContingentId = team.ContingentId.ToString();
                 x.Province = contingent.Province;
+            });
+        }
+
+        public void Handle(ParticipantDesignatedAsAlternate e)
+        {
+            var team = Storage.Read<TSTeam>(e.TeamId);
+            
+            Storage.Update<TSTeam>(e.TeamId, x => { 
+                x.Alternate = e.Id;
+                x.AlternateName = e.Name;
             });
         }
 

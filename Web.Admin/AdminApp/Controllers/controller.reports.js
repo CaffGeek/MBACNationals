@@ -7,16 +7,18 @@
 	    var year = url.slice(lastSlash + 1);
 
 	    $scope.model = { year: year };
-		$scope.viewUrl = '/App/Views/Reports/Reservations.html';
+		$scope.viewUrl = '/AdminApp/Views/Reports/Reservations.html';
 
 		$scope.loadParticipants = loadParticipants;
 		$scope.loadProfiles = loadProfiles;
 		$scope.loadRooms = loadRooms;
 		$scope.loadTravelPlans = loadTravelPlans;
 		$scope.loadPracticePlans = loadPracticePlans;
+		$scope.loadAlternates = loadAlternates;
 
 		$scope.plaqueFilter = plaqueFilter;
 		$scope.roomTypeFilter = roomTypeFilter;
+		$scope.bowlerFilter = bowlerFilter;
 
 		loadParticipants();
 		loadRooms();
@@ -27,9 +29,15 @@
 		    });
 		};
 
+		function loadAlternates() {
+		    dataService.LoadAlternates($scope.model.year).then(function (data) {
+		        $scope.model.Alternates = data.data;
+		    });
+		};
+
 		function plaqueFilter(participant) {
 		    return (participant.YearsQualifying) && (participant.YearsQualifying % 5 === 0);
-		}
+		};
 
 		function loadProfiles() {
 		    dataService.LoadProfiles($scope.model.year).then(function (data) {
@@ -98,6 +106,11 @@
 		function roomTypeFilter(rooms, type) {
 		    return rooms.filter(function (room) { return room.Type == type; }).length;
 		};
+
+		function bowlerFilter(bowler) {
+		    return bowler.IsAlternate ||
+		            (bowler.TeamName && !bowler.IsCoach);
+		}
 	};
 
 	app.controller("ReportController", ["$scope", "$http", "$q", "$location", "modalFactory", "dataService", reportController]);

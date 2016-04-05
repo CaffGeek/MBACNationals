@@ -7,5 +7,7 @@ namespace MBACNationals.ReadModels
         List<ParticipantQueries.Participant> GetParticipants(string year);
 
         ParticipantQueries.Participant GetParticipant(System.Guid id);
+
+        List<ParticipantQueries.Participant> GetAlternates(string year);
     }
 }
