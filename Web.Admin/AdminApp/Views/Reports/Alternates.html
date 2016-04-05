@@ -1,6 +1,24 @@
 ﻿<div class="row">
     <div class="col-md-12">
         <h4>Alternates</h4>
-        TODO
+        <input data-ng-model="filter.Name" type="text" placeholder="Filter by Name" autofocus>
+        <table data-exportable="Alternates" class=" table table-striped table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th>Province</th>
+                    <th>Team</th>
+                    <th>Alternate</th>
+                    <th>Average</th>
+                </tr>
+            </thead>
+            <tbody data-ng-repeat="bowler in model.Alternates | orderBy:'Province' | filter:{ Name: filter.Name }" data-ng-if="bowler.Name">
+                <tr>
+                    <td>{{bowler.Province}}</td>
+                    <td>{{bowler.TeamName}}</td>
+                    <td>{{bowler.Name}}</td>
+                    <td>{{bowler.Average}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
