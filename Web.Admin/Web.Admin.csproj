@@ -2078,6 +2078,7 @@
     <Content Include="2016\news.php" />
     <Content Include="2016\contingents.php" />
     <Content Include="2016\photos.php" />
+    <Content Include="AdminApp\Views\Reports\Newsworthy.html" />
     <Content Include="ClientApp\app.js" />
     <Content Include="ClientApp\Controllers\controller.contingent.js" />
     <Content Include="ClientApp\Controllers\controller.highscores.js" />
