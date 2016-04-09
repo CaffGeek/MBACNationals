@@ -76,6 +76,10 @@ namespace MBACNationals.Participant
                     ManitobaDance = command.Package.ManitobaDance,
                     FinalBanquet = command.Package.FinalBanquet,
                     Transportation = command.Package.Transportation,
+                    Option1 = command.Package.Option1,
+                    Option2 = command.Package.Option2,
+                    Option3 = command.Package.Option3,
+                    Option4 = command.Package.Option4,
                 };
         }
 
