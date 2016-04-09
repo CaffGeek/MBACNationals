@@ -9,5 +9,10 @@ namespace WebFrontend.Controllers
         {
             return View();
         }
+
+        public ActionResult Alternates()
+        {
+            return View();
+        }
     }
 }

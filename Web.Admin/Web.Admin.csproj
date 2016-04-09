@@ -3408,6 +3408,7 @@
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Scores\Stepladder.cshtml" />
     <Content Include="Views\Help\ScoreEntry.cshtml" />
+    <Content Include="Views\Help\Alternates.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminApp\Entities\" />
