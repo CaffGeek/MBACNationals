@@ -1,0 +1,35 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <h4>Schedule Validation</h4>
+        <select data-ng-options="division as division for division in model.Divisions" data-ng-model="selectedDivision" data-ng-change="loadSchedule(selectedDivision)"></select>
+
+        <h4>{{model.Schedule.Division}}</h4>
+        <table class="table table-striped table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th data-ng-repeat="(team, games) in model.Schedule.Games">{{team}}</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="(homeTeam, homeGames) in model.Schedule.Games">
+                    <td>{{homeTeam}}</td>
+                    <td data-ng-repeat="(awayTeam, awayGames) in model.Schedule.Games">
+                        <div ng-if="homeTeam != awayTeam "
+                             ng-class="{invalid:(homeGames[awayTeam] < 1 || homeGames[awayTeam] > 2 || awayGames[homeTeam] < 1 || awayGames[homeTeam] > 2)}">
+                            h: {{homeGames[awayTeam]}}
+                            <br />
+                            a: {{awayGames[homeTeam]}}
+                        </div>
+                    </td>
+                    <td ng-class="{invalid:(homeGames.HomeTotal < 10 || homeGames.HomeTotal > 11 || homeGames.AwayTotal < 10 || homeGames.AwayTotal > 11)}">
+                        h: {{homeGames.HomeTotal}}
+                        <br />
+                        a: {{homeGames.AwayTotal}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -6,8 +6,19 @@
 	    var lastSlash = url.lastIndexOf('/');
 	    var year = url.slice(lastSlash + 1);
 
-	    $scope.model = { year: year };
-		$scope.viewUrl = '/AdminApp/Views/Reports/Reservations.html';
+	    $scope.model = { 
+	        year: year, 
+	        Divisions: [
+                'Tournament Men Single',
+                'Tournament Ladies Single',
+                'Tournament Men',
+                'Tournament Ladies',
+                'Teaching Men',
+                'Teaching Ladies',
+                'Seniors',
+	        ]
+	    };
+	    $scope.viewUrl = '/AdminApp/Views/Reports/Reservations.html';
 
 		$scope.loadParticipants = loadParticipants;
 		$scope.loadProfiles = loadProfiles;
@@ -15,6 +26,7 @@
 		$scope.loadTravelPlans = loadTravelPlans;
 		$scope.loadPracticePlans = loadPracticePlans;
 		$scope.loadAlternates = loadAlternates;
+		$scope.loadSchedule = loadSchedule;
 
 		$scope.plaqueFilter = plaqueFilter;
 		$scope.roomTypeFilter = roomTypeFilter;
@@ -103,13 +115,32 @@
 		    });
 		};
 
+		function loadSchedule(division) {
+		    dataService.LoadSchedule($scope.model.year, division).then(function (data) {		        
+		        //var schedule = $scope.model.Schedule = ;
+		        
+		        var simplified = {
+		            Division: division,
+		            Games: {}
+		        };
+		        data.data.Games.forEach(function (x) {
+		            simplified.Games[x.Home] = simplified.Games[x.Home] || { HomeTotal: 0, AwayTotal: 0 };
+		            simplified.Games[x.Away] = simplified.Games[x.Away] || { HomeTotal: 0, AwayTotal: 0 };
+		            simplified.Games[x.Home].HomeTotal++;
+		            simplified.Games[x.Away].AwayTotal++;
+		            simplified.Games[x.Home][x.Away] = (simplified.Games[x.Home][x.Away] || 0) + 1;
+		        });
+
+		        $scope.model.Schedule = simplified;
+		    });
+		};
+
 		function roomTypeFilter(rooms, type) {
 		    return rooms.filter(function (room) { return room.Type == type; }).length;
 		};
 
 		function bowlerFilter(bowler) {
-		    return bowler.IsAlternate ||
-		            (bowler.TeamName && !bowler.IsCoach);
+		    return bowler.IsAlternate || (bowler.TeamName && !bowler.IsCoach);
 		}
 	};
 
