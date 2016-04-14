@@ -5,7 +5,7 @@
 <h4 class="col-xs-9">{{model.AwayProvince}} {{model.Away.Name}}</h4>
 <h4 class="col-xs-3">{{model.Away.TotalPoints}}</h4>
 <table class="table table-bordered table-striped">
-    <tbody data-ng-repeat="bowler in model.Away.Bowlers | orderBy:'1*Position'">
+    <tbody data-ng-repeat="bowler in model.Away.Bowlers | orderBy:'1*Position' | filter:{ ReplacedBy: '!'}">
         <tr>
             <td class="col-xs-5">{{bowler.Name}}</td>
             <td class="col-xs-1 text-right">{{bowler.Average}}</td>
@@ -28,7 +28,7 @@
 <h4 class="col-xs-9">{{model.HomeProvince}} {{model.Home.Name}}</h4>
 <h4 class="col-xs-3">{{model.Home.TotalPoints}}</h4>
 <table class="table table-bordered table-striped">
-    <tbody data-ng-repeat="bowler in model.Home.Bowlers | orderBy:'1*Position'">
+    <tbody data-ng-repeat="bowler in model.Home.Bowlers | orderBy:'1*Position' | filter:{ ReplacedBy: '!'}">
         <tr>
             <td class="col-xs-5">{{bowler.Name}}</td>
             <td class="col-xs-1 text-right">{{bowler.Average}}</td>
