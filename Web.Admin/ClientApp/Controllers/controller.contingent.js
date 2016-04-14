@@ -24,7 +24,8 @@
                 if (bowler.ReplacedBy)
                     continue;
 
-                total += bowler.Average;
+                if (!bowler.ReplacedBy)
+                    total += bowler.Average;
             }
             return total;
         };

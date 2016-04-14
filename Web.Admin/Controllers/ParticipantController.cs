@@ -144,8 +144,17 @@ namespace WebFrontend.Controllers
         [RestrictAccessByRouteId]
         public JsonResult UseAlternate(ReplaceParticipant command)
         {
+            //Replace the participant
             Domain.Dispatcher.SendCommand(command);
-
+            
+            //Add the alternate to the team
+            var participant = Domain.ParticipantQueries.GetParticipant(command.Id);
+            Domain.Dispatcher.SendCommand(
+                new AddParticipantToTeam { 
+                    Id = command.AlternateId,
+                    TeamId = Guid.Parse(participant.TeamId)
+                });
+            
             return Json(command);
         }
     }

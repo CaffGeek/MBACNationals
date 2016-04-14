@@ -130,7 +130,7 @@ namespace MBACNationals.ReadModels
                         QualifyingPosition = x.QualifyingPosition
                     };
                 })
-                //.OrderBy(x => x.QualifyingPosition)
+                .OrderBy(x => x.QualifyingPosition)
                 .ToList();
 
             var teams = Storage.Query<TSTeam>(x => x.PartitionKey == contingent.PartitionKey)
@@ -228,14 +228,26 @@ namespace MBACNationals.ReadModels
         public void Handle(ParticipantAssignedToTeam e)
         {
             var team = Storage.Query<TSTeam>(x => { return x.RowKey == e.TeamId.ToString(); }).FirstOrDefault();
-            var participant = Storage.Read<TSParticipant>(Guid.Empty, e.Id);
+            
             var currentTeammates = Storage.Query<TSParticipant>(x => x.TeamId == e.TeamId)
-                ?? new List<TSParticipant>();
+               ?? new List<TSParticipant>();
 
-            Storage.Delete<TSParticipant>(Guid.Empty, e.Id);
-            participant.TeamId = e.TeamId;
-            participant.QualifyingPosition = currentTeammates.Count + 1;
-            Storage.Create(Guid.Parse(team.PartitionKey), e.Id, participant);
+            var participant = Storage.Read<TSParticipant>(Guid.Empty, e.Id);
+            if (participant != null)
+            {
+                Storage.Delete<TSParticipant>(Guid.Empty, e.Id);
+                participant.TeamId = e.TeamId;
+                participant.QualifyingPosition = currentTeammates.Count + 1;
+                Storage.Create(Guid.Parse(team.PartitionKey), e.Id, participant);
+            }
+            else
+            {
+                Storage.Update<TSParticipant>(Guid.Parse(team.PartitionKey), e.Id, x =>
+                {
+                    x.TeamId = e.TeamId;
+                    x.QualifyingPosition = currentTeammates.Count + 1;
+                });
+            }
         }
 
         public void Handle(ParticipantDesignatedAsAlternate e)
