@@ -2115,6 +2115,7 @@
     <Content Include="2015\css\main.css" />
     <Content Include="2015\css\responsivegridsystem.css" />
     <Content Include="2015\css\stylesheet.css" />
+    <Content Include="ClientApp\Styles\WebUI.css" />
     <Content Include="ConnectionStrings.config" />
     <Content Include="Content\Images\2016_logo.png" />
     <Content Include="Content\Images\Help\ScoreEntry\Division.png" />
