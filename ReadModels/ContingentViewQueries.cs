@@ -130,7 +130,7 @@ namespace MBACNationals.ReadModels
                         QualifyingPosition = x.QualifyingPosition
                     };
                 })
-                //.OrderBy(x => x.QualifyingPosition)
+                .OrderBy(x => x.QualifyingPosition)
                 .ToList();
 
             var teams = Storage.Query<TSTeam>(x => x.PartitionKey == contingent.PartitionKey)
