@@ -35,8 +35,7 @@ include 'header.php';
         </div>
         <div class="col-md-10">
         <h2>Contingents</h2>
-        <p>Coming Soon</p>
-        <!--<h2>{{model.Province}} Contingents</h2>
+        <h2>{{model.Province}} Contingents</h2>
             <p>* Rookie</p>
          <div class="contingentColumn" style="width:40.7%;display:block;float:left;margin:1% 0 1% 1.6%;" data-ng-repeat="team in model.Teams | orderBy:'-1*Name.length'" data-ng-show="team.Id">
               <h5>
@@ -59,10 +58,11 @@ include 'header.php';
                 <li data-ng-repeat="bowler in team.Bowlers">
                   <span data-ng-if="team.Name.indexOf('Teaching') >= 0 || team.Name.indexOf('Seniors') >= 0" style="float:right;">
                     <span data-ng-if="team.RequiresAverage" class=" text-right">
-                      {{bowler.Average}}
+                      {{bowler.Average}} 
                     </span>
                   </span>
-                  <a href="results.php#/bowler/{{bowler.Id}}">{{bowler.Name || 'Vacancy'}}</a>
+                  <a data-ng-class="{strike: !!bowler.ReplacedBy}"
+                     href="results.php#/bowler/{{bowler.Id}}">{{bowler.Name || 'Vacancy'}}</a>
                   <span data-ng-show="bowler.IsRookie">
                     <sup>*</sup>
                   </span>
@@ -77,7 +77,7 @@ include 'header.php';
                   <span data-ng-if="team.RequiresAverage" style="float:right; font-weight: bold;">{{totalAverage(team)}}</span>
                 </li>
               </ol>
-            </div> -->  
+            </div> 
       </div>
 </div>
 <?php
