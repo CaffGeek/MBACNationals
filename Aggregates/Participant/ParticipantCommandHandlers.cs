@@ -200,25 +200,22 @@ namespace MBACNationals.Participant
         {
             var agg = al(command.Id);
 
-            if (agg.TeamId != command.TeamId)
+            yield return new ParticipantAssignedToTeam
             {
-                yield return new ParticipantAssignedToTeam
-                {
-                    Id = command.Id,
-                    TeamId = command.TeamId,
-                    Name = agg.Name
-                };
+                Id = command.Id,
+                TeamId = command.TeamId,
+                Name = agg.Name
+            };
 
-                var participants = CommandQueries.GetTeamParticipants(command.TeamId)
-                    ?? new List<CommandQueries.Participant>();
-
-                yield return new ParticipantQualifyingPositionChanged
-                {
-                    Id = command.Id,
-                    TeamId = command.TeamId,
-                    QualifyingPosition = participants.Count + 1
-                };
-            }
+            var participants = CommandQueries.GetTeamParticipants(command.TeamId)
+                ?? new List<CommandQueries.Participant>();
+            
+            yield return new ParticipantQualifyingPositionChanged
+            {
+                Id = command.Id,
+                TeamId = command.TeamId,
+                QualifyingPosition = participants.Count + 1
+            };
         }
 
         public IEnumerable Handle(Func<Guid, ParticipantAggregate> al, AssignAlternateToTeam command)
@@ -326,7 +323,7 @@ namespace MBACNationals.Participant
                 Name = agg.Name,
                 AlternateId = command.AlternateId,
                 AlternateName = alternate.Name,
-                Average = alternate.Average
+                Average = alternate.Average,
             };
         }
 

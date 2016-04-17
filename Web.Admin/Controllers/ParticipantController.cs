@@ -109,8 +109,6 @@ namespace WebFrontend.Controllers
         [RestrictAccessByRouteId]
         public JsonResult ReorderParticipant(ReorderParticipant command)
         {
-            //TODO: Instead of ordering the rest of the team from the UI, 
-            //      condier doing it from here???
             Domain.Dispatcher.SendCommand(command);
 
             return Json(command);
@@ -154,8 +152,9 @@ namespace WebFrontend.Controllers
                     Id = command.AlternateId,
                     TeamId = Guid.Parse(participant.TeamId)
                 });
-            
-            return Json(command);
+
+            var alternate = Domain.ParticipantQueries.GetParticipant(command.AlternateId);
+            return Json(alternate);
         }
     }
 }
