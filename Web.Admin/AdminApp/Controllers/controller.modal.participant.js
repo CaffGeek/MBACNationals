@@ -46,9 +46,16 @@
         };
 
         $scope.useAlternate = function (participant, team) {
-            dataService.UseAlternate(participant, team).then(function (response) {
-                $modalInstance.dismiss('cancel');
-            });
+            dataService.UseAlternate(participant, team)
+                .then(function (response) {
+                    var alternate = response.data;
+                    
+                    var replacedParticipant = $scope.model.team.Bowlers.filter(function (x) { return x.Id == participant.Id; })[0];
+                    replacedParticipant.ReplacedBy = alternate.Id;
+
+                    $scope.model.team.Bowlers.push(alternate);
+                    $modalInstance.dismiss('cancel');
+                });
         };
     };
 

@@ -30,7 +30,8 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<TeamCreated>,
         ISubscribeTo<ContingentCreated>,
         ISubscribeTo<ContingentAssignedToTournament>,
-        ISubscribeTo<TournamentCreated>
+        ISubscribeTo<TournamentCreated>,
+        ISubscribeTo<ParticipantQualifyingPositionChanged>
     {
         public class Participant
         {
@@ -56,6 +57,7 @@ namespace MBACNationals.ReadModels
             public string ShirtSize { get; internal set; }
             public string Birthday { get; internal set; }
             public bool IsAlternate { get; set; }
+            public int QualifyingPosition { get; internal set; }
         }
 
         public class PackageInformation
@@ -104,6 +106,7 @@ namespace MBACNationals.ReadModels
             public bool Option4 { get; set; }
             public string ShirtSize { get; set; }
             public string Birthday { get; set; }
+            public int QualifyingPosition { get; set; }
         }
 
         private class TSContingent : Entity
@@ -187,7 +190,8 @@ namespace MBACNationals.ReadModels
                     },
                     ShirtSize = x.ShirtSize,
                     Birthday = x.Birthday,
-                    IsAlternate = alternates.Any(a => a == x.Id)
+                    IsAlternate = alternates.Any(a => a == x.Id),
+                    QualifyingPosition = x.QualifyingPosition
                 })
                 .ToList();
         }
@@ -230,7 +234,8 @@ namespace MBACNationals.ReadModels
                     },
                     ShirtSize = participant.ShirtSize,
                     Birthday = participant.Birthday,
-                    IsAlternate = alternates.Any()
+                    IsAlternate = alternates.Any(),
+                    QualifyingPosition = participant.QualifyingPosition
                 };
         }
 
@@ -284,7 +289,8 @@ namespace MBACNationals.ReadModels
                         },
                         ShirtSize = d.ShirtSize,
                         Birthday = d.Birthday,
-                        IsAlternate = true
+                        IsAlternate = true,
+                        QualifyingPosition = d.QualifyingPosition
                     }).ToList();
         }
 
@@ -338,6 +344,9 @@ namespace MBACNationals.ReadModels
         {
             var team = Storage.Read<TSTeam>(e.TeamId);
             var contingent = Storage.Read<TSContingent>(team.ContingentId, team.ContingentId);
+
+            var currentTeammates = Storage.Query<TSParticipant>(x => x.TeamId == e.TeamId.ToString())
+               ?? new List<TSParticipant>();
             
             Storage.Update<TSParticipant>(e.Id, e.Id, x =>
             { 
@@ -345,6 +354,7 @@ namespace MBACNationals.ReadModels
                 x.TeamName = team.Name;
                 x.ContingentId = team.ContingentId.ToString();
                 x.Province = contingent.Province;
+                x.QualifyingPosition = currentTeammates.Count + 1;
             });
         }
 
@@ -456,6 +466,11 @@ namespace MBACNationals.ReadModels
         public void Handle(ParticipantBirthdayChanged e)
         {
             Storage.Update<TSParticipant>(e.Id, e.Id, x => x.Birthday = e.Birthday.ToString("yyyy-MM-ddTHH:mm"));
+        }
+
+        public void Handle(ParticipantQualifyingPositionChanged e)
+        {
+            Storage.Update<TSParticipant>(e.Id, x => { x.QualifyingPosition = e.QualifyingPosition; });
         }
     }
 }
