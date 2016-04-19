@@ -58,7 +58,7 @@ namespace Edument.CQRS
                     sub(e);
                     dynamic target = sub.Target;
                     var y = target.subscriber as IReadModel;
-                    y.Save();
+                    if (y != null) y.Save();
                 }
         }
 

@@ -92,27 +92,33 @@ namespace WebFrontend
 
         public static void RebuildReadModel(string readmodel)
         {
-            var instance = ((IReadModel)typeof(Domain).GetField(readmodel).GetValue(null));
-            
-            instance.Reset();
-            Dispatcher.RegenerateReadModel(readmodel);
-            instance.Save();
-                        
-            //GoOffline();
+            var untypedModel = typeof(Domain).GetField(readmodel).GetValue(null);
+            if (untypedModel is IReadModel)
+            {
+                var instance = ((IReadModel)untypedModel);
 
-            //var tableStorageConn = ConfigurationManager.ConnectionStrings["AzureTableStorage"].ConnectionString;
-            //var storageAccount = CloudStorageAccount.Parse(tableStorageConn);
-            //var tableClient = storageAccount.CreateCloudTableClient();
+                instance.Reset();
+                Dispatcher.RegenerateReadModel(readmodel);
+                instance.Save();
+            }
+            else
+            {
+                GoOffline();
 
-            //var azureTableHelper = new AzureTableHelper.AzureTableHelper(tableClient);
-            //var originalTableName = azureTableHelper.GetTableNameFor(readmodel.ToLower());
-            //azureTableHelper.IterateTableNameFor(readmodel.ToLower());
+                var tableStorageConn = ConfigurationManager.ConnectionStrings["AzureTableStorage"].ConnectionString;
+                var storageAccount = CloudStorageAccount.Parse(tableStorageConn);
+                var tableClient = storageAccount.CreateCloudTableClient();
 
-            //Dispatcher.RepublishEvents(readmodel);
+                var azureTableHelper = new AzureTableHelper.AzureTableHelper(tableClient);
+                var originalTableName = azureTableHelper.GetTableNameFor(readmodel.ToLower());
+                azureTableHelper.IterateTableNameFor(readmodel.ToLower());
 
-            //GoOnline();
+                Dispatcher.RegenerateReadModel(readmodel);
 
-            //azureTableHelper.DeleteTable(originalTableName);
+                GoOnline();
+
+                azureTableHelper.DeleteTable(originalTableName);
+            }
         }
 
         public static void RebuildSchedule()
