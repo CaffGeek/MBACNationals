@@ -45,6 +45,7 @@
     <Compile Include="BDDTest.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="InMemoryEventStore.cs" />
+    <Compile Include="IReadModel.cs" />
     <Compile Include="SqlEventStore.cs" />
     <Compile Include="IApplyEvent.cs" />
     <Compile Include="IEventStore.cs" />

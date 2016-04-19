@@ -11,6 +11,8 @@ using System.Configuration;
 using Microsoft.WindowsAzure.Storage;
 using System.Threading;
 using System;
+using Newtonsoft.Json;
+using AzureTableHelper;
 
 namespace WebFrontend
 {
@@ -90,21 +92,27 @@ namespace WebFrontend
 
         public static void RebuildReadModel(string readmodel)
         {
-            GoOffline();
+            var instance = ((IReadModel)typeof(Domain).GetField(readmodel).GetValue(null));
+            
+            instance.Reset();
+            Dispatcher.RegenerateReadModel(readmodel);
+            instance.Save();
+                        
+            //GoOffline();
 
-            var tableStorageConn = ConfigurationManager.ConnectionStrings["AzureTableStorage"].ConnectionString;
-            var storageAccount = CloudStorageAccount.Parse(tableStorageConn);
-            var tableClient = storageAccount.CreateCloudTableClient();
+            //var tableStorageConn = ConfigurationManager.ConnectionStrings["AzureTableStorage"].ConnectionString;
+            //var storageAccount = CloudStorageAccount.Parse(tableStorageConn);
+            //var tableClient = storageAccount.CreateCloudTableClient();
 
-            var azureTableHelper = new AzureTableHelper.AzureTableHelper(tableClient);
-            var originalTableName = azureTableHelper.GetTableNameFor(readmodel.ToLower());
-            azureTableHelper.IterateTableNameFor(readmodel.ToLower());
+            //var azureTableHelper = new AzureTableHelper.AzureTableHelper(tableClient);
+            //var originalTableName = azureTableHelper.GetTableNameFor(readmodel.ToLower());
+            //azureTableHelper.IterateTableNameFor(readmodel.ToLower());
 
-            Dispatcher.RepublishEvents(readmodel);
+            //Dispatcher.RepublishEvents(readmodel);
 
-            GoOnline();
+            //GoOnline();
 
-            azureTableHelper.DeleteTable(originalTableName);
+            //azureTableHelper.DeleteTable(originalTableName);
         }
 
         public static void RebuildSchedule()

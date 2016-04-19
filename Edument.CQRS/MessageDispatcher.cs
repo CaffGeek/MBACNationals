@@ -54,10 +54,15 @@ namespace Edument.CQRS
             var eventType = e.GetType();
             if (eventSubscribers.ContainsKey(eventType))
                 foreach (var sub in eventSubscribers[eventType])
+                {
                     sub(e);
+                    dynamic target = sub.Target;
+                    var y = target.subscriber as IReadModel;
+                    y.Save();
+                }
         }
 
-        private void PublishEvent(object e, string readmodel)
+        private void PublishEventToReadModel(object e, string readmodel)
         {
             var eventType = e.GetType();
 
@@ -128,9 +133,11 @@ namespace Edument.CQRS
         public void AddSubscriberFor<TEvent>(ISubscribeTo<TEvent> subscriber)
         {
             if (!eventSubscribers.ContainsKey(typeof(TEvent)))
+            {
                 eventSubscribers.Add(typeof(TEvent), new List<Action<object>>());
-            eventSubscribers[typeof(TEvent)].Add(e =>
-                subscriber.Handle((TEvent)e));
+            }
+
+            eventSubscribers[typeof(TEvent)].Add(e => subscriber.Handle((TEvent)e));
         }
 
         /// <summary>
@@ -229,10 +236,10 @@ namespace Edument.CQRS
                 PublishEvent(e);
         }
 
-        public void RepublishEvents(string readmodel)
+        public void RegenerateReadModel(string readmodel)
         {
             foreach (var e in eventStore.LoadAllEvents())
-                PublishEvent(e, readmodel);
+                PublishEventToReadModel(e, readmodel);
         }
 
         public TAggregate Load<TAggregate>(Guid id)
