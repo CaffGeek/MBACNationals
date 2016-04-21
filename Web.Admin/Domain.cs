@@ -46,52 +46,27 @@ namespace WebFrontend
             Dispatcher.ScanInstance(new ContingentCommandHandlers(CommandQueries));
             Dispatcher.ScanInstance(new ScoresCommandHandlers(CommandQueries, Dispatcher)); //TODO: Refactor Dispatcher out of Handler
             Dispatcher.ScanInstance(new TournamentCommandHandlers(CommandQueries));
-
-            ParticipantQueries = new ParticipantQueries();
-            Dispatcher.ScanInstance(ParticipantQueries);
-
-            ParticipantProfileQueries = new ParticipantProfileQueries();
-            Dispatcher.ScanInstance(ParticipantProfileQueries);
-
-            ContingentViewQueries = new ContingentViewQueries();
-            Dispatcher.ScanInstance(ContingentViewQueries);
-
-            ContingentTravelPlanQueries = new ContingentTravelPlanQueries();
-            Dispatcher.ScanInstance(ContingentTravelPlanQueries);
-
-            ContingentPracticePlanQueries = new ContingentPracticePlanQueries();
-            Dispatcher.ScanInstance(ContingentPracticePlanQueries);
-
-            ReservationQueries = new ReservationQueries();
-            Dispatcher.ScanInstance(ReservationQueries);
-
-            ScheduleQueries = new ScheduleQueries();
-            Dispatcher.ScanInstance(ScheduleQueries);
-
-            MatchQueries = new MatchQueries();
-            Dispatcher.ScanInstance(MatchQueries);
-
-            StandingQueries = new StandingQueries();
-            Dispatcher.ScanInstance(StandingQueries);
-
-            HighScoreQueries = new HighScoreQueries();
-            Dispatcher.ScanInstance(HighScoreQueries);
-
-            ParticipantScoreQueries = new ParticipantScoreQueries();
-            Dispatcher.ScanInstance(ParticipantScoreQueries);
-
-            TeamScoreQueries = new TeamScoreQueries();
-            Dispatcher.ScanInstance(TeamScoreQueries);
-
-            TournamentQueries = new TournamentQueries();
-            Dispatcher.ScanInstance(TournamentQueries);
-
-            StepladderQueries = new StepladderQueries();
-            Dispatcher.ScanInstance(StepladderQueries);
+            
+            ParticipantQueries = ReadModelFactory<ParticipantQueries>();
+            ParticipantProfileQueries = ReadModelFactory<ParticipantProfileQueries>();
+            ContingentViewQueries = ReadModelFactory<ContingentViewQueries>();
+            ContingentTravelPlanQueries = ReadModelFactory<ContingentTravelPlanQueries>();
+            ContingentPracticePlanQueries = ReadModelFactory<ContingentPracticePlanQueries>();
+            ReservationQueries = ReadModelFactory<ReservationQueries>();
+            ScheduleQueries = ReadModelFactory<ScheduleQueries>();
+            MatchQueries = ReadModelFactory<MatchQueries>();
+            StandingQueries = ReadModelFactory<StandingQueries>();
+            HighScoreQueries = ReadModelFactory<HighScoreQueries>();
+            ParticipantScoreQueries = ReadModelFactory<ParticipantScoreQueries>();
+            TeamScoreQueries = ReadModelFactory<TeamScoreQueries>();
+            TournamentQueries = ReadModelFactory<TournamentQueries>();
+            StepladderQueries = ReadModelFactory<StepladderQueries>();
         }
 
         public static void RebuildReadModel(string readmodel)
         {
+            GoOffline();
+
             var untypedModel = typeof(Domain).GetField(readmodel).GetValue(null);
             if (untypedModel is IReadModel)
             {
@@ -103,8 +78,6 @@ namespace WebFrontend
             }
             else
             {
-                GoOffline();
-
                 var tableStorageConn = ConfigurationManager.ConnectionStrings["AzureTableStorage"].ConnectionString;
                 var storageAccount = CloudStorageAccount.Parse(tableStorageConn);
                 var tableClient = storageAccount.CreateCloudTableClient();
@@ -114,11 +87,11 @@ namespace WebFrontend
                 azureTableHelper.IterateTableNameFor(readmodel.ToLower());
 
                 Dispatcher.RegenerateReadModel(readmodel);
-
-                GoOnline();
-
+                
                 azureTableHelper.DeleteTable(originalTableName);
             }
+
+            GoOnline();
         }
 
         public static void RebuildSchedule()
@@ -149,6 +122,17 @@ namespace WebFrontend
         {
             var htmFile = HttpContext.Current.Server.MapPath("~/app_offline.htm");
             File.Delete(htmFile);
+        }
+
+        private static T ReadModelFactory<T>() 
+            where T : new()
+        {
+            var t = typeof(IReadModel).IsAssignableFrom(typeof(T))
+                ? ReadModelPersister.Load<T>()
+                : new T();
+
+            Dispatcher.ScanInstance(t);
+            return t;
         }
     }
 }
