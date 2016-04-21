@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -2079,32 +2079,32 @@
     <Content Include="2016\news.php" />
     <Content Include="2016\contingents.php" />
     <Content Include="2016\photos.php" />
-    <Content Include="\2016\cache\albums" />
-	  <Content Include="\2016\galleria\LICENSE" />
-	  <Content Include="\2016\galleria\galleria-1.2.8.js" />
-	  <Content Include="\2016\galleria\galleria-1.2.8.min.js" />
-	  <Content Include="\2016\galleria\lightbox.css" />
-	  <Content Include="\2016\galleria\plugins\facebook\galleria.facebook.js" />
-	  <Content Include="\2016\galleria\plugins\facebook\loader.gif" />
-	  <Content Include="\2016\galleria\plugins\flickr\flickr-demo.html" />
-	  <Content Include="\2016\galleria\plugins\flickr\flickr-loader.gif" />
-	  <Content Include="\2016\galleria\plugins\flickr\galleria.flickr.js" />
-	  <Content Include="\2016\galleria\plugins\flickr\galleria.flickr.min.js" />
-	  <Content Include="\2016\galleria\plugins\flickr\loader.gif" />
-	  <Content Include="\2016\galleria\plugins\history\galleria.history.js" />
-	  <Content Include="\2016\galleria\plugins\history\galleria.history.min.js" />
-	  <Content Include="\2016\galleria\plugins\history\history-demo.html" />
-	  <Content Include="\2016\galleria\plugins\picasa\galleria.picasa.js" />
-	  <Content Include="\2016\galleria\plugins\picasa\galleria.picasa.min.js" />
-	  <Content Include="\2016\galleria\plugins\picasa\loader.gif" />
-	  <Content Include="\2016\galleria\plugins\picasa\picasa-demo.html" />
-	  <Content Include="\2016\galleria\themes\classic\classic-demo.html" />
-	  <Content Include="\2016\galleria\themes\classic\classic-loader.gif" />
-	  <Content Include="\2016\galleria\themes\classic\classic-map.png" />
-	  <Content Include="\2016\galleria\themes\classic\galleria.classic.css" />
-	  <Content Include="\2016\galleria\themes\classic\galleria.classic.js" />
-	  <Content Include="\2016\galleria\themes\classic\galleria.classic.min.js" />
-	  <Content Include="\2016\js\instafeed.min.js" />
+    <Content Include="2016\cache\albums" />
+    <Content Include="2016\galleria\LICENSE" />
+    <Content Include="2016\galleria\galleria-1.2.8.js" />
+    <Content Include="2016\galleria\galleria-1.2.8.min.js" />
+    <Content Include="2016\galleria\lightbox.css" />
+    <Content Include="2016\galleria\plugins\facebook\galleria.facebook.js" />
+    <Content Include="2016\galleria\plugins\facebook\loader.gif" />
+    <Content Include="2016\galleria\plugins\flickr\flickr-demo.html" />
+    <Content Include="2016\galleria\plugins\flickr\flickr-loader.gif" />
+    <Content Include="2016\galleria\plugins\flickr\galleria.flickr.js" />
+    <Content Include="2016\galleria\plugins\flickr\galleria.flickr.min.js" />
+    <Content Include="2016\galleria\plugins\flickr\loader.gif" />
+    <Content Include="2016\galleria\plugins\history\galleria.history.js" />
+    <Content Include="2016\galleria\plugins\history\galleria.history.min.js" />
+    <Content Include="2016\galleria\plugins\history\history-demo.html" />
+    <Content Include="2016\galleria\plugins\picasa\galleria.picasa.js" />
+    <Content Include="2016\galleria\plugins\picasa\galleria.picasa.min.js" />
+    <Content Include="2016\galleria\plugins\picasa\loader.gif" />
+    <Content Include="2016\galleria\plugins\picasa\picasa-demo.html" />
+    <Content Include="2016\galleria\themes\classic\classic-demo.html" />
+    <Content Include="2016\galleria\themes\classic\classic-loader.gif" />
+    <Content Include="2016\galleria\themes\classic\classic-map.png" />
+    <Content Include="2016\galleria\themes\classic\galleria.classic.css" />
+    <Content Include="2016\galleria\themes\classic\galleria.classic.js" />
+    <Content Include="2016\galleria\themes\classic\galleria.classic.min.js" />
+    <Content Include="2016\js\instafeed.min.js" />
     <Content Include="AdminApp\Views\Reports\Newsworthy.html" />
     <Content Include="AdminApp\Views\Reports\ScheduleValidation.html" />
     <Content Include="ClientApp\app.js" />
