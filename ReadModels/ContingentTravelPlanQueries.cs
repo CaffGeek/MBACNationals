@@ -22,10 +22,10 @@ namespace MBACNationals.ReadModels
 
         public class Tournament
         {
-            public Guid Id { get; internal set; }
-            public string Year { get; internal set; }
-            public List<ContingentTravelPlans> ContingentTravelPlans { get; internal set; }
-            public List<ContingentRooms> ContingentRooms { get; internal set; }
+            public Guid Id { get; set; }
+            public string Year { get; set; }
+            public List<ContingentTravelPlans> ContingentTravelPlans { get; set; }
+            public List<ContingentRooms> ContingentRooms { get; set; }
 
             public Tournament()
             {
@@ -36,9 +36,9 @@ namespace MBACNationals.ReadModels
 
         public class ContingentTravelPlans
         {
-            public Guid Id { get; internal set; }
-            public string Province { get; internal set; }
-            public IList<TravelPlan> TravelPlans { get; internal set; }
+            public Guid Id { get; set; }
+            public string Province { get; set; }
+            public IList<TravelPlan> TravelPlans { get; set; }
 
             public ContingentTravelPlans()
             {
@@ -48,19 +48,19 @@ namespace MBACNationals.ReadModels
 
         public class TravelPlan
         {
-            public string ModeOfTransportation { get; internal set; }
-            public string When { get; internal set; }
-            public string FlightNumber { get; internal set; }
-            public int NumberOfPeople { get; internal set; }
-            public int Type { get; internal set; }
+            public string ModeOfTransportation { get; set; }
+            public string When { get; set; }
+            public string FlightNumber { get; set; }
+            public int NumberOfPeople { get; set; }
+            public int Type { get; set; }
         }
 
         public class ContingentRooms
         {
-            public Guid Id { get; internal set; }
-            public string Province { get; internal set; }
-            public IList<HotelRoom> HotelRooms { get; internal set; }
-            public string Instructions { get; internal set; }
+            public Guid Id { get; set; }
+            public string Province { get; set; }
+            public IList<HotelRoom> HotelRooms { get; set; }
+            public string Instructions { get; set; }
             public ContingentRooms()
             {
                 HotelRooms = new List<HotelRoom>();
@@ -69,8 +69,8 @@ namespace MBACNationals.ReadModels
 
         public class HotelRoom
         {
-            public int RoomNumber { get; internal set; }
-            public string Type { get; internal set; }
+            public int RoomNumber { get; set; }
+            public string Type { get; set; }
         }
 
         public ContingentTravelPlanQueries()

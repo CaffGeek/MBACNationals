@@ -19,26 +19,26 @@ namespace MBACNationals.ReadModels
 
         public class Match
         {
-            public Guid Id { get; internal set; }
-            public string Division { get; internal set; }
-            public bool IsPOA { get; internal set; }
-            public int Number { get; internal set; }
-            public Team Away { get; internal set; }
-            public Team Home { get; internal set; }
-            public int Lane { get; internal set; }
-            public string Centre { get; internal set; }
-            public bool IsComplete { get; internal set; }
+            public Guid Id { get; set; }
+            public string Division { get; set; }
+            public bool IsPOA { get; set; }
+            public int Number { get; set; }
+            public Team Away { get; set; }
+            public Team Home { get; set; }
+            public int Lane { get; set; }
+            public string Centre { get; set; }
+            public bool IsComplete { get; set; }
         }
 
         public class Team
         {
-            public Guid Id { get; internal set; }
-            public string Province { get; internal set; }
-            public List<Bowler> Bowlers { get; internal set; }
-            public int Score { get; internal set; }
-            public int POA { get; internal set; }
-            public decimal Points { get; internal set; }
-            public decimal TotalPoints { get; internal set; }
+            public Guid Id { get; set; }
+            public string Province { get; set; }
+            public List<Bowler> Bowlers { get; set; }
+            public int Score { get; set; }
+            public int POA { get; set; }
+            public decimal Points { get; set; }
+            public decimal TotalPoints { get; set; }
             
             public Team()
             {
@@ -48,12 +48,12 @@ namespace MBACNationals.ReadModels
 
         public class Bowler
         {
-            public Guid Id { get; internal set; }
-            public string Name { get; internal set; }
-            public int Position { get; internal set; }
-            public int Score { get; internal set; }
-            public int POA { get; internal set; }
-            public decimal Points { get; internal set; }
+            public Guid Id { get; set; }
+            public string Name { get; set; }
+            public int Position { get; set; }
+            public int Score { get; set; }
+            public int POA { get; set; }
+            public decimal Points { get; set; }
         }
 
         public MatchQueries()

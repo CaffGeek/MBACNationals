@@ -20,10 +20,10 @@ namespace MBACNationals.ReadModels
 
         public class Team 
         {
-            public Guid Id { get; internal set; }
-            public string Name { get; internal set; }
-            public string Province { get; internal set; }
-            public List<Score> Scores { get; internal set; }
+            public Guid Id { get; set; }
+            public string Name { get; set; }
+            public string Province { get; set; }
+            public List<Score> Scores { get; set; }
 
             public Team()
             {
@@ -33,19 +33,19 @@ namespace MBACNationals.ReadModels
 
         public class Score
         {
-            public Guid MatchId { get; internal set; }
-            public int Number { get; internal set; }
-            public int Scratch { get; internal set; }
-            public int POA { get; internal set; }
-            public string WinLossTie { get; internal set; }
-            public int Lane { get; internal set; }
-            public string Centre { get; internal set; }
-            public string Opponent { get; internal set; }
-            public int OpponentScratch { get; internal set; }
-            public int OpponentPOA { get; internal set; }
-            public bool IsPOA { get; internal set; }
-            public decimal Points { get; internal set; }
-            public decimal OpponentPoints { get; internal set; }
+            public Guid MatchId { get; set; }
+            public int Number { get; set; }
+            public int Scratch { get; set; }
+            public int POA { get; set; }
+            public string WinLossTie { get; set; }
+            public int Lane { get; set; }
+            public string Centre { get; set; }
+            public string Opponent { get; set; }
+            public int OpponentScratch { get; set; }
+            public int OpponentPOA { get; set; }
+            public bool IsPOA { get; set; }
+            public decimal Points { get; set; }
+            public decimal OpponentPoints { get; set; }
         }
 
         public TeamScoreQueries()

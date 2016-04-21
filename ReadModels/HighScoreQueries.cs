@@ -20,9 +20,9 @@ namespace MBACNationals.ReadModels
 
         public class Division
         {
-            public string Name { get; internal set; }
+            public string Name { get; set; }
             public string Year { get; set; }
-            public List<Score> Scores { get; internal set; }
+            public List<Score> Scores { get; set; }
             
             public Division()
             {
@@ -32,13 +32,13 @@ namespace MBACNationals.ReadModels
 
         public class Score
         {
-            public Guid MatchId { get; internal set; }
-            public Guid ParticipantId { get; internal set; }
+            public Guid MatchId { get; set; }
+            public Guid ParticipantId { get; set; }
             public string Year { get; set; }
-            public string Name { get; internal set; }
-            public string Gender { get; internal set; }
-            public int Scratch { get; internal set; }
-            public int POA { get; internal set; }
+            public string Name { get; set; }
+            public string Gender { get; set; }
+            public int Scratch { get; set; }
+            public int POA { get; set; }
         }
 
         public HighScoreQueries()
