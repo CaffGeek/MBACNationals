@@ -106,6 +106,7 @@ include 'header.php';
       	</div>-->
 
       	<div id="instagram">
+      		<h4>Instagram</h4>
       		<script type="text/javascript">
   			  var feed = new Instafeed({
       		  get: 'user',
