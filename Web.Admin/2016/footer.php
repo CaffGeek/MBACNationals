@@ -13,7 +13,7 @@
                 <li><a href="contingents.php">Contingents</a></li>
                 <li><a href="http://www.mbaofbc.com/shopping-cart.html">Souvenirs</a></li>
                 <li><a href="centres.php">Centres</a></li>
-                <li><a href="hotel.php">Hotel</a></li>
+                <li><a href="hotel.php">Location</a></li>
     	</ul>
         <p>&copy; Site Design by Charlene McIvor & Chad Hurd</p>
       </footer>
