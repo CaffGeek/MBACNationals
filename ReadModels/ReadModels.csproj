@@ -66,32 +66,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AzureReadModel.cs" />
-    <Compile Include="BaseReadModel.cs" />
+    <Compile Include="Helpers\AzureReadModel.cs" />
+    <Compile Include="Helpers\BaseReadModel.cs" />
     <Compile Include="ContingentPracticePlanQueries.cs" />
     <Compile Include="ContingentTravelPlanQueries.cs" />
     <Compile Include="ContingentViewQueries.cs" />
-    <Compile Include="ICommandQueries.cs" />
-    <Compile Include="IStepladderQueries.cs" />
-    <Compile Include="ITeamScoreQueries.cs" />
-    <Compile Include="IParticipantScoreQueries.cs" />
+    <Compile Include="Interfaces\ICommandQueries.cs" />
+    <Compile Include="Interfaces\IStepladderQueries.cs" />
+    <Compile Include="Interfaces\ITeamScoreQueries.cs" />
+    <Compile Include="Interfaces\IParticipantScoreQueries.cs" />
     <Compile Include="HighScoreQueries.cs" />
-    <Compile Include="IHighScoreQueries.cs" />
-    <Compile Include="IStandingQueries.cs">
+    <Compile Include="Interfaces\IHighScoreQueries.cs" />
+    <Compile Include="Interfaces\IStandingQueries.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ITournamentQueries.cs" />
+    <Compile Include="Interfaces\ITournamentQueries.cs" />
     <Compile Include="ParticipantScoreQueries.cs" />
+    <Compile Include="Helpers\ReadModelPersister.cs" />
     <Compile Include="StandingQueries.cs" />
-    <Compile Include="IMatchQueries.cs" />
-    <Compile Include="IScheduleQueries.cs" />
-    <Compile Include="IParticipantProfileQueries.cs" />
+    <Compile Include="Interfaces\IMatchQueries.cs" />
+    <Compile Include="Interfaces\IScheduleQueries.cs" />
+    <Compile Include="Interfaces\IParticipantProfileQueries.cs" />
     <Compile Include="EntityMissingException.cs" />
-    <Compile Include="IContingentPracticePlanQueries.cs" />
-    <Compile Include="IContingentTravelPlanQueries.cs" />
-    <Compile Include="IContingentViewQueries.cs" />
-    <Compile Include="IParticipantQueries.cs" />
-    <Compile Include="IReservationQueries.cs" />
+    <Compile Include="Interfaces\IContingentPracticePlanQueries.cs" />
+    <Compile Include="Interfaces\IContingentTravelPlanQueries.cs" />
+    <Compile Include="Interfaces\IContingentViewQueries.cs" />
+    <Compile Include="Interfaces\IParticipantQueries.cs" />
+    <Compile Include="Interfaces\IReservationQueries.cs" />
     <Compile Include="MatchQueries.cs" />
     <Compile Include="ParticipantProfileQueries.cs" />
     <Compile Include="ParticipantQueries.cs" />

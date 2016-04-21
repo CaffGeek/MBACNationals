@@ -1,12 +1,8 @@
-﻿using AzureTableHelper;
-using Edument.CQRS;
+﻿using Edument.CQRS;
 using Events.Participant;
 using Events.Scores;
-using Microsoft.WindowsAzure.Storage;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 
 namespace MBACNationals.ReadModels
@@ -74,18 +70,7 @@ namespace MBACNationals.ReadModels
 
         public void Save()
         {
-            //TODO: Move to baseclass
-            var jsonModel = JsonConvert.SerializeObject(this);
-
-            var storageConnection = ConfigurationManager.ConnectionStrings["AzureTableStorage"].ConnectionString;
-            var storageAccount = CloudStorageAccount.Parse(storageConnection);
-            var blobClient = storageAccount.CreateCloudBlobClient();
-
-            var azureBlobHelper = new AzureBlobHelper(blobClient);
-            var container = azureBlobHelper.GetContainerFor("ReadModels");
-
-            var modelBlob = container.GetBlockBlobReference(this.GetType().Name);
-            modelBlob.UploadText(jsonModel);
+            ReadModelPersister.Save(this);
         }
 
         public void Handle(ParticipantCreated e)
