@@ -32,16 +32,19 @@ include 'header.php';
         <h2>Location</h2>
         <h4 id="sheraton">Sheraton Vancouver Guildford Hotel</h4>
         <div class="row">
-        	<div class="col-md-9 col-sm-9">
+        	<div class="col-md-3 col-sm-3">
       			<img src="images/sheraton_logo.png" alt="sheraton logo" />
       			<p>Visit their website at <a href="http://www.sheratonguildford.com" target="_blank">www.sheratonguildford.com</a></p></div>
       		</div>
-        	<div class="col-md-3 col-sm-3">
+        	<div class="col-md-9 col-sm-9">
       			<img src="images/sheraton.jpg" alt="Sheraton Vancouver Guildford Hotel" />
       		</div>
       	</div>
+        <div class="row">
+        <div class="col-md-12">
         <h4 id="restaurants">Local Restaurants</h4>
       	<img src="images/restaurants.jpg" alt="restaurant map" />
+      	</div>
       	</div>
       </div>
 
