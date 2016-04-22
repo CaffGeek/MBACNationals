@@ -128,9 +128,9 @@ namespace WebFrontend
             where T : new()
         {
             var t = typeof(IReadModel).IsAssignableFrom(typeof(T))
-                ? ReadModelPersister.Load<T>()
+                ? ReadModelPersister.Load<T>() 
                 : new T();
-
+            
             Dispatcher.ScanInstance(t);
             return t;
         }
