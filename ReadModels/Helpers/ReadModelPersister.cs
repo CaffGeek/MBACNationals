@@ -1,4 +1,5 @@
 ﻿using AzureTableHelper;
+using Edument.CQRS;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Newtonsoft.Json;
@@ -17,11 +18,19 @@ namespace MBACNationals.ReadModels
         }
 
         public static T Load<T>()
+            where T : new()
         {
             var container = GetContainer();
             CloudBlockBlob modelBlob = container.GetBlockBlobReference(typeof(T).Name);
-            var text = modelBlob.DownloadText();
-            return JsonConvert.DeserializeObject<T>(text);
+            if (modelBlob.Exists())
+            {
+                var text = modelBlob.DownloadText();
+                return JsonConvert.DeserializeObject<T>(text);
+            }
+            else
+            {
+                return new T();
+            }
         }
 
         private static CloudBlobContainer GetContainer()

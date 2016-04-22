@@ -7,7 +7,8 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class ContingentViewQueries : BaseReadModel<ContingentViewQueries>,
+    public class ContingentViewQueries :
+        IReadModel,
         IContingentViewQueries,
         ISubscribeTo<ContingentCreated>,
         ISubscribeTo<ContingentAssignedToTournament>,
@@ -38,12 +39,11 @@ namespace MBACNationals.ReadModels
             public Guid Tournament { get; set; }
             public string Province { get; set; }
             public List<Team> Teams { get; set; }
-            public List<Participant> Guests { get; set; }
+            public List<Participant> Guests { get; internal set; }
 
             public Contingent()
             {
                 Teams = new List<Team>();
-                Guests = new List<Participant>();
             }
         }
 
@@ -52,9 +52,10 @@ namespace MBACNationals.ReadModels
             public Guid Id { get; set; }
             public string Name { get; set; }
             public Guid ContingentId { get; set; }
-            public IList<Participant> Bowlers { get; set; }
-            public Participant Coach { get; set; }
-            public Guid Alternate { get; set; }
+            public List<Participant> Bowlers { get; internal set; }
+            public Guid? CoachId { get; set; }
+            public Participant Coach { get; internal set; }
+            public Guid? Alternate { get; set; }
             public string Gender { get; set; }
             public int SizeLimit { get; set; }
             public bool RequiresShirtSize { get; set; }
@@ -63,16 +64,12 @@ namespace MBACNationals.ReadModels
             public bool RequiresBio { get; set; }
             public bool RequiresGender { get; set; }
             public bool IncludesSinglesRep { get; set; }
-
-            public Team()
-            {
-                Bowlers = new List<Participant>();
-            }
         }
 
         public class Participant
         {
             public Guid Id { get; set; }
+            public Guid ContingentId { get; set; }
             public Guid TeamId { get; set; }
             public string Name { get; set; }
             public bool IsRookie { get; set; }
@@ -80,7 +77,7 @@ namespace MBACNationals.ReadModels
             public bool IsManager { get; set; }
             public bool IsGuest { get; set; }
             public int Average { get; set; }
-            public Guid ReplacedBy { get; set; }
+            public Guid? ReplacedBy { get; set; }
             public DateTime? Birthday { get; set; }
             public int QualifyingPosition { get; set; }
         }
@@ -93,6 +90,7 @@ namespace MBACNationals.ReadModels
         public void Reset()
         {
             Contingents = new List<Contingent>();
+            Participants = new Dictionary<Guid, Participant>();
         }
 
         public void Save()
@@ -102,8 +100,25 @@ namespace MBACNationals.ReadModels
 
         public Contingent GetContingent(Guid tournamentId, string province)
         {
-            return Contingents.SingleOrDefault(x => x.Tournament == tournamentId && x.Province == province);
-            //TODO: .OrderBy(x => x.QualifyingPosition)
+            var contingent = Contingents
+                .FirstOrDefault(x => x.Tournament == tournamentId && x.Province == province);
+
+            contingent.Teams.ForEach(team =>
+            {
+                if (team.CoachId.HasValue)
+                    team.Coach = Participants[team.CoachId.Value];
+
+                team.Bowlers = Participants.Where(x => x.Value.TeamId == team.Id)
+                    .Select(x => x.Value)
+                    .OrderBy(x => x.QualifyingPosition)
+                    .ToList();
+            });
+
+            contingent.Guests = Participants.Where(x => x.Value.ContingentId == contingent.Id)
+                    .Select(x => x.Value)
+                    .Except(contingent.Teams.SelectMany(x => x.Bowlers.Concat<Participant>(new[] { x.Coach })))
+                    .ToList();
+            return contingent;
         }
         
         public void Handle(ContingentCreated e)
@@ -160,20 +175,15 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ParticipantAssignedToContingent e)
         {
-            //var contingent = Contingents.Single(x => x.Id == e.ContingentId);
-            //var participant = Participants[e.Id];
-            //contingent.Guests.Add(participant);
+            var participant = Participants[e.Id];
+            participant.ContingentId = e.ContingentId;
         }
 
         public void Handle(ParticipantAssignedToTeam e)
         {
-            //var team = Contingents.SelectMany(x => x.Teams)
-            //    .Single(x => x.Id == e.TeamId);
-
-            //var participant = Participants[e.Id];
-            //participant.TeamId = e.TeamId;
-            //participant.QualifyingPosition = team.Bowlers.Count + 1;
-            //team.Bowlers.Add(participant);
+            var participant = Participants[e.Id];
+            participant.TeamId = e.TeamId;
+            participant.QualifyingPosition = Participants.Count(x => x.Value.TeamId == e.TeamId);
         }
 
         public void Handle(ParticipantDesignatedAsAlternate e)
@@ -185,10 +195,9 @@ namespace MBACNationals.ReadModels
 
         public void Handle(CoachAssignedToTeam e)
         {
-            //var team = Contingents.SelectMany(x => x.Teams)
-            //    .Single(x => x.Id == e.TeamId);
-            //var coach = Participants[e.Id];
-            //team.Coach = coach;
+            var team = Contingents.SelectMany(x => x.Teams)
+                .Single(x => x.Id == e.TeamId);
+            team.CoachId = e.Id;
         }
 
         public void Handle(ParticipantRenamed e)
@@ -228,7 +237,7 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ParticipantReplacedWithAlternate e)
         {
-            if (Participants.ContainsKey(e.AlternateId)) Participants[e.Id].TeamId = e.TeamId;
+            if (Participants.ContainsKey(e.AlternateId)) Participants[e.AlternateId].TeamId = e.TeamId;
             if (Participants.ContainsKey(e.Id)) Participants[e.Id].ReplacedBy = e.AlternateId;
         }
 
