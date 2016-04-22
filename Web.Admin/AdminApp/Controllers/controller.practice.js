@@ -23,7 +23,10 @@
             $scope.model.allowedTimes = [11, 12, 13, 14, 15, 16];
             $scope.model.practiceLocations = ['Sherwood'];
         }
-            
+        else if (year == 2016) {
+            $scope.model.allowedTimes = [11, 12, 13, 14, 15, 16];
+            $scope.model.practiceLocations = ['Willowbrook', 'Scottsdale', 'Clover'];
+        }
 
         if (year && province) {
             dataService.LoadPracticePlan(year, province).

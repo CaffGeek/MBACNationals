@@ -9,7 +9,21 @@
                     <a href="#" id="{{p.Id}}" class="occupant" data-draggable="" data-ng-repeat="p in model.participants | filter:unassignedRoom">{{p.Name}}</a>
 		        </div>    
                 <div>
+                    <span ng-if="model.year == '2016'">
+                        <address>
+                            <strong>Sheraton Guildford</strong><br>
+                            15269 104th Avenue<br>
+                            Surrey BC<br>
+                            <abbr title="Phone">P:</abbr> (604) 582-9288
+                        </address>
 
+                        <ul class="list-unstyled">
+                            <li>1 King Bed, Business</li>
+                            <li>1 Queen Bed, standard w/pullout sofa</li>
+                            <li>2 Double Beds, standard</li>
+                            <li>2 Double Beds, accessible</li>
+                        </ul>
+                    </span>
                     <span ng-if="model.year == '2015'">
                         <address>
                             <strong>Holiday Inn</strong><br>
@@ -75,6 +89,8 @@
                         <h6>
                             Room #{{calcBin(y,x)}}
                             <select id="binType{{calcBin(y,x)}}" data-ng-model="getRoomByBin(y,x).Type" data-ng-change="setRoomType((y-1)*5+x)">
+                                <option ng-if="model.year == '2016'" value="Unknown">Unknown</option>
+
                                 <option ng-if="model.year == '2015'" value="King">1 King Bed, Business</option>
                                 <option ng-if="model.year == '2015'" value="Queen">1 Queen Bed, w/pullout sofa</option>
                                 <option ng-if="model.year == '2015'" value="TwoDouble">2 Double Beds</option>
