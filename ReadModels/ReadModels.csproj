@@ -87,7 +87,7 @@
     <Compile Include="Interfaces\IMatchQueries.cs" />
     <Compile Include="Interfaces\IScheduleQueries.cs" />
     <Compile Include="Interfaces\IParticipantProfileQueries.cs" />
-    <Compile Include="EntityMissingException.cs" />
+    <Compile Include="Helpers\EntityMissingException.cs" />
     <Compile Include="Interfaces\IContingentPracticePlanQueries.cs" />
     <Compile Include="Interfaces\IContingentTravelPlanQueries.cs" />
     <Compile Include="Interfaces\IContingentViewQueries.cs" />
