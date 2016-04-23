@@ -39,8 +39,7 @@ namespace WebFrontend
         {            
             Dispatcher = new MessageDispatcher(new SqlEventStore(Properties.Settings.Default.DefaultConnection));
 
-            CommandQueries = new CommandQueries();
-            Dispatcher.ScanInstance(CommandQueries);
+            CommandQueries = ReadModelFactory<CommandQueries>();
 
             Dispatcher.ScanInstance(new ParticipantCommandHandlers(CommandQueries));
             Dispatcher.ScanInstance(new ContingentCommandHandlers(CommandQueries));
