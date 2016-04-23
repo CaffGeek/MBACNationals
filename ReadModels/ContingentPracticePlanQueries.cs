@@ -7,7 +7,8 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class ContingentPracticePlanQueries : BaseReadModel<ContingentPracticePlanQueries>,
+    public class ContingentPracticePlanQueries : 
+        IReadModel,
         IContingentPracticePlanQueries,
         ISubscribeTo<TournamentCreated>,
         ISubscribeTo<ContingentCreated>,
@@ -16,174 +17,121 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<TeamRemoved>,
         ISubscribeTo<TeamPracticeRescheduled>
     {
+        public List<ContingentPracticePlan> ContingentPracticePlans { get; set; }
+        public Dictionary<Guid, string> Tournaments { get; set; }
+        
         public class ContingentPracticePlan
         {
-            public Guid Id { get; internal set; }
-            public string Province { get; internal set; }
-            public IList<Team> Teams { get; internal set; }
+            public Guid Id { get; set; }
+            public Guid TournamentId { get; set; }
+            public string Year { get; set; }
+            public string Province { get; set; }
+            public List<Team> Teams { get; set; }
+
+            public ContingentPracticePlan()
+            {
+                Teams = new List<Team>();
+            }
         }
 
         public class Team
         {
-            public Guid Id { get; internal set; }
-            public string Name { get; internal set; }
-            public string PracticeLocation { get; set; }
-            public int PracticeTime { get; set; }
-        }
-        
-        private class TSTeam : Entity
-        {
-            public Guid Id
-            {
-                get { return Guid.Parse(RowKey); }
-                internal set { RowKey = value.ToString(); }
-            }
-            public Guid ContingentId
-            {
-                get { return Guid.Parse(PartitionKey); }
-                internal set { PartitionKey = value.ToString(); }
-            }
+            public Guid Id { get; set; }
             public string Name { get; set; }
             public string PracticeLocation { get; set; }
             public int PracticeTime { get; set; }
         }
 
-        private class TSTournament : Entity
+        public ContingentPracticePlanQueries()
         {
-            public string Year { get; set; }
-            public Guid Id { get; set; }
+            Reset();
         }
 
-        private class TSContingent : Entity
+        public void Reset()
         {
-            public Guid Id
-            {
-                get { return Guid.Parse(RowKey); }
-                internal set { RowKey = value.ToString(); }
-            }
-            public Guid TournamentId
-            {
-                get { return Guid.Parse(PartitionKey); }
-                internal set { PartitionKey = value.ToString(); }
-            }
-            public string Province { get; set; }
+            ContingentPracticePlans = new List<ContingentPracticePlan>();
+            Tournaments = new Dictionary<Guid, string>();
         }
 
+        public void Save()
+        {
+            ReadModelPersister.Save(this);
+        }
+                
         public List<ContingentPracticePlan> GetAllSchedules(string year)
         {
-            var tournament = Storage.Query<TSTournament>(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
-            var contingents = Storage.Query<TSContingent>(x => x.TournamentId == tournament.Id);
-
-            var contingentPracticePlans = new List<ContingentPracticePlan>();
-            foreach (var contingent in contingents)
-            {
-                var teams = Storage.Query<TSTeam>(x => x.ContingentId == contingent.Id)
-                   .Select(x => new Team
-                   {
-                       Id = x.Id,
-                       Name = x.Name,
-                       PracticeLocation = x.PracticeLocation,
-                       PracticeTime = x.PracticeTime
-                   })
-                   .ToList();
-
-                contingentPracticePlans.Add(new ContingentPracticePlan
-                {
-                    Id = contingent.Id,
-                    Province = contingent.Province,
-                    Teams = teams,
-                });
-            }
-
-            return contingentPracticePlans;
+            return ContingentPracticePlans.Where(x => x.Year == year).ToList();
         }
 
         public ContingentPracticePlan GetSchedule(string year, string province)
         {
-            var tournament = Storage.Query<TSTournament>(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
-
-            var contingent = Storage.Query<TSContingent>(x =>
-                x.TournamentId == tournament.Id
-                && x.Province.Equals(province, StringComparison.OrdinalIgnoreCase))
-                .FirstOrDefault();
-
-            var teams = Storage.Query<TSTeam>(x => x.ContingentId == contingent.Id)
-                .Select(x => new Team
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    PracticeLocation = x.PracticeLocation,
-                    PracticeTime = x.PracticeTime
-                })
-                .ToList();
-
-            return new ContingentPracticePlan
-            {
-                Id = contingent.Id,
-                Province = contingent.Province,
-                Teams = teams,
-            };
+            return ContingentPracticePlans.SingleOrDefault(x => x.Year == year && x.Province == province);
         }
-
+        
         public void Handle(TournamentCreated e)
         {
-            Storage.Create(e.Id, e.Id, new TSTournament { Year = e.Year, Id = e.Id });
-
-            //HACK: Track current tournament
-            Storage.Create(Guid.Empty, Guid.Empty, new TSTournament { Year = e.Year, Id = e.Id });
+            if (Tournaments.ContainsValue(e.Year))
+            {
+                var tournament = Tournaments.SingleOrDefault(x => x.Value == e.Year);
+                if (tournament.Key == Guid.Empty && tournament.Value == "2014")
+                {
+                    Tournaments.Remove(Guid.Empty);
+                    Tournaments.Add(e.Id, e.Year);
+                }
+            }
+            else
+            {
+                Tournaments.Add(e.Id, e.Year);
+            }
         }
-
+        
         public void Handle(ContingentCreated e)
         {
             if (string.IsNullOrWhiteSpace(e.Province))
                 return;
 
-            var tournamentId = GetCurrentTournamentId();
-
-            Storage.Create(tournamentId, e.Id, new TSContingent
-            {
-                Province = e.Province
-            });
+            ContingentPracticePlans.Add(
+                new ContingentPracticePlan
+                    {
+                        Id = e.Id,
+                        Province = e.Province,                        
+                    });
         }
 
         public void Handle(ContingentAssignedToTournament e)
         {
-            var contingent = Storage.Read<TSContingent>(Guid.Empty, e.Id);
-            if (contingent != null)
-            {
-                Storage.Delete<TSContingent>(Guid.Empty, e.Id);
-                contingent.TournamentId = e.TournamentId;
-                Storage.Create(e.TournamentId, e.Id, contingent);
-            }
+            var tournament = Tournaments.ContainsKey(e.TournamentId)
+                ? Tournaments[e.TournamentId]
+                : "2014";
+
+            var contingent = ContingentPracticePlans.SingleOrDefault(x => x.Id == e.Id);
+
+            contingent.TournamentId = e.TournamentId;
+            contingent.Year = tournament;
         }
 
         public void Handle(TeamCreated e)
         {
-            Storage.Create(e.Id, e.TeamId, new TSTeam
+            var contingent = ContingentPracticePlans.SingleOrDefault(x => x.Id == e.Id);
+            contingent.Teams.Add(new Team
             {
+                Id = e.TeamId,
                 Name = e.Name
             });
         }
 
         public void Handle(TeamRemoved e)
-        {
-            Storage.Delete<TSTeam>(e.Id, e.TeamId);
+        {            
+            var contingent = ContingentPracticePlans.SingleOrDefault(x => x.Id == e.Id);
+            contingent.Teams.RemoveAll(x => x.Id == e.TeamId);
         }
 
         public void Handle(TeamPracticeRescheduled e)
         {
-            Storage.Update<TSTeam>(e.Id, e.TeamId, team =>
-            {
-                team.PracticeLocation = e.PracticeLocation;
-                team.PracticeTime = e.PracticeTime;
-            });
-        }
-
-        private Guid GetCurrentTournamentId()
-        {
-            var tournament = Storage.Read<TSTournament>(Guid.Empty, Guid.Empty)
-                ?? new TSTournament { Id = Guid.Empty };
-            return tournament.Id;
+            var contingent = ContingentPracticePlans.SingleOrDefault(x => x.Id == e.Id);
+            var team = contingent.Teams.SingleOrDefault(x => x.Id == e.TeamId);
+            team.PracticeLocation = e.PracticeLocation;
+            team.PracticeTime = e.PracticeTime;
         }
     }
 }

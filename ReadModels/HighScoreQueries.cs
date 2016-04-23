@@ -14,9 +14,9 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<MatchCreated>,
         ISubscribeTo<ParticipantGameCompleted>
     {
-        public List<Division> Divisions { get; private set; }
-        public Dictionary<Guid, string> Tournaments { get; private set; }
-        public Dictionary<Guid, string> Matches { get; private set; }
+        public List<Division> Divisions { get; set; }
+        public Dictionary<Guid, string> Tournaments { get; set; }
+        public Dictionary<Guid, string> Matches { get; set; }
 
         public class Division
         {

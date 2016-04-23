@@ -14,7 +14,7 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<ParticipantAverageChanged>,
         ISubscribeTo<ParticipantGameCompleted>
     {
-        public List<Participant> Participants { get; private set; }
+        public List<Participant> Participants { get; set; }
 
         public class Participant
         {
