@@ -17,8 +17,8 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<RoomTypeChanged>,
         ISubscribeTo<ReservationInstructionsChanged>
     {
-        public List<Tournament> Tournaments { get; private set; }
-        public Dictionary<Guid, string> Contingents { get; private set; }
+        public List<Tournament> Tournaments { get; set; }
+        public Dictionary<Guid, string> Contingents { get; set; }
 
         public class Tournament
         {

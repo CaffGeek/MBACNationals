@@ -30,8 +30,8 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<ParticipantBirthdayChanged>,
         ISubscribeTo<ParticipantQualifyingPositionChanged>
     {
-        public List<Contingent> Contingents { get; private set; }
-        public Dictionary<Guid, Participant> Participants { get; private set; }
+        public List<Contingent> Contingents { get; set; }
+        public Dictionary<Guid, Participant> Participants { get; set; }
 
         public class Contingent
         {
