@@ -8,6 +8,7 @@ using System.Text;
 namespace MBACNationals.ReadModels
 {
     public class TournamentQueries : BaseReadModel<TournamentQueries>,
+        IReadModel,
         ITournamentQueries,
         ISubscribeTo<TournamentCreated>,
         ISubscribeTo<SponsorCreated>,
@@ -15,109 +16,66 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<NewsCreated>,
         ISubscribeTo<NewsDeleted>
     {
+        public List<Tournament> Tournaments { get; set; }
+        public List<News> NewsArticles { get; set; }
+        public List<Sponsor> Sponsors { get; set; }
+
         public class Tournament
         {
-            public Guid Id { get; internal set; }
-            public string Year { get; internal set; }
-        }
-
-        public class Sponsor
-        {
-            public Guid Id { get; internal set; }
-            public string Name { get; internal set; }
-            public string Website { get; internal set; }
+            public Guid Id { get; set; }
+            public string Year { get; set; }
         }
 
         public class News
         {
-            public Guid Id { get; internal set; }
-            public string Title { get; internal set; }
-            public string Content { get; internal set; }
-            public DateTime Created { get; internal set; }
-        }
-
-        private class TSTournament : Entity
-        {
-            public Guid Id
-            {
-                get { return Guid.Parse(RowKey); }
-                internal set { RowKey = value.ToString(); PartitionKey = value.ToString(); }
-            }
-            public string Year { get; set; }
-        }
-
-        private class TSSponsor : Entity
-        {
-            public Guid Id
-            {
-                get { return Guid.Parse(RowKey); }
-                internal set { RowKey = value.ToString(); }
-            }
-            public Guid TournamentId
-            {
-                get { return Guid.Parse(PartitionKey); }
-                internal set { PartitionKey = value.ToString(); }
-            }
-            public string Name { get; set; }
-            public string Website { get; set; }
-        }
-
-        private class TSNews : Entity
-        {
-            public Guid Id
-            {
-                get { return Guid.Parse(RowKey); }
-                internal set { RowKey = value.ToString(); }
-            }
-            public Guid TournamentId
-            {
-                get { return Guid.Parse(PartitionKey); }
-                internal set { PartitionKey = value.ToString(); }
-            }
+            public Guid Id { get; set; }
+            public Guid TournamentId { get; set; }
             public string Title { get; set; }
             public string Content { get; set; }
             public DateTime Created { get; set; }
         }
 
+        public class Sponsor
+        {
+            public Guid Id { get; set; }
+            public Guid TournamentId { get; set; }
+            public string Name { get; set; }
+            public string Website { get; set; }
+        }
+        
         public class TSSponsorLogo : Blob { }
+
+        public TournamentQueries()
+        {
+            Reset();
+        }
+
+        public void Reset()
+        {
+            Tournaments = new List<Tournament>();
+            NewsArticles = new List<News>();
+            Sponsors = new List<Sponsor>();
+        }
+
+        public void Save()
+        {
+            ReadModelPersister.Save(this);
+        }
 
         public Tournament GetTournament(string year)
         {
-            return Storage.Query<TSTournament>(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase))
-                .Select(x => new Tournament
-                {
-                    Id = Guid.Parse(x.RowKey),
-                    Year = x.Year
-                })
-                .FirstOrDefault();
+            return Tournaments.SingleOrDefault(x => x.Year == year);
         }
 
         public List<Tournament> GetTournaments()
         {
-            return Storage.Query<TSTournament>()
-                .Select(x => new Tournament
-                {
-                    Id = Guid.Parse(x.RowKey),
-                    Year = x.Year
-                })
-                .ToList();
+            return Tournaments;
         }
 
         public List<Sponsor> GetSponsors(string year)
         {
-            var tournament = Storage.Query<TSTournament>(x => x.Year == year).FirstOrDefault();
-            if (tournament == null)
-                return Enumerable.Empty<Sponsor>().ToList();
-
-            var sponsors = Storage.Query<TSSponsor>(x => x.TournamentId == tournament.Id)
-                .Select(x => new Sponsor
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Website = x.Website,
-                })
-                .ToList();
-
+            var tournament = Tournaments.Single(x => x.Year == year);
+            var sponsors = Sponsors.Where(x => x.TournamentId == tournament.Id).ToList();
             return sponsors;
         }
 
@@ -129,35 +87,26 @@ namespace MBACNationals.ReadModels
 
         public List<News> GetNews(string year)
         {
-            var tournament = Storage.Query<TSTournament>(x => x.Year == year).FirstOrDefault();
-            if (tournament == null)
-                return Enumerable.Empty<News>().ToList();
-
-            var news = Storage.Query<TSNews>(x => x.TournamentId == tournament.Id)
-                .Select(x => new News
-                {
-                    Id = x.Id,
-                    Title = x.Title,
-                    Content = x.Content,
-                    Created = x.Created
-                })
-                .ToList();
-
+            var tournament = Tournaments.Single(x => x.Year == year);
+            var news = NewsArticles.Where(x => x.TournamentId == tournament.Id).ToList();
             return news;
         }
 
         public void Handle(TournamentCreated e)
         {
-            Storage.Create(e.Id, e.Id, new TSTournament
+            Tournaments.Add(new Tournament
             {
+                Id = e.Id,
                 Year = e.Year
             });
         }
 
         public void Handle(SponsorCreated e)
         {
-            Storage.Create(e.Id, e.SponsorId, new TSSponsor
+            Sponsors.Add(new Sponsor
             {
+                Id = e.SponsorId,
+                TournamentId = e.Id,
                 Name = e.Name,
                 Website = e.Website
             });
@@ -171,13 +120,16 @@ namespace MBACNationals.ReadModels
 
         public void Handle(SponsorDeleted e)
         {
-            Storage.Delete<TSSponsor>(e.Id, e.SponsorId);
+            Sponsors.RemoveAll(x => x.Id == e.SponsorId);
+            //TODO: Delete logo
         }
 
         public void Handle(NewsCreated e)
         {
-            Storage.Create(e.Id, e.NewsId, new TSNews
+            NewsArticles.Add(new News
             {
+                Id = e.NewsId,
+                TournamentId = e.Id,
                 Title = e.Title,
                 Content = e.Content,
                 Created = e.Created
@@ -186,7 +138,7 @@ namespace MBACNationals.ReadModels
 
         public void Handle(NewsDeleted e)
         {
-            Storage.Delete<TSNews>(e.Id, e.NewsId);
+            NewsArticles.RemoveAll(x => x.Id == e.NewsId);
         }
     }
 }
