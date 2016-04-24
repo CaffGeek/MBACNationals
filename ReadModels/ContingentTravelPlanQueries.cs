@@ -61,6 +61,7 @@ namespace MBACNationals.ReadModels
             public string Province { get; set; }
             public IList<HotelRoom> HotelRooms { get; set; }
             public string Instructions { get; set; }
+
             public ContingentRooms()
             {
                 HotelRooms = new List<HotelRoom>();
@@ -80,11 +81,7 @@ namespace MBACNationals.ReadModels
 
         public void Reset()
         {
-            Tournaments = new List<Tournament>() { 
-                new Tournament {
-                    Year = "2014"
-                }
-            };
+            Tournaments = new List<Tournament>();
             Contingents = new Dictionary<Guid, string>();
         }
 
@@ -143,7 +140,13 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ContingentAssignedToTournament e)
         {
-            var tournament = Tournaments.Single(x => x.Id == e.TournamentId);
+            var tournament = Tournaments.SingleOrDefault(x => x.Id == e.TournamentId);
+            if (tournament == null)
+            {
+                tournament = new Tournament { Year = "2014" };
+                Tournaments.Add(tournament);
+            }
+
             var contingent = Contingents.Single(x => x.Key == e.Id);
 
             tournament.ContingentTravelPlans.Add(new ContingentTravelPlans
@@ -224,18 +227,35 @@ namespace MBACNationals.ReadModels
 
             var tournament = GetTournamentFromContingentId(e.Id);
             var contingentRooms = tournament.ContingentRooms.FirstOrDefault(x => x.Id == e.Id);
+            if (contingentRooms == null)
+            {
+                var contingent = Contingents.Single(x => x.Key == e.Id);
+                contingentRooms = new ContingentRooms
+                {
+                    Id = contingent.Key,
+                    Province = contingent.Value,
+                };
+                tournament.ContingentRooms.Add(contingentRooms);
+            }
             contingentRooms.Instructions = e.Instructions;
         }
 
         private Tournament GetTournamentFromContingentId(Guid contingentId)
         {
-            return (from t in Tournaments
-                    where t.ContingentTravelPlans.Any(x => x.Id == contingentId)
-                    select t).SingleOrDefault()
-                    ??
-                   (from t in Tournaments
-                    where t.Year == 2014.ToString()
-                    select t).SingleOrDefault();
+            var tournament = (from t in Tournaments
+                              where t.ContingentTravelPlans.Any(x => x.Id == contingentId)
+                              select t).SingleOrDefault()
+                              ?? (from t in Tournaments
+                                  where t.Year == "2014"
+                                  select t).SingleOrDefault();
+
+            if (tournament == null)
+            {
+                tournament = new Tournament { Year = "2014" };
+                Tournaments.Add(tournament);
+            }
+
+            return tournament;
         }
     }
 }
