@@ -150,7 +150,7 @@ namespace WebFrontend.Controllers
             Domain.Dispatcher.SendCommand(
                 new AddParticipantToTeam { 
                     Id = command.AlternateId,
-                    TeamId = Guid.Parse(participant.TeamId)
+                    TeamId = participant.TeamId
                 });
 
             var alternate = Domain.ParticipantQueries.GetParticipant(command.AlternateId);
