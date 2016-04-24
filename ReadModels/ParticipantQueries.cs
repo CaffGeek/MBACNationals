@@ -8,7 +8,8 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class ParticipantQueries : BaseReadModel<ParticipantQueries>,
+    public class ParticipantQueries : 
+        IReadModel,
         IParticipantQueries,
         ISubscribeTo<ParticipantCreated>,
         ISubscribeTo<ParticipantRenamed>,
@@ -33,31 +34,41 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<TournamentCreated>,
         ISubscribeTo<ParticipantQualifyingPositionChanged>
     {
+        public List<Participant> Participants { get; set; }
+        public List<Tournament> Tournaments { get; set; }
+        public List<Contingent> Contingents { get; set; }
+        public List<Team> Teams { get; set; }
+
         public class Participant
         {
-            public Guid Id { get; internal set; }
-            public string Name { get; internal set; }
-            public string Gender { get; internal set; }
-            public string ContingentId { get; internal set; }
-            public string Province { get; internal set; }
-            public string TeamId { get; internal set; }
-            public string TeamName { get; internal set; }
-            public bool IsDelegate { get; internal set; }
-            public bool IsManager { get; internal set; }
-            public bool IsCoach { get; internal set; }
-            public int YearsQualifying { get; internal set; }
-            public int LeaguePinfall { get; internal set; }
-            public int LeagueGames { get; internal set; }
-            public int TournamentPinfall { get; internal set; }
-            public int TournamentGames { get; internal set; }
-            public int Average { get; internal set; }
-            public int RoomNumber { get; internal set; }
-            public bool IsGuest { get; internal set; }
-            public PackageInformation Package { get; internal set; }
-            public string ShirtSize { get; internal set; }
-            public string Birthday { get; internal set; }
+            public Guid Id { get; set; }
+            public string Name { get; set; }
+            public string Gender { get; set; }
+            public Guid ContingentId { get; set; }
+            public string Province { get; set; }
+            public Guid TeamId { get; set; }
+            public string TeamName { get; set; }
+            public bool IsDelegate { get; set; }
+            public bool IsManager { get; set; }
+            public bool IsCoach { get; set; }
+            public int YearsQualifying { get; set; }
+            public int LeaguePinfall { get; set; }
+            public int LeagueGames { get; set; }
+            public int TournamentPinfall { get; set; }
+            public int TournamentGames { get; set; }
+            public int Average { get; set; }
+            public int RoomNumber { get; set; }
+            public bool IsGuest { get; set; }
+            public PackageInformation Package { get; set; }
+            public string ShirtSize { get; set; }
+            public string Birthday { get; set; }
             public bool IsAlternate { get; set; }
-            public int QualifyingPosition { get; internal set; }
+            public int QualifyingPosition { get; set; }
+            
+            public Participant()
+            {
+                Package = new PackageInformation();
+            }
         }
 
         public class PackageInformation
@@ -72,405 +83,274 @@ namespace MBACNationals.ReadModels
             public bool Option4 { get; set; }
         }
 
-        private class TSParticipant : Entity
+        public class Tournament
         {
-            public Guid Id
-            {
-                get { return Guid.Parse(RowKey); }
-                internal set { RowKey = value.ToString(); PartitionKey = value.ToString(); }
-            }
-            public string Name { get; set; }
-            public string Gender { get; set; }
-            public string ContingentId { get; set; }
-            public string Province { get; set; }
-            public string TeamId { get; set; }
-            public string TeamName { get; set; }
-            public bool IsDelegate { get; set; }
-            public bool IsManager { get; set; }
-            public bool IsCoach { get; set; }
-            public int YearsQualifying { get; set; }
-            public int LeaguePinfall { get; set; }
-            public int LeagueGames { get; set; }
-            public int TournamentPinfall { get; set; }
-            public int TournamentGames { get; set; }
-            public int Average { get; set; }
-            public int RoomNumber { get; set; }
-            public bool IsGuest { get; set; }
-            public bool ManitobaDinner { get; set; }
-            public bool ManitobaDance { get; set; }
-            public bool FinalBanquet { get; set; }
-            public bool Transportation { get; set; }
-            public bool Option1 { get; set; }
-            public bool Option2 { get; set; }
-            public bool Option3 { get; set; }
-            public bool Option4 { get; set; }
-            public string ShirtSize { get; set; }
-            public string Birthday { get; set; }
-            public int QualifyingPosition { get; set; }
-        }
-
-        private class TSContingent : Entity
-        {
-            public Guid Id
-            {
-                get { return Guid.Parse(RowKey); }
-                internal set { RowKey = value.ToString(); PartitionKey = value.ToString(); }
-            }
-            public string Province { get; set; }
-            public Guid TournamentId { get; set; }
-        }
-
-        private class TSTournament : Entity
-        {
-            public Guid Id
-            {
-                get { return Guid.Parse(RowKey); }
-                internal set { RowKey = value.ToString(); PartitionKey = value.ToString(); }
-            }
+            public Guid Id { get; set; }
             public string Year { get; set; }
         }
 
-        private class TSTeam : Entity
+        public class Contingent
         {
-            public Guid Id
-            {
-                get { return Guid.Parse(RowKey); }
-                internal set { RowKey = value.ToString(); }
-            }
-            public Guid ContingentId
-            {
-                get { return Guid.Parse(PartitionKey); }
-                internal set { PartitionKey = value.ToString(); }
-            }
+            public Guid Id { get; set; }
+            public Guid TournamentId { get; set; }
+            public string Year { get; set; }
+            public string Province { get; set; }
+        }
+
+        public class Team
+        {
+            public Guid Id { get; set; }
+            public Guid ContingentId { get; set; }
             public string Name { get; set; }
+
             public Guid Alternate { get; set; }
             public string AlternateName { get; set; }
         }
-        
+
+        public ParticipantQueries()
+        {
+            Reset();
+        }
+
+        public void Reset()
+        {
+            Participants = new List<Participant>();
+            Tournaments = new List<Tournament>();
+            Contingents = new List<Contingent>();
+            Teams = new List<Team>();
+        }
+
+        public void Save()
+        {
+            ReadModelPersister.Save(this);
+        }
+
         public List<Participant> GetParticipants(string year)
         {
-            var tournament = Storage.Query<TSTournament>(x => x.Year == year).FirstOrDefault();
-            var contingents = Storage.Query<TSContingent>(x => x.TournamentId == tournament.Id);
-            var alternates = Storage.Query<TSTeam>()
-                .Select(x => x.Alternate)
+            var contingents = Contingents.Where(x => x.Year == year);
+            
+            var participants = Participants
+                .Where(x => contingents.Any(c => c.Id == x.ContingentId))
                 .ToList();
 
-            return Storage.Query<TSParticipant>()
-                .Where(x => contingents.Any(c => c.Id.ToString() == x.ContingentId))
-                .Select(x => new Participant
-                {
-                    Id = x.Id,
-                    TeamId = x.TeamId,
-                    ContingentId = x.ContingentId,
-                    Name = x.Name,
-                    Gender = x.Gender,
-                    Province = x.Province,
-                    TeamName = x.TeamName,
-                    IsDelegate = x.IsDelegate,
-                    IsManager = x.IsManager,
-                    IsCoach = x.IsCoach,
-                    YearsQualifying = x.YearsQualifying,
-                    LeaguePinfall = x.LeaguePinfall,
-                    LeagueGames = x.LeagueGames,
-                    TournamentPinfall = x.TournamentPinfall,
-                    TournamentGames = x.TournamentGames,
-                    Average = x.Average,
-                    RoomNumber = x.RoomNumber,
-                    IsGuest = x.IsGuest,
-                    Package = new PackageInformation
-                    {
-                        FinalBanquet = x.FinalBanquet,
-                        ManitobaDance = x.ManitobaDance,
-                        ManitobaDinner = x.ManitobaDinner,
-                        Transportation = x.Transportation,
-                        Option1 = x.Option1,
-                        Option2 = x.Option2,
-                        Option3 = x.Option3,
-                        Option4 = x.Option4,
-                    },
-                    ShirtSize = x.ShirtSize,
-                    Birthday = x.Birthday,
-                    IsAlternate = alternates.Any(a => a == x.Id),
-                    QualifyingPosition = x.QualifyingPosition
-                })
-                .ToList();
+            return participants;
         }
 
         public Participant GetParticipant(Guid id)
         {
-            var participant = Storage.Read<TSParticipant>(id, id);
-            var alternates = Storage.Query<TSTeam>(t => t.Alternate == id);
+            var participant = Participants.Single(x => x.Id == id);
 
-            return new Participant
-                {
-                    Id = participant.Id,
-                    TeamId = participant.TeamId,
-                    ContingentId = participant.ContingentId,
-                    Name = participant.Name,
-                    Gender = participant.Gender,
-                    Province = participant.Province,
-                    TeamName = participant.TeamName,
-                    IsDelegate = participant.IsDelegate,
-                    IsManager = participant.IsManager,
-                    IsCoach = participant.IsCoach,
-                    YearsQualifying = participant.YearsQualifying,
-                    LeaguePinfall = participant.LeaguePinfall,
-                    LeagueGames = participant.LeagueGames,
-                    TournamentPinfall = participant.TournamentPinfall,
-                    TournamentGames = participant.TournamentGames,
-                    Average = participant.Average,
-                    RoomNumber = participant.RoomNumber,
-                    IsGuest = participant.IsGuest,
-                    Package = new PackageInformation
-                    {
-                        FinalBanquet = participant.FinalBanquet,
-                        ManitobaDance = participant.ManitobaDance,
-                        ManitobaDinner = participant.ManitobaDinner,
-                        Transportation = participant.Transportation,
-                        Option1 = participant.Option1,
-                        Option2 = participant.Option2,
-                        Option3 = participant.Option3,
-                        Option4 = participant.Option4,
-                    },
-                    ShirtSize = participant.ShirtSize,
-                    Birthday = participant.Birthday,
-                    IsAlternate = alternates.Any(),
-                    QualifyingPosition = participant.QualifyingPosition
-                };
+            return participant;
         }
 
         public List<Participant> GetAlternates(string year)
         {
-            var tournament = Storage.Query<TSTournament>(x => x.Year == year).FirstOrDefault();
-            var contingents = Storage.Query<TSContingent>(x => x.TournamentId == tournament.Id);
-            var teams = Storage.Query<TSTeam>()
+            var contingents = Contingents.Where(x => x.Year == year);
+
+            var alternates = Participants
+                .Where(x => x.IsAlternate)
                 .Where(x => contingents.Any(c => c.Id == x.ContingentId))
                 .ToList();
-            
-            var alternates = Storage.Query<TSParticipant>()
-                .Where(x => teams.Any(t => t.Alternate == x.Id))                
-                .ToList();
 
-            return (from team in teams
-                    join alternate in alternates
-                     on team.Alternate equals alternate.Id into a
-                    from d in a.DefaultIfEmpty()
-                    where d != null
-                    select new Participant
-                    {
-                        Id = d.Id,
-                        TeamId = d.TeamId,
-                        ContingentId = d.ContingentId,
-                        Name = d.Name,
-                        Gender = d.Gender,
-                        Province = d.Province,
-                        TeamName = team.Name,
-                        IsDelegate = d.IsDelegate,
-                        IsManager = d.IsManager,
-                        IsCoach = d.IsCoach,
-                        YearsQualifying = d.YearsQualifying,
-                        LeaguePinfall = d.LeaguePinfall,
-                        LeagueGames = d.LeagueGames,
-                        TournamentPinfall = d.TournamentPinfall,
-                        TournamentGames = d.TournamentGames,
-                        Average = d.Average,
-                        RoomNumber = d.RoomNumber,
-                        IsGuest = d.IsGuest,
-                        Package = new PackageInformation
-                        {
-                            FinalBanquet = d.FinalBanquet,
-                            ManitobaDance = d.ManitobaDance,
-                            ManitobaDinner = d.ManitobaDinner,
-                            Transportation = d.Transportation,
-                            Option1 = d.Option1,
-                            Option2 = d.Option2,
-                            Option3 = d.Option3,
-                            Option4 = d.Option4,
-                        },
-                        ShirtSize = d.ShirtSize,
-                        Birthday = d.Birthday,
-                        IsAlternate = true,
-                        QualifyingPosition = d.QualifyingPosition
-                    }).ToList();
+            return alternates;
         }
 
         public void Handle(ContingentCreated e)
         {
-            Storage.Create(e.Id, e.Id, new TSContingent
+            Contingents.Add(new Contingent
             {
-                Province = e.Province
+                Id = e.Id,
+                Province = e.Province,
             });
         }
 
         public void Handle(TeamCreated e)
         {
-            Storage.Create(e.Id, e.TeamId, new TSTeam
+            Teams.Add(new Team
             {
+                Id = e.TeamId,
+                ContingentId = e.Id,
                 Name = e.Name
             });
         }
 
         public void Handle(ParticipantCreated e)
         {
-            Storage.Create(e.Id, e.Id, new TSParticipant
+            Participants.Add(new Participant
             {
+                Id = e.Id,
                 Name = e.Name,
                 Gender = e.Gender,
                 IsDelegate = e.IsDelegate,
                 YearsQualifying = e.YearsQualifying,
                 IsGuest = e.IsGuest,
-                ContingentId = Guid.Empty.ToString(),
-                TeamId = Guid.Empty.ToString()
+                ContingentId = Guid.Empty,
+                TeamId = Guid.Empty
             });
         }
 
         public void Handle(ParticipantRenamed e)
         {
-            Storage.Update<TSParticipant>(e.Id, e.Id, x => x.Name = e.Name);
+            var participant = Participants.Single(x => x.Id == e.Id);
+            participant.Name = e.Name;
         }
 
         public void Handle(ParticipantAssignedToContingent e)
         {
-            var contingent = Storage.Read<TSContingent>(e.ContingentId, e.ContingentId);
+            var contingent = Contingents.Single(x => x.Id == e.ContingentId);            
+            var participant = Participants.Single(x => x.Id == e.Id);
 
-            Storage.Update<TSParticipant>(e.Id, e.Id, x =>
-            { 
-                x.ContingentId = contingent.Id.ToString();
-                x.Province = contingent.Province;
-            });
+            participant.ContingentId = contingent.Id;
+            participant.Province = contingent.Province;
         }
 
         public void Handle(ParticipantAssignedToTeam e)
         {
-            var team = Storage.Read<TSTeam>(e.TeamId);
-            var contingent = Storage.Read<TSContingent>(team.ContingentId, team.ContingentId);
+            var team = Teams.Single(x => x.Id == e.TeamId);
+            var contingent = Contingents.Single(x => x.Id == team.ContingentId);
 
-            var currentTeammates = Storage.Query<TSParticipant>(x => x.TeamId == e.TeamId.ToString())
-               ?? new List<TSParticipant>();
-            
-            Storage.Update<TSParticipant>(e.Id, e.Id, x =>
-            { 
-                x.TeamId = team.Id.ToString();
-                x.TeamName = team.Name;
-                x.ContingentId = team.ContingentId.ToString();
-                x.Province = contingent.Province;
-                x.QualifyingPosition = currentTeammates.Count + 1;
-            });
+            var currentTeammates = Participants.Where(x => x.TeamId == e.TeamId).ToList()
+                ?? new List<Participant>();
+
+            var participant = Participants.Single(x => x.Id == e.Id);
+
+            participant.TeamId = team.Id;
+            participant.TeamName = team.Name;
+            participant.ContingentId = team.ContingentId;
+            participant.Province = contingent.Province;
+            participant.QualifyingPosition = currentTeammates.Count + 1;
         }
 
         public void Handle(ParticipantDesignatedAsAlternate e)
         {
-            var team = Storage.Read<TSTeam>(e.TeamId);
-            
-            Storage.Update<TSTeam>(e.TeamId, x => { 
-                x.Alternate = e.Id;
-                x.AlternateName = e.Name;
-            });
+            var team = Teams.Single(x => x.Id == e.TeamId);
+
+            var priorAlternateId = team.Alternate;
+            if (priorAlternateId != Guid.Empty)
+                Participants.Single(x => x.Id == priorAlternateId).IsAlternate = false;
+
+            var alternate = Participants.Single(x => x.Id == e.Id);
+            alternate.IsAlternate = true;
+            alternate.TeamName = team.Name;
+
+            team.Alternate = e.Id;
+            team.AlternateName = e.Name;
         }
 
         public void Handle(CoachAssignedToTeam e)
         {
-            var team = Storage.Read<TSTeam>(e.TeamId);
-            var contingent = Storage.Read<TSContingent>(team.ContingentId, team.ContingentId);
+            var team = Teams.Single(x => x.Id == e.TeamId);
+            var contingent = Contingents.Single(x=> x.Id == team.ContingentId);
 
-            Storage.Update<TSParticipant>(e.Id, e.Id, x =>
-            {
-                x.IsCoach = true;
-                x.TeamId = team.Id.ToString();
-                x.TeamName = team.Name;
-                x.ContingentId = team.ContingentId.ToString();
-                x.Province = contingent.Province;
-            });
+            var participant = Participants.Single(x => x.Id == e.Id);
+
+            participant.IsCoach = true;
+            participant.TeamId = team.Id;
+            participant.TeamName = team.Name;
+            participant.ContingentId = team.ContingentId;
+            participant.Province = contingent.Province;
         }
 
         public void Handle(ParticipantGenderReassigned e)
         {
-            Storage.Update<TSParticipant>(e.Id, e.Id, x => { x.Gender = e.Gender; });
+            var participant = Participants.Single(x => x.Id == e.Id);
+            participant.Gender = e.Gender;
         }
 
         public void Handle(ParticipantDelegateStatusGranted e)
         {
-            Storage.Update<TSParticipant>(e.Id, e.Id, x => { x.IsDelegate = true; });
+            var participant = Participants.Single(x => x.Id == e.Id);
+            participant.IsDelegate = true;
         }
 
         public void Handle(ParticipantDelegateStatusRevoked e)
         {
-            Storage.Update<TSParticipant>(e.Id, e.Id, x => { x.IsDelegate = false; });
+            var participant = Participants.Single(x => x.Id == e.Id);
+            participant.IsDelegate = false;
         }
 
         public void Handle(ParticipantManagerStatusGranted e)
         {
-            Storage.Update<TSParticipant>(e.Id, e.Id, x => { x.IsManager = true; });
+            var participant = Participants.Single(x => x.Id == e.Id);
+            participant.IsManager = true;
         }
 
         public void Handle(ParticipantManagerStatusRevoked e)
         {
-            Storage.Update<TSParticipant>(e.Id, e.Id, x => { x.IsManager = false; });
+            var participant = Participants.Single(x => x.Id == e.Id);
+            participant.IsManager = false;
         }
 
         public void Handle(ParticipantYearsQualifyingChanged e)
         {
-            Storage.Update<TSParticipant>(e.Id, e.Id, x => { x.YearsQualifying = e.YearsQualifying; });
+            var participant = Participants.Single(x => x.Id == e.Id);
+            participant.YearsQualifying = e.YearsQualifying;
         }
 
         public void Handle(ParticipantAverageChanged e)
         {
-            Storage.Update<TSParticipant>(e.Id, e.Id, x =>
-            {
-                x.LeagueGames = e.LeagueGames;
-                x.LeaguePinfall = e.LeaguePinfall;
-                x.TournamentGames = e.TournamentGames;
-                x.TournamentPinfall = e.TournamentPinfall;
-                x.Average = e.Average;
-            });
+            var participant = Participants.Single(x => x.Id == e.Id);
+            participant.LeagueGames = e.LeagueGames;
+            participant.LeaguePinfall = e.LeaguePinfall;
+            participant.TournamentGames = e.TournamentGames;
+            participant.TournamentPinfall = e.TournamentPinfall;
+            participant.Average = e.Average;
         }
 
         public void Handle(ParticipantGuestPackageChanged e)
         {
-            Storage.Update<TSParticipant>(e.Id, e.Id, x =>
-            { 
-                x.ManitobaDinner = e.ManitobaDinner;
-                x.ManitobaDance = e.ManitobaDance;
-                x.FinalBanquet = e.FinalBanquet;
-                x.Transportation = e.Transportation;
-                x.Option1 = e.Option1;
-                x.Option2 = e.Option2;
-                x.Option3 = e.Option3;
-                x.Option4 = e.Option4;
-            });
+            var participant = Participants.Single(x => x.Id == e.Id);
+            participant.Package.ManitobaDinner = e.ManitobaDinner;
+            participant.Package.ManitobaDance = e.ManitobaDance;
+            participant.Package.FinalBanquet = e.FinalBanquet;
+            participant.Package.Transportation = e.Transportation;
+            participant.Package.Option1 = e.Option1;
+            participant.Package.Option2 = e.Option2;
+            participant.Package.Option3 = e.Option3;
+            participant.Package.Option4 = e.Option4;
         }
 
         public void Handle(ParticipantShirtSizeChanged e)
         {
-            Storage.Update<TSParticipant>(e.Id, e.Id, x => { x.ShirtSize = e.ShirtSize; });
+            var participant = Participants.Single(x => x.Id == e.Id);
+            participant.ShirtSize = e.ShirtSize;
         }
 
         public void Handle(ParticipantAssignedToRoom e)
         {
-            Storage.Update<TSParticipant>(e.Id, e.Id, x => { x.RoomNumber = e.RoomNumber; });
+            var participant = Participants.Single(x => x.Id == e.Id);
+            participant.RoomNumber = e.RoomNumber;
         }
 
         public void Handle(ContingentAssignedToTournament e)
         {
-            Storage.Update<TSContingent>(e.Id, e.Id, x => x.TournamentId = e.TournamentId);
+            var contingent = Contingents.Single(x => x.Id == e.Id);
+            var tournament = Tournaments.SingleOrDefault(x => x.Id == e.TournamentId)
+                ?? new Tournament { Id = e.TournamentId, Year = "2014" };
+
+            contingent.TournamentId = tournament.Id;
+            contingent.Year = tournament.Year;
         }
 
         public void Handle(TournamentCreated e)
         {
-            Storage.Create(e.Id, e.Id, new TSTournament
+            Tournaments.Add(new Tournament
             {
+                Id = e.Id,
                 Year = e.Year
             });
         }
 
         public void Handle(ParticipantBirthdayChanged e)
         {
-            Storage.Update<TSParticipant>(e.Id, e.Id, x => x.Birthday = e.Birthday.ToString("yyyy-MM-ddTHH:mm"));
+            var participant = Participants.Single(x => x.Id == e.Id);
+            participant.Birthday = e.Birthday.ToString("yyyy-MM-ddTHH:mm");
         }
 
         public void Handle(ParticipantQualifyingPositionChanged e)
         {
-            Storage.Update<TSParticipant>(e.Id, x => { x.QualifyingPosition = e.QualifyingPosition; });
+            var participant = Participants.Single(x => x.Id == e.Id);
+            participant.QualifyingPosition = e.QualifyingPosition;
         }
     }
 }
