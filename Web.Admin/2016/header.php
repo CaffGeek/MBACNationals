@@ -70,7 +70,7 @@
                 <li><a href="contingents.php">Contingents</a></li>
                 <li><a href="http://www.mbaofbc.com/shopping-cart.html">Souvenirs</a></li>
                 <li><a href="centres.php">Centres</a></li>
-                <li><a href="hotel.php">Hotel</a></li>
+                <li><a href="hotel.php">Location</a></li>
                 <li class="dropdown">
         			<a class="dropdown-toggle" data-toggle="dropdown" href="#">History
         			<span class="caret"></span></a>

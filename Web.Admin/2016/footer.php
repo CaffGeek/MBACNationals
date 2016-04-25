@@ -13,7 +13,7 @@
                 <li><a href="contingents.php">Contingents</a></li>
                 <li><a href="http://www.mbaofbc.com/shopping-cart.html">Souvenirs</a></li>
                 <li><a href="centres.php">Centres</a></li>
-                <li><a href="hotel.php">Hotel</a></li>
+                <li><a href="hotel.php">Location</a></li>
     	</ul>
         <p>&copy; Site Design by Charlene McIvor & Chad Hurd</p>
       </footer>
@@ -26,7 +26,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script type="text/javascript" src="path/to/instafeed.min.js"></script>
 	<script type='text/javascript' src='https://my.sendinblue.com/public/theme/version3/js/subscribe-validate.js'></script>
 	<script type='text/javascript'>
 	    jQuery.noConflict(true);
