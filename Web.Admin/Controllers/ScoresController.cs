@@ -42,9 +42,8 @@ namespace WebFrontend.Controllers
             Response.AppendHeader("Access-Control-Allow-Origin", "*");
 
             var tournament = Domain.TournamentQueries.GetTournament(year);
-            var tournamentId = (year == "2014") ? Guid.Empty : tournament.Id;
-                
-            var standings = Domain.StandingQueries.GetDivision(tournamentId, division);
+            var standings = Domain.StandingQueries.GetDivision(tournament.Id, division);
+
             return Json(standings, JsonRequestBehavior.AllowGet);
         }
 
