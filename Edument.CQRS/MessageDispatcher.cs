@@ -62,6 +62,14 @@ namespace Edument.CQRS
                 }
         }
 
+        private void PublishEventWithoutSave(object e)
+        {
+            var eventType = e.GetType();
+            if (eventSubscribers.ContainsKey(eventType))
+                foreach (var sub in eventSubscribers[eventType])
+                    sub(e);
+        }
+
         private void PublishEventToReadModel(object e, string readmodel)
         {
             var eventType = e.GetType();
@@ -240,6 +248,12 @@ namespace Edument.CQRS
         {
             foreach (var e in eventStore.LoadAllEvents())
                 PublishEventToReadModel(e, readmodel);
+        }
+
+        public void RegenerateReadModels()
+        {
+            foreach (var e in eventStore.LoadAllEvents())
+                PublishEventWithoutSave(e);
         }
 
         public TAggregate Load<TAggregate>(Guid id)

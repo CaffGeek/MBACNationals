@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using WebFrontend.Attributes;
 
 namespace WebFrontend.Controllers
@@ -15,7 +16,10 @@ namespace WebFrontend.Controllers
         [Authorize(Users = "Chad")]
         public void RebuildModel(string id)
         {
-            Domain.RebuildReadModel(id);
+            if ("All".Equals(id, StringComparison.OrdinalIgnoreCase))
+                Domain.RebuildAll();
+            else
+                Domain.RebuildReadModel(id);
         }
 
         [Authorize(Users = "Chad")]

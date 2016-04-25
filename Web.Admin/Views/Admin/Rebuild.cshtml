@@ -2,9 +2,6 @@
     <div class="container" data-ng-controller="RebuildController as vm">
         <h2>Rebuild</h2>
 
-        <a ng-click="vm.Rebuild()">Rebuild All</a>
-        <hr />
-
         <div ng-repeat="readmodel in vm.readmodels">
             <a ng-click="vm.Rebuild(readmodel)">{{readmodel.Name}}</a> {{readmodel.Status}}
         </div>
