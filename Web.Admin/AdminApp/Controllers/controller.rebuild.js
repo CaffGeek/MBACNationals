@@ -5,6 +5,7 @@
         var vm = this;
 
         vm.readmodels = [
+            { Name: 'All' },
             { Name: 'CommandQueries' },
             { Name: 'ContingentPracticePlanQueries' },
             { Name: 'ContingentTravelPlanQueries' },
@@ -23,31 +24,7 @@
         ];
         
         vm.Rebuild = function (readmodel) {
-            if (readmodel) {
-                rebuildModel(readmodel.Name)();
-            } else {
-                angular.forEach(vm.readmodels, function (model) {
-                    model.StartedAt = null;
-                    model.CompletedAt = null;
-                    model.Status = null;
-                });
-
-                rebuildModel('CommandQueries')()
-                    .then(rebuildModel('ContingentPracticePlanQueries'))
-                    .then(rebuildModel('ContingentTravelPlanQueries'))
-                    .then(rebuildModel('ContingentViewQueries'))
-                    .then(rebuildModel('HighScoreQueries'))
-                    .then(rebuildModel('MatchQueries'))
-                    .then(rebuildModel('ParticipantProfileQueries'))
-                    .then(rebuildModel('ParticipantQueries'))
-                    .then(rebuildModel('ReservationQueries'))
-                    .then(rebuildModel('ScheduleQueries'))
-                    .then(rebuildModel('StandingQueries'))
-                    .then(rebuildModel('StepladderQueries'))
-                    .then(rebuildModel('TeamScoreQueries'))
-                    .then(rebuildModel('TournamentQueries'))
-                    .then(rebuildModel('ParticipantScoreQueries'));
-            }
+            rebuildModel(readmodel.Name)();
         };
 
         function rebuildModel(modelName) {

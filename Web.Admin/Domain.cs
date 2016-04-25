@@ -13,6 +13,7 @@ using System.Threading;
 using System;
 using Newtonsoft.Json;
 using AzureTableHelper;
+using System.Linq;
 
 namespace WebFrontend
 {
@@ -89,6 +90,23 @@ namespace WebFrontend
                 
                 azureTableHelper.DeleteTable(originalTableName);
             }
+
+            GoOnline();
+        }
+
+        public static void RebuildAll()
+        {
+            GoOffline();
+
+            var fields = typeof(Domain).GetFields().ToList();
+            var values = fields.Select(f => f.GetValue(null)).Where(x => x is IReadModel).ToList();
+            var models = values.Select(x => x as IReadModel).ToList();
+                        
+            models.ForEach(x => x.Reset());
+
+            Dispatcher.RegenerateReadModels();
+
+            models.ForEach(x => x.Save());
 
             GoOnline();
         }
