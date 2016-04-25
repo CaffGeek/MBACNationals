@@ -17,7 +17,7 @@
             }).then(function (response) {
                 if ($scope.model.participant.IsCoach) {
                     dataService.AssignCoachToTeam($scope.model.participant, $scope.model.team);
-                } else if ($scope.model.team.Id) {
+                } else if ($scope.model.team.Id && !$scope.model.participant.IsGuest && $scope.model.participant.TeamId != $scope.model.team.Id) {
                     dataService.AssignParticipantToTeam($scope.model.participant, $scope.model.team);
                 }
             }).then(function (response) {
