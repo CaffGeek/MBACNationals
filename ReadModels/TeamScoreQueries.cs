@@ -8,51 +8,32 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class TeamScoreQueries : BaseReadModel<TeamScoreQueries>,
+    public class TeamScoreQueries : 
+        IReadModel,
         ITeamScoreQueries,
         ISubscribeTo<TeamGameCompleted>,
         ISubscribeTo<ParticipantAssignedToTeam>,
         ISubscribeTo<ParticipantQualifyingPositionChanged>
     {
+        public Dictionary<Guid, Team> Teams { get; set; }
+        public Dictionary<Guid, Guid> PoaSingles { get; set; }
+
         public class Team 
         {
-            public Guid Id { get; internal set; }
-            public string Name { get; internal set; }
-            public string Province { get; internal set; }
-            public List<Score> Scores { get; internal set; }
+            public Guid Id { get; set; }
+            public string Name { get; set; }
+            public string Province { get; set; }
+            public List<Score> Scores { get; set; }
+
+            public Team()
+            {
+                Scores = new List<Score>();
+            }
         }
 
         public class Score
         {
-            public string MatchId { get; internal set; }
-            public int Number { get; internal set; }
-            public int Scratch { get; internal set; }
-            public int POA { get; internal set; }
-            public string WinLossTie { get; internal set; }
-            public int Lane { get; internal set; }
-            public string Centre { get; internal set; }
-            public string Opponent { get; internal set; }
-            public int OpponentScratch { get; internal set; }
-            public int OpponentPOA { get; internal set; }
-            public bool IsPOA { get; internal set; }
-            public decimal Points { get; internal set; }
-            public decimal OpponentPoints { get; internal set; }
-        }
-
-        private class TSMatch : Entity
-        {
-            public Guid Id
-            {
-                get { return Guid.Parse(RowKey); }
-                internal set { RowKey = value.ToString(); }
-            }
-            public Guid TeamId
-            {
-                get { return Guid.Parse(PartitionKey); }
-                internal set { PartitionKey = value.ToString(); }
-            }
-            public string TeamName { get; set; }
-            public string Province { get; set; }
+            public Guid MatchId { get; set; }
             public int Number { get; set; }
             public int Scratch { get; set; }
             public int POA { get; set; }
@@ -63,61 +44,38 @@ namespace MBACNationals.ReadModels
             public int OpponentScratch { get; set; }
             public int OpponentPOA { get; set; }
             public bool IsPOA { get; set; }
-            public double Points { get; set; }
-            public double OpponentPoints { get; set; }
+            public decimal Points { get; set; }
+            public decimal OpponentPoints { get; set; }
         }
 
-        private class TSTeamSingle : Entity
+        public TeamScoreQueries()
         {
-            public Guid TeamId
-            {
-                get { return Guid.Parse(RowKey); }
-                internal set { RowKey = value.ToString(); PartitionKey = value.ToString(); }
-            }
-            public Guid SingleId { get; set; }
+            Reset();
         }
         
+        public void Reset()
+        {
+            Teams = new Dictionary<Guid, Team>();
+            PoaSingles = new Dictionary<Guid, Guid>();
+        }
+
+        public void Save()
+        {
+            ReadModelPersister.Save(this);
+        }
+
         public Team GetTeam(Guid id)
         {
-            var matches = Storage.Query<TSMatch>(x => x.TeamId == id);
-            var firstMatch = matches.First();
-            var scores = matches.Select(x => new Score
-            {
-                MatchId = x.Id.ToString(),
-                Number = x.Number,
-                Scratch = x.Scratch,
-                POA = x.POA,
-                WinLossTie = x.WinLossTie,
-                Lane = x.Lane,
-                Centre = x.Centre,
-                Opponent = x.Opponent,
-                OpponentScratch = x.OpponentScratch,
-                OpponentPOA = x.OpponentPOA,
-                IsPOA = x.IsPOA,
-                Points = (decimal)x.Points,
-                OpponentPoints = (decimal)x.OpponentPoints,
-            }).ToList();
-
-            var team = new Team
-            {
-                Id = id,
-                Name = firstMatch.TeamName,
-                Province = firstMatch.Province,
-                Scores = scores,                
-            };
-
-            return team;
+            return Teams[id];
         }
 
         public void Handle(ParticipantAssignedToTeam e)
         {
-            var teamSingle = Storage.Read<TSTeamSingle>(e.TeamId);
+            if (PoaSingles.ContainsKey(e.TeamId))
+                return;
             
-            //First teammember becomes the single
-            if (teamSingle == null)
-            {
-                Storage.Create(e.TeamId, e.TeamId, new TSTeamSingle{ SingleId = e.Id });
-            }
+            //First teammember becomes the single by default
+            PoaSingles.Add(e.TeamId, e.Id);
         }
 
         public void Handle(ParticipantQualifyingPositionChanged e)
@@ -125,11 +83,10 @@ namespace MBACNationals.ReadModels
             if (e.QualifyingPosition != 1)
                 return;
 
-            var teamSingle = Storage.Read<TSTeamSingle>(e.TeamId);
-            if (teamSingle == null)
-                Storage.Create(e.TeamId, e.TeamId, new TSTeamSingle { SingleId = e.Id });
+            if (PoaSingles.ContainsKey(e.TeamId))
+                PoaSingles[e.TeamId] = e.Id;                
             else
-                Storage.Update<TSTeamSingle>(e.TeamId, e.TeamId, x => x.SingleId = e.Id);
+                PoaSingles.Add(e.TeamId, e.Id);
         }
         
         public void Handle(TeamGameCompleted e)
@@ -138,15 +95,22 @@ namespace MBACNationals.ReadModels
 
             //HACK: Old TeamGameCompleted events used teamid instead of bowlerid for POA singles 8'(
             if ((e.Division.Contains("Teaching") || e.Division.Contains("Senior")) && e.Division.Contains("Single"))
+                teamId = PoaSingles[e.TeamId];
+            
+            if (!Teams.ContainsKey(teamId))
             {
-                var teamSingle = Storage.Read<TSTeamSingle>(e.TeamId);
-                if (teamSingle != null) teamId = teamSingle.SingleId;
+                Teams.Add(teamId, new Team
+                {
+                    Id = teamId,
+                    Name = e.Division,
+                    Province = e.Contingent
+                });
             }
 
-            Storage.Create(teamId, e.Id, new TSMatch
+            var team = Teams[teamId];
+            team.Scores.Add(new Score
             {
-                TeamName = e.Division,
-                Province = e.Contingent,
+                MatchId = e.Id,
                 Number = e.Number,
                 Scratch = e.Score,
                 POA = e.POA,
@@ -158,9 +122,9 @@ namespace MBACNationals.ReadModels
                 Opponent = e.Opponent,
                 OpponentScratch = e.OpponentScore,
                 OpponentPOA = e.OpponentPOA,
-                OpponentPoints = (double)e.OpponentPoints,
+                OpponentPoints = e.OpponentPoints,
                 IsPOA = e.IsPOA,
-                Points = (double)e.TotalPoints
+                Points = e.TotalPoints
             });
         }
     }

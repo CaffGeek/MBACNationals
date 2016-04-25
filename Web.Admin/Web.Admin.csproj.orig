@@ -2079,7 +2079,9 @@
     <Content Include="2016\news.php" />
     <Content Include="2016\contingents.php" />
     <Content Include="2016\photos.php" />
+<<<<<<< HEAD
     <Content Include="AdminApp\Directives\directive.converttonumber.js" />
+=======
     <Content Include="2016\cache\albums" />
     <Content Include="2016\galleria\LICENSE" />
     <Content Include="2016\galleria\galleria-1.2.8.js" />
@@ -2106,6 +2108,7 @@
     <Content Include="2016\galleria\themes\classic\galleria.classic.js" />
     <Content Include="2016\galleria\themes\classic\galleria.classic.min.js" />
     <Content Include="2016\js\instafeed.min.js" />
+>>>>>>> origin
     <Content Include="AdminApp\Views\Reports\Newsworthy.html" />
     <Content Include="AdminApp\Views\Reports\ScheduleValidation.html" />
     <Content Include="ClientApp\app.js" />
