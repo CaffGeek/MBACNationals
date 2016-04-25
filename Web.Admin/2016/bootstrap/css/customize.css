@@ -270,3 +270,56 @@ div.game .frame .shots {
 }
 div.game .frame .shots .shot {
 }
+
+/* GALLERIES CSS */
+
+.FB_pic_container
+{
+ display:inline-block;
+ position: relative;
+ width:175px;
+ height: 104px;
+ text-align:center;
+ overflow: hidden;
+ border: 1px solid #ccc;
+ border-radius: 4px;
+ outline: none;
+ margin: 2px;
+ padding: 2px;
+}
+ 
+.FB_pic_container:hover
+{
+ border-color: #56B4EF;
+ box-shadow: inset 0 1px 3px rgba(0,0,0,.05),0 0 8px rgba(82,168,236,.6);
+ -webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,.05),0 0 8px rgba(82,168,236,.6);
+}
+ 
+.FB_pic_label
+{
+ text-decoration:none;
+ color: #fff;
+ position: absolute;
+ bottom: 0;
+ right: 0;
+ left: 0;
+ background-color:#000;
+ opacity:0.9;
+ filter:alpha(opacity=90); /* For IE8 and earlier */
+}
+ 
+.FB_pic_container:hover .FB_pic_label
+{
+ opacity:0.5;
+ filter:alpha(opacity=50); /* For IE8 and earlier */
+}
+ 
+.FB_pic_container img
+{
+ position: absolute;
+ margin: auto;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 22px;
+}
