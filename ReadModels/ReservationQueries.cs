@@ -8,7 +8,8 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class ReservationQueries : BaseReadModel<ReservationQueries>,
+    public class ReservationQueries : 
+        IReadModel,
         IReservationQueries,
         ISubscribeTo<ParticipantCreated>,
         ISubscribeTo<ParticipantRenamed>,
@@ -22,168 +23,146 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<ParticipantAssignedToTeam>,
         ISubscribeTo<CoachAssignedToTeam>
     {
-        public class Participant
+        public List<Participant> Participants { get; set; }
+        public List<Contingent> Contingents { get; set; }
+        public List<Tournament> Tournaments { get; set; }
+        public Dictionary<Guid, Guid> TeamContingents { get; set; }
+
+        public class Tournament
         {
-            public Guid Id { get; internal set; }
-            public string Name { get; internal set; }
-            public string Province { get; internal set; }
-            public int RoomNumber { get; internal set; }
+            public Guid Id { get; set; }
+            public string Year { get; set; }
         }
 
-        private class TSParticipant : Entity
+        public class Contingent
         {
-            public Guid Id
-            {
-                get { return Guid.Parse(RowKey); }
-                internal set { RowKey = value.ToString(); PartitionKey = value.ToString(); }
-            }
+            public Guid Id { get; set; }
+            public Guid TournamentId { get; set; }
+            public string Year { get; set; }
+            public string Province { get; set; }
+        }
+
+        public class Participant
+        {
+            public Guid Id { get; set; }
             public Guid ContingentId { get; set; }
             public string Name { get; set; }
             public string Province { get; set; }
             public int RoomNumber { get; set; }
         }
 
-        private class TSTournament : Entity
+        public ReservationQueries()
         {
-            public string Year { get; set; }
-            public Guid Id { get; set; }
+            Reset();
         }
 
-        private class TSContingent : Entity
+        public void Reset()
         {
-            public Guid Id
-            {
-                get { return Guid.Parse(RowKey); }
-                internal set { RowKey = value.ToString(); }
-            }
-            public Guid TournamentId
-            {
-                get { return Guid.Parse(PartitionKey); }
-                internal set { PartitionKey = value.ToString(); }
-            }
-            public string Province { get; set; }
+            Participants = new List<Participant>();
+            Contingents = new List<Contingent>();
+            Tournaments = new List<Tournament>();
+            TeamContingents = new Dictionary<Guid, Guid>();
         }
-        
-        private class TSTeam : Entity
+
+        public void Save()
         {
-            public Guid Id
-            {
-                get { return Guid.Parse(RowKey); }
-                internal set { RowKey = value.ToString(); }
-            }
-            public Guid ContingentId
-            {
-                get { return Guid.Parse(PartitionKey); }
-                internal set { PartitionKey = value.ToString(); }
-            }
+            ReadModelPersister.Save(this);
         }
 
         public List<ReservationQueries.Participant> GetParticipants(string year, string province)
         {
-            var tournament = Storage.Query<TSTournament>(x => x.Year.Equals(year, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            var contingents = Contingents.Where(x => x.Year == year);
 
-            var contingent = Storage.Query<TSContingent>(x =>
-                x.TournamentId == tournament.Id
-                && x.Province.Equals(province, StringComparison.OrdinalIgnoreCase))
-                .FirstOrDefault();
-
-            var participants = Storage.Query<TSParticipant>(x => x.ContingentId.Equals(contingent.Id))
-                .Select(x => new Participant
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Province = x.Province,
-                    RoomNumber = x.RoomNumber
-                }).ToList();
+            var participants = Participants
+                .Where(x => contingents.Any(c => c.Id == x.ContingentId) && x.Province == province)
+                .ToList();
 
             return participants;
         }
 
         public void Handle(ParticipantCreated e)
         {
-            Storage.Create(e.Id, e.Id, new TSParticipant
-            {
+            Participants.Add(new Participant{
+                Id = e.Id,
                 Name = e.Name
             });
         }
 
         public void Handle(ContingentCreated e)
         {
-            Storage.Create(Guid.Empty, e.Id, new TSContingent
+            Contingents.Add(new Contingent
             {
+                Id = e.Id,
                 Province = e.Province
             });
         }
 
         public void Handle(TournamentCreated e)
         {
-            Storage.Create(e.Id, e.Id, new TSTournament { Year = e.Year, Id = e.Id });
-
-            //HACK: Track current tournament
-            Storage.Create(Guid.Empty, Guid.Empty, new TSTournament { Year = e.Year, Id = e.Id });
+            Tournaments.Add(new Tournament
+            {
+                Id = e.Id,
+                Year = e.Year
+            });
         }
 
         public void Handle(ContingentAssignedToTournament e)
         {
-            var contingent = Storage.Read<TSContingent>(Guid.Empty, e.Id);
-            if (contingent != null)
-            {
-                Storage.Delete<TSContingent>(Guid.Empty, e.Id);
-                contingent.TournamentId = e.TournamentId;
-                Storage.Create(e.TournamentId, e.Id, contingent);
-            }
+            var tournament = Tournaments.SingleOrDefault(x => x.Id == e.TournamentId)
+                ?? new Tournament { Id = e.TournamentId, Year = "2014" };
+
+            var contingent = Contingents.Single(x => x.Id == e.Id);
+            contingent.TournamentId = tournament.Id;
+            contingent.Year = tournament.Year;
         }
 
         public void Handle(TeamCreated e)
         {
-            Storage.Create(e.Id, e.TeamId, new TSTeam());
+            TeamContingents.Add(e.TeamId, e.Id);
         }
 
         public void Handle(ParticipantAssignedToContingent e)
         {
-            var contingent = Storage.Read<TSContingent>(e.ContingentId);
-            Storage.Update<TSParticipant>(e.Id, e.Id, x =>
-            {
-                x.Province = contingent.Province;
-                x.ContingentId = contingent.Id;
-            });
+            var participant = Participants.Single(x => x.Id == e.Id);
+            var contingent = Contingents.Single(x => x.Id == e.ContingentId);
+            participant.ContingentId = contingent.Id;
+            participant.Province = contingent.Province;
         }
 
         public void Handle(ParticipantAssignedToTeam e)
         {
-            var team = Storage.Read<TSTeam>(e.TeamId);
-            var contingent = Storage.Read<TSContingent>(team.ContingentId);
-            Storage.Update<TSParticipant>(e.Id, x =>
-            {
-                x.Province = contingent.Province;
-                x.ContingentId = contingent.Id;
-            });
+            var contingentId = TeamContingents[e.TeamId];
+            var contingent = Contingents.Single(x => x.Id == contingentId);
+            var participant = Participants.Single(x => x.Id == e.Id);
+            participant.ContingentId = contingent.Id;
+            participant.Province = contingent.Province;
         }
 
         public void Handle(CoachAssignedToTeam e)
         {
-            var team = Storage.Read<TSTeam>(e.TeamId);
-            var contingent = Storage.Read<TSContingent>(team.ContingentId);
-            Storage.Update<TSParticipant>(e.Id, x =>
-            {
-                x.Province = contingent.Province;
-                x.ContingentId = contingent.Id;
-            });
+            var contingentId = TeamContingents[e.TeamId];
+            var contingent = Contingents.Single(x => x.Id == contingentId);
+            var participant = Participants.Single(x => x.Id == e.Id);
+            participant.ContingentId = contingent.Id;
+            participant.Province = contingent.Province;
         }
 
         public void Handle(ParticipantRenamed e)
         {
-            Storage.Update<TSParticipant>(e.Id, e.Id, x => x.Name = e.Name);
+            var participant = Participants.Single(x => x.Id == e.Id);
+            participant.Name = e.Name;
         }
 
         public void Handle(ParticipantAssignedToRoom e)
         {
-            Storage.Update<TSParticipant>(e.Id, e.Id, x => x.RoomNumber = e.RoomNumber);
+            var participant = Participants.Single(x => x.Id == e.Id);
+            participant.RoomNumber = e.RoomNumber;
         }
 
         public void Handle(ParticipantRemovedFromRoom e)
         {
-            Storage.Update<TSParticipant>(e.Id, e.Id, x => x.RoomNumber = 0);
+            var participant = Participants.Single(x => x.Id == e.Id);
+            participant.RoomNumber = 0;
         }
     }
 }

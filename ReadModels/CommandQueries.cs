@@ -8,75 +8,44 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class CommandQueries : BaseReadModel<CommandQueries>,
+    public class CommandQueries : 
+        IReadModel,
         ICommandQueries,
         ISubscribeTo<TournamentCreated>,
         ISubscribeTo<ParticipantCreated>,
         ISubscribeTo<ParticipantGenderReassigned>,
         ISubscribeTo<ParticipantRenamed>,
+        ISubscribeTo<ParticipantAverageChanged>,
         ISubscribeTo<ParticipantAssignedToTeam>,
         ISubscribeTo<ParticipantQualifyingPositionChanged>,
         ISubscribeTo<ParticipantReplacedWithAlternate>,
         ISubscribeTo<MatchCreated>
     {
+        public List<Tournament> Tournaments { get; set; }
+        public Dictionary<Guid, Participant> Participants { get; set; }
+        public List<Match> Matches { get; set; }
+
         public class Tournament
         {
-            public virtual Guid Id { get; set; }
-            public virtual string Year { get; set; }
+            public Guid Id { get; set; }
+            public string Year { get; set; }
         }
 
         public class Participant
         {
-            public virtual Guid Id { get; set; }
-            public virtual Guid ContingentId { get; set; }
-            public virtual Guid TeamId { get; set; }
-            public virtual string Name { get; set; }
-            public virtual int Average { get; set; }
-            public virtual string Gender { get; set; }
-            public virtual int QualifyingPosition { get; set; }
-            public virtual bool IsReplaced { get; set; }
+            public Guid Id { get; set; }
+            public Guid ContingentId { get; set; }
+            public Guid TeamId { get; set; }
+            public string Name { get; set; }
+            public int Average { get; set; }
+            public string Gender { get; set; }
+            public int QualifyingPosition { get; set; }
+            public bool IsReplaced { get; set; }
         }
 
         public class Match
         {
-            public virtual Guid Id { get; set; }
-            public virtual string Year { get; set; }
-            public virtual string Division { get; set; }
-            public virtual int Number { get; set; }
-            public virtual string Slot { get; set; }
-            public virtual bool IsPOA { get; set; }
-            public virtual int Lane { get; set; }
-            public virtual string Centre { get; set; }
-            public virtual string Away { get; set; }
-            public virtual string AwayId { get; set; }
-            public virtual string Home { get; set; }
-            public virtual string HomeId { get; set; }
-            
-        }
-
-        private class TSTournament : Entity
-        {
-            public virtual string Year { get; set; }
-        }
-
-        private class TSParticipant : Entity
-        {
-            public virtual Guid ContingentId { get; set; }
-            public virtual Guid TeamId { get; set; }
-            public virtual string Name { get; set; }
-            public virtual int Average { get; set; }
-            public virtual string Gender { get; set; }
-            public virtual int QualifyingPosition { get; set; }
-            public virtual bool IsReplaced { get; set; }
-        }
-
-        private class TSMatch : Entity
-        {
-            public Guid MatchId
-            {
-                get { return Guid.Parse(RowKey); }
-                internal set { RowKey = value.ToString(); PartitionKey = value.ToString(); }
-            }
+            public Guid Id { get; set; }
             public string Year { get; set; }
             public string Division { get; set; }
             public int Number { get; set; }
@@ -88,87 +57,64 @@ namespace MBACNationals.ReadModels
             public string AwayId { get; set; }
             public string Home { get; set; }
             public string HomeId { get; set; }
+            
+        }
+
+        public CommandQueries()
+        {
+            Reset();
+        }
+
+        public void Reset()
+        {
+            Tournaments = new List<Tournament>();
+            Participants = new Dictionary<Guid, Participant>();
+            Matches = new List<Match>();
+        }
+
+        public void Save()
+        {
+            ReadModelPersister.Save(this);
         }
 
         public List<Tournament> GetTournaments()
         {
-            return Storage.Query<TSTournament>()
-                .Select(x => new Tournament
-                {
-                    Id = Guid.Parse(x.RowKey),
-                    Year = x.Year
-                })
-                .ToList();
+            return Tournaments;
         }
 
         public Participant GetParticipant(Guid id)
         {
-            var participant = Storage.Read<TSParticipant>(Guid.Empty, id);
-            return new Participant 
-            {
-                Id = Guid.Parse(participant.RowKey),
-                TeamId = participant.TeamId,
-                ContingentId = participant.ContingentId,
-                Name = participant.Name,
-                Average = participant.Average,
-                Gender = participant.Gender,
-                QualifyingPosition = participant.QualifyingPosition
-            };                
+            return Participants[id];
         }
 
         public List<Participant> GetTeamParticipants(Guid teamId)
         {
-            return Storage.Query<TSParticipant>(x => x.TeamId == teamId)
-                .Select(x => new Participant
-                {
-                    Id = Guid.Parse(x.RowKey),
-                    TeamId = x.TeamId,
-                    ContingentId = x.ContingentId,
-                    Name = x.Name,
-                    Average = x.Average,
-                    Gender = x.Gender,
-                    QualifyingPosition = x.QualifyingPosition
-                })
+            return Participants.Where(x => x.Value.TeamId == teamId)
+                .Select(x => x.Value)
                 .ToList();
         }
 
         public Match GetMatch(string year, string division, int game, string slot)
         {
-            return Storage.Query<TSMatch>(x =>
+            return Matches.FirstOrDefault(x =>
                 x.Year.Equals(year, StringComparison.OrdinalIgnoreCase)
                 && x.Division.Equals(division, StringComparison.OrdinalIgnoreCase)
                 && x.Number == game
-                && x.Slot.Equals(slot, StringComparison.OrdinalIgnoreCase))
-                .Select(x => new Match
-                {
-                    Id = Guid.Parse(x.RowKey),
-                    Year = x.Year,
-                    Division = x.Division,
-                    Number = x.Number,
-                    Slot = x.Slot,
-                    Lane = x.Lane,
-                    Centre = x.Centre,
-                    IsPOA = x.IsPOA,
-                    Away = x.Away,
-                    AwayId = x.AwayId,
-                    Home = x.Home,
-                    HomeId = x.HomeId,
-                })
-                .FirstOrDefault();
+                && x.Slot.Equals(slot, StringComparison.OrdinalIgnoreCase));
         }
         
         public void Handle(TournamentCreated e)
         {
-            Storage.Create(Guid.Empty, e.Id, new TSTournament
-            {
+            Tournaments.Add(new Tournament{
+                Id = e.Id,
                 Year = e.Year
             });
         }
 
         public void Handle(ParticipantCreated e)
         {
-            Storage.Create(Guid.Empty, e.Id, new TSParticipant
-            {
+            Participants.Add(e.Id, new Participant{
+                Id = e.Id,
                 Name = e.Name,
                 Gender = e.Gender
             });
@@ -176,33 +122,39 @@ namespace MBACNationals.ReadModels
 
         public void Handle(ParticipantGenderReassigned e)
         {
-            Storage.Update<TSParticipant>(Guid.Empty, e.Id, x => x.Gender = e.Gender);
+            Participants[e.Id].Gender = e.Gender;
         }
 
         public void Handle(ParticipantRenamed e)
         {
-            Storage.Update<TSParticipant>(Guid.Empty, e.Id, x => x.Name = e.Name);
+            Participants[e.Id].Name = e.Name;
+        }
+
+        public void Handle(ParticipantAverageChanged e)
+        {
+            Participants[e.Id].Average = e.Average;
         }
 
         public void Handle(ParticipantAssignedToTeam e)
         {
-            Storage.Update<TSParticipant>(Guid.Empty, e.Id, x => x.TeamId = e.TeamId);
+            Participants[e.Id].TeamId = e.TeamId;
         }
 
         public void Handle(ParticipantQualifyingPositionChanged e)
         {
-            Storage.Update<TSParticipant>(Guid.Empty, e.Id, x => x.QualifyingPosition = e.QualifyingPosition);
+            Participants[e.Id].QualifyingPosition = e.QualifyingPosition;
         }
 
         public void Handle(ParticipantReplacedWithAlternate e)
         {
-            Storage.Update<TSParticipant>(Guid.Empty, e.Id, x => x.IsReplaced = true);
+            Participants[e.Id].IsReplaced = true;
         }
 
         public void Handle(MatchCreated e)
         {
-            Storage.Create(e.Id, e.Id, new TSMatch
+            Matches.Add(new Match
             {
+                Id = e.Id,
                 Division = e.Division,
                 Year = e.Year ?? "2014",
                 IsPOA = e.IsPOA,

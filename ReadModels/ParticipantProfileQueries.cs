@@ -8,7 +8,8 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class ParticipantProfileQueries : BaseReadModel<ParticipantProfileQueries>,
+    public class ParticipantProfileQueries : 
+        IReadModel,
         IParticipantProfileQueries,
         ISubscribeTo<TournamentCreated>,
         ISubscribeTo<ContingentCreated>,
@@ -19,73 +20,15 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<ParticipantProfileChanged>,
         ISubscribeTo<ParticipantAssignedToTeam>
     {
+        public List<Participant> Participants { get; set; }
+        public Dictionary<Guid, string> Tournaments { get; set; }
+        public Dictionary<Guid, Contingent> Contingents { get; set; }
+        public List<Team> Teams { get; set; }
+
         public class Participant
         {
-            public Guid Id { get; internal set; }
-            public bool HasProfile { get; internal set; }
-            public string Province { get; internal set; }
-            public string Team { get; internal set; }
-            public string Name { get; internal set; }
-            public int Age { get; internal set; }
-            public string HomeTown { get; set; }
-            public string MaritalStatus { get; internal set; }
-            public string SpouseName { get; internal set; }
-            public string Children { get; internal set; }
-            public string Occupation { get; internal set; }
-            public string HomeCenter { get; internal set; }
-            public int YearsBowling { get; internal set; }
-            public int NumberOfLeagues { get; internal set; }
-            public int HighestAverage { get; internal set; }
-            public int YearsCoaching { get; internal set; }
-            public string BestFinishProvincially { get; internal set; }
-            public string BestFinishNationally { get; internal set; }
-            public int MasterProvincialWins { get; internal set; }
-            public string MastersAchievements { get; internal set; }
-            public string OpenAchievements { get; internal set; }
-            public int OpenYears { get; internal set; }
-            public string OtherAchievements { get; internal set; }
-            public string Hobbies { get; internal set; }
-        }
-        
-        private class TSTournament : Entity
-        {
-            public Guid Id
-            {
-                get { return Guid.Parse(RowKey); }
-                internal set { RowKey = value.ToString(); PartitionKey = value.ToString(); }
-            }
-            public string Year { get; set; }
-        }
-
-        private class TSContingent : Entity
-        {
-            public Guid Id
-            {
-                get { return Guid.Parse(RowKey); }
-                internal set { RowKey = value.ToString(); PartitionKey = value.ToString(); }
-            }
-            public string Province { get; internal set; }
-            public Guid TournamentId { get; set; }
-        }
-
-        private class TSTeam : Entity
-        {
-            public Guid Id
-            {
-                get { return Guid.Parse(RowKey); }
-                internal set { RowKey = value.ToString(); }
-            }
-            public Guid ContingentId
-            {
-                get { return Guid.Parse(PartitionKey); }
-                internal set { PartitionKey = value.ToString(); }
-            }
-            public string Name { get; set; }
-            public string Province { get; set; }
-        }
-
-        private class TSParticipant : Entity
-        {
+            public Guid Id { get; set; }
+            public Guid ContingentId { get; set; }
             public bool HasProfile { get; set; }
             public string Province { get; set; }
             public string Team { get; set; }
@@ -109,154 +52,148 @@ namespace MBACNationals.ReadModels
             public int OpenYears { get; set; }
             public string OtherAchievements { get; set; }
             public string Hobbies { get; set; }
-            public Guid ContingentId { get; set; }
         }
 
+        public class Contingent
+        {
+            public Guid Id { get; set; }
+            public Guid TournamentId { get; set; }
+            public string Province { get; set; }
+        }
+
+        public class Team
+        {
+            public Guid Id { get; set; }
+            public Guid ContingentId { get; set; }
+            public string Name { get; set; }
+            public string Province { get; set; }
+        }
+
+        public ParticipantProfileQueries()
+        {
+            Reset();
+        }
+
+        public void Reset()
+        {
+            Participants = new List<Participant>();
+            Tournaments = new Dictionary<Guid, string>();
+            Contingents = new Dictionary<Guid, Contingent>();
+            Teams = new List<Team>();
+            Tournaments.Add(Guid.Empty, "2014");
+        }
+
+        public void Save()
+        {
+            ReadModelPersister.Save(this);
+        }
+        
         public List<Participant> GetProfiles(int year)
         {
-            var tournament = Storage.Query<TSTournament>(x => x.Year == year.ToString()).FirstOrDefault();
-            var contingents = Storage.Query<TSContingent>(x => x.TournamentId == tournament.Id);
+            if (!Tournaments.Any(x => x.Value == year.ToString()))
+                return null;
 
-            var partipants = Storage.Query<TSParticipant>(x => x.HasProfile)
-                .Where(x => contingents.Any(c => c.Id == x.ContingentId))
-                .Select(x => new Participant
-                {
-                    Id = Guid.Parse(x.RowKey),
-                    HasProfile = x.HasProfile,
-                    Province = x.Province,
-                    Team = x.Team,
-                    Name = x.Name,
-                    Age = x.Age,
-                    HomeTown = x.HomeTown,
-                    MaritalStatus = x.MaritalStatus,
-                    SpouseName = x.SpouseName,
-                    Children = x.Children,
-                    Occupation = x.Occupation,
-                    HomeCenter = x.HomeCenter,
-                    YearsBowling = x.YearsBowling,
-                    NumberOfLeagues = x.NumberOfLeagues,
-                    HighestAverage = x.HighestAverage,
-                    YearsCoaching = x.YearsCoaching,
-                    BestFinishProvincially = x.BestFinishProvincially,
-                    BestFinishNationally = x.BestFinishNationally,
-                    MasterProvincialWins = x.MasterProvincialWins,
-                    MastersAchievements = x.MastersAchievements,
-                    OpenAchievements = x.OpenAchievements,
-                    OpenYears = x.OpenYears,
-                    OtherAchievements = x.OtherAchievements,
-                    Hobbies = x.Hobbies,
-                }).ToList();
-            return partipants;
+            var tournament = Tournaments.Single(x => x.Value == year.ToString());
+            var contingents = Contingents.Where(x => x.Value.TournamentId == tournament.Key);
+            var participants = Participants.Where(x => contingents.Any(c => c.Key == x.ContingentId))
+                .ToList();
+
+            return participants;
         }
 
         public Participant GetProfile(Guid id)
         {
-            var participant = Storage.Read<TSParticipant>(id, id);
-            return new Participant
-                {
-                    Id = Guid.Parse(participant.RowKey),
-                    HasProfile = participant.HasProfile,
-                    Province = participant.Province,
-                    Team = participant.Team,
-                    Name = participant.Name,
-                    Age = participant.Age,
-                    HomeTown = participant.HomeTown,
-                    MaritalStatus = participant.MaritalStatus,
-                    SpouseName = participant.SpouseName,
-                    Children = participant.Children,
-                    Occupation = participant.Occupation,
-                    HomeCenter = participant.HomeCenter,
-                    YearsBowling = participant.YearsBowling,
-                    NumberOfLeagues = participant.NumberOfLeagues,
-                    HighestAverage = participant.HighestAverage,
-                    YearsCoaching = participant.YearsCoaching,
-                    BestFinishProvincially = participant.BestFinishProvincially,
-                    BestFinishNationally = participant.BestFinishNationally,
-                    MasterProvincialWins = participant.MasterProvincialWins,
-                    MastersAchievements = participant.MastersAchievements,
-                    OpenAchievements = participant.OpenAchievements,
-                    OpenYears = participant.OpenYears,
-                    OtherAchievements = participant.OtherAchievements,
-                    Hobbies = participant.Hobbies,
-                }; 
+            return Participants.SingleOrDefault(x => x.Id == id);
         }
 
         public void Handle(TournamentCreated e)
         {
-            Storage.Create(e.Id, e.Id, new TSTournament
-            {
-                Year = e.Year
-            });
+            if (Tournaments.ContainsKey(e.Id))
+                Tournaments.Remove(e.Id);
+            
+            Tournaments.Add(e.Id, e.Year);
         }
 
         public void Handle(ContingentCreated e)
         {
-            Storage.Create(e.Id, e.Id, new TSContingent { Province = e.Province });
+            Contingents.Add(e.Id, new Contingent
+            {
+                Id = e.Id,
+                Province = e.Province
+            });
         }
 
         public void Handle(ContingentAssignedToTournament e)
         {
-            Storage.Update<TSContingent>(e.Id, e.Id, x => x.TournamentId = e.TournamentId);
+            var contingent = Contingents[e.Id];
+            contingent.TournamentId = e.TournamentId;
         }
 
         public void Handle(TeamCreated e)
         {
-            var contingent = Storage.Read<TSContingent>(e.Id, e.Id);
-            if (contingent == null)
-                return;
+            var contingent = Contingents[e.Id];
 
-            Storage.Create(e.Id, e.TeamId, new TSTeam { Name = e.Name, Province = contingent.Province });
+            Teams.Add(new Team
+            {
+                Id = e.TeamId,
+                ContingentId = e.Id,
+                Name = e.Name,
+                Province = contingent.Province
+            });
         }
 
         public void Handle(ParticipantCreated e)
         {
-            Storage.Create(e.Id, e.Id, new TSParticipant { Name = e.Name });
+            Participants.Add(new Participant
+            {
+                Id = e.Id,
+                Name = e.Name
+            });
         }
 
         public void Handle(ParticipantRenamed e)
         {
-            Storage.Update<TSParticipant>(e.Id, e.Id, x => x.Name = e.Name);
+            var participant = Participants.Single(x => x.Id == e.Id);
+            participant.Name = e.Name;
         }
 
         public void Handle(ParticipantProfileChanged e)
         {
-            Storage.Update<TSParticipant>(e.Id, e.Id, x =>
-            {
-                x.HasProfile = true;
-                x.Age = e.Age;
-                x.HomeTown = e.HomeTown;
-                x.MaritalStatus = e.MaritalStatus;
-                x.SpouseName = e.SpouseName;
-                x.Children = e.Children;
-                x.Occupation = e.Occupation;
-                x.HomeCenter = e.HomeCenter;
-                x.YearsBowling = e.YearsBowling;
-                x.NumberOfLeagues = e.NumberOfLeagues;
-                x.HighestAverage = e.HighestAverage;
-                x.YearsCoaching = e.YearsCoaching;
-                x.BestFinishProvincially = e.BestFinishProvincially;
-                x.BestFinishNationally = e.BestFinishNationally;
-                x.MasterProvincialWins = e.MasterProvincialWins;
-                x.MastersAchievements = e.MastersAchievements;
-                x.OpenAchievements = e.OpenAchievements;
-                x.OpenYears = e.OpenYears;
-                x.OtherAchievements = e.OtherAchievements;
-                x.Hobbies = e.Hobbies;
-            });
+            var participant = Participants.Single(x => x.Id == e.Id);
+
+            participant.HasProfile = true;
+            participant.Age = e.Age;
+            participant.HomeTown = e.HomeTown;
+            participant.MaritalStatus = e.MaritalStatus;
+            participant.SpouseName = e.SpouseName;
+            participant.Children = e.Children;
+            participant.Occupation = e.Occupation;
+            participant.HomeCenter = e.HomeCenter;
+            participant.YearsBowling = e.YearsBowling;
+            participant.NumberOfLeagues = e.NumberOfLeagues;
+            participant.HighestAverage = e.HighestAverage;
+            participant.YearsCoaching = e.YearsCoaching;
+            participant.BestFinishProvincially = e.BestFinishProvincially;
+            participant.BestFinishNationally = e.BestFinishNationally;
+            participant.MasterProvincialWins = e.MasterProvincialWins;
+            participant.MastersAchievements = e.MastersAchievements;
+            participant.OpenAchievements = e.OpenAchievements;
+            participant.OpenYears = e.OpenYears;
+            participant.OtherAchievements = e.OtherAchievements;
+            participant.Hobbies = e.Hobbies;
         }
 
         public void Handle(ParticipantAssignedToTeam e)
         {
-            var team = Storage.Read<TSTeam>(e.TeamId);
-            if (team == null)
+            if (!Teams.Any(x => x.Id == e.TeamId))
                 return;
+            
+            var participant = Participants.Single(x => x.Id == e.Id);
+            var team = Teams.Single(x => x.Id == e.TeamId);
 
-            Storage.Update<TSParticipant>(e.Id, e.Id, x =>
-            {
-                x.Team = team.Name;
-                x.Province = team.Province;
-                x.ContingentId = team.ContingentId;
-            });
+            participant.Team = team.Name;
+            participant.Province = team.Province;
+            participant.ContingentId = team.ContingentId;
         }
     }
 }
