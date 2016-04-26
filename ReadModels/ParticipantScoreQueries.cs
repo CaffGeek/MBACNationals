@@ -1,4 +1,5 @@
 ﻿using Edument.CQRS;
+using Events.Contingent;
 using Events.Participant;
 using Events.Scores;
 using System;
@@ -11,10 +12,15 @@ namespace MBACNationals.ReadModels
         IReadModel,
         IParticipantScoreQueries,
         ISubscribeTo<ParticipantCreated>,
+        ISubscribeTo<ContingentCreated>,
         ISubscribeTo<ParticipantAverageChanged>,
-        ISubscribeTo<ParticipantGameCompleted>
+        ISubscribeTo<ParticipantGameCompleted>,
+        ISubscribeTo<ParticipantAssignedToTeam>,
+        ISubscribeTo<TeamCreated>
     {
         public List<Participant> Participants { get; set; }
+        public Dictionary<Guid, string> Contingents { get; set; }
+        public Dictionary<Guid, string> Teams { get; set; }
 
         public class Participant
         {
@@ -66,6 +72,8 @@ namespace MBACNationals.ReadModels
         public void Reset()
         {
             Participants = new List<Participant>();
+            Contingents = new Dictionary<Guid, string>();
+            Teams = new Dictionary<Guid, string>();
         }
 
         public void Save()
@@ -80,6 +88,22 @@ namespace MBACNationals.ReadModels
                 Id = e.Id,
                 Name = e.Name
             });
+        }
+
+        public void Handle(ContingentCreated e)
+        {
+            Contingents.Add(e.Id, e.Province);
+        }
+
+        public void Handle(TeamCreated e)
+        {
+            Teams.Add(e.TeamId, Contingents[e.Id]);
+        }
+
+        public void Handle(ParticipantAssignedToTeam e)
+        {
+            var participant = Participants.Single(x => x.Id == e.Id);
+            participant.Province = Teams[e.TeamId];
         }
 
         public void Handle(ParticipantAverageChanged e)
