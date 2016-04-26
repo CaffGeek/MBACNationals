@@ -21,23 +21,32 @@ include 'header.php';
       <!-- Example row of columns -->
       <div class="row" data-ng-controller="ContingentController">
         <div class="col-md-2">
-        <ul class="sidebarNav">
+          <ul class="sidebarNav">
        			<li><a href="" data-ng-click="loadContingent('BC')">British Columbia</a></li>
-				<li><a href="" data-ng-click="loadContingent('AB')">Alberta</a></li>
-				<li><a href="" data-ng-click="loadContingent('SK')">Saskatchewan</a></li>
-				<li><a href="" data-ng-click="loadContingent('MB')">Manitoba</a></li>
-				<li><a href="" data-ng-click="loadContingent('NO')">Northern Ontario</a></li>
-				<li><a href="" data-ng-click="loadContingent('SO')">Southern Ontario</a></li>
-				<li><a href="" data-ng-click="loadContingent('QC')">Quebec</a></li>
-				<li><a href="" data-ng-click="loadContingent('NL')">Newfoundland &amp; Labrador</a></li>
-    	</ul>
-          
+				    <li><a href="" data-ng-click="loadContingent('AB')">Alberta</a></li>
+				    <li><a href="" data-ng-click="loadContingent('SK')">Saskatchewan</a></li>
+				    <li><a href="" data-ng-click="loadContingent('MB')">Manitoba</a></li>
+				    <li><a href="" data-ng-click="loadContingent('NO')">Northern Ontario</a></li>
+				    <li><a href="" data-ng-click="loadContingent('SO')">Southern Ontario</a></li>
+				    <li><a href="" data-ng-click="loadContingent('QC')">Quebec</a></li>
+				    <li><a href="" data-ng-click="loadContingent('NL')">Newfoundland &amp; Labrador</a></li>
+    	    </ul>
         </div>
+
         <div class="col-md-10">
-        <h2>Contingents</h2>
-        <h2>{{model.Province}} Contingents</h2>
-            <p>* Rookie</p>
-         <div class="contingentColumn" style="width:40.7%;display:block;float:left;margin:1% 0 1% 1.6%;" data-ng-repeat="team in model.Teams | orderBy:'-1*Name.length'" data-ng-show="team.Id">
+          <h2>{{model.Province}} Contingent</h2>
+          <div class="row">
+            <h5 class="col-md-2">Manager</h5>
+            <p class="col-md-2" data-ng-repeat="person in managers">{{person.Name}}</p>
+          </div>
+          <div class="row">
+            <h5 class="col-md-2">Delegates</h5>
+            <p class="col-md-2" data-ng-repeat="person in delegates">{{person.Name}}</p>
+          </div>
+
+          <p> * Rookie </p>
+
+        <div class="contingentColumn" style="width:40.7%;display:block;float:left;margin:1% 0 1% 1.6%;" data-ng-repeat="team in model.Teams | orderBy:'-1*Name.length'" data-ng-show="team.Id">
               <h5>
                 <a href="results.php#/team/{{team.Id}}">{{team.Name || 'Vacancy'}}</a>
               </h5>
@@ -77,8 +86,8 @@ include 'header.php';
                   <span data-ng-if="team.RequiresAverage" style="float:right; font-weight: bold;">{{totalAverage(team)}}</span>
                 </li>
               </ol>
-            </div> 
-      </div>
+            </div>
+        </div>
 </div>
 <?php
 
