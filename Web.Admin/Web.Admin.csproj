@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -2107,6 +2107,7 @@
     <Content Include="2016\galleria\themes\classic\galleria.classic.min.js" />
     <Content Include="2016\js\instafeed.min.js" />
     <Content Include="AdminApp\Views\Reports\Newsworthy.html" />
+    <Content Include="AdminApp\Views\Reports\Rookies.html" />
     <Content Include="AdminApp\Views\Reports\ScheduleValidation.html" />
     <Content Include="ClientApp\app.js" />
     <Content Include="ClientApp\Controllers\controller.contingent.js" />

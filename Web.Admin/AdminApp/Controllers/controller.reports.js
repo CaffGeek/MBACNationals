@@ -29,6 +29,7 @@
 		$scope.loadSchedule = loadSchedule;
 
 		$scope.plaqueFilter = plaqueFilter;
+		$scope.rookieFilter = rookieFilter;
 		$scope.roomTypeFilter = roomTypeFilter;
 		$scope.bowlerFilter = bowlerFilter;
 
@@ -49,6 +50,10 @@
 
 		function plaqueFilter(participant) {
 		    return (participant.YearsQualifying) && (participant.YearsQualifying % 5 === 0);
+		};
+
+		function rookieFilter(participant) {
+		    return (participant.YearsQualifying) && (participant.YearsQualifying == 1);
 		};
 
 		function loadProfiles() {
