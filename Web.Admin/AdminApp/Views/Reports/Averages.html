@@ -6,6 +6,7 @@
             <thead>
                 <tr>
                     <th>Participant</th>
+                    <th>Province</th>
                     <th>Tournament<br/>Pinfall</th>
                     <th>Tournament<br/>Games</th>
                     <th>League<br/>Pinfall</th>
@@ -17,6 +18,7 @@
             <tbody data-ng-repeat="participant in model.Participants | orderBy:'Name' | filter:{ Name: filter.Name } | filter: bowlerFilter" data-ng-if="participant.Name">
                 <tr>
                     <td>{{participant.Name}}</td>
+                    <td>{{participant.Province}}</td>
                     <td>{{participant.TournamentPinfall}}</td>
                     <td>{{participant.TournamentGames}}</td>
                     <td>{{participant.LeaguePinfall}}</td>
