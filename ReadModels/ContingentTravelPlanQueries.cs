@@ -38,7 +38,7 @@ namespace MBACNationals.ReadModels
         {
             public Guid Id { get; set; }
             public string Province { get; set; }
-            public IList<TravelPlan> TravelPlans { get; set; }
+            public List<TravelPlan> TravelPlans { get; set; }
 
             public ContingentTravelPlans()
             {
@@ -59,7 +59,7 @@ namespace MBACNationals.ReadModels
         {
             public Guid Id { get; set; }
             public string Province { get; set; }
-            public IList<HotelRoom> HotelRooms { get; set; }
+            public List<HotelRoom> HotelRooms { get; set; }
             public string Instructions { get; set; }
 
             public ContingentRooms()
@@ -105,15 +105,13 @@ namespace MBACNationals.ReadModels
 
         public List<ContingentRooms> GetAllRooms(string year)
         {
-            var t = Tournaments.SingleOrDefault(x => x.Year == year)
-                ?? new Tournament();
-            
+            var t = Tournaments.Single(x => x.Year == year);            
             return t.ContingentRooms;
         }
 
         public ContingentRooms GetRooms(string year, string province)
         {
-            return GetAllRooms(year).FirstOrDefault(x => x.Province == province);
+            return GetAllRooms(year).Single(x => x.Province == province);
         }
 
         public void Handle(TournamentCreated e)
@@ -150,6 +148,11 @@ namespace MBACNationals.ReadModels
             var contingent = Contingents.Single(x => x.Key == e.Id);
 
             tournament.ContingentTravelPlans.Add(new ContingentTravelPlans
+                {
+                    Id = e.Id,
+                    Province = contingent.Value
+                });
+            tournament.ContingentRooms.Add(new ContingentRooms
                 {
                     Id = e.Id,
                     Province = contingent.Value
