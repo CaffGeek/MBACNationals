@@ -18,10 +18,28 @@
                         </address>
 
                         <ul class="list-unstyled">
-                            <li>1 King Bed, Business</li>
-                            <li>1 Queen Bed, standard w/pullout sofa</li>
-                            <li>2 Double Beds, standard</li>
-                            <li>2 Double Beds, accessible</li>
+                            <li>
+                                <strong>One Queen</strong><br />
+                                <small>
+                                    12 rooms / contingent<br />
+                                </small>
+                            </li>
+                            <li>
+                                <strong>King Bed + Pullout couch</strong><br />
+                                <small>
+                                    $148 - 2 / contingent<br />
+                                </small>
+                            </li>
+                            <li>
+                                <strong>Corner Room - King Bed + Pullout</strong><br />
+                                <small>
+                                    $170.20 - 2 / contingent<br />
+                                    These rooms are larger<br />
+                                </small>
+                            </li>
+                            <li>
+                                <b>Max of 4 people per room. $10 charge per additional guest.</b>
+                            </li>
                         </ul>
                     </span>
                     <span ng-if="model.year == '2015'">
@@ -89,7 +107,9 @@
                         <h6>
                             Room #{{calcBin(y,x)}}
                             <select id="binType{{calcBin(y,x)}}" data-ng-model="getRoomByBin(y,x).Type" data-ng-change="setRoomType((y-1)*5+x)">
-                                <option ng-if="model.year == '2016'" value="Unknown">Unknown</option>
+                                <option ng-if="model.year == '2016'" value="Queen">2 Queen</option>
+                                <option ng-if="model.year == '2016'" value="King">King + Pullout</option>
+                                <option ng-if="model.year == '2016'" value="Corner">Corner: King + Pullout</option>
 
                                 <option ng-if="model.year == '2015'" value="King">1 King Bed, Business</option>
                                 <option ng-if="model.year == '2015'" value="Queen">1 Queen Bed, w/pullout sofa</option>
