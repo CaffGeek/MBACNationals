@@ -6,7 +6,11 @@ namespace UITests
 {
     [TestClass]
     public class NavigationTests : TestBase
-    {
+    {        
+        public NavigationTests ()
+            : base("Web.Admin") 
+	    { }             
+
         [TestMethod]
         public void CanLoginAsAdmin()
         {

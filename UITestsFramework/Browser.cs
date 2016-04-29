@@ -6,7 +6,7 @@ namespace UITestsFramework
 {
     public static class Browser
     {
-        private static string baseUrl = "http://localhost:54055/Setup/";
+        private static string baseUrl = "http://localhost:2020/";
         private static IWebDriver webDriver;
 
         public static void Initialize()
