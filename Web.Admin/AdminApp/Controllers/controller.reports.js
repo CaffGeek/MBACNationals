@@ -33,11 +33,10 @@
 		$scope.roomTypeFilter = roomTypeFilter;
 		$scope.bowlerFilter = bowlerFilter;
 
-		loadParticipants();
-		loadRooms();
+		loadParticipants().then(loadRooms);
 
 		function loadParticipants() {
-		    dataService.LoadAllParticipants($scope.model.year).then(function (data) {
+		    return dataService.LoadAllParticipants($scope.model.year).then(function (data) {
 		        $scope.model.Participants = data.data;
 		    });
 		};
@@ -65,6 +64,20 @@
 		function loadRooms() {
 		    dataService.LoadRooms($scope.model.year).then(function (data) {
 		        $scope.model.ContingentRooms = data.data;
+
+		        //HACK:
+		        $scope.model.ContingentRooms.forEach(function (c) {
+		            var participants = $scope.model.Participants.filter(function (p) { return p.ContingentId == c.Id; });
+		            participants
+                        .map(function (p) { return p.RoomNumber; })
+                        .reduce(function (accum, current) { if (accum.indexOf(current) < 0) { accum.push(current); } return accum; }, [])
+                        .forEach(function (n) {
+                            if (!n) return; //skip room 0
+                            var room = c.HotelRooms.filter(function (r) { return r.RoomNumber == n });
+                            if (!room.length)
+                                c.HotelRooms.push({ RoomNumber: n });
+                        });
+		        });
 		    });
 		};
 
