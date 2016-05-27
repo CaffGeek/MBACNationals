@@ -169,7 +169,7 @@ namespace MBACNationals.ReadModels
                     ModeOfTransportation = travelPlan.ModeOfTransportation,
                     NumberOfPeople = travelPlan.NumberOfPeople,
                     Type = travelPlan.Type,
-                    When = travelPlan.When.ToString("yyyy-MM-ddTHH:mm"),
+                    When = travelPlan.When,
                 }).ToList();
 
             var contingentPlans = tournament.ContingentTravelPlans.FirstOrDefault(x => x.Id == e.Id);
