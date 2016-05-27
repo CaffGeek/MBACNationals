@@ -14,7 +14,7 @@
             <tbody data-ng-repeat="plan in model.FlattenedTravelPlans | orderBy:orderBy.Column:orderBy.Descending">
                 <tr>
                     <td>{{plan.Province}}</td>
-                    <td>{{plan.When}}</td>
+                    <td>{{plan.When | date:'yyyy-MM-dd h:mm a':'UTC'}}</td>
                     <td>{{plan.ModeOfTransportation}}</td>
                     <td>{{plan.FlightNumber}}</td>
                     <td>{{plan.NumberOfPeople}}</td>
