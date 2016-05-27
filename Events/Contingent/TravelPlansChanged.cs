@@ -11,7 +11,7 @@ namespace Events.Contingent
         public class TravelPlan
         {
             public string ModeOfTransportation;
-            public DateTime When;
+            public string When;
             public string FlightNumber;
             public int NumberOfPeople;
             public int Type;
