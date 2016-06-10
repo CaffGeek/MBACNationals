@@ -33,10 +33,22 @@ namespace MBACNationals.Scores
 
             if (match.IsPOA)
             {
-                //TODO: Single might no longer be first bowler if they are replaced
-                var awayBowler = command.Away.Bowlers.First();
-                var homeBowler = command.Home.Bowlers.First();
+                //var awayBowler = command.Away.Bowlers.First();
+                //var homeBowler = command.Home.Bowlers.First();
 
+                //TODO: Single might no longer be first bowler if they are replaced
+                var awaySingleParticipant = CommandQueries.GetTeamParticipants(command.Away.Id)
+                    .FirstOrDefault(x => x.QualifyingPosition == 1) ?? new CommandQueries.Participant();
+
+                var awayBowler = command.Away.Bowlers.FirstOrDefault(x => x.Id == awaySingleParticipant.Id)
+                    ?? command.Away.Bowlers.First(); // Never used to have QualifyingPosition
+
+                var homeSingleParticipant = CommandQueries.GetTeamParticipants(command.Home.Id)
+                    .FirstOrDefault(x => x.QualifyingPosition == 1) ?? new CommandQueries.Participant();
+
+                var homeBowler = command.Home.Bowlers.FirstOrDefault(x => x.Id == homeSingleParticipant.Id)
+                    ?? command.Home.Bowlers.First(); // Never used to have QualifyingPosition
+                
                 var awayParticipant = _dispatcher.Load<ParticipantAggregate>(awayBowler.Id);
                 var homeParticipant = _dispatcher.Load<ParticipantAggregate>(homeBowler.Id);
 
@@ -56,7 +68,7 @@ namespace MBACNationals.Scores
                     Division = agg.Division + " Single",
                     Contingent = match.Away,
                     Opponent = match.Home,
-                    TeamId = awayBowler.Id,
+                    TeamId = command.Away.Id,
                     Score = awayBowler.Score,
                     POA = awayPOA,
                     Points = awaySinglePoints,
@@ -77,7 +89,7 @@ namespace MBACNationals.Scores
                     Division = agg.Division + " Single",
                     Contingent = match.Home,
                     Opponent = match.Away,
-                    TeamId = homeBowler.Id,
+                    TeamId = command.Home.Id,
                     Score = homeBowler.Score,
                     POA = homePOA,
                     Points = homeSinglePoints,
