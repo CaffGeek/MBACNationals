@@ -36,7 +36,7 @@ namespace MBACNationals.Scores
                 //var awayBowler = command.Away.Bowlers.First();
                 //var homeBowler = command.Home.Bowlers.First();
 
-                //TODO: Single might no longer be first bowler if they are replaced
+                //Single might no longer be first bowler if they are replaced
                 var awaySingleParticipant = CommandQueries.GetTeamParticipants(command.Away.Id)
                     .FirstOrDefault(x => x.QualifyingPosition == 1) ?? new CommandQueries.Participant();
 
@@ -58,8 +58,6 @@ namespace MBACNationals.Scores
                 var awaySinglePoints = CalculatePoint(awayPOA, homePOA, 2);
                 var homeSinglePoints = CalculatePoint(homePOA, awayPOA, 2);
 
-                //TODO: something that fixes up existing Commands TeamIds for POA singles
-                
                 //Away
                 yield return new TeamGameCompleted
                 {
