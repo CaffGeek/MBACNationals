@@ -81,6 +81,7 @@ Galleria.run('#galleria', {
     			});
   			  feed.run();
 			</script>
+			<div id="instafeed"></div>
 		</div>
 		
       </div>
