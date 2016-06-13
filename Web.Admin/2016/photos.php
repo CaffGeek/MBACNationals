@@ -44,7 +44,7 @@ include 'header.php';
 
       	<div id="instagram">
 
-			<div id="instafeed" style="border:1px solid red;"></div>
+			<div id="instafeed" style="border:1px solid blue;"></div>
 		</div>
 		
       </div>
@@ -123,14 +123,13 @@ Galleria.run('#galleria', {
 </script>
 	<script type="text/javascript" src="http://mbacnationals.com/2016/js/instafeed.min.js"></script>
 
-      		<script type="text/javascript">
-  			  var feed = new Instafeed({
-      		  get: 'user',
- 		      userId: '1745902510',
-			  clientId: '8dff542608854143b95ffae445a35390'
-    			});
-  			  feed.run();
-</script>
-      
-  </body>
+
+<script type="text/javascript">
+    var feed = new Instafeed({
+        get: 'tagged',
+        tagName: 'awesome',
+		clientId: '8dff542608854143b95ffae445a35390'
+    });
+    feed.run();
+</script>  </body>
 </html>
