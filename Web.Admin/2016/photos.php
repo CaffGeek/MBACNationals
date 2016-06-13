@@ -35,7 +35,7 @@ include 'header.php';
           
         </div>
     	<div class="col-md-10">
-        <h2>PHOTOS</h2>
+        <h2>PHOTOS DAY 1</h2>
       	<div id="galleria"></div>
 
 <script src="http://mbacnationals.com/2015/js/galleria/galleria-1.4.2.min.js"></script>
