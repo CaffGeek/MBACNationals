@@ -36,55 +36,8 @@ include 'header.php';
         </div>
     	<div class="col-md-10">
         <h2>PHOTOS</h2>
-      		<?php
-    //Replace with your Facebook Page ID
-    $facebook_page_owner = "130343173697687";
- 
-    //Set the cache time and the location of where the cache is stored.
-    $cachetime = 10800;
-    $cachefile = "cache/albums";
- 
-    //checks if file exists and the cache is "recent" enough
-    if (file_exists($cachefile) && time() - $cachetime < filemtime($cachefile))
-    {
-        $string = file_get_contents($cachefile);
-    }
-    //if cache is too "old"
-    else
-    {
-        //get ID of albums, the names of albums and the limit of how many albums to get. If the limit isn't set, then only 25 albums are displayed (Thanks to "Jeremy" for solution)
-        $string = file_get_contents('https://graph.facebook.com/'.$facebook_page_owner.'/albums?fields=id,name&limit=500');
- 
-        //open the cache file and write the info of albums to the file (for quicker retrieval)
-        $fp = fopen($cachefile, 'w');
-        fwrite($fp, $string);
-        fclose($fp);
-    }
- 
-    //decode the cached file
-    $jdata = json_decode($string);
- 
-    foreach( $jdata->data as $obj )
-    {
-        //get each album ID
-        $albumID = $obj->id;
-        if ($albumID != '60116534677' &&  $albumID != '65268964677') //Albums to be ignored. More can be added.
-        {
-            //If the album is not "blacklisted" then get the name of album
-            $albumname = $obj->name;
- 
-            //display the album thumbnail and the name. Style can be changed according to taste.
-            echo "  <div class='FB_pic_container'>
-                        <a href='images.php?albumid=".$albumID."&albumname=".$albumname."'>
-                            <div style='width: 184px; height: 104px;'>
-                                <img src='https://graph.facebook.com/".$albumID."/picture?type=album'/>
-                                <span class='FB_pic_label'>".$albumname."</span>
-                            </div>
-                        </a>
-                    </div>";
-        }
-    }
-?>
+      	<div id="galleria"></div>
+
       	</div>
 <!--      	<div id="day2">
       		<h2>Day 2</h2>
@@ -106,7 +59,6 @@ include 'header.php';
       	</div>-->
 
       	<div id="instagram">
-      		<h4>Instagram</h4>
       		<script type="text/javascript">
   			  var feed = new Instafeed({
       		  get: 'user',
