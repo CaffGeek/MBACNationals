@@ -22,13 +22,13 @@ include 'header.php';
       <div class="row">
         <div class="col-md-2">
         <ul class="sidebarNav">
-       			<li><a href="#day1">Day 1</a></li>
-                <li><a href="#day2">Day 2</a></li>
-                <li><a href="#day3">Day 3</a></li>
-                <li><a href="#day4">Day 4</a></li>
-                <li><a href="#day5">Day 5</a></li>
-                <li><a href="#day6">Day 6</a></li>
-                <li><a href="#day7">Day 7</a></li>
+       			<li><a href="photos.php">Day 1</a></li>
+                <li><a href="photos_2.php">Day 2</a></li>
+                <li><a href="photos_3.php">Day 3</a></li>
+                <li><a href="photos_4.php">Day 4</a></li>
+                <li><a href="photos_5.php">Day 5</a></li>
+                <li><a href="photos_6.php">Day 6</a></li>
+                <li><a href="photos_7.php">Day 7</a></li>
                 <li><a href="#instagram">Instagram</a></li>
 
     	</ul>
@@ -40,24 +40,7 @@ include 'header.php';
 
 
       	</div>
-<!--      	<div id="day2">
-      		<h2>Day 2</h2>
-      	</div>
-      	<div id="day3">
-      		<h2>Day 3</h2>
-      	</div>
-      	<div id="day4">
-      		<h2>Day 4</h2>
-      	</div>
-      	<div id="day5">
-      		<h2>Day 5</h2>
-      	</div>
-      	<div id="day6">
-      		<h2>Day 6</h2>
-      	</div>
-      	<div id="day7">
-      		<h2>Day 7</h2>
-      	</div>-->
+
 
       	<div id="instagram">
       		<script type="text/javascript">
@@ -74,8 +57,77 @@ include 'header.php';
       </div>
       </div>
 
-<?php
 
-include 'footer.php';
 
-?>
+      <hr>
+
+      <footer>
+      	<ul class="footerNav">
+      			<li><a href="index.php">Home</a></li>
+                <li><a href="results.php">Results</a></li>
+                <li><a href="news.php">News</a></li>
+                <li><a href="schedule.php">Schedule</a></li>
+                <li><a href="lanedraw.php">Lane Draw</a></li>
+                <li><a href="photos.php">Photos</a></li>
+                <li><a href="contingents.php">Contingents</a></li>
+                <li><a href="http://www.mbaofbc.com/shopping-cart.html">Souvenirs</a></li>
+                <li><a href="centres.php">Centres</a></li>
+                <li><a href="hotel.php">Location</a></li>
+    	</ul>
+        <p>&copy; Site Design by Charlene McIvor & Chad Hurd</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="http://mbacnationals.com/2016/js/instafeed.min.js"></script>
+	<script type='text/javascript' src='https://my.sendinblue.com/public/theme/version3/js/subscribe-validate.js'></script>
+	<script type='text/javascript'>
+	    jQuery.noConflict(true);
+	</script>
+    <script src="bootstrap/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+    $(window).scroll(function() {
+    if($(this).scrollTop() > 100) {
+        $('.navbar-fixed-top').addClass('opaque');
+    } else {
+        $('.navbar-fixed-top').removeClass('opaque');
+    }
+});
+
+
+
+</script>
+	<!-- More Scripts-->
+
+    <script src="/ClientApp/app.js"></script>
+    <script src="/ClientApp/Controllers/controller.contingent.js"></script>
+    <script src="/ClientApp/Controllers/controller.highscores.js"></script>
+    <script src="/ClientApp/Controllers/controller.news.js"></script>
+    <script src="/ClientApp/Controllers/controller.results.js"></script>
+    <script src="/ClientApp/Controllers/controller.schedule.js"></script>
+    <script src="/ClientApp/Controllers/controller.sponsors.js"></script>
+    <script src="/ClientApp/Services/service.data.js"></script>
+    
+    <script src="http://mbacnationals.com/2015/js/galleria/galleria-1.4.2.min.js"></script>
+<script src="http://mbacnationals.com/2015/js/galleria/plugins/facebook/galleria.facebook.js"></script>
+<script>
+Galleria.loadTheme('http://mbacnationals.com/2015/js/galleria/themes/classic/galleria.classic.min.js');
+Galleria.run('#galleria', {
+ facebook: 'album:1129830643748930',
+ height: 550,
+ lightbox: true,
+ facebookOptions: {
+   max: 100,
+   facebook_access_token: '871325676235910|5640fa457799c71eeace0176717512b2'
+ }
+});
+</script>
+      
+  </body>
+</html>
