@@ -82,20 +82,7 @@ schedule();
     <script src="/ClientApp/Controllers/controller.sponsors.js"></script>
     <script src="/ClientApp/Services/service.data.js"></script>
     
-    <script src="http://mbacnationals.com/2015/js/galleria/galleria-1.4.2.min.js"></script>
-<script src="http://mbacnationals.com/2015/js/galleria/plugins/facebook/galleria.facebook.js"></script>
-<script>
-Galleria.loadTheme('http://mbacnationals.com/2015/js/galleria/themes/classic/galleria.classic.min.js');
-Galleria.run('#galleria', {
- facebook: 'album:967252896673373',
- height: 550,
- lightbox: true,
- facebookOptions: {
-   max: 100,
-   facebook_access_token: '871325676235910|5640fa457799c71eeace0176717512b2'
- }
-});
-</script>
+
       
   </body>
 </html>
