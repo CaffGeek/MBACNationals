@@ -51,7 +51,7 @@ include 'header.php';
     			});
   			  feed.run();
 			</script>
-			<div id="instafeed"></div>
+			<div id="instafeed" style="border:1px solid red;"></div>
 		</div>
 		
       </div>
