@@ -35,7 +35,7 @@ include 'header.php';
           
         </div>
     	<div class="col-md-10">
-        <h2>PHOTOS DAY 1</h2>
+        <h2>PHOTOS DAY 7</h2>
       	<div id="galleria"></div>
 
 
@@ -120,15 +120,23 @@ Galleria.run('#galleria', {
  }
 });
 </script>
-	<script type="text/javascript" src="http://mbacnationals.com/2016/js/instafeed.min.js"></script>
 
-
+<script type="text/javascript" src="http://mbacnationals.com/2016/js/instafeed.min.js"></script>
 <script type="text/javascript">
-    var feed = new Instafeed({
-        get: 'tagged',
-        tagName: 'awesome',
-		clientId: '8dff542608854143b95ffae445a35390'
-    });
-    feed.run();
-</script>  </body>
+var feed = new Instafeed({
+		get: 'user',
+		userId: 94764,
+		accessToken: '94764.1677ed0.c6256a27eddf41709ddf29af3469a4e5',
+		target: 'instagram',
+		resolution: 'standard_resolution',
+		after: function() {
+			var el = document.getElementById('instagram');
+			if (el.classList)
+				el.classList.add('show');
+			else
+				el.className += ' ' + 'show';
+		}
+});
+</script>  
+</body>
 </html>
