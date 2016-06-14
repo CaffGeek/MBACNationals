@@ -2072,6 +2072,12 @@
     <Content Include="2016\photo-gallery\scripts\jquery.mousewheel-3.0.2.pack.js" />
     <Content Include="2016\photo-gallery\scripts\timthumb.php" />
     <Content Include="2016\photo-gallery\style.css" />
+    <Content Include="2016\photos_2.php" />
+    <Content Include="2016\photos_3.php" />
+    <Content Include="2016\photos_4.php" />
+    <Content Include="2016\photos_5.php" />
+    <Content Include="2016\photos_6.php" />
+    <Content Include="2016\photos_7.php" />
     <Content Include="2016\schedule.php" />
     <Content Include="2016\centres.php" />
     <Content Include="2016\lanedraw.php" />
