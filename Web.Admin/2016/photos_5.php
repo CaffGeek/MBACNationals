@@ -35,7 +35,7 @@ include 'header.php';
           
         </div>
     	<div class="col-md-10">
-        <h2>PHOTOS DAY 1</h2>
+        <h2>PHOTOS DAY 5</h2>
       	<div id="galleria"></div>
 
 
