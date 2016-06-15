@@ -99,9 +99,6 @@ namespace MBACNationals.ReadModels
                 year = Matches[e.Id];
             }
             
-            if (divisionName.Equals("Tournament", StringComparison.OrdinalIgnoreCase) && e.Score < 275) return;
-            if (!divisionName.Equals("Tournament", StringComparison.OrdinalIgnoreCase) && e.POA < 75) return;
-
             var division = Divisions.SingleOrDefault(x => x.Name == divisionName && x.Year == year);
             if (division == null)
             {
@@ -113,15 +110,21 @@ namespace MBACNationals.ReadModels
 
                 Divisions.Add(division);
             }
+            
+            division.Scores.RemoveAll(x => x.MatchId == e.Id && x.ParticipantId == e.ParticipantId);
 
-            division.Scores.Add(new Score{
+            if (divisionName.Equals("Tournament", StringComparison.OrdinalIgnoreCase) && e.Score < 275) return;
+            if (!divisionName.Equals("Tournament", StringComparison.OrdinalIgnoreCase) && e.POA < 75) return;
+
+            division.Scores.Add(new Score
+            {
                 Gender = e.Gender,
                 MatchId = e.Id,
                 Name = e.Name,
                 ParticipantId = e.ParticipantId,
                 POA = e.POA,
                 Scratch = e.Score,
-                Year = year                
+                Year = year
             });
         }
 
