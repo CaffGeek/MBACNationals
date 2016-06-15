@@ -16,7 +16,7 @@ include 'header.php';
 </header>
     
 
-    <div class="container">
+    <div class="container" data-ng-app="app">
     	
       <div class="row">
         <div class="col-md-8 col-sm-8">
@@ -30,10 +30,10 @@ include 'header.php';
 		
 		</div>
 		
-		<div class="row" data-ng-app="app">
+		<div class="row">
         	<div class="col-md-6 col-sm-6" data-ng-controller="NewsController as vm">
 				<h2>News</h2>
-            		<div ng-repeat="newsItem in vm.News">
+            		<div ng-repeat="newsItem in vm.News | orderBy: '-Created'">
 						<h4><span class="newsHeader">{{newsItem.Title}}</span></h4>
 						<p style="white-space: pre-wrap;">{{newsItem.Content}}</p>
         			</div>
@@ -58,10 +58,10 @@ include 'header.php';
         
         <div class="col-md-4 col-sm-4">
          <h2>SPONSORS</h2>
-                <div style="height:250px;" data-ng-controller="SponsorsController as vm">
+                <div style="height:250px;" data-ng-controller="SponsorsController as sponsorVm">
                   <div class="innerContainer">
-                    <a href="{{vm.CurrentSponsor.Website}}" target="_blank">
-                      <img ng-src="{{vm.ImageBase}}/Setup/Sponsors/Image/{{vm.CurrentSponsor.Id}}" style="width:100%;" alt="" border="0" />
+                    <a href="{{sponsorVm.CurrentSponsor.Website}}" target="_blank">
+                      <img ng-src="{{sponsorVm.ImageBase}}/Setup/Sponsors/Image/{{sponsorVm.CurrentSponsor.Id}}" style="width:100%;" alt="" border="0" />
                     </a>
                   </div>
                 </div>      

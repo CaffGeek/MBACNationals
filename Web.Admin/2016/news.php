@@ -19,7 +19,7 @@ include 'header.php';
     <div class="container" data-ng-app="app">
     	
       <!-- Example row of columns -->
-      <div class="row" data-ng-controller="NewsController as vm">
+      <div class="row" data-ng-controller="NewsController as vm ">
         <div class="col-md-2">
         <ul class="sidebarNav">
 			<li><a href="" ng-click="vm.selectedMonth = ''">All</a></li>
@@ -30,7 +30,7 @@ include 'header.php';
           
         </div>
         <div class="col-md-10">
-        <div ng-repeat="newsItem in vm.News | filter:vm.filterByMonth(vm.selectedMonth)">
+        <div ng-repeat="newsItem in vm.News | filter:vm.filterByMonth(vm.selectedMonth) | orderBy: '-Created'">
           <h4>
             <span class="newsHeader">{{newsItem.Title}}</span>
           </h4>
