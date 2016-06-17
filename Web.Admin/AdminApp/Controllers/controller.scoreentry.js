@@ -46,7 +46,7 @@
 
                     $scope.model.AwayProvince = data.Game.Away;
                     $scope.model.HomeProvince = data.Game.Home;
-                    
+
                     $q.all([
                         dataService.LoadTeam(year, $scope.model.AwayProvince, $scope.model.Division),
                         dataService.LoadTeam(year, $scope.model.HomeProvince, $scope.model.Division),
@@ -54,6 +54,9 @@
                     ]).then(function (results) {
                         $scope.model.Away = results[0].data;
                         $scope.model.Home = results[1].data;
+
+                        $scope.model.IsPOA = $scope.model.Home.RequiresAverage;
+
                         var match = results[2].data;
 
                         if ($scope.model.Away.Bowlers.length == 1) $scope.model.Away.Bowlers[0].Position = 1;

@@ -5,7 +5,7 @@
 <form name="form" class="css-form" novalidate>
     <h4>{{model.AwayProvince}} {{model.Away.Name}}</h4>
     <div data-ng-repeat="bowler in model.Away.Bowlers | filter:{ ReplacedBy: '!'}" class="row">
-        <h5 class="col-xs-5 padding-0">{{bowler.Name}}</h5>
+        <h5 class="col-xs-5 padding-0">{{bowler.Name}}<span data-ng-if="model.IsPOA"> ({{bowler.Average}})</span></h5>
         <div class="col-xs-3 padding-0">
             <select name="position" class="form-control input-lg" data-ng-model="bowler.Position" data-ng-if="model.Away.Bowlers.length > 1" convert-to-number>
                 <option>1</option>
@@ -20,7 +20,7 @@
 
     <h4>{{model.HomeProvince}} {{model.Home.Name}}</h4>
     <div data-ng-repeat="bowler in model.Home.Bowlers | filter:{ ReplacedBy: '!'}" class="row">
-        <h5 class="col-xs-5 padding-0">{{bowler.Name}}</h5>
+        <h5 class="col-xs-5 padding-0">{{bowler.Name}}<span data-ng-if="model.IsPOA"> ({{bowler.Average}})</span></h5>
         <div class="col-xs-3 padding-0">
             <select name="position" class="form-control input-lg" data-ng-model="bowler.Position" data-ng-if="model.Home.Bowlers.length > 1" convert-to-number>
                 <option>1</option>
