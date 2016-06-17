@@ -8,7 +8,7 @@
     <tbody data-ng-repeat="bowler in model.Away.Bowlers | orderBy:'1*Position' | filter:{ ReplacedBy: '!'}">
         <tr>
             <td class="col-xs-5">{{bowler.Name}}</td>
-            <td class="col-xs-1 text-right">{{bowler.Average}}</td>
+            <td class="col-xs-1 text-right" data-ng-if="model.IsPOA">{{bowler.Average}}</td>
             <td class="col-xs-2 text-right">{{bowler.Score}}</td>
             <td class="col-xs-2 text-right" data-ng-if="model.IsPOA">{{bowler.POA}}</td>
             <td class="col-xs-2 text-right">{{bowler.Point}}</td>
@@ -17,7 +17,7 @@
     <tbody data-ng-if="model.IsTeam">
         <tr>
             <td class="col-xs-5">Total</td>
-            <td class="col-xs-1 text-right"></td>
+            <td class="col-xs-1 text-right" data-ng-if="model.IsPOA"></td>
             <td class="col-xs-2 text-right">{{model.Away.Score}}</td>
             <td class="col-xs-2 text-right" data-ng-if="model.IsPOA">{{model.Away.POA}}</td>
             <td class="col-xs-2 text-right">{{model.Away.Point}}</td>
@@ -31,7 +31,7 @@
     <tbody data-ng-repeat="bowler in model.Home.Bowlers | orderBy:'1*Position' | filter:{ ReplacedBy: '!'}">
         <tr>
             <td class="col-xs-5">{{bowler.Name}}</td>
-            <td class="col-xs-1 text-right">{{bowler.Average}}</td>
+            <td class="col-xs-1 text-right" data-ng-if="model.IsPOA">{{bowler.Average}}</td>
             <td class="col-xs-2 text-right">{{bowler.Score}}</td>
             <td class="col-xs-2 text-right" data-ng-if="model.IsPOA">{{bowler.POA}}</td>
             <td class="col-xs-2 text-right">{{bowler.Point}}</td>
@@ -40,7 +40,7 @@
     <tbody data-ng-if="model.IsTeam">
         <tr>
             <td class="col-xs-5">Total</td>
-            <td class="col-xs-1 text-right"></td>
+            <td class="col-xs-1 text-right" data-ng-if="model.IsPOA"></td>
             <td class="col-xs-2 text-right">{{model.Home.Score}}</td>
             <td class="col-xs-2 text-right" data-ng-if="model.IsPOA">{{model.Home.POA}}</td>
             <td class="col-xs-2 text-right">{{model.Home.Point}}</td>
