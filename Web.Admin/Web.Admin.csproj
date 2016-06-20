@@ -2153,6 +2153,12 @@
     <Content Include="ClientApp\Styles\WebUI.css" />
     <Content Include="ConnectionStrings.config" />
     <Content Include="Content\Images\2016_logo.png" />
+    <Content Include="Content\Images\Help\Alternates\01-SelectAlternate.PNG" />
+    <Content Include="Content\Images\Help\Alternates\02-SetAlternate.PNG" />
+    <Content Include="Content\Images\Help\Alternates\03-SetAverage.PNG" />
+    <Content Include="Content\Images\Help\Alternates\04-SelectABowler.PNG" />
+    <Content Include="Content\Images\Help\Alternates\05-UseAlternate.PNG" />
+    <Content Include="Content\Images\Help\Alternates\06-Single.PNG" />
     <Content Include="Content\Images\Help\ScoreEntry\Division.png" />
     <Content Include="Content\Images\Help\ScoreEntry\Game.png" />
     <Content Include="Content\Images\Help\ScoreEntry\Match.png" />
