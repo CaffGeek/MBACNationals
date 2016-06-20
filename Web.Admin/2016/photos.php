@@ -44,8 +44,9 @@ include 'header.php';
 
       	<div id="instagram">
 
-			<div id="instafeed"></div>
-		</div>
+<!-- SnapWidget -->
+<script src="https://snapwidget.com/js/snapwidget.js"></script>
+<iframe src="https://snapwidget.com/embed/198762" class="snapwidget-widget" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:100%; "></iframe>		</div>
 		
       </div>
       </div>
@@ -120,15 +121,5 @@ Galleria.run('#galleria', {
  }
 });
 </script>
-	<script type="text/javascript" src="http://mbacnationals.com/2016/js/instafeed.min.js"></script>
-
-
-<script type="text/javascript">
-    var feed = new Instafeed({
-        get: 'tagged',
-        tagName: 'awesome',
-		clientId: '8dff542608854143b95ffae445a35390'
-    });
-    feed.run();
-</script>  </body>
+</body>
 </html>
