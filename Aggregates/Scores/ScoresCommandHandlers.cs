@@ -38,13 +38,19 @@ namespace MBACNationals.Scores
 
                 //Single might no longer be first bowler if they are replaced
                 var awaySingleParticipant = CommandQueries.GetTeamParticipants(command.Away.Id)
-                    .FirstOrDefault(x => x.QualifyingPosition == 1) ?? new CommandQueries.Participant();
+                    .Where(x => !x.IsReplaced)
+                    .OrderBy(x => x.QualifyingPosition)
+                    .FirstOrDefault() ?? new CommandQueries.Participant();
+                    //.FirstOrDefault(x => x.QualifyingPosition == 1) ?? new CommandQueries.Participant();
 
                 var awayBowler = command.Away.Bowlers.FirstOrDefault(x => x.Id == awaySingleParticipant.Id)
                     ?? command.Away.Bowlers.First(); // Never used to have QualifyingPosition
 
                 var homeSingleParticipant = CommandQueries.GetTeamParticipants(command.Home.Id)
-                    .FirstOrDefault(x => x.QualifyingPosition == 1) ?? new CommandQueries.Participant();
+                    .Where(x => !x.IsReplaced)
+                    .OrderBy(x => x.QualifyingPosition)
+                    .FirstOrDefault() ?? new CommandQueries.Participant();
+                    //.FirstOrDefault(x => x.QualifyingPosition == 1) ?? new CommandQueries.Participant();
 
                 var homeBowler = command.Home.Bowlers.FirstOrDefault(x => x.Id == homeSingleParticipant.Id)
                     ?? command.Home.Bowlers.First(); // Never used to have QualifyingPosition
