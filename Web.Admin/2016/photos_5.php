@@ -29,7 +29,7 @@ include 'header.php';
                 <li><a href="photos_5.php">Day 5</a></li>
                 <li><a href="photos_6.php">Day 6</a></li>
                 <li><a href="photos_7.php">Day 7</a></li>
-                <li><a href="#instagram">Instagram</a></li>
+                <li><a href="https://www.instagram.com/mbacnationals/">Instagram</a></li>
 
     	</ul>
           
@@ -42,12 +42,6 @@ include 'header.php';
       	</div>
 
 
-      	<div id="instagram">
-
-<!-- SnapWidget -->
-<script src="https://snapwidget.com/js/snapwidget.js"></script>
-<iframe src="https://snapwidget.com/embed/198762" class="snapwidget-widget" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:100%; "></iframe>
-		</div>
 		
       </div>
       </div>
