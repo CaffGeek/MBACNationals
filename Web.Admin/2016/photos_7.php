@@ -29,7 +29,7 @@ include 'header.php';
                 <li><a href="photos_5.php">Day 5</a></li>
                 <li><a href="photos_6.php">Day 6</a></li>
                 <li><a href="photos_7.php">Day 7</a></li>
-                <li><a href="https://www.instagram.com/mbacnationals/">Instagram</a></li>
+                <li><a href="https://www.instagram.com/mbacnationals/" target="_blank">Instagram</a></li>
 
     	</ul>
           
