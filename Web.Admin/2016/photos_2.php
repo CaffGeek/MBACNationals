@@ -113,7 +113,7 @@ include 'header.php';
 <script>
 Galleria.loadTheme('http://mbacnationals.com/2015/js/galleria/themes/classic/galleria.classic.min.js');
 Galleria.run('#galleria', {
- facebook: 'album:1129830643748930',
+ facebook: 'album:1129832137082114',
  height: 550,
  lightbox: true,
  facebookOptions: {
