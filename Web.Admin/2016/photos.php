@@ -29,7 +29,7 @@ include 'header.php';
                 <li><a href="photos_5.php">Day 5</a></li>
                 <li><a href="photos_6.php">Day 6</a></li>
                 <li><a href="photos_7.php">Day 7</a></li>
-                <li><a href="#instagram">Instagram</a></li>
+                <li><a href="https://www.instagram.com/mbacnationals/" target="_blank">Instagram</a></li>
 
     	</ul>
           
@@ -44,9 +44,7 @@ include 'header.php';
 
       	<div id="instagram">
 
-			<div id="instafeed"></div>
-		</div>
-		
+
       </div>
       </div>
 
@@ -120,15 +118,5 @@ Galleria.run('#galleria', {
  }
 });
 </script>
-	<script type="text/javascript" src="http://mbacnationals.com/2016/js/instafeed.min.js"></script>
-
-
-<script type="text/javascript">
-    var feed = new Instafeed({
-        get: 'tagged',
-        tagName: 'awesome',
-		clientId: '8dff542608854143b95ffae445a35390'
-    });
-    feed.run();
-</script>  </body>
+</body>
 </html>
