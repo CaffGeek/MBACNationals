@@ -29,7 +29,7 @@ include 'header.php';
                 <li><a href="photos_5.php">Day 5</a></li>
                 <li><a href="photos_6.php">Day 6</a></li>
                 <li><a href="photos_7.php">Day 7</a></li>
-                <li><a href="#instagram">Instagram</a></li>
+                <li><a href="https://www.instagram.com/mbacnationals/" target="_blank">Instagram</a></li>
 
     	</ul>
           
@@ -42,10 +42,6 @@ include 'header.php';
       	</div>
 
 
-      	<div id="instagram">
-
-			<div id="instafeed"></div>
-		</div>
 		
       </div>
       </div>
@@ -111,7 +107,7 @@ include 'header.php';
 <script>
 Galleria.loadTheme('http://mbacnationals.com/2015/js/galleria/themes/classic/galleria.classic.min.js');
 Galleria.run('#galleria', {
- facebook: 'album:1129830643748930',
+ facebook: 'album:1129832763748718',
  height: 550,
  lightbox: true,
  facebookOptions: {

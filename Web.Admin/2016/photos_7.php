@@ -29,7 +29,7 @@ include 'header.php';
                 <li><a href="photos_5.php">Day 5</a></li>
                 <li><a href="photos_6.php">Day 6</a></li>
                 <li><a href="photos_7.php">Day 7</a></li>
-                <li><a href="#instagram">Instagram</a></li>
+                <li><a href="https://www.instagram.com/mbacnationals/" target="_blank">Instagram</a></li>
 
     	</ul>
           
@@ -44,9 +44,6 @@ include 'header.php';
 
       	<div id="instagram">
 
-			<div id="instafeed"></div>
-		</div>
-		
       </div>
       </div>
 
@@ -111,7 +108,7 @@ include 'header.php';
 <script>
 Galleria.loadTheme('http://mbacnationals.com/2015/js/galleria/themes/classic/galleria.classic.min.js');
 Galleria.run('#galleria', {
- facebook: 'album:1129830643748930',
+ facebook: 'album:1129833423748652',
  height: 550,
  lightbox: true,
  facebookOptions: {
@@ -120,23 +117,6 @@ Galleria.run('#galleria', {
  }
 });
 </script>
-
-<script type="text/javascript" src="http://mbacnationals.com/2016/js/instafeed.min.js"></script>
-<script type="text/javascript">
-var feed = new Instafeed({
-		get: 'user',
-		userId: 94764,
-		accessToken: '94764.1677ed0.c6256a27eddf41709ddf29af3469a4e5',
-		target: 'instagram',
-		resolution: 'standard_resolution',
-		after: function() {
-			var el = document.getElementById('instagram');
-			if (el.classList)
-				el.classList.add('show');
-			else
-				el.className += ' ' + 'show';
-		}
-});
-</script>  
+ 
 </body>
 </html>
