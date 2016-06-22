@@ -34,12 +34,11 @@ include 'header.php';
               <li><a ui-sref="standings({division: 'Seniors'})">SENIORS</a></li>
               <li><a ui-sref="standings({division: 'Seniors Single'})">SENIORS SINGLE</a></li>
               <hr/>
-              <li><a href="#Standings" data-ng-click="viewStepladder()">STEPLADDER</a></li>
+              <li><a ui-sref="stepladder()" data-ng-click="viewStepladder()">STEPLADDER</a></li>
     	    </ul>
         </div>
 
         <div class="col-sm-10">
-          <h2>RESULTS</h2>
       		  <div class="col-md-12" ui-view=""></div>
             
             <h5 class="col-md-10 text-center">Results are unofficial</h5>
