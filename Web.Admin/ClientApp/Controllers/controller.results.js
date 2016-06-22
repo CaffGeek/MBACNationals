@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
 
-    var resultsController = function ($scope, $location, dataService, $stateParams, $state) {
+    var resultsController = function ($scope, $location, dataService, $stateParams, $state, $interval) {
         var url = $location.absUrl();
         var host = $location.host();
         var firstSlash = url.indexOf('/', url.indexOf(host)) + 1;
@@ -51,9 +51,17 @@
             if (!$scope.model.Year)
                 $state.go('stepladder', { Year: currentYear });
 
-            dataService.LoadStepladder().then(function (data) {
-                $scope.model = data.data;
-            });
+            var fn = function () {
+                dataService.LoadStepladder().then(function (data) {
+                    $scope.model = data.data;
+                });
+            };
+
+            $interval(function () {
+                fn();
+            }.bind(this), 30*1000);
+
+            fn();
         };
 
         function viewMatch() {
@@ -89,7 +97,7 @@
         };
     };
 
-    app.controller("ResultsController", ["$scope", "$location", "dataService", "$stateParams", "$state", resultsController]);
+    app.controller("ResultsController", ["$scope", "$location", "dataService", "$stateParams", "$state", "$interval", resultsController]);
 
     app.directive('bowlinggame', ['$parse', function ($compile) {
         return {
