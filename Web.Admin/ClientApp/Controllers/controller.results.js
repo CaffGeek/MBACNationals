@@ -1,7 +1,12 @@
 ﻿(function () {
     "use strict";
 
-    var resultsController = function ($scope, $http, dataService, $stateParams, $state) {
+    var resultsController = function ($scope, $location, dataService, $stateParams, $state) {
+        var url = $location.absUrl();
+        var host = $location.host();
+        var firstSlash = url.indexOf('/', url.indexOf(host)) + 1;
+        var currentYear = url.slice(firstSlash, firstSlash + 4);
+
         $scope.model = {};
 
         $scope.minGame = 1;
@@ -44,7 +49,7 @@
 
         function viewStepladder() {
             if (!$scope.model.Year)
-                $state.go('stepladder', { Year: 2016 });
+                $state.go('stepladder', { Year: currentYear });
 
             dataService.LoadStepladder().then(function (data) {
                 $scope.model = data.data;
@@ -84,7 +89,7 @@
         };
     };
 
-    app.controller("ResultsController", ["$scope", "$http", "dataService", "$stateParams", "$state", resultsController]);
+    app.controller("ResultsController", ["$scope", "$location", "dataService", "$stateParams", "$state", resultsController]);
 
     app.directive('bowlinggame', ['$parse', function ($compile) {
         return {
