@@ -1,7 +1,5 @@
 ﻿<h2 id="Standings">STEPLADDER</h2>
 
-<a ui-sref="stepladder()" data-ng-click="viewStepladder()">REFRESH</a><br />
-
 <div data-ng-repeat="match in model | filter:{Gender:''} | orderBy: 'Created': true" class="panel panel-default" style="padding:10px;">
     <h4>{{match.HomeName}}</h4>
     <div><bowlinggame shots="match.HomeShots" /></div>
