@@ -10,6 +10,11 @@ namespace WebFrontend.Controllers
             return View();
         }
 
+        public ActionResult Stepladder()
+        {
+            return View();
+        }
+
         public ActionResult Alternates()
         {
             return View();
