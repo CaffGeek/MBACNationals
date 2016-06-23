@@ -2164,6 +2164,8 @@
     <Content Include="Content\Images\Help\ScoreEntry\Match.png" />
     <Content Include="Content\Images\Help\ScoreEntry\Scores.png" />
     <Content Include="Content\Images\Help\ScoreEntry\Result.png" />
+    <Content Include="Content\Images\Help\Stepladder\CreateMatch.PNG" />
+    <Content Include="Content\Images\Help\Stepladder\EnterScore.PNG" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.jpg" />
     <Content Include="2015\foliogallery-demo.php" />
@@ -3451,6 +3453,7 @@
     <Content Include="Views\Scores\Stepladder.cshtml" />
     <Content Include="Views\Help\ScoreEntry.cshtml" />
     <Content Include="Views\Help\Alternates.cshtml" />
+    <Content Include="Views\Help\Stepladder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminApp\Entities\" />
