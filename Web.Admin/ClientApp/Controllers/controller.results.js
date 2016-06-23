@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
 
-    var resultsController = function ($scope, $location, dataService, $stateParams, $state, $interval) {
+    var resultsController = function ($scope, $location, dataService, $stateParams, $state, $timeout) {
         var url = $location.absUrl();
         var host = $location.host();
         var firstSlash = url.indexOf('/', url.indexOf(host)) + 1;
@@ -37,8 +37,10 @@
             viewStandings();
                 
         function viewStandings() {
-            if (!$scope.model.Division)
+            if (!$scope.model.Division) {
                 $state.go('standings', { division: 'Tournament Men Single' });
+                return;
+            }
 
             var division = $scope.model.Division;
             dataService.LoadStandings(division).then(function (data) {
@@ -47,22 +49,25 @@
             });
         };
 
+        var stop;
+        $timeout.cancel(stop);
         function viewStepladder() {
-            if (!$scope.model.Year)
-                $state.go('stepladder', { Year: currentYear });
+            if (!$scope.model.Year) {
+                $state.go('stepladder', { year: currentYear });
+                return;
+            }
 
-            var fn = function () {
+            (function fn () {
                 dataService.LoadStepladder().then(function (data) {
                     $scope.model = data.data;
+                    stop = $timeout(fn, 30 * 1000);
                 });
-            };
-
-            $interval(function () {
-                fn();
-            }.bind(this), 30*1000);
-
-            fn();
+            })();
         };
+
+        $scope.$on('$destroy', function () {
+            $timeout.cancel(stop);
+        });
 
         function viewMatch() {
             dataService.LoadMatch($scope.model.MatchId).then(function (data) {
@@ -83,6 +88,9 @@
         };
 
         function findMatchByNumber(team, number) {
+            if (!team || !team.Matches)
+                return;
+
             var match = ($.grep(team.Matches, function (o) { return o.Number == number; }) || [])[0];
             return match;
         };
@@ -97,7 +105,7 @@
         };
     };
 
-    app.controller("ResultsController", ["$scope", "$location", "dataService", "$stateParams", "$state", "$interval", resultsController]);
+    app.controller("ResultsController", ["$scope", "$location", "dataService", "$stateParams", "$state", "$timeout", resultsController]);
 
     app.directive('bowlinggame', ['$parse', function ($compile) {
         return {
