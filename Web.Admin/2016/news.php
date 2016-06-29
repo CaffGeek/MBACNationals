@@ -32,9 +32,9 @@ include 'header.php';
         <div class="col-md-10">
         <div ng-repeat="newsItem in vm.News | filter:vm.filterByMonth(vm.selectedMonth) | orderBy: '-Created'">
           <h4>
-            <span class="newsHeader">{{newsItem.Title}}</span>
+            <span class="newsHeader" ng-bind-html="newsItem.Title"></span>
           </h4>
-          <p style="white-space: pre-wrap;">{{newsItem.Content}}</p>
+          <p style="white-space: pre-wrap;" ng-bind-html="newsItem.Content"></p>
         </div>
       </div>
       </div>

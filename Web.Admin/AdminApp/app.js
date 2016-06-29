@@ -6,5 +6,6 @@ var app = angular.module('app', [
     'repeatFilters',
     'ngFileUpload',
     'angularMoment',
-    'dndLists'
+    'dndLists',
+    'ngSanitize'
 ]);
