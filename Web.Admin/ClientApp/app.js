@@ -2,7 +2,8 @@
 
 var app = angular.module('app', [
     'repeatFilters',
-    'ui.router'
+    'ui.router',
+    'ngSanitize'
 ]);
 
 app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
