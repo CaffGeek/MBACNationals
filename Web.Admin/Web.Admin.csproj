@@ -2079,6 +2079,12 @@
     <Content Include="2016\photo-gallery\scripts\jquery.mousewheel-3.0.2.pack.js" />
     <Content Include="2016\photo-gallery\scripts\timthumb.php" />
     <Content Include="2016\photo-gallery\style.css" />
+    <Content Include="2016\photos_2.php" />
+    <Content Include="2016\photos_3.php" />
+    <Content Include="2016\photos_4.php" />
+    <Content Include="2016\photos_5.php" />
+    <Content Include="2016\photos_6.php" />
+    <Content Include="2016\photos_7.php" />
     <Content Include="2016\schedule.php" />
     <Content Include="2016\centres.php" />
     <Content Include="2016\lanedraw.php" />
@@ -2114,6 +2120,7 @@
     <Content Include="2016\galleria\themes\classic\galleria.classic.js" />
     <Content Include="2016\galleria\themes\classic\galleria.classic.min.js" />
     <Content Include="2016\js\instafeed.min.js" />
+    <Content Include="2016\PDFs\DEPARTURES.pdf" />
     <Content Include="AdminApp\Views\Reports\Newsworthy.html" />
     <Content Include="AdminApp\Views\Reports\Rookies.html" />
     <Content Include="AdminApp\Views\Reports\ScheduleValidation.html" />
@@ -2155,11 +2162,19 @@
     <Content Include="ClientApp\Styles\WebUI.css" />
     <Content Include="ConnectionStrings.config" />
     <Content Include="Content\Images\2016_logo.png" />
+    <Content Include="Content\Images\Help\Alternates\01-SelectAlternate.PNG" />
+    <Content Include="Content\Images\Help\Alternates\02-SetAlternate.PNG" />
+    <Content Include="Content\Images\Help\Alternates\03-SetAverage.PNG" />
+    <Content Include="Content\Images\Help\Alternates\04-SelectABowler.PNG" />
+    <Content Include="Content\Images\Help\Alternates\05-UseAlternate.PNG" />
+    <Content Include="Content\Images\Help\Alternates\06-Single.PNG" />
     <Content Include="Content\Images\Help\ScoreEntry\Division.png" />
     <Content Include="Content\Images\Help\ScoreEntry\Game.png" />
     <Content Include="Content\Images\Help\ScoreEntry\Match.png" />
     <Content Include="Content\Images\Help\ScoreEntry\Scores.png" />
     <Content Include="Content\Images\Help\ScoreEntry\Result.png" />
+    <Content Include="Content\Images\Help\Stepladder\CreateMatch.PNG" />
+    <Content Include="Content\Images\Help\Stepladder\EnterScore.PNG" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.jpg" />
     <Content Include="2015\foliogallery-demo.php" />
@@ -3448,6 +3463,7 @@
     <Content Include="Views\Scores\Stepladder.cshtml" />
     <Content Include="Views\Help\ScoreEntry.cshtml" />
     <Content Include="Views\Help\Alternates.cshtml" />
+    <Content Include="Views\Help\Stepladder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminApp\Entities\" />

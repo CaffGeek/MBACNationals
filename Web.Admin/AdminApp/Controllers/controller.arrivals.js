@@ -7,8 +7,8 @@
         var province = url.slice(lastSlash + 1);
         var year = url.slice(lastSlash - 4, lastSlash);
 
-        var emptyArrival = { ModeOfTransportation: 'Air', When: '2014-06-28T09:00', Type: 1 };
-        var emptyDeparture = { ModeOfTransportation: 'Air', When: '2014-07-03T09:00', Type: 2 };
+        var emptyArrival = { ModeOfTransportation: 'Air', When: new Date('2016-06-28T09:00'), Type: 1 };
+        var emptyDeparture = { ModeOfTransportation: 'Air', When: new Date('2016-07-03T09:00'), Type: 2 };
 
         $scope.model = {
             year: year,
@@ -24,6 +24,12 @@
                     $scope.model.id = contingentTravelPlans.Id;
                     $scope.model.province = contingentTravelPlans.Province;
                     $scope.model.travelPlans = contingentTravelPlans.TravelPlans;
+
+                    angular.forEach(contingentTravelPlans.TravelPlans, function (travelPlan) {
+                        var d = new Date(travelPlan.When);
+                        //UGH, such a hack
+                        travelPlan.When = new Date(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), d.getUTCHours(), d.getUTCMinutes());
+                    });                       
                 });
         }
 

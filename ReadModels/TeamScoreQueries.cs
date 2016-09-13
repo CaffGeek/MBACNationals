@@ -108,6 +108,11 @@ namespace MBACNationals.ReadModels
             }
 
             var team = Teams[teamId];
+
+
+            //Remove any previous entries as they could re-enter the scores
+            team.Scores.RemoveAll(x => x.MatchId == e.Id);
+
             team.Scores.Add(new Score
             {
                 MatchId = e.Id,

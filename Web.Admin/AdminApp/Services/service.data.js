@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
 
-    var dataService = function ($http, ngUpload) {
+    var dataService = function ($http, ngUpload, moment) {
         return {
             SaveTeam: saveTeam,
             RemoveTeam: removeTeam,
@@ -216,6 +216,10 @@
         };
 
         function saveTravelPlans(travelPlans) {
+            angular.forEach(travelPlans.travelPlans, function (travelPlan) {
+                var d = moment(travelPlan.When);
+                travelPlan.When = moment.utc(d.format('YYYY-MM-DDTHH:mm'));
+            });
             return $http.post('/Setup/Contingent/SaveTravelPlans', travelPlans);
         };
 
@@ -340,5 +344,5 @@
         };
     };
 
-    app.factory('dataService', ['$http', 'Upload', dataService]);
+    app.factory('dataService', ['$http', 'Upload', 'moment', dataService]);
 }());

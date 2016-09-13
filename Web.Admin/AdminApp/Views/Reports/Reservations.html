@@ -33,7 +33,7 @@
                 </tr>
             </thead>
             <tbody data-ng-repeat="contingent in model.ContingentRooms">
-                <tr data-ng-repeat="room in contingent.HotelRooms">
+                <tr data-ng-repeat="room in contingent.HotelRooms | orderBy:'RoomNumber'">
                     <td>{{contingent.Province}}</td>
                     <td>{{room.RoomNumber}}</td>
                     <td>{{room.Type}}</td>

@@ -35,7 +35,7 @@ include 'header.php';
           
         </div>
     	<div class="col-md-10">
-        <h2>PHOTOS DAY 1</h2>
+        <h2>PHOTOS DAY 7</h2>
       	<div id="galleria"></div>
 
 
@@ -43,7 +43,6 @@ include 'header.php';
 
 
       	<div id="instagram">
-
 
       </div>
       </div>
@@ -109,7 +108,7 @@ include 'header.php';
 <script>
 Galleria.loadTheme('http://mbacnationals.com/2015/js/galleria/themes/classic/galleria.classic.min.js');
 Galleria.run('#galleria', {
- facebook: 'album:1129830643748930',
+ facebook: 'album:1129833423748652',
  height: 550,
  lightbox: true,
  facebookOptions: {
@@ -118,5 +117,6 @@ Galleria.run('#galleria', {
  }
 });
 </script>
+ 
 </body>
 </html>

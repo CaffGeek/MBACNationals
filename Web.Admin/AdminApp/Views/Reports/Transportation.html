@@ -11,10 +11,30 @@
                     <th data-ng-click="orderBy.Descending = !orderBy.Descending; orderBy.Column = 'NumberOfPeople'">Number</th>
                 </tr>
             </thead>
-            <tbody data-ng-repeat="plan in model.FlattenedTravelPlans | orderBy:orderBy.Column:orderBy.Descending">
+            <tbody>
+                <tr>
+                    <td colspan="6"><h4>Arrivals</h4></td>
+                </tr>
+            </tbody>
+            <tbody data-ng-repeat="plan in model.FlattenedTravelPlans | filter:{Type:1} | orderBy:orderBy.Column:orderBy.Descending">
                 <tr>
                     <td>{{plan.Province}}</td>
-                    <td>{{plan.When}}</td>
+                    <td>{{plan.When | date:'yyyy-MM-dd h:mm a':'UTC'}}</td>
+                    <td>{{plan.ModeOfTransportation}}</td>
+                    <td>{{plan.FlightNumber}}</td>
+                    <td>{{plan.NumberOfPeople}}</td>
+                    <td></td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td colspan="6"><h4>Departures</h4></td>
+                </tr>
+            </tbody>
+            <tbody data-ng-repeat="plan in model.FlattenedTravelPlans | filter:{Type:2} | orderBy:orderBy.Column:orderBy.Descending">
+                <tr>
+                    <td>{{plan.Province}}</td>
+                    <td>{{plan.When | date:'yyyy-MM-dd h:mm a':'UTC'}}</td>
                     <td>{{plan.ModeOfTransportation}}</td>
                     <td>{{plan.FlightNumber}}</td>
                     <td>{{plan.NumberOfPeople}}</td>

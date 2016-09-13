@@ -2,10 +2,10 @@
 <h4>Game {{model.Number}}</h4>
 <h5>{{model.Centre}} lane {{model.Lane}}-{{model.Lane+1}}</h5>
 
-<div class="col span_5_of_12">
-    <img class="span_3_of_3" src="images/flags/{{model.Away.Province}}.gif" style="max-height:121px" />
+<div class="col span_5_of_12 col-md-5">
+    <img class="span_3_of_3" src="/Content/Images/flags/{{model.Away.Province}}.gif" style="max-height:121px" />
     <h4><a href="" ui-sref="team({ team: model.Away.Id })">{{model.Away.Province}}</a></h4>
-    
+
     <table style="width:100%">
         <tr>
             <th class="text-left"><h4>Points: {{model.Away.TotalPoints}}</h4></th>
@@ -22,10 +22,10 @@
     </table>
 </div>
 
-<div class="col span_1_of_12"></div>
+<div class="col span_1_of_12 col-md-1"></div>
 
-<div class="col span_5_of_12">
-    <img class="span_3_of_3" src="images/flags/{{model.Home.Province}}.gif" style="max-height:121px" />
+<div class="col span_5_of_12 col-md-5">
+    <img class="span_3_of_3" src="/Content/Images/flags/{{model.Home.Province}}.gif" style="max-height:121px" />
     <h4><a href="" ui-sref="team({ team: model.Home.Id })">{{model.Home.Province}}</a></h4>
     
     <table style="width:100%">

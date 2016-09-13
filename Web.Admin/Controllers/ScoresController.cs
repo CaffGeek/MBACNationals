@@ -13,8 +13,9 @@ namespace WebFrontend.Controllers
         }
 
         [Authorize(Roles = "ScoreEntry, Host, Admin")]
-        public ActionResult Entry()
+        public ActionResult Entry(string year)
         {
+            ViewBag.Year = year;
             return View();
         }
 

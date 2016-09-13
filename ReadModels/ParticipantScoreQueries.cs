@@ -116,49 +116,46 @@ namespace MBACNationals.ReadModels
         {
             var participant = Participants.Single(x => x.Id == e.ParticipantId);
             var game = participant.Scores.SingleOrDefault(x => x.MatchId == e.Id);
-            if (game == null)
-            {
-                participant.Scores.Add(new Score
-                {
-                    MatchId = e.Id,
-                    Number = e.Number,
-                    Scratch = e.Score,
-                    POA = e.POA,
-                    WinLossTie = e.IsPOA 
-                     ? (e.POA > e.OpponentPOA ? "W" : e.POA < e.OpponentPOA ? "L" : "T")
-                     : (e.Score > e.OpponentScore ? "W" : e.Score < e.OpponentScore ? "L" : "T"),
-                    Lane = e.Lane,
-                    Centre = e.Centre,
-                    OpponentProvince = e.Opponent,
-                    OpponentName = e.OpponentName,
-                    OpponentScratch = e.OpponentScore,
-                    OpponentPOA = e.OpponentPOA,
-                    IsPOA = e.IsPOA
-                });
 
-                participant.Name = e.Name;
-                participant.Division = e.Division;
-                participant.Province = e.Contingent;
-                participant.NationalGames += 1;
-                participant.NationalTotal += e.Score;
-                participant.NationalAverage = participant.NationalTotal / participant.NationalGames;
-                participant.NationalWins += e.Points > 0M ? (e.Points % 1M == 0M ? 1M : .5M) : 0M;
-                
-                participant.HighScore = Math.Max(e.Score, participant.HighScore);
-                participant.HighPOA = Math.Max(e.POA, participant.HighPOA);
-            }
-            else
+            if (game != null)
             {
-                participant.Name = e.Name;
-                participant.NationalTotal = participant.NationalTotal - game.Scratch + e.Score;
-                participant.NationalAverage = participant.NationalTotal / participant.NationalGames;
-                participant.NationalWins = participant.NationalWins
-                    - (game.WinLossTie == "W" ? 1M : game.WinLossTie == "T" ? .5M : 0M)
-                    + (e.Points > 0 ? (e.Points % 1M == 0M ? 1M : .5M) : 0M);
+                //Adjust Totals
+                participant.NationalTotal = participant.NationalTotal - game.Scratch;
+                participant.NationalGames -= 1;
+                participant.NationalWins -= (game.WinLossTie == "W" ? 1M : game.WinLossTie == "T" ? .5M : 0M);
 
-                participant.HighScore = participant.Scores.Max(x => x.Scratch);
-                participant.HighPOA = participant.Scores.Max(x => x.POA);
+                //Remove old game
+                participant.Scores.Remove(game);
             }
+
+            participant.Scores.Add(new Score
+            {
+                MatchId = e.Id,
+                Number = e.Number,
+                Scratch = e.Score,
+                POA = e.POA,
+                WinLossTie = e.IsPOA 
+                    ? (e.POA > e.OpponentPOA ? "W" : e.POA < e.OpponentPOA ? "L" : "T")
+                    : (e.Score > e.OpponentScore ? "W" : e.Score < e.OpponentScore ? "L" : "T"),
+                Lane = e.Lane,
+                Centre = e.Centre,
+                OpponentProvince = e.Opponent,
+                OpponentName = e.OpponentName,
+                OpponentScratch = e.OpponentScore,
+                OpponentPOA = e.OpponentPOA,
+                IsPOA = e.IsPOA
+            });
+
+            participant.Name = e.Name;
+            participant.Division = e.Division;
+            participant.Province = e.Contingent;
+            participant.NationalGames += 1;
+            participant.NationalTotal += e.Score;
+            participant.NationalAverage = participant.NationalTotal / participant.NationalGames;
+            participant.NationalWins += e.Points > 0M ? (e.Points % 1M == 0M ? 1M : .5M) : 0M;
+
+            participant.HighScore = participant.Scores.Max(x => x.Scratch);
+            participant.HighPOA = participant.Scores.Max(x => x.POA);
         }
     }
 }
