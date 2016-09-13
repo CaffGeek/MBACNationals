@@ -96,6 +96,8 @@ namespace MBACNationals.ReadModels
         {
             var match = Matches[e.Id];
             var team = (match.Home.Province == e.Contingent) ? match.Home : match.Away;
+            
+            team.Bowlers.RemoveAll(x => x.Id == e.ParticipantId);
             team.Bowlers.Add(new Bowler
             {
                 Id = e.ParticipantId,
@@ -116,7 +118,7 @@ namespace MBACNationals.ReadModels
             team.Score = e.Score;
             team.POA = e.POA;
             team.Points = e.Points;
-            team.TotalPoints = e.TotalPoints;            
+            team.TotalPoints = e.TotalPoints;
         }
 
         public void Handle(MatchCompleted e)

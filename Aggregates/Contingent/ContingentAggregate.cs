@@ -143,7 +143,7 @@ namespace MBACNationals.Contingent
     public class TravelPlan
     {
         public string ModeOfTransportation { get; set; }
-        public DateTime When { get; set; }
+        public string When { get; set; }
         public string FlightNumber { get; set; }
         public int NumberOfPeople { get; set; }
         public int Type { get; set; }

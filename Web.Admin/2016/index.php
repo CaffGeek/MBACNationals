@@ -16,7 +16,7 @@ include 'header.php';
 </header>
     
 
-    <div class="container">
+    <div class="container" data-ng-app="app">
     	
       <div class="row">
         <div class="col-md-8 col-sm-8">
@@ -30,12 +30,12 @@ include 'header.php';
 		
 		</div>
 		
-		<div class="row" data-ng-app="app">
+		<div class="row">
         	<div class="col-md-6 col-sm-6" data-ng-controller="NewsController as vm">
 				<h2>News</h2>
-            		<div ng-repeat="newsItem in vm.News">
-						<h4><span class="newsHeader">{{newsItem.Title}}</span></h4>
-						<p style="white-space: pre-wrap;">{{newsItem.Content}}</p>
+            		<div ng-repeat="newsItem in vm.News | orderBy: '-Created'">
+						<h4><span class="newsHeader" ng-bind-html="newsItem.Title"></span></h4>
+						<p style="white-space: pre-wrap;" ng-bind-html="newsItem.Content"></p>
         			</div>
 				<p><a class="btn btn-default" href="news.php" role="button">More News</a></p>
        		</div>       		
@@ -48,6 +48,11 @@ include 'header.php';
           		<h2>Schedule</h2>
           		<div class="message"></div>
           		<p><a class="btn btn-default" href="schedule.php" role="button">Full Schedule &raquo;</a></p>
+          		<hr />
+          <div data-ng-controller="HighscoresController">
+					      <div class="section group" id="highScores" data-ng-include="" data-src="'/ClientApp/views/highscores.html'">
+                </div>
+              </div>
        		</div>
        	
 		</div>	
@@ -57,14 +62,14 @@ include 'header.php';
         
         
         <div class="col-md-4 col-sm-4">
-      <!--   <h2>SPONSORS</h2>
-                <div style="height:250px;" data-ng-controller="SponsorsController as vm">
+         <h2>SPONSORS</h2>
+                <div style="height:250px;" data-ng-controller="SponsorsController as sponsorVm">
                   <div class="innerContainer">
-                    <a href="{{vm.CurrentSponsor.Website}}" target="_blank">
-                      <img ng-src="{{vm.ImageBase}}/Setup/Sponsors/Image/{{vm.CurrentSponsor.Id}}" style="width:100%;" alt="" border="0" />
+                    <a href="{{sponsorVm.CurrentSponsor.Website}}" target="_blank">
+                      <img ng-src="{{sponsorVm.ImageBase}}/Setup/Sponsors/Image/{{sponsorVm.CurrentSponsor.Id}}" style="width:100%;" alt="" border="0" />
                     </a>
                   </div>
-                </div> -->     
+                </div>      
 		<h2>Follow Us</h2>
          <h3>Newsletter</h3>
          <!-- SendinBlue Signup Form HTML Code -->
@@ -115,12 +120,11 @@ include 'header.php';
           <div class="fb-page" style="margin-bottom:15px;" data-href="https://www.facebook.com/MBAofCanada/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/MBAofCanada/"><a href="https://www.facebook.com/MBAofCanada/">Master Bowlers Association of Canada</a></blockquote></div></div>
 <hr />			
           <div><a class="twitter-timeline" href="https://twitter.com/MBANationals" data-widget-id="702222211382259713">Tweets by @MBANationals</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></div>
-<hr />
-          <div data-ng-controller="HighscoresController">
-					      <div class="section group" id="highScores" data-ng-include="" data-src="'/ClientApp/views/highscores.html'">
-                </div>
-              </div>
 
+<hr />
+<!-- SnapWidget --><h3><a href="https://www.instagram.com/mbacnationals/"Instagram</a></h3>
+<script src="https://snapwidget.com/js/snapwidget.js"></script>
+<iframe src="https://snapwidget.com/embed/198762" class="snapwidget-widget" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:100%; "></iframe>
         </div>
       </div>
 

@@ -66,7 +66,7 @@ include 'header.php';
                 </li>
                 <li data-ng-repeat="bowler in team.Bowlers">
                   <span data-ng-if="team.Name.indexOf('Teaching') >= 0 || team.Name.indexOf('Seniors') >= 0" style="float:right;">
-                    <span data-ng-if="team.RequiresAverage" class=" text-right">
+                    <span data-ng-if="team.RequiresAverage" class=" text-right" data-ng-class="{strike: !!bowler.ReplacedBy}">
                       {{bowler.Average}} 
                     </span>
                   </span>

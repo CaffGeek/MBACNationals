@@ -1,7 +1,12 @@
 ﻿(function () {
     "use strict";
 
-    var resultsController = function ($scope, $http, dataService, $stateParams) {
+    var resultsController = function ($scope, $location, dataService, $stateParams, $state, $timeout) {
+        var url = $location.absUrl();
+        var host = $location.host();
+        var firstSlash = url.indexOf('/', url.indexOf(host)) + 1;
+        var currentYear = url.slice(firstSlash, firstSlash + 4);
+
         $scope.model = {};
 
         $scope.minGame = 1;
@@ -18,6 +23,7 @@
         $scope.model.MatchId = $stateParams.match;
         $scope.model.TeamId = $stateParams.team;
         $scope.model.BowlerId = $stateParams.bowler;
+        $scope.model.Year = $stateParams.year;
 
         if ($scope.model.MatchId)
             viewMatch();
@@ -25,22 +31,43 @@
             viewBowler();
         else if ($scope.model.TeamId)
             viewTeam();
+        else if ($scope.model.Year !== undefined)
+            viewStepladder();
         else //if ($scope.model.Division)
             viewStandings();
                 
         function viewStandings() {
-            var division = $scope.model.Division || 'Tournament Men Single';
-            dataService.LoadStandings($scope.model.Division).then(function (data) {
+            if (!$scope.model.Division) {
+                $state.go('standings', { division: 'Tournament Men Single' });
+                return;
+            }
+
+            var division = $scope.model.Division;
+            dataService.LoadStandings(division).then(function (data) {
                 $scope.model = data.data;
                 $scope.model.Division = division;
             });
         };
 
+        var stop;
+        $timeout.cancel(stop);
         function viewStepladder() {
-            dataService.LoadStepladder().then(function (data) {
-                $scope.model = data.data;
-            });
-        }
+            if (!$scope.model.Year) {
+                $state.go('stepladder', { year: currentYear });
+                return;
+            }
+
+            (function fn () {
+                dataService.LoadStepladder().then(function (data) {
+                    $scope.model = data.data;
+                    stop = $timeout(fn, 30 * 1000);
+                });
+            })();
+        };
+
+        $scope.$on('$destroy', function () {
+            $timeout.cancel(stop);
+        });
 
         function viewMatch() {
             dataService.LoadMatch($scope.model.MatchId).then(function (data) {
@@ -49,24 +76,21 @@
         };
 
         function viewTeam(team) {
-            //$scope.viewUrl = '/app/Views/Results/Team.html';
-            //$scope.model.TeamId = team.TeamId || team.Id;
-
             dataService.LoadTeamScores($scope.model.TeamId).then(function (data) {
                 $scope.model = data.data;
             });
         };
 
         function viewBowler(bowler) {
-            //$scope.viewUrl = '/app/Views/Results/Bowler.html';
-            //$scope.model.BowlerId = bowler.BowlerId || bowler.Id;
-
             dataService.LoadParticipantScores($scope.model.BowlerId).then(function (data) {
                 $scope.model = data.data;
             });
         };
 
         function findMatchByNumber(team, number) {
+            if (!team || !team.Matches)
+                return;
+
             var match = ($.grep(team.Matches, function (o) { return o.Number == number; }) || [])[0];
             return match;
         };
@@ -81,7 +105,7 @@
         };
     };
 
-    app.controller("ResultsController", ["$scope", "$http", "dataService", "$stateParams", resultsController]);
+    app.controller("ResultsController", ["$scope", "$location", "dataService", "$stateParams", "$state", "$timeout", resultsController]);
 
     app.directive('bowlinggame', ['$parse', function ($compile) {
         return {

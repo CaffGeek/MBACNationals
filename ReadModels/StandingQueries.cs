@@ -181,6 +181,9 @@ namespace MBACNationals.ReadModels
                 Teams.Add(team);
             }
 
+            //Remove any previous entries as they could re-enter the scores
+            team.Matches.RemoveAll(x => x.Id == e.Id);
+
             team.Matches.Add(new Match {
                 Id = e.Id,
                 IsPOA = e.IsPOA,
