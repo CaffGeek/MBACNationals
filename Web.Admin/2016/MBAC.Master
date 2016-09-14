@@ -2,33 +2,29 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
+
+    <title>2016 Master Bowlers Association National Championships :: Surrey • Langley • Cloverdale, BC</title>
+    
     <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+
+    <meta property="og:url" content="http://mbacnationals.com/2016/index.php" />
+    <meta property="og:image" content="http://mbacnationals.com/2016/images/2016_Logo.png" />
+    <meta property="og:title" content="2016 Master Bowlers Association National Championships :: Surrey • Langley • Cloverdale, BC" />
+    <meta property="og:description" content="Home of the 2016 Master Bowlers Association of Canada Nationals, taking place June 27 - July 3, 2016 in Surrey, Langley and Cloverdale, BC." />
+
     <script src="/bundles/angular"></script>
-<meta property="og:url" content="http://mbacnationals.com/2016/index.php" />
-<meta property="og:image" content="http://mbacnationals.com/2016/images/2016_Logo.png" />
-<meta property="og:title" content="2016 Master Bowlers Association National Championships :: Surrey • Langley • Cloverdale, BC" />
-<meta property="og:description" content="Home of the 2016 Master Bowlers Association of Canada Nationals, taking place June 27 - July 3, 2016 in Surrey, Langley and Cloverdale, BC." />
-
-<link rel="icon" href="images/favicon.ico" type="image/x-icon"> 
-<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-
-	<title>2016 Master Bowlers Association National Championships :: Surrey • Langley • Cloverdale, BC</title>
-
-
-    <!-- Bootstrap core CSS -->
+        
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-
-    <!-- Custom styles for this template -->
     <link href="bootstrap/css/customize.css" rel="stylesheet">
-	
     <link href="/ClientApp/Styles/WebUI.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -36,81 +32,94 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
+</head>
 
 <body>
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1336679153024562";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<header style="padding-top:100px;height:550px;">
-<!-- Fixed navbar -->
-<nav class="navbar navbar-default navbar-fixed-top">
-  <!-- Brand and toggle get grouped for better mobile display -->
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-  </div>
+    <div id="fb-root"></div>
+    <script>(
+    function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1336679153024562";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
 
-  <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="collapse navbar-collapse navbar-ex1-collapse">
-    <ul class="nav navbar-nav">
-      			<li><a href="index.php">Home</a></li>
-                <li><a href="results.php">Results</a></li>
-                <li><a href="news.php">News</a></li>
-                <li><a href="schedule.php">Schedule</a></li>
-                <li><a href="lanedraw.php">Lane Draw</a></li>
-                <li><a href="photos.php">Photos</a></li>
-                <li><a href="contingents.php">Contingents</a></li>
-                <li><a href="http://www.mbaofbc.com/shopping-cart.html">Souvenirs</a></li>
-                <li><a href="centres.php">Centres</a></li>
-                <li><a href="hotel.php">Location</a></li>
-                <li class="dropdown">
-        			<a class="dropdown-toggle" data-toggle="dropdown" href="#">History
+    <header style="padding-top: 100px; height: 550px;">
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="default.aspx">Home</a></li>
+                    <li><a href="results.aspx">Results</a></li>
+                    <li><a href="news.aspx">News</a></li>
+                    <li><a href="schedule.aspx">Schedule</a></li>
+                    <li><a href="lanedraw.aspx">Lane Draw</a></li>
+                    <li><a href="photos.aspx">Photos</a></li>
+                    <li><a href="contingents.aspx">Contingents</a></li>
+                    <li><a href="http://www.mbaofbc.com/shopping-cart.html">Souvenirs</a></li>
+                    <li><a href="centres.aspx">Centres</a></li>
+                    <li><a href="hotel.aspx">Location</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">History
         			<span class="caret"></span></a>
-        			<ul class="dropdown-menu">
-          				<li><a href="/2015/" target="_blank">2015 - SO</a></li>
-          				<li><a href="/2014/" target="_blank">2014 - MB</a></li>
-			        </ul>
-      			</li>
-    </ul>
-  </div><!-- /.navbar-collapse -->
-</nav>
+                        <ul class="dropdown-menu">
+                            <li><a href="/2015/" target="_blank">2015 - SO</a></li>
+                            <li><a href="/2014/" target="_blank">2014 - MB</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
+        <div id="headerContainer" class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="logo" class="shadowed" style="position: absolute; left: 50%; transform: translate(-50%, 0); margin-top: -35px; position: absolute; z-index: 10;">
+                        <img src="images/2016_Logo.png" alt="2016 Masters Nationals" />
+                    </div>
+                    <asp:ContentPlaceHolder ID="HeaderPlaceholder" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+    </header>
 
-        <asp:ContentPlaceHolder ID="BodyPlaceholder" runat="server">
-        
-        </asp:ContentPlaceHolder>
+    <div class="container">
+        <div class="row" data-ng-app="app">
+            <asp:ContentPlaceHolder ID="BodyPlaceholder" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <hr>
 
-    
-
-      <hr>
-
-      <footer>
-      	<ul class="footerNav">
-      			<li><a href="index.php">Home</a></li>
-                <li><a href="results.php">Results</a></li>
-                <li><a href="news.php">News</a></li>
-                <li><a href="schedule.php">Schedule</a></li>
-                <li><a href="lanedraw.php">Lane Draw</a></li>
-                <li><a href="photos.php">Photos</a></li>
-                <li><a href="contingents.php">Contingents</a></li>
+        <footer>
+            <ul class="footerNav">
+                <li><a href="index.aspx">Home</a></li>
+                <li><a href="results.aspx">Results</a></li>
+                <li><a href="news.aspx">News</a></li>
+                <li><a href="schedule.aspx">Schedule</a></li>
+                <li><a href="lanedraw.aspx">Lane Draw</a></li>
+                <li><a href="photos.aspx">Photos</a></li>
+                <li><a href="contingents.aspx">Contingents</a></li>
                 <li><a href="http://www.mbaofbc.com/shopping-cart.html">Souvenirs</a></li>
-                <li><a href="centres.php">Centres</a></li>
-                <li><a href="hotel.php">Location</a></li>
-    	</ul>
-        <p>&copy; Site Design by Charlene McIvor & Chad Hurd</p>
-      </footer>
-    </div> <!-- /container -->
-
+                <li><a href="centres.aspx">Centres</a></li>
+                <li><a href="hotel.aspx">Location</a></li>
+            </ul>
+            <p>&copy; Site Design by Charlene McIvor & Chad Hurd</p>
+        </footer>
+    </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -118,11 +127,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="path/to/instafeed.min.js"></script>
-	<script type='text/javascript' src='https://my.sendinblue.com/public/theme/version3/js/subscribe-validate.js'></script>
-	<script type='text/javascript'>
-	    jQuery.noConflict(true);
-	</script>
+    <script type="text/javascript" src="js/instafeed.min.js"></script>
+    <script type='text/javascript' src='https://my.sendinblue.com/public/theme/version3/js/subscribe-validate.js'></script>
+    <script type='text/javascript'>
+        jQuery.noConflict(true);
+    </script>
     <script src="bootstrap/js/ie10-viewport-bug-workaround.js"></script>
     <script>
         $(window).scroll(function () {
@@ -160,11 +169,8 @@
             $('.message').html(msg);  //add message to the element with class message
         }
         schedule();
-
-
-</script>
-	<!-- More Scripts-->
-
+    </script>
+    
     <script src="/ClientApp/app.js"></script>
     <script src="/ClientApp/Controllers/controller.contingent.js"></script>
     <script src="/ClientApp/Controllers/controller.highscores.js"></script>
@@ -173,6 +179,5 @@
     <script src="/ClientApp/Controllers/controller.schedule.js"></script>
     <script src="/ClientApp/Controllers/controller.sponsors.js"></script>
     <script src="/ClientApp/Services/service.data.js"></script>
-      
-  </body>
+</body>
 </html>

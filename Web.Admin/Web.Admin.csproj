@@ -1995,9 +1995,7 @@
     <Content Include="2016\bootstrap\js\npm.js" />
     <Content Include="2016\bootstrap\js\raw-files.min.js" />
     <Content Include="2016\fonts\bebas___-webfont.svg" />
-    <Content Include="2016\footer.php" />
-    <Content Include="2016\header.php" />
-    <Content Include="2016\hotel.php" />
+    <Content Include="2016\hotel.aspx" />
     <Content Include="2016\images\2016_Logo.png" />
     <Content Include="2016\images\background.jpg" />
     <Content Include="2016\images\header_1.png" />
@@ -2019,7 +2017,7 @@
     <Content Include="2016\images\LinkLogo.jpg" />
     <Content Include="2016\images\LinkLogo.png" />
     <Content Include="2016\images\restaurants.jpg" />
-    <Content Include="2016\index.php" />
+    <Content Include="2016\results.aspx" />
     <Content Include="2016\photo-gallery\bg.jpg" />
     <Content Include="2016\photo-gallery\images\1195566_81056776.jpg" />
     <Content Include="2016\photo-gallery\images\1229591_29172708.jpg" />
@@ -2088,11 +2086,10 @@
     <Content Include="2016\schedule.php" />
     <Content Include="2016\centres.php" />
     <Content Include="2016\lanedraw.php" />
-    <Content Include="2016\results.php" />
     <Content Include="2016\news.php" />
     <Content Include="2016\contingents.php" />
     <Content Include="2016\photos.php" />
-    <Content Include="2016\index.aspx" />
+    <Content Include="2016\default.aspx" />
     <Content Include="AdminApp\Directives\directive.converttonumber.js" />
     <Content Include="2016\cache\albums" />
     <Content Include="2016\galleria\LICENSE" />

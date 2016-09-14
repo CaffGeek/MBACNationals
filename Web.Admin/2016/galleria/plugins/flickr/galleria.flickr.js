@@ -1,5 +1,5 @@
 /**
- * Galleria Flickr Plugin 2012-04-04
+ * Galleria Flickr Plugin 2012-09-04
  * http://galleria.io
  *
  * Licensed under the MIT license
@@ -23,7 +23,7 @@ var PATH = Galleria.utils.getScriptPath();
 
     @example var flickr = new Galleria.Flickr();
 
-    @author http://aino.se
+    @author http://galleria.io
 
     @requires jQuery
     @requires Galleria
@@ -190,7 +190,7 @@ Galleria.Flickr.prototype = {
 
     _call: function( params, callback ) {
 
-        var url = 'http://api.flickr.com/services/rest/?';
+        var url = 'https://api.flickr.com/services/rest/?';
 
         var scope = this;
 
@@ -223,7 +223,7 @@ Galleria.Flickr.prototype = {
             return photo.url_l;
         } else if ( parseInt( photo.width_o, 10 ) > 1280 ) {
 
-            return 'http://farm'+photo.farm + '.static.flickr.com/'+photo.server +
+            return 'https://farm'+photo.farm + '.static.flickr.com/'+photo.server +
                 '/' + photo.id + '_' + photo.secret + '_b.jpg';
         }
 
@@ -271,14 +271,15 @@ Galleria.Flickr.prototype = {
         params = $.extend({
             method: 'flickr.photos.search',
             extras: 'url_t,url_m,url_o,url_s,url_l,url_z,description',
-            sort: this.options.sort
+            sort: this.options.sort,
+            per_page: Math.min( this.options.max, 500 )
         }, params );
 
         return this._call( params, function(data) {
 
             var gallery = [],
                 photos = data.photos ? data.photos.photo : data.photoset.photo,
-                len = Math.min( this.options.max, photos.length ),
+                len = photos.length,
                 photo,
                 i;
 
@@ -292,7 +293,7 @@ Galleria.Flickr.prototype = {
                     big: this._getBig( photo ),
                     title: photos[i].title,
                     description: this.options.description && photos[i].description ? photos[i].description._content : '',
-                    link: this.options.backlink ? 'http://flickr.com/photos/' + photo.owner + '/' + photo.id : ''
+                    link: this.options.backlink ? 'https://flickr.com/photos/' + photo.owner + '/' + photo.id : ''
                 });
             }
             callback.call( this, gallery );
