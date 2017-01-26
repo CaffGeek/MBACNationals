@@ -1,4 +1,4 @@
-<%@  Language="C#" MasterPageFile="~/2016/MBAC.Master" AutoEventWireup="false" %>
+<%@ Language="C#" MasterPageFile="~/MBAC.Master" AutoEventWireup="false" %>
 
 <asp:Content ID="HeaderContent" ContentPlaceHolderID="HeaderPlaceholder" runat="server">
     <div id="headerImage" style="margin-top:15px;background-size:cover;background-position:center center;height:375px;background-image:url('images/header_image_10.jpg'); "></div>
