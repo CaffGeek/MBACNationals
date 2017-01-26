@@ -1,4 +1,4 @@
-<%@  Language="C#" MasterPageFile="~/2016/MBAC.Master" AutoEventWireup="false" %>
+<%@ Language="C#" MasterPageFile="~/MBAC.Master" AutoEventWireup="false" %>
 
 <asp:Content ID="HeaderContent" ContentPlaceHolderID="HeaderPlaceholder" runat="server">
     <div id="headerImage" style="margin-top: 15px; background-size: cover; background-position: center center; height: 375px; background-image: url('images/header_image_8.jpg');"></div>
@@ -26,8 +26,8 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="galleria/galleria-1.4.2.min.js"></script>
-    <script src="galleria/plugins/facebook/galleria.facebook.js"></script>
+    <script src="/Web.Public/galleria/galleria-1.4.2.min.js"></script>
+    <script src="/Web.Public/galleria/plugins/facebook/galleria.facebook.js"></script>
     <script>
         function loadAlbum(album) {
             Galleria.run('#galleria', {
@@ -41,7 +41,7 @@
             });
         }
 
-        Galleria.loadTheme('galleria/themes/classic/galleria.classic.min.js');
+        Galleria.loadTheme('/Web.Public/galleria/themes/classic/galleria.classic.min.js');
         loadAlbum(1129830643748930);
     </script>
 </asp:Content>

@@ -1,18 +1,31 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
+using System;
 
 namespace UITestsFramework.Pages
 {
     public class LoginPage
     {
-        [FindsBy(How = How.Id, Using = "UserName")]
-        private IWebElement usernameTextField;
+        private readonly WebDriverWait _wait;
 
-        [FindsBy(How = How.Id, Using = "Password")]
-        private IWebElement passwordTextField;
+        private IWebElement usernameTextField 
+        { 
+            get 
+            { 
+                _wait.Until(driver => driver.FindElement(By.Id("UserName")));
+                return Browser.Driver.FindElement(By.Id("UserName"));
+            } 
+        }
 
-        [FindsBy(How = How.CssSelector, Using = "input[type='submit']")]
-        private IWebElement logInButton;
+        private IWebElement passwordTextField { get { return Browser.Driver.FindElement(By.Id("Password")); } }
+
+        private IWebElement logInButton { get { return Browser.Driver.FindElement(By.CssSelector("input[type='submit']")); } }
+
+        public LoginPage()
+        {
+            _wait = new WebDriverWait(((IWebDriver)Browser.Driver), new TimeSpan(0, 3, 0));
+        }
 
         public void Goto()
         {
@@ -31,8 +44,8 @@ namespace UITestsFramework.Pages
 
         private void Login()
         {
-            usernameTextField.SendKeys("");
-            passwordTextField.SendKeys("");
+            usernameTextField.SendKeys("Chad");
+            passwordTextField.SendKeys("9705644");
 
             logInButton.Click();
         }
