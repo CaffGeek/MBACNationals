@@ -106,7 +106,7 @@
 
         <footer>
             <ul class="footerNav">
-                <li><a href="index.aspx">Home</a></li>
+                <li><a href="default.aspx">Home</a></li>
                 <li><a href="results.aspx">Results</a></li>
                 <li><a href="news.aspx">News</a></li>
                 <li><a href="schedule.aspx">Schedule</a></li>

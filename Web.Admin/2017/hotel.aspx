@@ -1,7 +1,7 @@
 <%@ Language="C#" MasterPageFile="~/MBAC.Master" AutoEventWireup="false" %>
 
 <asp:Content ID="HeaderContent" ContentPlaceHolderID="HeaderPlaceholder" runat="server">
-  <div id="headerImage" style="margin-top:15px;background-size:cover;background-position:center center;height:375px;background-image:url('images/header_image_4.jpg'); "></div>
+    <div id="headerImage" style="margin-top:15px;background-size:cover;background-position:center center;height:375px;background-image:url('images/header_image_location.jpg'); "></div>
     <div id="photoCredit"><strong>TODO: description</strong> &bull; Credit: TODO: credit</div>
 </asp:Content>
 
@@ -12,7 +12,7 @@
     <div class="col-md-2 col-sm-2">
       <ul class="sidebarNav">
         <li>
-          <a href="#sheraton">Hotel</a>
+          <a href="#hotel">Hotel</a>
         </li>
         <li>
           <a href="#restaurants">Local Restaurants</a>
@@ -23,17 +23,17 @@
     </div>
     <div class="col-md-10 col-sm-10">
       <h2>Location</h2>
-      <h4 id="sheraton">Sheraton Vancouver Guildford Hotel</h4>
+      <h4 id="hotel">Sheraton Vancouver Guildford Hotel</h4>
       <div class="row">
         <div class="col-md-3 col-sm-3">
-          <img src="images/sheraton_logo.png" alt="sheraton logo" />
+          <img src="images/hotel_logo.png" alt="sheraton logo" />
           <p>
             Visit their website at <a href="http://www.sheratonguildford.com" target="_blank">www.sheratonguildford.com</a>
           </p>
         </div>
       </div>
       <div class="col-md-9 col-sm-9">
-        <img src="images/sheraton.jpg" alt="Sheraton Vancouver Guildford Hotel" />
+        <img src="images/hotel.jpg" alt="Sheraton Vancouver Guildford Hotel" />
       </div>
     </div>
     <div class="row">

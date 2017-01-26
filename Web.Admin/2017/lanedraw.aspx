@@ -1,7 +1,7 @@
 <%@ Language="C#" MasterPageFile="~/MBAC.Master" AutoEventWireup="false" %>
 
 <asp:Content ID="HeaderContent" ContentPlaceHolderID="HeaderPlaceholder" runat="server">
-    <div id="headerImage" style="margin-top: 15px; background-size: cover; background-position: center center; height: 375px; background-image: url('images/header_image_5.jpg');"></div>
+    <div id="headerImage" style="margin-top: 15px; background-size: cover; background-position: center center; height: 375px; background-image: url('images/header_image_lanedraw.jpg');"></div>
     <div id="photoCredit"><strong>TODO: description</strong> &bull; Credit: TODO: credit</div>
 </asp:Content>
 
