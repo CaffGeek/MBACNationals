@@ -14,11 +14,14 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<SponsorCreated>,
         ISubscribeTo<SponsorDeleted>,
         ISubscribeTo<NewsCreated>,
-        ISubscribeTo<NewsDeleted>
+        ISubscribeTo<NewsDeleted>,
+        ISubscribeTo<HotelsCreated>,
+        ISubscribeTo<HotelsDeleted>
     {
         public List<Tournament> Tournaments { get; set; }
         public List<News> NewsArticles { get; set; }
         public List<Sponsor> Sponsors { get; set; }
+        public List<Hotel> Hotels { get; set; }
 
         public class Tournament
         {
@@ -41,6 +44,16 @@ namespace MBACNationals.ReadModels
             public Guid TournamentId { get; set; }
             public string Name { get; set; }
             public string Website { get; set; }
+        }
+
+        public class Hotel
+        {
+            public Guid Id { get; set; }
+            public Guid TournamentId { get; set; }
+            public string Name { get; set; }
+            public string Website { get; set; }
+            //TODO: Chad: Logo
+            //TODO: Chad: Image
         }
         
         public class TSSponsorLogo : Blob { }
@@ -92,6 +105,13 @@ namespace MBACNationals.ReadModels
             return news;
         }
 
+        public List<Hotel> GetHotels(string year)
+        {
+            var tournament = Tournaments.Single(x => x.Year == year);
+            var hotels = Hotels.Where(x => x.TournamentId == tournament.Id).ToList();
+            return hotels;
+        }
+
         public void Handle(TournamentCreated e)
         {
             Tournaments.Add(new Tournament
@@ -139,6 +159,16 @@ namespace MBACNationals.ReadModels
         public void Handle(NewsDeleted e)
         {
             NewsArticles.RemoveAll(x => x.Id == e.NewsId);
+        }
+
+        public void Handle(HotelsCreated e)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Handle(HotelsDeleted e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

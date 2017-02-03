@@ -2040,6 +2040,8 @@
     <Content Include="20xx-Template\results.aspx" />
     <Content Include="20xx-Template\schedule.aspx" />
     <Content Include="20xx-Template\souvenirs.aspx" />
+    <Content Include="AdminApp\Controllers\controller.hotel.js" />
+    <Content Include="AdminApp\Views\Tournament\Hotels.html" />
     <Content Include="Content\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Content\bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap\css\bootstrap.css" />
@@ -2108,6 +2110,7 @@
     <Content Include="Content\galleria\themes\classic\galleria.classic.css" />
     <Content Include="Content\galleria\themes\classic\galleria.classic.js" />
     <Content Include="Content\galleria\themes\classic\galleria.classic.min.js" />
+    <Content Include="Content\Images\2017_logo.png" />
     <Content Include="Content\js\instafeed.min.js" />
     <Content Include="2016\PDFs\DEPARTURES.pdf" />
     <Content Include="AdminApp\Views\Reports\Newsworthy.html" />
@@ -3431,6 +3434,7 @@
     <Content Include="Views\Help\ScoreEntry.cshtml" />
     <Content Include="Views\Help\Alternates.cshtml" />
     <Content Include="Views\Help\Stepladder.cshtml" />
+    <Content Include="Views\Tournament\Hotel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminApp\Entities\" />
