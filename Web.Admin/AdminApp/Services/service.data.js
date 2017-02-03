@@ -45,7 +45,9 @@
             CreateStepladderMatch: createStepladderMatch,
             GetStepladderMatches: getStepladderMatches,
             UpdateStepladderMatch: updateStepladderMatch,
-            DeleteStepladderMatch: deleteStepladderMatch
+            DeleteStepladderMatch: deleteStepladderMatch,
+            LoadHotels: loadHotels,
+            SaveHotel: saveHotel
         };
 
         function saveTeam(team, contingent) {
@@ -341,6 +343,14 @@
 
         function deleteStepladderMatch(match) {
             return $http.post('/Setup/Scores/DeleteStepladderMatch/', match);
+        };
+
+        function loadHotels(year) {
+            return $http.get('/Setup/Tournament/Hotel/' + year);
+        };
+
+        function saveHotel(year, hotel) {
+            return $http.post('/Setup/Tournament/Hotel/' + year, hotel);
         };
     };
 
