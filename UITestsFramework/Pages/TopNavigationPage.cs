@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System;
 
 namespace UITestsFramework.Pages
 {
@@ -22,8 +23,8 @@ namespace UITestsFramework.Pages
 
         [FindsBy(How = How.LinkText, Using = "Log in")]
         private IWebElement loginLink;
-        
-        [FindsBy(How = How.LinkText, Using = "Log off")]
+
+        [FindsBy(How = How.Id, Using = "logoff")]
         private IWebElement logoutLink;
 
         public void Contingent()
@@ -71,7 +72,7 @@ namespace UITestsFramework.Pages
 
         public bool LoggedIn()
         {
-            return logoutLink.Text == "Log off";
+            return logoutLink.Text.StartsWith("Log off", StringComparison.OrdinalIgnoreCase);
         }
     }
 }
