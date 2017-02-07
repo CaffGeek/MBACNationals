@@ -45,7 +45,7 @@ namespace UITestsFramework.Pages
         private void Login()
         {
             usernameTextField.SendKeys("Chad");
-            passwordTextField.SendKeys("9705644");
+            passwordTextField.SendKeys("");
 
             logInButton.Click();
         }

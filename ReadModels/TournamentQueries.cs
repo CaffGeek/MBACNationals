@@ -15,8 +15,8 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<SponsorDeleted>,
         ISubscribeTo<NewsCreated>,
         ISubscribeTo<NewsDeleted>,
-        ISubscribeTo<HotelsCreated>,
-        ISubscribeTo<HotelsDeleted>
+        ISubscribeTo<HotelCreated>,
+        ISubscribeTo<HotelDeleted>
     {
         public List<Tournament> Tournaments { get; set; }
         public List<News> NewsArticles { get; set; }
@@ -161,12 +161,12 @@ namespace MBACNationals.ReadModels
             NewsArticles.RemoveAll(x => x.Id == e.NewsId);
         }
 
-        public void Handle(HotelsCreated e)
+        public void Handle(HotelCreated e)
         {
             throw new NotImplementedException();
         }
 
-        public void Handle(HotelsDeleted e)
+        public void Handle(HotelDeleted e)
         {
             throw new NotImplementedException();
         }

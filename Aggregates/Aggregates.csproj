@@ -63,6 +63,7 @@
     <Compile Include="Tournament\Commands\CreateNews.cs" />
     <Compile Include="Tournament\Commands\CreateHotel.cs" />
     <Compile Include="Tournament\Commands\DeleteNews.cs" />
+    <Compile Include="Tournament\Commands\DeeleteHotel.cs" />
     <Compile Include="Tournament\Commands\DeleteSponsor.cs" />
     <Compile Include="Tournament\Commands\CreateSponsor.cs" />
     <Compile Include="Tournament\Commands\TournamentAlreadyExists.cs" />

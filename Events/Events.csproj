@@ -77,7 +77,7 @@
     <Compile Include="Scores\StepladderMatchCreated.cs" />
     <Compile Include="Scores\TeamGameCompleted.cs" />
     <Compile Include="Tournament\HotelDeleted.cs" />
-    <Compile Include="Tournament\HotelsCreated.cs" />
+    <Compile Include="Tournament\HotelCreated.cs" />
     <Compile Include="Tournament\NewsDeleted.cs" />
     <Compile Include="Tournament\NewsCreated.cs" />
     <Compile Include="Tournament\SponsorCreated.cs" />

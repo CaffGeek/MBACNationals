@@ -1,6 +1,10 @@
-﻿namespace Events.Tournament
+﻿using System;
+
+namespace Events.Tournament
 {
-    public class HotelsDeleted
+    public class HotelDeleted
     {
+        public Guid Id;
+        public Guid HotelId { get; set; }
     }
 }

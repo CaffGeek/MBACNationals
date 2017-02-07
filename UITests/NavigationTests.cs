@@ -25,7 +25,6 @@ namespace UITests
             Pages.Login.Goto();
             Pages.Login.LogInAsAdmin();
 
-            Pages.Contingent.Goto();
             Pages.TournamentSelector.SelectLatestTournament();
             Pages.ProvinceSelector.Select("MB");
             Assert.IsTrue(Pages.Contingent.IsAt());

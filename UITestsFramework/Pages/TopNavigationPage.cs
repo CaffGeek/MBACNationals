@@ -24,8 +24,7 @@ namespace UITestsFramework.Pages
         [FindsBy(How = How.LinkText, Using = "Log in")]
         private IWebElement loginLink;
 
-        [FindsBy(How = How.Id, Using = "logoff")]
-        private IWebElement logoutLink;
+        private IWebElement logoutLink { get { return Browser.Driver.FindElement(By.Id("logoff")); } }
 
         public void Contingent()
         {
@@ -72,7 +71,7 @@ namespace UITestsFramework.Pages
 
         public bool LoggedIn()
         {
-            return logoutLink.Text.StartsWith("Log off", StringComparison.OrdinalIgnoreCase);
+            return logoutLink.GetAttribute("Value").StartsWith("Log off", StringComparison.OrdinalIgnoreCase);
         }
     }
 }

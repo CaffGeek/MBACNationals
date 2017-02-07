@@ -2,12 +2,13 @@
 
 namespace Events.Tournament
 {
-    public class SponsorCreated
+    public class HotelCreated
     {
         public Guid Id;
-        public Guid SponsorId { get; set; }
+        public Guid HotelId { get; set; }
         public string Name { get; set; }
         public string Website { get; set; }
+        public byte[] Logo { get; set; }
         public byte[] Image { get; set; }
     }
 }

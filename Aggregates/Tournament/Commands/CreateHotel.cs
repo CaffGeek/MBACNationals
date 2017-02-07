@@ -6,6 +6,9 @@ namespace MBACNationals.Tournament.Commands
     {
         public Guid Id;
         public string Year { get; set; }
-        //TODO: Chad
+        public string Name { get; set; }
+        public string Website { get; set; }
+        public byte[] Logo { get; set; }
+        public byte[] Image { get; set; }
     }
 }

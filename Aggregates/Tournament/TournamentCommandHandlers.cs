@@ -13,7 +13,9 @@ namespace MBACNationals.Tournament
         IHandleCommand<CreateSponsor, TournamentAggregate>,
         IHandleCommand<DeleteSponsor, TournamentAggregate>,
         IHandleCommand<CreateNews, TournamentAggregate>,
-        IHandleCommand<DeleteNews, TournamentAggregate>
+        IHandleCommand<DeleteNews, TournamentAggregate>,
+        IHandleCommand<CreateHotel, TournamentAggregate>,
+        IHandleCommand<DeleteHotel, TournamentAggregate>
     {
         private ICommandQueries CommandQueries;
 
@@ -90,6 +92,34 @@ namespace MBACNationals.Tournament
             {
                 Id = tournament.Id,
                 NewsId = command.Id,
+            };
+        }
+
+        public IEnumerable Handle(Func<Guid, TournamentAggregate> al, CreateHotel command)
+        {
+            var tournament = CommandQueries.GetTournaments().FirstOrDefault(x => x.Year == command.Year);
+            var agg = al(tournament.Id);
+
+            yield return new HotelCreated
+            {
+                Id = tournament.Id,
+                HotelId = command.Id,
+                Name = command.Name,
+                Website = command.Website,
+                Logo = command.Logo,
+                Image = command.Image
+            };
+        }
+
+        public IEnumerable Handle(Func<Guid, TournamentAggregate> al, DeleteHotel command)
+        {
+            var tournament = CommandQueries.GetTournaments().FirstOrDefault(x => x.Year == command.Year);
+            var agg = al(tournament.Id);
+
+            yield return new HotelDeleted
+            {
+                Id = tournament.Id,
+                HotelId = command.Id,
             };
         }
     }

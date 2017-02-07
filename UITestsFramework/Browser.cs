@@ -6,12 +6,15 @@ namespace UITestsFramework
 {
     public static class Browser
     {
-        private static string baseUrl = "http://localhost:60827/setup/";
+        private static string baseUrl = "http://localhost:60828/setup/";
         private static IWebDriver webDriver;
 
         public static void Initialize()
         {
-            webDriver = new ChromeDriver();
+            var chromeDriverDirectory = @"C:\source\MBACNationals\UITestsFramework\bin\Debug\";
+            var options = new ChromeOptions();
+            options.AddArguments("--disable-extensions");
+            webDriver = new ChromeDriver(chromeDriverDirectory, options);
             Goto("");
         }
 
@@ -20,7 +23,7 @@ namespace UITestsFramework
             get { return webDriver.Title; }
         }
 
-        public static ISearchContext Driver
+        public static IWebDriver Driver
         {
             get { return webDriver; }
         }

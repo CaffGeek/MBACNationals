@@ -7,7 +7,7 @@ namespace UITestsFramework
 {
     public abstract class TestBase
     {
-        const int iisPort = 60827;
+        const int iisPort = 60828;
         private string _applicationName;
         private Process _iisProcess;
 
@@ -46,13 +46,6 @@ namespace UITestsFramework
         protected virtual string GetApplicationPath(string applicationName) {
             var solutionFolder = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory)));
             return Path.Combine(solutionFolder, applicationName);
-        } 
- 
-        //public string GetAbsoluteUrl(string relativeUrl) {
-        //    if (!relativeUrl.StartsWith("/")) {
-        //        relativeUrl = "/" + relativeUrl;
-        //    }
-        //    return String.Format("http://localhost:{0}{1}", iisPort, relativeUrl);
-        //}
+        }
     }
 }

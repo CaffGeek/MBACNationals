@@ -1,4 +1,6 @@
-﻿namespace UITestsFramework.Pages
+﻿using System;
+
+namespace UITestsFramework.Pages
 {
     public class ContingentPage
     {
@@ -9,7 +11,7 @@
 
         public bool IsAt()
         {
-            return Browser.Title.Contains("Contingent");
+            return Browser.Driver.Url.Contains("Contingent");
         }
     }
 }
