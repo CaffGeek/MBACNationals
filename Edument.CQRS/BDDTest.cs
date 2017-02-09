@@ -16,15 +16,23 @@ namespace Edument.CQRS
     /// </summary>
     /// <typeparam name="TCommandHandler"></typeparam>
     /// <typeparam name="TAggregate"></typeparam>
-    public class BDDTest<TCommandHandler, TAggregate>
+    public class BDDTest<TCommandHandler, TAggregate, TReadModel>
         //where TCommandHandler : new()
         where TAggregate : Aggregate, new()
+        where TReadModel : class
     {
-        private TCommandHandler sut;
+        private TCommandHandler _sut;
+        private TReadModel _readModel;
         
         protected void SystemUnderTest(TCommandHandler commandHandler)
         {
-            sut = commandHandler;
+            SystemUnderTest(commandHandler, null);
+        }
+
+        protected void SystemUnderTest(TCommandHandler commandHandler, TReadModel readModel)
+        {
+            _sut = commandHandler;
+            _readModel = readModel;
         }
 
         protected void Test(IEnumerable given, Func<TAggregate, object> when, Action<object> then)
@@ -116,11 +124,11 @@ namespace Edument.CQRS
 
         private IEnumerable DispatchCommand<TCommand>(Func<Guid, TAggregate> al, TCommand c)
         {
-            var handler = sut as IHandleCommand<TCommand, TAggregate>;
+            var handler =_sut as IHandleCommand<TCommand, TAggregate>;
             if (handler == null)
                 throw new CommandHandlerNotDefiendException(string.Format(
                     "Command handler {0} does not yet handle command {1}",
-                    sut.GetType().Name, c.GetType().Name));
+                   _sut.GetType().Name, c.GetType().Name));
             return handler.Handle(al, c);
         }
 

@@ -10,7 +10,7 @@ using System;
 namespace MBACNationalsTests
 {
     [TestFixture]
-    public class ParticipantTests : BDDTest<ParticipantCommandHandlers, ParticipantAggregate>
+    public class ParticipantTests : BDDTest<ParticipantCommandHandlers, ParticipantAggregate, CommandQueries>
     {
         private Guid alternateId;
         private Guid participantId;

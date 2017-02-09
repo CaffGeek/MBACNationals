@@ -10,27 +10,22 @@ using System;
 namespace MBACNationalsTests
 {
     [TestFixture]
-    public class ContingentTests : BDDTest<ContingentCommandHandlers, ContingentAggregate>
+    public class ContingentTests : BDDTest<ContingentCommandHandlers, ContingentAggregate, CommandQueries>
     {
-        public Mock<ICommandQueries> CommandQueriesMock { get; set; }
-
-        private Guid tournamentId;
-        private Guid contingentId;
-        private string contingentProvince;
-
         [SetUp]
         public void Setup()
         {
-            CommandQueriesMock = new Mock<ICommandQueries>();
-            SystemUnderTest(new ContingentCommandHandlers(CommandQueriesMock.Object));
-            tournamentId = Guid.NewGuid();
-            contingentId = Guid.NewGuid();
-            contingentProvince = "ZZ";
+            var commandQueries = new CommandQueries();
+            SystemUnderTest(new ContingentCommandHandlers(commandQueries), commandQueries);
         }
 
         [Test]
         public void CanCreateContingent()
         {
+            var tournamentId = Guid.NewGuid();
+            var contingentId = Guid.NewGuid();
+            var contingentProvince = "ZZ";
+
             Test(
                 Given(),
                 When(new CreateContingent
@@ -54,6 +49,9 @@ namespace MBACNationalsTests
         [Test]
         public void CanNotDuplicateContingent()
         {
+            var contingentId = Guid.NewGuid();
+            var contingentProvince = "ZZ";
+
             Test(
                 Given(new ContingentCreated
                 {

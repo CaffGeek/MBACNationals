@@ -10,7 +10,7 @@ using System;
 namespace MBACNationalsTests
 {
     [TestFixture]
-    public class TeamTests : BDDTest<ContingentCommandHandlers, ContingentAggregate>
+    public class TeamTests : BDDTest<ContingentCommandHandlers, ContingentAggregate, CommandQueries>
     {
         public Mock<ICommandQueries> CommandQueriesMock { get; set; }
 

@@ -11,8 +11,8 @@ using System.Collections.Generic;
 namespace MBACNationalsTests
 {
     [TestFixture]
-    public class AssignContingentToTournamentTests 
-        : BDDTest<ContingentCommandHandlers, ContingentAggregate>
+    public class AssignContingentToTournamentTests
+        : BDDTest<ContingentCommandHandlers, ContingentAggregate, CommandQueries>
     {
         private Mock<ICommandQueries> CommandQueriesMock;
 

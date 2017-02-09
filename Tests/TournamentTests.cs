@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace MBACNationalsTests
 {
     [TestFixture]
-    public class TournamentTests : BDDTest<TournamentCommandHandlers, TournamentAggregate>
+    public class TournamentTests : BDDTest<TournamentCommandHandlers, TournamentAggregate, CommandQueries>
     {
         [SetUp]
         public void Setup()
