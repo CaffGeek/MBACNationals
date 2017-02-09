@@ -16,14 +16,18 @@ namespace MBACNationalsTests
         [SetUp]
         public void Setup()
         {
-            var tournamentMock = new Mock<CommandQueries.Tournament>();
-            tournamentMock.Object.Id = Guid.NewGuid();
-            tournamentMock.SetupGet(x => x.Year).Returns("9999");
-
             var commandQueriesMock = new Mock<ICommandQueries>();
             commandQueriesMock
                     .Setup(m => m.GetTournaments())
-                    .Returns(new List<CommandQueries.Tournament>() { tournamentMock.Object });
+                    .Returns(
+                        new List<CommandQueries.Tournament>
+                        {
+                            new CommandQueries.Tournament 
+                            {
+                                Id = Guid.NewGuid(),
+                                Year = "9999"
+                            }
+                        });
             SystemUnderTest(new TournamentCommandHandlers(commandQueriesMock.Object));
         }
 
@@ -44,25 +48,7 @@ namespace MBACNationalsTests
                     Year = "2014",
                 }));
         }
-
-        [Test]
-        public void CanCreateAnotherTournament()
-        {
-            var newId = Guid.NewGuid();
-            Test(
-                Given(),
-                When(new CreateTournament
-                {
-                    Id = newId,
-                    Year = "2015",
-                }),
-                Then(new TournamentCreated
-                {
-                    Id = newId,
-                    Year = "2015",
-                }));
-        }
-
+        
         [Test]
         public void CanNotDuplicateTournament()
         {

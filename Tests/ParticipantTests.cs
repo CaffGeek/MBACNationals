@@ -27,14 +27,7 @@ namespace MBACNationalsTests
             name = "John";
             newName = "David";
 
-            var alternateMock = new Mock<CommandQueries.Participant>();
-            alternateMock.Object.Id = alternateId;
-            alternateMock.SetupGet(x => x.Name).Returns("alternate");
-
             var commandQueriesMock = new Mock<ICommandQueries>();
-            commandQueriesMock
-                    .Setup(m => m.GetParticipant(alternateId))
-                    .Returns(alternateMock.Object);
             SystemUnderTest(new ParticipantCommandHandlers(commandQueriesMock.Object));
         }
 
@@ -123,6 +116,11 @@ namespace MBACNationalsTests
                 {
                     Id = participantId,
                     TeamId = teamId
+                }, new ParticipantQualifyingPositionChanged
+                {
+                    Id = participantId,
+                    QualifyingPosition = 1,
+                    TeamId = teamId
                 }));
         }
 
@@ -144,24 +142,12 @@ namespace MBACNationalsTests
                 {
                     Id = participantId,
                     TeamId = teamId
-                }));
-        }
-
-        [Test]
-        public void AssignParticipantToSameTeamDoesNothing()
-        {
-            Test(
-                Given(new ParticipantAssignedToTeam
+                }, new ParticipantQualifyingPositionChanged
                 {
                     Id = participantId,
-                    TeamId = teamId,
-                }),
-                When(new AddParticipantToTeam
-                {
-                    Id = participantId,
+                    QualifyingPosition = 1,
                     TeamId = teamId
-                }),
-                Then());
+                }));
         }
     }
 }

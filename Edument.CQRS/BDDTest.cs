@@ -60,27 +60,38 @@ namespace Edument.CQRS
                 if (gotEvents != null)
                 {
                     if (gotEvents.Length == expectedEvents.Length)
+                    {
                         for (var i = 0; i < gotEvents.Length; i++)
+                        {
                             if (gotEvents[i].GetType() == expectedEvents[i].GetType())
                                 Assert.AreEqual(Serialize(expectedEvents[i]), Serialize(gotEvents[i]));
                             else
-                                Assert.Fail(string.Format(
-                                    "Incorrect event in results; expected a {0} but got a {1}",
+                                Assert.Fail(string.Format("Incorrect event in results; expected a {0} but got a {1}",
                                     expectedEvents[i].GetType().Name, gotEvents[i].GetType().Name));
-                    else if (gotEvents.Length < expectedEvents.Length)
+                        }
+                    }
+                    else if (gotEvents.Length < expectedEvents.Length) 
+                    {
                         Assert.Fail(string.Format("Expected event(s) missing: {0}",
                             expectedEvents.Select(e => e.GetType().Name)
                                 .Except(gotEvents.Select(e => e.GetType().Name))));
+                    }
                     else
-                        Assert.Fail(string.Format("Unexpected event(s) emitted: {0}",
-                           gotEvents.Select(e => e.GetType().Name)
-                               .Except(expectedEvents.Select(e => e.GetType().Name))));
+                    {
+                        var expectedNames = expectedEvents.Select(e => e.GetType().Name);
+                        var gotNames = gotEvents.Select(e => e.GetType().Name);
+                        var unexpectedEvents = gotNames.Except(expectedNames);
+                        Assert.Fail(string.Format("Unexpected event(s) emitted: \n\t{0}", string.Join("\n\t", unexpectedEvents)));
+                    }
                 }
                 else if (got is CommandHandlerNotDefiendException)
+                {
                     Assert.Fail((got as Exception).Message);
+                }
                 else
-                    Assert.Fail("Expected events, but got exception {0}",
-                        got.GetType().Name);
+                {
+                    Assert.Fail("Expected events, but got exception {0}", got.GetType().Name);
+                }                    
             };
         }
 

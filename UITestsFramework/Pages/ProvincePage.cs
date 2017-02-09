@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace UITestsFramework.Pages
 {
@@ -12,6 +12,7 @@ namespace UITestsFramework.Pages
         
         public void Select(string province)
         {
+            //TODO: Chad
             provinceLinks.First().Click();
         }
     }
