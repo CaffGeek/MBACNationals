@@ -3,17 +3,17 @@ using Events.Tournament;
 using MBACNationals.ReadModels;
 using MBACNationals.Tournament;
 using MBACNationals.Tournament.Commands;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 
 namespace MBACNationalsTests
 {
-    [TestClass]
+    [TestFixture]
     public class TournamentTests : BDDTest<TournamentCommandHandlers, TournamentAggregate>
     {
-        [TestInitialize]
+        [SetUp]
         public void Setup()
         {
             var tournamentMock = new Mock<CommandQueries.Tournament>();
@@ -27,7 +27,7 @@ namespace MBACNationalsTests
             SystemUnderTest(new TournamentCommandHandlers(commandQueriesMock.Object));
         }
 
-        [TestMethod]
+        [Test]
         public void CanCreateTournament()
         {
             var newId = Guid.NewGuid();
@@ -45,7 +45,7 @@ namespace MBACNationalsTests
                 }));
         }
 
-        [TestMethod]
+        [Test]
         public void CanCreateAnotherTournament()
         {
             var newId = Guid.NewGuid();
@@ -63,7 +63,7 @@ namespace MBACNationalsTests
                 }));
         }
 
-        [TestMethod]
+        [Test]
         public void CanNotDuplicateTournament()
         {
             var newId = Guid.NewGuid();

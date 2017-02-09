@@ -1,7 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.IO;
+using NUnit;
+using NUnit.Framework;
 
 namespace UITestsFramework
 {
@@ -16,14 +17,14 @@ namespace UITestsFramework
             _applicationName = applicationName;
         }
 
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             StartIIS();
             Browser.Initialize();
         }
 
-        [TestCleanup]
+        [TearDown]
         public void TestFixtureTearDown()
         {
             Browser.Close();

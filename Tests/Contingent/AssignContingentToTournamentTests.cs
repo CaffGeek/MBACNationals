@@ -3,27 +3,27 @@ using Events.Contingent;
 using MBACNationals.Contingent;
 using MBACNationals.Contingent.Commands;
 using MBACNationals.ReadModels;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 
 namespace MBACNationalsTests
 {
-    [TestClass]
+    [TestFixture]
     public class AssignContingentToTournamentTests 
         : BDDTest<ContingentCommandHandlers, ContingentAggregate>
     {
         private Mock<ICommandQueries> CommandQueriesMock;
 
-        [TestInitialize]
+        [SetUp]
         public void Setup()
         {
             CommandQueriesMock = new Mock<ICommandQueries>();
             SystemUnderTest(new ContingentCommandHandlers(CommandQueriesMock.Object));
         }
 
-        [TestMethod]
+        [Test]
         public void WhenTournamnetExists()
         {
             var contingentId = Guid.NewGuid();
@@ -51,7 +51,7 @@ namespace MBACNationalsTests
                 }));
         }
 
-        [TestMethod]
+        [Test]
         public void WhenTournamnetIsMissing()
         {
             var contingentId = Guid.NewGuid();

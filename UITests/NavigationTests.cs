@@ -1,17 +1,17 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using UITestsFramework;
 using UITestsFramework.Pages;
 
 namespace UITests
 {
-    [TestClass]
+    [TestFixture]
     public class NavigationTests : TestBase
     {        
         public NavigationTests ()
             : base("Web.Admin") 
 	    { }             
 
-        [TestMethod]
+        [Test]
         public void CanLoginAsAdmin()
         {
             Pages.Login.Goto();
@@ -19,7 +19,7 @@ namespace UITests
             Assert.IsTrue(Pages.TopNavigation.LoggedIn());
         }
 
-        [TestMethod]
+        [Test]
         public void CanGoToContingentPage()
         {
             Pages.Login.Goto();

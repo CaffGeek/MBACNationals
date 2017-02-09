@@ -3,13 +3,13 @@ using Events.Participant;
 using MBACNationals.Participant;
 using MBACNationals.Participant.Commands;
 using MBACNationals.ReadModels;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NUnit.Framework;
 using System;
 
 namespace MBACNationalsTests
 {
-    [TestClass]
+    [TestFixture]
     public class ParticipantTests : BDDTest<ParticipantCommandHandlers, ParticipantAggregate>
     {
         private Guid alternateId;
@@ -18,7 +18,7 @@ namespace MBACNationalsTests
         private string name;
         private string newName;
 
-        [TestInitialize]
+        [SetUp]
         public void Setup()
         {
             alternateId = Guid.NewGuid();
@@ -38,7 +38,7 @@ namespace MBACNationalsTests
             SystemUnderTest(new ParticipantCommandHandlers(commandQueriesMock.Object));
         }
 
-        [TestMethod]
+        [Test]
         public void CanCreateParticipant()
         {
             Test(
@@ -71,7 +71,7 @@ namespace MBACNationalsTests
                 );
         }
 
-        [TestMethod]
+        [Test]
         public void CanNotDuplicateParticipant()
         {
             Test(
@@ -88,7 +88,7 @@ namespace MBACNationalsTests
                 ThenFailWith<ParticipantAlreadyExists>());
         }
 
-        [TestMethod]
+        [Test]
         public void CanRenameParticipant()
         {
             Test(
@@ -109,7 +109,7 @@ namespace MBACNationalsTests
                 }));
         }
 
-        [TestMethod]
+        [Test]
         public void CanAssignParticipantToTeam()
         {
             Test(
@@ -126,7 +126,7 @@ namespace MBACNationalsTests
                 }));
         }
 
-        [TestMethod]
+        [Test]
         public void CanAssignParticipantToDifferentTeam()
         {
             Test(
@@ -147,7 +147,7 @@ namespace MBACNationalsTests
                 }));
         }
 
-        [TestMethod]
+        [Test]
         public void AssignParticipantToSameTeamDoesNothing()
         {
             Test(

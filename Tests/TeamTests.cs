@@ -3,13 +3,13 @@ using Events.Contingent;
 using MBACNationals.Contingent;
 using MBACNationals.Contingent.Commands;
 using MBACNationals.ReadModels;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using NUnit.Framework;
 using System;
 
 namespace MBACNationalsTests
 {
-    [TestClass]
+    [TestFixture]
     public class TeamTests : BDDTest<ContingentCommandHandlers, ContingentAggregate>
     {
         public Mock<ICommandQueries> CommandQueriesMock { get; set; }
@@ -18,7 +18,7 @@ namespace MBACNationalsTests
         private Guid contingentId;
         private string teamName;
 
-        [TestInitialize]
+        [SetUp]
         public void Setup()
         {
             CommandQueriesMock = new Mock<ICommandQueries>();
@@ -28,7 +28,7 @@ namespace MBACNationalsTests
             teamName = "Test Team";
         }
 
-        [TestMethod]
+        [Test]
         public void CanCreateTeam()
         {
             Test(
@@ -50,7 +50,7 @@ namespace MBACNationalsTests
                 }));
         }
 
-        [TestMethod]
+        [Test]
         public void CanNotDuplicateTeam()
         {
             Test(
