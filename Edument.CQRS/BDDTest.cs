@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,13 +21,7 @@ namespace Edument.CQRS
         where TAggregate : Aggregate, new()
     {
         private TCommandHandler sut;
-
-        [TestInitialize]
-        public void BDDTestSetup()
-        {
-            //sut = new TCommandHandler();
-        }
-
+        
         protected void SystemUnderTest(TCommandHandler commandHandler)
         {
             sut = commandHandler;

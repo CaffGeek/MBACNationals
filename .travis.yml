@@ -2,3 +2,7 @@ language: csharp
 solution: MBACNationals.sln
 install:
   - nuget restore MBACNationals.sln
+  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
+script:
+  - xbuild /p:Configuration=Release MBACNationals.sln
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./UITests/bin/Release/UITests.dll
