@@ -1,0 +1,4 @@
+language: csharp
+solution: MBACNationals.sln
+install:
+  - nuget restore MBACNationals.sln
