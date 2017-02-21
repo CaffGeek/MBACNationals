@@ -1,0 +1,36 @@
+h1, h2, h3, h4, h5, h6 {
+   font-family: 'bebasregular';
+   color: #006633;
+   }
+
+.btn-default:hover, 
+.btn-default:focus, 
+.btn-default:active, 
+.btn-default.active, 
+.open .dropdown-toggle.btn-default { 
+  color: #FFFFFF; 
+  background-color: #006633; 
+  border-color: #FFFFFF; 
+} 
+
+header {
+background-repeat: no-repeat;
+background-size:cover;
+background-position: top center;
+background-image: url('/2017/images/background.jpg');
+height:400px;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+color: #006633;
+
+}
+.sidebarNav a:hover {
+color: #006633;
+text-decoration: none;
+}
+
+footer li a:hover {
+color: #006633;
+text-decoration: none;
+}
