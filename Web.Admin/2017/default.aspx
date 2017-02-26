@@ -42,6 +42,7 @@
     </div>
             
     <div class="col-md-4 col-sm-4">
+    <br />
         <!--<h2>SPONSORS</h2>
         <div style="height:250px;" data-ng-controller="SponsorsController as vm">
             <div class="innerContainer">
