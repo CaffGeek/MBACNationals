@@ -35,13 +35,14 @@
             <div class="col-md-6 col-sm-6">
                 <h2>Schedule</h2>
                 <div class="message"></div>
-                <p><a class="btn btn-default" href="schedule.php" role="button">Full Schedule &raquo;</a></p>
+                <h3 id="day1" class='day'>Day 1 - Wednesday, June 28th</h3><h4 class='time'>All Day</h4><p class='details'><span class='location'>Delta/Mariott</span><br />Registrations for Early Arrivals<br />Participants & Guests<br /></p>
+                <p><a class="btn btn-default" href="schedule.aspx" role="button">Full Schedule &raquo;</a></p>
             </div>
         </div>
     </div>
             
     <div class="col-md-4 col-sm-4">
-        <h2>SPONSORS</h2>
+        <!--<h2>SPONSORS</h2>
         <div style="height:250px;" data-ng-controller="SponsorsController as vm">
             <div class="innerContainer">
             <a href="{{vm.CurrentSponsor.Website}}" target="_blank">
@@ -53,51 +54,9 @@
         <h2>Follow Us</h2>
         <h3>Newsletter</h3>
 
-        <!-- SendinBlue Signup Form HTML Code -->
-        <div id="sib_embed_signup">
-            <div class="wrapper" style="position: relative; margin-left: auto; margin-right: auto;">
-                <input type="hidden" id="sib_embed_signup_lang" value="en">
-                <input type="hidden" id="sib_embed_invalid_email_message" value="That email address is not valid. Please try again">
-                <input type="hidden" name="primary_type" id="primary_type" value="email">
-                <div id="sib_loading_gif_area" style="position: absolute; z-index: 9999; display: none;">
-                    <img src="http://img.mailinblue.com/new_images/loader_sblue.gif" style="display: block; margin-left: auto; margin-right: auto; position: relative; top: 40%;">
-                </div>
-                <form class="description" id="theform" name="theform" action="https://my.sendinblue.com/users/subscribeembed/js_id/2dew5/id/1" onsubmit="return false;">
-                    <input type="hidden" name="js_id" id="js_id" value="2dew5"><input type="hidden" name="listid" id="listid" value="2"><input type="hidden" name="from_url" id="from_url" value="yes"><input type="hidden" name="hdn_email_txt" id="hdn_email_txt" value="">
-                    <div class="newsletterSignup">
-
-                        <input class="hidden" type="hidden" name="req_hid" id="req_hid" value="">
-                        <div class="header">
-                            <h1 class="title editable" data-editfield="newsletter_name"></h1>
-                            <h3 id="company-name"></h3>
-                        </div>
-                        <div class="description editable" data-editfield="newsletter_description"></div>
-                        <div class="view-messages"></div>
-                        <!-- an email as primary -->
-                        <div class="primary-group email-group forms-builder-group ui-sortable">
-                            <div class="mandatory-email">
-                                <input type="text" name="email" id="email" value="">
-                                <div style="clear: both;"></div>
-                                <div class="hidden-btns">
-                                    <a class="btn move" href="#"><i class="icon-move"></i></a>
-                                    <br>
-                                    <!--<a class="btn btn-danger delete"  href="#"><i class="icon-white icon-trash"></i></a>-->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end of primary -->
-                        <div class="byline">
-                            <button class="button editable " type="submit" data-editfield="subscribe">Subscribe</button>
-                        </div>
-                        <div style="clear: both;"></div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!-- End : SendinBlue Signup Form HTML Code -->
 
         <hr />
-
+-->
         <div class="fb-page" style="margin-bottom: 15px;" data-href="https://www.facebook.com/MBAofCanada/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
             <div class="fb-xfbml-parse-ignore">
                 <blockquote cite="https://www.facebook.com/MBAofCanada/"><a href="https://www.facebook.com/MBAofCanada/">Master Bowlers Association of Canada</a></blockquote>
