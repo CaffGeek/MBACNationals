@@ -34,3 +34,7 @@ footer li a:hover {
 color: #006633;
 text-decoration: none;
 }
+
+#photoCredit {
+    margin-top: -10px;
+}
