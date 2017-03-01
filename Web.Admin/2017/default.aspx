@@ -17,7 +17,7 @@
         <div class="row welcome">
             <div class="col-md-12">
                 <h2>Welcome</h2>
-                <p>Welcome to the online home of the 2017 Master Bowlers Association of Canada Nationals, taking place *dates here*, 2017 in Regina, SK.</p>
+                <p>Welcome to the online home of the 2017 Master Bowlers Association of Canada Nationals, taking place June 29 - July 3, 2017 in Regina, SK.</p>
             </div>
         </div>
 
