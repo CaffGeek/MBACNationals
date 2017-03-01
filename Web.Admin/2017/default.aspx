@@ -35,8 +35,8 @@
             <div class="col-md-6 col-sm-6">
                 <h2>Schedule</h2>
                 <div class="message"></div>
-                <h3 id="day1" class='day'>Day 1 - Wednesday, June 28th</h3><h4 class='time'>All Day</h4><p class='details'><span class='location'>Delta/Mariott</span><br />Registrations for Early Arrivals<br />Participants & Guests<br /></p>
-                <p><a class="btn btn-default" href="schedule.aspx" role="button">Full Schedule &raquo;</a></p>
+                <!--<h3 id="day1" class='day'>Day 1 - Wednesday, June 28th</h3><h4 class='time'>All Day</h4><p class='details'><span class='location'>Delta/Mariott</span><br />Registrations for Early Arrivals<br />Participants & Guests<br /></p>
+                <p><a class="btn btn-default" href="schedule.aspx" role="button">Full Schedule &raquo;</a></p>-->
             </div>
         </div>
     </div>
