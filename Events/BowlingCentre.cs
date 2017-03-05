@@ -8,6 +8,9 @@
         Sherwood,
         Willowbrook,
         Scottsdale,
-        Cloverdale
+        Cloverdale,
+        Glencairn,
+        GoldenMile,
+        Nortown
     }
 }
