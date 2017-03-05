@@ -244,6 +244,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\HotelController.cs" />
     <Compile Include="MBAC.Master.cs">
       <DependentUpon>MBAC.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1983,6 +1984,7 @@
     <Content Include="2017\centres.aspx" />
     <Content Include="2017\contingents.aspx" />
     <Content Include="2017\css\customize.css" />
+    <Content Include="2017\css\customize2017.css" />
     <Content Include="2017\default.aspx" />
     <Content Include="2017\hotel.aspx" />
     <Content Include="2017\images\background.jpg" />
@@ -3435,7 +3437,7 @@
     <Content Include="Views\Help\ScoreEntry.cshtml" />
     <Content Include="Views\Help\Alternates.cshtml" />
     <Content Include="Views\Help\Stepladder.cshtml" />
-    <Content Include="Views\Tournament\Hotel.cshtml" />
+    <Content Include="Views\Hotel\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminApp\Entities\" />

@@ -24,7 +24,7 @@
 	            Name: vm.HotelName,
 	            Website: vm.HotelWebsite,
 	            Logo: vm.HotelLogos[0],
-	            Image: vm.HotelImage[0]
+	            Image: vm.HotelImages[0]
 	        };
 
 	        dataService.SaveHotel(vm.Year, newHotel)

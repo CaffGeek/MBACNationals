@@ -80,9 +80,21 @@ namespace WebFrontend
             );
 
             routes.MapRoute(
-                name: "TournamentHotel",
-                url: "Setup/Tournament/Hotel/{year}",
-                defaults: new { controller = "Tournament", action = "Hotel" }
+                name: "Hotels",
+                url: "Setup/Hotels/List/{year}",
+                defaults: new { controller = "Hotels", action = "List" }
+            );
+
+            routes.MapRoute(
+                name: "HotelDelete",
+                url: "Setup/Hotels/Delete/{year}",
+                defaults: new { controller = "Hotels", action = "Delete" }
+            );
+
+            routes.MapRoute(
+                name: "HotelImage",
+                url: "Setup/Hotels/Image/{id}",
+                defaults: new { controller = "Hotels", action = "Image" }
             );
 
             routes.MapRoute(

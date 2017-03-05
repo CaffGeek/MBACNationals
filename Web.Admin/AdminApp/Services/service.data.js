@@ -293,12 +293,7 @@
             return $http.post('/Setup/Tournament/Create', tournament);
         };
 
-        function saveSponsor(year, sponsor) {
-            return ngUpload.upload({
-                url: '/Setup/Sponsors/Save/' + year,
-                fields: { id: sponsor.Id, name: sponsor.Name, website: sponsor.Website },
-                file: sponsor.Image
-            });
+        function saveSponsor(year, sponsor) {c
         };
 
         function loadSponsors(year) {
@@ -350,7 +345,11 @@
         };
 
         function saveHotel(year, hotel) {
-            return $http.post('/Setup/Tournament/Hotel/' + year, hotel);
+            return ngUpload.upload({
+                url: '/Setup/Hotel/Save/' + year,
+                fields: { id: hotel.Id, name: hotel.Name, website: hotel.Website },
+                file: [hotel.Logo, hotel.Image]
+            });
         };
     };
 

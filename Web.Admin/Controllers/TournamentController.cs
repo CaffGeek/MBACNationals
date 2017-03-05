@@ -1,5 +1,6 @@
 ﻿using MBACNationals.Tournament.Commands;
 using System;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -63,29 +64,6 @@ namespace WebFrontend.Controllers
             Domain.Dispatcher.SendCommand(command);
 
             return Json(command);
-        }
-        
-        [Authorize(Roles = "Admin, Host")]
-        public ActionResult Hotel(string year)
-        {
-            ViewBag.Year = year;
-            return View();
-        }
-        
-        [HttpGet]
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
-        public JsonResult Hotels(string year)
-        {
-            var hotels = Domain.TournamentQueries.GetHotels(year);
-            return Json(hotels, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        [Authorize(Roles = "Admin, Host")]
-        public JsonResult Hotel(CreateHotel command)
-        {
-            //TODO: See SponsorsController
-            throw new NotImplementedException("Create Hotel not handled yet");
-        }
+        }        
     }
 }

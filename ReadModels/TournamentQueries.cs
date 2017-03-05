@@ -112,6 +112,11 @@ namespace MBACNationals.ReadModels
             return hotels;
         }
 
+        public byte[] GetHotelImage(Guid guid)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Handle(TournamentCreated e)
         {
             Tournaments.Add(new Tournament

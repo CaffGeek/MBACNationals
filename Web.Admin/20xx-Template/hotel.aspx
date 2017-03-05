@@ -31,9 +31,9 @@
             Visit their website at <a href="http://www.sheratonguildford.com" target="_blank">www.sheratonguildford.com</a>
           </p>
         </div>
-      </div>
-      <div class="col-md-9 col-sm-9">
-        <img src="images/hotel.jpg" alt="Sheraton Vancouver Guildford Hotel" />
+        <div class="col-md-9 col-sm-9">
+          <img src="images/hotel.jpg" alt="Sheraton Vancouver Guildford Hotel" />
+        </div>          
       </div>
     </div>
     <div class="row">
