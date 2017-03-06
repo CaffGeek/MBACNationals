@@ -28,7 +28,7 @@
                         <strong>1-306-789-0066<br />
                             1620 9th Avenue East, Regina<br />
                         </strong>
-                        For more information, check out their website: <a href="glencairnbolodrome.com" target="_blank">glencairnbolodrome.com</a>
+                        For more information, check out their website: <a href="http://glencairnbolodrome.com" target="_blank">glencairnbolodrome.com</a>
                     </p>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                         <strong>1-306-586-2626<br />
                             3806 Albert Street, Regina<br />
                         </strong>
-                        For more information, check out their website: <a href="goldenmilebowl.com" target="_blank">goldenmilebowl.com</a>
+                        For more information, check out their website: <a href="http://goldenmilebowl.com" target="_blank">goldenmilebowl.com</a>
                     </p>
 
                 </div>
@@ -64,7 +64,7 @@
                     <p>
                         <strong>1-306-525-2776<br />
                             6831 Rochdale Boulevard, Regina</strong><br />
-                        For more information, check out their website: <a href="glencairnbolodrome.com" target="_blank">glencairnbolodrome.com</a>
+                        For more information, check out their website: <a href="http://glencairnbolodrome.com" target="_blank">glencairnbolodrome.com</a>
                     </p>
                 </div>
             </div>
