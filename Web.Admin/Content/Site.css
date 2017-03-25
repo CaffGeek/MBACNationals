@@ -165,5 +165,5 @@ div.game .frame .shots {
 div.game .frame .shots .shot {
 }
 .invalid{
-    background: red;
+    background: red !important;
 }
