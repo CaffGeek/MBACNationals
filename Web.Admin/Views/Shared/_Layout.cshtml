@@ -55,6 +55,9 @@
                             @Html.ActionLink("Sponsors", "Edit", "Sponsors", new { year = ViewBag.Year }, null)
                         </li>
                         <li>
+                            @Html.ActionLink("Hotel", "Edit", "Hotels", new { year = ViewBag.Year }, null)
+                        </li>
+                        <li>
                             @Html.ActionLink("News", "Edit", "News", new { year = ViewBag.Year }, null)
                         </li>
                         <li>
@@ -80,12 +83,6 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                @if (!string.IsNullOrWhiteSpace(ViewBag.Year)) 
-                                {
-                                    <li>
-                                        @Html.ActionLink("Hotel", "Edit", "Hotels", new { year = ViewBag.Year }, null)
-                                    </li>
-                                }
                                 <li>
                                     @Html.ActionLink("Rebuild Read Models", "Rebuild", "Admin")
                                 </li>
