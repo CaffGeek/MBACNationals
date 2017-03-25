@@ -168,12 +168,12 @@ namespace MBACNationals.ReadModels
 
         public void Handle(HotelCreated e)
         {
-            throw new NotImplementedException();
+            //TODO: throw new NotImplementedException();
         }
 
         public void Handle(HotelDeleted e)
         {
-            throw new NotImplementedException();
+            //TODO: throw new NotImplementedException();
         }
     }
 }

@@ -100,8 +100,8 @@ namespace MBACNationals.ReadModels
 
         public Contingent GetContingent(Guid tournamentId, string province)
         {
-            var contingent = Contingents
-                .FirstOrDefault(x => x.Tournament == tournamentId && x.Province == province);
+            var contingent = Contingents.FirstOrDefault(x => x.Tournament == tournamentId && x.Province == province);
+            if (contingent == null) return null;
 
             contingent.Teams.ForEach(team =>
             {
