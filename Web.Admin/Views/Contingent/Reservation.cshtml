@@ -9,6 +9,44 @@
                     <a href="#" id="{{p.Id}}" class="occupant" data-draggable="" data-ng-repeat="p in model.participants | filter:unassignedRoom">{{p.Name}}</a>
 		        </div>    
                 <div>
+                    <span ng-if="model.year == '2017'">
+                        <address>
+                            <strong>Delta</strong><br>
+                            1919 Saskatchewan Drive<br>
+                            Regina SK<br>
+                            <abbr title="Phone">P:</abbr> (306) 525-5255
+                        </address>
+
+                        <ul class="list-unstyled">
+                            <li>
+                                <strong>Double</strong><br />
+                                <small>
+                                    $??? - x rooms / contingent<br />
+                                </small>
+                            </li>
+                            <li>
+                                <strong>Queen</strong><br />
+                                <small>
+                                    $??? - x / contingent<br />
+                                </small>
+                            </li>
+                            <li>
+                                <strong>Queen + Pullout</strong><br />
+                                <small>
+                                    $??? - x / contingent<br />
+                                </small>
+                            </li>
+                            <li>
+                                <strong>King</strong><br />
+                                <small>
+                                    $??? - x / contingent<br />
+                                </small>
+                            </li>
+                            <li>
+                                <b>Max of 4 people per room. $?? charge per additional guest.</b>
+                            </li>
+                        </ul>
+                    </span>
                     <span ng-if="model.year == '2016'">
                         <address>
                             <strong>Sheraton Guildford</strong><br>
@@ -107,6 +145,11 @@
                         <h6>
                             Room #{{calcBin(y,x)}}
                             <select id="binType{{calcBin(y,x)}}" data-ng-model="getRoomByBin(y,x).Type" data-ng-change="setRoomType((y-1)*5+x)">
+                                <option ng-if="model.year == '2017'" value="TwoDouble">2 Double Beds</option>
+                                <option ng-if="model.year == '2017'" value="Queen">Queen</option>
+                                <option ng-if="model.year == '2017'" value="QueenPullout">Queen w/ Pullout</option>
+                                <option ng-if="model.year == '2017'" value="King">King</option>
+
                                 <option ng-if="model.year == '2016'" value="Queen">2 Queen</option>
                                 <option ng-if="model.year == '2016'" value="King">King + Pullout</option>
                                 <option ng-if="model.year == '2016'" value="Corner">Corner: King + Pullout</option>
