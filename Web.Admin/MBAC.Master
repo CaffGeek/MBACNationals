@@ -139,6 +139,7 @@
     <script src="/ClientApp/Controllers/controller.results.js"></script>
     <script src="/ClientApp/Controllers/controller.schedule.js"></script>
     <script src="/ClientApp/Controllers/controller.sponsors.js"></script>
+    <script src="/ClientApp/Controllers/controller.hotels.js"></script>
     <script src="/ClientApp/Services/service.data.js"></script>
 </body>
 </html>

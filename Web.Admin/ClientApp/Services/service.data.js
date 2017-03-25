@@ -17,6 +17,7 @@
             LoadParticipantScores: loadParticipantScores,
             LoadTeamScores: loadTeamScores,
             LoadSponsors: loadSponsors,
+            LoadHotels: loadHotels,
             LoadNews: loadNews
         };
 
@@ -70,6 +71,10 @@
 
         function loadSponsors() {
             return $http.get('/Setup/Sponsors/List/' + currentYear);
+        };
+
+        function loadHotels() {
+            return $http.get('/Setup/Hotels/List/' + currentYear);
         };
 
         function loadNews() {

@@ -2044,6 +2044,7 @@
     <Content Include="20xx-Template\souvenirs.aspx" />
     <Content Include="AdminApp\Controllers\controller.hotel.js" />
     <Content Include="AdminApp\Views\Tournament\Hotels.html" />
+    <Content Include="ClientApp\Controllers\controller.hotels.js" />
     <Content Include="Content\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Content\bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap\css\bootstrap.css" />
