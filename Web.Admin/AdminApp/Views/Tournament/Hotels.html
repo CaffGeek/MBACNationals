@@ -2,6 +2,7 @@
     <ul class="list-group row">
         <li class="list-group-item col-xs-3" ng-repeat="hotel in vm.Hotels">
             <img ng-src="/Setup/Hotels/Image/{{hotel.Id}}" class="col-xs-12" />
+            <img ng-src="/Setup/Hotels/Logo/{{hotel.Id}}" class="col-xs-12" />
             <span>{{hotel.Name}}</span>
             <a ng-href="{{hotel.Website}}" title="Visit Hotel" target="_blank"><i class="glyphicon glyphicon-link"></i></a>
             <a ng-click="vm.DeleteHotel(hotel.Id)" class="pull-right"><i class="glyphicon glyphicon-trash"></i></a>

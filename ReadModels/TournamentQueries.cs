@@ -52,11 +52,11 @@ namespace MBACNationals.ReadModels
             public Guid TournamentId { get; set; }
             public string Name { get; set; }
             public string Website { get; set; }
-            //TODO: Chad: Logo
-            //TODO: Chad: Image
         }
         
         public class TSSponsorLogo : Blob { }
+        public class TSHotelLogo : Blob { }
+        public class TSHotelImage : Blob { }
 
         public TournamentQueries()
         {
@@ -68,6 +68,7 @@ namespace MBACNationals.ReadModels
             Tournaments = new List<Tournament>();
             NewsArticles = new List<News>();
             Sponsors = new List<Sponsor>();
+            Hotels = new List<Hotel>();
         }
 
         public void Save()
@@ -112,9 +113,16 @@ namespace MBACNationals.ReadModels
             return hotels;
         }
 
-        public byte[] GetHotelImage(Guid guid)
+        public byte[] GetHotelImage(Guid hotelId)
         {
-            throw new NotImplementedException();
+            var image = Storage.ReadBlob<TSHotelImage>(hotelId);
+            return image.Contents;
+        }
+
+        public byte[] GetHotelLogo(Guid hotelId)
+        {
+            var logo = Storage.ReadBlob<TSHotelLogo>(hotelId);
+            return logo.Contents;
         }
 
         public void Handle(TournamentCreated e)
@@ -168,12 +176,31 @@ namespace MBACNationals.ReadModels
 
         public void Handle(HotelCreated e)
         {
-            //TODO: throw new NotImplementedException();
+            Hotels.Add(new Hotel
+            {
+                Id = e.HotelId,
+                TournamentId = e.Id,
+                Name = e.Name,
+                Website = e.Website
+            });
+
+            Storage.Create(new TSHotelLogo
+            {
+                Id = e.HotelId,
+                Contents = e.Logo
+            });
+
+            Storage.Create(new TSHotelImage
+            {
+                Id = e.HotelId,
+                Contents = e.Image
+            });
         }
 
         public void Handle(HotelDeleted e)
         {
-            //TODO: throw new NotImplementedException();
+            Hotels.RemoveAll(x => x.Id == e.HotelId);
+            //TODO: Delete logo and image
         }
     }
 }

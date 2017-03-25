@@ -13,5 +13,6 @@ namespace MBACNationals.ReadModels
         List<TournamentQueries.News> GetNews(string year);
         List<TournamentQueries.Hotel> GetHotels(string year);
         byte[] GetHotelImage(Guid guid);
+        byte[] GetHotelLogo(Guid guid);
     }
 }

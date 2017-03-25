@@ -98,6 +98,12 @@ namespace WebFrontend
             );
 
             routes.MapRoute(
+                name: "HotelLogo",
+                url: "Setup/Hotels/Logo/{id}",
+                defaults: new { controller = "Hotels", action = "Logo" }
+            );
+
+            routes.MapRoute(
                 name: "Tournament",
                 url: "Setup/Tournament/{action}/{id}",
                 defaults: new { controller = "Tournament", action = "Index", id = UrlParameter.Optional }

@@ -244,7 +244,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\HotelController.cs" />
+    <Compile Include="Controllers\HotelsController.cs" />
     <Compile Include="MBAC.Master.cs">
       <DependentUpon>MBAC.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2334,6 +2334,7 @@
     <Content Include="2015\photos_winners.php" />
     <Content Include="2015\results.php" />
     <Content Include="2015\schedule.php" />
+    <Content Include="Modals\Participant\_guestpackage.2017.html" />
     <Content Include="Modals\Participant\_guestpackage.2016.html" />
     <Content Include="Scripts\angular-drag-and-drop-lists.min.js" />
     <Content Include="Scripts\angular-ui-router.js" />
@@ -3437,7 +3438,7 @@
     <Content Include="Views\Help\ScoreEntry.cshtml" />
     <Content Include="Views\Help\Alternates.cshtml" />
     <Content Include="Views\Help\Stepladder.cshtml" />
-    <Content Include="Views\Hotel\Edit.cshtml" />
+    <Content Include="Views\Hotels\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminApp\Entities\" />

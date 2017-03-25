@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace WebFrontend.Controllers
 {
-    public class HotelController : Controller
+    public class HotelsController : Controller
     {
         [Authorize(Roles = "Admin, Host")]
         public ActionResult Edit(string year)
@@ -24,6 +24,15 @@ namespace WebFrontend.Controllers
             Response.AppendHeader("Access-Control-Allow-Origin", "*");
             var hotels = Domain.TournamentQueries.GetHotels(year);
             return Json(hotels, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
+        public FileResult Logo(string id)
+        {
+            Response.AppendHeader("Access-Control-Allow-Origin", "*");
+            var bytes = Domain.TournamentQueries.GetHotelLogo(Guid.Parse(id));
+            return new FileStreamResult(new MemoryStream(bytes), "image");
         }
 
         [HttpGet]

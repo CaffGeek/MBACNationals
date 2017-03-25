@@ -47,7 +47,8 @@
             UpdateStepladderMatch: updateStepladderMatch,
             DeleteStepladderMatch: deleteStepladderMatch,
             LoadHotels: loadHotels,
-            SaveHotel: saveHotel
+            SaveHotel: saveHotel,
+            DeleteHotel: deleteHotel
         };
 
         function saveTeam(team, contingent) {
@@ -293,7 +294,12 @@
             return $http.post('/Setup/Tournament/Create', tournament);
         };
 
-        function saveSponsor(year, sponsor) {c
+        function saveSponsor(year, sponsor) {
+            return ngUpload.upload({
+                url: '/Setup/Sponsors/Save/' + year,
+                fields: { id: sponsor.Id, name: sponsor.Name, website: sponsor.Website },
+                file: sponsor.Image
+            });
         };
 
         function loadSponsors(year) {
@@ -341,14 +347,20 @@
         };
 
         function loadHotels(year) {
-            return $http.get('/Setup/Tournament/Hotel/' + year);
+            return $http.get('/Setup/Hotels/List/' + year);
         };
 
         function saveHotel(year, hotel) {
             return ngUpload.upload({
-                url: '/Setup/Hotel/Save/' + year,
+                url: '/Setup/Hotels/Save/' + year,
                 fields: { id: hotel.Id, name: hotel.Name, website: hotel.Website },
                 file: [hotel.Logo, hotel.Image]
+            });
+        };
+
+        function deleteHotel(year, id) {
+            return $http.post('/Setup/Hotels/Delete/' + year, {
+                id: id
             });
         };
     };
