@@ -51,14 +51,19 @@
                 <ul class="nav navbar-nav navbar-right">
                     @if ((User.IsInRole("Admin") || User.IsInRole("Host")) && !string.IsNullOrWhiteSpace(ViewBag.Year))
                     {
-                        <li>
-                            @Html.ActionLink("Sponsors", "Edit", "Sponsors", new { year = ViewBag.Year }, null)
-                        </li>
-                        <li>
-                            @Html.ActionLink("Hotel", "Edit", "Hotels", new { year = ViewBag.Year }, null)
-                        </li>
-                        <li>
-                            @Html.ActionLink("News", "Edit", "News", new { year = ViewBag.Year }, null)
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tournament <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    @Html.ActionLink("Sponsors", "Edit", "Sponsors", new { year = ViewBag.Year }, null)
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Hotel", "Edit", "Hotels", new { year = ViewBag.Year }, null)
+                                </li>
+                                <li>
+                                    @Html.ActionLink("News", "Edit", "News", new { year = ViewBag.Year }, null)
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             @Html.ActionLink("Reports", "Reports", "Admin", new { year = ViewBag.Year }, null)
