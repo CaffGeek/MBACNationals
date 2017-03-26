@@ -13,76 +13,10 @@
                         <strong>{{hotel.Name}}</strong><br>
                         <a href="tel:{{hotel.PhoneNumber}}">{{hotel.PhoneNumber}}</a><br/>
                         <a href="{{hotel.Website}}">Website</a>
+                        <ul>
+                            <li ng-repeat="t in hotel.RoomTypes">{{t}}</li>
+                        </ul>
                     </address>
-
-                    <span ng-if="model.year == '2016'">
-                        <ul class="list-unstyled">
-                            <li>
-                                <strong>One Queen</strong><br />
-                                <small>
-                                    12 rooms / contingent<br />
-                                </small>
-                            </li>
-                            <li>
-                                <strong>King Bed + Pullout couch</strong><br />
-                                <small>
-                                    $148 - 2 / contingent<br />
-                                </small>
-                            </li>
-                            <li>
-                                <strong>Corner Room - King Bed + Pullout</strong><br />
-                                <small>
-                                    $170.20 - 2 / contingent<br />
-                                    These rooms are larger<br />
-                                </small>
-                            </li>
-                            <li>
-                                <b>Max of 4 people per room. $10 charge per additional guest.</b>
-                            </li>
-                        </ul>
-                    </span>
-                    <span ng-if="model.year == '2015'">
-                        <ul class="list-unstyled">
-                            <li>1 King Bed, Business</li>
-                            <li>1 Queen Bed, standard w/pullout sofa</li>
-                            <li>2 Double Beds, standard</li>
-                            <li>2 Double Beds, accessible</li>
-                        </ul>
-                    </span>
-                    <span ng-if="model.year == '2014'">
-                        <ul class="list-unstyled">
-                            <li>
-                                <strong>Moderate or Fairmont</strong><br />
-                                <small>
-                                    Single or Double ($140+tax)<br />
-                                    King, Queen or 2 Double<br />
-                                </small>
-                            </li>
-                            <li>
-                                <strong>Fairmont GOLD Floor</strong><br />
-                                <small>
-                                    Single or Double ($240+tax)<br />
-                                    King, Queen or 2 Double<br />
-                                    Deluxe daily breakfast<br />
-                                </small>
-                            </li>
-                            <li>
-                                <strong>1 Bedroom Suite</strong><br />
-                                <small>
-                                    Single or Double ($240+tax)<br />
-                                    King or 2 Double + sofabed<br />
-                                </small>
-                            </li>
-                            <li>
-                                <strong>2 Bedroom Suite</strong><br />
-                                <small>
-                                    Single or Double ($340+tax)<br />
-                                    King or 2 Double + sofabed<br />
-                                </small>
-                            </li>
-                        </ul>
-                    </span>
-
                 </div>		
 		    </div>
             
@@ -91,29 +25,10 @@
 					<div data-ng-repeat="x in [1, 2, 3, 4, 5]" class="col-sm-3">
                         <h6>
                             Room #{{calcBin(y,x)}}
-                            <select id="binType{{calcBin(y,x)}}" data-ng-model="getRoomByBin(y,x).Type" data-ng-change="setRoomType((y-1)*5+x)">
-                                <option ng-if="model.year == '2017'" value="TwoDouble">2 Double Beds</option>
-                                <option ng-if="model.year == '2017'" value="Queen">Queen</option>
-                                <option ng-if="model.year == '2017'" value="QueenPullout">Queen w/ Pullout</option>
-                                <option ng-if="model.year == '2017'" value="King">King</option>
-
-                                <option ng-if="model.year == '2016'" value="Queen">2 Queen</option>
-                                <option ng-if="model.year == '2016'" value="King">King + Pullout</option>
-                                <option ng-if="model.year == '2016'" value="Corner">Corner: King + Pullout</option>
-
-                                <option ng-if="model.year == '2015'" value="King">1 King Bed, Business</option>
-                                <option ng-if="model.year == '2015'" value="Queen">1 Queen Bed, w/pullout sofa</option>
-                                <option ng-if="model.year == '2015'" value="TwoDouble">2 Double Beds</option>
-                                <option ng-if="model.year == '2015'" value="TwoDoubleAccessible">2 Double Beds, accessible</option>
-
-                                <option ng-if="model.year == '2014'" value="Single">Single</option>
-                                <option ng-if="model.year == '2014'" value="Double">Double</option>
-                                <option ng-if="model.year == '2014'" value="SingleGold">Single Gold Floor</option>
-                                <option ng-if="model.year == '2014'" value="DoubleGold">Double Gold Floor</option>
-                                <option ng-if="model.year == '2014'" value="OneBedSingleSuite">1 Bedroom Single</option>
-                                <option ng-if="model.year == '2014'" value="OneBedDoubleSuite">1 Bedroom Double</option>
-                                <option ng-if="model.year == '2014'" value="TwoBedSingleSuite">2 Bedroom Single</option>
-                                <option ng-if="model.year == '2014'" value="TwoBedDoubleSuite">2 Bedroom Double</option>
+                            <select id="binType{{calcBin(y,x)}}"
+                                    data-ng-model="getRoomByBin(y,x).Type"
+                                    data-ng-change="setRoomType((y-1)*5+x)"
+                                    data-ng-options="t for t in model.hotels[0].RoomTypes track by t">
                             </select>
                         </h6> 
                         <div id="bin{{calcBin(y,x)}}" data-droppable="{{calcBin(y,x)}}" data-drop="addToRoom">

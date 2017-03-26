@@ -1,4 +1,5 @@
 ﻿using MBACNationals.Tournament.Commands;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -56,6 +57,10 @@ namespace WebFrontend.Controllers
             var image = new MemoryStream();
             request.Files[1].InputStream.CopyTo(image);
 
+            var roomTypes = JsonConvert.DeserializeObject<List<dynamic>>(request.Form["roomtypes"])
+                .Select<dynamic, string>(x => x["description"])
+                .ToArray();
+
             var command = new CreateHotel
             {
                 Year = year,
@@ -63,6 +68,7 @@ namespace WebFrontend.Controllers
                 Name = request.Form["name"],
                 Website = request.Form["website"],
                 PhoneNumber = request.Form["phonenumber"],
+                RoomTypes = roomTypes,
                 Logo = logo.ToArray(),
                 Image = image.ToArray(),
             };

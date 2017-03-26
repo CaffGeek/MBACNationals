@@ -2,32 +2,38 @@
     <div class="container" data-ng-controller="SponsorsController as vm">
         <div class="row clearfix">
             <h3>{{vm.Year}} Sponsors</h3>
-            <ul class="list-group row">
-                <li class="list-group-item col-xs-3" ng-repeat="sponsor in vm.Sponsors">
-                    <img ng-src="/Setup/Sponsors/Image/{{sponsor.Id}}" class="col-xs-12" />
-                    <span>{{sponsor.Name}}</span>
-                    <a ng-href="{{sponsor.Website}}" title="Visit Sponsor" target="_blank"><i class="glyphicon glyphicon-link"></i></a> 
-                    <a ng-click="vm.DeleteSponsor(sponsor.Id)" class="pull-right"><i class="glyphicon glyphicon-trash"></i></a>                    
-                </li>
-            </ul>
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <label for="SponsorName" class="col-md-2 control-label">Name</label>
-                    <input type="text" id="SponsorName" ng-model="vm.SponsorName" />
-                </div>
-                <div class="form-group">
-                    <label for="SponsorWebsite" class="col-md-2 control-label">Website</label>
-                    <input type="text" id="SponsorWebsite" ng-model="vm.SponsorWebsite" />
-                </div>
-                <div class="form-group">
-                    <label for="SponsorImage" class="col-md-2 control-label">Image</label>
-                    <button ngf-select ng-model="vm.SponsorImages" ngf-multiple="true">Choose File</button>
-                    <img ngf-src="vm.SponsorImages[0]" />
-                </div>
-                <div class="form-group">
-                    <a class="col-md-offset-2 ui-button" ng-click="vm.SaveSponsor()">Save</a>
-                </div>
-            </form>
+
+            <div class="col-sm-4">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="SponsorName" class="col-md-2 control-label">Name</label>
+                        <input type="text" id="SponsorName" ng-model="vm.SponsorName" />
+                    </div>
+                    <div class="form-group">
+                        <label for="SponsorWebsite" class="col-md-2 control-label">Website</label>
+                        <input type="text" id="SponsorWebsite" ng-model="vm.SponsorWebsite" />
+                    </div>
+                    <div class="form-group">
+                        <label for="SponsorImage" class="col-md-2 control-label">Image</label>
+                        <button ngf-select ng-model="vm.SponsorImages" ngf-multiple="true">Choose File</button>
+                        <img ngf-src="vm.SponsorImages[0]" />
+                    </div>
+                    <div class="form-group">
+                        <a class="col-md-offset-2 ui-button" ng-click="vm.SaveSponsor()">Save</a>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-sm-8">
+                <ul class="list-group row">
+                    <li class="list-group-item col-xs-4" ng-repeat="sponsor in vm.Sponsors">
+                        <img ng-src="/Setup/Sponsors/Image/{{sponsor.Id}}" class="col-xs-12" />
+                        <span>{{sponsor.Name}}</span>
+                        <a ng-href="{{sponsor.Website}}" title="Visit Sponsor" target="_blank"><i class="glyphicon glyphicon-link"></i></a>
+                        <a ng-click="vm.DeleteSponsor(sponsor.Id)" class="pull-right"><i class="glyphicon glyphicon-trash"></i></a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

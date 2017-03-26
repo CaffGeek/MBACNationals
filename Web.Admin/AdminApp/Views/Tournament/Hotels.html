@@ -1,39 +1,61 @@
 ﻿<div class="row clearfix">
-    <ul class="list-group row">
-        <li class="list-group-item col-xs-3" ng-repeat="hotel in vm.Hotels">
-            <img ng-src="/Setup/Hotels/Image/{{hotel.Id}}" class="col-xs-12" />
-            <img ng-src="/Setup/Hotels/Logo/{{hotel.Id}}" class="col-xs-12" />
-            <p>{{hotel.Name}}</p>
-            <p>{{hotel.PhoneNumber}}</p>
-            <a ng-href="{{hotel.Website}}" title="Visit Hotel" target="_blank"><i class="glyphicon glyphicon-link"></i></a>
-            <a ng-click="vm.DeleteHotel(hotel.Id)" class="pull-right"><i class="glyphicon glyphicon-trash"></i></a>
-        </li>
-    </ul>
-    <form class="form-horizontal">
-        <div class="form-group">
-            <label for="HotelName" class="col-md-2 control-label">Name</label>
-            <input type="text" id="HotelName" ng-model="vm.HotelName" />
-        </div>
-        <div class="form-group">
-            <label for="HotelWebsite" class="col-md-2 control-label">Website</label>
-            <input type="text" id="HotelWebsite" ng-model="vm.HotelWebsite" />
-        </div>
-        <div class="form-group">
-            <label for="HotelPhoneNumber" class="col-md-2 control-label">PhoneNumber</label>
-            <input type="text" id="HotelPhoneNumber" ng-model="vm.HotelPhoneNumber" />
-        </div>
-        <div class="form-group">
-            <label for="HotelLogo" class="col-md-2 control-label">Logo</label>
-            <button ngf-select ng-model="vm.HotelLogos" ngf-multiple="false">Choose File</button>
-            <img ngf-src="vm.HotelLogos[0]" width="200" />
-        </div>
-        <div class="form-group">
-            <label for="HotelImage" class="col-md-2 control-label">Image</label>
-            <button ngf-select ng-model="vm.HotelImages" ngf-multiple="false">Choose File</button>
-            <img ngf-src="vm.HotelImages[0]" width="200"/>
-        </div>
-        <div class="form-group">
-            <a class="col-md-offset-2 ui-button" ng-click="vm.SaveHotel()">Save</a>
-        </div>
-    </form>
+    <div class="col-sm-6">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="HotelName" class="col-md-4 control-label">Name</label>
+                <input type="text" id="HotelName" ng-model="vm.HotelName" />
+            </div>
+            <div class="form-group">
+                <label for="HotelWebsite" class="col-md-4 control-label">Website</label>
+                <input type="text" id="HotelWebsite" ng-model="vm.HotelWebsite" />
+            </div>
+            <div class="form-group">
+                <label for="HotelPhoneNumber" class="col-md-4 control-label">PhoneNumber</label>
+                <input type="text" id="HotelPhoneNumber" ng-model="vm.HotelPhoneNumber" />
+            </div>
+            <div class="form-group">
+                <label for="HotelLogo" class="col-md-4 control-label">Logo</label>
+                <button ngf-select ng-model="vm.HotelLogos" ngf-multiple="false">Choose File</button>
+                <img ngf-src="vm.HotelLogos[0]" width="200" />
+            </div>
+            <div class="form-group">
+                <label for="HotelImage" class="col-md-4 control-label">Image</label>
+                <button ngf-select ng-model="vm.HotelImages" ngf-multiple="false">Choose File</button>
+                <img ngf-src="vm.HotelImages[0]" width="200" />
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <label class="col-md-4 control-label">Room Types</label>
+                    <a data-ng-click="vm.AddRoomType()">Add Type</a>
+                </div>
+                <div class="col-md-offset-4">
+                    <div class="form-group" ng-repeat="roomtype in vm.RoomTypes">
+                        <input type="text" id="RoomType" ng-model="roomtype.description" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <a class="col-md-offset-4 ui-button" ng-click="vm.SaveHotel()">Save</a>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-6">
+        <ul class="list-group row">
+            <li class="list-group-item col-xs-6" ng-repeat="hotel in vm.Hotels">
+                <img ng-src="/Setup/Hotels/Image/{{hotel.Id}}" class="col-xs-12" />
+                <img ng-src="/Setup/Hotels/Logo/{{hotel.Id}}" class="col-xs-12" />
+                <p>{{hotel.Name}}</p>
+                <p>{{hotel.PhoneNumber}}</p>
+                <p>
+                    <ul>
+                        <li ng-repeat="t in hotel.RoomTypes">{{t}}</li>
+                    </ul>
+                </p>
+                <a ng-href="{{hotel.Website}}" title="Visit Hotel" target="_blank"><i class="glyphicon glyphicon-link"></i></a>
+                <a ng-click="vm.DeleteHotel(hotel.Id)" class="pull-right"><i class="glyphicon glyphicon-trash"></i></a>
+            </li>
+        </ul>
+    </div>
 </div>

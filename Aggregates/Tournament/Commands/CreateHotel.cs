@@ -9,6 +9,7 @@ namespace MBACNationals.Tournament.Commands
         public string Name { get; set; }
         public string Website { get; set; }
         public string PhoneNumber { get; set; }
+        public string[] RoomTypes { get; set; }
         public byte[] Logo { get; set; }
         public byte[] Image { get; set; }
     }

@@ -12,6 +12,7 @@
 	    vm.Year = year;
 	    vm.SaveHotel = SaveHotel;
 	    vm.DeleteHotel = DeleteHotel;
+	    vm.AddRoomType = addRoomType;
         
 	    dataService.LoadHotels(year)
             .then(function (response) {
@@ -23,7 +24,8 @@
 	            Id: vm.Id,
 	            Name: vm.HotelName,
 	            Website: vm.HotelWebsite,
-                PhoneNumber: vm.HotelPhoneNumber,
+	            PhoneNumber: vm.HotelPhoneNumber,
+                RoomTypes: vm.RoomTypes,
 	            Logo: vm.HotelLogos[0],
 	            Image: vm.HotelImages[0]
 	        };
@@ -34,6 +36,7 @@
                     vm.HotelName = '';
                     vm.HotelWebsite = '';
                     vm.HotelPhoneNumber = '';
+                    vm.RoomTypes = [];
                     vm.HotelLogos = [];
                     vm.HotelImages = [];
                 });
@@ -49,6 +52,11 @@
 
                     vm.Hotels.splice(idx, 1);
                 });
+	    }
+
+	    function addRoomType() {
+	        vm.RoomTypes = vm.RoomTypes || [];
+	        vm.RoomTypes.push({description:""});
 	    }
 	};
 
