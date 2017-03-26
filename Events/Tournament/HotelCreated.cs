@@ -8,6 +8,7 @@ namespace Events.Tournament
         public Guid HotelId { get; set; }
         public string Name { get; set; }
         public string Website { get; set; }
+        public string PhoneNumber { get; set; }
         public byte[] Logo { get; set; }
         public byte[] Image { get; set; }
     }

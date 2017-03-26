@@ -18,9 +18,9 @@
                 <div class="row">
                     <div class="col-md-3 col-sm-3">
                         <img ng-src="/Setup/Hotels/Logo/{{hotel.Id}}" alt="{{hotel.Name}}" border="0" />
-                        <p>
-                            Visit their website at <a href="{{hotel.Website}}" target="_blank">{{hotel.Name}}</a>
-                        </p>
+                        <p>Visit their website</p>
+                        <p><a href="{{hotel.Website}}" target="_blank">{{hotel.Name}}</a></p>
+                        <p><a href="tel:{{hotel.PhoneNumber}}" target="_blank">{{hotel.PhoneNumber}}</a></p>
                     </div>
                     <div class="col-md-9 col-sm-9">
                         <img ng-src="/Setup/Hotels/Image/{{hotel.Id}}" alt="{{hotel.Name}}" border="0" />

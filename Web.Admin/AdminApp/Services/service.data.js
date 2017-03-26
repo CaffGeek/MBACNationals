@@ -353,7 +353,7 @@
         function saveHotel(year, hotel) {
             return ngUpload.upload({
                 url: '/Setup/Hotels/Save/' + year,
-                fields: { id: hotel.Id, name: hotel.Name, website: hotel.Website },
+                fields: { id: hotel.Id, name: hotel.Name, website: hotel.Website, phonenumber: hotel.PhoneNumber },
                 file: [hotel.Logo, hotel.Image]
             });
         };

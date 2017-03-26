@@ -106,6 +106,7 @@ namespace MBACNationals.Tournament
                 HotelId = command.Id,
                 Name = command.Name,
                 Website = command.Website,
+                PhoneNumber = command.PhoneNumber,
                 Logo = command.Logo,
                 Image = command.Image
             };

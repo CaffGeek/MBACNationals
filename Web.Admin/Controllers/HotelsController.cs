@@ -62,6 +62,7 @@ namespace WebFrontend.Controllers
                 Id = Guid.NewGuid(),
                 Name = request.Form["name"],
                 Website = request.Form["website"],
+                PhoneNumber = request.Form["phonenumber"],
                 Logo = logo.ToArray(),
                 Image = image.ToArray(),
             };

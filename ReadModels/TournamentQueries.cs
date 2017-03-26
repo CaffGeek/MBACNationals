@@ -52,6 +52,7 @@ namespace MBACNationals.ReadModels
             public Guid TournamentId { get; set; }
             public string Name { get; set; }
             public string Website { get; set; }
+            public string PhoneNumber { get; set; }
         }
         
         public class TSSponsorLogo : Blob { }
@@ -181,7 +182,8 @@ namespace MBACNationals.ReadModels
                 Id = e.HotelId,
                 TournamentId = e.Id,
                 Name = e.Name,
-                Website = e.Website
+                Website = e.Website,
+                PhoneNumber = e.PhoneNumber
             });
 
             Storage.Create(new TSHotelLogo

@@ -23,6 +23,7 @@
 	            Id: vm.Id,
 	            Name: vm.HotelName,
 	            Website: vm.HotelWebsite,
+                PhoneNumber: vm.HotelPhoneNumber,
 	            Logo: vm.HotelLogos[0],
 	            Image: vm.HotelImages[0]
 	        };
@@ -32,6 +33,7 @@
                     vm.Hotels.push(response.data);
                     vm.HotelName = '';
                     vm.HotelWebsite = '';
+                    vm.HotelPhoneNumber = '';
                     vm.HotelLogos = [];
                     vm.HotelImages = [];
                 });
