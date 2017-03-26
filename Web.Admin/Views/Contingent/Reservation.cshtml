@@ -9,22 +9,13 @@
                     <a href="#" id="{{p.Id}}" class="occupant" data-draggable="" data-ng-repeat="p in model.participants | filter:unassignedRoom">{{p.Name}}</a>
 		        </div>    
                 <div>
-                    <span ng-if="model.year == '2017'">
-                        <address>
-                            <strong>Delta</strong><br>
-                            1919 Saskatchewan Drive<br>
-                            Regina SK<br>
-                            <abbr title="Phone">P:</abbr> (306) 525-5255
-                        </address>
-                    </span>
-                    <span ng-if="model.year == '2016'">
-                        <address>
-                            <strong>Sheraton Guildford</strong><br>
-                            15269 104th Avenue<br>
-                            Surrey BC<br>
-                            <abbr title="Phone">P:</abbr> (604) 582-9288
-                        </address>
+                    <address ng-repeat="hotel in model.hotels">
+                        <strong>{{hotel.Name}}</strong><br>
+                        <a href="tel:{{hotel.PhoneNumber}}">{{hotel.PhoneNumber}}</a><br/>
+                        <a href="{{hotel.Website}}">Website</a>
+                    </address>
 
+                    <span ng-if="model.year == '2016'">
                         <ul class="list-unstyled">
                             <li>
                                 <strong>One Queen</strong><br />
@@ -51,13 +42,6 @@
                         </ul>
                     </span>
                     <span ng-if="model.year == '2015'">
-                        <address>
-                            <strong>Holiday Inn</strong><br>
-                            3063 South Service Rd.<br>
-                            Burlington, ON<br>
-                            <abbr title="Phone">P:</abbr> (905) 639-4443
-                        </address>
-
                         <ul class="list-unstyled">
                             <li>1 King Bed, Business</li>
                             <li>1 Queen Bed, standard w/pullout sofa</li>
@@ -66,13 +50,6 @@
                         </ul>
                     </span>
                     <span ng-if="model.year == '2014'">
-                        <address>
-                            <strong>The Fairmont</strong><br>
-                            2 Lombard Place<br>
-                            Winnipeg, MB<br>
-                            <abbr title="Phone">P:</abbr> (204) 957-1350
-                        </address>
-
                         <ul class="list-unstyled">
                             <li>
                                 <strong>Moderate or Fairmont</strong><br />

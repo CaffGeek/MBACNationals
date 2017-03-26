@@ -6,41 +6,21 @@
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyPlaceholder" runat="server">
-
-  <!-- Example row of columns -->
-  <div class="row hotel">
-    <div class="col-md-2 col-sm-2">
-      <ul class="sidebarNav">
-        <li>
-          <a href="#sheraton">Hotel</a>
-        </li>
-        <li>
-          <a href="#restaurants">Local Restaurants</a>
-        </li>
-      </ul>
-
-
-    </div>
-    <div class="col-md-10 col-sm-10">
-      <h2>Location</h2>
-      <h4 id="sheraton">Sheraton Vancouver Guildford Hotel</h4>
-      <div class="row">
-        <div class="col-md-3 col-sm-3">
-          <img src="images/sheraton_logo.png" alt="sheraton logo" />
-          <p>
-            Visit their website at <a href="http://www.sheratonguildford.com" target="_blank">www.sheratonguildford.com</a>
-          </p>
+    <div data-ng-controller="HotelsController as vm">
+        <div class="row hotel" ng-repeat="hotel in vm.Hotels">
+            <h2>Location</h2>
+            <h4 id="hotel">{{hotel.Name}}</h4>
+            <div class="row">
+                <div class="col-md-3 col-sm-3">
+                    <img ng-src="/Setup/Hotels/Logo/{{hotel.Id}}" alt="{{hotel.Name}}" border="0" />
+                    <p>Visit their website</p>
+                    <p><a href="{{hotel.Website}}" target="_blank">{{hotel.Name}}</a></p>
+                    <p><a href="tel:{{hotel.PhoneNumber}}" target="_blank">{{hotel.PhoneNumber}}</a></p>
+                </div>
+                <div class="col-md-9 col-sm-9">
+                    <img ng-src="/Setup/Hotels/Image/{{hotel.Id}}" alt="{{hotel.Name}}" border="0" />
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-md-9 col-sm-9">
-        <img src="images/sheraton.jpg" alt="Sheraton Vancouver Guildford Hotel" />
-      </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <h4 id="restaurants">Local Restaurants</h4>
-        <img src="images/restaurants.jpg" alt="restaurant map" />
-      </div>
-    </div>
-  </div>
 </asp:Content>

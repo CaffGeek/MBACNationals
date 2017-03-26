@@ -10,7 +10,8 @@
         $scope.model = {
             participants: [],
             rooms: [],
-            year: year
+            year: year,
+            hotels: []
         };
 
         if (year && province) {
@@ -30,6 +31,10 @@
                     $scope.model.contingentId = data.Id;
                     $scope.model.rooms = sparseRooms;
                     $scope.model.instructions = data.Instructions;
+                });
+            dataService.LoadHotels(year)
+                .success(function (data) {
+                    $scope.model.hotels = data;
                 });
         }
 
