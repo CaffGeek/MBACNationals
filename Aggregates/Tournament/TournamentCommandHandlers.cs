@@ -15,7 +15,8 @@ namespace MBACNationals.Tournament
         IHandleCommand<CreateNews, TournamentAggregate>,
         IHandleCommand<DeleteNews, TournamentAggregate>,
         IHandleCommand<CreateHotel, TournamentAggregate>,
-        IHandleCommand<DeleteHotel, TournamentAggregate>
+        IHandleCommand<DeleteHotel, TournamentAggregate>,
+        IHandleCommand<SaveGuestPackages, TournamentAggregate>
     {
         private ICommandQueries CommandQueries;
 
@@ -123,6 +124,24 @@ namespace MBACNationals.Tournament
                 Id = tournament.Id,
                 HotelId = command.Id,
             };
+        }
+
+        public IEnumerable Handle(Func<Guid, TournamentAggregate> al, SaveGuestPackages command)
+        {
+            var tournament = CommandQueries.GetTournaments().FirstOrDefault(x => x.Year == command.Year);
+            var agg = al(tournament.Id);
+
+            foreach (var guestpackage in command.GuestPackages)
+            {
+                yield return new GuestPackageSaved
+                    {
+                        Id = tournament.Id,
+                        Code = guestpackage.Code,
+                        Name = guestpackage.Name,
+                        Cost = guestpackage.Cost,
+                        Enabled = guestpackage.Enabled
+                    };
+            }
         }
     }
 }

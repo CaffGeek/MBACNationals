@@ -1,0 +1,21 @@
+﻿<div class="row clearfix">
+    <form class="form-inline">
+        <div class="row" ng-repeat="guestpackage in vm.GuestPackages">
+            <div class="form-group">
+                <label for="{{guestpackage.Code}}Name" class="control-label">Name</label>
+                <input type="text" id="{{guestpackage.Code}}Name" ng-model="guestpackage.Name" ng-disabled="!guestpackage.Enabled" />
+            </div>
+            <div class="form-group">
+                <label for="{{guestpackage.Code}}Cost" class="control-label">Cost</label>
+                <input type="text" id="{{guestpackage.Code}}Cost" ng-model="guestpackage.Cost" ng-disabled="!guestpackage.Enabled" />
+            </div>
+            <div class="form-group">
+                <input type="checkbox" id="{{guestpackage.Code}}Enabled" ng-model="guestpackage.Enabled" />
+            </div>
+        </div>
+
+        <div class="row">
+            <a class="col-md-offset-4 ui-button" ng-click="vm.SaveGuestPackages()">Save</a>
+        </div>
+    </form>
+    </div>

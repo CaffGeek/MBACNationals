@@ -48,7 +48,9 @@
             DeleteStepladderMatch: deleteStepladderMatch,
             LoadHotels: loadHotels,
             SaveHotel: saveHotel,
-            DeleteHotel: deleteHotel
+            DeleteHotel: deleteHotel,
+            LoadGuestPackages: loadGuestPackages,
+            SaveGuestPackages: saveGuestPackages
         };
 
         function saveTeam(team, contingent) {
@@ -367,6 +369,17 @@
         function deleteHotel(year, id) {
             return $http.post('/Setup/Hotels/Delete/' + year, {
                 id: id
+            });
+        };
+
+        function loadGuestPackages(year) {
+            return $http.get('/Setup/GuestPackages/List/' + year);
+        };
+
+        function saveGuestPackages(year, guestpackages) {
+            return $http.post('/Setup/GuestPackages/Save/' + year, {
+                Year: year,
+                GuestPackages: guestpackages
             });
         };
     };

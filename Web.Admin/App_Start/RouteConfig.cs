@@ -104,6 +104,18 @@ namespace WebFrontend
             );
 
             routes.MapRoute(
+                name: "GuestPackages",
+                url: "Setup/GuestPackages/List/{year}",
+                defaults: new { controller = "GuestPackages", action = "List" }
+            );
+
+            routes.MapRoute(
+                name: "GuestPackageDelete",
+                url: "Setup/GuestPackages/Delete/{year}",
+                defaults: new { controller = "GuestPackages", action = "Delete" }
+            );
+
+            routes.MapRoute(
                 name: "Tournament",
                 url: "Setup/Tournament/{action}/{id}",
                 defaults: new { controller = "Tournament", action = "Index", id = UrlParameter.Optional }

@@ -244,6 +244,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\GuestPackagesController.cs" />
     <Compile Include="Controllers\HotelsController.cs" />
     <Compile Include="MBAC.Master.cs">
       <DependentUpon>MBAC.Master</DependentUpon>
@@ -2043,6 +2044,8 @@
     <Content Include="20xx-Template\schedule.aspx" />
     <Content Include="20xx-Template\souvenirs.aspx" />
     <Content Include="AdminApp\Controllers\controller.hotel.js" />
+    <Content Include="AdminApp\Controllers\controller.guestpackages.js" />
+    <Content Include="AdminApp\Views\Tournament\GuestPackages.html" />
     <Content Include="AdminApp\Views\Tournament\Hotels.html" />
     <Content Include="ClientApp\Controllers\controller.hotels.js" />
     <Content Include="Content\bootstrap\css\bootstrap-theme.css" />
@@ -3440,6 +3443,7 @@
     <Content Include="Views\Help\Alternates.cshtml" />
     <Content Include="Views\Help\Stepladder.cshtml" />
     <Content Include="Views\Hotels\Edit.cshtml" />
+    <Content Include="Views\GuestPackages\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminApp\Entities\" />

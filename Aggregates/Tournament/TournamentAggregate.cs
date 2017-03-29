@@ -12,7 +12,8 @@ namespace MBACNationals.Tournament
         IApplyEvent<NewsCreated>,
         IApplyEvent<NewsDeleted>,
         IApplyEvent<HotelCreated>,
-        IApplyEvent<HotelDeleted>
+        IApplyEvent<HotelDeleted>,
+        IApplyEvent<GuestPackageSaved>
     {
         public string Year { get; private set; }
 
@@ -47,6 +48,11 @@ namespace MBACNationals.Tournament
         }
 
         public void Apply(HotelDeleted e)
+        {
+            //TODO: nothing at this time
+        }
+    
+        public void Apply(GuestPackageSaved e)
         {
             //TODO: nothing at this time
         }

@@ -1,5 +1,6 @@
 ﻿namespace MBACNationals
 {
+    //TODO: Get rid of this class
     public enum BowlingCentre
     {
         Academy,

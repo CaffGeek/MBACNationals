@@ -16,12 +16,14 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<NewsCreated>,
         ISubscribeTo<NewsDeleted>,
         ISubscribeTo<HotelCreated>,
-        ISubscribeTo<HotelDeleted>
+        ISubscribeTo<HotelDeleted>,
+        ISubscribeTo<GuestPackageSaved>
     {
         public List<Tournament> Tournaments { get; set; }
         public List<News> NewsArticles { get; set; }
         public List<Sponsor> Sponsors { get; set; }
         public List<Hotel> Hotels { get; set; }
+        public List<GuestPackage> GuestPackages { get; set; }
 
         public class Tournament
         {
@@ -55,7 +57,16 @@ namespace MBACNationals.ReadModels
             public string PhoneNumber { get; set; }
             public string[] RoomTypes { get; set; }
         }
-        
+
+        public class GuestPackage
+        {
+            public Guid TournamentId { get; set; }
+            public string Code { get; set; }
+            public string Name { get; set; }
+            public decimal Cost { get; set; }
+            public bool Enabled { get; set; }
+        }
+
         public class TSSponsorLogo : Blob { }
         public class TSHotelLogo : Blob { }
         public class TSHotelImage : Blob { }
@@ -71,6 +82,7 @@ namespace MBACNationals.ReadModels
             NewsArticles = new List<News>();
             Sponsors = new List<Sponsor>();
             Hotels = new List<Hotel>();
+            GuestPackages = new List<GuestPackage>();
         }
 
         public void Save()
@@ -125,6 +137,52 @@ namespace MBACNationals.ReadModels
         {
             var logo = Storage.ReadBlob<TSHotelLogo>(hotelId);
             return logo.Contents;
+        }
+
+        public List<TournamentQueries.GuestPackage> GetGuestPackages(string year)
+        {
+            var tournament = Tournaments.Single(x => x.Year == year);
+            var guestPackages = GuestPackages.Where(x => x.TournamentId == tournament.Id).ToList();
+
+            var defaultPackages = new [] {
+                new TournamentQueries.GuestPackage
+                {
+                    TournamentId = tournament.Id,
+                    Code = "MeetGreet",
+                    Name = "Meet & Greet",
+                    Enabled = false
+                },
+                new TournamentQueries.GuestPackage
+                {
+                    TournamentId = tournament.Id,
+                    Code = "Transportation",
+                    Name = "Transportation",
+                    Enabled = false
+                },
+                new TournamentQueries.GuestPackage
+                {
+                    TournamentId = tournament.Id,
+                    Code = "ProvincialNight",
+                    Name = "Provincial Night",
+                    Enabled = false
+                },
+                new TournamentQueries.GuestPackage
+                {
+                    TournamentId = tournament.Id,
+                    Code = "VictoryBanquet",
+                    Name = "Victory Banquet",
+                    Enabled = false
+                }
+            }.ToList();
+
+            var mergedPackages = (
+                from d in defaultPackages
+                join g in guestPackages
+                    on d.Code equals g.Code into joined
+                from j in joined.DefaultIfEmpty()
+                select j ?? d).ToList();
+
+            return mergedPackages;
         }
 
         public void Handle(TournamentCreated e)
@@ -205,6 +263,29 @@ namespace MBACNationals.ReadModels
         {
             Hotels.RemoveAll(x => x.Id == e.HotelId);
             //TODO: Delete logo and image
+        }
+
+        public void Handle(GuestPackageSaved e)
+        {
+            //TODO: Chad: Overwrite existing
+            var package = GuestPackages.SingleOrDefault(x => x.TournamentId == e.Id && x.Code == e.Code);
+            if (package == null)
+            {
+                GuestPackages.Add(new GuestPackage
+                    {
+                        TournamentId = e.Id,
+                        Code = e.Code,
+                        Name = e.Name,
+                        Cost = e.Cost,
+                        Enabled = e.Enabled
+                    });
+            }
+            else
+            {
+                package.Name = e.Name;
+                package.Cost = e.Cost;
+                package.Enabled = e.Enabled;
+            }
         }
     }
 }
