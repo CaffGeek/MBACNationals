@@ -148,30 +148,30 @@ namespace MBACNationals.ReadModels
                 new TournamentQueries.GuestPackage
                 {
                     TournamentId = tournament.Id,
-                    Code = "MeetGreet",
+                    Code = "Option1",
                     Name = "Meet & Greet",
-                    Enabled = false
+                    Enabled = true
                 },
                 new TournamentQueries.GuestPackage
                 {
                     TournamentId = tournament.Id,
-                    Code = "Transportation",
+                    Code = "Option2",
                     Name = "Transportation",
-                    Enabled = false
+                    Enabled = true
                 },
                 new TournamentQueries.GuestPackage
                 {
                     TournamentId = tournament.Id,
-                    Code = "ProvincialNight",
+                    Code = "Option3",
                     Name = "Provincial Night",
-                    Enabled = false
+                    Enabled = true
                 },
                 new TournamentQueries.GuestPackage
                 {
                     TournamentId = tournament.Id,
-                    Code = "VictoryBanquet",
+                    Code = "Option4",
                     Name = "Victory Banquet",
-                    Enabled = false
+                    Enabled = true
                 }
             }.ToList();
 

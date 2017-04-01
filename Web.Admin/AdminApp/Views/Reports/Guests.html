@@ -7,20 +7,17 @@
                 <tr>
                     <th>Province</th>
                     <th>Guest</th>
-                    <th>Meet &amp; Greet</th>
-                    <th>Transportation</th>
-                    <th>Provincial Night</th>
-                    <th>Victory Banquet</th>
+                    <th data-ng-repeat="package in model.GuestPackages" data-ng-if="package.Enabled">{{package.Name}}</th>
                 </tr>
             </thead>
             <tbody data-ng-repeat="guest in model.Participants | orderBy:'Name' | filter:{ Name: filter.Name } | filter: { IsGuest: true } " data-ng-if="guest.Name">
                 <tr>
                     <td>{{guest.Province}}</td>
                     <td>{{guest.Name}}</td>
-                    <td><i class="glyphicon glyphicon-ok" ng-if="guest.Package.Option1"></i><i class="glyphicon glyphicon-glass" ng-if="guest.IsDelegate"></i></td>
-                    <td><i class="glyphicon glyphicon-ok" ng-if="guest.Package.Option2"></i><i class="glyphicon glyphicon-glass" ng-if="guest.IsDelegate"></i></td>
-                    <td><i class="glyphicon glyphicon-ok" ng-if="guest.Package.Option3"></i><i class="glyphicon glyphicon-glass" ng-if="guest.IsDelegate"></i></td>
-                    <td><i class="glyphicon glyphicon-ok" ng-if="guest.Package.Option4"></i><i class="glyphicon glyphicon-glass" ng-if="guest.IsDelegate"></i></td>
+                    <td data-ng-repeat="package in model.GuestPackages" data-ng-if="package.Enabled">
+                        <i class="glyphicon glyphicon-ok" ng-if="guest.Package[package.Code]"></i>
+                        <i class="glyphicon glyphicon-glass" ng-if="guest.IsDelegate"></i>
+                    </td>
                 </tr>
             </tbody>
         </table>

@@ -27,6 +27,7 @@
 		$scope.loadPracticePlans = loadPracticePlans;
 		$scope.loadAlternates = loadAlternates;
 		$scope.loadSchedule = loadSchedule;
+		$scope.loadGuestPackages = loadGuestPackages;
 
 		$scope.plaqueFilter = plaqueFilter;
 		$scope.rookieFilter = rookieFilter;
@@ -151,6 +152,13 @@
 
 		        $scope.model.Schedule = simplified;
 		    });
+		};
+
+		function loadGuestPackages() {
+		    dataService.LoadGuestPackages($scope.model.year)
+                .then(function (response) {
+                    $scope.model.GuestPackages = response.data;
+                });
 		};
 
 		function roomTypeFilter(rooms, type) {
