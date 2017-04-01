@@ -7,9 +7,10 @@
             Divisions: getDivisionsModal
         };
 
-        function getParticipantModal(year, participant, team) {
+        function getParticipantModal(year, participant, team, guestpackages) {
             participant = participant || {};
             team = team || {};
+            guestpackages = guestpackages || [];
 
             var openModal = $modal.open({
                 templateUrl: '/Modals/Participant/Edit.html',
@@ -19,7 +20,8 @@
                 resolve: {
                     participant: function () { return participant; },
                     team: function () { return team; },
-                    year: function () { return year; }
+                    year: function () { return year; },
+                    guestpackages: function () { return guestpackages; }
                 }
             });
 

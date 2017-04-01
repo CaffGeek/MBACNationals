@@ -1,0 +1,8 @@
+﻿<div class="form-group" ng-repeat="package in model.guestpackages | filter: {Enabled: 'true'}">
+    <label for="name" class="col-sm-7 control-label">{{package.Name}} (${{package.Cost}})</label>
+    <div class="col-sm-5">
+        <input type="checkbox"
+               data-ng-model="model.participant.Package[package.Code]"
+               data-ng-disabled="model.IsCompletePackage" />
+    </div>
+</div>

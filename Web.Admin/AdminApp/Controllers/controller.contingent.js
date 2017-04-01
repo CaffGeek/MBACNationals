@@ -11,8 +11,10 @@
 
         $scope.model = {
             Teams: [],
-            Guests: []
+            Guests: [],
         };
+
+        $scope.guestPackages = [];
 
         if (province) {
             dataService.LoadContingent(year, province).
@@ -22,7 +24,12 @@
                     if (!$scope.model.Teams.length) {
                         editDivisions($scope.model.Teams);
                     }
-                }); 
+                });
+
+            dataService.LoadGuestPackages(year)
+                .success(function (guestpackages) {
+                    $scope.guestPackages = guestpackages;
+                });
         }
 
         $scope.getAllContingentMembers = getAllContingentMembers;
@@ -138,7 +145,7 @@
 
         function editParticipant(participant, team) {
             return dataService.LoadParticipant(participant.Id).then(function (data) {
-                return modalFactory.Participant(year, data.data || participant, team);
+                return modalFactory.Participant(year, data.data || participant, team, $scope.guestPackages);
             }).then(function (data) {
                 participant.Name = data.Name;
                 participant.IsDelegate = data.IsDelegate;

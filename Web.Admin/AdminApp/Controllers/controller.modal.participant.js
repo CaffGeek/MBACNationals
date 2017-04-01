@@ -1,13 +1,14 @@
 ﻿(function () {
     "use strict";
 
-    var modalParticipantController = function ($scope, $q, $modalInstance, dataService, participant, team, year) {
+    var modalParticipantController = function ($scope, $q, $modalInstance, dataService, participant, team, year, guestpackages) {
         $scope.model = {};
         
         $scope.model.title = team.Name;
         $scope.model.participant = participant || { Package: {} };
         $scope.model.team = team || {};
         $scope.model.year = year || 0;
+        $scope.model.guestpackages = guestpackages || [];
 
         $scope.save = function () {
             var deferred = $q.defer();
@@ -59,5 +60,5 @@
         };
     };
 
-    app.controller("ModalParticipantController", ["$scope", "$q", "$modalInstance", "dataService", "participant", "team", "year", modalParticipantController]);
+    app.controller("ModalParticipantController", ["$scope", "$q", "$modalInstance", "dataService", "participant", "team", "year", "guestpackages", modalParticipantController]);
 }());
