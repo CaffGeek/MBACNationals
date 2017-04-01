@@ -2338,8 +2338,7 @@
     <Content Include="2015\photos_winners.php" />
     <Content Include="2015\results.php" />
     <Content Include="2015\schedule.php" />
-    <Content Include="Modals\Participant\_guestpackage.2017.html" />
-    <Content Include="Modals\Participant\_guestpackage.2016.html" />
+    <Content Include="Modals\Participant\_guestpackage.html" />
     <Content Include="Scripts\angular-drag-and-drop-lists.min.js" />
     <Content Include="Scripts\angular-ui-router.js" />
     <Content Include="Scripts\angular-ui-router.min.js" />
@@ -2493,8 +2492,6 @@
     <Content Include="Modals\Contingent\Divisions.html" />
     <Content Include="Modals\Participant\_average.html" />
     <Content Include="Modals\Participant\_gender.html" />
-    <Content Include="Modals\Participant\_guestpackage.2014.html" />
-    <Content Include="Modals\Participant\_guestpackage.2015.html" />
     <Content Include="Modals\Participant\_shirtsize.html" />
     <Content Include="Modals\Participant\Edit.html" />
     <Content Include="ApplicationInsights.config">

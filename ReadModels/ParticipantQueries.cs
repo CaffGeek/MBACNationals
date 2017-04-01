@@ -73,10 +73,6 @@ namespace MBACNationals.ReadModels
 
         public class PackageInformation
         {
-            public bool ManitobaDinner { get; set; }
-            public bool ManitobaDance { get; set; }
-            public bool FinalBanquet { get; set; }
-            public bool Transportation { get; set; }
             public bool Option1 { get; set; }
             public bool Option2 { get; set; }
             public bool Option3 { get; set; }
@@ -300,14 +296,10 @@ namespace MBACNationals.ReadModels
         public void Handle(ParticipantGuestPackageChanged e)
         {
             var participant = Participants.Single(x => x.Id == e.Id);
-            participant.Package.ManitobaDinner = e.ManitobaDinner;
-            participant.Package.ManitobaDance = e.ManitobaDance;
-            participant.Package.FinalBanquet = e.FinalBanquet;
-            participant.Package.Transportation = e.Transportation;
-            participant.Package.Option1 = e.Option1;
-            participant.Package.Option2 = e.Option2;
-            participant.Package.Option3 = e.Option3;
-            participant.Package.Option4 = e.Option4;
+            participant.Package.Option1 = e.Option1 || e.ManitobaDinner;
+            participant.Package.Option2 = e.Option2 || e.ManitobaDance;
+            participant.Package.Option3 = e.Option3 || e.FinalBanquet;
+            participant.Package.Option4 = e.Option4 || e.Transportation;
         }
 
         public void Handle(ParticipantShirtSizeChanged e)
