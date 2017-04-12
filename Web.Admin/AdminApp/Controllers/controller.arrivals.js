@@ -7,8 +7,11 @@
         var province = url.slice(lastSlash + 1);
         var year = url.slice(lastSlash - 4, lastSlash);
 
-        var emptyArrival = { ModeOfTransportation: 'Air', When: new Date('2016-06-28T09:00'), Type: 1 };
-        var emptyDeparture = { ModeOfTransportation: 'Air', When: new Date('2016-07-03T09:00'), Type: 2 };
+        $scope.minDate = new Date(year, 5, 1);  //5 is June (yes...yes it is!)
+        $scope.maxDate = new Date(year, 6, 31); //6 is July (seriously)
+
+        var emptyArrival = { ModeOfTransportation: 'Air', When: $scope.minDate, Type: 1 };
+        var emptyDeparture = { ModeOfTransportation: 'Air', When: $scope.maxDate, Type: 2 };
 
         $scope.model = {
             year: year,
