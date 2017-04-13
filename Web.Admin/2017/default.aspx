@@ -44,7 +44,7 @@
     <div class="col-md-4 col-sm-4">
     <br />
         <h2>SPONSORS</h2>
-        <div style="height:300px;" data-ng-controller="SponsorsController as vm">
+        <div style="height:320px;" data-ng-controller="SponsorsController as vm">
             <div class="innerContainer">
             <a href="{{vm.CurrentSponsor.Website}}" target="_blank">
                 <img ng-src="{{vm.ImageBase}}/Setup/Sponsors/Image/{{vm.CurrentSponsor.Id}}" style="width:100%;" alt="" border="0" />
