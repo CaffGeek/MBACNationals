@@ -43,7 +43,7 @@
             
     <div class="col-md-4 col-sm-4">
     <br />
-        <!--<h2>SPONSORS</h2>
+        <h2>SPONSORS</h2>
         <div style="height:250px;" data-ng-controller="SponsorsController as vm">
             <div class="innerContainer">
             <a href="{{vm.CurrentSponsor.Website}}" target="_blank">
@@ -51,12 +51,13 @@
             </a>
             </div>
         </div> 
-                
+         <hr />
+<!--                
         <h2>Follow Us</h2>
         <h3>Newsletter</h3>
 
 
-        <hr />
+       
 -->
         <div class="fb-page" style="margin-bottom: 15px;" data-href="https://www.facebook.com/MBAofCanada/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
             <div class="fb-xfbml-parse-ignore">
