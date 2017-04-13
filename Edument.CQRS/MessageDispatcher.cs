@@ -15,11 +15,11 @@ namespace Edument.CQRS
     /// </summary>
     public class MessageDispatcher
     {
-        private Dictionary<Type, Action<object>> commandHandlers =
-            new Dictionary<Type, Action<object>>();      
-        private Dictionary<Type, List<Action<object>>> eventSubscribers =
-            new Dictionary<Type, List<Action<object>>>();
+        private Dictionary<Type, Action<object>> commandHandlers = new Dictionary<Type, Action<object>>();      
+        private Dictionary<Type, List<Action<object>>> eventSubscribers = new Dictionary<Type, List<Action<object>>>();
         private IEventStore eventStore;
+
+        private Object eventPubLock = new Object(); 
 
         /// <summary>
         /// Initializes a message dispatcher, which will use the specified event store
@@ -53,21 +53,23 @@ namespace Edument.CQRS
         {
             var eventType = e.GetType();
             if (eventSubscribers.ContainsKey(eventType))
-                foreach (var sub in eventSubscribers[eventType])
-                {
-                    sub(e);
-                    dynamic target = sub.Target;
-                    var y = target.subscriber as IReadModel;
-                    if (y != null) y.Save();
-                }
+                lock (eventPubLock)
+                    foreach (var sub in eventSubscribers[eventType])
+                    {
+                        sub(e);
+                        dynamic target = sub.Target;
+                        var y = target.subscriber as IReadModel;
+                        if (y != null) y.Save();
+                    }
         }
 
         private void PublishEventWithoutSave(object e)
         {
             var eventType = e.GetType();
             if (eventSubscribers.ContainsKey(eventType))
-                foreach (var sub in eventSubscribers[eventType])
-                    sub(e);
+                lock (eventPubLock)
+                    foreach (var sub in eventSubscribers[eventType])
+                        sub(e);
         }
 
         private void PublishEventToReadModel(object e, string readmodel)
@@ -75,12 +77,13 @@ namespace Edument.CQRS
             var eventType = e.GetType();
 
             if (eventSubscribers.ContainsKey(eventType))
-                foreach (var sub in eventSubscribers[eventType])
-                {
-                    dynamic target = sub.Target;
-                    if ((target.subscriber.GetType().Name as string).Equals(readmodel, StringComparison.OrdinalIgnoreCase))
-                        sub(e);
-                }
+                lock (eventPubLock)
+                    foreach (var sub in eventSubscribers[eventType])
+                    {
+                        dynamic target = sub.Target;
+                        if ((target.subscriber.GetType().Name as string).Equals(readmodel, StringComparison.OrdinalIgnoreCase))
+                            sub(e);
+                    }
         }
 
         /// <summary>
