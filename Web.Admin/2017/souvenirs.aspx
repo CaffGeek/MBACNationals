@@ -7,9 +7,8 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyPlaceholder" runat="server">
     <div class="col-md-2">
-    	<h2>Instructions</h2>
         <ul class="sidebarNav">
-            <li>Details</li>
+            <li>instructions</li>
         </ul>
     </div>
 
