@@ -16,7 +16,9 @@ namespace MBACNationals.Tournament
         IHandleCommand<DeleteNews, TournamentAggregate>,
         IHandleCommand<CreateHotel, TournamentAggregate>,
         IHandleCommand<DeleteHotel, TournamentAggregate>,
-        IHandleCommand<SaveGuestPackages, TournamentAggregate>
+        IHandleCommand<SaveGuestPackages, TournamentAggregate>,
+        IHandleCommand<CreateCentre, TournamentAggregate>,
+        IHandleCommand<DeleteCentre, TournamentAggregate>
     {
         private ICommandQueries CommandQueries;
 
@@ -142,6 +144,35 @@ namespace MBACNationals.Tournament
                         Enabled = guestpackage.Enabled
                     };
             }
+        }
+
+        public IEnumerable Handle(Func<Guid, TournamentAggregate> al, CreateCentre command)
+        {
+            var tournament = CommandQueries.GetTournaments().FirstOrDefault(x => x.Year == command.Year);
+            var agg = al(tournament.Id);
+
+            yield return new CentreCreated
+            {
+                Id = tournament.Id,
+                CentreId = command.Id,
+                Name = command.Name,
+                Website = command.Website,
+                PhoneNumber = command.PhoneNumber,
+                Address = command.Address,
+                Image = command.Image
+            };
+        }
+
+        public IEnumerable Handle(Func<Guid, TournamentAggregate> al, DeleteCentre command)
+        {
+            var tournament = CommandQueries.GetTournaments().FirstOrDefault(x => x.Year == command.Year);
+            var agg = al(tournament.Id);
+
+            yield return new CentreDeleted
+            {
+                Id = tournament.Id,
+                CentreId = command.Id,
+            };
         }
     }
 }

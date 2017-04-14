@@ -1,0 +1,43 @@
+﻿<div class="row clearfix">
+    <div class="col-sm-6">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="CentreName" class="col-md-4 control-label">Name</label>
+                <input type="text" id="CentreName" ng-model="vm.CentreName" />
+            </div>
+            <div class="form-group">
+                <label for="CentreWebsite" class="col-md-4 control-label">Website</label>
+                <input type="text" id="CentreWebsite" ng-model="vm.CentreWebsite" />
+            </div>
+            <div class="form-group">
+                <label for="CentrePhoneNumber" class="col-md-4 control-label">PhoneNumber</label>
+                <input type="text" id="CentrePhoneNumber" ng-model="vm.CentrePhoneNumber" />
+            </div>
+            <div class="form-group">
+                <label for="CentreAddress" class="col-md-4 control-label">Address</label>
+                <input type="text" id="CentreAddress" ng-model="vm.CentreAddress" />
+            </div>
+            <div class="form-group">
+                <label for="CentreImage" class="col-md-4 control-label">Image</label>
+                <button ngf-select ng-model="vm.CentreImages" ngf-multiple="false">Choose File</button>
+                <img ngf-src="vm.CentreImages[0]" width="200" />
+            </div>
+            
+            <div class="form-group">
+                <a class="col-md-offset-4 ui-button" ng-click="vm.SaveCentre()">Save</a>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-6">
+        <ul class="list-group row">
+            <li class="list-group-item col-xs-6" ng-repeat="centre in vm.Centres">
+                <img ng-src="/Setup/Centres/Image/{{centre.Id}}" class="col-xs-12" />
+                <p>{{centre.Name}}</p>
+                <p>{{centre.PhoneNumber}}</p>
+                <p>{{centre.Address}}</p>
+                <a ng-href="{{centre.Website}}" title="Visit Centre" target="_blank"><i class="glyphicon glyphicon-link"></i></a>
+                <a ng-click="vm.DeleteCentre(centre.Id)" class="pull-right"><i class="glyphicon glyphicon-trash"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>

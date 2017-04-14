@@ -50,7 +50,10 @@
             SaveHotel: saveHotel,
             DeleteHotel: deleteHotel,
             LoadGuestPackages: loadGuestPackages,
-            SaveGuestPackages: saveGuestPackages
+            SaveGuestPackages: saveGuestPackages,
+            LoadCentres: loadCentres,
+            SaveCentre: saveCentre,
+            DeleteCentre: deleteCentre
         };
 
         function saveTeam(team, contingent) {
@@ -380,6 +383,30 @@
             return $http.post('/Setup/GuestPackages/Save/' + year, {
                 Year: year,
                 GuestPackages: guestpackages
+            });
+        };
+
+        function loadCentres(year) {
+            return $http.get('/Setup/Centres/List/' + year);
+        };
+
+        function saveCentre(year, centre) {
+            return ngUpload.upload({
+                url: '/Setup/Centres/Save/' + year,
+                fields: {
+                    id: centre.Id,
+                    name: centre.Name,
+                    website: centre.Website,
+                    phonenumber: centre.PhoneNumber,
+                    address: centre.Address
+                },
+                file: [centre.Image]
+            });
+        };
+
+        function deleteCentre(year, id) {
+            return $http.post('/Setup/Centres/Delete/' + year, {
+                id: id
             });
         };
     };

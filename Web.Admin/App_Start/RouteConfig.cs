@@ -104,6 +104,24 @@ namespace WebFrontend
             );
 
             routes.MapRoute(
+                name: "Centres",
+                url: "Setup/Centres/List/{year}",
+                defaults: new { controller = "Centres", action = "List" }
+            );
+
+            routes.MapRoute(
+                name: "CentreDelete",
+                url: "Setup/Centres/Delete/{year}",
+                defaults: new { controller = "Centres", action = "Delete" }
+            );
+
+            routes.MapRoute(
+                name: "CentreImage",
+                url: "Setup/Centres/Image/{id}",
+                defaults: new { controller = "Centres", action = "Image" }
+            );
+
+            routes.MapRoute(
                 name: "GuestPackages",
                 url: "Setup/GuestPackages/List/{year}",
                 defaults: new { controller = "GuestPackages", action = "List" }

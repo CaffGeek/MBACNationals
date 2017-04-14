@@ -17,13 +17,16 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<NewsDeleted>,
         ISubscribeTo<HotelCreated>,
         ISubscribeTo<HotelDeleted>,
-        ISubscribeTo<GuestPackageSaved>
+        ISubscribeTo<GuestPackageSaved>,
+        ISubscribeTo<CentreCreated>,
+        ISubscribeTo<CentreDeleted>
     {
         public List<Tournament> Tournaments { get; set; }
         public List<News> NewsArticles { get; set; }
         public List<Sponsor> Sponsors { get; set; }
         public List<Hotel> Hotels { get; set; }
         public List<GuestPackage> GuestPackages { get; set; }
+        public List<Centre> Centres { get; set; }
 
         public class Tournament
         {
@@ -67,9 +70,20 @@ namespace MBACNationals.ReadModels
             public bool Enabled { get; set; }
         }
 
+        public class Centre
+        {
+            public Guid Id { get; set; }
+            public Guid TournamentId { get; set; }
+            public string Name { get; set; }
+            public string Website { get; set; }
+            public string PhoneNumber { get; set; }
+            public string Address { get; set; }
+        }
+
         public class TSSponsorLogo : Blob { }
         public class TSHotelLogo : Blob { }
         public class TSHotelImage : Blob { }
+        public class TSCentreImage : Blob { }
 
         public TournamentQueries()
         {
@@ -83,6 +97,7 @@ namespace MBACNationals.ReadModels
             Sponsors = new List<Sponsor>();
             Hotels = new List<Hotel>();
             GuestPackages = new List<GuestPackage>();
+            Centres = new List<Centre>();
         }
 
         public void Save()
@@ -183,6 +198,19 @@ namespace MBACNationals.ReadModels
                 select j ?? d).ToList();
 
             return mergedPackages;
+        }
+
+        public List<TournamentQueries.Centre> GetCentres(string year)
+        {
+            var tournament = Tournaments.Single(x => x.Year == year);
+            var centres = Centres.Where(x => x.TournamentId == tournament.Id).ToList();
+            return centres;
+        }
+
+        public byte[] GetCentreImage(Guid hotelId)
+        {
+            var image = Storage.ReadBlob<TSCentreImage>(hotelId);
+            return image.Contents;
         }
 
         public void Handle(TournamentCreated e)
@@ -286,6 +314,31 @@ namespace MBACNationals.ReadModels
                 package.Cost = e.Cost;
                 package.Enabled = e.Enabled;
             }
+        }
+
+        public void Handle(CentreCreated e)
+        {
+            Centres.Add(new Centre
+            {
+                Id = e.CentreId,
+                TournamentId = e.Id,
+                Name = e.Name,
+                Website = e.Website,
+                PhoneNumber = e.PhoneNumber,
+                Address = e.Address
+            });
+
+            Storage.Create(new TSCentreImage
+            {
+                Id = e.CentreId,
+                Contents = e.Image
+            });
+        }
+
+        public void Handle(CentreDeleted e)
+        {
+            Centres.RemoveAll(x => x.Id == e.CentreId);
+            //TODO: Delete image
         }
     }
 }

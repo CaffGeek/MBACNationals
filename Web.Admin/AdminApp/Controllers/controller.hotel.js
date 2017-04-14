@@ -45,8 +45,8 @@
 	    function DeleteHotel(id) {
 	        dataService.DeleteHotel(vm.Year, id)
                 .then(function (response) {
-                    var sponsor = vm.Hotels.filter(function (x) { return x.Id == id; })[0];
-                    var idx = vm.Hotels.indexOf(sponsor);
+                    var hotel = vm.Hotels.filter(function (x) { return x.Id == id; })[0];
+                    var idx = vm.Hotels.indexOf(hotel);
                     if (idx < 0)
                         return;
 
