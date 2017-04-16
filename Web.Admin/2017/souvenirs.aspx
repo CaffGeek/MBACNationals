@@ -278,10 +278,9 @@
       <input type="radio" name="Towel" id="Towel" value="Towel" >
       Towel
     </label>
-  </div>
-</div>
+<br />
 <!-- Text input-->
-<div class="form-group">
+
   <label class="col-md-4 control-label" for="customization">Customization</label>  
   <div class="col-md-4">
   <input id="customization" name="customization" type="text" placeholder="Enter Custom Text Here" class="form-control input-md">
