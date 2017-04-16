@@ -52,7 +52,6 @@
     </select>
   </div>
 </div>
-<hr/>
 <!-- Multiple Radios (inline) -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="ladies">Ladies</label>
@@ -107,11 +106,11 @@
 
         </div>	
         </div>
+<hr />
         <div class="row">
         	<div class="col-md-5"><img  class="souvenirs"  src="http://mbacnationals.com/2017/images/souvenirs/L00660L1.jpg" alt="hoodies" /></div>
         	<div class="col-md-5">
         	
-<hr />
 <!-- Form Name -->
 <legend>Bunny Hug - $45</legend>
 
@@ -190,11 +189,11 @@
 
 		</div>
         </div>
+<hr />
         <div class="row">
         	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/L00671L1.jpg" alt="jackets" /></div>
         	<div class="col-md-5">
         	
-<hr />
 <!-- Form Name -->
 <legend>Jackets - $55</legend>
 
@@ -270,10 +269,10 @@
   </div>
 </div>
 </div>
+<hr/>
         <div class="row">
         	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/towel.jpg" alt="towel" /></div>
         	<div class="col-md-5">
-<hr/>
 <!-- Form Name -->
 <legend>Towels - $15</legend>
 
@@ -298,10 +297,10 @@
 </div>
 </div>
 </div>
+<hr />
         <div class="row">
         	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/coozie.jpg" alt="koozies" /></div>
         	<div class="col-md-5">
-<hr />
 <!-- Form Name -->
 <legend>Koozies - $15</legend>
 
