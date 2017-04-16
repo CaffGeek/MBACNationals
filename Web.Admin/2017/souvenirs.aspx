@@ -14,7 +14,7 @@
 
 <div class="col-md-10">
         <h2>Souvenirs</h2>
-        <div class="row">
+        <div class="row" style="margin-bottom:20px;">
         	<div class="col-md-5"><img class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/MorenoShirt.jpg" alt="moreno shirt" /></div>
         	<div class="col-md-5">
         	<form class="form-horizontal" action="/action_page.php" id="souvenirs">
@@ -103,7 +103,7 @@
   </div>
 </div>
 <hr />
-        <div class="row">
+        <div class="row" style="margin-bottom:20px;">
         	<div class="col-md-5"><img  class="souvenirs"  src="http://mbacnationals.com/2017/images/souvenirs/L00660L1.jpg" alt="hoodies" /></div>
         	<div class="col-md-5">
         	
@@ -186,7 +186,7 @@
 		</div>
         </div>
 <hr />
-        <div class="row">
+        <div class="row" style="margin-bottom:20px;">
         	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/L00671L1.jpg" alt="jackets" /></div>
         	<div class="col-md-5">
         	
@@ -266,7 +266,7 @@
 </div>
 </div>
 <hr/>
-        <div class="row">
+        <div class="row" style="margin-bottom:20px;">
         	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/towel.jpg" alt="towel" /></div>
         	<div class="col-md-5">
 <!-- Form Name -->
@@ -292,7 +292,7 @@
   </div>
 </div>
 <hr />
-        <div class="row">
+        <div class="row" style="margin-bottom:20px;">
         	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/coozie.jpg" alt="koozies" /></div>
         	<div class="col-md-5">
 <!-- Form Name -->
