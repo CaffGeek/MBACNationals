@@ -104,7 +104,7 @@
         </div>	
         </div>
         <div class="row">
-        	<div class="col-md-5"><img src="http://mbacnationals.com/2017/images/souvenirs/L00660L1.jpg" alt="hoodies" /></div>
+        	<div class="col-md-5"><img  class="souvenirs"  src="http://mbacnationals.com/2017/images/souvenirs/L00660L1.jpg" alt="hoodies" /></div>
         	<div class="col-md-5">
         	
 
@@ -183,7 +183,7 @@
 		</div>
         </div>
         <div class="row">
-        	<div class="col-md-5"><img src="http://mbacnationals.com/2017/images/souvenirs/L00671L1.jpg" alt="jackets" /></div>
+        	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/L00671L1.jpg" alt="jackets" /></div>
         	<div class="col-md-5">
         	
 
@@ -259,7 +259,7 @@
 </div>
 </div>
         <div class="row">
-        	<div class="col-md-5"><img src="http://mbacnationals.com/2017/images/souvenirs/towel.jpg" alt="towel" /></div>
+        	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/towel.jpg" alt="towel" /></div>
         	<div class="col-md-5">
 
 <!-- Form Name -->
@@ -287,7 +287,7 @@
 </div>
 </div>
         <div class="row">
-        	<div class="col-md-5"><img src="http://mbacnationals.com/2017/images/souvenirs/coozie.jpg" alt="koozies" /></div>
+        	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/coozie.jpg" alt="koozies" /></div>
         	<div class="col-md-5">
 
 <!-- Form Name -->
