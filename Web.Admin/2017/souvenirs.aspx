@@ -103,6 +103,7 @@
       </select>
   </div>
 </div>
+</div>
 <hr />
         <div class="row" style="margin-bottom:20px;">
         	<div class="col-md-5"><img  class="souvenirs"  src="http://mbacnationals.com/2017/images/souvenirs/L00660L1.jpg" alt="hoodies" /></div>
