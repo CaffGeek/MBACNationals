@@ -17,7 +17,7 @@
         <div class="row">
         	<div class="col-md-5"><img src="http://mbacnationals.com/2017/images/souvenirs/MorenoShirt.jpg" alt="moreno shirt" /></div>
         	<div class="col-md-5">
-        	<form class="form-horizontal">
+        	<form class="form-horizontal" action="/action_page.php">
 <fieldset>
 
 <!-- Form Name -->
@@ -28,7 +28,7 @@
   <label class="col-md-4 control-label" for="Mens">Mens</label>
   <div class="col-md-4"> 
     <label class="radio-inline" for="Mens-0">
-      <input type="radio" name="Mens" id="Mens-0" value="Mens" checked="checked">
+      <input type="radio" name="Mens" id="Mens-0" value="Mens" >
       Mens
     </label>
   </div>
@@ -56,7 +56,7 @@
   <label class="col-md-4 control-label" for="ladies">Ladies</label>
   <div class="col-md-4"> 
     <label class="radio-inline" for="ladies-0">
-      <input type="radio" name="ladies" id="ladies-0" value="Ladies" checked="checked">
+      <input type="radio" name="ladies" id="ladies-0" value="Ladies" >
       Ladies
     </label>
   </div>
@@ -118,7 +118,7 @@
   <label class="col-md-4 control-label" for="Mens">Mens</label>
   <div class="col-md-4"> 
     <label class="radio-inline" for="Mens-0">
-      <input type="radio" name="Mens" id="Mens-0" value="Mens" checked="checked">
+      <input type="radio" name="Mens" id="Mens-0" value="Mens" >
       Mens
     </label>
   </div>
@@ -146,7 +146,7 @@
   <label class="col-md-4 control-label" for="ladies">Ladies</label>
   <div class="col-md-4"> 
     <label class="radio-inline" for="ladies-0">
-      <input type="radio" name="ladies" id="ladies-0" value="Ladies" checked="checked">
+      <input type="radio" name="ladies" id="ladies-0" value="Ladies" >
       Ladies
     </label>
   </div>
@@ -199,7 +199,7 @@
   <label class="col-md-4 control-label" for="Mens">Mens</label>
   <div class="col-md-4"> 
     <label class="radio-inline" for="Mens-0">
-      <input type="radio" name="Mens" id="Mens-0" value="Mens" checked="checked">
+      <input type="radio" name="Mens" id="Mens-0" value="Mens" >
       Mens
     </label>
   </div>
@@ -227,7 +227,7 @@
   <label class="col-md-4 control-label" for="ladies">Ladies</label>
   <div class="col-md-4"> 
     <label class="radio-inline" for="ladies-0">
-      <input type="radio" name="ladies" id="ladies-0" value="Ladies" checked="checked">
+      <input type="radio" name="ladies" id="ladies-0" value="Ladies" >
       Ladies
     </label>
   </div>
@@ -247,7 +247,6 @@
       <option value="XXXL">XXXL</option>
     </select>
   </div>
-</div>
 </div>
 <!-- Select Basic -->
 <div class="form-group">
@@ -276,9 +275,17 @@
   <label class="col-md-4 control-label" for="Towel">Towel</label>
   <div class="col-md-4"> 
     <label class="radio-inline" for="Towel">
-      <input type="radio" name="Towel" id="Towel" value="Towel" checked="checked">
+      <input type="radio" name="Towel" id="Towel" value="Towel" >
       Towel
     </label>
+  </div>
+</div>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="customization">Customization</label>  
+  <div class="col-md-4">
+  <input id="customization" name="customization" type="text" placeholder="Enter Custom Text Here" class="form-control input-md">
+  <span class="help-block">Maximum XX characters</span>  
   </div>
 </div>
 </div>
@@ -295,14 +302,23 @@
   <label class="col-md-4 control-label" for="Koozies">Koozies</label>
   <div class="col-md-4"> 
     <label class="radio-inline" for="Koozies">
-      <input type="radio" name="Koozies" id="Koozies" value="Koozies" checked="checked">
+      <input type="radio" name="Koozies" id="Koozies" value="Koozies" >
       Koozies
     </label>
   </div>
 </div>
-</div>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="customization">Customization</label>  
+  <div class="col-md-4">
+  <input id="customization" name="customization" type="text" placeholder="Enter Custom Text Here" class="form-control input-md">
+  <span class="help-block">Maximum XX characters</span>  
+  </div>
 </div>
 
+</div>
+</div>
+<input type="submit" value="Submit">
 </form>
 
         	</div>
