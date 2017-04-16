@@ -12,7 +12,7 @@
         </ul>
     </div>
 
-    <div class="col-md-10">
+<div class="col-md-10">
         <h2>Souvenirs</h2>
         <div class="row">
         	<div class="col-md-5"><img class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/MorenoShirt.jpg" alt="moreno shirt" /></div>
@@ -101,7 +101,6 @@
       <option value="Black">Black</option>
       </select>
   </div>
-</div>
 </div>
 <hr />
         <div class="row">
