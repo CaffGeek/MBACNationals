@@ -27,10 +27,12 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="Mens">Mens</label>
   <div class="col-md-4"> 
-    <label class="radio-inline" for="Mens-0">
-      <input type="radio" name="Mens" id="Mens-0" value="Mens" >
+    <div class="checkbox">
+    <label for="mens-0">
+      <input type="checkbox" name="mens" id="mens-0" value="mens">
       Mens
     </label>
+	</div>
   </div>
 </div>
 
@@ -50,15 +52,17 @@
     </select>
   </div>
 </div>
-
+<hr/>
 <!-- Multiple Radios (inline) -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="ladies">Ladies</label>
   <div class="col-md-4"> 
-    <label class="radio-inline" for="ladies-0">
-      <input type="radio" name="ladies" id="ladies-0" value="Ladies" >
+    <div class="checkbox">
+    <label for="ladies-0">
+      <input type="checkbox" name="ladies" id="ladies-0" value="Ladies">
       Ladies
     </label>
+	</div>
   </div>
 </div>
 
@@ -107,7 +111,7 @@
         	<div class="col-md-5"><img  class="souvenirs"  src="http://mbacnationals.com/2017/images/souvenirs/L00660L1.jpg" alt="hoodies" /></div>
         	<div class="col-md-5">
         	
-
+<hr />
 <!-- Form Name -->
 <legend>Bunny Hug - $45</legend>
 
@@ -115,10 +119,12 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="Mens">Mens</label>
   <div class="col-md-4"> 
-    <label class="radio-inline" for="Mens-0">
-      <input type="radio" name="Mens" id="Mens-0" value="Mens" >
+    <div class="checkbox">
+    <label for="mens-0">
+      <input type="checkbox" name="mens" id="mens-0" value="mens">
       Mens
     </label>
+	</div>
   </div>
 </div>
 
@@ -143,10 +149,12 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="ladies">Ladies</label>
   <div class="col-md-4"> 
-    <label class="radio-inline" for="ladies-0">
-      <input type="radio" name="ladies" id="ladies-0" value="Ladies" >
+    <div class="checkbox">
+    <label for="ladies-0">
+      <input type="checkbox" name="ladies" id="ladies-0" value="Ladies">
       Ladies
     </label>
+	</div>
   </div>
 </div>
 
@@ -186,7 +194,7 @@
         	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/L00671L1.jpg" alt="jackets" /></div>
         	<div class="col-md-5">
         	
-
+<hr />
 <!-- Form Name -->
 <legend>Jackets - $55</legend>
 
@@ -194,10 +202,12 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="Mens">Mens</label>
   <div class="col-md-4"> 
-    <label class="radio-inline" for="Mens-0">
-      <input type="radio" name="Mens" id="Mens-0" value="Mens" >
+    <div class="checkbox">
+    <label for="mens-0">
+      <input type="checkbox" name="mens" id="mens-0" value="mens">
       Mens
     </label>
+	</div>
   </div>
 </div>
 
@@ -222,10 +232,12 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="ladies">Ladies</label>
   <div class="col-md-4"> 
-    <label class="radio-inline" for="ladies-0">
-      <input type="radio" name="ladies" id="ladies-0" value="Ladies" >
+    <div class="checkbox">
+    <label for="ladies-0">
+      <input type="checkbox" name="ladies" id="ladies-0" value="Ladies">
       Ladies
     </label>
+	</div>
   </div>
 </div>
 
@@ -261,7 +273,7 @@
         <div class="row">
         	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/towel.jpg" alt="towel" /></div>
         	<div class="col-md-5">
-
+<hr/>
 <!-- Form Name -->
 <legend>Towels - $15</legend>
 
@@ -289,7 +301,7 @@
         <div class="row">
         	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/coozie.jpg" alt="koozies" /></div>
         	<div class="col-md-5">
-
+<hr />
 <!-- Form Name -->
 <legend>Koozies - $15</legend>
 
