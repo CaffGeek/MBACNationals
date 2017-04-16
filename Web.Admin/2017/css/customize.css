@@ -362,3 +362,9 @@ footer li a:hover {
 color: #006633;
 text-decoration: none;
 }
+
+.form-group img {
+width:100%;
+max-width:480px;
+margin-bottom:20px;
+}
