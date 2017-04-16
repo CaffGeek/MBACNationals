@@ -2007,6 +2007,12 @@
     <Content Include="2017\images\LinkLogo.jpg" />
     <Content Include="2017\images\Logo.png" />
     <Content Include="2017\images\restaurants.jpg" />
+    <Content Include="2017\images\souvenirs\coozie.jpg" />
+    <Content Include="2017\images\souvenirs\L00660L1.jpg" />
+    <Content Include="2017\images\souvenirs\L00671L1.jpg" />
+    <Content Include="2017\images\souvenirs\MorenoColours.jpg" />
+    <Content Include="2017\images\souvenirs\MorenoShirt.jpg" />
+    <Content Include="2017\images\souvenirs\towel.jpg" />
     <Content Include="2017\js\schedule.js" />
     <Content Include="2017\lanedraw.aspx" />
     <Content Include="2017\news.aspx" />
