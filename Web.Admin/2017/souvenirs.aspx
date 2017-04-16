@@ -17,7 +17,7 @@
         <div class="row">
         	<div class="col-md-5"><img src="http://mbacnationals.com/2017/images/souvenirs/MorenoShirt.jpg" alt="moreno shirt" /></div>
         	<div class="col-md-5">
-        	<form class="form-horizontal" action="/action_page.php">
+        	<form class="form-horizontal" action="/action_page.php" id="souvenirs">
 <fieldset>
 
 <!-- Form Name -->
@@ -99,16 +99,14 @@
       </select>
   </div>
 
-</fieldset>
-</form>
+
 
         </div>	
         </div>
         <div class="row">
         	<div class="col-md-5"><img src="http://mbacnationals.com/2017/images/souvenirs/L00660L1.jpg" alt="hoodies" /></div>
         	<div class="col-md-5">
-        	<form class="form-horizontal">
-<fieldset>
+        	
 
 <!-- Form Name -->
 <legend>Bunny Hug - $45</legend>
@@ -181,15 +179,13 @@
       </select>
   </div>
 </div>
-</fieldset>
-</form>
+
 		</div>
         </div>
         <div class="row">
         	<div class="col-md-5"><img src="http://mbacnationals.com/2017/images/souvenirs/L00671L1.jpg" alt="jackets" /></div>
         	<div class="col-md-5">
-        	<form class="form-horizontal">
-<fieldset>
+        	
 
 <!-- Form Name -->
 <legend>Jackets - $55</legend>
@@ -260,7 +256,6 @@
       <option value="Grey">Grey</option>
       </select>
   </div>
-</fieldset>
 </div>
 </div>
         <div class="row">
@@ -320,6 +315,7 @@
 </div>
 </div>
 <input type="submit" value="Submit">
+</fieldset>
 </form>
 
         	</div>
