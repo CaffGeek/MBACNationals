@@ -265,6 +265,7 @@
       </select>
   </div>
 </div>
+</div>
 <hr/>
         <div class="row">
         	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/towel.jpg" alt="towel" /></div>
@@ -290,8 +291,6 @@
   <input id="customization" name="customization" type="text" placeholder="Enter Custom Text Here" class="form-control input-md">
   <span class="help-block">Maximum XX characters</span>  
   </div>
-</div>
-</div>
 </div>
 <hr />
         <div class="row">
