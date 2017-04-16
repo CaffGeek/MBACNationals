@@ -39,4 +39,8 @@ text-decoration: none;
     margin-top: -10px;
 }
 
-#souvenirs img {width:100%;}
+#souvenirs img {
+width:100%;
+max-width:480px;
+margin-bottom:20px;
+}
