@@ -152,6 +152,7 @@
 
         	</div>
         </div>	
+        </div>
         <div class="row">
         	<div class="col-md-5"></div>
         	<div class="col-md-5"><img src="http://mbacnationals.com/2017/images/souvenirs/L00671L1.jpg" alt="jackets" /></div>
