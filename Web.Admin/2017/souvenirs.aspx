@@ -12,10 +12,10 @@
         </ul>
     </div>
 
-    <div class="col-md-10 souvenirs">
+    <div class="col-md-10">
         <h2>Souvenirs</h2>
         <div class="row">
-        	<div class="col-md-5"><img src="http://mbacnationals.com/2017/images/souvenirs/MorenoShirt.jpg" alt="moreno shirt" /></div>
+        	<div class="col-md-5"><img class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/MorenoShirt.jpg" alt="moreno shirt" /></div>
         	<div class="col-md-5">
         	<form class="form-horizontal" action="/action_page.php" id="souvenirs">
 <fieldset>
