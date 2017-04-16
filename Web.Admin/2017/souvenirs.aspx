@@ -102,7 +102,6 @@
 </fieldset>
 </form>
 
-        	</div>
         </div>	
         </div>
         <div class="row">
