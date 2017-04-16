@@ -98,7 +98,6 @@
       <option value="Black">Black</option>
       </select>
   </div>
-</div>
 
 </fieldset>
 </form>
@@ -185,9 +184,7 @@
 </div>
 </fieldset>
 </form>
-
-        	</div>
-        </div>	
+	
         </div>
         <div class="row">
         	<div class="col-md-5"></div>
@@ -265,7 +262,6 @@
       <option value="Grey">Grey</option>
       </select>
   </div>
-</div>
 </fieldset>
 </form>
 
