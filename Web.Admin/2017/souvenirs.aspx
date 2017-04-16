@@ -12,7 +12,7 @@
         </ul>
     </div>
 
-    <div class="col-md-10">
+    <div class="col-md-10 souvenirs">
         <h2>Souvenirs</h2>
         <div class="row">
         	<div class="col-md-5"><img src="http://mbacnationals.com/2017/images/souvenirs/MorenoShirt.jpg" alt="moreno shirt" /></div>
