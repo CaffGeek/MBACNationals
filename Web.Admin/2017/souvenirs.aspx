@@ -104,7 +104,6 @@
 
 
 
-        </div>	
         </div>
 <hr />
         <div class="row">
@@ -267,7 +266,6 @@
       <option value="Grey">Grey</option>
       </select>
   </div>
-</div>
 </div>
 <hr/>
         <div class="row">
