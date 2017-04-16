@@ -14,11 +14,12 @@
 
 <div class="col-md-10">
         <h2>Souvenirs</h2>
+<form class="form-horizontal" action="/action_page.php" id="souvenirs">
+<fieldset>
         <div class="row" style="margin-bottom:20px;">
         	<div class="col-md-5"><img class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/MorenoShirt.jpg" alt="moreno shirt" /></div>
         	<div class="col-md-5">
-        	<form class="form-horizontal" action="/action_page.php" id="souvenirs">
-<fieldset>
+        	
 
 <!-- Form Name -->
 <legend>Moreno Shirt - $40</legend>
