@@ -14,6 +14,79 @@
 
     <div class="col-md-10">
         <h2>Souvenirs</h2>
+        <div class="row">
+        	<div class="col-md-5"></div>
+        	<div class="col-md-5"><img src="images/souvenirs/MorenoShirt.jpg" alt="moreno shirt" />
+        	<form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Moreno Shirt - $40</legend>
+
+<!-- Multiple Radios (inline) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Mens">Mens</label>
+  <div class="col-md-4"> 
+    <label class="radio-inline" for="Mens-0">
+      <input type="radio" name="Mens" id="Mens-0" value="Mens" checked="checked">
+      Mens
+    </label>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="menssize">Mens Size</label>
+  <div class="col-md-4">
+    <select id="menssize" name="menssize" class="form-control">
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+      <option value="XXL">XXL</option>
+      <option value="XXXL">XXXL</option>
+      <option value="XXXXL">XXXXL</option>
+      <option value="XXXXXL">XXXXXL</option>
+    </select>
+  </div>
+</div>
+
+<!-- Multiple Radios (inline) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="ladies">Ladies</label>
+  <div class="col-md-4"> 
+    <label class="radio-inline" for="ladies-0">
+      <input type="radio" name="ladies" id="ladies-0" value="Ladies" checked="checked">
+      Ladies
+    </label>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="ladiessize">Ladies Size</label>
+  <div class="col-md-4">
+    <select id="ladiessize" name="ladiessize" class="form-control">
+      <option value="XS">XS</option>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+      <option value="XXL">XXL</option>
+      <option value="XXXL">XXXL</option>
+    </select>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+        	</div>
+        </div>	
+        <div class="row">
+        	<div class="col-md-5">PIC</div>
+        	<div class="col-md-5">Details</div>
+        </div>	
         <p>Moreno Shirts  $40.00 The tangerine is the only color that will not be offered on the website as the officials will be wearing them. 
 Bunny Hugs  $45.00 for either style
 Jackets men and ladies  $55.00  Men tall starting at Large  $65.00 
