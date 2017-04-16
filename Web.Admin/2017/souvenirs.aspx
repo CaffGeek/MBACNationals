@@ -78,11 +78,34 @@
   </div>
 </div>
 
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="colour">Colour</label>
+  <div class="col-md-4">
+    <select id="colour" name="colour" class="form-control">
+      <option value="White">White</option>
+      <option value="Stone">Stone</option>
+      <option value="Mocha">Mocha</option>
+      <option value="Pink">Pink Zircon - Ladies Only</option>
+      <option value="Red">Red</option>
+      <option value="Maroon">Maroon</option>
+      <option value="Chill">Chill</option>
+      <option value="OlympicBlue">Olympic Blue</option>
+      <option value="Navy">Navy</option>
+      <option value="ForestGreen">Forest Green</option>    
+      <option value="GreenTea">Green Tea</option>
+      <option value="SteelGrey">Steel Grey</option>
+      <option value="Black">Black</option>
+      </select>
+  </div>
+</div>
+
 </fieldset>
 </form>
 
         	</div>
         </div>	
+        </div>
         <div class="row">
         	<div class="col-md-5"></div>
         	<div class="col-md-5"><img src="http://mbacnationals.com/2017/images/souvenirs/L00660L1.jpg" alt="hoodies" /></div>
@@ -147,6 +170,19 @@
   </div>
 </div>
 
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="colour">Colour</label>
+  <div class="col-md-4">
+    <select id="colour" name="colour" class="form-control">
+      <option value="Black">Black</option>
+      <option value="Red">Red</option>
+      <option value="Blue">Blue</option>
+      <option value="Navy">Navy</option>
+      <option value="Grey">Grey</option>
+      </select>
+  </div>
+</div>
 </fieldset>
 </form>
 
@@ -216,7 +252,20 @@
     </select>
   </div>
 </div>
-
+</div>
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="colour">Colour</label>
+  <div class="col-md-4">
+    <select id="colour" name="colour" class="form-control">
+      <option value="Black">Black</option>
+      <option value="Red">Red</option>
+      <option value="Blue">Blue</option>
+      <option value="Navy">Navy</option>
+      <option value="Grey">Grey</option>
+      </select>
+  </div>
+</div>
 </fieldset>
 </form>
 
