@@ -105,8 +105,8 @@
         </div>	
         </div>
         <div class="row">
-        	<div class="col-md-5"></div>
         	<div class="col-md-5"><img src="http://mbacnationals.com/2017/images/souvenirs/L00660L1.jpg" alt="hoodies" /></div>
+        	<div class="col-md-5">
         	<form class="form-horizontal">
 <fieldset>
 
@@ -183,11 +183,11 @@
 </div>
 </fieldset>
 </form>
-	
+		</div>
         </div>
         <div class="row">
-        	<div class="col-md-5"></div>
         	<div class="col-md-5"><img src="http://mbacnationals.com/2017/images/souvenirs/L00671L1.jpg" alt="jackets" /></div>
+        	<div class="col-md-5">
         	<form class="form-horizontal">
 <fieldset>
 
@@ -262,6 +262,47 @@
       </select>
   </div>
 </fieldset>
+</div>
+</div>
+        <div class="row">
+        	<div class="col-md-5"><img src="http://mbacnationals.com/2017/images/souvenirs/towel.jpg" alt="towel" /></div>
+        	<div class="col-md-5">
+
+<!-- Form Name -->
+<legend>Towels - $15</legend>
+
+<!-- Multiple Radios (inline) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Towel">Towel</label>
+  <div class="col-md-4"> 
+    <label class="radio-inline" for="Towel">
+      <input type="radio" name="Towel" id="Towel" value="Towel" checked="checked">
+      Towel
+    </label>
+  </div>
+</div>
+</div>
+</div>
+        <div class="row">
+        	<div class="col-md-5"><img src="http://mbacnationals.com/2017/images/souvenirs/coozie.jpg" alt="koozies" /></div>
+        	<div class="col-md-5">
+
+<!-- Form Name -->
+<legend>Koozies - $15</legend>
+
+<!-- Multiple Radios (inline) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="Koozies">Koozies</label>
+  <div class="col-md-4"> 
+    <label class="radio-inline" for="Koozies">
+      <input type="radio" name="Koozies" id="Koozies" value="Koozies" checked="checked">
+      Koozies
+    </label>
+  </div>
+</div>
+</div>
+</div>
+
 </form>
 
         	</div>
