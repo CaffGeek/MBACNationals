@@ -18,7 +18,8 @@
             LoadTeamScores: loadTeamScores,
             LoadSponsors: loadSponsors,
             LoadHotels: loadHotels,
-            LoadNews: loadNews
+            LoadNews: loadNews,
+            LoadCentres: loadCentres
         };
 
         function loadContingent(province) {
@@ -79,6 +80,10 @@
 
         function loadNews() {
             return $http.get('/Setup/News/List/' + currentYear);
+        };
+
+        function loadCentres() {
+            return $http.get('/Setup/Centres/List/' + currentYear);
         };
     };
     

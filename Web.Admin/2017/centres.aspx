@@ -6,66 +6,32 @@
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyPlaceholder" runat="server">
-    <div class="col-md-2">
-        <ul class="sidebarNav">
-            <li><a href="#centre1">Glencairn Bowlodrome</a></li>
-            <li><a href="#centre2">Golden Mile Bowling Lanes</a></li>
-            <li><a href="#centre3">Nortown Lanes</a></li>
-        </ul>
+    <div data-ng-controller="CentresController as vm">
+        <div class="col-md-2">
+            <ul class="sidebarNav">
+                <li ng-repeat="centre in vm.Centres"><a href="##{{centre.Id}}">{{centre.Name}}</a></li>
+            </ul>
 
-    </div>
-    <div class="col-md-10">
-        <h2>centres</h2>
-
-        <h4 id="centre1">Glencairn Bowlodrome</h4>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-3 centreLogo">
-                    <img src="images/centre1.jpg" alt="Glencairn Bowlodrome" />
-                </div>
-                <div class="col-md-9 col-sm-9 centreDetails">
-                    <p>
-                        <strong>1-306-789-0066<br />
-                            1620 9th Avenue East, Regina<br />
-                        </strong>
-                        For more information, check out their website: <a href="http://glencairnbolodrome.com" target="_blank">glencairnbolodrome.com</a>
-                    </p>
-                </div>
-            </div>
         </div>
 
+        <div class="col-md-10" >
+            <h2>Centres</h2>
 
-        <h4 id="centre2">Golden Mile Bowling Lanes</h4>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-3 centreLogo">
-                    <img src="images/centre2.jpg" alt="Golden Mile Bowling Lanes" />
-                </div>
-                <div class="col-md-9 col-sm-9 centreDetails">
-                    <p>
-                        <strong>1-306-586-2626<br />
-                            3806 Albert Street, Regina<br />
-                        </strong>
-                        For more information, check out their website: <a href="http://goldenmilebowl.com" target="_blank">goldenmilebowl.com</a>
-                    </p>
-
-                </div>
-            </div>
-        </div>
-
-
-        <h4 id="centre3">Nortown Lanes</h4>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-3 centreLogo">
-                    <img src="images/centre3.jpg" alt="Nortown Lanes" />
-                </div>
-                <div class="col-md-9 col-sm-9 centreDetails">
-                    <p>
-                        <strong>1-306-525-2776<br />
-                            6831 Rochdale Boulevard, Regina</strong><br />
-                        For more information, check out their website: <a href="http://glencairnbolodrome.com" target="_blank">glencairnbolodrome.com</a>
-                    </p>
+            <div class="row centre" ng-repeat="centre in vm.Centres">
+                <h4 id="{{centre.Id}}">{{centre.Name}}</h4>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 centreLogo">
+                            <img ng-src="/Setup/Centres/Image/{{centre.Id}}" alt="{{centre.Name}}" border="0" />
+                        </div>
+                        <div class="col-md-9 col-sm-9 centreDetails">
+                            <p><strong><a href="tel:{{centre.PhoneNumber}}" target="_blank">{{centre.PhoneNumber}}</a></strong></p>
+                            <p><strong>{{centre.Address}}</strong></p>
+                            <p>
+                                For more information, check out their website: <a href="{{centre.Website}}" target="_blank">{{centre.Website}}</a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
