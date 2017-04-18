@@ -24,7 +24,7 @@
 <legend>Moreno Shirt - $40</legend>
 
 <!-- Multiple Radios (inline) -->
-<div class="row">
+<div class="form-group">
   <label class="col-md-4 control-label" for="Mens">Mens</label>
   <div class="col-md-4"> 
     <div class="checkbox">
