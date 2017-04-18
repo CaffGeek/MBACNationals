@@ -17,7 +17,7 @@
 <div class="form-group ">
 
 <div class="row">
-  <div class="col-md-5">Picture</div>
+  <div class="col-md-5"><img src="http://mbacnationals.com/2017/images/souvenirs/MorenoShirt.jpg" alt="moreno shirt" /></div>
   <div class="col-md-5">
 
 <!-- Form Name -->
