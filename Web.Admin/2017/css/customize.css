@@ -363,9 +363,13 @@ color: #006633;
 text-decoration: none;
 }
 
-.souvenirs {
+#souvenirs .row img {
 width:100%;
 max-width:480px;
 }
 
-hr {clear:both;}
+#souvenirs label {padding-top:15px;}
+
+#souvenirs form-group {margin-bottom:15px;}
+
+hr {clear:both;margin-top:15px;margin-bottom:15px;}
