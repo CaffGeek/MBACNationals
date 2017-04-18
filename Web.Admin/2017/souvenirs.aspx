@@ -24,7 +24,7 @@
 <legend>Moreno Shirt - $40</legend>
 
 <!-- Multiple Radios (inline) -->
-<div class="form-group">
+<div class="row">
   <label class="col-md-4 control-label" for="Mens">Mens</label>
   <div class="col-md-4"> 
     <div class="checkbox">
@@ -37,7 +37,7 @@
 </div>
 
 <!-- Select Basic -->
-<div class="form-group">
+<div class="row">
   <label class="col-md-4 control-label" for="menssize">Mens Size</label>
   <div class="col-md-4">
     <select id="menssize" name="menssize" class="form-control">
@@ -53,7 +53,7 @@
   </div>
 </div>
 <!-- Multiple Radios (inline) -->
-<div class="form-group">
+<div class="row">
   <label class="col-md-4 control-label" for="ladies">Ladies</label>
   <div class="col-md-4"> 
     <div class="checkbox">
@@ -66,7 +66,7 @@
 </div>
 
 <!-- Select Basic -->
-<div class="form-group">
+<div class="row">
   <label class="col-md-4 control-label" for="ladiessize">Ladies Size</label>
   <div class="col-md-4">
     <select id="ladiessize" name="ladiessize" class="form-control">
@@ -82,7 +82,7 @@
 </div>
 
 <!-- Select Basic -->
-<div class="form-group">
+<div class="row">
   <label class="col-md-4 control-label" for="colour">Colour</label>
   <div class="col-md-4">
     <select id="colour" name="colour" class="form-control">
