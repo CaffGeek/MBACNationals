@@ -15,7 +15,6 @@
 <div class="col-md-10" id="souvenirs">
 <h2>Souvenirs</h2>
 <form method="post">
-<div class="form-group ">
 
 <div class="row">
   <div class="col-md-5"><img class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/MorenoShirt.jpg" alt="moreno shirt" /></div>
@@ -103,10 +102,10 @@
       </select>
   </div>
 </div>
-<hr />
 
 </div>
 
+<hr />
 
 <div class="row">
   <div class="col-md-5"><img  class="souvenirs"  src="http://mbacnationals.com/2017/images/souvenirs/L00660L1.jpg" alt="hoodies" /></div>
@@ -186,10 +185,10 @@
       </select>
   </div>
 </div>
-<hr />
 
 </div>
 
+<hr />
 
 <div class="row">
         	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/L00671L1.jpg" alt="zip hoodie" /></div>
@@ -269,10 +268,10 @@
       </select>
   </div>
 </div>
-<hr />
 
 </div>
 
+<hr />
 
 <div class="row">
         	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/L00671L1.jpg" alt="zip hoodie" /></div>
@@ -352,10 +351,10 @@
       </select>
   </div>
 </div>
-<hr />
 
 </div>
 
+<hr />
 
 <div class="row">
         	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/towel.jpg" alt="towel" /></div>
@@ -400,11 +399,10 @@
   </div>
 </div>
 
+
+</div>
+
 <hr />
-
-</div>
-
-</div>
 </form>
 </div>
 </asp:Content>
