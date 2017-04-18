@@ -3,8 +3,7 @@
 </div>
 
 <div class="col span_2_of_3">
-    <h2>{{model.Province}}</h2>
-    <h2>{{model.Name}}</h2>
+    <h2>{{model.Province}} {{model.Name}}</h2>
   <!--  <h4>Coach:</h4>
     <h4>{{model.Coach}}</h4>-->
 </div>
@@ -24,15 +23,17 @@
     </div>
 </div>-->
 
+<hr class="col-md-6"/>
+
 <table style="width:100%">
     <thead>
         <tr>
-            <td>#</td>
-            <td>W/L</td>
-            <td>Score</td>
-            <td>vs</td>
-            <td>Opponent</td>
-            <td>Location</td>
+            <th>#</th>
+            <th>W/L</th>
+            <th>Score</th>
+            <th>vs</th>
+            <th>Opponent</th>
+            <th>Location</th>
         </tr>
     </thead>
     <tbody>
@@ -45,4 +46,22 @@
             <td>{{score.Centre}} #{{score.Lane}}</td>
         </tr>
     </tbody>
+    <tfoot>
+        <tr>
+            <th title="Total">T</th>
+            <th>{{model.TotalWins}} - {{model.TotalLoss}}</th>
+            <th>{{model.TotalScratch | number:0}} <span data-ng-if="model.Scores[0].IsPOA">({{model.TotalPOA}})</span></th>
+            <th></th>
+            <th>{{model.TotalOpponentScratch | number:0}} <span data-ng-if="model.Scores[0].IsPOA">({{model.TotalOpponentPOA}})</span></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th title="Average">A</th>
+            <th>{{model.AverageWinsPerGame}} - {{model.AverageLossPerGame}}</th>
+            <th>{{model.AverageScratch | number:1}} <span data-ng-if="model.Scores[0].IsPOA">({{model.AveragePOA | number:1}})</span></th>
+            <th></th>
+            <th>{{model.AverageOpponentScratch | number:1}} <span data-ng-if="model.Scores[0].IsPOA">({{model.AverageOpponentPOA | number:1}})</span></th>
+            <th></th>
+        </tr>
+    </tfoot>
 </table>

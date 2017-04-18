@@ -24,11 +24,25 @@ namespace MBACNationals.ReadModels
             public string Name { get; set; }
             public string Province { get; set; }
             public List<Score> Scores { get; set; }
+            public int TotalGames { get; set; }
+            public decimal TotalWins { get; set; }
+            public decimal TotalLoss { get; set; }
+            public int TotalScratch { get; set; }
+            public int TotalOpponentScratch { get; set; }
+            public int TotalPOA { get; set; }
+            public int TotalOpponentPOA { get; set; }
+            public decimal AverageWinsPerGame { get; set; }
+            public decimal AverageLossPerGame { get; set; }
+            public decimal AverageScratch { get; set; }
+            public decimal AveragePOA { get; set; }
+            public decimal AverageOpponentScratch { get; set; }
+            public decimal AverageOpponentPOA { get; set; }
 
             public Team()
             {
                 Scores = new List<Score>();
             }
+
         }
 
         public class Score
@@ -131,6 +145,20 @@ namespace MBACNationals.ReadModels
                 IsPOA = e.IsPOA,
                 Points = e.TotalPoints
             });
+
+            team.TotalGames = team.Scores.Count;
+            team.TotalWins = team.Scores.Sum(x => x.Points);
+            team.TotalLoss = team.Scores.Sum(x => x.OpponentPoints);
+            team.TotalScratch = team.Scores.Sum(x => x.Scratch);
+            team.TotalOpponentScratch = team.Scores.Sum(x => x.OpponentScratch);
+            team.TotalPOA = team.Scores.Sum(x => x.POA);
+            team.TotalOpponentPOA = team.Scores.Sum(x => x.OpponentPOA);
+            team.AverageWinsPerGame = (decimal)team.TotalWins / team.TotalGames;
+            team.AverageLossPerGame = (decimal)team.TotalLoss / team.TotalGames;
+            team.AverageScratch = (decimal)team.TotalScratch / team.TotalGames;
+            team.AveragePOA = (decimal)team.TotalPOA / team.TotalGames;
+            team.AverageOpponentScratch = (decimal)team.TotalOpponentScratch / team.TotalGames;
+            team.AverageOpponentPOA = (decimal)team.TotalOpponentPOA / team.TotalGames;
         }
     }
 }
