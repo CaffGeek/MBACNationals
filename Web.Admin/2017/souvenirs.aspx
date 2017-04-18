@@ -17,12 +17,14 @@
 <div class="form-group ">
 
 <div class="row">
+  <div class="col-md-5">Picture</div>
+  <div class="col-md-5">
 
 <!-- Form Name -->
 <legend>Moreno Shirt - $40</legend>
 
 <!-- Multiple Radios (inline) -->
-<div class="form-group">
+<div class="row">
   <label class="col-md-4 control-label" for="Mens">Mens</label>
   <div class="col-md-4"> 
     <div class="checkbox">
