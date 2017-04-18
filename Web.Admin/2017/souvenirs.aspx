@@ -103,10 +103,10 @@
       </select>
   </div>
 </div>
+<hr />
 
 </div>
 
-<hr />
 
 <div class="row">
   <div class="col-md-5"><img  class="souvenirs"  src="http://mbacnationals.com/2017/images/souvenirs/L00660L1.jpg" alt="hoodies" /></div>
@@ -186,10 +186,10 @@
       </select>
   </div>
 </div>
+<hr />
 
 </div>
 
-<hr />
 
 <div class="row">
         	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/L00671L1.jpg" alt="zip hoodie" /></div>
@@ -269,10 +269,10 @@
       </select>
   </div>
 </div>
+<hr />
 
 </div>
 
-<hr />
 
 <div class="row">
         	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/L00671L1.jpg" alt="zip hoodie" /></div>
@@ -352,10 +352,10 @@
       </select>
   </div>
 </div>
+<hr />
 
 </div>
 
-<hr />
 
 <div class="row">
         	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/towel.jpg" alt="towel" /></div>
@@ -376,10 +376,10 @@
 	</div>
   </div>
 </div>
+<hr />
 
 </div>
 
-<hr />
 <div class="row">
         	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/coozie.jpg" alt="koozie" /></div>
   <div class="col-md-5">
@@ -400,10 +400,10 @@
   </div>
 </div>
 
+<hr />
 
 </div>
 
-<hr />
 </div>
 </form>
 </div>
