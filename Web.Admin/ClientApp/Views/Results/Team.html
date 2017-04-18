@@ -57,7 +57,7 @@
         </tr>
         <tr>
             <th title="Average">A</th>
-            <th>{{model.AverageWinsPerGame}} - {{model.AverageLossPerGame}}</th>
+            <th>{{model.AverageWinsPerGame | number}} - {{model.AverageLossPerGame | number}}</th>
             <th>{{model.AverageScratch | number:1}} <span data-ng-if="model.Scores[0].IsPOA">({{model.AveragePOA | number:1}})</span></th>
             <th></th>
             <th>{{model.AverageOpponentScratch | number:1}} <span data-ng-if="model.Scores[0].IsPOA">({{model.AverageOpponentPOA | number:1}})</span></th>
