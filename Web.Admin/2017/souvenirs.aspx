@@ -121,7 +121,7 @@
   <div class="col-md-4"> 
     <div class="checkbox">
     <label for="mens-0">
-      <input type="checkbox" name="morenoMens" id="mens-0" value="mens">
+      <input type="checkbox" name="bunnyMens" id="mens-0" value="mens">
       Mens
     </label>
 	</div>
@@ -132,7 +132,7 @@
 <div class="row form-group">
   <label class="col-md-4 control-label" for="menssize" style="margin-top:10px;">Mens Size</label>
   <div class="col-md-4">
-    <select id="menssize" name="morenoMenssize" class="form-control">
+    <select id="menssize" name="bunnyMenssize" class="form-control">
       <option value="S">S</option>
       <option value="M">M</option>
       <option value="L">L</option>
@@ -150,7 +150,7 @@
   <div class="col-md-4"> 
     <div class="checkbox">
     <label for="ladies-0">
-      <input type="checkbox" name="morenoLadies" id="ladies-0" value="Ladies">
+      <input type="checkbox" name="bunnyLadies" id="ladies-0" value="Ladies">
       Ladies
     </label>
 	</div>
@@ -161,7 +161,7 @@
 <div class="row form-group">
   <label class="col-md-4 control-label" for="ladiessize" style="margin-top:10px;">Ladies Size</label>
   <div class="col-md-4">
-    <select id="ladiessize" name="morenoLadiessize" class="form-control">
+    <select id="ladiessize" name="bunnyLadiessize" class="form-control">
       <option value="XS">XS</option>
       <option value="S">S</option>
       <option value="M">M</option>
@@ -174,10 +174,10 @@
 </div>
 
 <!-- Select Basic -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="colour">Colour</label>
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="colour" style="margin-top:10px;">Colour</label>
   <div class="col-md-4">
-    <select id="colour" name="colour" class="form-control">
+    <select id="colour" name="bunnyColour" class="form-control">
       <option value="Black">Black</option>
       <option value="Red">Red</option>
       <option value="Blue">Blue</option>
@@ -191,6 +191,88 @@
 
 <hr />
 
+<div class="row">
+        	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/L00671L1.jpg" alt="zip hoodie" /></div>
+  <div class="col-md-5">
+
+<!-- Form Name -->
+<legend>Zip Hoodie - $45</legend>
+
+<!-- Multiple Radios (inline) -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="Mens" style="margin-top:10px;">Mens</label>
+  <div class="col-md-4"> 
+    <div class="checkbox">
+    <label for="mens-0">
+      <input type="checkbox" name="zipMens" id="mens-0" value="mens">
+      Mens
+    </label>
+	</div>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="menssize" style="margin-top:10px;">Mens Size</label>
+  <div class="col-md-4">
+    <select id="menssize" name="zipMenssize" class="form-control">
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+      <option value="XXL">XXL</option>
+      <option value="XXXL">XXXL</option>
+      <option value="XXXXL">XXXXL</option>
+      <option value="XXXXXL">XXXXXL</option>
+    </select>
+  </div>
+</div>
+<!-- Multiple Radios (inline) -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="ladies" style="margin-top:10px;">Ladies</label>
+  <div class="col-md-4"> 
+    <div class="checkbox">
+    <label for="ladies-0">
+      <input type="checkbox" name="zipLadies" id="ladies-0" value="Ladies">
+      Ladies
+    </label>
+	</div>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="ladiessize" style="margin-top:10px;">Ladies Size</label>
+  <div class="col-md-4">
+    <select id="ladiessize" name="zipLadiessize" class="form-control">
+      <option value="XS">XS</option>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+      <option value="XXL">XXL</option>
+      <option value="XXXL">XXXL</option>
+    </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="colour" style="margin-top:10px;">Colour</label>
+  <div class="col-md-4">
+    <select id="colour" name="zipColour" class="form-control">
+      <option value="Black">Black</option>
+      <option value="Red">Red</option>
+      <option value="Blue">Blue</option>
+      <option value="Navy">Navy</option>
+      <option value="Grey">Grey</option>
+      </select>
+  </div>
+</div>
+
+</div>
+
+<hr />
 </div>
 </form>
 </div>
