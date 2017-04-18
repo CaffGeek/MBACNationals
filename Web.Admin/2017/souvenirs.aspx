@@ -25,7 +25,7 @@
 
 <!-- Multiple Radios (inline) -->
 <div class="row form-group">
-  <label class="col-md-4 control-label" for="Mens">Mens</label>
+  <label class="col-md-4 control-label" for="Mens" style="margin-top:10px;">Mens</label>
   <div class="col-md-4"> 
     <div class="checkbox">
     <label for="mens-0">
