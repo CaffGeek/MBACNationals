@@ -368,7 +368,7 @@ width:100%;
 max-width:480px;
 }
 
-#souvenirs label {padding-top:15px;}
+#souvenirs label.col-md-4.control-label {padding-top:15px;}
 
 #souvenirs form-group {margin-bottom:15px;}
 
