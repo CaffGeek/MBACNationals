@@ -13,6 +13,7 @@
     </div>
 
 <div class="col-md-10" id="souvenirs">
+<h2>Souvenirs</h2>
 <form method="post">
 <div class="form-group ">
 
@@ -54,7 +55,7 @@
 </div>
 <!-- Multiple Radios (inline) -->
 <div class="row form-group">
-  <label class="col-md-4 control-label" for="ladies">Ladies</label>
+  <label class="col-md-4 control-label" for="ladies" style="margin-top:10px;">Ladies</label>
   <div class="col-md-4"> 
     <div class="checkbox">
     <label for="ladies-0">
@@ -67,7 +68,7 @@
 
 <!-- Select Basic -->
 <div class="row form-group">
-  <label class="col-md-4 control-label" for="ladiessize">Ladies Size</label>
+  <label class="col-md-4 control-label" for="ladiessize" style="margin-top:10px;">Ladies Size</label>
   <div class="col-md-4">
     <select id="ladiessize" name="ladiessize" class="form-control">
       <option value="XS">XS</option>
@@ -83,7 +84,7 @@
 
 <!-- Select Basic -->
 <div class="row form-group">
-  <label class="col-md-4 control-label" for="colour">Colour</label>
+  <label class="col-md-4 control-label" for="colour" style="margin-top:10px;">Colour</label>
   <div class="col-md-4">
     <select id="colour" name="colour" class="form-control">
       <option value="White">White</option>
