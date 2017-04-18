@@ -372,4 +372,6 @@ max-width:480px;
 
 #souvenirs form-group {margin-bottom:15px;}
 
+#souvenirs form-group label {margin-top:0px;}
+
 hr {clear:both;margin-top:15px;margin-bottom:15px;}

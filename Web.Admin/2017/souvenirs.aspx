@@ -17,7 +17,7 @@
 <div class="form-group ">
 
 <div class="row">
-  <div class="col-md-5"><img src="http://mbacnationals.com/2017/images/souvenirs/MorenoShirt.jpg" alt="moreno shirt" /></div>
+  <div class="col-md-5"><img class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/MorenoShirt.jpg" alt="moreno shirt" /></div>
   <div class="col-md-5">
 
 <!-- Form Name -->
@@ -38,7 +38,7 @@
 
 <!-- Select Basic -->
 <div class="row form-group">
-  <label class="col-md-4 control-label" for="menssize">Mens Size</label>
+  <label class="col-md-4 control-label" for="menssize" style="margin-top:10px;">Mens Size</label>
   <div class="col-md-4">
     <select id="menssize" name="menssize" class="form-control">
       <option value="S">S</option>
