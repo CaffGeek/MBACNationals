@@ -357,8 +357,8 @@
 <hr />
 
 <div class="row">
-        	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/towel.jpg" alt="towel" /></div>
-  <div class="col-md-7">
+	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/towel.jpg" alt="towel" /></div>
+	<div class="col-md-7">
 
 <!-- Form Name -->
 <legend>Towel - $15</legend>
@@ -373,7 +373,12 @@
       Towel
     </label>
 	</div>
+<div class="row form-group">
+  <label>Customization:</label>
+  <input type="text" class="form-control" id="customization">
+</div>
   </div>
+</div>
 </div>
 <hr />
 
@@ -395,11 +400,10 @@
       Koozie
     </label>
 	</div>
-	<label class="col-md-4 control-label" for="customization">Customization</label>  
-  <div class="col-md-4">
-  <input id="customization" name="customization" type="text" placeholder="Enter Custom Text Here" class="form-control input-md">
-  <span class="help-block">Maximum XX characters</span>  
-  </div>
+<div class="row form-group">
+  <label>Customization:</label>
+  <input type="text" class="form-control" id="customization">
+</div>
   </div>
 </div>
 
