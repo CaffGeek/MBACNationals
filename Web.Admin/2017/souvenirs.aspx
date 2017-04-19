@@ -18,7 +18,7 @@
 
 <div class="row">
   <div class="col-md-5"><img class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/MorenoShirt.jpg" alt="moreno shirt" /></div>
-  <div class="col-md-5">
+  <div class="col-md-7">
 
 <!-- Form Name -->
 <legend>Moreno Shirt - $40</legend>
@@ -109,7 +109,7 @@
 
 <div class="row">
   <div class="col-md-5"><img  class="souvenirs"  src="http://mbacnationals.com/2017/images/souvenirs/L00660L1.jpg" alt="hoodies" /></div>
-  <div class="col-md-5">
+  <div class="col-md-7">
 
 <!-- Form Name -->
 <legend>Bunny Hug - $45</legend>
@@ -192,7 +192,7 @@
 
 <div class="row">
         	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/L00671L1.jpg" alt="zip hoodie" /></div>
-  <div class="col-md-5">
+  <div class="col-md-7">
 
 <!-- Form Name -->
 <legend>Zip Hoodie - $45</legend>
@@ -275,7 +275,7 @@
 
 <div class="row">
         	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/L00671L1.jpg" alt="zip hoodie" /></div>
-  <div class="col-md-5">
+  <div class="col-md-7">
 
 <!-- Form Name -->
 <legend>Soft-Shell Jackets - $55</legend>
@@ -358,7 +358,7 @@
 
 <div class="row">
         	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/towel.jpg" alt="towel" /></div>
-  <div class="col-md-5">
+  <div class="col-md-7">
 
 <!-- Form Name -->
 <legend>Towel - $15</legend>
@@ -381,7 +381,7 @@
 
 <div class="row">
         	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/coozie.jpg" alt="koozie" /></div>
-  <div class="col-md-5">
+  <div class="col-md-7">
 
 <!-- Form Name -->
 <legend>Bottle Koozie - $15</legend>
@@ -396,6 +396,11 @@
       Koozie
     </label>
 	</div>
+	<label class="col-md-4 control-label" for="customization">Customization</label>  
+  <div class="col-md-4">
+  <input id="customization" name="customization" type="text" placeholder="Enter Custom Text Here" class="form-control input-md">
+  <span class="help-block">Maximum XX characters</span>  
+  </div>
   </div>
 </div>
 
