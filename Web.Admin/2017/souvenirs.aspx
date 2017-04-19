@@ -377,7 +377,6 @@
 </div>
 <hr />
 
-</div>
 
 <div class="row">
         	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/coozie.jpg" alt="koozie" /></div>
