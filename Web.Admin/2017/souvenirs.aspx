@@ -14,106 +14,403 @@
 
 <div class="col-md-10" id="souvenirs">
 <h2>Souvenirs</h2>
-<div class="col-xs-12 col-md-6">
- 
-                <!-- First product box start here-->
-                <div class="prod-info-main prod-wrap clearfix">
- 
-                      <div class="row">
- 
-                           <div class="col-md-5 col-sm-12 col-xs-12">
- 
-                            <div class="product-image">
- 
-                             <img src="images/products/p4.png" class="img-responsive">
- 
-                               <span class="tag2 hot">
- 
-                                 SPECIAL
- 
-                               </span>
- 
-                       </div>
- 
-                  </div>
- 
-    <div class="col-md-7 col-sm-12 col-xs-12">
- 
-                  <div class="product-deatil">
- 
-                               <h5 class="name">
- 
-                               <a href="#">
- 
-                                Product Code/Name here
- 
-                               </a>
- 
-                               <a href="#">
- 
-                               <span>Product Category</span>
- 
-                               </a>                           
- 
-                        </h5>
- 
-                            <p class="price-container">
- 
-                             <span>$199</span>
- 
-                           </p>
- 
-              <span class="tag1"></span>
- 
-   </div>
- 
-  <div class="description">
- 
-      <p>A Short product description here </p>
- 
-   </div>
- 
-      <div class="product-info smart-form">
- 
-         <div class="row">
- 
-         <div class="col-md-12">
- 
-          <a href="#" class="btn btn-danger">Add to cart</a>
- 
-             <a href="javascript:void(0);" class="btn btn-info">More info</a>
- 
-       </div>
- 
-      <div class="col-md-12">
- 
-         <div class="rating">Rating:
- 
-          <label for="stars-rating-5"><i class="fa fa-star text-danger"></i></label>
- 
-          <label for="stars-rating-4"><i class="fa fa-star text-danger"></i></label>
- 
-          <label for="stars-rating-3"><i class="fa fa-star text-danger"></i></label>
- 
-          <label for="stars-rating-2"><i class="fa fa-star text-warning"></i></label>
- 
-          <label for="stars-rating-1"><i class="fa fa-star text-warning"></i></label>
- 
-         </div>
- 
-       </div>
- 
-    </div>
- 
-   </div>
- 
-  </div>
- 
+<form method="post">
+
+<div class="row">
+  <div class="col-md-5"><img class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/MorenoShirt.jpg" alt="moreno shirt" /></div>
+  <div class="col-md-7">
+
+<!-- Form Name -->
+<legend>Moreno Shirt - $40</legend>
+
+<!-- Multiple Radios (inline) -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="Mens" style="margin-top:10px;">Mens</label>
+  <div class="col-md-4"> 
+    <div class="checkbox">
+    <label for="mens-0">
+      <input type="checkbox" name="morenoMens" id="mens-0" value="mens">
+      Mens
+    </label>
+	</div>
   </div>
 </div>
- 
-<!-- end product -->
- 
+
+<!-- Select Basic -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="menssize" style="margin-top:10px;">Mens Size</label>
+  <div class="col-md-4">
+    <select id="menssize" name="morenoMenssize" class="form-control">
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+      <option value="XXL">XXL</option>
+      <option value="XXXL">XXXL</option>
+      <option value="XXXXL">XXXXL</option>
+      <option value="XXXXXL">XXXXXL</option>
+    </select>
+  </div>
 </div>
+<!-- Multiple Radios (inline) -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="ladies" style="margin-top:10px;">Ladies</label>
+  <div class="col-md-4"> 
+    <div class="checkbox">
+    <label for="ladies-0">
+      <input type="checkbox" name="morenoLadies" id="ladies-0" value="Ladies">
+      Ladies
+    </label>
+	</div>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="ladiessize" style="margin-top:10px;">Ladies Size</label>
+  <div class="col-md-4">
+    <select id="ladiessize" name="morenoLadiessize" class="form-control">
+      <option value="XS">XS</option>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+      <option value="XXL">XXL</option>
+      <option value="XXXL">XXXL</option>
+    </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="colour" style="margin-top:10px;">Colour</label>
+  <div class="col-md-4">
+    <select id="colour" name="morenoColour" class="form-control">
+      <option value="White">White</option>
+      <option value="Stone">Stone</option>
+      <option value="Mocha">Mocha</option>
+      <option value="Pink">Pink Zircon - Ladies Only</option>
+      <option value="Red">Red</option>
+      <option value="Maroon">Maroon</option>
+      <option value="Chill">Chill</option>
+      <option value="OlympicBlue">Olympic Blue</option>
+      <option value="Navy">Navy</option>
+      <option value="ForestGreen">Forest Green</option>    
+      <option value="GreenTea">Green Tea</option>
+      <option value="SteelGrey">Steel Grey</option>
+      <option value="Black">Black</option>
+      </select>
+  </div>
+</div>
+
+</div>
+
+<hr />
+
+<div class="row">
+  <div class="col-md-5"><img  class="souvenirs"  src="http://mbacnationals.com/2017/images/souvenirs/L00660L1.jpg" alt="hoodies" /></div>
+  <div class="col-md-7">
+
+<!-- Form Name -->
+<legend>Bunny Hug - $45</legend>
+
+<!-- Multiple Radios (inline) -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="Mens" style="margin-top:10px;">Mens</label>
+  <div class="col-md-4"> 
+    <div class="checkbox">
+    <label for="mens-0">
+      <input type="checkbox" name="bunnyMens" id="mens-0" value="mens">
+      Mens
+    </label>
+	</div>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="menssize" style="margin-top:10px;">Mens Size</label>
+  <div class="col-md-4">
+    <select id="menssize" name="bunnyMenssize" class="form-control">
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+      <option value="XXL">XXL</option>
+      <option value="XXXL">XXXL</option>
+      <option value="XXXXL">XXXXL</option>
+      <option value="XXXXXL">XXXXXL</option>
+    </select>
+  </div>
+</div>
+<!-- Multiple Radios (inline) -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="ladies" style="margin-top:10px;">Ladies</label>
+  <div class="col-md-4"> 
+    <div class="checkbox">
+    <label for="ladies-0">
+      <input type="checkbox" name="bunnyLadies" id="ladies-0" value="Ladies">
+      Ladies
+    </label>
+	</div>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="ladiessize" style="margin-top:10px;">Ladies Size</label>
+  <div class="col-md-4">
+    <select id="ladiessize" name="bunnyLadiessize" class="form-control">
+      <option value="XS">XS</option>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+      <option value="XXL">XXL</option>
+      <option value="XXXL">XXXL</option>
+    </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="colour" style="margin-top:10px;">Colour</label>
+  <div class="col-md-4">
+    <select id="colour" name="bunnyColour" class="form-control">
+      <option value="Black">Black</option>
+      <option value="Red">Red</option>
+      <option value="Blue">Blue</option>
+      <option value="Navy">Navy</option>
+      <option value="Grey">Grey</option>
+      </select>
+  </div>
+</div>
+
+</div>
+
+<hr />
+
+<div class="row">
+        	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/L00671L1.jpg" alt="zip hoodie" /></div>
+  <div class="col-md-7">
+
+<!-- Form Name -->
+<legend>Zip Hoodie - $45</legend>
+
+<!-- Multiple Radios (inline) -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="Mens" style="margin-top:10px;">Mens</label>
+  <div class="col-md-4"> 
+    <div class="checkbox">
+    <label for="mens-0">
+      <input type="checkbox" name="zipMens" id="mens-0" value="mens">
+      Mens
+    </label>
+	</div>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="menssize" style="margin-top:10px;">Mens Size</label>
+  <div class="col-md-4">
+    <select id="menssize" name="zipMenssize" class="form-control">
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+      <option value="XXL">XXL</option>
+      <option value="XXXL">XXXL</option>
+      <option value="XXXXL">XXXXL</option>
+      <option value="XXXXXL">XXXXXL</option>
+    </select>
+  </div>
+</div>
+<!-- Multiple Radios (inline) -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="ladies" style="margin-top:10px;">Ladies</label>
+  <div class="col-md-4"> 
+    <div class="checkbox">
+    <label for="ladies-0">
+      <input type="checkbox" name="zipLadies" id="ladies-0" value="Ladies">
+      Ladies
+    </label>
+	</div>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="ladiessize" style="margin-top:10px;">Ladies Size</label>
+  <div class="col-md-4">
+    <select id="ladiessize" name="zipLadiessize" class="form-control">
+      <option value="XS">XS</option>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+      <option value="XXL">XXL</option>
+      <option value="XXXL">XXXL</option>
+    </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="colour" style="margin-top:10px;">Colour</label>
+  <div class="col-md-4">
+    <select id="colour" name="zipColour" class="form-control">
+      <option value="Black">Black</option>
+      <option value="Red">Red</option>
+      <option value="Blue">Blue</option>
+      <option value="Navy">Navy</option>
+      <option value="Grey">Grey</option>
+      </select>
+  </div>
+</div>
+
+</div>
+
+<hr />
+
+<div class="row">
+        	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/L00671L1.jpg" alt="zip hoodie" /></div>
+  <div class="col-md-7">
+
+<!-- Form Name -->
+<legend>Soft-Shell Jackets - $55</legend>
+
+<!-- Multiple Radios (inline) -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="Mens" style="margin-top:10px;">Mens</label>
+  <div class="col-md-4"> 
+    <div class="checkbox">
+    <label for="mens-0">
+      <input type="checkbox" name="jacketMens" id="mens-0" value="mens">
+      Mens
+    </label>
+	</div>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="menssize" style="margin-top:10px;">Mens Size</label>
+  <div class="col-md-4">
+    <select id="menssize" name="jacketMenssize" class="form-control">
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+      <option value="XXL">XXL</option>
+      <option value="XXXL">XXXL</option>
+      <option value="XXXXL">XXXXL</option>
+      <option value="XXXXXL">XXXXXL</option>
+    </select>
+  </div>
+</div>
+<!-- Multiple Radios (inline) -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="ladies" style="margin-top:10px;">Ladies</label>
+  <div class="col-md-4"> 
+    <div class="checkbox">
+    <label for="ladies-0">
+      <input type="checkbox" name="jacketLadies" id="ladies-0" value="Ladies">
+      Ladies
+    </label>
+	</div>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="ladiessize" style="margin-top:10px;">Ladies Size</label>
+  <div class="col-md-4">
+    <select id="ladiessize" name="jacketLadiessize" class="form-control">
+      <option value="XS">XS</option>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+      <option value="XXL">XXL</option>
+      <option value="XXXL">XXXL</option>
+    </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="colour" style="margin-top:10px;">Colour</label>
+  <div class="col-md-4">
+    <select id="colour" name="jacketColour" class="form-control">
+      <option value="Black">Black</option>
+      <option value="Red">Red</option>
+      <option value="Blue">Blue</option>
+      <option value="Navy">Navy</option>
+      <option value="Grey">Grey</option>
+      </select>
+  </div>
+</div>
+
+</div>
+
+<hr />
+
+<div class="row">
+	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/towel.jpg" alt="towel" /></div>
+	<div class="col-md-7">
+
+<!-- Form Name -->
+<legend>Towel - $15</legend>
+
+<!-- Multiple Radios (inline) -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="Towel" style="margin-top:10px;">Towel</label>
+  <div class="col-md-4"> 
+    <div class="checkbox">
+    <label for="towel-0">
+      <input type="checkbox" name="towel" id="towel-0" value="towel">
+      Towel
+    </label>
+	</div>
+<div class="row form-group">
+  <label>Customization:</label>
+  <input type="text" class="form-control" id="customization">
+</div>
+  </div>
+</div>
+</div>
+<hr />
+
+
+<div class="row">
+        	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/coozie.jpg" alt="koozie" /></div>
+  <div class="col-md-7">
+
+<!-- Form Name -->
+<legend>Bottle Koozie - $15</legend>
+
+<!-- Multiple Radios (inline) -->
+<div class="row form-group">
+  <label class="col-md-4 control-label" for="Koozie" style="margin-top:10px;">Koozie</label>
+  <div class="col-md-4"> 
+    <div class="checkbox">
+    <label for="koozie-0">
+      <input type="checkbox" name="koozie" id="mens-0" value="koozie">
+      Koozie
+    </label>
+	</div>
+<div class="row form-group">
+  <label>Customization:</label>
+  <input type="text" class="form-control" id="customization">
+</div>
+  </div>
+</div>
+
+
+</div>
+
+<hr />
+</form>
 </div>
 </asp:Content>
