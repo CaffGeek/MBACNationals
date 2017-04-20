@@ -22,6 +22,7 @@
     <IISExpressUseClassicPipelineMode />
     <TargetFrameworkProfile />
     <ApplicationInsightsResourceId>/subscriptions/c93870fc-27cf-48dc-88d3-791142fb6245/resourcegroups/Default-Web-NorthCentralUS/providers/microsoft.insights/components/mbacnationals</ApplicationInsightsResourceId>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -1988,6 +1989,7 @@
     <Content Include="2017\css\customize.css" />
     <Content Include="2017\css\customize2017.css" />
     <Content Include="2017\default.aspx" />
+    <Content Include="2017\sponsors.aspx" />
     <Content Include="2017\hotel.aspx" />
     <Content Include="2017\images\background.jpg" />
     <Content Include="2017\images\centre1.jpg" />
