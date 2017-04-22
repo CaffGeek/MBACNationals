@@ -16,10 +16,13 @@
 
 <div class="col-md-10" id="souvenirs">
 <h2>Souvenirs</h2>
+
+<p>To order, please download and fill out this <a href="2017_Souvenirs.xls">order form</a> and email it to Judy @ <a href="mailto:classicmakings@yourlink.ca">classicmakings@yourlink.ca</a> </p>
+
 <form method="post">
 
 <div class="row">
-  <div class="col-md-5"><img class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/MorenoShirt.jpg" alt="moreno shirt" /></div>
+  <div class="col-md-5"><img class="souvenirs" src="/2017/images/souvenirs/MorenoShirt.jpg" alt="moreno shirt" /></div>
   <div class="col-md-7">
 
 <h4>Moreno Shirt - $40</h4>
@@ -52,7 +55,7 @@ inside of slits.</p>
 <hr />
 
 <div class="row">
-  <div class="col-md-5"><img  class="souvenirs"  src="http://mbacnationals.com/2017/images/souvenirs/L00660L1.jpg" alt="hoodies" /></div>
+  <div class="col-md-5"><img  class="souvenirs"  src="/2017/images/souvenirs/L00660L1.jpg" alt="hoodies" /></div>
   <div class="col-md-7">
 
 <!-- Form Name -->
@@ -76,7 +79,7 @@ inside of slits.</p>
 <hr />
 
 <div class="row">
-        	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/L00671L1.jpg" alt="zip hoodie" /></div>
+        	<div class="col-md-5"><img  class="souvenirs" src="/2017/images/souvenirs/L00671L1.jpg" alt="zip hoodie" /></div>
   <div class="col-md-7">
 
 <!-- Form Name -->
@@ -101,7 +104,7 @@ inside of slits.</p>
 <hr />
 
 <div class="row">
-        	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/L00671L1.jpg" alt="zip hoodie" /></div>
+        	<div class="col-md-5"><img  class="souvenirs" src="/2017/images/souvenirs/L00671L1.jpg" alt="zip hoodie" /></div>
   <div class="col-md-7">
 
 <!-- Form Name -->
@@ -184,7 +187,7 @@ inside of slits.</p>
 <hr />
 
 <div class="row">
-	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/towel.jpg" alt="towel" /></div>
+	<div class="col-md-5"><img  class="souvenirs" src="/2017/images/souvenirs/towel.jpg" alt="towel" /></div>
 	<div class="col-md-7">
 
 <!-- Form Name -->
@@ -196,7 +199,7 @@ inside of slits.</p>
 
 
 <div class="row">
-        	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/coozie.jpg" alt="koozie" /></div>
+        	<div class="col-md-5"><img  class="souvenirs" src="/2017/images/souvenirs/coozie.jpg" alt="koozie" /></div>
   <div class="col-md-7">
 
 <!-- Form Name -->
