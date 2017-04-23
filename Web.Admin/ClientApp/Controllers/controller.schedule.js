@@ -3,8 +3,10 @@
 
     var scheduleController = function ($scope, $http, dataService) {
         $scope.model = {};
+        $scope.schedule = {};
 
         $scope.loadLaneDraw = loadLaneDraw;
+        $scope.loadSchedule = loadSchedule;
 
         $scope.HasGames = getHasGames;
         $scope.Opponent = getOpponent;
@@ -12,6 +14,7 @@
         $scope.Lane = getLane;
 
         loadLaneDraw('Tournament Men Single');
+        loadSchedule();
         
         function loadLaneDraw(division) {
             $scope.model.Division = division;
@@ -58,6 +61,12 @@
                 ? match.Lane + 1 
                 : match.Lane;
         };
+
+        function loadSchedule() {
+            var data = dataService.LoadSchedule().then(function (data) {
+                $scope.schedule = data.data;
+            });
+        }
     };
 
     app.controller("ScheduleController", ["$scope", "$http", "dataService", scheduleController]);

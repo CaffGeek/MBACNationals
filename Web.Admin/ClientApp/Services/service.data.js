@@ -19,7 +19,8 @@
             LoadSponsors: loadSponsors,
             LoadHotels: loadHotels,
             LoadNews: loadNews,
-            LoadCentres: loadCentres
+            LoadCentres: loadCentres,
+            LoadSchedule: loadSchedule
         };
 
         function loadContingent(province) {
@@ -84,6 +85,10 @@
 
         function loadCentres() {
             return $http.get('/Setup/Centres/List/' + currentYear);
+        };
+
+        function loadSchedule() {
+            return $http.get('https://www.googleapis.com/calendar/v3/calendars/smk8ud28p3nbej0iebr5dum4vc@group.calendar.google.com/events?key=AIzaSyAdeUS3weAGDePVRgV5x5B3u5_aHSRNvOY');
         };
     };
     

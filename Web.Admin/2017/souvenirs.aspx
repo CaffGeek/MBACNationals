@@ -31,13 +31,13 @@ management. Classic flat knit collar with long, slimming two-button
 placket (women's). Contrast 'X' shaped bartacks at slits and taping on
 inside of slits.</p>
 <h5>Sizes Available:</h5>
-<a target="_blank" href="http://mbacnationals.com/2017/images/souvenirs/MorenoSizes.jpg">Moreno Sizing Chart</a>
+<a target="_blank" href="images/souvenirs/MorenoSizes.jpg">Moreno Sizing Chart</a>
 <ul>
 <li><strong>Mens</strong> S - 5XL</li>
 <li><strong>Ladies</strong> XS - 3XL</li>
 </ul>
 <h5>Colours Available:</h5>
-<a target="_blank" href="http://mbacnationals.com/2017/images/souvenirs/MorenoColours.jpg">Moreno Colours</a>
+<a target="_blank" href="images/souvenirs/MorenoColours.jpg">Moreno Colours</a>
 <ul>
 <li>White</li>
 <li>Mocha</li>
@@ -65,7 +65,7 @@ inside of slits.</p>
 <hr />
 <p>80% Cotton / 20% polyester ringspun cotton blended fleece pullover hoodie (280gsm). Double layer hood lined with jersey. Contrast chevron tape at neck seam. Adjustable contrast flat draw cord. Double layer ribbed cuff and hem with lycra.</p>
 <h5>Sizes Available:</h5>
-<a target="_blank" href="http://mbacnationals.com/2017/images/souvenirs/L00660Sizes.jpg">Sizing Chart</a>
+<a target="_blank" href="images/souvenirs/L00660Sizes.jpg">Sizing Chart</a>
 <ul>
 <li><strong>Mens</strong> S - 4XL</li>
 <li><strong>Ladies</strong> XS - 2XL</li>
@@ -91,7 +91,7 @@ inside of slits.</p>
 <hr />
 <p>80% Cotton / 20% polyester ringspun cotton blended fleece pullover hoodie (280gsm). Double layer hood lined with jersey. Contrast chevron tape at neck seam. Adjustable contrast flat draw cord. YKK aluminum metal front zippered closure. Double layer ribbed cuff and hem with lycra.</p>
 <h5>Sizes Available:</h5>
-<a target="_blank" href="http://mbacnationals.com/2017/images/souvenirs/L00671L1Sizes.jpg">Sizing Chart</a>
+<a target="_blank" href="images/souvenirs/L00671L1Sizes.jpg">Sizing Chart</a>
 <ul>
 <li><strong>Mens</strong> S - 4XL</li>
 <li><strong>Ladies</strong> XS - 2XL</li>
@@ -109,7 +109,7 @@ inside of slits.</p>
 <hr />
 
 <div class="row">
-<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/softShell.jpg" alt="Soft Shell" /></div>
+<div class="col-md-5"><img  class="souvenirs" src="images/souvenirs/softShell.jpg" alt="Soft Shell" /></div>
    	  <div class="col-md-7">
 
 <!-- Form Name -->
@@ -128,11 +128,11 @@ inside of slits.</p>
 </ul>
 <h5>Sizes Available:</h5>
 <ul>
-<li><strong>Mens</strong> L - 4XL <a target="_blank" href="http://mbacnationals.com/2017/images/souvenirs/softShellMensSize.jpg">Mens Sizing Chart</a>
+<li><strong>Mens</strong> L - 4XL <a target="_blank" href="images/souvenirs/softShellMensSize.jpg">Mens Sizing Chart</a>
 </li>
-<li><strong>Mens Tall Sizes</strong> LT - 4XLT <a target="_blank" href="http://mbacnationals.com/2017/images/souvenirs/softShellMensSize.jpg">Tall Sizing Chart</a>
+<li><strong>Mens Tall Sizes</strong> LT - 4XLT <a target="_blank" href="images/souvenirs/softShellMensSize.jpg">Tall Sizing Chart</a>
 </li>
-<li><strong>Ladies</strong> XS - 4XL <a target="_blank" href="http://mbacnationals.com/2017/images/souvenirs/softShellMensSize.jpg">Ladies Sizing Chart</a>
+<li><strong>Ladies</strong> XS - 4XL <a target="_blank" href="images/souvenirs/softShellMensSize.jpg">Ladies Sizing Chart</a>
 </li>
 </ul>
 <h5>Colours Available:</h5>
