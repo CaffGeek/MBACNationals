@@ -8,16 +8,14 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyPlaceholder" runat="server">
     <div class="col-md-2">
         <ul class="sidebarNav">
-            <li>instructions</li>
-            <p>Souvenirs will only be available for pre-order <strong>until June 1st!</strong> So please place orders as soon as possible. </p>
-            <p>Customization of Towels & Koozies is only available by pre-order online and Koozies are only available online.</p>
         </ul>
     </div>
 
 <div class="col-md-10" id="souvenirs">
 <h2>Souvenirs</h2>
-
-<p>To order, please download and fill out this <a href="2017_Souvenirs.xls">order form</a> and email it to Judy @ <a href="mailto:classicmakings@yourlink.ca">classicmakings@yourlink.ca</a> </p>
+<p>Souvenirs will only be available for pre-order <strong>until June 1st!</strong> So please place orders as soon as possible. </p>
+<p>Customization of Towels & Koozies is only available by pre-order online and Koozies are only available online.</p>
+<p><strong>To order, please download and fill out this <a href="2017_Souvenirs.xls">order form</a> and email it to Judy @ <a href="mailto:classicmakings@yourlink.ca">classicmakings@yourlink.ca</a></strong></p>
 
 <form method="post">
 
@@ -26,6 +24,7 @@
   <div class="col-md-7">
 
 <h3>Moreno Shirt - $40</h3>
+<hr />
 <p>Advanced WEBTech™ 100 wicking fabric offers breathable moisture
 management. Classic flat knit collar with long, slimming two-button
 placket (women's). Contrast 'X' shaped bartacks at slits and taping on
@@ -61,6 +60,7 @@ inside of slits.</p>
 
 <!-- Form Name -->
 <h3>Bunny Hug - $45</h3>
+<hr />
 <p>80% Cotton / 20% polyester ringspun cotton blended fleece pullover hoodie (280gsm). Double layer hood lined with jersey. Contrast chevron tape at neck seam. Adjustable contrast flat draw cord. Double layer ribbed cuff and hem with lycra.</p>
 <h5>Sizes Available:</h5>
 <ul>
@@ -85,7 +85,7 @@ inside of slits.</p>
 
 <!-- Form Name -->
 <h3>Zip Hoodie - $45</h3>
-
+<hr />
 <p>80% Cotton / 20% polyester ringspun cotton blended fleece pullover hoodie (280gsm). Double layer hood lined with jersey. Contrast chevron tape at neck seam. Adjustable contrast flat draw cord. YKK aluminum metal front zippered closure. Double layer ribbed cuff and hem with lycra.</p>
 <h5>Sizes Available:</h5>
 <ul>
@@ -110,7 +110,7 @@ inside of slits.</p>
 
 <!-- Form Name -->
 <h3>Soft-Shell Jackets - $55 • Men's Tall - $65</h3>
-
+<hr />
 <ul>
 <li>13.5-oz, 100% polyester with mechanical stretch bonded with 100% polyester micro fleece</li>
 <li>1000mm/1000g/m2 waterproof/breathability rating</li>
@@ -153,7 +153,8 @@ inside of slits.</p>
 
 <!-- Form Name -->
 <h3>Towel - $15</h3>
-<p>Towel customization is available by online pre-order only.</p>
+<hr />
+<p>Towel customization is available by online pre-order only for an extra $1.50.</p>
 
 </div>
 <hr />
@@ -164,9 +165,9 @@ inside of slits.</p>
   <div class="col-md-7">
 
 <!-- Form Name -->
-<h3>Bottle Koozie - $15<br />ONLY AVAILABLE ONLINE</h3>
-
-<p>Bottle koozies are only available by online pre-order.</p>
+<h3>Bottle Koozie - $15<br /><span style="color:red;">ONLY AVAILABLE ONLINE</span></h3>
+<hr />
+<p>Bottle koozies are only available by online pre-order and customization is available for an extra $1.50.</p>
 
 </div>
 
