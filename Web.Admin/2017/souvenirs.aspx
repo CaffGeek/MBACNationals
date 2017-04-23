@@ -76,7 +76,7 @@ inside of slits.</p>
 <li>Grey</li>
 </ul>
 </div>
-
+</div>
 <hr />
 
 <div class="row">
@@ -101,7 +101,7 @@ inside of slits.</p>
 <li>Grey</li>
 </ul>
 </div>
-
+</div>
 <hr />
 
 <div class="row">
