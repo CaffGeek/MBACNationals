@@ -137,7 +137,7 @@ inside of slits.</p>
 
 </ul>
 </div>
-
+</div>
 <hr />
 
 <div class="row">
