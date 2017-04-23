@@ -1,8 +1,9 @@
 <%@ Language="C#" MasterPageFile="~/MBAC.Master" AutoEventWireup="false" %>
 
+
 <asp:Content ID="HeaderContent" ContentPlaceHolderID="HeaderPlaceholder" runat="server">
-    <div id="headerImage" style="margin-top:15px;background-size:cover;background-position:center center;height:375px;background-image:url('images/header_image_schedule.jpg'); "></div>
-    <div id="photoCredit"><strong>Tiger Lilies</strong> &bull; Credit: Flickr Commons - Audrey</div>
+    <div id="headerImage" style="margin-top: 15px; background-size: cover; background-position: center center; height: 375px; background-image: url('images/header_image_default.jpg');"></div>
+    <div id="photoCredit"><strong>The Conexus Arts Centre</strong> &bull; Credit: WikiCommons - Tintaggon</div>
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyPlaceholder" runat="server">
