@@ -130,18 +130,11 @@ inside of slits.</p>
 </ul>
 <h5>Colours Available:</h5>
 <ul>
-<li>White</li>
-<li>Mocha</li>
-<li>Pink Zircon (Ladies Only)</li>
-<li>Red</li>
-<li>Maroon</li>
-<li>Chill</li>
-<li>Olympic Blue</li>
-<li>Navy</li>
-<li>Forest Green</li>
-<li>Green Tea</li>
-<li>Steel Grey</li>
 <li>Black</li>
+<li>Graphite</li>
+<li>Midnight Blue</li>
+<li>Imperial Blue</li>
+
 </ul>
 </div>
 
@@ -156,6 +149,7 @@ inside of slits.</p>
 <hr />
 <p>Towel customization is available by online pre-order only for an extra $1.50.</p>
 
+</div>
 </div>
 <hr />
 
