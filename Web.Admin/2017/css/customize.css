@@ -22,7 +22,8 @@ body {
 }
 
 
-
+a {color:#006633;}
+a:hover {#003300;}
 h1, h2, h3, h4, h5, h6 {
 	    font-family: 'bebasregular';
 	    color: rgba(255,0,0,.6);

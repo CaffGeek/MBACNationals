@@ -51,7 +51,7 @@ inside of slits.</p>
 <li>Black</li>
 </ul>
 </div>
-
+</div>
 <hr />
 
 <div class="row">
