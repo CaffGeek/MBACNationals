@@ -22,7 +22,7 @@
   <div class="col-md-5"><img class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/MorenoShirt.jpg" alt="moreno shirt" /></div>
   <div class="col-md-7">
 
-<h4>Moreno Shirt - $40</h4>
+<h3>Moreno Shirt - $40</h3>
 <p>Advanced WEBTech™ 100 wicking fabric offers breathable moisture
 management. Classic flat knit collar with long, slimming two-button
 placket (women's). Contrast 'X' shaped bartacks at slits and taping on
@@ -33,6 +33,7 @@ inside of slits.</p>
 <li><strong>Ladies</strong> XS - 3XL</li>
 </ul>
 <h5>Colours Available:</h5>
+<a target="_blank" href="http://mbacnationals.com/2017/images/souvenirs/MorenoColours.jpg">Moreno Colours</a>
 <ul>
 <li>White</li>
 <li>Mocha</li>
@@ -56,7 +57,7 @@ inside of slits.</p>
   <div class="col-md-7">
 
 <!-- Form Name -->
-<legend>Bunny Hug - $45</legend>
+<h3>Bunny Hug - $45</h3>
 <p>80% Cotton / 20% polyester ringspun cotton blended fleece pullover hoodie (280gsm). Double layer hood lined with jersey. Contrast chevron tape at neck seam. Adjustable contrast flat draw cord. Double layer ribbed cuff and hem with lycra.</p>
 <h5>Sizes Available:</h5>
 <ul>
@@ -80,7 +81,7 @@ inside of slits.</p>
   <div class="col-md-7">
 
 <!-- Form Name -->
-<legend>Zip Hoodie - $45</legend>
+<h3>Zip Hoodie - $45</h3>
 
 <p>80% Cotton / 20% polyester ringspun cotton blended fleece pullover hoodie (280gsm). Double layer hood lined with jersey. Contrast chevron tape at neck seam. Adjustable contrast flat draw cord. YKK aluminum metal front zippered closure. Double layer ribbed cuff and hem with lycra.</p>
 <h5>Sizes Available:</h5>
@@ -101,84 +102,44 @@ inside of slits.</p>
 <hr />
 
 <div class="row">
-        	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/L00671L1.jpg" alt="zip hoodie" /></div>
+        	<div class="col-md-5"><img  class="souvenirs" src="http://mbacnationals.com/2017/images/souvenirs/softShell.jpg" alt="Soft Shell" /></div>
   <div class="col-md-7">
 
 <!-- Form Name -->
-<legend>Soft-Shell Jackets - $55</legend>
+<h3>Soft-Shell Jackets - $55 • Men's Tall - $65</h3>
 
-<!-- Multiple Radios (inline) -->
-<div class="row form-group">
-  <label class="col-md-4 control-label" for="Mens" style="margin-top:10px;">Mens</label>
-  <div class="col-md-4"> 
-    <div class="checkbox">
-    <label for="mens-0">
-      <input type="checkbox" name="jacketMens" id="mens-0" value="mens">
-      Mens
-    </label>
-	</div>
-  </div>
-</div>
-
-<!-- Select Basic -->
-<div class="row form-group">
-  <label class="col-md-4 control-label" for="menssize" style="margin-top:10px;">Mens Size</label>
-  <div class="col-md-4">
-    <select id="menssize" name="jacketMenssize" class="form-control">
-      <option value="S">S</option>
-      <option value="M">M</option>
-      <option value="L">L</option>
-      <option value="XL">XL</option>
-      <option value="XXL">XXL</option>
-      <option value="XXXL">XXXL</option>
-      <option value="XXXXL">XXXXL</option>
-      <option value="XXXXXL">XXXXXL</option>
-    </select>
-  </div>
-</div>
-<!-- Multiple Radios (inline) -->
-<div class="row form-group">
-  <label class="col-md-4 control-label" for="ladies" style="margin-top:10px;">Ladies</label>
-  <div class="col-md-4"> 
-    <div class="checkbox">
-    <label for="ladies-0">
-      <input type="checkbox" name="jacketLadies" id="ladies-0" value="Ladies">
-      Ladies
-    </label>
-	</div>
-  </div>
-</div>
-
-<!-- Select Basic -->
-<div class="row form-group">
-  <label class="col-md-4 control-label" for="ladiessize" style="margin-top:10px;">Ladies Size</label>
-  <div class="col-md-4">
-    <select id="ladiessize" name="jacketLadiessize" class="form-control">
-      <option value="XS">XS</option>
-      <option value="S">S</option>
-      <option value="M">M</option>
-      <option value="L">L</option>
-      <option value="XL">XL</option>
-      <option value="XXL">XXL</option>
-      <option value="XXXL">XXXL</option>
-    </select>
-  </div>
-</div>
-
-<!-- Select Basic -->
-<div class="row form-group">
-  <label class="col-md-4 control-label" for="colour" style="margin-top:10px;">Colour</label>
-  <div class="col-md-4">
-    <select id="colour" name="jacketColour" class="form-control">
-      <option value="Black">Black</option>
-      <option value="Red">Red</option>
-      <option value="Blue">Blue</option>
-      <option value="Navy">Navy</option>
-      <option value="Grey">Grey</option>
-      </select>
-  </div>
-</div>
-
+<ul>
+<li>13.5-oz, 100% polyester with mechanical stretch bonded with 100% polyester micro fleece</li>
+<li>1000mm/1000g/m2 waterproof/breathability rating</li>
+<li>Full length inner storm flap with chin guard</li>
+<li>Bonded</li>
+<li>Anti-Pill</li>
+<li>Stretch</li>
+<li>Breathable</li>
+<li>Wind & water resistant</li>
+<li>YKK zipper</li>
+</ul>
+<h5>Sizes Available:</h5>
+<ul>
+<li><strong>Mens</strong> L - 4XL</li>
+<li><strong>Mens Tall Sizes</strong> LT - 4XLT</li>
+<li><strong>Ladies</strong> XS - 4XL</li>
+</ul>
+<h5>Colours Available:</h5>
+<ul>
+<li>White</li>
+<li>Mocha</li>
+<li>Pink Zircon (Ladies Only)</li>
+<li>Red</li>
+<li>Maroon</li>
+<li>Chill</li>
+<li>Olympic Blue</li>
+<li>Navy</li>
+<li>Forest Green</li>
+<li>Green Tea</li>
+<li>Steel Grey</li>
+<li>Black</li>
+</ul>
 </div>
 
 <hr />
@@ -188,7 +149,7 @@ inside of slits.</p>
 	<div class="col-md-7">
 
 <!-- Form Name -->
-<legend>Towel - $15</legend>
+<h3>Towel - $15</h3>
 <p>Towel customization is available by online pre-order only.</p>
 
 </div>
@@ -200,8 +161,7 @@ inside of slits.</p>
   <div class="col-md-7">
 
 <!-- Form Name -->
-<legend>Bottle Koozie - $15<br />
-<strong>ONLY AVAILABLE ONLINE</Strong></legend>
+<h3>Bottle Koozie - $15<br />ONLY AVAILABLE ONLINE</h3>
 
 <p>Bottle koozies are only available by online pre-order.</p>
 
