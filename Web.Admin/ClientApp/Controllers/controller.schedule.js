@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
 
-    var scheduleController = function ($scope, $http, dataService) {
+    var scheduleController = function ($scope, $http, $filter, dataService) {
         $scope.model = {};
         $scope.schedule = {};
 
@@ -64,10 +64,31 @@
 
         function loadSchedule() {
             var data = dataService.LoadSchedule().then(function (data) {
-                $scope.schedule = data.data;
+                $scope.schedule = {
+                    days: [],
+                    events: []
+                };
+
+                angular.forEach(data.data.items, function (x) {
+                    var key = $filter('date')(new Date(x.start.dateTime || x.start.date), "yyyy-MM-dd");
+                    if ($scope.schedule.days.indexOf(key) < 0) {
+                        $scope.schedule.days.push(key);
+                    }
+
+                    var newEvent = {
+                        key: key,
+                        start: x.start.dateTime,
+                        end: x.end.dateTime,
+                        summary: x.summary,
+                        description: x.description,
+                        location: x.location
+                    };
+
+                    $scope.schedule.events.push(newEvent);
+                });
             });
         }
     };
 
-    app.controller("ScheduleController", ["$scope", "$http", "dataService", scheduleController]);
+    app.controller("ScheduleController", ["$scope", "$http", "$filter", "dataService", scheduleController]);
 }());

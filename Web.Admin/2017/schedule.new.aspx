@@ -6,13 +6,35 @@
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyPlaceholder" runat="server">
-    <h2>SCHEDULE</h2>
-
     <div class="row" data-ng-controller="ScheduleController">
-        <div data-ng-repeat="event in schedule.items">
-            <h4>{{event.summary}}</h4>
-            <h5>{{event.description}}</h5>
-            <h6>{{event.start.dateTime | date:'h:mma'}} - {{event.end.dateTime | date:'h:mma'}} @ {{event.location}}</h6>
+        <div class="col-md-2">
+            <ul class="sidebarNav">
+                <li data-ng-repeat="day in schedule.days | orderBy:''"><a href="##{{day}}">Day {{$index + 1}}</a></li>
+            </ul>         
+        </div>
+
+        <div class="col-md-10">
+            <h2>SCHEDULE</h2>
+
+            <div data-ng-repeat="day in schedule.days | orderBy:''">
+                <h4 id="{{day}}">Day {{$index + 1}} - {{day | date:'EEEE MMM d'}}</h4>
+
+                <div data-ng-repeat="event in schedule.events | filter:{key:day}">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h5>{{event.start | date:'h:mma'}} - {{event.end | date:'h:mma'}}</h5>
+                        </div>
+                        <div class="col-md-6">
+                            <b>{{event.summary}}</b>
+                            <br />
+                            {{event.description}}
+                        </div>
+                        <div class="col-md-3">
+                            {{event.location}}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </asp:Content>
