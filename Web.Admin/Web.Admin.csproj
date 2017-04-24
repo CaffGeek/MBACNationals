@@ -2013,9 +2013,16 @@
     <Content Include="2017\images\restaurants.jpg" />
     <Content Include="2017\images\souvenirs\coozie.jpg" />
     <Content Include="2017\images\souvenirs\L00660L1.jpg" />
+    <Content Include="2017\images\souvenirs\L00660Sizes.jpg" />
     <Content Include="2017\images\souvenirs\L00671L1.jpg" />
+    <Content Include="2017\images\souvenirs\L00671L1Sizes.jpg" />
     <Content Include="2017\images\souvenirs\MorenoColours.jpg" />
     <Content Include="2017\images\souvenirs\MorenoShirt.jpg" />
+    <Content Include="2017\images\souvenirs\morenoSizes.jpg" />
+    <Content Include="2017\images\souvenirs\softShell.jpg" />
+    <Content Include="2017\images\souvenirs\softShellLadiesSize.jpg" />
+    <Content Include="2017\images\souvenirs\softShellMensSize.jpg" />
+    <Content Include="2017\images\souvenirs\softShellTallSize.jpg" />
     <Content Include="2017\images\souvenirs\towel.jpg" />
     <Content Include="2017\js\schedule.js" />
     <Content Include="2017\lanedraw.aspx" />

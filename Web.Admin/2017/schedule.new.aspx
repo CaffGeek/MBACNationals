@@ -23,15 +23,15 @@
 
                 <div data-ng-repeat="event in schedule.events | filter:{key:day} | orderBy:'start'">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-sm-3">
                             <h5>{{event.start | date:'h:mma'}} - {{event.end | date:'h:mma'}}</h5>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-sm-6">
                             <b>{{event.summary}}</b>
                             <br />
                             {{event.description}}
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-sm-3">
                             {{event.location}}
                         </div>
                     </div>
