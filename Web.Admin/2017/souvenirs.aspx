@@ -16,7 +16,7 @@
 <h2>Souvenirs</h2>
 <p>Souvenirs will only be available for pre-order <strong>until June 1st!</strong> So please place orders as soon as possible. </p>
 <p>Customization of Towels & Koozies is only available by pre-order online and Koozies are only available online.</p>
-<p><strong>To order, please download and fill out this <a href="2017_Souvenirs.xls">order form</a> and email it to Judy @ <a href="mailto:classicmakings@yourlink.ca">classicmakings@yourlink.ca</a></strong></p>
+<p><strong>To order, please download and fill out this <a href="2017_Souvenirs.xls">order form</a> and email it to Judy @ <a href="mailto:classic.makings@gmail.com">classic.makings@gmail.com</a></strong></p>
 
 <form method="post">
 
