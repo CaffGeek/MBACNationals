@@ -16,6 +16,8 @@
         <div class="col-md-10">
             <h2>SCHEDULE</h2>
 
+            Click here to <a href="https://calendar.google.com/calendar/ical/smk8ud28p3nbej0iebr5dum4vc%40group.calendar.google.com/public/basic.ics">Download Schedule</a>
+
             <div data-ng-repeat="day in schedule.days | orderBy:''">
                 <h4 id="{{day}}">Day {{$index + 1}} - {{day | date:'EEEE MMM d'}}</h4>
 
