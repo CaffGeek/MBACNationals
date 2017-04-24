@@ -130,9 +130,9 @@ inside of slits.</p>
 <ul>
 <li><strong>Mens</strong> L - 4XL <a target="_blank" href="images/souvenirs/softShellMensSize.jpg">Mens Sizing Chart</a>
 </li>
-<li><strong>Mens Tall Sizes</strong> LT - 4XLT <a target="_blank" href="images/souvenirs/softShellMensSize.jpg">Tall Sizing Chart</a>
+<li><strong>Mens Tall Sizes</strong> LT - 4XLT <a target="_blank" href="images/souvenirs/softShellTallSize.jpg">Tall Sizing Chart</a>
 </li>
-<li><strong>Ladies</strong> XS - 4XL <a target="_blank" href="images/souvenirs/softShellMensSize.jpg">Ladies Sizing Chart</a>
+<li><strong>Ladies</strong> XS - 4XL <a target="_blank" href="images/souvenirs/softShellLadiesSize.jpg">Ladies Sizing Chart</a>
 </li>
 </ul>
 <h5>Colours Available:</h5>
