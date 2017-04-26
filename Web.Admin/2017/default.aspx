@@ -33,9 +33,29 @@
 
             <div class="col-md-6 col-sm-6">
                 <h2>Schedule</h2>
-                <div class="message"></div>
-                <!--<h3 id="day1" class='day'>Day 1 - Wednesday, June 28th</h3><h4 class='time'>All Day</h4><p class='details'><span class='location'>Delta/Mariott</span><br />Registrations for Early Arrivals<br />Participants & Guests<br /></p>
-                <p><a class="btn btn-default" href="schedule.aspx" role="button">Full Schedule &raquo;</a></p>-->
+                <div class="row" data-ng-controller="ScheduleController">
+                    <div data-ng-repeat="day in schedule.days | orderBy:''">
+                        <div data-ng-if="schedule.days.indexOf(currentDate) == $index || (schedule.days.indexOf(currentDate) == -1 && $index == 0)">
+                            <h4 id="{{day}}">Day {{$index + 1}} - {{day | date:'EEEE MMM d'}}</h4>
+
+                            <div data-ng-repeat="event in schedule.events | filter:{key:day} | orderBy:'start'">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h5>{{event.start | date:'h:mma'}} - {{event.end | date:'h:mma'}}</h5>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <b>{{event.summary}}</b>
+                                        <br />
+                                        {{event.description}}
+                                    </div>
+                                    <div class="col-sm-3">
+                                        {{event.location}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

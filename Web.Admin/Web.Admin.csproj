@@ -2024,13 +2024,12 @@
     <Content Include="2017\images\souvenirs\softShellMensSize.jpg" />
     <Content Include="2017\images\souvenirs\softShellTallSize.jpg" />
     <Content Include="2017\images\souvenirs\towel.jpg" />
-    <Content Include="2017\js\schedule.js" />
     <Content Include="2017\lanedraw.aspx" />
     <Content Include="2017\news.aspx" />
     <Content Include="2017\photos.aspx" />
     <Content Include="2017\results.aspx" />
-    <Content Include="2017\schedule.new.aspx" />
     <Content Include="2017\schedule.aspx" />
+    <Content Include="2017\schedule.old.aspx" />
     <Content Include="2017\souvenirs.aspx" />
     <Content Include="2017\sponsors.aspx" />
     <Content Include="20xx-Template\centres.aspx" />

@@ -86,6 +86,9 @@
 
                     $scope.schedule.events.push(newEvent);
                 });
+
+                $scope.schedule.days = $filter('orderBy')($scope.schedule.days, '', false);
+                $scope.currentDate = $filter('date')(new Date(), "yyyy-MM-dd");
             });
         }
     };

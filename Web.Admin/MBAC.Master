@@ -133,7 +133,6 @@
     <script type='text/javascript' src='https://my.sendinblue.com/public/theme/version3/js/subscribe-validate.js'></script>
     <script type='text/javascript'>jQuery.noConflict(true);</script>
     <script src="/Content/bootstrap/js/ie10-viewport-bug-workaround.js"></script>
-    <script src="js/schedule.js"></script>    
     <script src="/ClientApp/app.js"></script>
     <script src="/ClientApp/Controllers/controller.contingent.js"></script>
     <script src="/ClientApp/Controllers/controller.highscores.js"></script>
