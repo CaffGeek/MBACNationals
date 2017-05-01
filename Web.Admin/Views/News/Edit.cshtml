@@ -5,7 +5,7 @@
             <ul class="list-group row">
                 <li class="list-group-item col-xs-12" ng-repeat="newsItem in vm.News | orderBy: '-Created'">
                     <a ng-click="vm.DeleteNews(newsItem.Id)" class="pull-right"><i class="glyphicon glyphicon-trash"></i></a>
-                    <h3>{{newsItem.Title}}</h3>
+                    <h3 ng-bind-html="newsItem.Title"></h3>
                     <pre ng-bind-html="newsItem.Content"></pre>
                 </li>
             </ul>
