@@ -1,5 +1,4 @@
 ﻿using AzureTableHelper;
-using Edument.CQRS;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Newtonsoft.Json;

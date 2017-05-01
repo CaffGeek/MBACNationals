@@ -29,7 +29,7 @@ namespace MBACNationals.Scores
         {
             var agg = al(command.Id);
             
-            var match = _dispatcher.Load<MatchAggregate>(command.Id);
+            var match = _dispatcher.Load<MatchAggregate>(command.Id); //TODO: Why am I loading this again?
 
             if (match.IsPOA)
             {

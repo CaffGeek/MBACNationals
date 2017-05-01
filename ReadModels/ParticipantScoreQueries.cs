@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class ParticipantScoreQueries : //BaseReadModel<ParticipantScoreQueries>,
+    public class ParticipantScoreQueries : 
         IReadModel,
         IParticipantScoreQueries,
         ISubscribeTo<ParticipantCreated>,
@@ -64,7 +64,7 @@ namespace MBACNationals.ReadModels
             Reset();
         }
         
-        public ParticipantScoreQueries.Participant GetParticipant(Guid id)
+        public Participant GetParticipant(Guid id)
         {
             return Participants.SingleOrDefault(x => x.Id == id);
         }
