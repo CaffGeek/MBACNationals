@@ -5,18 +5,18 @@
         <table data-exportable="Guests" class=" table table-striped table-condensed table-hover">
             <thead>
                 <tr>
-                    <th>Province</th>
-                    <th>Guest</th>
+                    <th data-ng-click="orderBy.Descending = !orderBy.Descending; orderBy.Column = 'Province'">Province</th>
+                    <th data-ng-click="orderBy.Descending = !orderBy.Descending; orderBy.Column = 'Name'">Guest</th>
                     <th data-ng-repeat="package in model.GuestPackages" data-ng-if="package.Enabled">{{package.Name}}</th>
                 </tr>
             </thead>
-            <tbody data-ng-repeat="guest in model.Participants | orderBy:'Name' | filter:{ Name: filter.Name } | filter: { IsGuest: true } " data-ng-if="guest.Name">
+            <tbody data-ng-repeat="guest in model.Participants | orderBy:orderBy.Column:orderBy.Descending | filter:{ Name: filter.Name } | filter: { IsGuest: true } " data-ng-if="guest.Name">
                 <tr>
                     <td>{{guest.Province}}</td>
                     <td>{{guest.Name}}</td>
                     <td data-ng-repeat="package in model.GuestPackages" data-ng-if="package.Enabled">
-                        <i class="glyphicon glyphicon-ok" ng-if="guest.Package[package.Code]"></i>
-                        <i class="glyphicon glyphicon-glass" ng-if="guest.IsDelegate"></i>
+                        <i ng-if="guest.Package[package.Code]">Y</i>
+                        <i ng-if="guest.IsDelegate">D</i>
                     </td>
                 </tr>
             </tbody>
