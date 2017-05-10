@@ -8,8 +8,9 @@
 
 	    var vm = this;
 	    vm.Year = year;
-	    vm.SaveSponsor = SaveSponsor;
-	    vm.DeleteSponsor = DeleteSponsor;
+        vm.SaveSponsor = SaveSponsor;
+        vm.DeleteSponsor = DeleteSponsor;
+        vm.MoveSponsor = MoveSponsor;
 
 	    dataService.LoadSponsors(year)
             .then(function (response) {
@@ -48,7 +49,19 @@
 
                     vm.Sponsors.splice(idx, 1);
                 });
-	    }
+        }
+
+        function MoveSponsor(sponsors, index) {
+            sponsors.splice(index, 1);
+
+            angular.forEach(sponsors, function (sponsor, index) {
+                console.log(index + sponsor.Name);
+
+                dataService.ReorderSponsor(vm.Year, sponsor, index + 1).then(function (data) {
+                    bowler.QualifyingPosition = data.data.QualifyingPosition;
+                });
+            });            
+        }
 	};
 
 	app.controller("SponsorsController", ["$http", "$q", "$location", "dataService", sponsorsController]);

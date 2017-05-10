@@ -85,6 +85,7 @@
     <Compile Include="Tournament\NewsCreated.cs" />
     <Compile Include="Tournament\SponsorCreated.cs" />
     <Compile Include="Tournament\SponsorDeleted.cs" />
+    <Compile Include="Tournament\SponsorPositionChanged.cs" />
     <Compile Include="Tournament\TournamentCreated.cs" />
   </ItemGroup>
   <ItemGroup>

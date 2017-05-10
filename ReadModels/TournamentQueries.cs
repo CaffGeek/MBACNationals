@@ -13,6 +13,7 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<TournamentCreated>,
         ISubscribeTo<SponsorCreated>,
         ISubscribeTo<SponsorDeleted>,
+        ISubscribeTo<SponsorPositionChanged>,
         ISubscribeTo<NewsCreated>,
         ISubscribeTo<NewsDeleted>,
         ISubscribeTo<HotelCreated>,
@@ -49,6 +50,7 @@ namespace MBACNationals.ReadModels
             public Guid TournamentId { get; set; }
             public string Name { get; set; }
             public string Website { get; set; }
+            public int Position { get; set; }
         }
 
         public class Hotel
@@ -118,7 +120,9 @@ namespace MBACNationals.ReadModels
         public List<Sponsor> GetSponsors(string year)
         {
             var tournament = Tournaments.Single(x => x.Year == year);
-            var sponsors = Sponsors.Where(x => x.TournamentId == tournament.Id).ToList();
+            var sponsors = Sponsors.Where(x => x.TournamentId == tournament.Id)
+                    .OrderBy(x => x.Position)
+                    .ToList();
             return sponsors;
         }
 
@@ -243,6 +247,14 @@ namespace MBACNationals.ReadModels
         {
             Sponsors.RemoveAll(x => x.Id == e.SponsorId);
             //TODO: Delete logo
+        }
+
+        public void Handle(SponsorPositionChanged e)
+        {
+            var sponsor = Sponsors.SingleOrDefault(x => x.Id == e.Id);
+            if (sponsor == null) return;
+
+            sponsor.Position = e.Position;
         }
 
         public void Handle(NewsCreated e)

@@ -39,6 +39,7 @@
             SaveSponsor: saveSponsor,
             LoadSponsors: loadSponsors,
             DeleteSponsor: deleteSponsor,
+            ReorderSponsor: reorderSponsor,
             SaveNews: saveNews,
             LoadNews: loadNews,
             DeleteNews: deleteNews,
@@ -314,6 +315,14 @@
         function deleteSponsor(year, id) {
             return $http.post('/Setup/Sponsors/Delete/' + year, {
                 id: id
+            });
+        };
+
+        function reorderSponsor(year, sponsor, position) {
+            return $http.post('/Setup/Sponsors/Reorder/' + year, {
+                Id: sponsor.Id,
+                Name: sponsor.Name,
+                Position: position
             });
         };
 

@@ -9,6 +9,7 @@ namespace MBACNationals.Tournament
         IApplyEvent<TournamentCreated>,
         IApplyEvent<SponsorCreated>,
         IApplyEvent<SponsorDeleted>,
+        IApplyEvent<SponsorPositionChanged>,
         IApplyEvent<NewsCreated>,
         IApplyEvent<NewsDeleted>,
         IApplyEvent<HotelCreated>,
@@ -30,6 +31,11 @@ namespace MBACNationals.Tournament
         }
 
         public void Apply(SponsorDeleted e)
+        {
+            //TODO: nothing at this time
+        }
+
+        public void Apply(SponsorPositionChanged e)
         {
             //TODO: nothing at this time
         }

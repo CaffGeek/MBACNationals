@@ -12,6 +12,7 @@ namespace MBACNationals.Tournament
         IHandleCommand<CreateTournament, TournamentAggregate>,
         IHandleCommand<CreateSponsor, TournamentAggregate>,
         IHandleCommand<DeleteSponsor, TournamentAggregate>,
+        IHandleCommand<ReorderSponsor, TournamentAggregate>,
         IHandleCommand<CreateNews, TournamentAggregate>,
         IHandleCommand<DeleteNews, TournamentAggregate>,
         IHandleCommand<CreateHotel, TournamentAggregate>,
@@ -68,6 +69,18 @@ namespace MBACNationals.Tournament
             {
                 Id = tournament.Id,
                 SponsorId = command.Id,
+            };
+        }
+
+        public IEnumerable Handle(Func<Guid, TournamentAggregate> al, ReorderSponsor command)
+        {
+            var agg = al(command.Id);
+
+            yield return new SponsorPositionChanged
+            {
+                Id = command.Id,
+                Name = command.Name,
+                Position = command.Position
             };
         }
 

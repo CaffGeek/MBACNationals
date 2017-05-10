@@ -73,5 +73,15 @@ namespace WebFrontend.Controllers
 
             Domain.Dispatcher.SendCommand(command);
         }
+
+
+        [HttpPost]
+        [RestrictAccessByRouteId]
+        public JsonResult Reorder(ReorderSponsor command)
+        {
+            Domain.Dispatcher.SendCommand(command);
+
+            return Json(command);
+        }
     }
 }
