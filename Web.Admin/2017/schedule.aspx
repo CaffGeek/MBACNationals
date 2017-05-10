@@ -24,7 +24,12 @@
                 <div data-ng-repeat="event in schedule.events | filter:{key:day} | orderBy:'start'">
                     <div class="row">
                         <div class="col-sm-3">
-                            <h5>{{event.start | date:'h:mma':'CST'}} - {{event.end | date:'h:mma':'CST'}}</h5>
+                            <h5>
+                                {{event.start | date:'h:mma':'CST'}}
+                                <span data-ng-if="event.start != event.end">
+                                - {{event.end | date:'h:mma':'CST'}}
+                                </span>
+                            </h5>
                         </div>
                         <div class="col-sm-6">
                             <b>{{event.summary}}</b>
