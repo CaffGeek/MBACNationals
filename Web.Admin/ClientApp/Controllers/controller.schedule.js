@@ -70,7 +70,10 @@
                 };
 
                 angular.forEach(data.data.items, function (x) {
-                    var key = $filter('date')(new Date(x.start.dateTime || x.start.date), "yyyy-MM-dd");
+                    var key = x.start.dateTime
+                        ? $filter('date')(new Date(x.start.dateTime), "yyyy-MM-dd")
+                        : x.start.date;
+
                     if ($scope.schedule.days.indexOf(key) < 0) {
                         $scope.schedule.days.push(key);
                     }

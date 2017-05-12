@@ -9,7 +9,7 @@
     <div class="row" data-ng-controller="ScheduleController">
         <div class="col-md-2">
             <ul class="sidebarNav">
-                <li data-ng-repeat="day in schedule.days | orderBy:''"><a href="##{{day}}">Day {{$index + 1}}</a></li>
+                <li data-ng-repeat="day in schedule.days | orderBy:''"><a href="##{{day}}">{{day | date:'MMMM d'}}</a></li>
             </ul>         
         </div>
 
