@@ -18,7 +18,8 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<ParticipantCreated>,
         ISubscribeTo<ParticipantRenamed>,
         ISubscribeTo<ParticipantProfileChanged>,
-        ISubscribeTo<ParticipantAssignedToTeam>
+        ISubscribeTo<ParticipantAssignedToTeam>,
+        ISubscribeTo<ParticipantQualifyingPositionChanged>
     {
         public List<Participant> Participants { get; set; }
         public Dictionary<Guid, string> Tournaments { get; set; }
@@ -52,6 +53,7 @@ namespace MBACNationals.ReadModels
             public int OpenYears { get; set; }
             public string OtherAchievements { get; set; }
             public string Hobbies { get; set; }
+            public bool IsSingle { get; set; }
         }
 
         public class Contingent
@@ -95,7 +97,7 @@ namespace MBACNationals.ReadModels
 
             var tournament = Tournaments.Single(x => x.Value == year.ToString());
             var contingents = Contingents.Where(x => x.Value.TournamentId == tournament.Key);
-            var participants = Participants.Where(x => contingents.Any(c => c.Key == x.ContingentId))
+            var participants = Participants.Where(x => x.IsSingle && contingents.Any(c => c.Key == x.ContingentId))
                 .ToList();
 
             return participants;
@@ -194,6 +196,12 @@ namespace MBACNationals.ReadModels
             participant.Team = team.Name;
             participant.Province = team.Province;
             participant.ContingentId = team.ContingentId;
+        }
+
+        public void Handle(ParticipantQualifyingPositionChanged e)
+        {
+            var participant = Participants.Single(x => x.Id == e.Id);
+            participant.IsSingle = e.QualifyingPosition == 1;
         }
     }
 }
