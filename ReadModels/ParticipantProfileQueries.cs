@@ -69,6 +69,7 @@ namespace MBACNationals.ReadModels
             public Guid ContingentId { get; set; }
             public string Name { get; set; }
             public string Province { get; set; }
+            public bool IncludesSinglesRep { get; set; }
         }
 
         public ParticipantProfileQueries()
@@ -140,7 +141,8 @@ namespace MBACNationals.ReadModels
                 Id = e.TeamId,
                 ContingentId = e.Id,
                 Name = e.Name,
-                Province = contingent.Province
+                Province = contingent.Province,
+                IncludesSinglesRep = e.IncludesSinglesRep
             });
         }
 
@@ -201,7 +203,11 @@ namespace MBACNationals.ReadModels
         public void Handle(ParticipantQualifyingPositionChanged e)
         {
             var participant = Participants.Single(x => x.Id == e.Id);
-            participant.IsSingle = e.QualifyingPosition == 1;
+            var team = Teams.SingleOrDefault(x => x.Id == e.TeamId);
+            if (team == null)
+                return;
+            
+            participant.IsSingle = team.IncludesSinglesRep && e.QualifyingPosition == 1;
         }
     }
 }
