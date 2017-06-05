@@ -76,13 +76,12 @@
             </div>
         </div> 
          <hr />
-<!--                
+              
         <h2>Follow Us</h2>
         <h3>Newsletter</h3>
-
-
+<!-- SendinBlue Signup Form HTML Code --><iframe width="200" height="82" src="https://my.sendinblue.com/users/subscribe/js_id/2dew5/id/1" frameborder="0" scrolling="auto" allowfullscreen style="display: block;"></iframe><!-- End : SendinBlue Signup Form HTML Code -->
+<hr />
        
--->
         <div class="fb-page" style="margin-bottom: 15px;" data-href="https://www.facebook.com/MBAofCanada/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
             <div class="fb-xfbml-parse-ignore">
                 <blockquote cite="https://www.facebook.com/MBAofCanada/"><a href="https://www.facebook.com/MBAofCanada/">Master Bowlers Association of Canada</a></blockquote>
