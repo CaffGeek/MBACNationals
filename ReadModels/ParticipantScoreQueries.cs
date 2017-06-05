@@ -12,6 +12,7 @@ namespace MBACNationals.ReadModels
         IReadModel,
         IParticipantScoreQueries,
         ISubscribeTo<ParticipantCreated>,
+        ISubscribeTo<ParticipantRenamed>,
         ISubscribeTo<ContingentCreated>,
         ISubscribeTo<ParticipantAverageChanged>,
         ISubscribeTo<ParticipantGameCompleted>,
@@ -88,6 +89,12 @@ namespace MBACNationals.ReadModels
                 Id = e.Id,
                 Name = e.Name
             });
+        }
+
+        public void Handle(ParticipantRenamed e)
+        {
+            var participant = Participants.Single(x => x.Id == e.Id);
+            participant.Name = e.Name;
         }
 
         public void Handle(ContingentCreated e)
