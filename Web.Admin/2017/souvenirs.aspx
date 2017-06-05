@@ -14,9 +14,7 @@
 
 <div class="col-md-10" id="souvenirs">
 <h2>Souvenirs</h2>
-<p>Souvenirs will only be available for pre-order <strong>until June 1st!</strong> So please place orders as soon as possible. </p>
-<p>Customization of Towels & Koozies is only available by pre-order online and Koozies are only available online.</p>
-<p><strong>To order, please download and fill out this <a href="2017_Souvenirs.xls">order form</a> and email it to Judy @ <a href="mailto:classic.makings@gmail.com">classic.makings@gmail.com</a></strong></p>
+<p><strong>Online souvenir sales are now closed.</strong></p>
 
 <form method="post">
 
@@ -154,28 +152,12 @@ inside of slits.</p>
 <!-- Form Name -->
 <h3>Towel - $15</h3>
 <hr />
-<p>Towel customization is available by online pre-order only for an extra $1.50.</p>
 
 </div>
 </div>
-<hr />
 
 
-<div class="row">
-        	<div class="col-md-5"><img  class="souvenirs" src="/2017/images/souvenirs/coozie.jpg" alt="koozie" /></div>
-  <div class="col-md-7">
 
-<!-- Form Name -->
-<h3>Bottle Koozie - $15<br /><span style="color:red;">ONLY AVAILABLE ONLINE</span></h3>
-<hr />
-<p>Bottle koozies are only available by online pre-order and customization is available for an extra $1.50.</p>
-
-</div>
-
-
-</div>
-
-<hr />
 </form>
 </div>
 </asp:Content>
