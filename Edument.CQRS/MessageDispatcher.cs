@@ -57,29 +57,33 @@ namespace Edument.CQRS
                     sub(e);
                     dynamic target = sub.Target;
                     var y = target.subscriber as IReadModel;
-                    if (y != null) y.Save();
+                    y?.Save();
                 }
         }
 
         private void PublishEventWithoutSave(object e)
         {
             var eventType = e.GetType();
-            if (eventSubscribers.ContainsKey(eventType))
-                foreach (var sub in eventSubscribers[eventType])
-                    sub(e);
+            if (!eventSubscribers.ContainsKey(eventType))
+                return;
+
+            foreach (var sub in eventSubscribers[eventType])
+                sub(e);
         }
 
         private void PublishEventToReadModel(object e, string readmodel)
         {
             var eventType = e.GetType();
 
-            if (eventSubscribers.ContainsKey(eventType))
-                foreach (var sub in eventSubscribers[eventType])
-                {
-                    dynamic target = sub.Target;
-                    if ((target.subscriber.GetType().Name as string).Equals(readmodel, StringComparison.OrdinalIgnoreCase))
-                        sub(e);
-                }
+            if (!eventSubscribers.ContainsKey(eventType))
+                return;
+
+            foreach (var sub in eventSubscribers[eventType])
+            {
+                dynamic target = sub.Target;
+                if (((string) target.subscriber.GetType().Name).Equals(readmodel, StringComparison.OrdinalIgnoreCase))
+                    sub(e);
+            }
         }
 
         /// <summary>
@@ -256,8 +260,7 @@ namespace Edument.CQRS
         public TAggregate Load<TAggregate>(Guid id)
             where TAggregate : Aggregate, new()
         {
-            var agg = new TAggregate();
-            agg.Id = id;
+            var agg = new TAggregate { Id = id };
             agg.ApplyEvents(eventStore.LoadEventsFor<TAggregate>(id));
             return agg;
         }
