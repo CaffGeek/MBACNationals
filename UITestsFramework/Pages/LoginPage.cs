@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using System;
 
@@ -24,7 +23,7 @@ namespace UITestsFramework.Pages
 
         public LoginPage()
         {
-            _wait = new WebDriverWait(((IWebDriver)Browser.Driver), new TimeSpan(0, 3, 0));
+            _wait = new WebDriverWait(Browser.Driver, new TimeSpan(0, 3, 0));
         }
 
         public void Goto()

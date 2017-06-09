@@ -143,5 +143,6 @@
     <script src="/ClientApp/Controllers/controller.hotels.js"></script>
     <script src="/ClientApp/Controllers/controller.centres.js"></script>
     <script src="/ClientApp/Services/service.data.js"></script>
+    <script src="/Content/js/GoogleAnalytics.js"></script>
 </body>
 </html>

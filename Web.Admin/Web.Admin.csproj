@@ -2142,6 +2142,7 @@
     <Content Include="Content\galleria\themes\classic\galleria.classic.js" />
     <Content Include="Content\galleria\themes\classic\galleria.classic.min.js" />
     <Content Include="Content\Images\2017_logo.png" />
+    <Content Include="Content\js\GoogleAnalytics.js" />
     <Content Include="Content\js\instafeed.min.js" />
     <Content Include="2016\PDFs\DEPARTURES.pdf" />
     <Content Include="AdminApp\Views\Reports\Newsworthy.html" />

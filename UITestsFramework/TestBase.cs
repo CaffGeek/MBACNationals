@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using NUnit;
 using NUnit.Framework;
 
 namespace UITestsFramework
@@ -32,7 +31,8 @@ namespace UITestsFramework
                 _iisProcess.Kill();
         }
                 
-        private void StartIIS() {
+        private void StartIIS()
+        {
             //See: http://stephenwalther.com/archive/2011/12/22/asp-net-mvc-selenium-iisexpress
             //But PHP isn't running...and it sucks I currently need it to be
             var applicationPath = GetApplicationPath(_applicationName);
@@ -44,8 +44,9 @@ namespace UITestsFramework
             _iisProcess.Start();
         }
   
-        protected virtual string GetApplicationPath(string applicationName) {
-            var solutionFolder = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory)));
+        protected virtual string GetApplicationPath(string applicationName)
+        {
+            var solutionFolder = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory))));
             return Path.Combine(solutionFolder, applicationName);
         }
     }
