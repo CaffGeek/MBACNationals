@@ -36,6 +36,16 @@ namespace UITestsFramework
             //See: http://stephenwalther.com/archive/2011/12/22/asp-net-mvc-selenium-iisexpress
             //But PHP isn't running...and it sucks I currently need it to be
             var applicationPath = GetApplicationPath(_applicationName);
+
+            var tmpFolder = Path.Combine(Path.GetTempPath(), "MBACNationals_Tests");
+            if (Directory.Exists(tmpFolder)) Directory.Delete(tmpFolder, true);
+            Directory.CreateDirectory(tmpFolder);
+            
+            CloneDirectory(applicationPath, tmpFolder);
+
+            File.Delete(Path.Combine(tmpFolder, "web.config")); //Dev web.config
+            File.Move(Path.Combine(tmpFolder, "web.config.test"), Path.Combine(tmpFolder, "web.config")); //Replace with .test
+
             var programFiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
  
             _iisProcess = new Process();
@@ -48,6 +58,24 @@ namespace UITestsFramework
         {
             var solutionFolder = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory))));
             return Path.Combine(solutionFolder, applicationName);
+        }
+
+        private static void CloneDirectory(string root, string dest)
+        {
+            foreach (var directory in Directory.GetDirectories(root))
+            {
+                string dirName = Path.GetFileName(directory);
+                if (!Directory.Exists(Path.Combine(dest, dirName)))
+                {
+                    Directory.CreateDirectory(Path.Combine(dest, dirName));
+                }
+                CloneDirectory(directory, Path.Combine(dest, dirName));
+            }
+
+            foreach (var file in Directory.GetFiles(root))
+            {
+                File.Copy(file, Path.Combine(dest, Path.GetFileName(file)));
+            }
         }
     }
 }
