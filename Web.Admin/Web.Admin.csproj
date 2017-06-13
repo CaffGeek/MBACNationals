@@ -295,11 +295,6 @@
     <Compile Include="Models\Participant\View.cs" />
     <Compile Include="Models\Participant\Index.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
@@ -2586,11 +2581,8 @@
     <Content Include="Content\bootstrap\css\bootstrap.css.map" />
     <Content Include="Content\bootstrap\css\bootstrap.min.css.map" />
     <Content Include="2017\2017_Souvenirs.xls" />
+    <None Include="ConnectionStrings.config.test" />
     <None Include="Properties\PublishProfiles\MBACNationals - Web Deploy.pubxml.user" />
-    <Content Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </Content>
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
@@ -3467,9 +3459,6 @@
     <Content Include="Views\Hotels\Edit.cshtml" />
     <Content Include="Views\GuestPackages\Edit.cshtml" />
     <Content Include="Views\Centres\Edit.cshtml" />
-    <Content Include="Web.config.test">
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminApp\Entities\" />

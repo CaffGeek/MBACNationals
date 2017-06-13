@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium.Support.PageObjects;
+﻿using System;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace UITestsFramework.Pages
 {
@@ -14,6 +15,16 @@ namespace UITestsFramework.Pages
         public static TopNavigationPage TopNavigation
         {
             get { return GetPage<TopNavigationPage>(); }
+        }
+
+        public static RegisterPage Register
+        {
+            get { return GetPage<RegisterPage>(); }
+        }
+
+        public static RebuildPage Rebuild
+        {
+            get { return GetPage<RebuildPage>(); }
         }
 
         public static LoginPage Login

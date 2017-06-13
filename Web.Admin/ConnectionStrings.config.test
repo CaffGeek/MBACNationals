@@ -1,0 +1,4 @@
+<connectionStrings>
+  <add name="AzureTableStorage" connectionString="UseDevelopmentStorage=true;" />
+  <add name="DefaultConnection" connectionString="Server=localhost\SQLEXPRESS;Database=MbacTest;Trusted_Connection=True;" providerName="System.Data.SqlClient" />
+</connectionStrings>

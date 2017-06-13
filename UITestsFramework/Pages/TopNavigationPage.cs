@@ -6,6 +6,9 @@ namespace UITestsFramework.Pages
 {
     public class TopNavigationPage
     {
+        [FindsBy(How = How.LinkText, Using = "Home")]
+        private IWebElement homeLink;
+
         [FindsBy(How = How.LinkText, Using = "Contingent")]
         private IWebElement contingentLink;
 
@@ -24,49 +27,82 @@ namespace UITestsFramework.Pages
         [FindsBy(How = How.LinkText, Using = "Log in")]
         private IWebElement loginLink;
 
+        [FindsBy(How = How.LinkText, Using = "Register")]
+        private IWebElement registerLink;
+
+        [FindsBy(How = How.LinkText, Using = "Admin")]
+        private IWebElement adminMenu;
+
+        [FindsBy(How = How.LinkText, Using = "Rebuild Read Models")]
+        private IWebElement rebuildReadModels;
+
         private IWebElement logoutLink { get { return Browser.Driver.FindElement(By.Id("logoff")); } }
+
+        internal void Home()
+        {
+            homeLink.SendKeys(Keys.Enter);
+        }
 
         public void Contingent()
         {
-            contingentLink.Click();
+            contingentLink.SendKeys(Keys.Enter);
         }
 
         public void Reservations()
         {
-            reservationsLink.Click();
+            reservationsLink.SendKeys(Keys.Enter);
         }
 
         public void Travel()
         {
-            travelLink.Click();
+            travelLink.SendKeys(Keys.Enter);
         }
 
         public void Practice()
         {
-            practiceLink.Click();
+            practiceLink.SendKeys(Keys.Enter);
         }
 
         public void Profiles()
         {
-            profilesLink.Click();
+            profilesLink.SendKeys(Keys.Enter);
+        }
+
+        public void Register()
+        {
+            try
+            {
+                registerLink.SendKeys(Keys.Enter);
+            }
+            catch (NoSuchElementException)
+            {
+                Logout();
+                registerLink.SendKeys(Keys.Enter);
+            }       
         }
 
         public void Logout()
         {
-            logoutLink.Click();
+            logoutLink.SendKeys(Keys.Enter);
         }
 
         public void Login()
         {
             try
             {
-                loginLink.Click();
+                loginLink.SendKeys(Keys.Enter);
             }
             catch (NoSuchElementException)
             {
-                logoutLink.Click();
-                loginLink.Click();
+                Logout();
+                loginLink.SendKeys(Keys.Enter);
             }
+        }
+
+        public void RebuildReadModels()
+        {
+            adminMenu.SendKeys(Keys.Enter);
+            rebuildReadModels.SendKeys(Keys.Enter);
         }
 
         public bool LoggedIn()

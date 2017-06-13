@@ -18,7 +18,14 @@
             });
 
         vm.createTournament = function () {
-            dataService.CreateTournament(vm.newTournament);
+            dataService.CreateTournament(vm.newTournament)
+                .then(function (response) {
+                    //HACK
+                    dataService.LoadTournaments()
+                        .then(function (response) {
+                            vm.model.tournaments = response.data;
+                        });
+                });
         };
     };
 

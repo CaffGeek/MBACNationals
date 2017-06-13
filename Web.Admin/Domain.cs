@@ -38,7 +38,7 @@ namespace WebFrontend
 
         public static void Setup()
         {            
-            Dispatcher = new MessageDispatcher(new SqlEventStore(Properties.Settings.Default.DefaultConnection));
+            Dispatcher = new MessageDispatcher(new SqlEventStore(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString));
 
             CommandQueries = ReadModelFactory<CommandQueries>();
 
