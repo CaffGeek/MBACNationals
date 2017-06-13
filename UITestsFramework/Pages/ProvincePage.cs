@@ -13,7 +13,7 @@ namespace UITestsFramework.Pages
         public void Select(string province)
         {
             //TODO: Chad
-            provinceLinks.First().Click();
+            provinceLinks.First().SendKeys(Keys.Return);
         }
     }
 }

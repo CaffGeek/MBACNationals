@@ -9,24 +9,34 @@ namespace UITests
     {        
         public NavigationTests ()
             : base("Web.Admin") 
-	    { }             
+	    { }
 
         [Test]
-        public void CanLoginAsAdmin()
+        public void CanRegisterUser()
         {
-            Pages.Login.Goto();
-            Pages.Login.LogInAsAdmin();
+            Pages.Register.Goto();
+            Pages.Register.CreateUser();
             Assert.IsTrue(Pages.TopNavigation.LoggedIn());
         }
 
         [Test]
-        public void CanGoToContingentPage()
+        public void CanRegisterAsAdmin()
         {
-            Pages.Login.Goto();
-            Pages.Login.LogInAsAdmin();
+            Pages.Register.Goto();
+            Pages.Register.CreateAdminUser();
+            Assert.IsTrue(Pages.TopNavigation.LoggedIn());
+        }
 
+        [Test]
+        public void CanCreateTournament()
+        {
+            Pages.Register.Goto();
+            Pages.Register.CreateAdminUser();
+
+            Pages.TournamentSelector.CreateTournament();            
             Pages.TournamentSelector.SelectLatestTournament();
             Pages.ProvinceSelector.Select("MB");
+
             Assert.IsTrue(Pages.Contingent.IsAt());
         }
     }

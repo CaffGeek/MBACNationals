@@ -16,21 +16,33 @@ namespace UITestsFramework
             _applicationName = applicationName;
         }
 
-        [SetUp]
+        [OneTimeSetUp]
         public void Initialize()
         {
+            BuildDatabase();
             StartIIS();
             Browser.Initialize();
+
+            //Hack: but got to clear it out
+            Pages.Pages.Register.Goto();
+            Pages.Pages.Register.CreateAdminUser("Chad");
+            Pages.Pages.Rebuild.Goto();
+            Pages.Pages.Rebuild.RebuildAll();
         }
 
-        [TearDown]
+        [OneTimeTearDown]
         public void TestFixtureTearDown()
         {
             Browser.Close();
             if (_iisProcess.HasExited == false)
                 _iisProcess.Kill();
         }
-                
+
+        private void BuildDatabase()
+        {
+            Database.Initialization.BuildTables();
+        }
+
         private void StartIIS()
         {
             //See: http://stephenwalther.com/archive/2011/12/22/asp-net-mvc-selenium-iisexpress
@@ -43,14 +55,14 @@ namespace UITestsFramework
             
             CloneDirectory(applicationPath, tmpFolder);
 
-            File.Delete(Path.Combine(tmpFolder, "web.config")); //Dev web.config
-            File.Move(Path.Combine(tmpFolder, "web.config.test"), Path.Combine(tmpFolder, "web.config")); //Replace with .test
+            File.Delete(Path.Combine(tmpFolder, "ConnectionStrings.config")); //Dev ConnectionStrings.config
+            File.Move(Path.Combine(tmpFolder, "ConnectionStrings.config.test"), Path.Combine(tmpFolder, "ConnectionStrings.config")); //Replace with .test
 
             var programFiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
  
             _iisProcess = new Process();
             _iisProcess.StartInfo.FileName = programFiles + @"\IIS Express\iisexpress.exe";
-            _iisProcess.StartInfo.Arguments = string.Format("/path:\"{0}\" /port:{1}", applicationPath, iisPort);
+            _iisProcess.StartInfo.Arguments = string.Format("/path:\"{0}\" /port:{1}", tmpFolder, iisPort);
             _iisProcess.Start();
         }
   

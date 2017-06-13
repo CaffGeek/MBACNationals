@@ -1,6 +1,6 @@
 ﻿using System;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 
 namespace UITestsFramework
 {
@@ -11,10 +11,9 @@ namespace UITestsFramework
 
         public static void Initialize()
         {
-            var chromeDriverDirectory = @"C:\source\MBACNationals\UITestsFramework\bin\Debug\";
-            var options = new ChromeOptions();
-            options.AddArguments("--disable-extensions");
-            webDriver = new ChromeDriver(chromeDriverDirectory, options);
+            FirefoxDriverService service = FirefoxDriverService.CreateDefaultService(@"C:\source\MBACNationals\UITestsFramework\bin\Debug\", "geckodriver.exe");
+            webDriver = new FirefoxDriver(service);
+            
             Goto("");
         }
 

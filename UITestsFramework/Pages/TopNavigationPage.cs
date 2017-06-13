@@ -6,6 +6,9 @@ namespace UITestsFramework.Pages
 {
     public class TopNavigationPage
     {
+        [FindsBy(How = How.LinkText, Using = "Home")]
+        private IWebElement homeLink;
+
         [FindsBy(How = How.LinkText, Using = "Contingent")]
         private IWebElement contingentLink;
 
@@ -24,7 +27,21 @@ namespace UITestsFramework.Pages
         [FindsBy(How = How.LinkText, Using = "Log in")]
         private IWebElement loginLink;
 
+        [FindsBy(How = How.LinkText, Using = "Register")]
+        private IWebElement registerLink;
+
+        [FindsBy(How = How.LinkText, Using = "Admin")]
+        private IWebElement adminMenu;
+
+        [FindsBy(How = How.LinkText, Using = "Rebuild Read Models")]
+        private IWebElement rebuildReadModels;
+
         private IWebElement logoutLink { get { return Browser.Driver.FindElement(By.Id("logoff")); } }
+
+        internal void Home()
+        {
+            homeLink.Click();
+        }
 
         public void Contingent()
         {
@@ -51,6 +68,19 @@ namespace UITestsFramework.Pages
             profilesLink.Click();
         }
 
+        public void Register()
+        {
+            try
+            {
+                registerLink.Click();
+            }
+            catch (NoSuchElementException)
+            {
+                logoutLink.Click();
+                registerLink.Click();
+            }       
+        }
+
         public void Logout()
         {
             logoutLink.Click();
@@ -67,6 +97,12 @@ namespace UITestsFramework.Pages
                 logoutLink.Click();
                 loginLink.Click();
             }
+        }
+
+        public void RebuildReadModels()
+        {
+            adminMenu.SendKeys(Keys.Enter);
+            rebuildReadModels.SendKeys(Keys.Enter);
         }
 
         public bool LoggedIn()
