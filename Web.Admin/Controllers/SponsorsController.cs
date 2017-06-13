@@ -75,8 +75,8 @@ namespace WebFrontend.Controllers
         }
 
 
+        [Authorize(Roles = "Admin, Host")]
         [HttpPost]
-        [RestrictAccessByRouteId]
         public JsonResult Reorder(ReorderSponsor command)
         {
             Domain.Dispatcher.SendCommand(command);
