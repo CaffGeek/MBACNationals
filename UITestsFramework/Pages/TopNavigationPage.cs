@@ -40,62 +40,62 @@ namespace UITestsFramework.Pages
 
         internal void Home()
         {
-            homeLink.Click();
+            homeLink.SendKeys(Keys.Enter);
         }
 
         public void Contingent()
         {
-            contingentLink.Click();
+            contingentLink.SendKeys(Keys.Enter);
         }
 
         public void Reservations()
         {
-            reservationsLink.Click();
+            reservationsLink.SendKeys(Keys.Enter);
         }
 
         public void Travel()
         {
-            travelLink.Click();
+            travelLink.SendKeys(Keys.Enter);
         }
 
         public void Practice()
         {
-            practiceLink.Click();
+            practiceLink.SendKeys(Keys.Enter);
         }
 
         public void Profiles()
         {
-            profilesLink.Click();
+            profilesLink.SendKeys(Keys.Enter);
         }
 
         public void Register()
         {
             try
             {
-                registerLink.Click();
+                registerLink.SendKeys(Keys.Enter);
             }
             catch (NoSuchElementException)
             {
-                logoutLink.Click();
-                registerLink.Click();
+                Logout();
+                registerLink.SendKeys(Keys.Enter);
             }       
         }
 
         public void Logout()
         {
-            logoutLink.Click();
+            logoutLink.SendKeys(Keys.Enter);
         }
 
         public void Login()
         {
             try
             {
-                loginLink.Click();
+                loginLink.SendKeys(Keys.Enter);
             }
             catch (NoSuchElementException)
             {
-                logoutLink.Click();
-                loginLink.Click();
+                Logout();
+                loginLink.SendKeys(Keys.Enter);
             }
         }
 
