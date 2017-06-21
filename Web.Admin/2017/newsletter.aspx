@@ -14,7 +14,7 @@
 
     <div class="col-md-10">
         <h2>Newsletter Signup</h2>
-        <!-- SendinBlue Signup Form HTML Code --><iframe width="200" height="82" src="https://my.sendinblue.com/users/subscribe/js_id/2dew5/id/1" frameborder="0" scrolling="auto" allowfullscreen style="display: block;"></iframe><!-- End : SendinBlue Signup Form HTML Code -->
+        <!-- SendinBlue Signup Form HTML Code --><iframe src="https://my.sendinblue.com/users/subscribe/js_id/2dew5/id/1" frameborder="0" scrolling="auto" allowfullscreen style="display: block;"></iframe><!-- End : SendinBlue Signup Form HTML Code -->
 
     </div>
     
