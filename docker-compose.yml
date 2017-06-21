@@ -1,0 +1,22 @@
+version: "3"
+services:
+#    web:
+#        build: .
+#        ports:
+#            - "8000:80"
+#        depends_on:
+#            - db
+#            - storage
+    storage:
+        image: "caffgeek/azure-storage-emulator"
+        ports:
+          - "20000:10000"
+          - "20001:10001"
+          - "20002:10002"
+    db:
+        image: "microsoft/mssql-server-windows-express"
+        ports:
+            - "1433:1433"
+        environment:
+            sa_password: "P@ssw0rd"
+            ACCEPT_EULA: "Y"

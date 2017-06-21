@@ -2023,6 +2023,7 @@
     <Content Include="2017\images\souvenirs\towel.jpg" />
     <Content Include="2017\lanedraw.aspx" />
     <Content Include="2017\news.aspx" />
+    <Content Include="2017\newsletter.aspx" />
     <Content Include="2017\photos.aspx" />
     <Content Include="2017\results.aspx" />
     <Content Include="2017\schedule.aspx" />
