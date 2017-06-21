@@ -2581,7 +2581,7 @@
     <Content Include="Content\bootstrap\css\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap\css\bootstrap.css.map" />
     <Content Include="Content\bootstrap\css\bootstrap.min.css.map" />
-    <Content Include="2017\2017_Souvenirs.xls" />
+    <Content Include="2017\images\2017_Souvenirs.xls" />
     <None Include="ConnectionStrings.config.test" />
     <None Include="Properties\PublishProfiles\MBACNationals - Web Deploy.pubxml.user" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
