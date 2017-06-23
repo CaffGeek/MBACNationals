@@ -1,3 +1,7 @@
 ﻿.strike {
   text-decoration: line-through;
 }
+
+.negative {
+  color: red !important;
+}
