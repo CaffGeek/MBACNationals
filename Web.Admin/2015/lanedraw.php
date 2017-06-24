@@ -11,7 +11,7 @@ include "header.php";
 
         <div class="section group content" data-ng-app="app">
           <div data-ng-controller="ScheduleController">
-            <div class="col span_1_of_3">
+            <div class="col span_1_of_3 hidden-print">
               <div id="centres_links">
                 <a href="" data-ng-click="loadLaneDraw('Tournament Men Single')">TOURNAMENT MEN SINGLE</a><br />
                 <a href="" data-ng-click="loadLaneDraw('Tournament Ladies Single')">TOURNAMENT LADIES SINGLE</a><br />

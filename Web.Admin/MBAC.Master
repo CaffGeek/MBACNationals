@@ -45,7 +45,7 @@
     }(document, 'script', 'facebook-jssdk'));
     </script>
 
-    <header style="padding-top: 100px; height: 550px;">
+    <header style="padding-top: 100px; height: 550px;" class="hidden-print">
         <!-- Fixed navbar -->
         <nav class="navbar navbar-default navbar-fixed-top">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -105,7 +105,7 @@
         </div>
         <hr>
 
-        <footer>
+        <footer class="hidden-print">
             <ul class="footerNav">
                 <li><a href="default.aspx">Home</a></li>
                 <li><a href="results.aspx">Results</a></li>

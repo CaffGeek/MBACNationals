@@ -7,7 +7,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyPlaceholder" runat="server">
     <div class="row" data-ng-controller="ScheduleController">
-        <div class="col-md-2">
+        <div class="col-md-2 hidden-print">
             <ul class="sidebarNav">
                 <li><a href="" data-ng-click="loadLaneDraw('Tournament Men Single')">TOURNAMENT MEN SINGLE</a></li>
                 <li><a href="" data-ng-click="loadLaneDraw('Tournament Ladies Single')">TOURNAMENT LADIES SINGLE</a></li>
@@ -21,7 +21,7 @@
             </ul>
         </div>
         <div class="col-md-10">
-            <h2>LANE DRAW</h2>
+            <h2>LANE DRAW<a class="hiddden-print pull-right" href="javascript:window.print();"><span class="glyphicon glyphicon-print"></span></a></h2>
             <h4>{{model.Division}}</h4>
             <table style="width: 100%;" class="lanedraw">
                 <tbody data-ng-repeat="game in model.Games | unique:'Number'">

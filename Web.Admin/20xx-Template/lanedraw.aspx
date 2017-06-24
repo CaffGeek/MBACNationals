@@ -7,7 +7,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyPlaceholder" runat="server">
     <div class="row" data-ng-controller="ScheduleController">
-        <div class="col-md-2">
+        <div class="col-md-2 hidden-print">
             <ul class="sidebarNav">
                 <li><a href="" data-ng-click="loadLaneDraw('Tournament Men Single')">TOURNAMENT MEN SINGLE</a></li>
                 <li><a href="" data-ng-click="loadLaneDraw('Tournament Ladies Single')">TOURNAMENT LADIES SINGLE</a></li>
