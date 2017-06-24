@@ -7,7 +7,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyPlaceholder" runat="server">
     <div class="row" data-ng-controller="ContingentController">
-        <div class="col-md-2">
+        <div class="col-md-2 hidden-print">
             <ul class="sidebarNav">
                 <li><a href="" data-ng-click="loadContingent('BC')">British Columbia</a></li>
                 <li><a href="" data-ng-click="loadContingent('AB')">Alberta</a></li>
@@ -21,7 +21,7 @@
         </div>
 
         <div class="col-md-10">
-            <h2>{{model.Province}} Contingent</h2>
+            <h2>{{model.Province}} Contingent<a class="hidden-print pull-right" href="javascript:window.print();"><span class="glyphicon glyphicon-print"></span></a></h2>
             <div class="row">
                 <h5 class="col-md-2">Manager</h5>
                 <p class="col-md-2" data-ng-repeat="person in managers">{{person.Name}}</p>
