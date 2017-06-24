@@ -21,7 +21,7 @@
             </ul>
         </div>
         <div class="col-md-10">
-            <h2>LANE DRAW<a class="hiddden-print pull-right" href="javascript:window.print();"><span class="glyphicon glyphicon-print"></span></a></h2>
+            <h2>LANE DRAW<a class="hidden-print pull-right" href="javascript:window.print();"><span class="glyphicon glyphicon-print"></span></a></h2>
             <h4>{{model.Division}}</h4>
             <table style="width: 100%;" class="lanedraw">
                 <tbody data-ng-repeat="game in model.Games | unique:'Number'">

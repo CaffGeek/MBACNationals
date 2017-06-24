@@ -3,10 +3,11 @@
 <asp:Content ID="HeaderContent" ContentPlaceHolderID="HeaderPlaceholder" runat="server">
     <div id="headerImage" style="margin-top: 15px; background-size: cover; background-position: center center; height: 375px; background-image: url('images/header_image_results.jpg');"></div>
     <div id="photoCredit"><strong>Trafalgar Lookout</strong> &bull; Credit: Flickr Commons - daryl_mitchell</div>
+    <style>@page { size: landscape; }</style>
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyPlaceholder" runat="server">
-    <div class="col-sm-2" data-ng-controller="ResultsController">
+    <div class="col-sm-2 hidden-print" data-ng-controller="ResultsController">
         <ul class="sidebarNav">
             <!--<li><a href="">Coming Soon</a></li>-->
             <li><a ui-sref="standings({division: 'Tournament Men Single'})">TOURNAMENT MEN SINGLE</a></li>
