@@ -11,7 +11,7 @@
     <tbody data-ng-repeat="score in model.Scores | orderBy:'Number'"
            winhighlight="{{score.WinLossTie}}">
         <tr>
-            <td>#{{score.Number}}</td>
+            <td><a ui-sref="match({ match: score.MatchId })"># {{score.Number}}</a></td>
             
             <td ng-if="score.OpponentId == '00000000-0000-0000-0000-000000000000'">vs {{score.OpponentName}} ({{score.OpponentProvince}})</td>
             <td ng-if="score.OpponentId != '00000000-0000-0000-0000-000000000000'">vs <a ui-sref="bowler({ bowler: score.OpponentId })">{{score.OpponentName}}</a> ({{score.OpponentProvince}})</td>
