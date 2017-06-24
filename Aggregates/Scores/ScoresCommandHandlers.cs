@@ -152,6 +152,7 @@ namespace MBACNationals.Scores
                 {
                     Id = command.Id,
                     ParticipantId = awayBowler.Id,
+                    OpponentId = homeBowler.Id,
                     Number = match.Number,
                     Name = awayParticipant.Name,
                     Gender = awayParticipant.Gender,
@@ -175,6 +176,7 @@ namespace MBACNationals.Scores
                 {
                     Id = command.Id,
                     ParticipantId = homeBowler.Id,
+                    OpponentId = awayBowler.Id,
                     Number = match.Number,
                     Name = homeParticipant.Name,
                     Gender = homeParticipant.Gender,

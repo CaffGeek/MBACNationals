@@ -12,7 +12,10 @@
            winhighlight="{{score.WinLossTie}}">
         <tr>
             <td>#{{score.Number}}</td>
-            <td>vs {{score.OpponentName}} ({{score.OpponentProvince}})</td>
+            
+            <td ng-if="score.OpponentId == '00000000-0000-0000-0000-000000000000'">vs {{score.OpponentName}} ({{score.OpponentProvince}})</td>
+            <td ng-if="score.OpponentId != '00000000-0000-0000-0000-000000000000'">vs <a ui-sref="bowler({ bowler: score.OpponentId })">{{score.OpponentName}}</a> ({{score.OpponentProvince}})</td>
+
             <td>{{score.Centre}} #{{score.Lane}}</td>
         </tr>
         <tr>

@@ -4,6 +4,7 @@
     {
         public System.Guid Id;
         public System.Guid ParticipantId;
+        public System.Guid OpponentId;
         public string Division;
         public string Contingent;
         public int Number;

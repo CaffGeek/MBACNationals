@@ -53,6 +53,7 @@ namespace MBACNationals.ReadModels
             public string WinLossTie { get; set; }
             public int Lane { get; set; }
             public string Centre { get; set; }
+            public Guid OpponentId { get; set; }
             public string OpponentName { get; set; }
             public string OpponentProvince { get; set; }
             public int OpponentScratch { get; set; }
@@ -146,6 +147,7 @@ namespace MBACNationals.ReadModels
                     : (e.Score > e.OpponentScore ? "W" : e.Score < e.OpponentScore ? "L" : "T"),
                 Lane = e.Lane,
                 Centre = e.Centre,
+                OpponentId = e.OpponentId,
                 OpponentProvince = e.Opponent,
                 OpponentName = e.OpponentName,
                 OpponentScratch = e.OpponentScore,
