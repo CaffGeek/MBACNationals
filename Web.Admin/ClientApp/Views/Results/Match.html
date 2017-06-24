@@ -10,13 +10,13 @@
         <tr>
             <th class="text-left"><h4>Points: {{model.Away.TotalPoints}}</h4></th>
             <td class="text-right"><h4>{{model.Away.Score}}</h4></td>
-            <td class="text-right" data-ng-if="model.IsPOA"><h4>{{model.Away.POA}}</h4></td>
+            <td class="text-right" data-ng-if="model.IsPOA" poahighlight="{{model.Away.POA}}"><h4>{{model.Away.POA}}</h4></td>
             <td class="text-right"><h4>{{model.Away.Points}}</h4></td>
         </tr>
         <tr data-ng-repeat="bowler in model.Away.Bowlers | orderBy:'Position'">
             <th class="text-left"><a href="" ui-sref="bowler({ bowler: bowler.Id })">{{bowler.Name}}</a></th>
             <td class="text-right">{{bowler.Score}}</td>
-            <td class="text-right" data-ng-if="model.IsPOA">{{bowler.POA}}</td>
+            <td class="text-right" data-ng-if="model.IsPOA" poahighlight="{{bowler.POA}}">{{bowler.POA}}</td>
             <td class="text-right">{{bowler.Points}}</td>
         </tr>
     </table>
@@ -32,13 +32,13 @@
         <tr>
             <th class="text-left"><h4>Points: {{model.Home.TotalPoints}}</h4></th>
             <td class="text-right"><h4>{{model.Home.Score}}</h4></td>
-            <td class="text-right" data-ng-if="model.IsPOA"><h4>{{model.Home.POA}}</h4></td>
+            <td class="text-right" data-ng-if="model.IsPOA" poahighlight="{{model.Home.POA}}"><h4>{{model.Home.POA}}</h4></td>
             <td class="text-right"><h4>{{model.Home.Points}}</h4></td>
         </tr>
         <tr data-ng-repeat="bowler in model.Home.Bowlers | orderBy:'Position'">
             <th class="text-left"><a href="" ui-sref="bowler({ bowler: bowler.Id })">{{bowler.Name}}</a></th>
             <td class="text-right">{{bowler.Score}}</td>
-            <td class="text-right" data-ng-if="model.IsPOA">{{bowler.POA}}</td>
+            <td class="text-right" data-ng-if="model.IsPOA" poahighlight="{{bowler.POA}}">{{bowler.POA}}</td>
             <td class="text-right">{{bowler.Points}}</td>
         </tr>
         <tr>

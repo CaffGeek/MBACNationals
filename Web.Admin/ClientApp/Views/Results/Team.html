@@ -8,21 +8,6 @@
     <h4>{{model.Coach}}</h4>-->
 </div>
 
-<!--//TODO: Team Totals/Highs
-
-<div data-ng-repeat="bowler in model.Bowlers">
-    <div class="col span_1_of_2">
-        <span>{{bowler.Name}}</span>
-        <span>{{bowler.Average}}</span>
-        <span>{{bowler.NationalAverage}}</span>
-    </div>
-    <div class="col span_1_of_2">
-        <span>{{bowler.HighGame}}</span>
-        <span>{{bowler.HighPOA}}</span>
-        <span>{{bowler.Points}}</span>
-    </div>
-</div>-->
-
 <hr class="col-md-6"/>
 
 <table style="width:100%">
@@ -37,14 +22,14 @@
         </tr>
     </thead>
     <tbody>
-        <tr data-ng-repeat="score in model.Scores | orderBy: 'Number'">
+        <tr data-ng-repeat="score in model.Scores | orderBy: 'Number'" winhighlight="{{score.WinLossTie}}">
             <td>{{score.Number}}</td>
             <td><a href="#" ui-sref="match({ match: score.MatchId })">{{score.WinLossTie}} ({{score.Points}}-{{score.OpponentPoints}})</a></td>
-            <td>{{score.Scratch}} <span data-ng-if="score.IsPOA" data-ng-class="{negative: (score.POA < 0)}">({{score.POA}})</span></td>
+            <td>{{score.Scratch}} <span data-ng-if="score.IsPOA" poahighlight="{{score.POA}}">({{score.POA}})</span></td>
             <td>vs {{score.Opponent}}</td>
             <td>
                 {{score.OpponentScratch}} 
-                <span data-ng-if="score.IsPOA" data-ng-class="{negative: (score.OpponentPOA < 0)}">({{score.OpponentPOA}})</span>
+                <span data-ng-if="score.IsPOA" poahighlight="{{score.OpponentPOA}}">({{score.OpponentPOA}})</span>
             </td>
             <td>{{score.Centre}} #{{score.Lane}}</td>
         </tr>
@@ -53,17 +38,17 @@
         <tr>
             <th title="Total">T</th>
             <th>{{model.TotalWins}} - {{model.TotalLoss}}</th>
-            <th>{{model.TotalScratch | number:0}} <span data-ng-if="model.Scores[0].IsPOA" data-ng-class="{negative: (model.TotalPOA < 0)}">({{model.TotalPOA}})</span></th>
+            <th>{{model.TotalScratch | number:0}} <span data-ng-if="model.Scores[0].IsPOA" poahighlight="{{model.TotalPOA}}">({{model.TotalPOA}})</span></th>
             <th></th>
-            <th>{{model.TotalOpponentScratch | number:0}} <span data-ng-if="model.Scores[0].IsPOA" data-ng-class="{negative: (model.TotalOpponentPOA < 0)}">({{model.TotalOpponentPOA}})</span></th>
+            <th>{{model.TotalOpponentScratch | number:0}} <span data-ng-if="model.Scores[0].IsPOA" poahighlight="{{model.TotalOpponentPOA}}">({{model.TotalOpponentPOA}})</span></th>
             <th></th>
         </tr>
         <tr>
             <th title="Average">A</th>
             <th>{{model.AverageWinsPerGame | number}} - {{model.AverageLossPerGame | number}}</th>
-            <th>{{model.AverageScratch | number:1}} <span data-ng-if="model.Scores[0].IsPOA" data-ng-class="{negative: (model.AveragePOA < 0)}">({{model.AveragePOA | number:1}})</span></th>
+            <th>{{model.AverageScratch | number:1}} <span data-ng-if="model.Scores[0].IsPOA" poahighlight="{{model.AveragePOA}}">({{model.AveragePOA | number:1}})</span></th>
             <th></th>
-            <th>{{model.AverageOpponentScratch | number:1}} <span data-ng-if="model.Scores[0].IsPOA" data-ng-class="{negative: (model.AverageOpponentPOA < 0)}">({{model.AverageOpponentPOA | number:1}})</span></th>
+            <th>{{model.AverageOpponentScratch | number:1}} <span data-ng-if="model.Scores[0].IsPOA" poahighlight="{{model.AverageOpponentPOA}}">({{model.AverageOpponentPOA | number:1}})</span></th>
             <th></th>
         </tr>
     </tfoot>

@@ -3,5 +3,17 @@
 }
 
 .negative {
-  color: red !important;
+    color: red !important;
+}
+
+.win {
+    background-color: lightgreen;
+}
+
+.loss {
+    background-color: pink;
+}
+
+.tie {
+    background-color: lightgrey;
 }
