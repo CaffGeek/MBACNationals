@@ -2081,6 +2081,8 @@
     <Content Include="2016\centres.aspx" />
     <Content Include="2016\contingents.aspx" />
     <Content Include="2016\default.aspx" />
+    <Content Include="Content\bootstrap\fonts\bebas___-webfont.svg" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\bootstrap\js\bootstrap.js" />
     <Content Include="Content\bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\bootstrap\js\customize.min.js" />
@@ -2584,6 +2586,12 @@
     <Content Include="Content\bootstrap\css\bootstrap.min.css.map" />
     <Content Include="2017\images\2017_Souvenirs.xls" />
     <None Include="ConnectionStrings.config.test" />
+    <Content Include="Content\bootstrap\fonts\bebas___-webfont.eot" />
+    <Content Include="Content\bootstrap\fonts\bebas___-webfont.ttf" />
+    <Content Include="Content\bootstrap\fonts\bebas___-webfont.woff" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Properties\PublishProfiles\MBACNationals - Web Deploy.pubxml.user" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
