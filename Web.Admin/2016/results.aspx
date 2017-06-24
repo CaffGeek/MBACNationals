@@ -3,7 +3,6 @@
 <asp:Content ID="HeaderContent" ContentPlaceHolderID="HeaderPlaceholder" runat="server">
     <div id="headerImage" style="margin-top: 15px; background-size: cover; background-position: center center; height: 375px; background-image: url('images/header_image_7.jpg');"></div>
     <div id="photoCredit"><strong>Crescent Beach in Surrey, BC</strong> &bull; Credit: Jerry Meaden, WikiCommons</div>
-    <style>@page { size: landscape; }</style>
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyPlaceholder" runat="server">

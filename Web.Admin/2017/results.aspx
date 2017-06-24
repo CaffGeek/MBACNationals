@@ -3,7 +3,6 @@
 <asp:Content ID="HeaderContent" ContentPlaceHolderID="HeaderPlaceholder" runat="server">
     <div id="headerImage" style="margin-top: 15px; background-size: cover; background-position: center center; height: 375px; background-image: url('images/header_image_results.jpg');"></div>
     <div id="photoCredit"><strong>Trafalgar Lookout</strong> &bull; Credit: Flickr Commons - daryl_mitchell</div>
-    <style>@page { size: landscape; }</style>
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyPlaceholder" runat="server">
