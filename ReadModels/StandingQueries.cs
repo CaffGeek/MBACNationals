@@ -59,6 +59,7 @@ namespace MBACNationals.ReadModels
             public decimal Points { get; set; }
             public decimal TotalPoints { get; set; }
             public bool IsPOA { get; set; }
+            public string WinLossTie { get; set; }
         }
 
         public StandingQueries()
@@ -192,7 +193,10 @@ namespace MBACNationals.ReadModels
                 POA = e.POA,
                 Points = e.Points,
                 Score = e.Score,
-                TotalPoints = e.TotalPoints,                
+                TotalPoints = e.TotalPoints,
+                WinLossTie = e.IsPOA
+                    ? (e.POA > e.OpponentPOA ? "W" : e.POA < e.OpponentPOA ? "L" : "T")
+                    : (e.Score > e.OpponentScore ? "W" : e.Score < e.OpponentScore ? "L" : "T"),
             });
         }
     }
