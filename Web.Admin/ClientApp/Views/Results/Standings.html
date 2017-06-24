@@ -18,7 +18,8 @@
         </a>
     </th>
     <td data-ng-repeat="i in getRange(minGame, maxGame)"
-        winhighlight="{{findMatchByNumber(team, i).WinLossTie}}">
+        winhighlight="{{findMatchByNumber(team, i).WinLossTie}}"
+        class="text-center">
         <a href="" data-ng-if="findMatchByNumber(team, i)" ui-sref="match({ match: findMatchByNumber(team, i).Id })">
             <div>{{findMatchByNumber(team, i).Score}} <span data-ng-if="findMatchByNumber(team, i).IsPOA">({{findMatchByNumber(team, i).POA}})</span></div>
             <div style="white-space: nowrap;">{{findMatchByNumber(team, i).TotalPoints}} vs {{findMatchByNumber(team, i).Opponent}}</div>
