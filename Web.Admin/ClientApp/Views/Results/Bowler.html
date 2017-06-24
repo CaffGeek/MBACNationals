@@ -1,6 +1,6 @@
-﻿<img src="/Content/Images/Flags/{{model.Province}}_small.gif" />
+﻿<img class="hidden-print" src="/Content/Images/Flags/{{model.Province}}_small.gif" />
 
-<h2 class="col span_2_of_3">{{model.Name}}</h2>
+<h2 class="col span_2_of_3">{{model.Name}}<a class="hidden-print pull-right" href="javascript:window.print();"><span class="glyphicon glyphicon-print"></span></a></h2>
 <h5 class="col span_2_of_3" data-ng-if="model.Average">Entry Average: {{model.Average}}</h5>
 <h5 class="col span_2_of_3">National Average: {{model.NationalAverage}}</h5>
 <h5 class="col span_2_of_3">Wins: {{model.NationalWins}}</h5>
