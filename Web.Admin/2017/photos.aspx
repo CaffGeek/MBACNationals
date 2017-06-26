@@ -21,7 +21,7 @@
 
     <div class="col-md-10">
         <h2>PHOTOS {{title || 'Day 1'}}</h2>
-        <div id="galleria"></div>
+        <div class='embedsocial-album' data-ref="0a7b4fcba94829d6c9e0b1f84ff1a646d7226ec6"></div><script>(function(d, s, id){var js; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id; js.src = "https://embedsocial.com/embedscript/ei.js"; d.getElementsByTagName("head")[0].appendChild(js);}(document, "script", "EmbedSocialScript"));</script>
     </div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
