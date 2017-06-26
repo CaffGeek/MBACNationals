@@ -26,7 +26,7 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="/Web.Public/galleria/galleria-1.4.2.min.js"></script>
+<!--    <script src="/Web.Public/galleria/galleria-1.4.2.min.js"></script>
     <script src="/Web.Public/galleria/plugins/facebook/galleria.facebook.js"></script>
     <script>
         function loadAlbum(album) {
@@ -43,5 +43,5 @@
 
         Galleria.loadTheme('/Web.Public/galleria/themes/classic/galleria.classic.min.js');
         loadAlbum(1525842230814434);
-    </script>
+    </script>-->
 </asp:Content>
