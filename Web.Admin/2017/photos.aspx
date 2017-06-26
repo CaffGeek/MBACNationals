@@ -15,7 +15,7 @@
             <li><a href="javascript: loadAlbum('1525846740813983');" data-ng-click="title = 'Day 5'">Day 5</a></li>
             <li><a href="javascript: loadAlbum('1525847180813939');" data-ng-click="title = 'Day 6'">Day 6</a></li>
             <li><a href="javascript: loadAlbum('1525847940813863');" data-ng-click="title = 'Day 7'">Day 7</a></li>
-            <li><a href="https://www.instagram.com/mbacnationals/" target="_blank">Instagram</a></li>
+            <li><a href="https://www.instagram.com/mbacnationals2017/" target="_blank">Instagram</a></li>
         </ul>
     </div>
 
