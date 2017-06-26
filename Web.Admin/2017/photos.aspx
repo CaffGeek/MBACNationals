@@ -8,13 +8,14 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyPlaceholder" runat="server">
     <div class="col-md-2">
         <ul class="sidebarNav">
-            <li><a href="javascript: loadAlbum('1525842230814434');" data-ng-click="title = 'Day 1'">Day 1</a></li>
+           <!-- <li><a href="javascript: loadAlbum('1525842230814434');" data-ng-click="title = 'Day 1'">Day 1</a></li>
             <li><a href="javascript: loadAlbum('1525845174147473');" data-ng-click="title = 'Day 2'">Day 2</a></li>
             <li><a href="javascript: loadAlbum('1525845647480759');" data-ng-click="title = 'Day 3'">Day 3</a></li>
             <li><a href="javascript: loadAlbum('1525846370814020');" data-ng-click="title = 'Day 4'">Day 4</a></li>
             <li><a href="javascript: loadAlbum('1525846740813983');" data-ng-click="title = 'Day 5'">Day 5</a></li>
             <li><a href="javascript: loadAlbum('1525847180813939');" data-ng-click="title = 'Day 6'">Day 6</a></li>
-            <li><a href="javascript: loadAlbum('1525847940813863');" data-ng-click="title = 'Day 7'">Day 7</a></li>
+            <li><a href="javascript: loadAlbum('1525847940813863');" data-ng-click="title = 'Day 7'">Day 7</a></li>-->
+            <li><a href="https://www.facebook.com/pg/MBAofCanada/photos/?tab=album&album_id=1525842230814434" target="_blank">Facebook</a></li>
             <li><a href="https://www.instagram.com/mbacnationals2017/" target="_blank">Instagram</a></li>
         </ul>
     </div>
