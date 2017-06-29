@@ -28,7 +28,10 @@
                     <p style="white-space: pre-wrap;" ng-bind-html="newsItem.Content"></p>
                 </div>
                 <p><a class="btn btn-default" href="news.aspx" role="button">More News</a></p>
-                <hr />
+            </div>
+
+
+            <div class="col-md-6 col-sm-6">
                 <h2>Schedule</h2>
                 <div class="row" style="margin-left:0px;" data-ng-controller="ScheduleController">
                     <div data-ng-repeat="day in schedule.days | orderBy:''">
@@ -60,17 +63,6 @@
                 </div>
             </div>
         </div>
-                        <p><a class="btn btn-default" href="schedule.aspx" role="button">Full Schedule</a></p>
-            </div>
-            </div>
-
-
-            <div class="col-md-6 col-sm-6">
-                <div data-ng-controller="HighscoresController">
-            <div class="section group" id="highScores" data-ng-include="" data-src="'/ClientApp/views/highscores.html'">
-            </div>
-        </div>
-
     </div>
             
     <div class="col-md-4 col-sm-4">
@@ -102,6 +94,9 @@
                 
         <hr />
 
-        
+        <div data-ng-controller="HighscoresController">
+            <div class="section group" id="highScores" data-ng-include="" data-src="'/ClientApp/views/highscores.html'">
+            </div>
+        </div>
     </div>
 </asp:Content>
