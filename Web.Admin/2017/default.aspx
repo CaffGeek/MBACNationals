@@ -30,7 +30,7 @@
                 <p><a class="btn btn-default" href="news.aspx" role="button">More News</a></p>
                 <hr />
                 <h2>Schedule</h2>
-                <div class="row" data-ng-controller="ScheduleController">
+                <div class="row" style="margin-left:0px;" data-ng-controller="ScheduleController">
                     <div data-ng-repeat="day in schedule.days | orderBy:''">
                         <div data-ng-if="schedule.days.indexOf(currentDate) == $index || (schedule.days.indexOf(currentDate) == -1 && $index == 0)">
                             <h4 id="{{day}}">Day {{$index + 1}} - {{day | date:'EEEE MMM d'}}</h4>
