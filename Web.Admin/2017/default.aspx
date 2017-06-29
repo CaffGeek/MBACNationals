@@ -63,6 +63,8 @@
                 </div>
             </div>
         </div>
+                        <p><a class="btn btn-default" href="schedule.aspx" role="button">Full Schedule</a></p>
+
     </div>
             
     <div class="col-md-4 col-sm-4">
