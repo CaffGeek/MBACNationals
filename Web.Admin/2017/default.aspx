@@ -21,17 +21,16 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6 col-sm-6" data-ng-controller="NewsController as vm">
-                <h2>News</h2>
-                <div ng-repeat="newsItem in vm.News | orderBy: '-Created'">
-                    <h4><span class="newsHeader" ng-bind-html="newsItem.Title"></span></h4>
-                    <p style="white-space: pre-wrap;" ng-bind-html="newsItem.Content"></p>
-                </div>
-                <p><a class="btn btn-default" href="news.aspx" role="button">More News</a></p>
-            </div>
-
-
             <div class="col-md-6 col-sm-6">
+                <div data-ng-controller="NewsController as vm">
+                    <h2>News</h2>
+                    <div ng-repeat="newsItem in vm.News | orderBy: '-Created'">
+                        <h4><span class="newsHeader" ng-bind-html="newsItem.Title"></span></h4>
+                        <p style="white-space: pre-wrap;" ng-bind-html="newsItem.Content"></p>
+                    </div>
+                    <p><a class="btn btn-default" href="news.aspx" role="button">More News</a></p>
+                </div>
+
                 <h2>Schedule</h2>
                 <div class="row" style="margin-left:0px;" data-ng-controller="ScheduleController">
                     <div data-ng-repeat="day in schedule.days | orderBy:''">
@@ -60,6 +59,11 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            
+            <div class="col-md-offset-1 col-sm-offset-1 col-md-5 col-sm-5" data-ng-controller="HighscoresController">
+                <div class="section group" id="highScores" data-ng-include="" data-src="'/ClientApp/views/highscores.html'">
                 </div>
             </div>
         </div>
@@ -92,11 +96,5 @@
                 
         <div><a class="twitter-timeline" href="https://twitter.com/MBANationals" data-widget-id="702222211382259713">Tweets by @MBANationals</a><script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script></div>
                 
-        <hr />
-
-        <div data-ng-controller="HighscoresController">
-            <div class="section group" id="highScores" data-ng-include="" data-src="'/ClientApp/views/highscores.html'">
-            </div>
-        </div>
     </div>
 </asp:Content>
