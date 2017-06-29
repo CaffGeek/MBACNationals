@@ -32,11 +32,7 @@
 
 <hr />
 
-        <div data-ng-controller="HighscoresController">
-            <div class="section group" id="highScores" data-ng-include="" data-src="'/ClientApp/views/highscores.html'">
-            </div>
-        </div>
-        <hr />
+        
             <div class="col-md-6 col-sm-6">
                 <h2>Schedule</h2>
                 <div class="row" style="margin-left:0px;" data-ng-controller="ScheduleController">
