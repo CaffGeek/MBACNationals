@@ -29,11 +29,8 @@
                 </div>
                 <p><a class="btn btn-default" href="news.aspx" role="button">More News</a></p>
             </div>
-            </div>
 
-<hr />
 
-        
             <div class="col-md-6 col-sm-6">
                 <h2>Schedule</h2>
                 <div class="row" style="margin-left:0px;" data-ng-controller="ScheduleController">
@@ -65,11 +62,6 @@
                     </div>
                 </div>
             </div>
-            <div data-ng-controller="HighscoresController">
-            <div class="section group" id="highScores" data-ng-include="" data-src="'/ClientApp/views/highscores.html'">
-            </div>
-        </div>
-        <hr />
         </div>
     </div>
             
@@ -100,6 +92,11 @@
                 
         <div><a class="twitter-timeline" href="https://twitter.com/MBANationals" data-widget-id="702222211382259713">Tweets by @MBANationals</a><script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script></div>
                 
-        
+        <hr />
+
+        <div data-ng-controller="HighscoresController">
+            <div class="section group" id="highScores" data-ng-include="" data-src="'/ClientApp/views/highscores.html'">
+            </div>
+        </div>
     </div>
 </asp:Content>
