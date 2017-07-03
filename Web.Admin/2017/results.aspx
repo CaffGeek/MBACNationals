@@ -21,7 +21,7 @@
             <li><a ui-sref="standings({division: 'Seniors Single'})">SENIORS SINGLE</a></li>
             <hr />
             <li><a ui-sref="stepladder()" data-ng-click="viewStepladder()">STEPLADDER</a></li>
-             <p style="font-family:verdana, sans-serif;font-size:12px;"><strong>ATTENTION:<strong> There is an error in the Tournament Mens Singles - QC & MB Bowlers, in Game 14. Which gives QC an extra 4 points.<br />This error also affects the MB Teaching Ladies giving them an extra points against Quebec in game 14</p> 
+             <p style="font-family:verdana, sans-serif;font-size:12px;"><strong>ATTENTION:</strong> There is an error in the Tournament Mens Singles - QC & MB Bowlers, in Game 14. Which gives QC an extra 4 points.<br />This error also affects the MB Teaching Ladies giving them an extra points against Quebec in game 14</p> 
   <p style="font-family:verdana, sans-serif;font-size:12px;">The Stepladder will be bowled by the following:<br />
 <strong>Men</strong><br />
 1. Danny Baer—Saskatchewan<br />
