@@ -1,0 +1,35 @@
+﻿<div class="row">
+    <h2>HIGH POA</h2>
+        
+    <h4>Teaching Division</h4>
+    <div class="section group">
+        <div class="col-md-6">
+            <h5>Men</h5>
+            <ul>
+            <li data-ng-repeat="score in model.HighScores['Teaching'].Scores | filter:{Gender:'M'} | orderBy:'POA':true | limitTo:10">+<a href="#" ui-sref="match({ match: score.MatchId })">{{score.POA}}</a> - <a href="" ui-sref="bowler({ bowler: score.ParticipantId })">{{score.Name}}</a></li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h5>Women</h5>
+            <ul>
+            <li data-ng-repeat="score in model.HighScores['Teaching'].Scores | filter:{Gender:'F'} | orderBy:'POA':true | limitTo:10">+<a href="#" ui-sref="match({ match: score.MatchId })">{{score.POA}}</a> - <a href="" ui-sref="bowler({ bowler: score.ParticipantId })">{{score.Name}}</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <h4>Seniors</h4>
+    <div class="section group">
+        <div class="col-md-6">
+            <h5>Men</h5>
+            <ul>
+            <li data-ng-repeat="score in model.HighScores['Senior'].Scores | filter:{Gender:'M'} | orderBy:'POA':true | limitTo:10">+<a href="#" ui-sref="match({ match: score.MatchId })">{{score.POA}}</a> - <a href="" ui-sref="bowler({ bowler: score.ParticipantId })">{{score.Name}}</a></li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h5>Women</h5>
+            <ul>
+            <li data-ng-repeat="score in model.HighScores['Senior'].Scores | filter:{Gender:'F'} | orderBy:'POA':true | limitTo:10">+<a href="#" ui-sref="match({ match: score.MatchId })">{{score.POA}}</a> - <a href="" ui-sref="bowler({ bowler: score.ParticipantId })">{{score.Name}}</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

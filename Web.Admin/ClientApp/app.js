@@ -15,6 +15,21 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
             templateUrl: "/ClientApp/views/results/standings.html",
             controller: "ResultsController"
         })
+        .state('highscores', {
+            url: "/highscores/{division}",
+            templateUrl: "/ClientApp/views/results/highscores.html",
+            controller: "HighscoresController"
+        })
+        .state('highpoa', {
+            url: "/highpoa/{division}",
+            templateUrl: "/ClientApp/views/results/highpoa.html",
+            controller: "HighscoresController"
+        })
+        .state('highaverage', {
+            url: "/highaverage/{division}",
+            templateUrl: "/ClientApp/views/results/highaverage.html",
+            controller: "HighscoresController"
+        })
         .state('stepladder', {
             url: "/stepladder/{year}",
             templateUrl: "/ClientApp/views/results/stepladder.html",

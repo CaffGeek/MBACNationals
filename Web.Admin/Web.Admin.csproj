@@ -2025,6 +2025,7 @@
     <Content Include="2017\news.aspx" />
     <Content Include="2017\newsletter.aspx" />
     <Content Include="2017\photos.aspx" />
+    <Content Include="2017\statistics.aspx" />
     <Content Include="2017\results.aspx" />
     <Content Include="2017\schedule.aspx" />
     <Content Include="2017\schedule.old.aspx" />
@@ -2072,6 +2073,9 @@
     <Content Include="ClientApp\Controllers\controller.centres.js" />
     <Content Include="ClientApp\Controllers\controller.hotels.js" />
     <Content Include="ClientApp\Directives\directive.scorehighlight.js" />
+    <Content Include="ClientApp\Views\Results\Highaverage.html" />
+    <Content Include="ClientApp\Views\Results\Highpoa.html" />
+    <Content Include="ClientApp\Views\Results\Highscores.html" />
     <Content Include="Content\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Content\bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap\css\bootstrap.css" />

@@ -25,6 +25,8 @@ namespace MBACNationals.ReadModels
 
         public class Participant
         {
+         
+
             public Guid Id { get; set; }
             public string Name { get; set; }
             public string Province { get; set; }
@@ -32,7 +34,13 @@ namespace MBACNationals.ReadModels
             public int Average { get; set; }
             public int NationalGames { get; set; }
             public int NationalTotal { get; set; }
+            public int NationalTotalPOA { get; set; }
             public int NationalAverage { get; set; }
+            public int NationalAveragePOA { get; set; }
+            public int OpponentTotal { get; set; }
+            public int OpponentTotalPOA { get; set; }
+            public int OpponentAverage { get; set; }
+            public int OpponentAveragePOA { get; set; }
             public decimal NationalWins { get; set; }
             public List<Score> Scores { get; set; }
             public int HighScore { get; set; }
@@ -129,8 +137,11 @@ namespace MBACNationals.ReadModels
             {
                 //Adjust Totals
                 participant.NationalTotal = participant.NationalTotal - game.Scratch;
+                participant.NationalTotalPOA -= game.POA;
                 participant.NationalGames -= 1;
                 participant.NationalWins -= (game.WinLossTie == "W" ? 1M : game.WinLossTie == "T" ? .5M : 0M);
+                participant.OpponentTotal -= game.OpponentScratch;
+                participant.OpponentTotalPOA -= game.OpponentPOA;
 
                 //Remove old game
                 participant.Scores.Remove(game);
@@ -162,6 +173,12 @@ namespace MBACNationals.ReadModels
             participant.NationalTotal += e.Score;
             participant.NationalAverage = participant.NationalTotal / participant.NationalGames;
             participant.NationalWins += e.Points > 0M ? (e.Points % 1M == 0M ? 1M : .5M) : 0M;
+            participant.NationalTotalPOA += e.POA;
+            participant.NationalAveragePOA = participant.NationalTotalPOA / participant.NationalGames;
+            participant.OpponentTotal += e.OpponentScore;
+            participant.OpponentTotalPOA += e.OpponentPOA;
+            participant.OpponentAverage = participant.OpponentTotal / participant.NationalGames;
+            participant.OpponentAveragePOA = participant.OpponentTotalPOA / participant.NationalGames;
 
             participant.HighScore = participant.Scores.Max(x => x.Scratch);
             participant.HighPOA = participant.Scores.Max(x => x.POA);

@@ -33,7 +33,7 @@
     <![endif]-->
 </head>
 
-<body>
+<body data-ng-app="app">
     <div id="fb-root"></div>
     <script>(
     function (d, s, id) {
@@ -62,7 +62,8 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="default.aspx">Home</a></li>
-                    <li><a href="results.aspx">Results</a></li>
+                    <li><a href="results.aspx#/standings/Tournament%20Men%20Single">Results</a></li>
+                    <li><a href="statistics.aspx#/highscores/">Statistics</a></li>
                     <li><a href="news.aspx">News</a></li>
                     <li><a href="schedule.aspx">Schedule</a></li>
                     <li><a href="lanedraw.aspx">Lane Draw</a></li>
@@ -99,10 +100,8 @@
     </header>
 
     <div class="container">
-        <div class="row" data-ng-app="app">
-            <asp:ContentPlaceHolder ID="BodyPlaceholder" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
+        <asp:ContentPlaceHolder ID="BodyPlaceholder" runat="server">
+        </asp:ContentPlaceHolder>
         <hr>
 
         <footer class="hidden-print">

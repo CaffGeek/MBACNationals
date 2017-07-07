@@ -32,4 +32,16 @@
             </td>
         </tr>
     </tbody>
+    <tfoot>
+        <tr>
+            <th title="Total">T {{model.NationalTotal}} <span data-ng-if="model.Scores[0].IsPOA" poahighlight="{{model.NationalTotalPOA}}">({{model.NationalTotalPOA}})</span></th>
+            <th>{{model.OpponentTotal | number:0}} <span data-ng-if="model.Scores[0].IsPOA" poahighlight="{{model.OpponentTotalPOA}}">({{model.OpponentTotalPOA}})</span></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th title="Average">A {{model.NationalAverage}} <span data-ng-if="model.Scores[0].IsPOA" poahighlight="{{model.NationalAveragePOA}}">({{model.NationalAveragePOA | number:1}})</span></th>
+            <th>{{model.OpponentAverage | number:1}} <span data-ng-if="model.Scores[0].IsPOA" poahighlight="{{model.OpponentAveragePOA}}">({{model.OpponentAveragePOA | number:1}})</span></th>
+            <th></th>
+        </tr>
+    </tfoot>
 </table>
