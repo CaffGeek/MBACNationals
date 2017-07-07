@@ -6,6 +6,7 @@
 
         vm.readmodels = [
             { Name: 'All' },
+            { Name: 'AverageQueries' },
             { Name: 'CommandQueries' },
             { Name: 'ContingentPracticePlanQueries' },
             { Name: 'ContingentTravelPlanQueries' },

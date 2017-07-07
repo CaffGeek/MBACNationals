@@ -9,10 +9,6 @@ using MBACNationals;
 using MBACNationals.Tournament;
 using System.Configuration;
 using Microsoft.WindowsAzure.Storage;
-using System.Threading;
-using System;
-using Newtonsoft.Json;
-using AzureTableHelper;
 using System.Linq;
 
 namespace WebFrontend
@@ -21,6 +17,7 @@ namespace WebFrontend
     {
         public static MessageDispatcher Dispatcher;
         public static ICommandQueries CommandQueries;
+        public static IAverageQueries AverageQueries;
         public static IParticipantQueries ParticipantQueries;
         public static IParticipantProfileQueries ParticipantProfileQueries;
         public static IContingentViewQueries ContingentViewQueries;
@@ -46,7 +43,8 @@ namespace WebFrontend
             Dispatcher.ScanInstance(new ContingentCommandHandlers(CommandQueries));
             Dispatcher.ScanInstance(new ScoresCommandHandlers(CommandQueries, Dispatcher)); //TODO: Refactor Dispatcher out of Handler
             Dispatcher.ScanInstance(new TournamentCommandHandlers(CommandQueries));
-            
+
+            AverageQueries = ReadModelFactory<AverageQueries>();
             ParticipantQueries = ReadModelFactory<ParticipantQueries>();
             ParticipantProfileQueries = ReadModelFactory<ParticipantProfileQueries>();
             ContingentViewQueries = ReadModelFactory<ContingentViewQueries>();

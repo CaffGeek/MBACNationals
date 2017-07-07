@@ -1982,6 +1982,7 @@
     <Content Include="2016\js\schedule.js" />
     <Content Include="2016\souvenirs.aspx" />
     <Content Include="2016\sponsors.aspx" />
+    <Content Include="2016\statistics.aspx" />
     <Content Include="2017\centres.aspx" />
     <Content Include="2017\contingents.aspx" />
     <Content Include="2017\css\customize.css" />

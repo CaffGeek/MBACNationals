@@ -14,6 +14,7 @@
             LoadStepladder: loadStepladder,
             LoadMatch: loadMatch,
             LoadHighScores: loadHighScores,
+            LoadHighAverages: loadHighAverages,
             LoadParticipantScores: loadParticipantScores,
             LoadTeamScores: loadTeamScores,
             LoadSponsors: loadSponsors,
@@ -55,6 +56,12 @@
 
         function loadHighScores(division) {
             return $http.get('/Setup/Scores/HighScores', {
+                params: { division: division, year: currentYear }
+            });
+        };
+
+        function loadHighAverages(division) {
+            return $http.get('/Setup/Scores/Averages', {
                 params: { division: division, year: currentYear }
             });
         };

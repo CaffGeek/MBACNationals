@@ -90,6 +90,16 @@ namespace WebFrontend.Controllers
 
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
+        public JsonResult Averages(string division, int year)
+        {
+            Response.AppendHeader("Access-Control-Allow-Origin", "*");
+
+            var hightScores = Domain.AverageQueries.GetDivision(division, year);
+            return Json(hightScores, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public JsonResult StepladderMatches(string year)
         {
             Response.AppendHeader("Access-Control-Allow-Origin", "*");
