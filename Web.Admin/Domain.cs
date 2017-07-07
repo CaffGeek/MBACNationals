@@ -17,7 +17,7 @@ namespace WebFrontend
     {
         public static MessageDispatcher Dispatcher;
         public static ICommandQueries CommandQueries;
-        public static IAverageQueries AverageQueries;
+        public static IStatisticsQueries StatisticsQueries;
         public static IParticipantQueries ParticipantQueries;
         public static IParticipantProfileQueries ParticipantProfileQueries;
         public static IContingentViewQueries ContingentViewQueries;
@@ -44,7 +44,7 @@ namespace WebFrontend
             Dispatcher.ScanInstance(new ScoresCommandHandlers(CommandQueries, Dispatcher)); //TODO: Refactor Dispatcher out of Handler
             Dispatcher.ScanInstance(new TournamentCommandHandlers(CommandQueries));
 
-            AverageQueries = ReadModelFactory<AverageQueries>();
+            StatisticsQueries = ReadModelFactory<StatisticsQueries>();
             ParticipantQueries = ReadModelFactory<ParticipantQueries>();
             ParticipantProfileQueries = ReadModelFactory<ParticipantProfileQueries>();
             ContingentViewQueries = ReadModelFactory<ContingentViewQueries>();

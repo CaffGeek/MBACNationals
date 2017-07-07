@@ -71,7 +71,7 @@
     <Compile Include="ContingentPracticePlanQueries.cs" />
     <Compile Include="ContingentTravelPlanQueries.cs" />
     <Compile Include="ContingentViewQueries.cs" />
-    <Compile Include="AverageQueries.cs" />
+    <Compile Include="StatisticsQueries.cs" />
     <Compile Include="Interfaces\ICommandQueries.cs" />
     <Compile Include="Interfaces\IAverageQueries.cs" />
     <Compile Include="Interfaces\IStepladderQueries.cs" />

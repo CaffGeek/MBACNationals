@@ -2074,6 +2074,7 @@
     <Content Include="ClientApp\Controllers\controller.centres.js" />
     <Content Include="ClientApp\Controllers\controller.hotels.js" />
     <Content Include="ClientApp\Directives\directive.scorehighlight.js" />
+    <Content Include="ClientApp\Views\Results\Highwins.html" />
     <Content Include="ClientApp\Views\Results\Highaverage.html" />
     <Content Include="ClientApp\Views\Results\Highpoa.html" />
     <Content Include="ClientApp\Views\Results\Highscores.html" />

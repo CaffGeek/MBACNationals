@@ -11,6 +11,7 @@
             <li><a ui-sref="highscores()">HIGH SCORES</a></li>
             <li><a ui-sref="highpoa()">HIGH POA</a></li>
             <li><a ui-sref="highaverage()">HIGH AVERAGE</a></li>
+            <li><a ui-sref="highwins()">MOST WINS</a></li>
         </ul>
     </div>
 

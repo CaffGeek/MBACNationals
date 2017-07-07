@@ -7,9 +7,9 @@ using System.Linq;
 
 namespace MBACNationals.ReadModels
 {
-    public class AverageQueries : 
+    public class StatisticsQueries : 
         IReadModel,
-        IAverageQueries,
+        IStatisticsQueries,
         ISubscribeTo<TournamentCreated>,
         ISubscribeTo<MatchCreated>,
         ISubscribeTo<ParticipantGameCompleted>
@@ -37,6 +37,7 @@ namespace MBACNationals.ReadModels
             public string Name { get; set; }
             public int Total { get; set; }
             public decimal Average { get; set; }
+            public decimal Wins { get; set; }
             public List<Score> Scores { get; set; }
         }
 
@@ -44,9 +45,10 @@ namespace MBACNationals.ReadModels
         {
             public Guid MatchId { get; set; }
             public int Scratch { get; set; }
+            public decimal Wins { get; set; }
         }
 
-        public AverageQueries()
+        public StatisticsQueries()
         {
             Reset();
         }
@@ -126,12 +128,17 @@ namespace MBACNationals.ReadModels
                 };
                 division.Participants.Add(participant);
             }
-
+                       
             participant.Scores.RemoveAll(x => x.MatchId == e.Id);
             participant.Name = e.Name;
             participant.Gender = e.Gender;
-            participant.Scores.Add(new Score { MatchId = e.Id, Scratch = e.Score });
+            participant.Scores.Add(new Score { MatchId = e.Id, Scratch = e.Score, Wins = e.IsPOA
+                    ? (e.POA > e.OpponentPOA ? 1M : e.POA < e.OpponentPOA ? 0M : .5M)
+                    : (e.Score > e.OpponentScore ? 1M : e.Score < e.OpponentScore ? 0M : .5M),
+            });
+
             participant.Total = participant.Scores.Sum(x => x.Scratch);
+            participant.Wins = participant.Scores.Sum(x => x.Wins);
             participant.Average = 1.0M * participant.Total / participant.Scores.Count;
         }
 

@@ -94,7 +94,7 @@ namespace WebFrontend.Controllers
         {
             Response.AppendHeader("Access-Control-Allow-Origin", "*");
 
-            var hightScores = Domain.AverageQueries.GetDivision(division, year);
+            var hightScores = Domain.StatisticsQueries.GetDivision(division, year);
             return Json(hightScores, JsonRequestBehavior.AllowGet);
         }
 

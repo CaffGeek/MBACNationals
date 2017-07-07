@@ -1,7 +1,7 @@
 ﻿namespace MBACNationals.ReadModels
 {
-    public interface IAverageQueries
+    public interface IStatisticsQueries
     {
-        AverageQueries.Division GetDivision(string division, int year);
+        StatisticsQueries.Division GetDivision(string division, int year);
     }
 }
