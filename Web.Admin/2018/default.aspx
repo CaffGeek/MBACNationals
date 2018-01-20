@@ -9,7 +9,7 @@
 
 <asp:Content ID="HeaderContent" ContentPlaceHolderID="HeaderPlaceholder" runat="server">
     <div id="headerImage" style="margin-top: 15px; background-size: cover; background-position: center center; height: 375px; background-image: url('images/header_image_default.jpg');"></div>
-    <div id="photoCredit"><strong>TODO: description</strong> &bull; Credit: TODO: credit</div>
+    <div id="photoCredit"><strong>Boulevard Lake</strong> &bull; Credit: Derek Silver, By Vidioman at English Wikipedia [Public domain], via Wikimedia Commons</div>
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyPlaceholder" runat="server">    
@@ -17,7 +17,7 @@
         <div class="row welcome">
             <div class="col-md-12">
                 <h2>Welcome</h2>
-                <p>Welcome to the online home of the 2017 Master Bowlers Association of Canada Nationals, taking place *dates here*, 2017 in Regina, SK.</p>
+                <p>Welcome to the online home of the 2018 Master Bowlers Association of Canada Nationals, taking place June 30 - July 4, 2018 in Thunder Bay, ON.</p>
             </div>
         </div>
 

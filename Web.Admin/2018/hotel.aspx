@@ -2,7 +2,7 @@
 
 <asp:Content ID="HeaderContent" ContentPlaceHolderID="HeaderPlaceholder" runat="server">
     <div id="headerImage" style="margin-top:15px;background-size:cover;background-position:center center;height:375px;background-image:url('images/header_image_location.jpg'); "></div>
-    <div id="photoCredit"><strong>TODO: description</strong> &bull; Credit: TODO: credit</div>
+    <div id="photoCredit"><strong>The James Whalen</strong> &bull; Credit: Michel Curi, Flickr Commons</div>
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyPlaceholder" runat="server">
@@ -14,33 +14,33 @@
         <li>
           <a href="#hotel">Hotel</a>
         </li>
-        <li>
+        <!--<li>
           <a href="#restaurants">Local Restaurants</a>
-        </li>
+        </li>-->
       </ul>
 
 
     </div>
     <div class="col-md-10 col-sm-10">
       <h2>Location</h2>
-      <h4 id="hotel">Sheraton Vancouver Guildford Hotel</h4>
+      <h4 id="hotel">Valhalla Inn</h4>
       <div class="row">
         <div class="col-md-3 col-sm-3">
-          <img src="images/hotel_logo.png" alt="sheraton logo" />
+          <img src="images/hotel_logo.png" alt="Valhalla Inn" />
           <p>
-            Visit their website at <a href="http://www.sheratonguildford.com" target="_blank">www.sheratonguildford.com</a>
+            Visit their website at <a href="http://www.valhallainn.com/" target="_blank">www.valhallainn.com</a>
           </p>
         </div>
         <div class="col-md-9 col-sm-9">
-          <img src="images/hotel.jpg" alt="Sheraton Vancouver Guildford Hotel" />
+          <img src="images/hotel.jpg" alt="Valhalla Inn" />
         </div>          
       </div>
     </div>
-    <div class="row">
+    <!--<div class="row">
       <div class="col-md-12">
         <h4 id="restaurants">Local Restaurants</h4>
         <img src="images/restaurants.jpg" alt="restaurant map" />
       </div>
-    </div>
+    </div>-->
   </div>
 </asp:Content>
