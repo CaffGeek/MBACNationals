@@ -63,7 +63,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="default.aspx">Home</a></li>
                     <li><a href="results.aspx#/standings/Tournament%20Men%20Single">Results</a></li>
-                    <li><a href="statistics.aspx#/highscores/">Statistics</a></li>
+                    <!--<li><a href="statistics.aspx#/highscores/">Statistics</a></li>-->
                     <li><a href="news.aspx">News</a></li>
                     <li><a href="schedule.aspx">Schedule</a></li>
                     <li><a href="lanedraw.aspx">Lane Draw</a></li>
@@ -76,7 +76,7 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">History<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="/2017/" target="_blank">2018 - NO</a></li>
+                            <li><a href="/2018/" target="_blank">2018 - NO</a></li>
                             <li><a href="/2017/" target="_blank">2017 - SK</a></li>
                             <li><a href="/2016/" target="_blank">2016 - BC</a></li>
                             <li><a href="/2015/" target="_blank">2015 - SO</a></li>

@@ -8,9 +8,9 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyPlaceholder" runat="server">
     <div class="col-md-2">
         <ul class="sidebarNav">
-            <li><a href="#centre1">Bowling Lanes - 1</a></li>
-            <li><a href="#centre2">Bowling Lanes - 3</a></li>
-            <li><a href="#centre3">Bowling Lanes - 3</a></li>
+            <li><a href="#centre1">Mario's Bowl</a></li>
+            <li><a href="#centre2">Galaxy Lanes</a></li>
+            <li><a href="#centre3">SUPERIOR BOWLADROME</a></li>
         </ul>
 
     </div>

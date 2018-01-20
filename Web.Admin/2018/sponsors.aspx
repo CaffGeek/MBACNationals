@@ -6,7 +6,7 @@
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyPlaceholder" runat="server">
-    <h2>Sponsors</h2>
+    <h2>Sponsors - Coming soon</h2>
     <div data-ng-controller="SponsorsController as vm">
         <div class="row col-md-3 col-md-offset-1" ng-repeat="sponsor in vm.Sponsors">
             <a href="{{sponsor.Website}}" target="_blank">
