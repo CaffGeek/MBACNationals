@@ -28,20 +28,21 @@
                     <h4><span class="newsHeader">{{newsItem.Title}}</span></h4>
                     <p style="white-space: pre-wrap;">{{newsItem.Content}}</p>
                 </div>
-                <p><a class="btn btn-default" href="news.php" role="button">More News</a></p>
+                <p><a class="btn btn-default" href="news.aspx" role="button">More News</a></p>
             </div>
 
 
             <div class="col-md-6 col-sm-6">
                 <h2>Schedule</h2>
                 <div class="message"></div>
-                <p><a class="btn btn-default" href="schedule.php" role="button">Full Schedule &raquo;</a></p>
+                <p>Coming Soon</p>
+                <p><a class="btn btn-default" href="schedule.aspx" role="button">Full Schedule &raquo;</a></p>
             </div>
         </div>
     </div>
             
     <div class="col-md-4 col-sm-4">
-        <h2>SPONSORS</h2>
+        <!--<h2>SPONSORS</h2>
         <div style="height:250px;" data-ng-controller="SponsorsController as vm">
             <div class="innerContainer">
             <a href="{{vm.CurrentSponsor.Website}}" target="_blank">
@@ -49,7 +50,7 @@
             </a>
             </div>
         </div> 
-                
+            -->    
         <h2>Follow Us</h2>
         <h3>Newsletter</h3>
 
