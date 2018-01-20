@@ -1,10 +1,10 @@
 ﻿<%@ Language="C#" MasterPageFile="~/MBAC.Master" AutoEventWireup="false" %>
 
 <asp:Content ID="MetaContent" ContentPlaceHolderID="MetaPlaceHolder" runat="server">
-    <meta property="og:url" content="http://mbacnationals.com/2017/index.php" />
-    <meta property="og:image" content="http://mbacnationals.com/2017/images/Logo.png" />
-    <meta property="og:title" content="2017 Master Bowlers Association National Championships :: Regina, SK" />
-    <meta property="og:description" content="Home of the 2017 Master Bowlers Association of Canada Nationals" />
+    <meta property="og:url" content="http://mbacnationals.com/2018/index.php" />
+    <meta property="og:image" content="http://mbacnationals.com/2018/images/Logo.png" />
+    <meta property="og:title" content="2018 Master Bowlers Association National Championships :: Thunder Bay, ON" />
+    <meta property="og:description" content="Home of the 2018 Master Bowlers Association of Canada Nationals" />
 </asp:Content>
 
 <asp:Content ID="HeaderContent" ContentPlaceHolderID="HeaderPlaceholder" runat="server">
