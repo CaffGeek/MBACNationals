@@ -46,7 +46,7 @@
                         <strong>807-577-6222<br />
                             636 West Arthur Street, Thunder Bay<br />
                         </strong>
-                        For more information, check out their website: <a href="http://www.scottsdalelanes.com" target="_blank">http://www.scottsdalelanes.com</a>
+                        For more information, check out their website: <a href="http://www.galaxylanes.ca/" target="_blank">http://www.galaxylanes.ca</a>
                     </p>
 
                 </div>
