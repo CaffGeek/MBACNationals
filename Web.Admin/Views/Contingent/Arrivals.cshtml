@@ -2,92 +2,119 @@
     <div class="container" data-ng-controller="ArrivalsController">
         <h2>{{model.province}} Travel Information</h2>
 
+        <div class="row">
+            <div class="alert alert-danger col-md-6">Please enter your destination flight number and time of arrival, this will be different than the flight number you leave from your home province if you have connecting flights.</div>
+        </div>
+
         <h3>Arrivals</h3>
 
-        <div class="alert alert-danger col-md-6">Please enter your destination flight number and time of arrival, this will be different than the flight number you leave from your home province if you have connecting flights.</div>
+        <div class="col-sm-2" style="min-height: 10em; max-height: 15em; overflow-x: auto" data-droppable="" data-droptype="arrival" data-drop="removeFromArrival">
+            <a id="{{p.Id}}" class="arrival-occupant" data-draggable="" data-dragtype="arrival" data-ng-repeat="p in model.participants | filter:unassignedArrival">{{p.Name}}</a>
+        </div>
 
-        <table class="table table-striped table-condensed table-hover">
-            <thead>
-                <tr>
-                    <th>Travel Method</th>
-                    <th>Date & Time</th>
-                    <th>Airline and Flight Number</th>
-                    <th>Number of People</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr data-ng-repeat="item in model.travelPlans | filter: {Type: 1}">
-                    <td>
-                        <select data-ng-model="item.ModeOfTransportation">
-                            <option>Air</option>
-                            <option>Car</option>
-                            <option>Bus</option>
-                        </select>
-                    </td>
-                    <td>                        
-                        <input data-ng-model="item.When" type="datetime-local"
-                               placeholder="yyyy-MM-ddTHH:mm" min="{{minDate | date:'yyyy-MM-ddTHH:mm'}}" max="{{maxDate | date:'yyyy-MM-ddTHH:mm'}}" required />
-                    </td>
-                    <td>
-                        <input data-ng-model="item.FlightNumber" />
-                    </td>
-                    <td>
-                        <input data-ng-model="item.NumberOfPeople" type="number" min="0" max="1000" />
-                    </td>
-                    <td><a data-ng-click="removeRecord(item)">x</a></td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="5">
-                        <a data-ng-click="addArrival()" class="pull-right">Add Row</a>
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
+        <div class="col-sm-10">
+            <table class="table table-striped table-condensed table-hover travelPlans">
+                <thead>
+                    <tr>
+                        <th>Travel Method</th>
+                        <th>Date & Time</th>
+                        <th>Airline and Flight Number</th>
+                        <th>Number of People</th>
+                        <th>Occupants</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="item in model.arrivals">
+                        <td>
+                            <select data-ng-model="item.ModeOfTransportation">
+                                <option>Air</option>
+                                <option>Car</option>
+                                <option>Bus</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input data-ng-model="item.When" type="datetime-local"
+                                   placeholder="yyyy-MM-ddTHH:mm" min="{{minDate | date:'yyyy-MM-ddTHH:mm'}}" max="{{maxDate | date:'yyyy-MM-ddTHH:mm'}}" required />
+                        </td>
+                        <td>
+                            <input data-ng-model="item.FlightNumber" />
+                        </td>
+                        <td>
+                            <input ng-value="item.NumberOfPeople || item.Occupants.length" type="number" min="0" max="1000" readonly />
+                        </td>
+                        <td>
+                            <div class="occupants" id="arrivals" data-droptype="arrival" data-droppable="{{$index}}" data-drop="addToArrival">
+                                <a href="#" id="{{p.Id}}" class="arrival-occupant" data-draggable="" data-dragtype="arrival" data-ng-repeat="p in item.Occupants">{{p.Name}}</a>
+                            </div>
+                        </td>
+                        <td><a data-ng-click="removeRecord(item)">x</a></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5">
+                            <a data-ng-click="addArrival()" class="pull-right">Add Row</a>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
 
         <h3>Departures</h3>
-        <table class="table table-striped table-condensed table-hover">
-            <thead>
-                <tr>
-                    <th>Travel Method</th>
-                    <th>Date & Time, </th>
-                    <th>Airline and Flight Number</th>
-                    <th>Number of People</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr data-ng-repeat="item in model.travelPlans | filter: {Type: 2}">
-                    <td>
-                        <select data-ng-model="item.ModeOfTransportation">
-                            <option>Air</option>
-                            <option>Car</option>
-                            <option>Bus</option>
-                        </select>
-                    </td>
-                    <td>
-                        <input data-ng-model="item.When" type="datetime-local"
-                               placeholder="yyyy-MM-ddTHH:mm" min="{{minDate}}" max="{{maxDate}}" required />
-                    </td>
-                    <td>
-                        <input data-ng-model="item.FlightNumber" />
-                    </td>
-                    <td>
-                        <input data-ng-model="item.NumberOfPeople" type="number" min="0" max="1000" />
-                    </td>
-                    <td><a data-ng-click="removeRecord(item)">x</a></td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="5">
-                        <a data-ng-click="addDeparture()" class="pull-right">Add Row</a>
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
+
+        <div class="col-sm-2" style="min-height: 10em; max-height: 15em; overflow-x: auto" data-droppable="" data-droptype="departure" data-drop="removeFromDeparture">
+            <a id="{{p.Id}}" class="departure-occupant" data-draggable="" data-dragtype="departure" data-ng-repeat="p in model.participants | filter:unassignedDeparture">{{p.Name}}</a>
+        </div>
+
+        <div class="col-sm-10">
+            <table class="table table table-striped table-condensed table-hover travelPlans">
+                <thead>
+                    <tr>
+                        <th>Travel Method</th>
+                        <th>Date & Time, </th>
+                        <th>Airline and Flight Number</th>
+                        <th>Number of People</th>
+                        <th>Occupants</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="item in model.departures">
+                        <td>
+                            <select data-ng-model="item.ModeOfTransportation">
+                                <option>Air</option>
+                                <option>Car</option>
+                                <option>Bus</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input data-ng-model="item.When" type="datetime-local"
+                                   placeholder="yyyy-MM-ddTHH:mm" min="{{minDate}}" max="{{maxDate}}" required />
+                        </td>
+                        <td>
+                            <input data-ng-model="item.FlightNumber" />
+                        </td>
+                        <td>
+                            <input ng-value="item.NumberOfPeople || item.Occupants.length" type="number" min="0" max="1000" readonly />
+                        </td>
+                        <td>
+                            <div class="occupants" id="departures" data-droptype="departure" data-droppable="{{$index}}" data-drop="addToDeparture">
+                                <a href="#" id="{{p.Id}}" class="departure-occupant" data-draggable="" data-dragtype="departure" data-ng-repeat="p in item.Occupants">{{p.Name}}</a>
+                            </div>
+                        </td>
+                        <td><a data-ng-click="removeRecord(item)">x</a></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5">
+                            <a data-ng-click="addDeparture()" class="pull-right">Add Row</a>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
 
         <a href="" data-ng-click="saveTravelPlans()" class="btn btn-primary btn-large pull-right">Save</a>
     </div>

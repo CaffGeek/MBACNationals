@@ -46,9 +46,21 @@
 
                   this.classList.remove('over');
 
+                  var acceptedType = el.getAttribute('data-droptype')
+                      || el.getAttribute('droptype')
+                      || 'any';
+
                   var value = $(this).attr('data-droppable');
                   var binId = this.id;
-                  var item = document.getElementById(e.dataTransfer.getData('Text'));
+                  var parts = e.dataTransfer.getData('Text').split('||');
+
+                  var type = parts[0];
+                  var id = parts[1];
+
+                  if (type != acceptedType || acceptedType == 'any')
+                      return false;
+
+                  var item = document.getElementById(id);
                   
                   scope.$apply(function (scope) {
                       var fn = scope.drop();

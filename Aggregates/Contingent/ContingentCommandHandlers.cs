@@ -4,6 +4,7 @@ using MBACNationals.Contingent.Commands;
 using MBACNationals.ReadModels;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MBACNationals.Contingent
@@ -101,7 +102,17 @@ namespace MBACNationals.Contingent
                 ModeOfTransportation = x.ModeOfTransportation,
                 When = x.When,
                 FlightNumber = x.FlightNumber,
-                NumberOfPeople = x.NumberOfPeople,
+                NumberOfPeople = x.Occupants != null && x.Occupants.Length > 0
+                    ? x.Occupants.Length 
+                    : x.NumberOfPeople,
+                Occupants = x.Occupants != null 
+                    ? x.Occupants.Select(o => new TravelPlansChanged.Occupant
+                        {
+                            Id = o.Id,
+                            Name = o.Name,
+                            Province = o.Province
+                        }).ToList()
+                     : new List<TravelPlansChanged.Occupant>(),
                 Type = x.Type
             }).ToList();
             

@@ -6,7 +6,7 @@
             <h3></h3>
 		    <div class="col-sm-2">
                 <div class="column noHotelRoom" data-droppable="" data-drop="removeFromRoom">
-                    <a href="#" id="{{p.Id}}" class="occupant" data-draggable="" data-ng-repeat="p in model.participants | filter:unassignedRoom">{{p.Name}}</a>
+                    <a id="{{p.Id}}" class="occupant" data-draggable="" data-ng-repeat="p in model.participants | filter:unassignedRoom">{{p.Name}}</a>
 		        </div>    
                 <div>
                     <address ng-repeat="hotel in model.hotels">
@@ -32,7 +32,7 @@
                             </select>
                         </h6> 
                         <div id="bin{{calcBin(y,x)}}" data-droppable="{{calcBin(y,x)}}" data-drop="addToRoom">
-                            <a href="#" id="{{p.Id}}" class="occupant" data-draggable="" data-ng-repeat="p in model.participants | filter:isThisRoom(y,x)">{{p.Name}}</a>
+                            <a id="{{p.Id}}" class="occupant" data-draggable="" data-ng-repeat="p in model.participants | filter:isThisRoom(y,x)">{{p.Name}}</a>
                         </div>
 					</div>
 				</div>

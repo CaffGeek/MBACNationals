@@ -53,6 +53,19 @@ namespace MBACNationals.ReadModels
             public string FlightNumber { get; set; }
             public int NumberOfPeople { get; set; }
             public int Type { get; set; }
+            public List<Occupant> Occupants { get; set; }
+
+            public TravelPlan()
+            {
+                Occupants = new List<Occupant>();
+            }
+        }
+
+        public class Occupant
+        {
+            public Guid Id { get; set; }
+            public string Name { get; set; }
+            public string Province { get; set; }
         }
 
         public class ContingentRooms
@@ -168,6 +181,12 @@ namespace MBACNationals.ReadModels
                     FlightNumber = travelPlan.FlightNumber,
                     ModeOfTransportation = travelPlan.ModeOfTransportation,
                     NumberOfPeople = travelPlan.NumberOfPeople,
+                    Occupants = travelPlan.Occupants.Select(occupant => new Occupant
+                    {
+                        Id = occupant.Id,
+                        Name = occupant.Name,
+                        Province = occupant.Province
+                    }).ToList(),
                     Type = travelPlan.Type,
                     When = travelPlan.When,
                 }).ToList();

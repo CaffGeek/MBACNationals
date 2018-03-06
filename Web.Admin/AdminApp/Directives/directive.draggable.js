@@ -3,12 +3,15 @@
         var el = element[0];
 
         el.draggable = true;
-
+        var type = el.getAttribute('data-dragtype')
+            || el.getAttribute('dragtype')
+            || 'any';
+        
         el.addEventListener(
           'dragstart',
           function (e) {
               e.dataTransfer.effectAllowed = 'move';
-              e.dataTransfer.setData('Text', this.id);
+              e.dataTransfer.setData('Text', type + '||' + this.id);
               this.classList.add('drag');
               return false;
           },

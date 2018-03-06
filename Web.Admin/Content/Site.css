@@ -129,8 +129,22 @@ div.noHotelRoom {
     height: 6em;
 }
 
+.travelPlans div.occupants {
+    border: 1px #aaa solid;
+    overflow-y: auto;
+    min-height: 3em;
+    min-width: 10em;
+    background: white;
+}
+
 [draggable] {
     cursor: pointer;
+}
+
+[droppable], [data-droppable] {
+    border: 1px #aaa solid;
+    background: white;
+    min-height: 3em;
 }
 
 .drag {

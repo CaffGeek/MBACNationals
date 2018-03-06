@@ -10,11 +10,24 @@ namespace Events.Contingent
 
         public class TravelPlan
         {
+            public TravelPlan()
+            {
+                Occupants = new List<Occupant>();
+            }
+
             public string ModeOfTransportation;
             public string When;
             public string FlightNumber;
             public int NumberOfPeople;
             public int Type;
+            public List<Occupant> Occupants;
+        }
+
+        public class Occupant
+        {
+            public Guid Id;
+            public string Name;
+            public string Province;
         }
     }
 }
