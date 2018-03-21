@@ -225,6 +225,17 @@ namespace WebFrontend.Controllers
 
         [HttpPost]
         [RestrictAccessByRouteId]
+        public JsonResult ChangeRoomCheckin(ChangeRoomCheckin command)
+        {
+            if (command.Id == null || command.Id.Equals(Guid.Empty))
+                return Json(command);
+
+            Domain.Dispatcher.SendCommand(command);
+            return Json(command);
+        }
+
+        [HttpPost]
+        [RestrictAccessByRouteId]
         public JsonResult SaveTravelPlans(SaveTravelPlans command)
         {
             if (command.Id == null || command.Id.Equals(Guid.Empty))

@@ -1,7 +1,7 @@
 ﻿(function () {
     "use strict";
 
-    var reservationController = function ($scope, $http, $q, $location, modalFactory, dataService) {
+    var reservationController = function ($scope, $http, $q, $location, modalFactory, dataService, moment) {
         var url = $location.absUrl();
         var lastSlash = url.lastIndexOf('/');
         var province = url.slice(lastSlash + 1);
@@ -19,22 +19,41 @@
                 success(function (participants) {
                     $scope.model.participants = participants;
                 });
-            dataService.LoadRooms(year, province).
-                success(function (data) {
-                    var sparseRooms = [];
 
-                    for (var i = 1; i <= 25; i++) {
-                        var room = data.HotelRooms.filter(function (obj) { return obj.RoomNumber == i; })[0];
-                        sparseRooms[i] = room || { RoomNumber: i };
-                    }
-
-                    $scope.model.contingentId = data.Id;
-                    $scope.model.rooms = sparseRooms;
-                    $scope.model.instructions = data.Instructions;
-                });
             dataService.LoadHotels(year)
                 .success(function (data) {
                     $scope.model.hotels = data;
+                }).then(function () {
+                    var hotel = $scope.model.hotels[0];
+                    var defaultCheckin = moment(hotel.DefaultCheckin, 'YYYY-MM-DD').toDate();
+                    var defaultCheckout = moment(hotel.DefaultCheckout, 'YYYY-MM-DD').toDate();
+
+                    dataService.LoadRooms(year, province).
+                        success(function (data) {
+                            var sparseRooms = [];
+
+                            for (var i = 1; i <= 25; i++) {
+                                var room = data.HotelRooms.filter(function (obj) { return obj.RoomNumber == i; })[0];
+                                if (room) {
+                                    //UGH, such a hack
+                                    var checkin = room.Checkin ? new Date(room.Checkin) : defaultCheckin;
+                                    room.Checkin = new Date(checkin.getUTCFullYear(), checkin.getUTCMonth(), checkin.getUTCDate());
+
+                                    var checkout = room.Checkout ? new Date(room.Checkout) : defaultCheckout;
+                                    room.Checkout = new Date(checkout.getUTCFullYear(), checkout.getUTCMonth(), checkout.getUTCDate());
+                                }
+
+                                sparseRooms[i] = room || {
+                                    RoomNumber: i,
+                                    Checkin: defaultCheckin,
+                                    Checkout: defaultCheckout
+                                };
+                            }
+
+                            $scope.model.contingentId = data.Id;
+                            $scope.model.rooms = sparseRooms;
+                            $scope.model.instructions = data.Instructions;
+                        });
                 });
         }
 
@@ -72,6 +91,14 @@
             dataService.ChangeRoomType($scope.model.contingentId, province, roomNumber, type);
         }
 
+        //TODO: Set checkin/checkout on change
+
+        $scope.setCheckin = function (roomNumber) {
+            var checkin = $scope.model.rooms[roomNumber].Checkin;
+            var checkout = $scope.model.rooms[roomNumber].Checkout;
+            dataService.ChangeRoomCheckin($scope.model.contingentId, province, roomNumber, checkin, checkout);
+        }
+        
         $scope.addToRoom = function (id, roomNumber) {
             dataService.AssignParticipantToRoom(id, roomNumber).then(function (data) {
                 var participant = $scope.model.participants.filter(function (obj) { return obj.Id == id; })[0];
@@ -97,5 +124,5 @@
         }
     };
 
-    app.controller("ReservationController", ["$scope", "$http", "$q", "$location", "modalFactory", "dataService", reservationController]);
+    app.controller("ReservationController", ["$scope", "$http", "$q", "$location", "modalFactory", "dataService", "moment", reservationController]);
 }());

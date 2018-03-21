@@ -22,6 +22,7 @@
             ReorderTeam: reorderTeam,
             LoadRooms: loadRooms,
             ChangeRoomType: changeRoomType,
+            ChangeRoomCheckin: changeRoomCheckin,
             SaveInstructions: saveInstructions,
             LoadTravelPlans: loadTravelPlans,
             SaveTravelPlans: saveTravelPlans,
@@ -215,6 +216,19 @@
             });
         };
 
+        function changeRoomCheckin(contingentId, province, roomNumber, checkin, checkout) {
+            var mcheckin = moment.utc(moment(checkin).format('YYYY-MM-DDTHH:mm'));
+            var mcheckout = moment.utc(moment(checkout).format('YYYY-MM-DDTHH:mm'));
+
+            return $http.post('/Setup/Contingent/ChangeRoomCheckin', {
+                Id: contingentId,
+                Province: province,
+                RoomNumber: roomNumber,
+                Checkin: mcheckin,
+                Checkout: mcheckout
+            });
+        };
+        
         function loadTravelPlans(year, province) {
             return $http.get('/Setup/Contingent/TravelPlans', {
                 params: {
@@ -365,6 +379,12 @@
         };
 
         function saveHotel(year, hotel) {
+            var d1 = moment(hotel.DefaultCheckin);
+            hotel.DefaultCheckin = moment.utc(d1.format('YYYY-MM-DD')).format('YYYY-MM-DD');
+
+            var d2 = moment(hotel.DefaultCheckout);
+            hotel.DefaultCheckout = moment.utc(d2.format('YYYY-MM-DD')).format('YYYY-MM-DD');
+
             return ngUpload.upload({
                 url: '/Setup/Hotels/Save/' + year,
                 fields: {
@@ -372,6 +392,8 @@
                     name: hotel.Name,
                     website: hotel.Website,
                     phonenumber: hotel.PhoneNumber,
+                    checkin: hotel.DefaultCheckin,
+                    checkout: hotel.DefaultCheckout,
                     roomtypes: hotel.RoomTypes
                 },
                 file: [hotel.Logo, hotel.Image]

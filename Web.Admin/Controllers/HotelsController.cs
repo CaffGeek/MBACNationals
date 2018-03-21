@@ -68,6 +68,8 @@ namespace WebFrontend.Controllers
                 Name = request.Form["name"],
                 Website = request.Form["website"],
                 PhoneNumber = request.Form["phonenumber"],
+                DefaultCheckin = request.Form["checkin"],
+                DefaultCheckout = request.Form["checkout"],
                 RoomTypes = roomTypes,
                 Logo = logo.ToArray(),
                 Image = image.ToArray(),

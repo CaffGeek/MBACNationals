@@ -15,6 +15,7 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<ContingentAssignedToTournament>,
         ISubscribeTo<TravelPlansChanged>,
         ISubscribeTo<RoomTypeChanged>,
+        ISubscribeTo<RoomCheckinChanged>,
         ISubscribeTo<ReservationInstructionsChanged>
     {
         public List<Tournament> Tournaments { get; set; }
@@ -85,6 +86,8 @@ namespace MBACNationals.ReadModels
         {
             public int RoomNumber { get; set; }
             public string Type { get; set; }
+            public string Checkin { get; set; }
+            public string Checkout { get; set; }
         }
 
         public ContingentTravelPlanQueries()
@@ -239,6 +242,40 @@ namespace MBACNationals.ReadModels
             else
             {
                 room.Type = e.Type;
+            }
+        }
+
+        public void Handle(RoomCheckinChanged e)
+        {
+            var tournament = GetTournamentFromContingentId(e.Id);
+
+            var contingentRooms = tournament.ContingentRooms.FirstOrDefault(x => x.Id == e.Id);
+
+            if (contingentRooms == null)
+            {
+                var contingent = Contingents.Single(x => x.Key == e.Id);
+                contingentRooms = new ContingentRooms
+                {
+                    Id = contingent.Key,
+                    Province = contingent.Value,
+                };
+                tournament.ContingentRooms.Add(contingentRooms);
+            }
+
+            var room = contingentRooms.HotelRooms.FirstOrDefault(x => x.RoomNumber == e.RoomNumber);
+            if (room == null)
+            {
+                contingentRooms.HotelRooms.Add(new HotelRoom
+                {
+                    RoomNumber = e.RoomNumber,
+                    Checkin = e.Checkin,
+                    Checkout = e.Checkout,
+                });
+            }
+            else
+            {
+                room.Checkin = e.Checkin;
+                room.Checkout = e.Checkout;
             }
         }
 

@@ -12,6 +12,7 @@ namespace MBACNationals.Contingent
         IApplyEvent<TeamCreated>,
         IApplyEvent<TeamRemoved>,
         IApplyEvent<RoomTypeChanged>,
+        IApplyEvent<RoomCheckinChanged>,
         IApplyEvent<TravelPlansChanged>,
         IApplyEvent<TeamPracticeRescheduled>,
         IApplyEvent<ReservationInstructionsChanged>,
@@ -55,6 +56,20 @@ namespace MBACNationals.Contingent
                 HotelRooms.Add(new HotelRoom(e));
             else
                 room.Type = e.Type;
+        }
+
+        public void Apply(RoomCheckinChanged e)
+        {
+            var room = HotelRooms.FirstOrDefault(x => x.Number == e.RoomNumber);
+            if (room == null)
+            {
+                HotelRooms.Add(new HotelRoom(e));
+            }
+            else
+            {
+                room.Checkin = e.Checkin;
+                room.Checkout = e.Checkout;
+            }
         }
 
         public void Apply(TravelPlansChanged e)
@@ -162,6 +177,8 @@ namespace MBACNationals.Contingent
     {
         public int Number { get; set; }
         public string Type { get; set; }
+        public string Checkin { get; set; }
+        public string Checkout { get; set; }
 
         public HotelRoom(dynamic e)
         {

@@ -43,6 +43,7 @@
     <Compile Include="BowlingCentre.cs" />
     <Compile Include="Contingent\ContingentAssignedToTournament.cs" />
     <Compile Include="Contingent\ReservationInstructionsChanged.cs" />
+    <Compile Include="Contingent\RoomCheckinChanged.cs" />
     <Compile Include="Contingent\TeamPracticeRescheduled.cs" />
     <Compile Include="Contingent\RoomTypeChanged.cs" />
     <Compile Include="Contingent\TravelPlansChanged.cs" />

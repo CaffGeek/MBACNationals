@@ -12,10 +12,22 @@
 	    vm.Year = year;
 	    vm.SaveHotel = SaveHotel;
 	    vm.DeleteHotel = DeleteHotel;
-	    vm.AddRoomType = addRoomType;
+        vm.AddRoomType = addRoomType;
+
+        vm.DefaultCheckin = new Date(new Date().getFullYear(), 5, 30);
+        vm.DefaultCheckout = new Date(new Date().getFullYear(), 6, 5); 
         
 	    dataService.LoadHotels(year)
             .then(function (response) {
+                angular.forEach(response.data, function (hotel) {
+                    var d1 = new Date(hotel.DefaultCheckin);
+                    var d2 = new Date(hotel.DefaultCheckout);
+
+                    //UGH, such a hack
+                    hotel.DefaultCheckin = new Date(d1.getUTCFullYear(), d1.getUTCMonth(), d1.getUTCDate());
+                    hotel.DefaultCheckout = new Date(d2.getUTCFullYear(), d2.getUTCMonth(), d2.getUTCDate());
+                });
+
                 vm.Hotels = response.data;
             });
 
@@ -24,7 +36,9 @@
 	            Id: vm.Id,
 	            Name: vm.HotelName,
 	            Website: vm.HotelWebsite,
-	            PhoneNumber: vm.HotelPhoneNumber,
+                PhoneNumber: vm.HotelPhoneNumber,
+                DefaultCheckin: vm.DefaultCheckin,
+                DefaultCheckout: vm.DefaultCheckout,
                 RoomTypes: vm.RoomTypes,
 	            Logo: vm.HotelLogos[0],
 	            Image: vm.HotelImages[0]
@@ -36,6 +50,8 @@
                     vm.HotelName = '';
                     vm.HotelWebsite = '';
                     vm.HotelPhoneNumber = '';
+                    vm.DefaultCheckin = new Date(new Date().getFullYear(), 5, 30);
+                    vm.DefaultCheckout = new Date(new Date().getFullYear(), 6, 5); 
                     vm.RoomTypes = [];
                     vm.HotelLogos = [];
                     vm.HotelImages = [];

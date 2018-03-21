@@ -14,6 +14,14 @@
                 <input type="text" id="HotelPhoneNumber" ng-model="vm.HotelPhoneNumber" />
             </div>
             <div class="form-group">
+                <label for="DefaultCheckin" class="col-md-4 control-label">Check-in</label>
+                <input type="date" id="DefaultCheckin" ng-model="vm.DefaultCheckin" />
+            </div>
+            <div class="form-group">
+                <label for="DefaultCheckout" class="col-md-4 control-label">Check-out</label>
+                <input type="date" id="DefaultCheckout" ng-model="vm.DefaultCheckout" />
+            </div>
+            <div class="form-group">
                 <label for="HotelLogo" class="col-md-4 control-label">Logo</label>
                 <button ngf-select ng-model="vm.HotelLogos" ngf-multiple="false">Choose File</button>
                 <img ngf-src="vm.HotelLogos[0]" width="200" />
@@ -48,6 +56,7 @@
                 <img ng-src="/Setup/Hotels/Logo/{{hotel.Id}}" class="col-xs-12" />
                 <p>{{hotel.Name}}</p>
                 <p>{{hotel.PhoneNumber}}</p>
+                <p>{{hotel.DefaultCheckin | date:'yyyy-MM-dd'}} - {{hotel.DefaultCheckout | date:'yyyy-MM-dd'}}</p>
                 <p>
                     <ul>
                         <li ng-repeat="t in hotel.RoomTypes">{{t}}</li>

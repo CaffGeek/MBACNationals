@@ -57,7 +57,7 @@
                   var type = parts[0];
                   var id = parts[1];
 
-                  if (type != acceptedType || acceptedType == 'any')
+                  if (type != acceptedType)
                       return false;
 
                   var item = document.getElementById(id);

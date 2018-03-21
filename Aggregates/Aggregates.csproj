@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Admin\QualifyingPositionFixer.cs" />
     <Compile Include="Contingent\Commands\AssignContingentToTournament.cs" />
+    <Compile Include="Contingent\Commands\ChangeRoomCheckin.cs" />
     <Compile Include="Contingent\Exceptions\ContingentAlreadyExists.cs" />
     <Compile Include="Contingent\Exceptions\TournamentNotFound.cs" />
     <Compile Include="Participant\Commands\AssignAlternateToTeam.cs" />

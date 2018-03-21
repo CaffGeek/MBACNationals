@@ -30,6 +30,8 @@
                                     data-ng-change="setRoomType((y-1)*5+x)"
                                     data-ng-options="t for t in model.hotels[0].RoomTypes track by t">
                             </select>
+                            Checkin: <input data-ng-model="getRoomByBin(y,x).Checkin" type="date" placeholder="yyyy-MM-dd" required data-ng-change="setCheckin((y-1)*5+x)" />
+                            Checkout: <input data-ng-model="getRoomByBin(y,x).Checkout" type="date" placeholder="yyyy-MM-dd" required data-ng-change="setCheckin((y-1)*5+x)" />
                         </h6> 
                         <div id="bin{{calcBin(y,x)}}" data-droppable="{{calcBin(y,x)}}" data-drop="addToRoom">
                             <a id="{{p.Id}}" class="occupant" data-draggable="" data-ng-repeat="p in model.participants | filter:isThisRoom(y,x)">{{p.Name}}</a>

@@ -60,6 +60,8 @@ namespace MBACNationals.ReadModels
             public string Name { get; set; }
             public string Website { get; set; }
             public string PhoneNumber { get; set; }
+            public string DefaultCheckin { get; set; }
+            public string DefaultCheckout { get; set; }
             public string[] RoomTypes { get; set; }
         }
 
@@ -283,6 +285,8 @@ namespace MBACNationals.ReadModels
                 Name = e.Name,
                 Website = e.Website,
                 PhoneNumber = e.PhoneNumber,
+                DefaultCheckin = e.DefaultCheckin,
+                DefaultCheckout = e.DefaultCheckout,
                 RoomTypes = e.RoomTypes
             });
 
