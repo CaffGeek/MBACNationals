@@ -6,66 +6,32 @@
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyPlaceholder" runat="server">
-    <div class="col-md-2">
-        <ul class="sidebarNav">
-            <li><a href="#centre1">Mario's Bowl</a></li>
-            <li><a href="#centre2">Galaxy Lanes</a></li>
-            <li><a href="#centre3">SUPERIOR BOWLADROME</a></li>
-        </ul>
+    <div data-ng-controller="CentresController as vm">
+        <div class="col-md-2">
+            <ul class="sidebarNav">
+                <li ng-repeat="centre in vm.Centres"><a href="##{{centre.Id}}">{{centre.Name}}</a></li>
+            </ul>
 
-    </div>
-    <div class="col-md-10">
-        <h2>centres</h2>
-
-        <h4 id="centre1">Mario's Bowl</h4>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-3 centreLogo">
-                    <img src="images/centre1.jpg" alt="Marios Bowl" />
-                </div>
-                <div class="col-md-9 col-sm-9 centreDetails">
-                    <p>
-                        <strong>807-344-9644<br />
-                            710 Memorial Ave, Thunder Bay<br />
-                        </strong>
-                        For more information, check out their website: <a href="http://www.mariosbowl.com/" target="_blank">www.mariosbowl.com/</a>
-                    </p>
-                </div>
-            </div>
         </div>
 
+        <div class="col-md-10" >
+            <h2>Centres</h2>
 
-        <h4 id="centre2">GALAXY LANES</h4>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-3 centreLogo">
-                    <img src="images/centre2.jpg" alt="GALAXY LANES" />
-                </div>
-                <div class="col-md-9 col-sm-9 centreDetails">
-                    <p>
-                        <strong>807-577-6222<br />
-                            636 West Arthur Street, Thunder Bay<br />
-                        </strong>
-                        For more information, check out their website: <a href="http://www.galaxylanes.ca/" target="_blank">http://www.galaxylanes.ca</a>
-                    </p>
-
-                </div>
-            </div>
-        </div>
-
-
-        <h4 id="centre3">SUPERIOR BOWLADROME</h4>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-3 centreLogo">
-                    <img src="images/centre3.jpg" alt="SUPERIOR BOWLADROME" />
-                </div>
-                <div class="col-md-9 col-sm-9 centreDetails">
-                    <p>
-                        <strong>807-622-2515<br />
-                            236 Cumming Street, Thunder Bay</strong><br />
-                        For more information, check out their website: <a href="http://www.superiorbowl.ca" target="_blank">http://www.superiorbowl.ca</a>
-                    </p>
+            <div class="row centre" ng-repeat="centre in vm.Centres">
+                <h4 id="{{centre.Id}}">{{centre.Name}}</h4>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 centreLogo">
+                            <img ng-src="/Setup/Centres/Image/{{centre.Id}}" alt="{{centre.Name}}" border="0" />
+                        </div>
+                        <div class="col-md-9 col-sm-9 centreDetails">
+                            <p><strong><a href="tel:{{centre.PhoneNumber}}" target="_blank">{{centre.PhoneNumber}}</a></strong></p>
+                            <p><strong>{{centre.Address}}</strong></p>
+                            <p>
+                                For more information, check out their website: <a href="{{centre.Website}}" target="_blank">{{centre.Website}}</a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
