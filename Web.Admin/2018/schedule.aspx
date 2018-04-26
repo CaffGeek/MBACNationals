@@ -25,9 +25,9 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <h5>
-                                {{event.start | date:'h:mma':'CST'}}
+                                {{event.start | date:'h:mma':'EST'}}
                                 <span data-ng-if="event.start != event.end">
-                                - {{event.end | date:'h:mma':'CST'}}
+                                - {{event.end | date:'h:mma':'EST'}}
                                 </span>
                             </h5>
                         </div>
