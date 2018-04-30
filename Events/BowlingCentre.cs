@@ -12,6 +12,9 @@
         Cloverdale,
         Glencairn,
         GoldenMile,
-        Nortown
+        Nortown,
+        Galaxy,
+        Superior,
+        Marios
     }
 }
