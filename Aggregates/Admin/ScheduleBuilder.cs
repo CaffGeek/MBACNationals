@@ -345,7 +345,7 @@ namespace MBACNationals
                 build(++game, "QC", "SK", lane = 27, "A"), build(game, "MB", "SO", lane += 2, "B"), build(game, "NO", "AB", lane += 2, "C"), build(game, "BC", "NL", lane += 2, "D"),
             });
 
-            build = MatchBuilder(commandQueries, division, BowlingCentre., isPoa);
+            build = MatchBuilder(commandQueries, division, BowlingCentre.Galaxy, isPoa);
             commands.AddRange(new List<SaveMatch>
             {
                 build(++game, "MB", "QC", lane = 13, "A"), build(game, "SO", "SK", lane += 2, "B"), build(game, "NL", "AB", lane += 2, "C"), build(game, "BC", "NO", lane += 2, "D"),
@@ -356,7 +356,7 @@ namespace MBACNationals
                 build(++game, "QC", "AB", lane = 13, "A"), build(game, "BC", "SO", lane += 2, "B"), build(game, "SK", "NO", lane += 2, "C"), build(game, "NL", "MB", lane += 2, "D"),
             });
 
-            build = MatchBuilder(commandQueries, division, BowlingCentre., isPoa);
+            build = MatchBuilder(commandQueries, division, BowlingCentre.Galaxy, isPoa);
             commands.AddRange(new List<SaveMatch>
             {
                 build(++game, "MB", "NO", lane = 29, "A"), build(game, "NL", "SK", lane += 2, "B"), build(game, "SO", "AB", lane += 2, "C"), build(game, "BC", "QC", lane += 2, "D"),
