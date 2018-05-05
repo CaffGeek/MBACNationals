@@ -187,3 +187,6 @@ div.game .frame .shots .shot {
 .invalid{
     background: red !important;
 }
+.arrival-occupant{
+    display: block;
+}
