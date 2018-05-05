@@ -187,6 +187,6 @@ div.game .frame .shots .shot {
 .invalid{
     background: red !important;
 }
-.arrival-occupant{
+.arrival-occupant, .departure-occupant {
     display: block;
 }
