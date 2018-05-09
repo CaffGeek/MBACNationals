@@ -14,5 +14,5 @@
             </a>
         </div>
     </div>
-    </div>
+    <hr style="clear:both;">
 </asp:Content>
