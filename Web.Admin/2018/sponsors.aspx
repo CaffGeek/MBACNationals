@@ -14,5 +14,5 @@
             </a>
         </div>
     </div>
-    <hr />
+    </div>
 </asp:Content>
