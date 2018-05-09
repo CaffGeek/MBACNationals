@@ -70,10 +70,10 @@
             
     <div class="col-md-4 col-sm-4">
         <h2>SPONSORS</h2>
-        <div style="height:250px;" data-ng-controller="SponsorsController as vm">
+        <div style="height:500px;" data-ng-controller="SponsorsController as vm">
             <div class="innerContainer">
             <a href="{{vm.CurrentSponsor.Website}}" target="_blank">
-                <img ng-src="{{vm.ImageBase}}/Setup/Sponsors/Image/{{vm.CurrentSponsor.Id}}" style="width:100%;" alt="" border="0" />
+                <img ng-src="{{vm.ImageBase}}/Setup/Sponsors/Image/{{vm.CurrentSponsor.Id}}" style="width:100%;max-height:500px;" alt="" border="0" />
             </a>
             </div>
         </div> 
