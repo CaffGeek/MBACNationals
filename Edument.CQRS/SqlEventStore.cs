@@ -65,7 +65,7 @@ namespace Edument.CQRS
                         WHERE ISNULL([IsDeleted], 0) = 0
                         ORDER BY [Timestamp], [SequenceNumber]";
                     cmd.CommandType = CommandType.Text;
-
+                    cmd.CommandTimeout = 60 * 5;
                     using (var r = cmd.ExecuteReader())
                     {
                         while (r.Read())

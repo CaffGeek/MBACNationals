@@ -53,9 +53,12 @@ namespace MBACNationals.Contingent
         {
             var room = HotelRooms.FirstOrDefault(x => x.Number == e.RoomNumber);
             if (room == null)
-                HotelRooms.Add(new HotelRoom(e));
-            else
-                room.Type = e.Type;
+            {
+                room = new HotelRoom(e);
+                HotelRooms.Add(room);
+            }
+
+            room.Type = e.Type;
         }
 
         public void Apply(RoomCheckinChanged e)
@@ -63,13 +66,12 @@ namespace MBACNationals.Contingent
             var room = HotelRooms.FirstOrDefault(x => x.Number == e.RoomNumber);
             if (room == null)
             {
-                HotelRooms.Add(new HotelRoom(e));
+                room = new HotelRoom(e);
+                HotelRooms.Add(room);
             }
-            else
-            {
-                room.Checkin = e.Checkin;
-                room.Checkout = e.Checkout;
-            }
+            
+            room.Checkin = e.Checkin;
+            room.Checkout = e.Checkout;
         }
 
         public void Apply(TravelPlansChanged e)
@@ -182,8 +184,7 @@ namespace MBACNationals.Contingent
 
         public HotelRoom(dynamic e)
         {
-            Number = e.RoomNumber;
-            Type = e.Type;
+            Number = e.RoomNumber;            
         }
     }
 
