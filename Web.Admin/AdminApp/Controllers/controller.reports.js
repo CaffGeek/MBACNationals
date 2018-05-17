@@ -99,7 +99,8 @@
 		                    When: plan.When,
 		                    FlightNumber: plan.FlightNumber,
 		                    NumberOfPeople: plan.NumberOfPeople,
-		                    Type: plan.Type
+                            Type: plan.Type,
+                            Occupants: plan.Occupants
 		                });
 		            }
 		        }

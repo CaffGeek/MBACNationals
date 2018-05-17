@@ -13,7 +13,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="6"><h4>Arrivals</h4></td>
+                    <td colspan="5"><h4>Arrivals</h4></td>
                 </tr>
             </tbody>
             <tbody data-ng-repeat="plan in model.FlattenedTravelPlans | filter:{Type:1} | orderBy:orderBy.Column:orderBy.Descending">
@@ -23,12 +23,19 @@
                     <td>{{plan.ModeOfTransportation}}</td>
                     <td>{{plan.FlightNumber}}</td>
                     <td>{{plan.NumberOfPeople}}</td>
+                </tr>
+                <tr>
                     <td></td>
+                    <td colspan="4">
+                        <span data-ng-repeat="occupant in plan.Occupants">
+                            {{occupant.Name}} {{$last ? '' : ($index==plan.Occupants.length-2) ? ' and ' : ', '}}
+                        </span>
+                    </td>
                 </tr>
             </tbody>
             <tbody>
                 <tr>
-                    <td colspan="6"><h4>Departures</h4></td>
+                    <td colspan="5"><h4>Departures</h4></td>
                 </tr>
             </tbody>
             <tbody data-ng-repeat="plan in model.FlattenedTravelPlans | filter:{Type:2} | orderBy:orderBy.Column:orderBy.Descending">
@@ -38,7 +45,14 @@
                     <td>{{plan.ModeOfTransportation}}</td>
                     <td>{{plan.FlightNumber}}</td>
                     <td>{{plan.NumberOfPeople}}</td>
+                </tr>
+                <tr>
                     <td></td>
+                    <td colspan="4">
+                        <span data-ng-repeat="occupant in plan.Occupants">
+                            {{occupant.Name}} {{$last ? '' : ($index==plan.Occupants.length-2) ? ' and ' : ', '}}
+                        </span>
+                    </td>
                 </tr>
             </tbody>
         </table>

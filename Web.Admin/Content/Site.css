@@ -190,3 +190,7 @@ div.game .frame .shots .shot {
 .arrival-occupant, .departure-occupant {
     display: block;
 }
+
+.reportview table {
+    background: #fff;
+}
