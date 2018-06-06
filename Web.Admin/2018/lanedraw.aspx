@@ -16,8 +16,8 @@
                 <li><a href="" data-ng-click="loadLaneDraw('Teaching Men')">TEACHING MEN</a></li>
                 <li><a href="" data-ng-click="loadLaneDraw('Teaching Ladies')">TEACHING LADIES</a></li>
                 <li><a href="" data-ng-click="loadLaneDraw('Seniors')">SENIORS</a></li>
-                <!--<hr />
-                <li><a href="images/forms/2015NationalsLaneDraw.pdf" target="_blank"> DOWNLOAD PDF</a></li>-->
+                <hr />
+                <li><a href="pdfs/LaneDraw.pdf" target="_blank"> DOWNLOAD PDF</a></li>
             </ul>
         </div>
         <div class="col-md-10">
