@@ -2060,6 +2060,7 @@
     <Content Include="2018\js\schedule.js" />
     <Content Include="2018\lanedraw.aspx" />
     <Content Include="2018\news.aspx" />
+    <Content Include="2018\pdfs\LaneDraw.pdf" />
     <Content Include="2018\photos.aspx" />
     <Content Include="2018\results.aspx" />
     <Content Include="2018\schedule.aspx" />
