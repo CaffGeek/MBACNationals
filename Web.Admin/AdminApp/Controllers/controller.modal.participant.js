@@ -47,6 +47,9 @@
         };
 
         $scope.useAlternate = function (participant, team) {
+            if (!confirm('Are you sure you want to replace this bowler with the Emergency Spare? THIS CAN NOT BE UNDONE'))
+                return;
+
             dataService.UseAlternate(participant, team)
                 .then(function (response) {
                     var alternate = response.data;
