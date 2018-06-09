@@ -10,6 +10,11 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
     $urlRouterProvider.otherwise("");
 
     $stateProvider
+        .state('contingents', {
+            url: "/contingents/{province}",
+            templateUrl: "/ClientApp/views/contingents.html",
+            controller: "ContingentController"
+        })
         .state('standings', {
             url: "/standings/{division}",
             templateUrl: "/ClientApp/views/results/standings.html",

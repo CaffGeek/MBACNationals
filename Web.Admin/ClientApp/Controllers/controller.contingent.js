@@ -1,16 +1,19 @@
 ﻿(function () {
     "use strict";
 
-    var contingentController = function ($scope, $http, dataService) {
+    var contingentController = function ($scope, $http, dataService, $stateParams, $state) {
         $scope.model = {};
 
         $scope.loadContingent = loadContingent;
         $scope.totalAverage = totalAverage;
 
-        loadContingent('BC');
+        $scope.model.Province = $stateParams.province;
+
+        if ($scope.model.Province)
+            loadContingent();
 
         function loadContingent(province) {
-            $scope.model.Province = province;
+            province = province || $scope.model.Province;
 
             dataService.LoadContingent(province).then(function (data) {
                 $scope.model = data.data;
@@ -41,5 +44,5 @@
         };
     };
 
-    app.controller("ContingentController", ["$scope", "$http", "dataService", contingentController]);
+    app.controller("ContingentController", ["$scope", "$http", "dataService", "$stateParams", "$state", contingentController]);
 }());
