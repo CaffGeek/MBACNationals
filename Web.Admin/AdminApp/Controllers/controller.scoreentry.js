@@ -15,7 +15,9 @@
             'Submit'
         ];
 
-        $scope.model = {};
+        $scope.model = {
+            override: false
+        };
         navigate('Division');
 
         $scope.Back = function () {
@@ -143,6 +145,12 @@
             return isValid;
         };
 
+        $scope.ValidOverride = function () {
+            var isValid = true;
+            //TODO:
+            return isValid;
+        };
+
         $scope.AllGamesComplete = function (number) {
             return !$.grep($scope.model.Schedule.Games, function (o) { return o.Number == number && !o.IsComplete; }).length;
         };
@@ -201,8 +209,9 @@
         };
 
         function navigate(page) {
+            var timestamp = Math.floor(Date.now());
             $scope.page = page;
-            $scope.viewUrl = '/AdminApp/Views/ScoreEntry/' + page + '.html';
+            $scope.viewUrl = '/AdminApp/Views/ScoreEntry/' + page + '.html?' + timestamp;
         };
     };
 

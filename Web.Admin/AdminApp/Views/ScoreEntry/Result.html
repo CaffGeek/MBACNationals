@@ -11,7 +11,10 @@
             <td class="col-xs-1 text-right" data-ng-if="model.IsPOA">{{bowler.Average}}</td>
             <td class="col-xs-2 text-right">{{bowler.Score}}</td>
             <td class="col-xs-2 text-right" data-ng-if="model.IsPOA">{{bowler.POA}}</td>
-            <td class="col-xs-2 text-right">{{bowler.Point}}</td>
+            <td class="col-xs-2 text-right">
+                <span ng-hide="model.override">{{bowler.Point}}</span>
+                <input ng-show="model.override" name="point" class="form-control input-sm" type="number" min="0" max="2" data-ng-model="bowler.Point" required/>
+            </td>
         </tr>
     </tbody>
     <tbody data-ng-if="model.IsTeam">
@@ -20,7 +23,10 @@
             <td class="col-xs-1 text-right" data-ng-if="model.IsPOA"></td>
             <td class="col-xs-2 text-right">{{model.Away.Score}}</td>
             <td class="col-xs-2 text-right" data-ng-if="model.IsPOA">{{model.Away.POA}}</td>
-            <td class="col-xs-2 text-right">{{model.Away.Point}}</td>
+            <td class="col-xs-2 text-right">
+                <span ng-hide="model.override">{{model.Away.Point}}</span>
+                <input ng-show="model.override" name="point" class="form-control input-sm" type="number" min="0" max="8" data-ng-model="model.Away.Point" required/>
+            </td>
         </tr>
     </tbody>
 </table>
@@ -34,7 +40,10 @@
             <td class="col-xs-1 text-right" data-ng-if="model.IsPOA">{{bowler.Average}}</td>
             <td class="col-xs-2 text-right">{{bowler.Score}}</td>
             <td class="col-xs-2 text-right" data-ng-if="model.IsPOA">{{bowler.POA}}</td>
-            <td class="col-xs-2 text-right">{{bowler.Point}}</td>
+            <td class="col-xs-2 text-right">
+                <span ng-hide="model.override">{{bowler.Point}}</span>
+                <input ng-show="model.override" name="point" class="form-control input-sm" type="number" min="0" max="2" data-ng-model="bowler.Point" required/>
+            </td>
         </tr>
     </tbody>
     <tbody data-ng-if="model.IsTeam">
@@ -43,9 +52,18 @@
             <td class="col-xs-1 text-right" data-ng-if="model.IsPOA"></td>
             <td class="col-xs-2 text-right">{{model.Home.Score}}</td>
             <td class="col-xs-2 text-right" data-ng-if="model.IsPOA">{{model.Home.POA}}</td>
-            <td class="col-xs-2 text-right">{{model.Home.Point}}</td>
+            <td class="col-xs-2 text-right">
+                <span ng-hide="model.override">{{model.Home.Point}}</span>
+                <input ng-show="model.override" name="point" class="form-control input-sm" type="number" min="0" max="8" data-ng-model="model.Home.Point" required/>
+            </td>
         </tr>
     </tbody>
 </table>
 
-<button type="button" class="btn btn-lg btn-block btn-primary" data-ng-click="Page('Submit')">Save</button>
+<div class="col-lg-6">
+    <button type="button" class="btn btn-lg btn-block btn-primary" data-ng-disabled="model.override && !ValidOverride()" data-ng-click="Page('Submit')">Save</button>
+</div>
+<div class="col-lg-6">
+    <button data-ng-hide="model.override" type="button" class="btn btn-lg btn-block btn-danger" data-ng-click="model.override = true">Override</button>
+    <button data-ng-show="model.override" type="button" class="btn btn-lg btn-block" data-ng-click="model.override = false; Page('Result')">Reset</button>
+</div>
