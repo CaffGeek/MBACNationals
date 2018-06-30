@@ -19,6 +19,7 @@
             <div class="col-md-12">
                 <h2>Welcome</h2>
                 <p>Welcome to the online home of the 2018 Master Bowlers Association of Canada Nationals, taking place June 30 - July 4, 2018 in Thunder Bay, ON.</p>
+                <p><a href="https://www.pscp.tv/MBACNationals2018">Click here for Live Streaming!!!</a></p>
             </div>
         </div>
 
