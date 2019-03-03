@@ -113,8 +113,9 @@ namespace MBACNationals.ReadModels
             
             division.Scores.RemoveAll(x => x.MatchId == e.Id && x.ParticipantId == e.ParticipantId);
 
-            if (divisionName.Equals("Tournament", StringComparison.OrdinalIgnoreCase) && e.Score < 275) return;
-            if (!divisionName.Equals("Tournament", StringComparison.OrdinalIgnoreCase) && e.POA < 75) return;
+            //TODO: tweak this
+            //if (divisionName.Equals("Tournament", StringComparison.OrdinalIgnoreCase) && e.Score < 275) return;
+            //if (!divisionName.Equals("Tournament", StringComparison.OrdinalIgnoreCase) && e.POA < 75) return;
 
             division.Scores.Add(new Score
             {
