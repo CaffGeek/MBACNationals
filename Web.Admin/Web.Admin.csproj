@@ -2069,6 +2069,7 @@
     <Content Include="2018\schedule.aspx" />
     <Content Include="2018\souvenirs.aspx" />
     <Content Include="2018\sponsors.aspx" />
+    <Content Include="2018\statistics.aspx" />
     <Content Include="2019\images\Logo.png" />
     <Content Include="2019\centres.aspx" />
     <Content Include="2019\contingents.aspx" />
@@ -2102,6 +2103,7 @@
     <Content Include="2019\schedule.aspx" />
     <Content Include="2019\souvenirs.aspx" />
     <Content Include="2019\sponsors.aspx" />
+    <Content Include="2019\statistics.aspx" />
     <Content Include="20xx-Template\centres.aspx" />
     <Content Include="20xx-Template\contingents.aspx" />
     <Content Include="20xx-Template\css\customize.css" />
@@ -2131,6 +2133,7 @@
     <Content Include="20xx-Template\lanedraw.aspx" />
     <Content Include="20xx-Template\news.aspx" />
     <Content Include="20xx-Template\photos.aspx" />
+    <Content Include="20xx-Template\statistics.aspx" />
     <Content Include="20xx-Template\results.aspx" />
     <Content Include="20xx-Template\schedule.aspx" />
     <Content Include="20xx-Template\souvenirs.aspx" />

@@ -36,8 +36,6 @@ namespace MBACNationals.Participant
             if (agg.EventsLoaded > 0)
                 throw new ParticipantAlreadyExists();
             
-            Emailer.Emailer.Send();
-
             yield return new ParticipantCreated
             {
                 Id = command.Id,
