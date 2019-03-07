@@ -63,7 +63,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="default.aspx">Home</a></li>
                     <li><a href="results.aspx#/standings/Tournament%20Men%20Single">Results</a></li>
-                    <!--<li><a href="statistics.aspx#/highscores/">Statistics</a></li>-->
+                    <li><a href="statistics.aspx#/highscores/">Statistics</a></li>
                     <li><a href="news.aspx">News</a></li>
                     <li><a href="schedule.aspx">Schedule</a></li>
                     <li><a href="lanedraw.aspx">Lane Draw</a></li>
