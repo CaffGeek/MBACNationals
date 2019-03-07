@@ -2067,6 +2067,7 @@
     <Content Include="2018\schedule.aspx" />
     <Content Include="2018\souvenirs.aspx" />
     <Content Include="2018\sponsors.aspx" />
+    <Content Include="2019\images\Logo.png" />
     <Content Include="2019\centres.aspx" />
     <Content Include="2019\contingents.aspx" />
     <Content Include="2019\css\customize.css" />
@@ -2090,7 +2091,6 @@
     <Content Include="2019\images\hotel.jpg" />
     <Content Include="2019\images\hotel_logo.png" />
     <Content Include="2019\images\LinkLogo.jpg" />
-    <Content Include="2019\images\Logo.png" />
     <Content Include="2019\images\restaurants.jpg" />
     <Content Include="2019\js\schedule.js" />
     <Content Include="2019\lanedraw.aspx" />
