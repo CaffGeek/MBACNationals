@@ -1,12 +1,10 @@
 ﻿using Edument.CQRS;
 using Events.Participant;
-using MBACNationals.Contingent;
 using MBACNationals.Participant.Commands;
 using MBACNationals.ReadModels;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace MBACNationals.Participant
 {
@@ -37,6 +35,8 @@ namespace MBACNationals.Participant
 
             if (agg.EventsLoaded > 0)
                 throw new ParticipantAlreadyExists();
+            
+            Emailer.Emailer.Send();
 
             yield return new ParticipantCreated
             {
