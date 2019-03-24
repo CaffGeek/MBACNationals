@@ -86,61 +86,88 @@ namespace MBACNationals.Participant
             var agg = al(command.Id);
 
             if (agg.Name != command.Name)
+            {
                 yield return new ParticipantRenamed
                 {
                     Id = command.Id,
                     Name = command.Name,
                 };
 
+                if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send("Participant Renamed", $"{agg.Name} changed to {command.Name}");
+            }
+
             if (agg.Gender != command.Gender)
+            {
                 yield return new ParticipantGenderReassigned
                 {
                     Id = command.Id,
                     Gender = command.Gender,
                 };
 
+                if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send("Gender Changed", $"{agg.Name}'s Gender of {agg.Gender} changed to {command.Gender}");
+            }
+
             if (agg.IsDelegate != command.IsDelegate && command.IsDelegate)
+            {
                 yield return new ParticipantDelegateStatusGranted
                 {
                     Id = command.Id
                 };
+            }
 
             if (agg.IsDelegate != command.IsDelegate && !command.IsDelegate)
+            {
                 yield return new ParticipantDelegateStatusRevoked
                 {
                     Id = command.Id
                 };
+            }
 
             if (agg.IsManager != command.IsManager && command.IsManager)
+            {
                 yield return new ParticipantManagerStatusGranted
                 {
                     Id = command.Id
                 };
+            }
 
             if (agg.IsManager != command.IsManager && !command.IsManager)
+            {
                 yield return new ParticipantManagerStatusRevoked
                 {
                     Id = command.Id
                 };
+            }
 
             if (agg.YearsQualifying != command.YearsQualifying)
+            {
                 yield return new ParticipantYearsQualifyingChanged
                 {
                     Id = command.Id,
                     YearsQualifying = command.YearsQualifying,
                 };
 
+                if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send("YearsQualifying Changed", $"{agg.Name}'s YearsQualifying of {agg.YearsQualifying} changed to {command.YearsQualifying}");
+            }
+
             if (agg.ShirtSize != command.ShirtSize)
+            {
                 yield return new ParticipantShirtSizeChanged
                 {
                     Id = command.Id,
                     ShirtSize = command.ShirtSize,
                 };
+            }
 
             if (agg.LeaguePinfall != command.LeaguePinfall
                 || agg.LeagueGames != command.LeagueGames
                 || agg.TournamentPinfall != command.TournamentPinfall
                 || agg.TournamentGames != command.TournamentGames)
+            {
+                var newAverage = (command.LeagueGames + command.TournamentGames) > 0
+                        ? (command.LeaguePinfall + command.TournamentPinfall) / (command.LeagueGames + command.TournamentGames)
+                        : 0;
+
                 yield return new ParticipantAverageChanged
                 {
                     Id = command.Id,
@@ -148,12 +175,14 @@ namespace MBACNationals.Participant
                     LeagueGames = command.LeagueGames,
                     TournamentPinfall = command.TournamentPinfall,
                     TournamentGames = command.TournamentGames,
-                    Average = (command.LeagueGames + command.TournamentGames) > 0 
-                        ? (command.LeaguePinfall + command.TournamentPinfall) / (command.LeagueGames + command.TournamentGames)
-                        : 0
+                    Average = newAverage
                 };
 
-            if (agg.Package.ManitobaDinner != command.Package.ManitobaDinner
+                if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send("Average Changed", $"{agg.Name}'s Average of {agg.Average} changed to {newAverage}");
+            }
+
+            if (agg.Package == null
+                || agg.Package.ManitobaDinner != command.Package.ManitobaDinner
                 || agg.Package.ManitobaDance != command.Package.ManitobaDance
                 || agg.Package.FinalBanquet != command.Package.FinalBanquet
                 || agg.Package.Transportation != command.Package.Transportation
@@ -161,6 +190,7 @@ namespace MBACNationals.Participant
                 || agg.Package.Option2 != command.Package.Option2
                 || agg.Package.Option3 != command.Package.Option3
                 || agg.Package.Option4 != command.Package.Option4)
+            {
                 yield return new ParticipantGuestPackageChanged
                 {
                     Id = command.Id,
@@ -174,12 +204,17 @@ namespace MBACNationals.Participant
                     Option4 = command.Package.Option4,
                 };
 
+                if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send("Guest Package Changed", $"{agg.Name}'s Guest Package choices have changed.");
+            }
+
             if (command.Birthday.HasValue && agg.Birthday != command.Birthday)
+            {
                 yield return new ParticipantBirthdayChanged
                 {
                     Id = command.Id,
                     Birthday = command.Birthday.Value,
                 };
+            }
         }
 
         public IEnumerable Handle(Func<Guid, ParticipantAggregate> al, RenameParticipant command)
@@ -187,11 +222,15 @@ namespace MBACNationals.Participant
             var agg = al(command.Id);
 
             if (agg.Name != command.Name)
+            {
                 yield return new ParticipantRenamed
                 {
                     Id = command.Id,
                     Name = command.Name,
                 };
+
+                if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send("Participant Renamed", $"{agg.Name} changed to {command.Name}");
+            }
         }
 
         public IEnumerable Handle(Func<Guid, ParticipantAggregate> al, AddParticipantToTeam command)

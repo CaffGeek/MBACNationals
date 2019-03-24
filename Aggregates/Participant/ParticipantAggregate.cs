@@ -181,6 +181,7 @@ namespace MBACNationals.Participant
 
         public void Apply(ParticipantGuestPackageChanged e)
         {
+            Package = Package ?? new PackageInformation();
             Package.ManitobaDinner = e.ManitobaDinner;
             Package.ManitobaDance = e.ManitobaDance;
             Package.FinalBanquet = e.FinalBanquet;
