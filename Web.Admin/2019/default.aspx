@@ -1,10 +1,10 @@
 ﻿<%@ Language="C#" MasterPageFile="~/MBAC.Master" AutoEventWireup="false" %>
 
 <asp:Content ID="MetaContent" ContentPlaceHolderID="MetaPlaceHolder" runat="server">
-    <meta property="og:url" content="http://mbacnationals.com/2017/index.php" />
-    <meta property="og:image" content="http://mbacnationals.com/2017/images/Logo.png" />
-    <meta property="og:title" content="2017 Master Bowlers Association National Championships :: Regina, SK" />
-    <meta property="og:description" content="Home of the 2017 Master Bowlers Association of Canada Nationals" />
+    <meta property="og:url" content="http://mbacnationals.com/2019/index.php" />
+    <meta property="og:image" content="http://mbacnationals.com/2019/images/Logo.png" />
+    <meta property="og:title" content="2019 Master Bowlers Association National Championships :: Gatineau" />
+    <meta property="og:description" content="Home of the 2019 Master Bowlers Association of Canada Nationals" />
 </asp:Content>
 
 <asp:Content ID="HeaderContent" ContentPlaceHolderID="HeaderPlaceholder" runat="server">
@@ -41,14 +41,14 @@
     </div>
             
     <div class="col-md-4 col-sm-4">
-        <h2>SPONSORS</h2>
+       <!-- <h2>SPONSORS</h2>
         <div style="height:250px;" data-ng-controller="SponsorsController as vm">
             <div class="innerContainer">
             <a href="{{vm.CurrentSponsor.Website}}" target="_blank">
                 <img ng-src="{{vm.ImageBase}}/Setup/Sponsors/Image/{{vm.CurrentSponsor.Id}}" style="width:100%;" alt="" border="0" />
             </a>
             </div>
-        </div> 
+        </div> -->
                 
         <h2>Follow Us</h2>
         <h3>Newsletter</h3>

@@ -25,7 +25,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
 	    font-family: 'bebasregular';
-	    color: rgba(82,168,236,.6);
+	    color: rgba(98, 75, 5, 1);
 	    }
 	    
 h3 { font-size: 16px;}
@@ -56,7 +56,7 @@ h4 { font-size: 14px;
 .btn-default.active, 
 .open .dropdown-toggle.btn-default { 
   color: #FFFFFF; 
-  background-color: #8dc63f; 
+  background-color: #0b559d; 
   border-color: #FFFFFF; 
 } 
  
@@ -87,7 +87,7 @@ nav {
   border-right: 1px solid #ccc;
 }
 .navbar-default .navbar-nav>li>a:hover {
-	color: #428BCA;
+	color: #0b559d;
 
 	}
 	
@@ -172,7 +172,7 @@ nav {
 	}
 
 .sidebarNav a:hover {
-	color: #8dc63f;
+	color: #0b559d;
 	text-decoration: none;
 	}
 	
@@ -198,7 +198,7 @@ footer li a {
 }
 
 footer li a:hover {
-	color: #428BCA;
+	color: #0b559d;
 	text-decoration: none;
 }
 
@@ -212,10 +212,10 @@ border-right: none;
 }
 
 .shadowed {
-    -webkit-filter: drop-shadow(12px 12px 12px rgba(0,0,0,0.5));
-    /*filter: url("data:image/svg+xml;utf8,<svg height='0' xmlns='http://www.w3.org/2000/svg'><filter id='drop-shadow'><feGaussianBlur in='SourceAlpha' stdDeviation='4'/><feOffset dx='12' dy='12' result='offsetblur'/><feFlood flood-color='rgba(0,0,0,0.5)'/><feComposite in2='offsetblur' operator='in'/><feMerge><feMergeNode/><feMergeNode in='SourceGraphic'/></feMerge></filter></svg>#drop-shadow");*/
-    -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#444')";
-    filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#444')";
+    -webkit-filter: drop-shadow(12px 12px 12px rgba(255,255,255,0.5));
+    /*filter: url("data:image/svg+xml;utf8,<svg height='0' xmlns='http://www.w3.org/2000/svg'><filter id='drop-shadow'><feGaussianBlur in='SourceAlpha' stdDeviation='4'/><feOffset dx='12' dy='12' result='offsetblur'/><feFlood flood-color='rgba(255,255,255,0.5)'/><feComposite in2='offsetblur' operator='in'/><feMerge><feMergeNode/><feMergeNode in='SourceGraphic'/></feMerge></filter></svg>#drop-shadow");*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#fff')";
+    filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#fff')";
 }
 
 .hotel img {
