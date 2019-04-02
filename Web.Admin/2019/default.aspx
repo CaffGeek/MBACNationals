@@ -35,7 +35,7 @@
             <div class="col-md-6 col-sm-6">
                 <h2>Schedule</h2>
                 <div class="message"></div>
-                <p><a class="btn btn-default" href="schedule.php" role="button">Full Schedule &raquo;</a></p>
+                <p><a class="btn btn-default" href="schedule.aspx" role="button">Full Schedule &raquo;</a></p>
             </div>
         </div>
     </div>

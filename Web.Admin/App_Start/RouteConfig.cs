@@ -154,6 +154,12 @@ namespace WebFrontend
             );
 
             routes.MapRoute(
+                name: "History",
+                url: "Setup/History/{year}",
+                defaults: new { controller = "History", action = "Index" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "Setup/{controller}/{action}/{year}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

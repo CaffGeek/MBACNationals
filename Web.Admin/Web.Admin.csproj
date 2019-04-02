@@ -251,6 +251,7 @@
   <ItemGroup>
     <Compile Include="Controllers\GuestPackagesController.cs" />
     <Compile Include="Controllers\CentresController.cs" />
+    <Compile Include="Controllers\HistoryController.cs" />
     <Compile Include="Controllers\HotelsController.cs" />
     <Compile Include="MBAC.Master.cs">
       <DependentUpon>MBAC.Master</DependentUpon>
@@ -3551,6 +3552,7 @@
     <Content Include="Views\Hotels\Edit.cshtml" />
     <Content Include="Views\GuestPackages\Edit.cshtml" />
     <Content Include="Views\Centres\Edit.cshtml" />
+    <Content Include="Views\History\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminApp\Entities\" />

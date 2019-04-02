@@ -301,6 +301,8 @@ namespace MBACNationals.Participant
                 Id = command.Id,
                 RoomNumber = command.RoomNumber
             };
+
+            if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send("Room Change", $"{agg.Name} changed to room {command.RoomNumber}");
         }
 
         public IEnumerable Handle(Func<Guid, ParticipantAggregate> al, RemoveParticipantFromRoom command)
@@ -345,6 +347,8 @@ namespace MBACNationals.Participant
                 OtherAchievements = command.OtherAchievements,
                 Hobbies = command.Hobbies,
             };
+
+            if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send("Singles Profile Changed", $"Profile for {agg.Name} has been changed.");
         }
 
         public IEnumerable Handle(Func<Guid, ParticipantAggregate> al, ReplaceParticipant command)
