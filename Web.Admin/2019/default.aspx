@@ -9,7 +9,7 @@
 
 <asp:Content ID="HeaderContent" ContentPlaceHolderID="HeaderPlaceholder" runat="server">
     <div id="headerImage" style="margin-top: 15px; background-size: cover; background-position: center center; height: 375px; background-image: url('images/header_image_default.jpg');"></div>
-    <div id="photoCredit"><strong>TODO: description</strong> &bull; Credit: TODO: credit</div>
+    <div id="photoCredit"><strong>Canadian Museum of Civilization</strong> &bull; Credit: Vlad Litvinov - Flickr Commons</div>
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyPlaceholder" runat="server">    
@@ -17,7 +17,7 @@
         <div class="row welcome">
             <div class="col-md-12">
                 <h2>Welcome</h2>
-                <p>Welcome to the online home of the 2019 Master Bowlers Association of Canada Nationals, taking place *dates here*, 2019 in ...</p>
+                <p>Welcome to the online home of the 2019 Master Bowlers Association of Canada Nationals, taking place June 28 - July 4, 2019 in Gatineau, Quebec.</p>
             </div>
         </div>
 
@@ -28,7 +28,7 @@
                     <h4><span class="newsHeader">{{newsItem.Title}}</span></h4>
                     <p style="white-space: pre-wrap;">{{newsItem.Content}}</p>
                 </div>
-                <p><a class="btn btn-default" href="news.php" role="button">More News</a></p>
+                <p><a class="btn btn-default" href="news.aspx" role="button">More News</a></p>
             </div>
 
 
