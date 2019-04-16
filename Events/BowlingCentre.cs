@@ -15,6 +15,9 @@
         Nortown,
         Galaxy,
         Superior,
-        Marios
+        Marios,
+        Anik,
+        Paris,
+        KingPin,
     }
 }
