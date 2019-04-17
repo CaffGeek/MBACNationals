@@ -321,11 +321,11 @@ namespace MBACNationals
             commands.AddRange(new List<SaveMatch>
             {
                 build(++game, "BC", "SK", lane = 01, "A"), build(game, "NL", "QC", lane += 2, "B"), build(game, "NO", "AB", lane += 6, "C"), build(game, "MB", "SO", lane += 2, "D"),
-                build(++game, "QC", "SO", lane = 01, "A"), build(game, "AB", "BC", lane += 4, "B"), build(game, "MB", "NL", lane += 2, "C"), build(game, "SK", "NO", lane += 4, "D"),
-                build(++game, "NO", "BC", lane = 03, "A"), build(game, "QC", "MB", lane += 2, "B"), build(game, "SK", "AB", lane += 2, "C"), build(game, "SO", "NL", lane += 2, "D"),
-                build(++game, "AB", "NL", lane = 03, "A"), build(game, "SO", "BC", lane += 2, "B"), build(game, "QC", "NO", lane += 2, "C"), build(game, "SK", "MB", lane += 2, "D"),
-                build(++game, "SK", "SO", lane = 03, "A"), build(game, "NO", "NL", lane += 2, "B"), build(game, "MB", "BC", lane += 2, "C"), build(game, "QC", "AB", lane += 2, "D"),
-                build(++game, "MB", "NO", lane = 03, "A"), build(game, "SK", "QC", lane += 2, "B"), build(game, "AB", "SO", lane += 2, "C"), build(game, "NL", "BC", lane += 2, "D"),
+                build(++game, "MB", "NL", lane = 01, "A"), build(game, "QC", "SO", lane += 4, "B"), build(game, "SK", "NO", lane += 2, "C"), build(game, "AB", "BC", lane += 4, "D"),
+                build(++game, "SK", "AB", lane = 03, "A"), build(game, "NO", "BC", lane += 2, "B"), build(game, "QC", "MB", lane += 2, "C"), build(game, "SO", "NL", lane += 2, "D"),
+                build(++game, "SO", "BC", lane = 03, "A"), build(game, "SK", "MB", lane += 2, "B"), build(game, "AB", "NL", lane += 2, "C"), build(game, "QC", "NO", lane += 2, "D"),
+                build(++game, "NO", "NL", lane = 03, "A"), build(game, "QC", "AB", lane += 2, "B"), build(game, "SK", "SO", lane += 2, "C"), build(game, "MB", "BC", lane += 2, "D"),
+                build(++game, "SK", "QC", lane = 03, "A"), build(game, "NL", "BC", lane += 2, "B"), build(game, "MB", "NO", lane += 2, "C"), build(game, "AB", "SO", lane += 2, "D"),
             });
 
             build = MatchBuilder(commandQueries, division, BowlingCentre.Anik, isPoa);
