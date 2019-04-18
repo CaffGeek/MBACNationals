@@ -69,7 +69,7 @@
                     <li><a href="lanedraw.aspx">Lane Draw</a></li>
                     <%--<li><a href="photos.aspx">Photos</a></li>--%>
                     <li><a href="contingents.aspx">Contingents</a></li>
-                    <%--<li><a href="souvenirs.aspx">Souvenirs</a></li>--%>
+                    <li><a href="souvenirs.aspx">Souvenirs</a></li>
                     <li><a href="sponsors.aspx">Sponsors</a></li>
                     <li><a href="centres.aspx">Centres</a></li>
                     <li><a href="hotel.aspx">Location</a></li>
@@ -113,7 +113,6 @@
                 <li><a href="news.aspx">News</a></li>
                 <li><a href="schedule.aspx">Schedule</a></li>
                 <li><a href="lanedraw.aspx">Lane Draw</a></li>
-                <li><a href="photos.aspx">Photos</a></li>
                 <li><a href="contingents.aspx">Contingents</a></li>
                 <li><a href="sponsors.aspx">Sponsors</a></li>
                 <li><a href="centres.aspx">Centres</a></li>
