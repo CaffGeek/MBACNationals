@@ -3553,6 +3553,7 @@
     <Content Include="Views\GuestPackages\Edit.cshtml" />
     <Content Include="Views\Centres\Edit.cshtml" />
     <Content Include="Views\History\Index.cshtml" />
+    <Content Include="Views\Tournament\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminApp\Entities\" />

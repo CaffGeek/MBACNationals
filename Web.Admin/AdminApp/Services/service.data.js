@@ -37,6 +37,7 @@
             UseAlternate: useAlternate,
             LoadTournaments: loadTournaments,
             CreateTournament: createTournament,
+            SaveTournamentSettings: saveTournamentSettings,
             SaveSponsor: saveSponsor,
             LoadSponsors: loadSponsors,
             DeleteSponsor: deleteSponsor,
@@ -309,9 +310,13 @@
         function loadTournaments() {
             return $http.get('/Setup/Tournament/All');
         };
-
+        
         function createTournament(tournament) {
             return $http.post('/Setup/Tournament/Create', tournament);
+        };
+
+        function saveTournamentSettings(year, tournamentSettings) {
+            return $http.post('/Setup/Tournament/Settings/' + year, tournamentSettings);
         };
 
         function saveSponsor(year, sponsor) {

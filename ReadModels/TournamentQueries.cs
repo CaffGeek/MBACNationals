@@ -3,7 +3,6 @@ using Events.Tournament;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace MBACNationals.ReadModels
 {
@@ -11,6 +10,9 @@ namespace MBACNationals.ReadModels
         IReadModel,
         ITournamentQueries,
         ISubscribeTo<TournamentCreated>,
+        ISubscribeTo<ChangeNotificationCutoffChanged>,
+        ISubscribeTo<ChangeNotificationEmailChanged>,
+        ISubscribeTo<ScoreNotificationEmailChanged>,
         ISubscribeTo<SponsorCreated>,
         ISubscribeTo<SponsorDeleted>,
         ISubscribeTo<SponsorPositionChanged>,
@@ -33,6 +35,9 @@ namespace MBACNationals.ReadModels
         {
             public Guid Id { get; set; }
             public string Year { get; set; }
+            public String ChangeNotificationCutoff { get; set; }
+            public String ChangeNotificationEmail { get; set; }
+            public String ScoreNotificationEmail { get; set; }
         }
 
         public class News
@@ -160,34 +165,34 @@ namespace MBACNationals.ReadModels
             return logo.Contents;
         }
 
-        public List<TournamentQueries.GuestPackage> GetGuestPackages(string year)
+        public List<GuestPackage> GetGuestPackages(string year)
         {
             var tournament = Tournaments.Single(x => x.Year == year);
             var guestPackages = GuestPackages.Where(x => x.TournamentId == tournament.Id).ToList();
 
             var defaultPackages = new [] {
-                new TournamentQueries.GuestPackage
+                new GuestPackage
                 {
                     TournamentId = tournament.Id,
                     Code = "Option1",
                     Name = "Meet & Greet",
                     Enabled = true
                 },
-                new TournamentQueries.GuestPackage
+                new GuestPackage
                 {
                     TournamentId = tournament.Id,
                     Code = "Option2",
                     Name = "Transportation",
                     Enabled = true
                 },
-                new TournamentQueries.GuestPackage
+                new GuestPackage
                 {
                     TournamentId = tournament.Id,
                     Code = "Option3",
                     Name = "Provincial Night",
                     Enabled = true
                 },
-                new TournamentQueries.GuestPackage
+                new GuestPackage
                 {
                     TournamentId = tournament.Id,
                     Code = "Option4",
@@ -206,7 +211,7 @@ namespace MBACNationals.ReadModels
             return mergedPackages;
         }
 
-        public List<TournamentQueries.Centre> GetCentres(string year)
+        public List<Centre> GetCentres(string year)
         {
             var tournament = Tournaments.Single(x => x.Year == year);
             var centres = Centres.Where(x => x.TournamentId == tournament.Id).ToList();
@@ -355,6 +360,30 @@ namespace MBACNationals.ReadModels
         {
             Centres.RemoveAll(x => x.Id == e.CentreId);
             //TODO: Delete image
+        }
+
+        public void Handle(ChangeNotificationCutoffChanged e)
+        {
+            var tournament = Tournaments.SingleOrDefault(x => x.Id == e.Id);
+            if (tournament == null) return;
+
+            tournament.ChangeNotificationCutoff = e.CutoffDate;
+        }
+
+        public void Handle(ChangeNotificationEmailChanged e)
+        {
+            var tournament = Tournaments.SingleOrDefault(x => x.Id == e.Id);
+            if (tournament == null) return;
+
+            tournament.ChangeNotificationEmail = e.Email;
+        }
+
+        public void Handle(ScoreNotificationEmailChanged e)
+        {
+            var tournament = Tournaments.SingleOrDefault(x => x.Id == e.Id);
+            if (tournament == null) return;
+
+            tournament.ScoreNotificationEmail = e.Email;
         }
     }
 }

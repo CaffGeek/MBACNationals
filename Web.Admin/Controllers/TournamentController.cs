@@ -1,6 +1,5 @@
 ﻿using MBACNationals.Tournament.Commands;
 using System;
-using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -43,6 +42,13 @@ namespace WebFrontend.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin, Host")]
+        public ActionResult Edit(string year)
+        {
+            ViewBag.Year = year;
+            return View();
+        }
+
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         public JsonResult All()
@@ -64,6 +70,15 @@ namespace WebFrontend.Controllers
             Domain.Dispatcher.SendCommand(command);
 
             return Json(command);
-        }        
+        }
+
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public JsonResult Settings(ChangeTournamentSettings command)
+        {
+            Domain.Dispatcher.SendCommand(command);
+            return Json(command);
+        }
     }
 }

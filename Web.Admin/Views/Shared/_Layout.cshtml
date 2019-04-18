@@ -53,7 +53,13 @@
                     {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tournament <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
+                            <ul class="dropdown-menu" role="menu">                                
+                                @if (User.Identity.Name.Equals("Chad", StringComparison.OrdinalIgnoreCase))
+                                {
+                                <li>
+                                    @Html.ActionLink("Settings", "Edit", "Tournament", new { year = ViewBag.Year }, null)
+                                </li>
+                                }
                                 <li>
                                     @Html.ActionLink("Sponsors", "Edit", "Sponsors", new { year = ViewBag.Year }, null)
                                 </li>

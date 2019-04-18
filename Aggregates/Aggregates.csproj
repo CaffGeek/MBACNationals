@@ -71,6 +71,7 @@
     <Compile Include="Scores\Commands\UpdateStepladderMatch.cs" />
     <Compile Include="Scores\StepladderMatchAggregate.cs" />
     <Compile Include="Tournament\Commands\CreateCentre.cs" />
+    <Compile Include="Tournament\Commands\ChangeTournamentSettings.cs" />
     <Compile Include="Tournament\Commands\DeleteCentre.cs" />
     <Compile Include="Tournament\Commands\ReorderSponsor.cs" />
     <Compile Include="Tournament\Commands\SaveGuestPackages.cs" />

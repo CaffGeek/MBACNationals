@@ -77,6 +77,8 @@
     <Compile Include="Scores\StepladderMatchUpdated.cs" />
     <Compile Include="Scores\StepladderMatchCreated.cs" />
     <Compile Include="Scores\TeamGameCompleted.cs" />
+    <Compile Include="Tournament\ChangeNotificationCutoffChanged.cs" />
+    <Compile Include="Tournament\ScoreeNotificationEmailChanged.cs" />
     <Compile Include="Tournament\GuestPackageSaved.cs" />
     <Compile Include="Tournament\CentreCreated.cs" />
     <Compile Include="Tournament\CentreDeleted.cs" />
@@ -84,6 +86,7 @@
     <Compile Include="Tournament\HotelCreated.cs" />
     <Compile Include="Tournament\NewsDeleted.cs" />
     <Compile Include="Tournament\NewsCreated.cs" />
+    <Compile Include="Tournament\ChangeNotificationEmailChanged.cs" />
     <Compile Include="Tournament\SponsorCreated.cs" />
     <Compile Include="Tournament\SponsorDeleted.cs" />
     <Compile Include="Tournament\SponsorPositionChanged.cs" />

@@ -16,9 +16,15 @@ namespace MBACNationals.Tournament
         IApplyEvent<HotelDeleted>,
         IApplyEvent<GuestPackageSaved>,
         IApplyEvent<CentreCreated>,
-        IApplyEvent<CentreDeleted>
+        IApplyEvent<CentreDeleted>,
+        IApplyEvent<ChangeNotificationEmailChanged>,
+        IApplyEvent<ChangeNotificationCutoffChanged>,
+        IApplyEvent<ScoreNotificationEmailChanged>
     {
         public string Year { get; private set; }
+        public String ChangeNotificationCutoff { get; private set; }
+        public String ChangeNotificationEmail { get; private set; }
+        public String ScoreNotificationEmail { get; private set; }
 
         public void Apply(TournamentCreated e)
         {
@@ -73,6 +79,21 @@ namespace MBACNationals.Tournament
         public void Apply(CentreDeleted e)
         {
             //TODO: nothing at this time
+        }
+
+        public void Apply(ChangeNotificationEmailChanged e)
+        {
+            ChangeNotificationEmail = e.Email;
+        }
+
+        public void Apply(ChangeNotificationCutoffChanged e)
+        {
+            ChangeNotificationCutoff = e.CutoffDate;
+        }
+
+        public void Apply(ScoreNotificationEmailChanged e)
+        {
+            ScoreNotificationEmail = e.Email;
         }
     }
 }
