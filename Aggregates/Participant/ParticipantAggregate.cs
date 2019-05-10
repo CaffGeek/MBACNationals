@@ -75,10 +75,12 @@ namespace MBACNationals.Participant
             public int YearsBowling{ get; set; }
             public int NumberOfLeagues{ get; set; }
             public int HighestAverage{ get; set; }
-            public int YearsCoaching{ get; set; }
+            public int YearsCoaching { get; set; }
+            public int YearsCoachingAdults { get; set; }
             public string BestFinishProvincially{ get; set; }
             public string BestFinishNationally{ get; set; }
-            public int MasterProvincialWins{ get; set; }
+            public int MastersYears { get; set; }
+            public int MasterProvincialWins { get; set; }
             public string MastersAchievements{ get; set; }
             public string OpenAchievements{ get; set; }
             public int OpenYears{ get; set; }
@@ -210,8 +212,10 @@ namespace MBACNationals.Participant
             Profile.NumberOfLeagues = e.NumberOfLeagues;
             Profile.HighestAverage = e.HighestAverage;
             Profile.YearsCoaching = e.YearsCoaching;
+            Profile.YearsCoachingAdults = e.YearsCoachingAdults;
             Profile.BestFinishProvincially = e.BestFinishProvincially;
             Profile.BestFinishNationally = e.BestFinishNationally;
+            Profile.MastersYears = e.MastersYears;
             Profile.MasterProvincialWins = e.MasterProvincialWins;
             Profile.MastersAchievements = e.MastersAchievements;
             Profile.OpenAchievements = e.OpenAchievements;

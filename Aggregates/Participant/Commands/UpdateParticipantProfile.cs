@@ -18,9 +18,11 @@ namespace MBACNationals.Participant.Commands
         public int HighestAverage { get; set; }
 
         public int YearsCoaching { get; set; }
+        public int YearsCoachingAdults { get; set; }
         public string BestFinishProvincially { get; set; }
         public string BestFinishNationally { get; set; }
 
+        public int MastersYears { get; set; }
         public int MasterProvincialWins { get; set; }
         public string MastersAchievements { get; set; }
 

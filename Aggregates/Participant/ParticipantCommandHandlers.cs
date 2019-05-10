@@ -335,9 +335,11 @@ namespace MBACNationals.Participant
                 HighestAverage = command.HighestAverage,
 
                 YearsCoaching = command.YearsCoaching,
+                YearsCoachingAdults = command.YearsCoachingAdults,
                 BestFinishProvincially = command.BestFinishProvincially,
                 BestFinishNationally = command.BestFinishNationally,
 
+                MastersYears = command.MastersYears,
                 MasterProvincialWins = command.MasterProvincialWins,
                 MastersAchievements = command.MastersAchievements,
 

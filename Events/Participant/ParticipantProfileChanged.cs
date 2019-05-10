@@ -18,9 +18,11 @@ namespace Events.Participant
         public int HighestAverage;
 
         public int YearsCoaching;
+        public int YearsCoachingAdults;
         public string BestFinishProvincially;
         public string BestFinishNationally;
 
+        public int MastersYears;
         public int MasterProvincialWins;
         public string MastersAchievements;
 

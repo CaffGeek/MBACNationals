@@ -16,85 +16,95 @@
                     <td><h4>{{participant.Name}}</h4></td>
                     <td>{{participant.Team}}</td>
                 </tr>
-                <tr>
+                <tr data-ng-if="participant.Age">
                     <td></td>
                     <td>Age</td>
                     <td>{{participant.Age}}</td>
                 </tr>
-                <tr>
+                <tr data-ng-if="participant.HomeTown">
                     <td></td>
                     <td>Home Town</td>
                     <td>{{participant.HomeTown}}</td>
                 </tr>
-                <tr>
+                <tr data-ng-if="participant.MaritalStatus">
                     <td></td>
                     <td>Marital Status</td>
                     <td>{{participant.MaritalStatus}}</td>
                 </tr>
-                <tr>
+                <tr data-ng-if="participant.SpouseName">
                     <td></td>
                     <td>Spouse's Name</td>
                     <td>{{participant.SpouseName}}</td>
                 </tr>
-                <tr>
+                <tr data-ng-if="participant.Children">
                     <td></td>
                     <td>Names and Ages of Children</td>
                     <td>{{participant.Children}}</td>
                 </tr>
-                <tr>
+                <tr data-ng-if="participant.Occupation">
                     <td></td>
                     <td>Occupation</td>
                     <td>{{participant.Occupation}}</td>
                 </tr>
-                <tr>
+                <tr data-ng-if="participant.HomeCenter">
                     <td></td>
                     <td>Home Bowling Centre</td>
                     <td>{{participant.HomeCenter}}</td>
                 </tr>
-                <tr>
+                <tr data-ng-if="participant.YearsBowling">
                     <td></td>
                     <td>Number of Years Bowling</td>
                     <td>{{participant.YearsBowling}}</td>
                 </tr>
-                <tr>
+                <tr data-ng-if="participant.HighestAverage">
                     <td></td>
                     <td>Highest Average this Year</td>
                     <td>{{participant.HighestAverage}}</td>
                 </tr>
-                <tr><td></td><td colspan="2"><h5>YBC Involvement</h5></td></tr>
-                <tr>
+                <!--<tr><td></td><td colspan="2"><h5>YBC Involvement</h5></td></tr>-->
+                <tr data-ng-if="participant.YearsCoaching">
                     <td></td>
-                    <td>Number of Years Coaching</td>
+                    <td>Number of Years Coaching Youth</td>
                     <td>{{participant.YearsCoaching}}</td>
                 </tr>
-                <tr>
+                <tr data-ng-if="participant.YearsCoachingAdults">
+                    <td></td>
+                    <td>Number of Years Coaching Adults</td>
+                    <td>{{participant.YearsCoachingAdults}}</td>
+                </tr>
+                <tr data-ng-if="participant.BestFinishProvincially">
                     <td></td>
                     <td>Best Finish Provincially</td>
                     <td>{{participant.BestFinishProvincially}}</td>
                 </tr>
-                <tr>
+                <tr data-ng-if="participant.BestFinishNationally">
                     <td></td>
                     <td>Best Finish Nationally</td>
                     <td>{{participant.BestFinishNationally}}</td>
                 </tr>
                 <tr><td></td><td colspan="2"><h5>Masters Accomplishments</h5></td></tr>
-                <tr>
+                <tr data-ng-if="participant.MastersYears">
+                    <td></td>
+                    <td>Number of Years a Member of Masters</td>
+                    <td>{{participant.MastersYears}}</td>
+                </tr>
+                <tr data-ng-if="participant.MasterProvincialWins">
                     <td></td>
                     <td>Number of Provincial Wins</td>
                     <td>{{participant.MasterProvincialWins}}</td>
                 </tr>
-                <tr>
+                <tr data-ng-if="participant.MastersAchievements">
                     <td></td>
                     <td>National Masters Achievements</td>
                     <td>{{participant.MastersAchievements}}</td>
                 </tr>
                 <tr><td></td><td colspan="2"><h5>Other</h5></td></tr>
-                <tr>
+                <tr data-ng-if="participant.OtherAchievements">
                     <td></td>
                     <td>Other Noteworthy Bowling Achievements</td>
                     <td>{{participant.OtherAchievements}}</td>
                 </tr>
-                <tr>
+                <tr data-ng-if="participant.Hobbies">
                     <td></td>
                     <td>Hobbies & Interests</td>
                     <td>{{participant.Hobbies}}</td>
