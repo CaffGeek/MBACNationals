@@ -88,6 +88,11 @@
                     <td>Number of Years a Member of Masters</td>
                     <td>{{participant.MastersYears}}</td>
                 </tr>
+                <tr data-ng-if="participant.MastersYearsQualifying">
+                    <td></td>
+                    <td>Number of Years Qualifying for Nationals</td>
+                    <td>{{participant.MastersYearsQualifying}}</td>
+                </tr>
                 <tr data-ng-if="participant.MasterProvincialWins">
                     <td></td>
                     <td>Number of Provincial Wins</td>
