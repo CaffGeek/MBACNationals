@@ -155,7 +155,8 @@ namespace MBACNationals.ReadModels
             Participants.Add(new Participant
             {
                 Id = e.Id,
-                Name = e.Name
+                Name = e.Name,
+                MastersYearsQualifying = e.YearsQualifying,
             });
         }
 
