@@ -12,7 +12,7 @@
 
 <div class="contingentColumn" style="width: 40.7%; display: block; float: left; margin: 1% 0 1% 1.6%;" data-ng-repeat="team in model.Teams | orderBy:'-1*Name.length'" data-ng-show="team.Id">
     <h5>
-        <a href="results.aspx#/team/{{team.Id}}">{{team.Name || 'Vacancy'}}</a>
+        <a href="results.aspx#/team/{{team.Id}}">{{(team.Name || 'Vacancy').replace("Ladies", "Women")}}</a>
     </h5>
 
     <ol style="list-style-type: none;">

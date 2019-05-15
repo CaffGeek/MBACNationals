@@ -10,11 +10,11 @@
         <div class="col-md-2 hidden-print">
             <ul class="sidebarNav">
                 <li><a href="" data-ng-click="loadLaneDraw('Tournament Men Single')">TOURNAMENT MEN SINGLE</a></li>
-                <li><a href="" data-ng-click="loadLaneDraw('Tournament Ladies Single')">TOURNAMENT LADIES SINGLE</a></li>
+                <li><a href="" data-ng-click="loadLaneDraw('Tournament Ladies Single')">TOURNAMENT WOMEN SINGLE</a></li>
                 <li><a href="" data-ng-click="loadLaneDraw('Tournament Men')">TOURNAMENT MEN</a></li>
-                <li><a href="" data-ng-click="loadLaneDraw('Tournament Ladies')">TOURNAMENT LADIES</a></li>
+                <li><a href="" data-ng-click="loadLaneDraw('Tournament Ladies')">TOURNAMENT WOMEN</a></li>
                 <li><a href="" data-ng-click="loadLaneDraw('Teaching Men')">TEACHING MEN</a></li>
-                <li><a href="" data-ng-click="loadLaneDraw('Teaching Ladies')">TEACHING LADIES</a></li>
+                <li><a href="" data-ng-click="loadLaneDraw('Teaching Ladies')">TEACHING WOMEN</a></li>
                 <li><a href="" data-ng-click="loadLaneDraw('Seniors')">SENIORS</a></li>
                 <hr />
                 <li><a href="pdfs/LaneDraw.pdf" target="_blank"> DOWNLOAD PDF</a></li>
