@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Reflection;
 
 namespace Edument.CQRS
@@ -15,11 +16,9 @@ namespace Edument.CQRS
     /// </summary>
     public class MessageDispatcher
     {
-        private Dictionary<Type, Action<object>> commandHandlers = new Dictionary<Type, Action<object>>();      
-        private Dictionary<Type, List<Action<object>>> eventSubscribers = new Dictionary<Type, List<Action<object>>>();
+        private ConcurrentDictionary<Type, Action<object>> commandHandlers = new ConcurrentDictionary<Type, Action<object>>();
+        private ConcurrentDictionary<Type, List<Action<object>>> eventSubscribers = new ConcurrentDictionary<Type, List<Action<object>>>();
         private IEventStore eventStore;
-
-        private Object eventPubLock = new Object(); 
 
         /// <summary>
         /// Initializes a message dispatcher, which will use the specified event store
@@ -53,37 +52,38 @@ namespace Edument.CQRS
         {
             var eventType = e.GetType();
             if (eventSubscribers.ContainsKey(eventType))
-                lock (eventPubLock)
-                    foreach (var sub in eventSubscribers[eventType])
-                    {
-                        sub(e);
-                        dynamic target = sub.Target;
-                        var y = target.subscriber as IReadModel;
-                        if (y != null) y.Save();
-                    }
+                foreach (var sub in eventSubscribers[eventType])
+                {
+                    sub(e);
+                    dynamic target = sub.Target;
+                    var y = target.subscriber as IReadModel;
+                    y?.Save();
+                }
         }
 
         private void PublishEventWithoutSave(object e)
         {
             var eventType = e.GetType();
-            if (eventSubscribers.ContainsKey(eventType))
-                lock (eventPubLock)
-                    foreach (var sub in eventSubscribers[eventType])
-                        sub(e);
+            if (!eventSubscribers.ContainsKey(eventType))
+                return;
+
+            foreach (var sub in eventSubscribers[eventType])
+                sub(e);
         }
 
         private void PublishEventToReadModel(object e, string readmodel)
         {
             var eventType = e.GetType();
 
-            if (eventSubscribers.ContainsKey(eventType))
-                lock (eventPubLock)
-                    foreach (var sub in eventSubscribers[eventType])
-                    {
-                        dynamic target = sub.Target;
-                        if ((target.subscriber.GetType().Name as string).Equals(readmodel, StringComparison.OrdinalIgnoreCase))
-                            sub(e);
-                    }
+            if (!eventSubscribers.ContainsKey(eventType))
+                return;
+
+            foreach (var sub in eventSubscribers[eventType])
+            {
+                dynamic target = sub.Target;
+                if (((string) target.subscriber.GetType().Name).Equals(readmodel, StringComparison.OrdinalIgnoreCase))
+                    sub(e);
+            }
         }
 
         /// <summary>
@@ -96,10 +96,7 @@ namespace Edument.CQRS
         public void AddHandlerFor<TCommand, TAggregate>(IHandleCommand<TCommand, TAggregate> handler)
             where TAggregate : Aggregate, new()
         {
-            if (commandHandlers.ContainsKey(typeof(TCommand)))
-                throw new Exception("Command handler already registered for " + typeof(TCommand).Name);
-            
-            commandHandlers.Add(typeof(TCommand), c =>
+            commandHandlers.AddOrUpdate(typeof(TCommand), c =>
                 {
                     // Create up an empty aggregate.
                     var agg = new TAggregate();
@@ -116,13 +113,13 @@ namespace Edument.CQRS
                             agg.ApplyEvents(eventStore.LoadEventsFor<TAggregate>(id));
                             return agg;
                         };
-                    
+
                     // With everything set up, we invoke the command handler, collecting the
                     // events that it produces.
                     var resultEvents = new ArrayList();
                     foreach (var e in handler.Handle(al, (TCommand)c))
                         resultEvents.Add(e);
-                    
+
                     // Store the events in the event store.
                     eventStore.SaveEventsFor<TAggregate>(
                         agg.Id,
@@ -132,7 +129,8 @@ namespace Edument.CQRS
                     // Publish them to all subscribers.
                     foreach (var e in resultEvents)
                         PublishEvent(e);
-                });
+                },
+                (_, __) => throw new Exception("Command handler already registered for " + typeof(TCommand).Name));
         }
 
         /// <summary>
@@ -145,7 +143,7 @@ namespace Edument.CQRS
         {
             if (!eventSubscribers.ContainsKey(typeof(TEvent)))
             {
-                eventSubscribers.Add(typeof(TEvent), new List<Action<object>>());
+                eventSubscribers.TryAdd(typeof(TEvent), new List<Action<object>>());
             }
 
             eventSubscribers[typeof(TEvent)].Add(e => subscriber.Handle((TEvent)e));
@@ -160,7 +158,7 @@ namespace Edument.CQRS
         public void ScanAssembly(Assembly ass)
         {
             // Scan for and register handlers.
-            var handlers = 
+            var handlers =
                 from t in ass.GetTypes()
                 from i in t.GetInterfaces()
                 where i.IsGenericType
@@ -173,7 +171,7 @@ namespace Edument.CQRS
                     AggregateType = args[1]
                 };
             foreach (var h in handlers)
-                this.GetType().GetMethod("AddHandlerFor") 
+                this.GetType().GetMethod("AddHandlerFor")
                     .MakeGenericMethod(h.CommandType, h.AggregateType)
                     .Invoke(this, new object[] { CreateInstanceOf(h.Type) });
 
@@ -262,8 +260,7 @@ namespace Edument.CQRS
         public TAggregate Load<TAggregate>(Guid id)
             where TAggregate : Aggregate, new()
         {
-            var agg = new TAggregate();
-            agg.Id = id;
+            var agg = new TAggregate { Id = id };
             agg.ApplyEvents(eventStore.LoadEventsFor<TAggregate>(id));
             return agg;
         }
