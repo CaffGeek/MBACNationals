@@ -2669,6 +2669,7 @@
     <Content Include="Content\bootstrap\css\bootstrap.min.css.map" />
     <Content Include="2017\images\2017_Souvenirs.xls" />
     <Content Include="2019\docs\SouvenirOrderFormFinal.pdf" />
+    <Content Include="2019\docs\SouvenirOrderFormBeerMugTowel.pdf" />
     <None Include="ConnectionStrings.config.test" />
     <Content Include="Content\bootstrap\fonts\bebas___-webfont.eot" />
     <Content Include="Content\bootstrap\fonts\bebas___-webfont.ttf" />
