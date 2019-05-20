@@ -14,8 +14,9 @@
 
     <div class="col-md-10" id="souvenirs">
         <h2>Souvenirs</h2>
-        Download the <a href="docs/SouvenirOrderFormFinal.pdf">order form here.</a>
+        Download the <a href="docs/SouvenirOrderFormFinal.pdf">order form here</a>
+        or the <a href="docs/SouvenirOrderFormBeerMugTowel.pdf">Beer and Towels form here.</a>
         <iframe src="docs/SouvenirOrderFormFinal.pdf" style="width: 100%; height: 600px;"></iframe>
-
+        <iframe src="docs/SouvenirOrderFormBeerMugTowel.pdf" style="width: 100%; height: 600px;"></iframe>
     </div>
 </asp:Content>
