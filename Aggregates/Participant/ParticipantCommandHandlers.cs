@@ -5,6 +5,7 @@ using MBACNationals.ReadModels;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MBACNationals.Participant
 {
@@ -92,8 +93,9 @@ namespace MBACNationals.Participant
                     Id = command.Id,
                     Name = command.Name,
                 };
-
-                if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send("Participant Renamed", $"{agg.Name} changed to {command.Name}");
+                
+                var tournament = CommandQueries.GetTournaments().SingleOrDefault(x => x.Year == DateTime.Now.Year.ToString());
+                if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Participant Renamed", $"{agg.Name} changed to {command.Name}");
             }
 
             if (agg.Gender != command.Gender)
@@ -104,7 +106,8 @@ namespace MBACNationals.Participant
                     Gender = command.Gender,
                 };
 
-                if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send("Gender Changed", $"{agg.Name}'s Gender of {agg.Gender} changed to {command.Gender}");
+                var tournament = CommandQueries.GetTournaments().SingleOrDefault(x => x.Year == DateTime.Now.Year.ToString());
+                if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Gender Changed", $"{agg.Name}'s Gender of {agg.Gender} changed to {command.Gender}");
             }
 
             if (agg.IsDelegate != command.IsDelegate && command.IsDelegate)
@@ -147,7 +150,8 @@ namespace MBACNationals.Participant
                     YearsQualifying = command.YearsQualifying,
                 };
 
-                if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send("YearsQualifying Changed", $"{agg.Name}'s YearsQualifying of {agg.YearsQualifying} changed to {command.YearsQualifying}");
+                var tournament = CommandQueries.GetTournaments().SingleOrDefault(x => x.Year == DateTime.Now.Year.ToString());
+                if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "YearsQualifying Changed", $"{agg.Name}'s YearsQualifying of {agg.YearsQualifying} changed to {command.YearsQualifying}");
             }
 
             if (agg.ShirtSize != command.ShirtSize)
@@ -178,7 +182,8 @@ namespace MBACNationals.Participant
                     Average = newAverage
                 };
 
-                if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send("Average Changed", $"{agg.Name}'s Average of {agg.Average} changed to {newAverage}");
+                var tournament = CommandQueries.GetTournaments().SingleOrDefault(x => x.Year == DateTime.Now.Year.ToString());
+                if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Average Changed", $"{agg.Name}'s Average of {agg.Average} changed to {newAverage}");
             }
 
             if (agg.Package == null
@@ -204,7 +209,8 @@ namespace MBACNationals.Participant
                     Option4 = command.Package.Option4,
                 };
 
-                if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send("Guest Package Changed", $"{agg.Name}'s Guest Package choices have changed.");
+                var tournament = CommandQueries.GetTournaments().SingleOrDefault(x => x.Year == DateTime.Now.Year.ToString());
+                if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Guest Package Changed", $"{agg.Name}'s Guest Package choices have changed.");
             }
 
             if (command.Birthday.HasValue && agg.Birthday != command.Birthday)
@@ -229,7 +235,8 @@ namespace MBACNationals.Participant
                     Name = command.Name,
                 };
 
-                if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send("Participant Renamed", $"{agg.Name} changed to {command.Name}");
+                var tournament = CommandQueries.GetTournaments().SingleOrDefault(x => x.Year == DateTime.Now.Year.ToString());
+                if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Participant Renamed", $"{agg.Name} changed to {command.Name}");
             }
         }
 
@@ -302,7 +309,8 @@ namespace MBACNationals.Participant
                 RoomNumber = command.RoomNumber
             };
 
-            if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send("Room Change", $"{agg.Name} changed to room {command.RoomNumber}");
+            var tournament = CommandQueries.GetTournaments().SingleOrDefault(x => x.Year == DateTime.Now.Year.ToString());
+            if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Room Change", $"{agg.Name} changed to room {command.RoomNumber}");
         }
 
         public IEnumerable Handle(Func<Guid, ParticipantAggregate> al, RemoveParticipantFromRoom command)
@@ -350,7 +358,8 @@ namespace MBACNationals.Participant
                 Hobbies = command.Hobbies,
             };
 
-            if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send("Singles Profile Changed", $"Profile for {agg.Name} has been changed.");
+            var tournament = CommandQueries.GetTournaments().SingleOrDefault(x => x.Year == DateTime.Now.Year.ToString());
+            if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Singles Profile Changed", $"Profile for {agg.Name} has been changed.");
         }
 
         public IEnumerable Handle(Func<Guid, ParticipantAggregate> al, ReplaceParticipant command)

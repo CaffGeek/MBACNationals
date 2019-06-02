@@ -2,26 +2,16 @@
 using SendGrid.Helpers.Mail;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
+using System.Linq;
 
 public static class Emailer
 {
-    public static void Send(string title, string message)
+    public static void Send(DateTime cutoff, List<String> recipients, string title, string message)
     {
         try {
-            var cutoff = DateTime.Parse((ConfigurationManager.AppSettings["notificationCutoff"] ?? "June 1") + ", " + DateTime.Now.Year);
             if (DateTime.Now < cutoff)
-            {
                 return;
-            }
-
-            var email = ConfigurationManager.AppSettings["notificationEmail"];
-            if (string.IsNullOrWhiteSpace(email))
-            {
-                System.Diagnostics.Trace.TraceWarning("Notification Email Missing/Malformed");
-                return;
-            }
-
+            
             var apiKey = Environment.GetEnvironmentVariable("SENDGRID_APIKEY");
             if (string.IsNullOrWhiteSpace(apiKey))
             {
@@ -33,12 +23,10 @@ public static class Emailer
 
             var msg = new SendGridMessage();
             msg.SetFrom(new EmailAddress("noreply@mbacnationals.com", "NOREPLY! MBAC Nationals"));
+            
+            var recipientEmails = recipients.Select(x => new EmailAddress(x)).ToList();                
+            msg.AddTos(recipientEmails);
 
-            var recipients = new List<EmailAddress> {
-                new EmailAddress(email),
-            };
-
-            msg.AddTos(recipients);
             msg.SetSubject($"MBAC Data Change - {title}");
 
             msg.AddContent(MimeType.Text, message);

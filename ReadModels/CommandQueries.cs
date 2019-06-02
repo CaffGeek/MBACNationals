@@ -4,6 +4,7 @@ using Events.Scores;
 using Events.Tournament;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 
 namespace MBACNationals.ReadModels
@@ -19,7 +20,10 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<ParticipantAssignedToTeam>,
         ISubscribeTo<ParticipantQualifyingPositionChanged>,
         ISubscribeTo<ParticipantReplacedWithAlternate>,
-        ISubscribeTo<MatchCreated>
+        ISubscribeTo<MatchCreated>,
+        ISubscribeTo<ChangeNotificationCutoffChanged>,
+        ISubscribeTo<ChangeNotificationEmailChanged>,
+        ISubscribeTo<ScoreNotificationEmailChanged>
     {
         public List<Tournament> Tournaments { get; set; }
         public Dictionary<Guid, Participant> Participants { get; set; }
@@ -29,6 +33,9 @@ namespace MBACNationals.ReadModels
         {
             public Guid Id { get; set; }
             public string Year { get; set; }
+            public DateTime ChangeNotificationCutoffChanged { get; set; }
+            public List<String> ChangeNotificationEmailAddresses { get; set; }
+            public List<String> ScoreNotificationEmailAddresses { get; set; }
         }
 
         public class Participant
@@ -165,6 +172,45 @@ namespace MBACNationals.ReadModels
                 Centre = e.Centre.ToString(),
                 Slot = e.Slot
             });
+        }
+
+        public void Handle(ChangeNotificationCutoffChanged e)
+        {
+            var tournament = Tournaments.SingleOrDefault(x => x.Id == e.Id);
+            if (tournament == null)
+                return;
+
+            tournament.ChangeNotificationCutoffChanged = DateTime.Parse((e.CutoffDate ?? ConfigurationManager.AppSettings["notificationCutoff"] ?? "June 1") + ", " + DateTime.Now.Year);
+        }
+
+        public void Handle(ChangeNotificationEmailChanged e)
+        {
+            if (string.IsNullOrWhiteSpace(e.Email))
+            {
+                System.Diagnostics.Trace.TraceWarning("Change Notification Email Missing/Malformed");
+                return;
+            }
+
+            var tournament = Tournaments.SingleOrDefault(x => x.Id == e.Id);
+            if (tournament == null)
+                return;
+
+            tournament.ChangeNotificationEmailAddresses = e.Email.Split(',').ToList();
+        }
+
+        public void Handle(ScoreNotificationEmailChanged e)
+        {
+            if (string.IsNullOrWhiteSpace(e.Email))
+            {
+                System.Diagnostics.Trace.TraceWarning("Score Notification Email Missing/Malformed");
+                return;
+            }
+
+            var tournament = Tournaments.SingleOrDefault(x => x.Id == e.Id);
+            if (tournament == null)
+                return;
+
+            tournament.ScoreNotificationEmailAddresses = e.Email.Split(',').ToList();
         }
     }
 }

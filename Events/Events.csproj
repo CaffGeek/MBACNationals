@@ -78,7 +78,7 @@
     <Compile Include="Scores\StepladderMatchCreated.cs" />
     <Compile Include="Scores\TeamGameCompleted.cs" />
     <Compile Include="Tournament\ChangeNotificationCutoffChanged.cs" />
-    <Compile Include="Tournament\ScoreeNotificationEmailChanged.cs" />
+    <Compile Include="Tournament\ScoreNotificationEmailChanged.cs" />
     <Compile Include="Tournament\GuestPackageSaved.cs" />
     <Compile Include="Tournament\CentreCreated.cs" />
     <Compile Include="Tournament\CentreDeleted.cs" />
