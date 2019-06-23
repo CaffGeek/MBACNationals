@@ -180,7 +180,7 @@ namespace MBACNationals.ReadModels
                         Year = tournament.Year,
                         Division = e.Division,
                         GameNumber = e.Number,
-                        Title = ${e.Division} - Game {e.Number} ({tournament.Year})",
+                        Title = $"{e.Division} - Game {e.Number} ({tournament.Year})",
                         Message = String.Join("<hr/>", matchesHtml),
                     });
             }
