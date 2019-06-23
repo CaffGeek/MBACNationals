@@ -2,22 +2,22 @@
     <div class="container" data-ng-controller="TournamentController as vm">
         <h2>{{vm.currentTournament.Year}} Tournament Settings</h2>
 
-        <div class="col-sm-4">
+        <div>
             <form class="form-horizontal">
                 <div class="form-group">
-                    <label for="ChangeNotificationCutoff" class="col-md-6 control-label">Change Notification Cutoff</label>
+                    <label for="ChangeNotificationCutoff" class="col-md-3 control-label">Change Notification Cutoff</label>
                     <input type="text" id="ChangeNotificationCutoff" ng-model="vm.currentTournament.ChangeNotificationCutoff" />
                 </div>
                 <div class="form-group">
-                    <label for="ChangeNotificationEmail" class="col-md-6 control-label">Change Notification Email</label>
-                    <input type="text" id="ChangeNotificationEmail" ng-model="vm.currentTournament.ChangeNotificationEmail" />
+                    <label for="ChangeNotificationEmail" class="col-md-3 control-label">Change Notification Email</label>
+                    <input type="text" id="ChangeNotificationEmail" class="col-md-6" ng-model="vm.currentTournament.ChangeNotificationEmail" />
                 </div>
                 <div class="form-group">
-                    <label for="ScoreNotificationEmail" class="col-md-6 control-label">Score Notification Email</label>
-                    <input type="text" id="ScoreNotificationEmail" ng-model="vm.currentTournament.ScoreNotificationEmail" />
+                    <label for="ScoreNotificationEmail" class="col-md-3 control-label">Score Notification Email</label>
+                    <input type="text" id="ScoreNotificationEmail" class="col-md-6" ng-model="vm.currentTournament.ScoreNotificationEmail" />
                 </div>
                 <div class="form-group">
-                    <a class="col-md-offset-6 ui-button" ng-click="vm.saveSettings(vm.currentTournament)">Save</a>
+                    <a class="col-md-offset-3 ui-button" ng-click="vm.saveSettings(vm.currentTournament)">Save</a>
                 </div>
             </form>
         </div>
