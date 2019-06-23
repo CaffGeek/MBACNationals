@@ -1,5 +1,4 @@
-﻿using MBACNationals;
-using System;
+﻿using System;
 
 namespace Events.Scores
 {

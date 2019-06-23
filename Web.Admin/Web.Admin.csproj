@@ -3568,6 +3568,10 @@
       <Project>{0077AEB3-E23B-4226-9D9B-3E32DD65353D}</Project>
       <Name>AzureTableHelper</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Commands\Commands.csproj">
+      <Project>{b31d063f-c153-47c7-bef6-229d62a02017}</Project>
+      <Name>Commands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Edument.CQRS\Edument.CQRS.csproj">
       <Project>{d2bab57d-225d-4f4c-9410-ed39495a8fe0}</Project>
       <Name>Edument.CQRS</Name>

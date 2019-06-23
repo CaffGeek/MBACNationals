@@ -1,6 +1,7 @@
 ﻿using Edument.CQRS;
 using Events.Tournament;
 using System;
+using System.Collections.Generic;
 
 namespace MBACNationals.Tournament
 {
@@ -18,12 +19,19 @@ namespace MBACNationals.Tournament
         IApplyEvent<CentreDeleted>,
         IApplyEvent<ChangeNotificationEmailChanged>,
         IApplyEvent<ChangeNotificationCutoffChanged>,
-        IApplyEvent<ScoreNotificationEmailChanged>
+        IApplyEvent<ScoreNotificationEmailChanged>,
+        IApplyEvent<DivisionGameResultEmailed>
     {
         public string Year { get; private set; }
         public String ChangeNotificationCutoff { get; private set; }
         public String ChangeNotificationEmail { get; private set; }
         public String ScoreNotificationEmail { get; private set; }
+        public List<String> SentEmails { get; private set; }
+
+        public TournamentAggregate()
+        {
+            SentEmails = new List<string>();
+        }
 
         public void Apply(TournamentCreated e)
         {
@@ -93,6 +101,11 @@ namespace MBACNationals.Tournament
         public void Apply(ScoreNotificationEmailChanged e)
         {
             ScoreNotificationEmail = e.Email;
+        }
+
+        public void Apply(DivisionGameResultEmailed e)
+        {
+            SentEmails.Add($"{e.Year}.{e.Division}.{e.GameNumber}");
         }
     }
 }

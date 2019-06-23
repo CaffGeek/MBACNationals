@@ -1,9 +1,7 @@
 ﻿using Edument.CQRS;
-using Events.Contingent;
 using Events.Scores;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace MBACNationals.ReadModels
 {

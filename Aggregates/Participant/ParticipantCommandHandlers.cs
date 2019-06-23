@@ -95,7 +95,7 @@ namespace MBACNationals.Participant
                 };
                 
                 var tournament = CommandQueries.GetTournaments().SingleOrDefault(x => x.Year == DateTime.Now.Year.ToString());
-                if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Participant Renamed", $"{agg.Name} changed to {command.Name}");
+                if (!string.IsNullOrEmpty(agg.Name)) Emailer.SendChangeNotification(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Participant Renamed", $"{agg.Name} changed to {command.Name}");
             }
 
             if (agg.Gender != command.Gender)
@@ -107,7 +107,7 @@ namespace MBACNationals.Participant
                 };
 
                 var tournament = CommandQueries.GetTournaments().SingleOrDefault(x => x.Year == DateTime.Now.Year.ToString());
-                if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Gender Changed", $"{agg.Name}'s Gender of {agg.Gender} changed to {command.Gender}");
+                if (!string.IsNullOrEmpty(agg.Name)) Emailer.SendChangeNotification(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Gender Changed", $"{agg.Name}'s Gender of {agg.Gender} changed to {command.Gender}");
             }
 
             if (agg.IsDelegate != command.IsDelegate && command.IsDelegate)
@@ -151,7 +151,7 @@ namespace MBACNationals.Participant
                 };
 
                 var tournament = CommandQueries.GetTournaments().SingleOrDefault(x => x.Year == DateTime.Now.Year.ToString());
-                if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "YearsQualifying Changed", $"{agg.Name}'s YearsQualifying of {agg.YearsQualifying} changed to {command.YearsQualifying}");
+                if (!string.IsNullOrEmpty(agg.Name)) Emailer.SendChangeNotification(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "YearsQualifying Changed", $"{agg.Name}'s YearsQualifying of {agg.YearsQualifying} changed to {command.YearsQualifying}");
             }
 
             if (agg.ShirtSize != command.ShirtSize)
@@ -183,7 +183,7 @@ namespace MBACNationals.Participant
                 };
 
                 var tournament = CommandQueries.GetTournaments().SingleOrDefault(x => x.Year == DateTime.Now.Year.ToString());
-                if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Average Changed", $"{agg.Name}'s Average of {agg.Average} changed to {newAverage}");
+                if (!string.IsNullOrEmpty(agg.Name)) Emailer.SendChangeNotification(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Average Changed", $"{agg.Name}'s Average of {agg.Average} changed to {newAverage}");
             }
 
             if (agg.Package == null
@@ -210,7 +210,7 @@ namespace MBACNationals.Participant
                 };
 
                 var tournament = CommandQueries.GetTournaments().SingleOrDefault(x => x.Year == DateTime.Now.Year.ToString());
-                if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Guest Package Changed", $"{agg.Name}'s Guest Package choices have changed.");
+                if (!string.IsNullOrEmpty(agg.Name)) Emailer.SendChangeNotification(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Guest Package Changed", $"{agg.Name}'s Guest Package choices have changed.");
             }
 
             if (command.Birthday.HasValue && agg.Birthday != command.Birthday)
@@ -236,7 +236,7 @@ namespace MBACNationals.Participant
                 };
 
                 var tournament = CommandQueries.GetTournaments().SingleOrDefault(x => x.Year == DateTime.Now.Year.ToString());
-                if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Participant Renamed", $"{agg.Name} changed to {command.Name}");
+                if (!string.IsNullOrEmpty(agg.Name)) Emailer.SendChangeNotification(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Participant Renamed", $"{agg.Name} changed to {command.Name}");
             }
         }
 
@@ -310,7 +310,7 @@ namespace MBACNationals.Participant
             };
 
             var tournament = CommandQueries.GetTournaments().SingleOrDefault(x => x.Year == DateTime.Now.Year.ToString());
-            if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Room Change", $"{agg.Name} changed to room {command.RoomNumber}");
+            if (!string.IsNullOrEmpty(agg.Name)) Emailer.SendChangeNotification(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Room Change", $"{agg.Name} changed to room {command.RoomNumber}");
         }
 
         public IEnumerable Handle(Func<Guid, ParticipantAggregate> al, RemoveParticipantFromRoom command)
@@ -359,7 +359,7 @@ namespace MBACNationals.Participant
             };
 
             var tournament = CommandQueries.GetTournaments().SingleOrDefault(x => x.Year == DateTime.Now.Year.ToString());
-            if (!string.IsNullOrEmpty(agg.Name)) Emailer.Send(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Singles Profile Changed", $"Profile for {agg.Name} has been changed.");
+            if (!string.IsNullOrEmpty(agg.Name)) Emailer.SendChangeNotification(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Singles Profile Changed", $"Profile for {agg.Name} has been changed.");
         }
 
         public IEnumerable Handle(Func<Guid, ParticipantAggregate> al, ReplaceParticipant command)

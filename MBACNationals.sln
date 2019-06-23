@@ -56,6 +56,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AdminV2", "AdminV2\", "{56B
 		SlnRelativePath = "AdminV2\"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commands", "Commands\Commands.csproj", "{B31D063F-C153-47C7-BEF6-229D62A02017}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,9 +101,11 @@ Global
 		{0077AEB3-E23B-4226-9D9B-3E32DD65353D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0077AEB3-E23B-4226-9D9B-3E32DD65353D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{56B653FB-FD09-4CB7-8A81-90BE1FAC1F34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{56B653FB-FD09-4CB7-8A81-90BE1FAC1F34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56B653FB-FD09-4CB7-8A81-90BE1FAC1F34}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{56B653FB-FD09-4CB7-8A81-90BE1FAC1F34}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{B31D063F-C153-47C7-BEF6-229D62A02017}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B31D063F-C153-47C7-BEF6-229D62A02017}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B31D063F-C153-47C7-BEF6-229D62A02017}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B31D063F-C153-47C7-BEF6-229D62A02017}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -306,13 +306,6 @@ namespace MBACNationals.Scores
             };            
         }
 
-        public decimal CalculatePoint(int score, int opponentScore, decimal maxPoint)
-        {
-            return score > opponentScore ? maxPoint
-                        : score == opponentScore ? maxPoint / 2m
-                        : 0m;
-        }
-
         public IEnumerable Handle(Func<Guid, StepladderMatchAggregate> al, UpdateStepladderMatch command)
         {
             var agg = al(command.Id);
@@ -336,6 +329,13 @@ namespace MBACNationals.Scores
                 Id = command.Id,
                 TournamentId = command.TournamentId
             };            
+        }
+
+        public decimal CalculatePoint(int score, int opponentScore, decimal maxPoint)
+        {
+            return score > opponentScore ? maxPoint
+                        : score == opponentScore ? maxPoint / 2m
+                        : 0m;
         }
     }
 }

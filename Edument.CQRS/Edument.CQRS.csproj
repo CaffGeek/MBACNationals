@@ -48,6 +48,7 @@
     <Compile Include="IEntity.cs" />
     <Compile Include="InMemoryEventStore.cs" />
     <Compile Include="IReadModel.cs" />
+    <Compile Include="ISetDispatcher.cs" />
     <Compile Include="SqlEventStore.cs" />
     <Compile Include="IApplyEvent.cs" />
     <Compile Include="IEventStore.cs" />
