@@ -2677,6 +2677,11 @@
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\PDFs\2015.pdf" />
+    <Content Include="Content\PDFs\2016.pdf" />
+    <Content Include="Content\PDFs\2017.pdf" />
+    <Content Include="Content\PDFs\2018.pdf" />
+    <Content Include="Content\PDFs\2019.pdf" />
     <None Include="Properties\PublishProfiles\MBACNationals - Web Deploy.pubxml.user" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
