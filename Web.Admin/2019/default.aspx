@@ -26,11 +26,10 @@
                 <h2>News</h2>
                 <div ng-repeat="newsItem in vm.News">
                     <h4><span class="newsHeader">{{newsItem.Title}}</span></h4>
-                    <p style="white-space: pre-wrap;">{{newsItem.Content}}</p>
+                    <p style="white-space: pre-wrap;" ng-bind-html="newsItem.Content"></p>
                 </div>
                 <p><a class="btn btn-default" href="news.aspx" role="button">More News</a></p>
             </div>
-
 
             <div class="col-md-6 col-sm-6">
                 <h2>Schedule</h2>
