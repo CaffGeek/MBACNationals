@@ -23,6 +23,7 @@
     <TargetFrameworkProfile />
     <ApplicationInsightsResourceId>/subscriptions/c93870fc-27cf-48dc-88d3-791142fb6245/resourcegroups/Default-Web-NorthCentralUS/providers/microsoft.insights/components/mbacnationals</ApplicationInsightsResourceId>
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -2683,6 +2684,8 @@
     <Content Include="Content\PDFs\2017.pdf" />
     <Content Include="Content\PDFs\2018.pdf" />
     <Content Include="Content\PDFs\2019.pdf" />
+    <Content Include="Content\PDFs\2013.pdf" />
+    <Content Include="Content\PDFs\2014.pdf" />
     <None Include="Properties\PublishProfiles\MBACNationals - Web Deploy.pubxml.user" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
