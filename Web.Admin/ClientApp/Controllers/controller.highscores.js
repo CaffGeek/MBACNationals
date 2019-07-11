@@ -2,7 +2,9 @@
     "use strict";
 
     var highscoresController = function ($scope, $http, dataService) {
-        $scope.model = {};
+        $scope.model = {
+            viewGame: 1
+        };
 
         $scope.model.HighScores = $scope.model.HighScores || [];
         $scope.model.HighAverages = $scope.model.Averages || [];

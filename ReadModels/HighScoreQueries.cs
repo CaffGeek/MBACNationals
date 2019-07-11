@@ -37,6 +37,7 @@ namespace MBACNationals.ReadModels
             public string Year { get; set; }
             public string Name { get; set; }
             public string Gender { get; set; }
+            public int Number { get; set; }
             public int Scratch { get; set; }
             public int POA { get; set; }
         }
@@ -123,6 +124,7 @@ namespace MBACNationals.ReadModels
                 MatchId = e.Id,
                 Name = e.Name,
                 ParticipantId = e.ParticipantId,
+                Number = e.Number,
                 POA = e.POA,
                 Scratch = e.Score,
                 Year = year

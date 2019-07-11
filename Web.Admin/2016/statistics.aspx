@@ -12,6 +12,7 @@
             <li><a ui-sref="highpoa()">HIGH POA</a></li>
             <li><a ui-sref="highaverage()">HIGH AVERAGE</a></li>
             <li><a ui-sref="highwins()">MOST WINS</a></li>
+            <li><a ui-sref="highbygame()">HIGH BY GAME</a></li>
         </ul>
     </div>
 
