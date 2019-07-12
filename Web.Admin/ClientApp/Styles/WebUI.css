@@ -25,7 +25,3 @@
 .dropdown-menu > li > a {
     display: inline-block;
 }
-
-.dropdown-menu > li > a.pdf {
-    float: right;
-}
