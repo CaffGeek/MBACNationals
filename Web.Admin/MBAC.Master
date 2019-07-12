@@ -75,7 +75,7 @@
                     <li><a href="hotel.aspx">Location</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">History<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu dropdown-menu-right">
                             <li><a href="/2019/" target="_blank">2019 - QC</a> <a href="/Content/PDFs/2019.pdf" class="pdf" target="_blank">PDF</a></li>
                             <li><a href="/2018/" target="_blank">2018 - NO</a> <a href="/Content/PDFs/2018.pdf" class="pdf" target="_blank">PDF</a></li>
                             <li><a href="/2017/" target="_blank">2017 - SK</a> <a href="/Content/PDFs/2017.pdf" class="pdf" target="_blank">PDF</a></li>
