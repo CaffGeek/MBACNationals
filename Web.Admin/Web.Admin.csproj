@@ -2228,7 +2228,6 @@
     <Content Include="Content\Images\2017_logo.png" />
     <Content Include="Content\Images\2018_logo.png" />
     <Content Include="Content\Images\2019_logo.png" />
-    <Content Include="Content\Images\logo.png" />
     <Content Include="Content\js\GoogleAnalytics.js" />
     <Content Include="Content\js\instafeed.min.js" />
     <Content Include="2016\PDFs\DEPARTURES.pdf" />
