@@ -32,6 +32,7 @@ namespace WebFrontend
         public static ITeamScoreQueries TeamScoreQueries;
         public static ITournamentQueries TournamentQueries;
         public static IStepladderQueries StepladderQueries;
+        public static IDivisionGameCompleteSaga DivisionGameCompleteSaga;
 
         public static void Setup()
         {            
@@ -59,6 +60,8 @@ namespace WebFrontend
             TeamScoreQueries = ReadModelFactory<TeamScoreQueries>();
             TournamentQueries = ReadModelFactory<TournamentQueries>();
             StepladderQueries = ReadModelFactory<StepladderQueries>();
+
+            DivisionGameCompleteSaga = SagaModelFactory<DivisionGameCompleteSaga>();
         }
 
         public static void RebuildReadModel(string readmodel)
@@ -137,6 +140,19 @@ namespace WebFrontend
         {
             var htmFile = HttpContext.Current.Server.MapPath("~/app_offline.htm");
             File.Delete(htmFile);
+        }
+
+        private static T SagaModelFactory<T>()
+            where T : ISetDispatcher, new()
+        {
+            var t = typeof(IReadModel).IsAssignableFrom(typeof(T))
+                ? ReadModelPersister.Load<T>()
+                : new T();
+
+            t.SetDispatcher(Dispatcher);
+
+            Dispatcher.ScanInstance(t);
+            return t;
         }
 
         private static T ReadModelFactory<T>() 

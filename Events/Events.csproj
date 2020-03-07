@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Events</RootNamespace>
     <AssemblyName>Events</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -40,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BowlingCentre.cs" />
     <Compile Include="Contingent\ContingentAssignedToTournament.cs" />
     <Compile Include="Contingent\ReservationInstructionsChanged.cs" />
     <Compile Include="Contingent\RoomCheckinChanged.cs" />
@@ -77,6 +79,9 @@
     <Compile Include="Scores\StepladderMatchUpdated.cs" />
     <Compile Include="Scores\StepladderMatchCreated.cs" />
     <Compile Include="Scores\TeamGameCompleted.cs" />
+    <Compile Include="Tournament\ChangeNotificationCutoffChanged.cs" />
+    <Compile Include="Tournament\DivisionGameResultEmailed.cs" />
+    <Compile Include="Tournament\ScoreNotificationEmailChanged.cs" />
     <Compile Include="Tournament\GuestPackageSaved.cs" />
     <Compile Include="Tournament\CentreCreated.cs" />
     <Compile Include="Tournament\CentreDeleted.cs" />
@@ -84,12 +89,17 @@
     <Compile Include="Tournament\HotelCreated.cs" />
     <Compile Include="Tournament\NewsDeleted.cs" />
     <Compile Include="Tournament\NewsCreated.cs" />
+    <Compile Include="Tournament\ChangeNotificationEmailChanged.cs" />
     <Compile Include="Tournament\SponsorCreated.cs" />
     <Compile Include="Tournament\SponsorDeleted.cs" />
     <Compile Include="Tournament\SponsorPositionChanged.cs" />
     <Compile Include="Tournament\TournamentCreated.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Commands\Commands.csproj">
+      <Project>{b31d063f-c153-47c7-bef6-229d62a02017}</Project>
+      <Name>Commands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Edument.CQRS\Edument.CQRS.csproj">
       <Project>{D2BAB57D-225D-4F4C-9410-ED39495A8FE0}</Project>
       <Name>Edument.CQRS</Name>

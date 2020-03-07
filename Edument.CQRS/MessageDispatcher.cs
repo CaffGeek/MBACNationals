@@ -19,7 +19,8 @@ namespace Edument.CQRS
         private Dictionary<Type, List<Action<object>>> eventSubscribers = new Dictionary<Type, List<Action<object>>>();
         private IEventStore eventStore;
 
-        private Object eventPubLock = new Object(); 
+        private Object eventPubLock = new Object();
+        public bool IsRegenerating { get; private set; }
 
         /// <summary>
         /// Initializes a message dispatcher, which will use the specified event store
@@ -249,14 +250,18 @@ namespace Edument.CQRS
 
         public void RegenerateReadModel(string readmodel)
         {
+            this.IsRegenerating = true;
             foreach (var e in eventStore.LoadAllEvents())
                 PublishEventToReadModel(e, readmodel);
+            this.IsRegenerating = false;
         }
 
         public void RegenerateReadModels()
         {
+            this.IsRegenerating = true;
             foreach (var e in eventStore.LoadAllEvents())
                 PublishEventWithoutSave(e);
+            this.IsRegenerating = false;
         }
 
         public TAggregate Load<TAggregate>(Guid id)

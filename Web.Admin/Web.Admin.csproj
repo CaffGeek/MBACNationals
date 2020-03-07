@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WebFrontend</RootNamespace>
     <AssemblyName>WebFrontend</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -23,6 +23,7 @@
     <TargetFrameworkProfile />
     <ApplicationInsightsResourceId>/subscriptions/c93870fc-27cf-48dc-88d3-791142fb6245/resourcegroups/Default-Web-NorthCentralUS/providers/microsoft.insights/components/mbacnationals</ApplicationInsightsResourceId>
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -120,9 +121,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WindowsAzure.Storage.4.3.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Private>True</Private>
@@ -130,6 +130,7 @@
     <Reference Include="System.Data">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing">
       <Private>True</Private>
     </Reference>
@@ -156,6 +157,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.Helpers.dll</HintPath>
@@ -226,6 +228,7 @@
     <Reference Include="System.Web.Providers">
       <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.2\lib\net40\System.Web.Providers.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebActivatorEx">
       <HintPath>..\packages\WebActivatorEx.2.0.3\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
@@ -249,6 +252,7 @@
   <ItemGroup>
     <Compile Include="Controllers\GuestPackagesController.cs" />
     <Compile Include="Controllers\CentresController.cs" />
+    <Compile Include="Controllers\HistoryController.cs" />
     <Compile Include="Controllers\HotelsController.cs" />
     <Compile Include="MBAC.Master.cs">
       <DependentUpon>MBAC.Master</DependentUpon>
@@ -2060,12 +2064,82 @@
     <Content Include="2018\js\schedule.js" />
     <Content Include="2018\lanedraw.aspx" />
     <Content Include="2018\news.aspx" />
+    <Content Include="2018\newsletter.aspx" />
     <Content Include="2018\pdfs\LaneDraw.pdf" />
     <Content Include="2018\photos.aspx" />
     <Content Include="2018\results.aspx" />
     <Content Include="2018\schedule.aspx" />
     <Content Include="2018\souvenirs.aspx" />
     <Content Include="2018\sponsors.aspx" />
+    <Content Include="2018\statistics.aspx" />
+    <Content Include="2019\images\Logo.png" />
+    <Content Include="2019\centres.aspx" />
+    <Content Include="2019\contingents.aspx" />
+    <Content Include="2019\css\customize.css" />
+    <Content Include="2019\default.aspx" />
+    <Content Include="2019\hotel.aspx" />
+    <Content Include="2019\images\background.jpg" />
+    <Content Include="2019\images\centre1.jpg" />
+    <Content Include="2019\images\centre2.jpg" />
+    <Content Include="2019\images\centre3.jpg" />
+    <Content Include="2019\images\header_image_centres.jpg" />
+    <Content Include="2019\images\header_image_contingents.jpg" />
+    <Content Include="2019\images\header_image_default.jpg" />
+    <Content Include="2019\images\header_image_lanedraw.jpg" />
+    <Content Include="2019\images\header_image_location.jpg" />
+    <Content Include="2019\images\header_image_news.jpg" />
+    <Content Include="2019\images\header_image_photos.jpg" />
+    <Content Include="2019\images\header_image_results.jpg" />
+    <Content Include="2019\images\header_image_schedule.jpg" />
+    <Content Include="2019\images\header_image_souvenirs.jpg" />
+    <Content Include="2019\images\header_image_sponsors.jpg" />
+    <Content Include="2019\images\hotel.jpg" />
+    <Content Include="2019\images\hotel_logo.png" />
+    <Content Include="2019\images\LinkLogo.jpg" />
+    <Content Include="2019\images\restaurants.jpg" />
+    <Content Include="2019\js\schedule.js" />
+    <Content Include="2019\lanedraw.aspx" />
+    <Content Include="2019\news.aspx" />
+    <Content Include="2019\photos.aspx" />
+    <Content Include="2019\results.aspx" />
+    <Content Include="2019\schedule.aspx" />
+    <Content Include="2019\souvenirs.aspx" />
+    <Content Include="2019\sponsors.aspx" />
+    <Content Include="2019\statistics.aspx" />
+    <Content Include="2020\centres.aspx" />
+    <Content Include="2020\contingents.aspx" />
+    <Content Include="2020\css\customize.css" />
+    <Content Include="2020\default.aspx" />
+    <Content Include="2020\hotel.aspx" />
+    <Content Include="2020\images\background.jpg" />
+    <Content Include="2020\images\centre1.jpg" />
+    <Content Include="2020\images\centre2.jpg" />
+    <Content Include="2020\images\centre3.jpg" />
+    <Content Include="2020\images\header_image_centres.jpg" />
+    <Content Include="2020\images\header_image_contingents.jpg" />
+    <Content Include="2020\images\header_image_default.jpg" />
+    <Content Include="2020\images\header_image_lanedraw.jpg" />
+    <Content Include="2020\images\header_image_location.jpg" />
+    <Content Include="2020\images\header_image_news.jpg" />
+    <Content Include="2020\images\header_image_photos.jpg" />
+    <Content Include="2020\images\header_image_results.jpg" />
+    <Content Include="2020\images\header_image_schedule.jpg" />
+    <Content Include="2020\images\header_image_souvenirs.jpg" />
+    <Content Include="2020\images\header_image_sponsors.jpg" />
+    <Content Include="2020\images\hotel.jpg" />
+    <Content Include="2020\images\hotel_logo.png" />
+    <Content Include="2020\images\LinkLogo.jpg" />
+    <Content Include="2020\images\Logo.png" />
+    <Content Include="2020\images\restaurants.jpg" />
+    <Content Include="2020\js\schedule.js" />
+    <Content Include="2020\lanedraw.aspx" />
+    <Content Include="2020\news.aspx" />
+    <Content Include="2020\photos.aspx" />
+    <Content Include="2020\results.aspx" />
+    <Content Include="2020\schedule.aspx" />
+    <Content Include="2020\souvenirs.aspx" />
+    <Content Include="2020\sponsors.aspx" />
+    <Content Include="2020\statistics.aspx" />
     <Content Include="20xx-Template\centres.aspx" />
     <Content Include="20xx-Template\contingents.aspx" />
     <Content Include="20xx-Template\css\customize.css" />
@@ -2095,6 +2169,7 @@
     <Content Include="20xx-Template\lanedraw.aspx" />
     <Content Include="20xx-Template\news.aspx" />
     <Content Include="20xx-Template\photos.aspx" />
+    <Content Include="20xx-Template\statistics.aspx" />
     <Content Include="20xx-Template\results.aspx" />
     <Content Include="20xx-Template\schedule.aspx" />
     <Content Include="20xx-Template\souvenirs.aspx" />
@@ -2109,6 +2184,7 @@
     <Content Include="ClientApp\Controllers\controller.hotels.js" />
     <Content Include="ClientApp\Directives\directive.scorehighlight.js" />
     <Content Include="ClientApp\Views\contingents.html" />
+    <Content Include="ClientApp\Views\Results\HighscoresByGame.html" />
     <Content Include="ClientApp\Views\Results\Highwins.html" />
     <Content Include="ClientApp\Views\Results\Highaverage.html" />
     <Content Include="ClientApp\Views\Results\Highpoa.html" />
@@ -2185,6 +2261,8 @@
     <Content Include="Content\galleria\themes\classic\galleria.classic.min.js" />
     <Content Include="Content\Images\2017_logo.png" />
     <Content Include="Content\Images\2018_logo.png" />
+    <Content Include="Content\Images\2019_logo.png" />
+    <Content Include="Content\Images\2020_logo.png" />
     <Content Include="Content\js\GoogleAnalytics.js" />
     <Content Include="Content\js\instafeed.min.js" />
     <Content Include="2016\PDFs\DEPARTURES.pdf" />
@@ -2627,6 +2705,8 @@
     <Content Include="Content\bootstrap\css\bootstrap.css.map" />
     <Content Include="Content\bootstrap\css\bootstrap.min.css.map" />
     <Content Include="2017\images\2017_Souvenirs.xls" />
+    <Content Include="2019\docs\SouvenirOrderFormFinal.pdf" />
+    <Content Include="2019\docs\SouvenirOrderFormBeerMugTowel.pdf" />
     <None Include="ConnectionStrings.config.test" />
     <Content Include="Content\bootstrap\fonts\bebas___-webfont.eot" />
     <Content Include="Content\bootstrap\fonts\bebas___-webfont.ttf" />
@@ -2634,6 +2714,29 @@
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\PDFs\1995.pdf" />
+    <Content Include="Content\PDFs\1997.pdf" />
+    <Content Include="Content\PDFs\1998.pdf" />
+    <Content Include="Content\PDFs\1999.pdf" />
+    <Content Include="Content\PDFs\2000.pdf" />
+    <Content Include="Content\PDFs\2001.pdf" />
+    <Content Include="Content\PDFs\2002.pdf" />
+    <Content Include="Content\PDFs\2003.pdf" />
+    <Content Include="Content\PDFs\2004.pdf" />
+    <Content Include="Content\PDFs\2005.pdf" />
+    <Content Include="Content\PDFs\2006.pdf" />
+    <Content Include="Content\PDFs\2009.pdf" />
+    <Content Include="Content\PDFs\2010.pdf" />
+    <Content Include="Content\PDFs\2011.pdf" />
+    <Content Include="Content\PDFs\2012.pdf" />
+    <Content Include="Content\PDFs\2013.pdf" />
+    <Content Include="Content\PDFs\2014.pdf" />
+    <Content Include="Content\PDFs\2015.pdf" />
+    <Content Include="Content\PDFs\2016.pdf" />
+    <Content Include="Content\PDFs\2017.pdf" />
+    <Content Include="Content\PDFs\2018.pdf" />
+    <Content Include="Content\PDFs\2019.pdf" />
+    <Content Include="Content\PDFs\2008.pdf" />
     <None Include="Properties\PublishProfiles\MBACNationals - Web Deploy.pubxml.user" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
@@ -3511,6 +3614,8 @@
     <Content Include="Views\Hotels\Edit.cshtml" />
     <Content Include="Views\GuestPackages\Edit.cshtml" />
     <Content Include="Views\Centres\Edit.cshtml" />
+    <Content Include="Views\History\Index.cshtml" />
+    <Content Include="Views\Tournament\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminApp\Entities\" />
@@ -3522,6 +3627,10 @@
     <ProjectReference Include="..\AzureTableHelper\AzureTableHelper.csproj">
       <Project>{0077AEB3-E23B-4226-9D9B-3E32DD65353D}</Project>
       <Name>AzureTableHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Commands\Commands.csproj">
+      <Project>{b31d063f-c153-47c7-bef6-229d62a02017}</Project>
+      <Name>Commands</Name>
     </ProjectReference>
     <ProjectReference Include="..\Edument.CQRS\Edument.CQRS.csproj">
       <Project>{d2bab57d-225d-4f4c-9410-ed39495a8fe0}</Project>

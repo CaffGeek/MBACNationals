@@ -40,6 +40,11 @@ app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $u
             templateUrl: "/ClientApp/views/results/highwins.html",
             controller: "HighscoresController"
         })
+        .state('highbygame', {
+            url: "/highbygame/{division}",
+            templateUrl: "/ClientApp/views/results/highscoresbygame.html",
+            controller: "HighscoresController"
+        })
         .state('stepladder', {
             url: "/stepladder/{year}",
             templateUrl: "/ClientApp/views/results/stepladder.html",

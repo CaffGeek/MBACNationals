@@ -21,7 +21,8 @@
             { Name: 'StepladderQueries' },
             { Name: 'TeamScoreQueries' },
             { Name: 'TournamentQueries' },
-            { Name: 'ParticipantScoreQueries' }
+            { Name: 'ParticipantScoreQueries' },
+            { Name: 'DivisionGameCompleteSaga' }
         ];
         
         vm.Rebuild = function (readmodel) {

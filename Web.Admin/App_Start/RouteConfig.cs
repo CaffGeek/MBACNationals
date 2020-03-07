@@ -136,6 +136,12 @@ namespace WebFrontend
             );
 
             routes.MapRoute(
+                name: "TournamentEdit",
+                url: "Setup/Tournament/Edit/{year}",
+                defaults: new { controller = "Tournament", action = "Edit" }
+            );
+
+            routes.MapRoute(
                 name: "Tournament",
                 url: "Setup/Tournament/{action}/{id}",
                 defaults: new { controller = "Tournament", action = "Index", id = UrlParameter.Optional }
@@ -151,6 +157,12 @@ namespace WebFrontend
                 name: "Help",
                 url: "Setup/Help/{action}",
                 defaults: new { controller = "Help", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "History",
+                url: "Setup/History/{year}",
+                defaults: new { controller = "History", action = "Index" }
             );
 
             routes.MapRoute(

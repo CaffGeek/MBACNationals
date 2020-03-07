@@ -19,6 +19,7 @@ namespace MBACNationals.ReadModels
         ISubscribeTo<ParticipantRenamed>,
         ISubscribeTo<ParticipantProfileChanged>,
         ISubscribeTo<ParticipantAssignedToTeam>,
+        ISubscribeTo<ParticipantYearsQualifyingChanged>,
         ISubscribeTo<ParticipantQualifyingPositionChanged>
     {
         public List<Participant> Participants { get; set; }
@@ -45,8 +46,11 @@ namespace MBACNationals.ReadModels
             public int NumberOfLeagues { get; set; }
             public int HighestAverage { get; set; }
             public int YearsCoaching { get; set; }
+            public int YearsCoachingAdults { get; set; }
             public string BestFinishProvincially { get; set; }
             public string BestFinishNationally { get; set; }
+            public int MastersYears { get; set; }
+            public int MastersYearsQualifying { get; set; }
             public int MasterProvincialWins { get; set; }
             public string MastersAchievements { get; set; }
             public string OpenAchievements { get; set; }
@@ -151,7 +155,8 @@ namespace MBACNationals.ReadModels
             Participants.Add(new Participant
             {
                 Id = e.Id,
-                Name = e.Name
+                Name = e.Name,
+                MastersYearsQualifying = e.YearsQualifying,
             });
         }
 
@@ -177,8 +182,10 @@ namespace MBACNationals.ReadModels
             participant.NumberOfLeagues = e.NumberOfLeagues;
             participant.HighestAverage = e.HighestAverage;
             participant.YearsCoaching = e.YearsCoaching;
+            participant.YearsCoachingAdults = e.YearsCoachingAdults;
             participant.BestFinishProvincially = e.BestFinishProvincially;
             participant.BestFinishNationally = e.BestFinishNationally;
+            participant.MastersYears = e.MastersYears;
             participant.MasterProvincialWins = e.MasterProvincialWins;
             participant.MastersAchievements = e.MastersAchievements;
             participant.OpenAchievements = e.OpenAchievements;
@@ -198,6 +205,13 @@ namespace MBACNationals.ReadModels
             participant.Team = team.Name;
             participant.Province = team.Province;
             participant.ContingentId = team.ContingentId;
+        }
+
+        public void Handle(ParticipantYearsQualifyingChanged e)
+        {
+            var participant = Participants.Single(x => x.Id == e.Id);
+
+            participant.MastersYearsQualifying = e.YearsQualifying;
         }
 
         public void Handle(ParticipantQualifyingPositionChanged e)

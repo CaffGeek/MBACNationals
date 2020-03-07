@@ -49,12 +49,13 @@
     <Reference Include="Microsoft.WindowsAzure.Storage">
       <HintPath>..\packages\WindowsAzure.Storage.4.3.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Spatial, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\System.Spatial.5.6.2\lib\net40\System.Spatial.dll</HintPath>
@@ -66,14 +67,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DivisionGameCompleteSaga.cs" />
     <Compile Include="Helpers\AzureReadModel.cs" />
     <Compile Include="Helpers\BaseReadModel.cs" />
     <Compile Include="ContingentPracticePlanQueries.cs" />
     <Compile Include="ContingentTravelPlanQueries.cs" />
     <Compile Include="ContingentViewQueries.cs" />
+    <Compile Include="Interfaces\IDivisionGameCompleteSaga.cs" />
+    <Compile Include="Interfaces\IStatisticsQueries.cs" />
     <Compile Include="StatisticsQueries.cs" />
     <Compile Include="Interfaces\ICommandQueries.cs" />
-    <Compile Include="Interfaces\IAverageQueries.cs" />
     <Compile Include="Interfaces\IStepladderQueries.cs" />
     <Compile Include="Interfaces\ITeamScoreQueries.cs" />
     <Compile Include="Interfaces\IParticipantScoreQueries.cs" />
@@ -115,6 +118,10 @@
     <ProjectReference Include="..\AzureTableHelper\AzureTableHelper.csproj">
       <Project>{0077AEB3-E23B-4226-9D9B-3E32DD65353D}</Project>
       <Name>AzureTableHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Commands\Commands.csproj">
+      <Project>{b31d063f-c153-47c7-bef6-229d62a02017}</Project>
+      <Name>Commands</Name>
     </ProjectReference>
     <ProjectReference Include="..\Edument.CQRS\Edument.CQRS.csproj">
       <Project>{d2bab57d-225d-4f4c-9410-ed39495a8fe0}</Project>

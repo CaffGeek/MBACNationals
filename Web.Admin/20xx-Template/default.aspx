@@ -26,16 +26,43 @@
                 <h2>News</h2>
                 <div ng-repeat="newsItem in vm.News">
                     <h4><span class="newsHeader">{{newsItem.Title}}</span></h4>
-                    <p style="white-space: pre-wrap;">{{newsItem.Content}}</p>
+                    <p style="white-space: pre-wrap;" ng-bind-html="newsItem.Content"></p>
                 </div>
-                <p><a class="btn btn-default" href="news.php" role="button">More News</a></p>
+                <p><a class="btn btn-default" href="news.aspx" role="button">More News</a></p>
             </div>
 
 
             <div class="col-md-6 col-sm-6">
                 <h2>Schedule</h2>
-                <div class="message"></div>
-                <p><a class="btn btn-default" href="schedule.php" role="button">Full Schedule &raquo;</a></p>
+                <div class="row" style="margin-left:0px;" data-ng-controller="ScheduleController">
+                    <div data-ng-repeat="day in schedule.days | orderBy:''">
+                        <div data-ng-if="schedule.days.indexOf(currentDate) == $index || (schedule.days.indexOf(currentDate) == -1 && $index == 0)">
+                            <h4 id="{{day}}">Day {{$index + 1}} - {{day | date:'EEEE MMM d'}}</h4>
+
+                            <div data-ng-repeat="event in schedule.events | filter:{key:day} | orderBy:'start'">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h5>
+                                            {{event.start | date:'h:mma':'EDT'}}
+                                            <span data-ng-if="event.start != event.end">
+                                            - {{event.end | date:'h:mma':'EDT'}}
+                                            </span>
+                                        </h5>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <b>{{event.summary}}</b>
+                                        <br />
+                                        {{event.description}}
+                                    </div>
+                                    <div class="col-sm-3">
+                                        {{event.location}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p><a class="btn btn-default" href="schedule.aspx" role="button">Full Schedule &raquo;</a></p>
             </div>
         </div>
     </div>
@@ -106,9 +133,9 @@
                 
         <hr />
                 
-        <div><a class="twitter-timeline" href="https://twitter.com/MBANationals" data-widget-id="702222211382259713">Tweets by @MBANationals</a><script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script></div>
+        <%--<div><a class="twitter-timeline" href="https://twitter.com/MBANationals" data-widget-id="702222211382259713">Tweets by @MBANationals</a><script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); } }(document, "script", "twitter-wjs");</script></div>
                 
-        <hr />
+        <hr />--%>
 
         <div data-ng-controller="HighscoresController">
             <div class="section group" id="highScores" data-ng-include="" data-src="'/ClientApp/views/highscores.html'">

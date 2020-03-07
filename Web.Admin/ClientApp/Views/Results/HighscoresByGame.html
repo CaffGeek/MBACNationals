@@ -1,0 +1,57 @@
+﻿<div class="row">
+    <h2>HIGH SCORES FOR GAME #{{model.viewGame}}</h2>
+    
+    <div>
+        <span ng-repeat="n in [].constructor(21) track by $index">
+            <a ui-sref="highbygame()" data-ng-click="model.viewGame = $index+1">{{ $index+1 }}</a>
+        </span>
+    </div>
+
+    <h4>Tournament Division</h4>
+    <div class="section group">
+        <div class="col-md-6">
+            <h5>Men</h5>
+            <ul>
+            <li data-ng-repeat="score in model.HighScores['Tournament'].Scores | filter:{Gender:'M', Number:model.viewGame}:true | orderBy:'Scratch':true | limitTo:10"><a href="#" ui-sref="match({ match: score.MatchId })">{{score.Scratch}}</a> - <a href="" ui-sref="bowler({ bowler: score.ParticipantId })">{{score.Name}} - {{score.Province}}</a></li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h5>Women</h5>
+            <ul>
+            <li data-ng-repeat="score in model.HighScores['Tournament'].Scores | filter:{Gender:'F', Number:model.viewGame}:true | orderBy:'Scratch':true | limitTo:10"><a href="#" ui-sref="match({ match: score.MatchId })">{{score.Scratch}}</a> - <a href="" ui-sref="bowler({ bowler: score.ParticipantId })">{{score.Name}} - {{score.Province}}</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <h4>Teaching Division</h4>
+    <div class="section group">
+        <div class="col-md-6">
+            <h5>Men</h5>
+            <ul>
+                <li data-ng-repeat="score in model.HighScores['Teaching'].Scores | filter:{Gender:'M', Number:model.viewGame}:true | orderBy:'POA':true | limitTo:10"><a href="#" ui-sref="match({ match: score.MatchId })">{{score.POA > 0 ? '+' : ''}}{{score.POA}}</a> - <a href="" ui-sref="bowler({ bowler: score.ParticipantId })">{{score.Name}} - {{score.Province}}</a></li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h5>Women</h5>
+            <ul>
+                <li data-ng-repeat="score in model.HighScores['Teaching'].Scores | filter:{Gender:'F', Number:model.viewGame}:true | orderBy:'POA':true | limitTo:10"><a href="#" ui-sref="match({ match: score.MatchId })">{{score.POA > 0 ? '+' : ''}}{{score.POA}}</a> - <a href="" ui-sref="bowler({ bowler: score.ParticipantId })">{{score.Name}} - {{score.Province}}</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <h4>Seniors</h4>
+    <div class="section group">
+        <div class="col-md-6">
+            <h5>Men</h5>
+            <ul>
+                <li data-ng-repeat="score in model.HighScores['Senior'].Scores | filter:{Gender:'M', Number:model.viewGame}:true | orderBy:'POA':true | limitTo:10"><a href="#" ui-sref="match({ match: score.MatchId })">{{score.POA > 0 ? '+' : ''}}{{score.POA}}</a> - <a href="" ui-sref="bowler({ bowler: score.ParticipantId })">{{score.Name}} - {{score.Province}}</a></li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h5>Women</h5>
+            <ul>
+                <li data-ng-repeat="score in model.HighScores['Senior'].Scores | filter:{Gender:'F', Number:model.viewGame}:true | orderBy:'POA':true | limitTo:10"><a href="#" ui-sref="match({ match: score.MatchId })">{{score.POA > 0 ? '+' : ''}}{{score.POA}}</a> - <a href="" ui-sref="bowler({ bowler: score.ParticipantId })">{{score.Name}} - {{score.Province}}</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

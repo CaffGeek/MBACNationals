@@ -17,3 +17,17 @@
 .tie {
     background-color: lightgrey;
 }
+
+.dropdown-menu > li {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 40px;
+}
+
+.dropdown-menu > li > a {
+    display: inline-block;
+}
+
+.dropdown-menu.history {
+    width: 400px;
+}

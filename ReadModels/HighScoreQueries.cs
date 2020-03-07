@@ -36,7 +36,9 @@ namespace MBACNationals.ReadModels
             public Guid ParticipantId { get; set; }
             public string Year { get; set; }
             public string Name { get; set; }
+            public string Province { get; set; }
             public string Gender { get; set; }
+            public int Number { get; set; }
             public int Scratch { get; set; }
             public int POA { get; set; }
         }
@@ -113,15 +115,18 @@ namespace MBACNationals.ReadModels
             
             division.Scores.RemoveAll(x => x.MatchId == e.Id && x.ParticipantId == e.ParticipantId);
 
-            if (divisionName.Equals("Tournament", StringComparison.OrdinalIgnoreCase) && e.Score < 275) return;
-            if (!divisionName.Equals("Tournament", StringComparison.OrdinalIgnoreCase) && e.POA < 75) return;
+            //TODO: tweak this
+            //if (divisionName.Equals("Tournament", StringComparison.OrdinalIgnoreCase) && e.Score < 275) return;
+            //if (!divisionName.Equals("Tournament", StringComparison.OrdinalIgnoreCase) && e.POA < 75) return;
 
             division.Scores.Add(new Score
             {
                 Gender = e.Gender,
                 MatchId = e.Id,
                 Name = e.Name,
+                Province = e.Contingent,
                 ParticipantId = e.ParticipantId,
+                Number = e.Number,
                 POA = e.POA,
                 Scratch = e.Score,
                 Year = year

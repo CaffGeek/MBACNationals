@@ -1,6 +1,5 @@
 ﻿using Edument.CQRS;
 using Events.Participant;
-using MBACNationals.Contingent;
 using MBACNationals.Participant.Commands;
 using MBACNationals.ReadModels;
 using System;
@@ -37,7 +36,7 @@ namespace MBACNationals.Participant
 
             if (agg.EventsLoaded > 0)
                 throw new ParticipantAlreadyExists();
-
+            
             yield return new ParticipantCreated
             {
                 Id = command.Id,
@@ -88,61 +87,91 @@ namespace MBACNationals.Participant
             var agg = al(command.Id);
 
             if (agg.Name != command.Name)
+            {
                 yield return new ParticipantRenamed
                 {
                     Id = command.Id,
                     Name = command.Name,
                 };
+                
+                var tournament = CommandQueries.GetTournaments().SingleOrDefault(x => x.Year == DateTime.Now.Year.ToString());
+                if (!string.IsNullOrEmpty(agg.Name)) Emailer.SendChangeNotification(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Participant Renamed", $"{agg.Name} changed to {command.Name}");
+            }
 
             if (agg.Gender != command.Gender)
+            {
                 yield return new ParticipantGenderReassigned
                 {
                     Id = command.Id,
                     Gender = command.Gender,
                 };
 
+                var tournament = CommandQueries.GetTournaments().SingleOrDefault(x => x.Year == DateTime.Now.Year.ToString());
+                if (!string.IsNullOrEmpty(agg.Name)) Emailer.SendChangeNotification(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Gender Changed", $"{agg.Name}'s Gender of {agg.Gender} changed to {command.Gender}");
+            }
+
             if (agg.IsDelegate != command.IsDelegate && command.IsDelegate)
+            {
                 yield return new ParticipantDelegateStatusGranted
                 {
                     Id = command.Id
                 };
+            }
 
             if (agg.IsDelegate != command.IsDelegate && !command.IsDelegate)
+            {
                 yield return new ParticipantDelegateStatusRevoked
                 {
                     Id = command.Id
                 };
+            }
 
             if (agg.IsManager != command.IsManager && command.IsManager)
+            {
                 yield return new ParticipantManagerStatusGranted
                 {
                     Id = command.Id
                 };
+            }
 
             if (agg.IsManager != command.IsManager && !command.IsManager)
+            {
                 yield return new ParticipantManagerStatusRevoked
                 {
                     Id = command.Id
                 };
+            }
 
             if (agg.YearsQualifying != command.YearsQualifying)
+            {
                 yield return new ParticipantYearsQualifyingChanged
                 {
                     Id = command.Id,
                     YearsQualifying = command.YearsQualifying,
                 };
 
+                var tournament = CommandQueries.GetTournaments().SingleOrDefault(x => x.Year == DateTime.Now.Year.ToString());
+                if (!string.IsNullOrEmpty(agg.Name)) Emailer.SendChangeNotification(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "YearsQualifying Changed", $"{agg.Name}'s YearsQualifying of {agg.YearsQualifying} changed to {command.YearsQualifying}");
+            }
+
             if (agg.ShirtSize != command.ShirtSize)
+            {
                 yield return new ParticipantShirtSizeChanged
                 {
                     Id = command.Id,
                     ShirtSize = command.ShirtSize,
                 };
+            }
 
             if (agg.LeaguePinfall != command.LeaguePinfall
                 || agg.LeagueGames != command.LeagueGames
                 || agg.TournamentPinfall != command.TournamentPinfall
                 || agg.TournamentGames != command.TournamentGames)
+            {
+                var newAverage = (command.LeagueGames + command.TournamentGames) > 0
+                        ? (command.LeaguePinfall + command.TournamentPinfall) / (command.LeagueGames + command.TournamentGames)
+                        : 0;
+
                 yield return new ParticipantAverageChanged
                 {
                     Id = command.Id,
@@ -150,12 +179,15 @@ namespace MBACNationals.Participant
                     LeagueGames = command.LeagueGames,
                     TournamentPinfall = command.TournamentPinfall,
                     TournamentGames = command.TournamentGames,
-                    Average = (command.LeagueGames + command.TournamentGames) > 0 
-                        ? (command.LeaguePinfall + command.TournamentPinfall) / (command.LeagueGames + command.TournamentGames)
-                        : 0
+                    Average = newAverage
                 };
 
-            if (agg.Package.ManitobaDinner != command.Package.ManitobaDinner
+                var tournament = CommandQueries.GetTournaments().SingleOrDefault(x => x.Year == DateTime.Now.Year.ToString());
+                if (!string.IsNullOrEmpty(agg.Name)) Emailer.SendChangeNotification(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Average Changed", $"{agg.Name}'s Average of {agg.Average} changed to {newAverage}");
+            }
+
+            if (agg.Package == null
+                || agg.Package.ManitobaDinner != command.Package.ManitobaDinner
                 || agg.Package.ManitobaDance != command.Package.ManitobaDance
                 || agg.Package.FinalBanquet != command.Package.FinalBanquet
                 || agg.Package.Transportation != command.Package.Transportation
@@ -163,6 +195,7 @@ namespace MBACNationals.Participant
                 || agg.Package.Option2 != command.Package.Option2
                 || agg.Package.Option3 != command.Package.Option3
                 || agg.Package.Option4 != command.Package.Option4)
+            {
                 yield return new ParticipantGuestPackageChanged
                 {
                     Id = command.Id,
@@ -176,12 +209,18 @@ namespace MBACNationals.Participant
                     Option4 = command.Package.Option4,
                 };
 
+                var tournament = CommandQueries.GetTournaments().SingleOrDefault(x => x.Year == DateTime.Now.Year.ToString());
+                if (!string.IsNullOrEmpty(agg.Name)) Emailer.SendChangeNotification(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Guest Package Changed", $"{agg.Name}'s Guest Package choices have changed.");
+            }
+
             if (command.Birthday.HasValue && agg.Birthday != command.Birthday)
+            {
                 yield return new ParticipantBirthdayChanged
                 {
                     Id = command.Id,
                     Birthday = command.Birthday.Value,
                 };
+            }
         }
 
         public IEnumerable Handle(Func<Guid, ParticipantAggregate> al, RenameParticipant command)
@@ -189,11 +228,16 @@ namespace MBACNationals.Participant
             var agg = al(command.Id);
 
             if (agg.Name != command.Name)
+            {
                 yield return new ParticipantRenamed
                 {
                     Id = command.Id,
                     Name = command.Name,
                 };
+
+                var tournament = CommandQueries.GetTournaments().SingleOrDefault(x => x.Year == DateTime.Now.Year.ToString());
+                if (!string.IsNullOrEmpty(agg.Name)) Emailer.SendChangeNotification(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Participant Renamed", $"{agg.Name} changed to {command.Name}");
+            }
         }
 
         public IEnumerable Handle(Func<Guid, ParticipantAggregate> al, AddParticipantToTeam command)
@@ -264,6 +308,9 @@ namespace MBACNationals.Participant
                 Id = command.Id,
                 RoomNumber = command.RoomNumber
             };
+
+            var tournament = CommandQueries.GetTournaments().SingleOrDefault(x => x.Year == DateTime.Now.Year.ToString());
+            if (!string.IsNullOrEmpty(agg.Name)) Emailer.SendChangeNotification(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Room Change", $"{agg.Name} changed to room {command.RoomNumber}");
         }
 
         public IEnumerable Handle(Func<Guid, ParticipantAggregate> al, RemoveParticipantFromRoom command)
@@ -296,9 +343,11 @@ namespace MBACNationals.Participant
                 HighestAverage = command.HighestAverage,
 
                 YearsCoaching = command.YearsCoaching,
+                YearsCoachingAdults = command.YearsCoachingAdults,
                 BestFinishProvincially = command.BestFinishProvincially,
                 BestFinishNationally = command.BestFinishNationally,
 
+                MastersYears = command.MastersYears,
                 MasterProvincialWins = command.MasterProvincialWins,
                 MastersAchievements = command.MastersAchievements,
 
@@ -308,6 +357,9 @@ namespace MBACNationals.Participant
                 OtherAchievements = command.OtherAchievements,
                 Hobbies = command.Hobbies,
             };
+
+            var tournament = CommandQueries.GetTournaments().SingleOrDefault(x => x.Year == DateTime.Now.Year.ToString());
+            if (!string.IsNullOrEmpty(agg.Name)) Emailer.SendChangeNotification(tournament.ChangeNotificationCutoffChanged, tournament.ChangeNotificationEmailAddresses, "Singles Profile Changed", $"Profile for {agg.Name} has been changed.");
         }
 
         public IEnumerable Handle(Func<Guid, ParticipantAggregate> al, ReplaceParticipant command)

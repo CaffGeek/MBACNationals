@@ -63,11 +63,11 @@
                 <ul class="nav navbar-nav">
                     <li><a href="default.aspx">Home</a></li>
                     <li><a href="results.aspx#/standings/Tournament%20Men%20Single">Results</a></li>
-                    <!--<li><a href="statistics.aspx#/highscores/">Statistics</a></li>-->
+                    <li><a href="statistics.aspx#/highscores/">Statistics</a></li>
                     <li><a href="news.aspx">News</a></li>
                     <li><a href="schedule.aspx">Schedule</a></li>
                     <li><a href="lanedraw.aspx">Lane Draw</a></li>
-                    <li><a href="photos.aspx">Photos</a></li>
+                    <%--<li><a href="photos.aspx">Photos</a></li>--%>
                     <li><a href="contingents.aspx">Contingents</a></li>
                     <li><a href="souvenirs.aspx">Souvenirs</a></li>
                     <li><a href="sponsors.aspx">Sponsors</a></li>
@@ -75,12 +75,26 @@
                     <li><a href="hotel.aspx">Location</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">History<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/2018/" target="_blank">2018 - NO</a></li>
-                            <li><a href="/2017/" target="_blank">2017 - SK</a></li>
-                            <li><a href="/2016/" target="_blank">2016 - BC</a></li>
-                            <li><a href="/2015/" target="_blank">2015 - SO</a></li>
-                            <li><a href="/2014/" target="_blank">2014 - MB</a></li>
+                        <ul class="dropdown-menu dropdown-menu-right history">
+                            <li><a href="/2019/" target="_blank">2019 - QC</a> <a href="/Content/PDFs/2019.pdf" style="float: right;" target="_blank">PDF</a></li>
+                            <li><a href="/2018/" target="_blank">2018 - NO</a> <a href="/Content/PDFs/2018.pdf" style="float: right;" target="_blank">PDF</a></li>
+                            <li><a href="/2017/" target="_blank">2017 - SK</a> <a href="/Content/PDFs/2017.pdf" style="float: right;" target="_blank">PDF</a></li>
+                            <li><a href="/2016/" target="_blank">2016 - BC</a> <a href="/Content/PDFs/2016.pdf" style="float: right;" target="_blank">PDF</a></li>
+                            <li><a href="/2015/" target="_blank">2015 - SO</a> <a href="/Content/PDFs/2015.pdf" style="float: right;" target="_blank">PDF</a></li>
+                            <li><a href="/2014/" target="_blank">2014 - MB</a> <a href="/Content/PDFs/2014.pdf" style="float: right;" target="_blank">PDF</a></li>                            
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/Content/PDFs/2012.pdf" target="_blank">2012 - NL - PDF</a> <a href="/Content/PDFs/2013.pdf" class="pull-right" target="_blank">2013 - AB - PDF</a></li>
+                            <li><a href="/Content/PDFs/2010.pdf" target="_blank">2010 - NO - PDF</a> <a href="/Content/PDFs/2011.pdf" class="pull-right" target="_blank">2011 - QC - PDF</a></li>
+                            <li><a href="/Content/PDFs/2008.pdf" target="_blank">2008 - SO - PDF</a> <a href="/Content/PDFs/2009.pdf" class="pull-right" target="_blank">2009 - SK - PDF</a></li>
+                            <li><a href="/Content/PDFs/2006.pdf" target="_blank">2006 - MB - PDF</a> <a                               class="pull-right">2007 -</a></li>
+                            <li><a href="/Content/PDFs/2004.pdf" target="_blank">2004 - NL - PDF</a> <a href="/Content/PDFs/2005.pdf" class="pull-right" target="_blank">2005 - AB - PDF</a></li>
+                            <li><a href="/Content/PDFs/2002.pdf" target="_blank">2002 - NO - PDF</a> <a href="/Content/PDFs/2003.pdf" class="pull-right" target="_blank">2003 - QC - PDF</a></li>
+                            <li><a href="/Content/PDFs/2000.pdf" target="_blank">2000 - SO - PDF</a> <a href="/Content/PDFs/2001.pdf" class="pull-right" target="_blank">2001 - SK - PDF</a></li>
+                            <li><a href="/Content/PDFs/1998.pdf" target="_blank">1998 - AB - PDF</a> <a href="/Content/PDFs/1999.pdf" class="pull-right" target="_blank">1999 - BC - PDF</a></li>
+                            <li><a>1996 -</a>                                                        <a href="/Content/PDFs/1997.pdf" class="pull-right" target="_blank">1997 - MB - PDF</a></li>
+                            <li><a>1994 -</a>                                                        <a href="/Content/PDFs/1995.pdf" class="pull-right" target="_blank">1995 - SK - PDF</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li></li>
                         </ul>
                     </li>
                 </ul>
@@ -112,9 +126,7 @@
                 <li><a href="news.aspx">News</a></li>
                 <li><a href="schedule.aspx">Schedule</a></li>
                 <li><a href="lanedraw.aspx">Lane Draw</a></li>
-                <li><a href="photos.aspx">Photos</a></li>
                 <li><a href="contingents.aspx">Contingents</a></li>
-                <!--<li><a href="souvenirs.aspx">Souvenirs</a></li>-->
                 <li><a href="sponsors.aspx">Sponsors</a></li>
                 <li><a href="centres.aspx">Centres</a></li>
                 <li><a href="hotel.aspx">Location</a></li>

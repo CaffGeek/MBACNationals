@@ -19,7 +19,9 @@ namespace MBACNationals.Tournament
         IHandleCommand<DeleteHotel, TournamentAggregate>,
         IHandleCommand<SaveGuestPackages, TournamentAggregate>,
         IHandleCommand<CreateCentre, TournamentAggregate>,
-        IHandleCommand<DeleteCentre, TournamentAggregate>
+        IHandleCommand<DeleteCentre, TournamentAggregate>,
+        IHandleCommand<ChangeTournamentSettings, TournamentAggregate>,
+        IHandleCommand<EmailDivisionGameResult, TournamentAggregate>
     {
         private ICommandQueries CommandQueries;
 
@@ -151,13 +153,13 @@ namespace MBACNationals.Tournament
             foreach (var guestpackage in command.GuestPackages)
             {
                 yield return new GuestPackageSaved
-                    {
-                        Id = tournament.Id,
-                        Code = guestpackage.Code,
-                        Name = guestpackage.Name,
-                        Cost = guestpackage.Cost,
-                        Enabled = guestpackage.Enabled
-                    };
+                {
+                    Id = tournament.Id,
+                    Code = guestpackage.Code,
+                    Name = guestpackage.Name,
+                    Cost = guestpackage.Cost,
+                    Enabled = guestpackage.Enabled
+                };
             }
         }
 
@@ -187,6 +189,61 @@ namespace MBACNationals.Tournament
             {
                 Id = tournament.Id,
                 CentreId = command.Id,
+            };
+        }
+
+        public IEnumerable Handle(Func<Guid, TournamentAggregate> al, ChangeTournamentSettings command)
+        {
+            var tournament = CommandQueries.GetTournaments().FirstOrDefault(x => x.Year == command.Year);
+            var agg = al(tournament.Id);
+
+            var cutoffDate = DateTime.Parse(command.ChangeNotificationCutoff);
+
+            if (agg.ChangeNotificationCutoff != command.ChangeNotificationCutoff)
+                yield return new ChangeNotificationCutoffChanged
+                {
+                    Id = tournament.Id,
+                    CutoffDate = command.ChangeNotificationCutoff, //Store as string, we validated it parsed above...this makes it easier to display, and not worry about timezones
+                };
+
+            if (agg.ChangeNotificationEmail != command.ChangeNotificationEmail)
+                yield return new ChangeNotificationEmailChanged
+                {
+                    Id = tournament.Id,
+                    Email = command.ChangeNotificationEmail,
+                };
+
+            if (agg.ScoreNotificationEmail != command.ScoreNotificationEmail)
+                yield return new ScoreNotificationEmailChanged
+                {
+                    Id = tournament.Id,
+                    Email = command.ScoreNotificationEmail,
+                };
+        }
+
+        public IEnumerable Handle(Func<Guid, TournamentAggregate> al, EmailDivisionGameResult command)
+        {
+            var tournament = CommandQueries.GetTournaments().FirstOrDefault(x => x.Year == command.Year);
+            var agg = al(tournament.Id);
+
+            if (tournament.ScoreNotificationEmailAddresses == null || tournament.ScoreNotificationEmailAddresses.Count == 0)
+                yield break; //nothing to send to
+
+            var title = command.Title;
+            var message = command.Message;
+            if (agg.SentEmails.Contains($"{command.Year}.{command.Division}.{command.GameNumber}"))
+            {
+                title += $" - UPDATE @ {DateTime.Now.ToShortTimeString()}";
+            }
+
+            Emailer.SendMatchCompleteNotification(tournament.ScoreNotificationEmailAddresses, title, message);
+
+            yield return new DivisionGameResultEmailed
+            {
+                Id = tournament.Id,
+                Year = command.Year,
+                Division = command.Division,
+                GameNumber = command.GameNumber,
             };
         }
     }

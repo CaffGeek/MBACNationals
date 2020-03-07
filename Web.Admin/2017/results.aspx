@@ -10,13 +10,13 @@
         <ul class="sidebarNav">
             <!--<li><a href="">Coming Soon</a></li>-->
             <li><a ui-sref="standings({division: 'Tournament Men Single'})">TOURNAMENT MEN SINGLE</a></li>
-            <li><a ui-sref="standings({division: 'Tournament Ladies Single'})">TOURNAMENT LADIES SINGLE</a></li>
+            <li><a ui-sref="standings({division: 'Tournament Ladies Single'})">TOURNAMENT WOMEN SINGLE</a></li>
             <li><a ui-sref="standings({division: 'Tournament Men'})">TOURNAMENT MEN</a></li>
-            <li><a ui-sref="standings({division: 'Tournament Ladies'})">TOURNAMENT LADIES</a></li>
+            <li><a ui-sref="standings({division: 'Tournament Ladies'})">TOURNAMENT WOMEN</a></li>
             <li><a ui-sref="standings({division: 'Teaching Men Single'})">TEACHING MEN SINGLE</a></li>
-            <li><a ui-sref="standings({division: 'Teaching Ladies Single'})">TEACHING LADIES SINGLE</a></li>
+            <li><a ui-sref="standings({division: 'Teaching Ladies Single'})">TEACHING WOMEN SINGLE</a></li>
             <li><a ui-sref="standings({division: 'Teaching Men'})">TEACHING MEN</a></li>
-            <li><a ui-sref="standings({division: 'Teaching Ladies'})">TEACHING LADIES</a></li>
+            <li><a ui-sref="standings({division: 'Teaching Ladies'})">TEACHING WOMEN</a></li>
             <li><a ui-sref="standings({division: 'Seniors'})">SENIORS</a></li>
             <li><a ui-sref="standings({division: 'Seniors Single'})">SENIORS SINGLE</a></li>
             <hr />
@@ -26,7 +26,7 @@
 1. Danny Baer—Saskatchewan<br />
 2. Tom Williams—Northern Ontario<br />
 3. Shane Chafe—Newfoundland & Labrador<br /><br />
-<strong>Ladies</strong><br />
+<strong>Women</strong><br />
 1. Jennifer Smith—Alberta<br />
 2. Tracey Ormiston—Southern Ontario<br />
 3. Meagan Gallicano—Newfoundland & Labrador<br />

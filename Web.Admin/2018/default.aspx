@@ -19,6 +19,7 @@
             <div class="col-md-12">
                 <h2>Welcome</h2>
                 <p>Welcome to the online home of the 2018 Master Bowlers Association of Canada Nationals, taking place June 30 - July 4, 2018 in Thunder Bay, ON.</p>
+                <p><a href="https://www.pscp.tv/MBACNationals2018">Click here for Live Streaming!!!</a></p>
             </div>
         </div>
 
@@ -27,7 +28,7 @@
                 <h2>News</h2>
                 <div ng-repeat="newsItem in vm.News">
                     <h4><span class="newsHeader">{{newsItem.Title}}</span></h4>
-                    <p style="white-space: pre-wrap;">{{newsItem.Content}}</p>
+                    <p style="white-space: pre-wrap;" ng-bind-html="newsItem.Content"></p>
                 </div>
                 <p><a class="btn btn-default" href="news.aspx" role="button">More News</a></p>
             </div>

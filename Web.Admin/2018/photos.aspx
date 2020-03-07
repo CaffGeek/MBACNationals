@@ -8,25 +8,25 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyPlaceholder" runat="server">
     <div class="col-md-2">
         <ul class="sidebarNav">
-            <li><a href="javascript: loadAlbum('1129830643748930');" data-ng-click="title = 'Day 1'">Day 1</a></li>
-            <li><a href="javascript: loadAlbum('1129832137082114');" data-ng-click="title = 'Day 2'">Day 2</a></li>
-            <li><a href="javascript: loadAlbum('1129832763748718');" data-ng-click="title = 'Day 3'">Day 3</a></li>
-            <li><a href="javascript: loadAlbum('1129832883748706');" data-ng-click="title = 'Day 4'">Day 4</a></li>
-            <li><a href="javascript: loadAlbum('1129833057082022');" data-ng-click="title = 'Day 5'">Day 5</a></li>
-            <li><a href="javascript: loadAlbum('1129833207082007');" data-ng-click="title = 'Day 6'">Day 6</a></li>
-            <li><a href="javascript: loadAlbum('1129833423748652');" data-ng-click="title = 'Day 7'">Day 7</a></li>
-            <li><a href="https://www.instagram.com/mbacnationals/" target="_blank">Instagram</a></li>
+           <!-- <li><a href="javascript: loadAlbum('1525842230814434');" data-ng-click="title = 'Day 1'">Day 1</a></li>
+            <li><a href="javascript: loadAlbum('1525845174147473');" data-ng-click="title = 'Day 2'">Day 2</a></li>
+            <li><a href="javascript: loadAlbum('1525845647480759');" data-ng-click="title = 'Day 3'">Day 3</a></li>
+            <li><a href="javascript: loadAlbum('1525846370814020');" data-ng-click="title = 'Day 4'">Day 4</a></li>
+            <li><a href="javascript: loadAlbum('1525846740813983');" data-ng-click="title = 'Day 5'">Day 5</a></li>
+            <li><a href="javascript: loadAlbum('1525847180813939');" data-ng-click="title = 'Day 6'">Day 6</a></li>
+            <li><a href="javascript: loadAlbum('1525847940813863');" data-ng-click="title = 'Day 7'">Day 7</a></li>-->
+            <li><a href="https://www.facebook.com/pg/MBAofCanada/photos/?tab=album&album_id=1930617923670194" target="_blank">Facebook</a></li>
         </ul>
     </div>
 
     <div class="col-md-10">
-        <h2>PHOTOS {{title || 'Day 1'}}</h2>
-        <div id="galleria"></div>
+        <h2>PHOTOS</h2>
+<div class='embedsocial-album' data-ref="d77f46a766be9a5ccfae44ba8032489d3e68aaf3"></div><script>(function(d, s, id){var js; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id; js.src = "https://embedsocial.com/embedscript/ei.js"; d.getElementsByTagName("head")[0].appendChild(js);}(document, "script", "EmbedSocialScript"));</script>
     </div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="/Web.Public/galleria/galleria-1.4.2.min.js"></script>
+<!--    <script src="/Web.Public/galleria/galleria-1.4.2.min.js"></script>
     <script src="/Web.Public/galleria/plugins/facebook/galleria.facebook.js"></script>
     <script>
         function loadAlbum(album) {
@@ -42,6 +42,6 @@
         }
 
         Galleria.loadTheme('/Web.Public/galleria/themes/classic/galleria.classic.min.js');
-        loadAlbum(1129830643748930);
-    </script>
+        loadAlbum(1525842230814434);
+    </script>-->
 </asp:Content>
