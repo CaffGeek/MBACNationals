@@ -75,6 +75,7 @@ IF /I "MBACNationals.sln" NEQ "" (
 )
 
 echo Install npm packages
+
 IF EXIST "%DEPLOYMENT_SOURCE%\AdminV2\package.json" (
 	pushd "%DEPLOYMENT_SOURCE%\AdminV2"
 	call :ExecuteCmd npm install --production
@@ -93,6 +94,7 @@ IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
 IF !ERRORLEVEL! NEQ 0 goto error
 
 echo Angular Prod Build
+
 IF EXIST "%DEPLOYMENT_SOURCE%/AdminV2/angular.json" (
 	echo Building App in %DEPLOYMENT_SOURCE%/AdminV2/
 	pushd "%DEPLOYMENT_SOURCE%\AdminV2"
@@ -102,6 +104,7 @@ IF EXIST "%DEPLOYMENT_SOURCE%/AdminV2/angular.json" (
 )
 
 echo KuduSync
+
 IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
   call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_TEMP%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
   IF !ERRORLEVEL! NEQ 0 goto error
