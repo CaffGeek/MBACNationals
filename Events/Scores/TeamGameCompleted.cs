@@ -11,6 +11,7 @@
         public int Score;
         public int POA;
         public decimal Points;
+        public bool ArePointsOverriden;
         public decimal TotalPoints;
         public int Lane;
         public string Centre;

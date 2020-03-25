@@ -19,6 +19,7 @@ namespace MBACNationals.Scores.Commands
             public Guid Id { get; set; }
             public int Position { get; set; }
             public int Score { get; set; }
+            public int Point { get; set; }
         }
     }
 }

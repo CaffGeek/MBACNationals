@@ -14,6 +14,7 @@
         public int Position;
         public int POA;
         public decimal Points;
+        public bool ArePointsOverriden;
         public int Lane;
         public string Centre;
         public string Opponent;

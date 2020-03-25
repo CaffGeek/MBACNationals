@@ -33,15 +33,11 @@ namespace MBACNationals.Scores
 
             if (match.IsPOA)
             {
-                //var awayBowler = command.Away.Bowlers.First();
-                //var homeBowler = command.Home.Bowlers.First();
-
                 //Single might no longer be first bowler if they are replaced
                 var awaySingleParticipant = CommandQueries.GetTeamParticipants(command.Away.Id)
                     .Where(x => !x.IsReplaced)
                     .OrderBy(x => x.QualifyingPosition)
                     .FirstOrDefault() ?? new CommandQueries.Participant();
-                    //.FirstOrDefault(x => x.QualifyingPosition == 1) ?? new CommandQueries.Participant();
 
                 var awayBowler = command.Away.Bowlers.FirstOrDefault(x => x.Id == awaySingleParticipant.Id)
                     ?? command.Away.Bowlers.First(); // Never used to have QualifyingPosition
@@ -50,7 +46,6 @@ namespace MBACNationals.Scores
                     .Where(x => !x.IsReplaced)
                     .OrderBy(x => x.QualifyingPosition)
                     .FirstOrDefault() ?? new CommandQueries.Participant();
-                    //.FirstOrDefault(x => x.QualifyingPosition == 1) ?? new CommandQueries.Participant();
 
                 var homeBowler = command.Home.Bowlers.FirstOrDefault(x => x.Id == homeSingleParticipant.Id)
                     ?? command.Home.Bowlers.First(); // Never used to have QualifyingPosition
@@ -165,7 +160,8 @@ namespace MBACNationals.Scores
                     Score = awayBowler.Score,
                     Position = awayBowler.Position,
                     POA = awayPOA,
-                    Points = awayBowlerPoint,
+                    Points = awayBowler.Point,
+                    ArePointsOverriden = awayBowler.Point != awayBowlerPoint,
                     Lane = match.Lane,
                     Centre = match.CentreName,
                     IsPOA = match.IsPOA
@@ -189,7 +185,8 @@ namespace MBACNationals.Scores
                     Score = homeBowler.Score,
                     Position = homeBowler.Position,
                     POA = homePOA,
-                    Points = homeBowlerPoint,
+                    Points = homeBowler.Point,
+                    ArePointsOverriden = homeBowler.Point != homeBowlerPoint,
                     Lane = match.Lane + 1,
                     Centre = match.CentreName,
                     IsPOA = match.IsPOA
@@ -216,6 +213,7 @@ namespace MBACNationals.Scores
                 TeamId = command.Away.Id,
                 Score = awayTeamScore,
                 POA = awayTeamPOA,
+                //TODO: CHAD: Handle override points
                 Points = awayTeamPoint,
                 TotalPoints = awayTeamPoints + awayTeamPoint,
                 OpponentPoints = homeTeamPoints + homeTeamPoint,
@@ -237,6 +235,7 @@ namespace MBACNationals.Scores
                 TeamId = command.Home.Id,
                 Score = homeTeamScore,
                 POA = homeTeamPOA,
+                //TODO: CHAD: Handle override points
                 Points = homeTeamPoint,
                 TotalPoints = homeTeamPoints + homeTeamPoint,
                 OpponentPoints = awayTeamPoints + awayTeamPoint,

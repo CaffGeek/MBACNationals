@@ -153,9 +153,10 @@ namespace MBACNationals.ReadModels
                 Number = e.Number,
                 Scratch = e.Score,
                 POA = e.POA,
-                WinLossTie = e.IsPOA 
-                    ? (e.POA > e.OpponentPOA ? "W" : e.POA < e.OpponentPOA ? "L" : "T")
-                    : (e.Score > e.OpponentScore ? "W" : e.Score < e.OpponentScore ? "L" : "T"),
+                WinLossTie = e.Points == 1 ? "W" : e.Points == 0 ? "L" : "T",
+                //WinLossTie = e.IsPOA 
+                //    ? (e.POA > e.OpponentPOA ? "W" : e.POA < e.OpponentPOA ? "L" : "T")
+                //    : (e.Score > e.OpponentScore ? "W" : e.Score < e.OpponentScore ? "L" : "T"),
                 Lane = e.Lane,
                 Centre = e.Centre,
                 OpponentId = e.OpponentId,
