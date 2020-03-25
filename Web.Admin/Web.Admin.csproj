@@ -1983,6 +1983,7 @@
     <Content Include="2015\albums\June_27\thumbs\PICT0084.JPG" />
     <Content Include="2015\fonts\bebas___-webfont.svg" />
     <Content Include="2015\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="2016\history.aspx" />
     <Content Include="2016\js\schedule.js" />
     <Content Include="2016\souvenirs.aspx" />
     <Content Include="2016\sponsors.aspx" />
@@ -1992,6 +1993,7 @@
     <Content Include="2017\css\customize.css" />
     <Content Include="2017\css\customize2017.css" />
     <Content Include="2017\default.aspx" />
+    <Content Include="2017\history.aspx" />
     <Content Include="2017\hotel.aspx" />
     <Content Include="2017\images\background.jpg" />
     <Content Include="2017\images\centre1.jpg" />
@@ -2040,6 +2042,7 @@
     <Content Include="2018\contingents.aspx" />
     <Content Include="2018\css\customize.css" />
     <Content Include="2018\default.aspx" />
+    <Content Include="2018\history.aspx" />
     <Content Include="2018\hotel.aspx" />
     <Content Include="2018\images\background.jpg" />
     <Content Include="2018\images\centre1.jpg" />
@@ -2072,6 +2075,7 @@
     <Content Include="2018\souvenirs.aspx" />
     <Content Include="2018\sponsors.aspx" />
     <Content Include="2018\statistics.aspx" />
+    <Content Include="2019\history.aspx" />
     <Content Include="2019\images\Logo.png" />
     <Content Include="2019\centres.aspx" />
     <Content Include="2019\contingents.aspx" />
@@ -2133,6 +2137,7 @@
     <Content Include="2020\images\restaurants.jpg" />
     <Content Include="2020\js\schedule.js" />
     <Content Include="2020\lanedraw.aspx" />
+    <Content Include="2020\history.aspx" />
     <Content Include="2020\news.aspx" />
     <Content Include="2020\photos.aspx" />
     <Content Include="2020\results.aspx" />
@@ -2182,6 +2187,7 @@
     <Content Include="AdminApp\Views\Tournament\Hotels.html" />
     <Content Include="ClientApp\Controllers\controller.centres.js" />
     <Content Include="ClientApp\Controllers\controller.hotels.js" />
+    <Content Include="ClientApp\Controllers\controller.history.js" />
     <Content Include="ClientApp\Directives\directive.scorehighlight.js" />
     <Content Include="ClientApp\Views\contingents.html" />
     <Content Include="ClientApp\Views\Results\HighscoresByGame.html" />
@@ -2737,6 +2743,8 @@
     <Content Include="Content\PDFs\2018.pdf" />
     <Content Include="Content\PDFs\2019.pdf" />
     <Content Include="Content\PDFs\2008.pdf" />
+    <Content Include="Content\PDFs\1994.pdf" />
+    <Content Include="Content\PDFs\1996.pdf" />
     <None Include="Properties\PublishProfiles\MBACNationals - Web Deploy.pubxml.user" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
