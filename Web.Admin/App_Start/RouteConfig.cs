@@ -8,7 +8,8 @@ namespace WebFrontend
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            
+            routes.IgnoreRoute("AdminAppV2");
+
             routes.MapRoute(
                 name: "Home",
                 url: "Setup",
