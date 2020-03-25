@@ -78,6 +78,8 @@ echo Install npm packages
 
 IF EXIST "%DEPLOYMENT_SOURCE%\AdminV2\package.json" (
 	pushd "%DEPLOYMENT_SOURCE%\AdminV2"
+	call :ExecuteCmd npm -v
+	call :ExecuteCmd node --version
 	call :ExecuteCmd npm install --production
 	IF !ERRORLEVEL! NEQ 0 goto error
 	popd
@@ -93,15 +95,15 @@ IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
 
 IF !ERRORLEVEL! NEQ 0 goto error
 
-echo Angular Prod Build
-
-IF EXIST "%DEPLOYMENT_SOURCE%/AdminV2/angular.json" (
-	echo Building App in %DEPLOYMENT_SOURCE%/AdminV2/
-	pushd "%DEPLOYMENT_SOURCE%\AdminV2"
-	call ./node_modules/.bin/ng build --prod --outputPath=%DEPLOYMENT_TEMP%/AdminV2
-	IF !ERRORLEVEL! NEQ 0 goto error
-	popd
-)
+::echo Angular Prod Build
+::
+::IF EXIST "%DEPLOYMENT_SOURCE%/AdminV2/angular.json" (
+::	echo Building App in %DEPLOYMENT_SOURCE%/AdminV2/
+::	pushd "%DEPLOYMENT_SOURCE%\AdminV2"
+::	call ./node_modules/.bin/ng build --prod --outputPath=%DEPLOYMENT_TEMP%/AdminV2
+::	IF !ERRORLEVEL! NEQ 0 goto error
+::	popd
+::)
 
 echo KuduSync
 
