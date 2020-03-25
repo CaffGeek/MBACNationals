@@ -33,7 +33,7 @@
             { year: 1994, province: 'SO', city: 'Oshawa' },
         ];
 
-        vm.selected = vm.History[vm.History.length - 1];
+        vm.selected = vm.History[0];
 
         vm.getPdfLink = function (year) {
             return '/Content/PDFs/' + year + '.pdf';
