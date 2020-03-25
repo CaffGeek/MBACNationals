@@ -78,8 +78,6 @@ echo Install npm packages
 
 IF EXIST "%DEPLOYMENT_SOURCE%\AdminV2\package.json" (
 	pushd "%DEPLOYMENT_SOURCE%\AdminV2"
-	call :ExecuteCmd npm -v
-	call :ExecuteCmd node --version
 	call :ExecuteCmd npm install --production
 	IF !ERRORLEVEL! NEQ 0 goto error
 	popd
