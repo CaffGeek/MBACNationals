@@ -35,7 +35,7 @@
           },
           "configurations": {
             "production": {
-              "baseHref": "/AdminAppV2/",
+              "baseHref": "/AdminV2/",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
