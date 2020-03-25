@@ -135,17 +135,17 @@
     <script type='text/javascript'>jQuery.noConflict(true);</script>
     <script src="/Content/bootstrap/js/ie10-viewport-bug-workaround.js"></script>
     <script src="/ClientApp/app.js?v=20180621"></script>
-    <script src="/ClientApp/Controllers/controller.contingent.js?v=20180621"></script>
-    <script src="/ClientApp/Controllers/controller.highscores.js?v=20180621"></script>
-    <script src="/ClientApp/Controllers/controller.history.js?v=20180621"></script>
-    <script src="/ClientApp/Controllers/controller.news.js?v=20180621"></script>
-    <script src="/ClientApp/Controllers/controller.results.js?v=20180621"></script>
-    <script src="/ClientApp/Controllers/controller.schedule.js?v=20180621"></script>
-    <script src="/ClientApp/Controllers/controller.sponsors.js?v=20180621"></script>
-    <script src="/ClientApp/Controllers/controller.hotels.js?v=20180621"></script>
-    <script src="/ClientApp/Controllers/controller.centres.js?v=20180621"></script>
-    <script src="/ClientApp/Directives/directive.scorehighlight.js?v=20180621"></script>
-    <script src="/ClientApp/Services/service.data.js?v=20180621"></script>
+    <script src="/ClientApp/Controllers/controller.contingent.js?v=20200325"></script>
+    <script src="/ClientApp/Controllers/controller.highscores.js?v=20200325"></script>
+    <script src="/ClientApp/Controllers/controller.history.js?v=20200325"></script>
+    <script src="/ClientApp/Controllers/controller.news.js?v=20200325"></script>
+    <script src="/ClientApp/Controllers/controller.results.js?v=20200325"></script>
+    <script src="/ClientApp/Controllers/controller.schedule.js?v=20200325"></script>
+    <script src="/ClientApp/Controllers/controller.sponsors.js?v=20200325"></script>
+    <script src="/ClientApp/Controllers/controller.hotels.js?v=20200325"></script>
+    <script src="/ClientApp/Controllers/controller.centres.js?v=20200325"></script>
+    <script src="/ClientApp/Directives/directive.scorehighlight.js?v=20200325"></script>
+    <script src="/ClientApp/Services/service.data.js?v=20200325"></script>
     <script src="/Content/js/GoogleAnalytics.js"></script>
 </body>
 </html>
