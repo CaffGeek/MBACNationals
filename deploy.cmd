@@ -67,12 +67,12 @@ SET MSBUILD_PATH=%ProgramFiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe
 
 echo Handling Web Application deployment.
 
-::echo Restore NuGet packages
-::
-::IF /I "MBACNationals.sln" NEQ "" (
-::  call :ExecuteCmd nuget restore "%DEPLOYMENT_SOURCE%\MBACNationals.sln"
-::  IF !ERRORLEVEL! NEQ 0 goto error
-::)
+echo Restore NuGet packages
+
+IF /I "MBACNationals.sln" NEQ "" (
+  call :ExecuteCmd nuget restore "%DEPLOYMENT_SOURCE%\MBACNationals.sln"
+  IF !ERRORLEVEL! NEQ 0 goto error
+)
 
 echo Install npm packages
 
@@ -83,15 +83,15 @@ IF EXIST "%DEPLOYMENT_SOURCE%\AdminV2\package.json" (
 	popd
 )
 
-::echo Build .Net to the temporary path
-::
-::IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
-::  call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\Web.Admin\Web.Admin.csproj" /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="%DEPLOYMENT_TEMP%";AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release;UseSharedCompilation=false /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS%
-::) ELSE (
-::  call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\Web.Admin\Web.Admin.csproj" /nologo /verbosity:m /t:Build /p:AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release;UseSharedCompilation=false /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS%
-::)
-::
-::IF !ERRORLEVEL! NEQ 0 goto error
+echo Build .Net to the temporary path
+
+IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
+  call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\Web.Admin\Web.Admin.csproj" /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="%DEPLOYMENT_TEMP%";AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release;UseSharedCompilation=false /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS%
+) ELSE (
+  call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\Web.Admin\Web.Admin.csproj" /nologo /verbosity:m /t:Build /p:AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release;UseSharedCompilation=false /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS%
+)
+
+IF !ERRORLEVEL! NEQ 0 goto error
 
 echo Angular Prod Build
 
