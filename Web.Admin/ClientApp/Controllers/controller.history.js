@@ -34,6 +34,12 @@
             { year: 1993, province: 'NO', city: 'Sudbury' },
             { year: 1992, province: 'BC', city: 'Victoria' },
             { year: 1991, province: 'MB', city: 'Winnipeg' },
+            { year: 1990, province: 'AB', city: 'Edmonton' },
+            { year: 1989, province: 'NL', city: 'St John\'s' },
+            { year: 1988, province: 'SK', city: 'Saskatoon' },
+            { year: 1987, province: 'BC', city: 'Nanaimo' },
+            { year: 1985, province: 'MB', city: 'Winnipeg' },
+            { year: 1984, province: 'AB', city: 'Calgary' },
         ];
 
         vm.selected = vm.History[0];
