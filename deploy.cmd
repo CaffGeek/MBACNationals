@@ -98,7 +98,7 @@ echo Angular Prod Build
 IF EXIST "%DEPLOYMENT_SOURCE%/AdminV2/angular.json" (
 	echo Building Angular App in %DEPLOYMENT_SOURCE%/AdminV2/
 	pushd "%DEPLOYMENT_SOURCE%\AdminV2"
-	call :ExecuteCmd npm build --prod --outputPath=%DEPLOYMENT_TEMP%/AdminV2
+	call :ExecuteCmd npm run build --prod --outputPath=%DEPLOYMENT_TEMP%/AdminV2
 	IF !ERRORLEVEL! NEQ 0 goto error
 	popd
 )
