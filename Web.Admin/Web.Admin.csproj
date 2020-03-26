@@ -2745,6 +2745,9 @@
     <Content Include="Content\PDFs\2008.pdf" />
     <Content Include="Content\PDFs\1994.pdf" />
     <Content Include="Content\PDFs\1996.pdf" />
+    <Content Include="Content\PDFs\1991.PDF" />
+    <Content Include="Content\PDFs\1992.PDF" />
+    <Content Include="Content\PDFs\1993.PDF" />
     <None Include="Properties\PublishProfiles\MBACNationals - Web Deploy.pubxml.user" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
