@@ -98,7 +98,7 @@ echo Angular Prod Build
 IF EXIST "%DEPLOYMENT_SOURCE%/AdminV2/angular.json" (
 	echo Building Angular App
 	pushd "%DEPLOYMENT_SOURCE%\AdminV2"
-	call :ExecuteCmd npm run build 
+	call :ExecuteCmd npm run build:prod 
 	echo Copy output to %DEPLOYMENT_TEMP%/AdminV2
 	call :ExecuteCmd cp -r ./dist/AdminV2 %DEPLOYMENT_TEMP%/AdminV2
 	IF !ERRORLEVEL! NEQ 0 goto error
