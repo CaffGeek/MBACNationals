@@ -1,18 +1,43 @@
+import { environment } from '../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
+import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { AuthenticationGuard, MsAdalAngular6Module } from 'microsoft-adal-angular6';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AdminModule } from './admin/admin.module';
+import { WebsiteModule } from './website/website.module';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
+
+const appRoutes: Routes = [
+  { path: 'forbidden', component: ForbiddenComponent, pathMatch: 'full' },
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ForbiddenComponent
   ],
   imports: [
+    MsAdalAngular6Module.forRoot({
+      ...environment.adSettings,
+      redirectUri: window.location.origin,
+      navigateToLoginRequestUrl: true,
+      cacheLocation: 'localStorage',
+    }),
     BrowserModule,
-    AppRoutingModule
+    RouterModule.forRoot(appRoutes, {
+      useHash: true,
+      // enableTracing: true,
+    }),
+    AdminModule,
+    WebsiteModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    AuthenticationGuard,
+  ],
+  bootstrap: [
+    AppComponent,
+  ],
 })
 export class AppModule { }

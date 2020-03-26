@@ -3,7 +3,18 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  adSettings: {
+    tenant: '07eb46a6-f341-4af3-b282-c56f0c8c79ed',
+    clientId: '81e87e5e-6fff-4e44-b670-ef4a984e2db0',
+    endpoints: {
+      'https://localhost/Api/': 'xxx-bae6-4760-b434-xxx',
+    }
+  },
+  roles: {
+    admin: 'f4aaa2f8-7194-409c-bcb2-d42fe7b68d08',
+    hostCommittee: 'd6e0f1e8-a7f7-4a92-86a9-161c468305e0',
+  }
 };
 
 /*
