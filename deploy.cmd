@@ -76,8 +76,8 @@ IF /I "MBACNationals.sln" NEQ "" (
 
 echo Install npm packages
 
-IF EXIST "%DEPLOYMENT_SOURCE%\AdminV2\package.json" (
-	pushd "%DEPLOYMENT_SOURCE%\AdminV2"
+IF EXIST "%DEPLOYMENT_SOURCE%\Website\package.json" (
+	pushd "%DEPLOYMENT_SOURCE%\Website"
 	call :ExecuteCmd npm install --production
 	IF !ERRORLEVEL! NEQ 0 goto error
 	popd
@@ -95,12 +95,12 @@ IF !ERRORLEVEL! NEQ 0 goto error
 
 echo Angular Prod Build
 
-IF EXIST "%DEPLOYMENT_SOURCE%/AdminV2/angular.json" (
+IF EXIST "%DEPLOYMENT_SOURCE%/Website/angular.json" (
 	echo Building Angular App
-	pushd "%DEPLOYMENT_SOURCE%\AdminV2"
+	pushd "%DEPLOYMENT_SOURCE%\Website"
 	call :ExecuteCmd npm run build:prod 
-	echo Copy output to %DEPLOYMENT_TEMP%/AdminV2
-	call :ExecuteCmd cp -r ./dist/AdminV2 %DEPLOYMENT_TEMP%/AdminV2
+	echo Copy output to %DEPLOYMENT_TEMP%/Website
+	call :ExecuteCmd cp -r ./dist/Website %DEPLOYMENT_TEMP%/Beta
 	IF !ERRORLEVEL! NEQ 0 goto error
 	popd
 )
