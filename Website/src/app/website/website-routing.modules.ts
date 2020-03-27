@@ -9,7 +9,8 @@ import { environment } from 'src/environments/environment';
 
 
 const routes: Routes = [
-    { path: '', component: HomeComponent },
+    { path: '', redirectTo: '/2019', pathMatch: 'full'},
+    { path: ':year', component: HomeComponent },
 ];
 
 @NgModule({

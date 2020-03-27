@@ -8,7 +8,7 @@
         <span class="example-fill-remaining-space"></span>
         
         <div>
-            <a mat-button [routerLink]="'/home'"> Home </a>
+            <a mat-button [routerLink]="'/'"> Home </a>
             <a mat-button [routerLink]="'/results'"> Results </a>
             <a mat-button [routerLink]="'/statistics'"> Statistics </a>
             <a mat-button [routerLink]="'/news'"> News </a>
@@ -21,7 +21,9 @@
             <a mat-button [routerLink]="'/location'"> Location </a>
             <button mat-button [matMenuTriggerFor]="menu"> History </button>
             <mat-menu #menu="matMenu">
-                <button mat-menu-item *ngFor="let tournament of tournaments">{{tournament.Year}}</button>
+                <button mat-menu-item *ngFor="let tournament of tournaments">
+                    <a mat-button [routerLink]="['/', tournament.Year]"> {{tournament.Year}} </a>
+                </button>
                 <button mat-menu-item>More History (PDFs)</button>
             </mat-menu>
         </div>
