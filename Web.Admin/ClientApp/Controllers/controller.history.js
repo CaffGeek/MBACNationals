@@ -38,6 +38,7 @@
             { year: 1989, province: 'NL', city: 'St John\'s' },
             { year: 1988, province: 'SK', city: 'Saskatoon' },
             { year: 1987, province: 'BC', city: 'Nanaimo' },
+            { year: 1986, isMissing: true },
             { year: 1985, province: 'MB', city: 'Winnipeg' },
             { year: 1984, province: 'AB', city: 'Calgary' },
         ];
