@@ -1,26 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { MsAdalAngular6Service } from 'microsoft-adal-angular6';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.less']
 })
-export class AdminComponent implements OnInit {
-  user = '';
-  groups = [];
+export class AdminComponent {
 
-  constructor(private adalSvc: MsAdalAngular6Service) {
-    // console.log(this.adalSvc.userInfo);
-    // this.adalSvc.acquireToken('https://graph.microsoft.com').subscribe((token: string) => {
-    //   console.log(token);
-    // });
+  constructor() {
   }
 
-  ngOnInit(): void {
-  }
-
-  logout() {
-    this.adalSvc.logout();
-  }
 }

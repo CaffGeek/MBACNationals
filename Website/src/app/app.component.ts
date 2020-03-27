@@ -7,6 +7,7 @@ import { MsAdalAngular6Service } from 'microsoft-adal-angular6';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
+
   constructor(private adalSvc: MsAdalAngular6Service) {
     this.adalSvc.acquireToken('https://graph.microsoft.com').subscribe((token: string) => {
       // TODO: CHAD: Do something with this token...

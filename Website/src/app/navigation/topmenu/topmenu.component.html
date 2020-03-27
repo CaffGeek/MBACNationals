@@ -1,0 +1,42 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <button mat-icon-button>
+            <mat-icon (click)="navOpen()">menu</mat-icon>
+        </button>
+
+        <!-- This fills the remaining space of the current row -->
+        <span class="example-fill-remaining-space"></span>
+        
+        <div>
+            <a mat-button [routerLink]="'/home'"> Home </a>
+            <a mat-button [routerLink]="'/results'"> Results </a>
+            <a mat-button [routerLink]="'/statistics'"> Statistics </a>
+            <a mat-button [routerLink]="'/news'"> News </a>
+            <a mat-button [routerLink]="'/schedule'"> Schedule </a>
+            <a mat-button [routerLink]="'/lane'"> Lane Draw </a>
+            <a mat-button [routerLink]="'/contingents'"> Contingents </a>
+            <a mat-button [routerLink]="'/souvenirs'"> Souvenirs </a>
+            <a mat-button [routerLink]="'/sponsors'"> Sponsors </a>
+            <a mat-button [routerLink]="'/centres'"> Centres </a>
+            <a mat-button [routerLink]="'/location'"> Location </a>
+            <button mat-button [matMenuTriggerFor]="menu"> History </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item *ngFor="let tournament of tournaments">{{tournament.Year}}</button>
+                <button mat-menu-item>More History (PDFs)</button>
+            </mat-menu>
+        </div>
+
+        <!-- This fills the remaining space of the current row -->
+        <span class="example-fill-remaining-space"></span>
+
+        <div>
+            <a mat-button [routerLink]="'/admin'"> Admin </a>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-toolbar  id="notification">
+    <mat-toolbar-row>
+        <h4>Welcome to the BETA site. Changes are coming.</h4>
+    </mat-toolbar-row>
+</mat-toolbar>

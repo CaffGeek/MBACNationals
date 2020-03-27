@@ -1,13 +1,18 @@
-import { environment } from '../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AuthenticationGuard, MsAdalAngular6Module } from 'microsoft-adal-angular6';
 
+import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
+import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { AdminModule } from './admin/admin.module';
 import { WebsiteModule } from './website/website.module';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { TopmenuComponent } from './navigation/topmenu/topmenu.component';
+import { SidemenuComponent } from './navigation/sidemenu/sidemenu.component';
 
 const appRoutes: Routes = [
   { path: 'forbidden', component: ForbiddenComponent, pathMatch: 'full' },
@@ -16,7 +21,9 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    TopmenuComponent,
+    SidemenuComponent
   ],
   imports: [
     MsAdalAngular6Module.forRoot({
@@ -26,6 +33,9 @@ const appRoutes: Routes = [
       cacheLocation: 'localStorage',
     }),
     BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    AngularMaterialModule,
     RouterModule.forRoot(appRoutes, {
       useHash: true,
       // enableTracing: true,
@@ -39,5 +49,6 @@ const appRoutes: Routes = [
   bootstrap: [
     AppComponent,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }

@@ -5,10 +5,9 @@ import { AuthGuard } from '../services/auth-guard.service';
 
 import { AdminComponent } from './admin/admin.component';
 import { environment } from 'src/environments/environment';
-import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
-  declarations: [AdminComponent, NavigationComponent],
+  declarations: [AdminComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

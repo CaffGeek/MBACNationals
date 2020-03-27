@@ -1,5 +1,6 @@
 import { environment as base } from './environment.base';
 
 export const environment = {
-  ...base
+  ...base,
+  apiEndPoint: 'http://localhost:60827/Setup'
 };
