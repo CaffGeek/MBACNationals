@@ -11,16 +11,16 @@ export class AdminComponent implements OnInit {
   groups = [];
 
   constructor(private adalSvc: MsAdalAngular6Service) {
-    console.log(this.adalSvc.userInfo);
-    this.adalSvc.acquireToken('https://graph.microsoft.com').subscribe((token: string) => {
-      console.log(token);
-    });
+    // console.log(this.adalSvc.userInfo);
+    // this.adalSvc.acquireToken('https://graph.microsoft.com').subscribe((token: string) => {
+    //   console.log(token);
+    // });
   }
 
   ngOnInit(): void {
   }
 
-  // logout() {
-  //   this.adalSvc.logout();
-  // }
+  logout() {
+    this.adalSvc.logout();
+  }
 }

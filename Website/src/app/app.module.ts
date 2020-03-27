@@ -21,7 +21,7 @@ const appRoutes: Routes = [
   imports: [
     MsAdalAngular6Module.forRoot({
       ...environment.adSettings,
-      redirectUri: window.location.origin,
+      redirectUri: window.location.href,
       navigateToLoginRequestUrl: true,
       cacheLocation: 'localStorage',
     }),
