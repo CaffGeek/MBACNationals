@@ -7,9 +7,8 @@ import { AuthenticationGuard } from 'microsoft-adal-angular6';
 import { HomeComponent } from './home/home.component';
 import { environment } from 'src/environments/environment';
 
-
 const routes: Routes = [
-    { path: '', redirectTo: '/2019', pathMatch: 'full'},
+    { path: '', redirectTo: `/${environment.defaultYear}`, pathMatch: 'full'},
     { path: ':year', component: HomeComponent },
 ];
 

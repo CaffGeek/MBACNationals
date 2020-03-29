@@ -4,6 +4,7 @@
 
 export const environment = {
     production: false,
+    defaultYear: 2019,
     adSettings: {
         tenant: '07eb46a6-f341-4af3-b282-c56f0c8c79ed',
         clientId: '81e87e5e-6fff-4e44-b670-ef4a984e2db0',

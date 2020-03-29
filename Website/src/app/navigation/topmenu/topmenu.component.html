@@ -1,13 +1,13 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
-        <button mat-icon-button>
+        <button fxShow fxHide.gt-sm="true" mat-icon-button>
             <mat-icon (click)="navOpen()">menu</mat-icon>
         </button>
 
         <!-- This fills the remaining space of the current row -->
         <span class="example-fill-remaining-space"></span>
         
-        <div>
+        <div fxShow fxHide.lt-md="true">
             <a mat-button [routerLink]="'/'"> Home </a>
             <a mat-button [routerLink]="'/results'"> Results </a>
             <a mat-button [routerLink]="'/statistics'"> Statistics </a>
@@ -31,7 +31,7 @@
         <!-- This fills the remaining space of the current row -->
         <span class="example-fill-remaining-space"></span>
 
-        <div>
+        <div fxShow fxHide.lt-sm="true">
             <a mat-button [routerLink]="'/admin'"> Admin </a>
         </div>
     </mat-toolbar-row>
@@ -39,6 +39,6 @@
 
 <mat-toolbar  id="notification">
     <mat-toolbar-row>
-        <h4>Welcome to the BETA site. Changes are coming.</h4>
+        <h4>Welcome to the BETA site.</h4>
     </mat-toolbar-row>
 </mat-toolbar>
