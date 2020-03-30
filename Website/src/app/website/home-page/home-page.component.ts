@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { TournamentsService } from 'src/app/services/tournaments.service';
+import { Tournament } from 'src/app/services/models/tournament';
 
 @Component({
   selector: 'app-home-page',
@@ -10,7 +11,7 @@ import { TournamentsService } from 'src/app/services/tournaments.service';
 })
 export class HomePageComponent implements OnInit {
   year: number;
-  tournament: any = {};
+  tournament: Tournament;
 
   constructor(
     private route: ActivatedRoute,

@@ -23,6 +23,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ResultsPageComponent } from './results-page/results-page.component';
 import { StatisticsPageComponent } from './statistics-page/statistics-page.component';
 import { NewsPageComponent } from './news-page/news-page.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { NewsPageComponent } from './news-page/news-page.component';
     ResultsPageComponent,
     StatisticsPageComponent,
     NewsPageComponent,
+    WelcomeComponent,
   ],
   imports: [
     CommonModule,

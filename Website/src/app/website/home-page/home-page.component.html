@@ -1,9 +1,6 @@
-<app-banner [year]="year"></app-banner>
-
 <div fxLayout="row">
     <div fxFlex="75">
-        <h2>Welcome to {{year}}</h2>
-        <p [innerHTML]="tournament.welcome"></p>
+        <app-welcome [tournament]="tournament"></app-welcome>
 
         <app-news [year]="year" [limit]="3"></app-news>
 

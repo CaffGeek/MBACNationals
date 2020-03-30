@@ -1,11 +1,12 @@
-<app-layout [class]="currentTheme">
-    <app-topmenu [year]="year" (navToggle)="sidenav.toggle()"></app-topmenu>
+<app-layout *ngIf="tournament" [class]="tournament.Theme || 'default'">
+    <app-topmenu [year]="tournament.Year" (navToggle)="sidenav.toggle()"></app-topmenu>
 
     <mat-sidenav-container>
         <mat-sidenav #sidenav mode="over" fixedInViewport="true" role="navigation">
-            <app-sidemenu [year]="year"></app-sidemenu>
+            <app-sidemenu [year]="tournament.Year"></app-sidemenu>
         </mat-sidenav>
         <mat-sidenav-content>
+            <app-banner [tournament]="tournament"></app-banner>
             <main>
                 <router-outlet></router-outlet>
             </main>
