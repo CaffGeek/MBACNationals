@@ -1,4 +1,3 @@
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -33,7 +32,6 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     HttpClientModule,
     AngularMaterialModule,
-    FlexLayoutModule,
     RouterModule.forRoot(appRoutes, {
       useHash: true,
       paramsInheritanceStrategy: 'always',

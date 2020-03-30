@@ -1,0 +1,23 @@
+<app-banner [year]="year"></app-banner>
+
+<div fxLayout="row">
+    <div fxFlex="75">
+        <h2>Welcome to {{year}}</h2>
+        <p [innerHTML]="tournament.welcome"></p>
+
+        <app-news [year]="year" [limit]="3"></app-news>
+
+        <app-schedule [year]="year"></app-schedule>
+    </div>
+    <div fxFlex>
+        <app-sponsors [year]="year"></app-sponsors>
+
+        <app-follow-us></app-follow-us>
+
+        <app-facebook></app-facebook>
+
+        <app-twitter></app-twitter>
+
+        <app-highscores [year]="year"></app-highscores>
+    </div>
+</div>

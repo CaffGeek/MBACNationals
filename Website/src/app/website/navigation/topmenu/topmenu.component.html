@@ -9,16 +9,16 @@
         
         <div *ngIf="!!year" fxShow fxHide.lt-md="true">
             <a mat-button [routerLink]="['/', year]"> Home</a>
-            <a mat-button [routerLink]="['results']"> Results </a>
-            <a mat-button [routerLink]="['statistics']"> Statistics </a>
-            <a mat-button [routerLink]="['news']"> News </a>
-            <a mat-button [routerLink]="['schedule']"> Schedule </a>
-            <a mat-button [routerLink]="['lane']"> Lane Draw </a>
-            <a mat-button [routerLink]="['contingents']"> Contingents </a>
-            <a mat-button [routerLink]="['souvenirs']"> Souvenirs </a>
-            <a mat-button [routerLink]="['sponsors']"> Sponsors </a>
-            <a mat-button [routerLink]="['centres']"> Centres </a>
-            <a mat-button [routerLink]="['location']"> Location </a>
+            <a mat-button [routerLink]="'results'"> Results </a>
+            <a mat-button [routerLink]="'statistics'"> Statistics </a>
+            <a mat-button [routerLink]="'news'"> News </a>
+            <a mat-button [routerLink]="'schedule'"> Schedule </a>
+            <a mat-button [routerLink]="'lane'"> Lane Draw </a>
+            <a mat-button [routerLink]="'contingents'"> Contingents </a>
+            <a mat-button [routerLink]="'souvenirs'"> Souvenirs </a>
+            <a mat-button [routerLink]="'sponsors'"> Sponsors </a>
+            <a mat-button [routerLink]="'centres'"> Centres </a>
+            <a mat-button [routerLink]="'location'"> Location </a>
             <button mat-button [matMenuTriggerFor]="menu"> History </button>
             <mat-menu #menu="matMenu">
                 <button mat-menu-item *ngFor="let tournament of tournaments">

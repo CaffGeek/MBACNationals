@@ -17,6 +17,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { MatMenuModule } from '@angular/material/menu';
      MatTableModule,
      MatPaginatorModule,
      MatCardModule,
-     MatMenuModule
+     MatMenuModule,
+     MatSlideToggleModule
   ],
   exports: [
      MatButtonModule,

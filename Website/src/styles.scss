@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+
+// always include only once per project
+@include mat-core();
+
+// import our custom theme
+@import 'theme.scss';
+
+html, body { 
+    margin: 0; 
+    height: calc(100%);
+}
+
+// see: https://medium.com/@tomastrajan/the-complete-guide-to-angular-material-themes-4d165a9d24d1
+@mixin customTheme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+
+    @include angular-material-theme($theme); 
+
+    h2 {
+        color: mat-color($primary);
+    }
+}
+
+// Create yearly themes (palette's in theme.scss)
+// TODO: CHAD: Create -dark versions
+.default { @include customTheme($default); }
+.theme-2020 { @include customTheme(mat-light-theme($palette-deep-orange, $palette-blue-grey, $palette-warning)); }
+.theme-2019 { @include customTheme(mat-light-theme($palette-blue, $palette-blue-grey, $palette-warning)); }
+.theme-2018 { @include customTheme(mat-light-theme($palette-red, $palette-blue-grey, $palette-warning)); }
+.theme-2017 { @include customTheme(mat-light-theme($palette-green, $palette-blue-grey, $palette-warning)); }
+.theme-2016 { @include customTheme(mat-light-theme($palette-light-green, $palette-blue-grey, $palette-warning)); }
+.theme-2015 { @include customTheme(mat-light-theme($palette-light-blue, $palette-blue-grey, $palette-warning)); }
+.theme-2014 { @include customTheme(mat-light-theme($palette-red, $palette-blue-grey, $palette-warning)); }

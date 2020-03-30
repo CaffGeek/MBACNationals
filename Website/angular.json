@@ -7,7 +7,7 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "less"
+          "style": "scss"
         }
       },
       "root": "",
@@ -30,8 +30,7 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.less",
-              "src/theme.scss"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -97,7 +96,7 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.less"
+              "src/styles.scss"
             ],
             "scripts": []
           }

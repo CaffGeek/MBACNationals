@@ -3,7 +3,7 @@ import { TournamentsService } from 'src/app/services/tournaments.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-topmenu[year]',
+  selector: 'app-topmenu',
   templateUrl: './topmenu.component.html',
   styleUrls: ['./topmenu.component.scss']
 })

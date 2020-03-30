@@ -1,4 +1,4 @@
-<app-layout>
+<app-layout [class]="currentTheme">
     <app-topmenu [year]="year" (navToggle)="sidenav.toggle()"></app-topmenu>
 
     <mat-sidenav-container>

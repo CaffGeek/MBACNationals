@@ -1,8 +1,14 @@
-<h2>News</h2>
-
-<div *ngFor="let newsItem of news">
-    <h4>{{newsItem.Title}}</h4>
-    <p style="white-space: pre-wrap;" [innerHTML]="newsItem.Content"></p>
-</div>
-
-<button [routerLink]="'/news'">More News</button>
+<mat-card color="primary">
+    <mat-card-header>
+        <mat-card-title color="primary">News</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div *ngFor="let newsItem of news">
+            <h4>{{newsItem.Title}}</h4>
+            <p style="white-space: pre-wrap;" [innerHTML]="newsItem.Content"></p>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <button *ngIf="limit" mat-raised-button color="primary" [routerLink]="'news'">More News</button>
+    </mat-card-actions>
+</mat-card>

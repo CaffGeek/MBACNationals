@@ -4,11 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { TournamentsService } from 'src/app/services/tournaments.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.less']
+  selector: 'app-home-page',
+  templateUrl: './home-page.component.html',
+  styleUrls: ['./home-page.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomePageComponent implements OnInit {
   year: number;
   tournament: any = {};
 

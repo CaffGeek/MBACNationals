@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-twitter',
   templateUrl: './twitter.component.html',
-  styleUrls: ['./twitter.component.less']
+  styleUrls: ['./twitter.component.scss']
 })
 export class TwitterComponent implements OnInit {
 
