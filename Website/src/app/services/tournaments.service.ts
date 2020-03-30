@@ -12,7 +12,12 @@ export class TournamentsService {
     2019: {
       welcome: 'Welcome to the online home of the 2019 Master Bowlers Association of Canada Nationals, ' +
                'taking place June 28 - July 4, 2019 in Gatineau, Quebec.',
-    }
+    },
+    2018: {
+      welcome: 'Welcome to the online home of the 2018 Master Bowlers Association of Canada Nationals, ' +
+               'taking place June 30 - July 4, 2018 in Thunder Bay, ON.' +
+               '<a href="https://www.pscp.tv/MBACNationals2018" target="_blank">Click here for Live Streaming!!!</a>',
+    },
   };
 
   constructor(private http: HttpClient) { }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-highscores',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./highscores.component.less']
 })
 export class HighscoresComponent implements OnInit {
+  @Input() year: number;
 
   constructor() { }
 

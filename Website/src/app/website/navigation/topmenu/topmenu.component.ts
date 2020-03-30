@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { TournamentsService } from 'src/app/services/tournaments.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-topmenu',
@@ -7,6 +8,7 @@ import { TournamentsService } from 'src/app/services/tournaments.service';
   styleUrls: ['./topmenu.component.less']
 })
 export class TopmenuComponent implements OnInit {
+  @Input() year: number;
   tournaments = [];
 
   @Output() navToggle = new EventEmitter<boolean>();
@@ -15,6 +17,7 @@ export class TopmenuComponent implements OnInit {
   }
 
   constructor(
+    private route: ActivatedRoute,
     private tournamentsService: TournamentsService
   ) { }
 

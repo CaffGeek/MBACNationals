@@ -1,29 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import { TournamentsService } from 'src/app/services/tournaments.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.less']
+  selector: 'app-website',
+  templateUrl: './website.component.html',
+  styleUrls: ['./website.component.less']
 })
-export class HomeComponent implements OnInit {
+export class WebsiteComponent implements OnInit {
   year: number;
-  tournament: any = {};
 
   constructor(
     private route: ActivatedRoute,
-    private tournamentsService: TournamentsService
+    private tournamentsService: TournamentsService,
   ) {
   }
 
   ngOnInit(): void {
     this.route.params.subscribe(({year}) => {
       this.year = year;
-
-      this.tournamentsService.getTournament(year)
-        .subscribe(tournament => this.tournament = tournament);
     });
   }
+
 }

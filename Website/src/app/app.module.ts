@@ -12,8 +12,6 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
 import { AdminModule } from './admin/admin.module';
 import { WebsiteModule } from './website/website.module';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
-import { TopmenuComponent } from './navigation/topmenu/topmenu.component';
-import { SidemenuComponent } from './navigation/sidemenu/sidemenu.component';
 
 const appRoutes: Routes = [
   { path: 'forbidden', component: ForbiddenComponent, pathMatch: 'full' },
@@ -23,8 +21,6 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     ForbiddenComponent,
-    TopmenuComponent,
-    SidemenuComponent,
   ],
   imports: [
     MsAdalAngular6Module.forRoot({
@@ -40,6 +36,7 @@ const appRoutes: Routes = [
     FlexLayoutModule,
     RouterModule.forRoot(appRoutes, {
       useHash: true,
+      paramsInheritanceStrategy: 'always',
       // enableTracing: true,
     }),
     AdminModule,

@@ -1,0 +1,8 @@
+<h2>News</h2>
+
+<div *ngFor="let newsItem of news">
+    <h4>{{newsItem.Title}}</h4>
+    <p style="white-space: pre-wrap;" [innerHTML]="newsItem.Content"></p>
+</div>
+
+<button [routerLink]="'/news'">More News</button>

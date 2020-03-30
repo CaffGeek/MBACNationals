@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-sidemenu',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidemenu.component.less']
 })
 export class SidemenuComponent implements OnInit {
+  @Input() year: number;
 
   constructor() { }
 

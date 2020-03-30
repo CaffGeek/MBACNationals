@@ -1,11 +1,13 @@
-<app-banner></app-banner>
+<app-banner [year]="year"></app-banner>
 
 <h2>Welcome</h2>
-<p>{{tournament.welcome}}</p>
+<p [innerHTML]="tournament.welcome"></p>
 
-<app-news></app-news>
+<app-news [year]="year"></app-news>
 
-<app-schedule></app-schedule>
+<app-schedule [year]="year"></app-schedule>
+
+<app-sponsors [year]="year"></app-sponsors>
 
 <app-follow-us></app-follow-us>
 
@@ -13,4 +15,4 @@
 
 <app-twitter></app-twitter>
 
-<app-highscores></app-highscores>
+<app-highscores [year]="year"></app-highscores>

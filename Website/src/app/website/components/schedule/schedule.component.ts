@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-schedule',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./schedule.component.less']
 })
 export class ScheduleComponent implements OnInit {
+  @Input() year: number;
 
   constructor() { }
 

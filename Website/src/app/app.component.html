@@ -1,14 +1,1 @@
-<app-layout>
-    <app-topmenu (navToggle)="sidenav.toggle()"></app-topmenu>
-
-    <mat-sidenav-container>
-        <mat-sidenav #sidenav mode="over" fixedInViewport="true" role="navigation">
-            <app-sidemenu></app-sidemenu>
-        </mat-sidenav>
-        <mat-sidenav-content>
-            <main>
-                <router-outlet></router-outlet>
-            </main>
-        </mat-sidenav-content>
-    </mat-sidenav-container>
-</app-layout>
+<router-outlet></router-outlet>
