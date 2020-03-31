@@ -14,7 +14,6 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
 import { BannerComponent } from './components/banner/banner.component';
 import { FollowUsComponent } from './components/follow-us/follow-us.component';
 import { FacebookComponent } from './components/facebook/facebook.component';
-import { TwitterComponent } from './components/twitter/twitter.component';
 import { HighscoresComponent } from './components/highscores/highscores.component';
 import { SponsorsComponent } from './components/sponsors/sponsors.component';
 
@@ -58,7 +57,6 @@ import { HistoryPageComponent } from './history-page/history-page.component';
     ScheduleComponent,
     FollowUsComponent,
     FacebookComponent,
-    TwitterComponent,
     HighscoresComponent,
     SponsorsComponent,
   ],

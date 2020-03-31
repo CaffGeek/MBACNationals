@@ -1,0 +1,25 @@
+.banner {
+    background-size:cover;
+    background-position: bottom;
+    background-position-x: 50%;
+    height: 450px;
+    padding: 50px;
+
+    .logo {
+        position: absolute; 
+        left: 50%; 
+        transform: translate(-50%, 0); 
+        margin-top: -35px; 
+        z-index: 10;
+    }
+
+    .header {
+        height: 375px;
+        margin: auto; 
+        background-size:cover;
+        background-position-x: 50%;
+        background-position-y: 50%;
+        border: 1em solid white;
+        max-width: 90%;
+    }
+}

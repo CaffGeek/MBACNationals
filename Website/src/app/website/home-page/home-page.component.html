@@ -1,20 +1,24 @@
-<div fxLayout="row">
-    <div fxFlex="75">
+<div fxLayout="row wrap">
+    <div fxFlex="100" fxFlex.gt-sm="75">
         <app-welcome [tournament]="tournament"></app-welcome>
 
-        <app-news [year]="year" [limit]="3"></app-news>
+        <div fxLayout="row wrap">
+            <app-news fxFlex="100" fxFlex.gt-sm="50" [year]="year" [limit]="3"></app-news>
 
-        <app-schedule [year]="year"></app-schedule>
+            <app-schedule fxFlex [year]="year"></app-schedule>
+        </div>
+
+        <div fxLayout="row wrap">
+            <app-highscores fxFlex="100" fxFlex.gt-xs="33" [year]="year" division="Tournament"></app-highscores>
+            <app-highscores fxFlex="100" fxFlex.gt-xs="33" [year]="year" division="Teaching"></app-highscores>
+            <app-highscores fxFlex="100" fxFlex.gt-xs="33" [year]="year" division="Senior"></app-highscores>
+        </div>
     </div>
-    <div fxFlex>
-        <app-sponsors [year]="year"></app-sponsors>
-
-        <app-follow-us></app-follow-us>
-
-        <app-facebook></app-facebook>
-
-        <app-twitter></app-twitter>
-
-        <app-highscores [year]="year"></app-highscores>
-    </div>
+    <div fxFlex="100" fxFlex.gt-sm="25">
+        <div fxLayout="row wrap">
+            <app-sponsors fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="100" [year]="year" [isRotating]="true"></app-sponsors>
+            <app-facebook fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="100"></app-facebook>
+            <app-follow-us fxFlex="100" fxFlex.gt-xs="100" fxFlex.gt-sm="100"></app-follow-us>
+        </div>
+   </div>
 </div>

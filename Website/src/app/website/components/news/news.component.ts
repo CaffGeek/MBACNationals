@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
 import { NewsService } from 'src/app/services/news.service';
+import { NewsItem } from 'src/app/services/models/newsItem';
 
 @Component({
   selector: 'app-news[year]',
@@ -11,10 +11,9 @@ import { NewsService } from 'src/app/services/news.service';
 export class NewsComponent implements OnChanges {
   @Input() year: number;
   @Input() limit: number;
-  news = [];
+  news: NewsItem[];
 
   constructor(
-    private route: ActivatedRoute,
     private newsService: NewsService
   ) {
   }

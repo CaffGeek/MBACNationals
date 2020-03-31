@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { NewsItem } from './models/newsItem';
+import { Sponsor } from './models/sponsor';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NewsService {
+export class SponsorsService {
   constructor(private http: HttpClient) { }
 
-  getNews(year): Observable<NewsItem[]> {
+  getSponsors(year): Observable<Sponsor[]> {
     return this.http
-      .get<NewsItem[]>(`${environment.apiEndPoint}/News/List/${year}`);
+      .get<Sponsor[]>(`${environment.apiEndPoint}/Sponsors/List/${year}`);
   }
 }

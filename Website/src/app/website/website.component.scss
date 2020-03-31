@@ -9,6 +9,11 @@ mat-sidenav {
     height: 100%;
 }
 
+mat-sidenav-content {
+    max-width: 90%;
+    margin: auto;
+}
+
 main {
     padding: 10px;
 }

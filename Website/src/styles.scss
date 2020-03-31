@@ -19,40 +19,31 @@ html, body {
 
     @include angular-material-theme($theme); 
 
-    .banner {
-        background-size:cover;
-        height: 450px;
-        padding: 50px;
-
-        .logo {
-            position: absolute; 
-            left: 50%; 
-            transform: translate(-50%, 0); 
-            margin-top: -35px; 
-            z-index: 10;
-        }
-
-        .header {
-            display: block;
-            margin: auto; 
-            background-size:cover;
-            height: 375px;
-            border: 1em solid white;
-            max-width: 1000px;
-        }
-    }
-
     h2 {
         color: mat-color($primary);
+        text-transform: uppercase;
+        font-size: 2em;
     }
 
     mat-card {
         margin: 1em;
+        
+        mat-card-header {
+            margin-left: 0;
+
+            div.mat-card-header-text {
+                margin-left: 0;
+
+                mat-card-title {
+                    font-family: 'Bebas Neue';
+                    font-size: 2em;
+                    color: mat-color($primary);
+                    text-transform: uppercase;
+                }
+            }
+        }
     }
 
-    mat-card-header {
-        color: mat-color($primary);
-    }
 }
 
 // Create yearly themes (palette's in theme.scss)

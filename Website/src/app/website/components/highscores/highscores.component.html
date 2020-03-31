@@ -1,1 +1,17 @@
-<p>highscores works!</p>
+
+<mat-card color="primary">
+    <mat-card-header>
+        <mat-card-title>{{ division }} Highs</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <h4>Men</h4>
+        <ul>
+            <li *ngFor="let high in highscores">{{high.Name}} - {{high.Scratch}}</li>
+        </ul>
+        
+        <h4>Women</h4>
+        <ul>
+            
+        </ul>
+    </mat-card-content>
+</mat-card>
