@@ -24,25 +24,43 @@ import { ResultsPageComponent } from './results-page/results-page.component';
 import { StatisticsPageComponent } from './statistics-page/statistics-page.component';
 import { NewsPageComponent } from './news-page/news-page.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { SchedulePageComponent } from './schedule-page/schedule-page.component';
+import { LaneDrawPageComponent } from './lane-draw-page/lane-draw-page.component';
+import { ContingentsPageComponent } from './contingents-page/contingents-page.component';
+import { SouvenirsPageComponent } from './souvenirs-page/souvenirs-page.component';
+import { SponsorsPageComponent } from './sponsors-page/sponsors-page.component';
+import { CentresPageComponent } from './centres-page/centres-page.component';
+import { LocationPageComponent } from './location-page/location-page.component';
+import { HistoryPageComponent } from './history-page/history-page.component';
 
 @NgModule({
   declarations: [
     WebsiteComponent,
+
+    HomePageComponent,
+    ResultsPageComponent,
+    StatisticsPageComponent,
+    NewsPageComponent,
+    SchedulePageComponent,
+    LaneDrawPageComponent,
+    ContingentsPageComponent,
+    SouvenirsPageComponent,
+    SponsorsPageComponent,
+    CentresPageComponent,
+    LocationPageComponent,
+    HistoryPageComponent,
+
     TopmenuComponent,
     SidemenuComponent,
+    BannerComponent,
+    WelcomeComponent,
     NewsComponent,
     ScheduleComponent,
-    BannerComponent,
     FollowUsComponent,
     FacebookComponent,
     TwitterComponent,
     HighscoresComponent,
     SponsorsComponent,
-    HomePageComponent,
-    ResultsPageComponent,
-    StatisticsPageComponent,
-    NewsPageComponent,
-    WelcomeComponent,
   ],
   imports: [
     CommonModule,

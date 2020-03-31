@@ -13,7 +13,7 @@
             <a mat-button [routerLink]="'statistics'"> Statistics </a>
             <a mat-button [routerLink]="'news'"> News </a>
             <a mat-button [routerLink]="'schedule'"> Schedule </a>
-            <a mat-button [routerLink]="'lane'"> Lane Draw </a>
+            <a mat-button [routerLink]="'lanedraw'"> Lane Draw </a>
             <a mat-button [routerLink]="'contingents'"> Contingents </a>
             <a mat-button [routerLink]="'souvenirs'"> Souvenirs </a>
             <a mat-button [routerLink]="'sponsors'"> Sponsors </a>
@@ -24,7 +24,7 @@
                 <button mat-menu-item *ngFor="let tournament of tournaments">
                     <a mat-button [routerLink]="['/', tournament.Year]"> {{tournament.Year}} </a>
                 </button>
-                <button mat-menu-item>More History (PDFs)</button>
+                <button mat-menu-item [matMenuTriggerFor]="history">More History (PDFs)</button>
             </mat-menu>
         </div>
 
