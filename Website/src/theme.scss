@@ -24,6 +24,40 @@ $fontConfig: (
 // Compute font config
 @include mat-core($fontConfig);
 
+// Custom Palette's, generate with https://angular-md-color.com/#/ (syntax is off a bit, but it's pretty close)
+$custom-mat-maroon: (
+  50: #ff1a1a,
+  100: #ff0000,
+  200: #e50000,
+  300: #cc0000,
+  400: #b30000,
+  500: #990000,
+  600: #800000,
+  700: #660000,
+  800: #4d0000,
+  900: #330000,
+  A100: #ff3333,
+  A200: #ff4c4c,
+  A400: #ff6666,
+  A700: #190000,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
 // Alias palette's from Angular (see: node_modules/@angular/material/_theming.scss)
 $palette-red: mat-palette($mat-red);
 $palette-pink: mat-palette($mat-pink);
@@ -44,6 +78,7 @@ $palette-deep-orange: mat-palette($mat-deep-orange);
 $palette-brown: mat-palette($mat-brown);
 $palette-grey: mat-palette($mat-grey);
 $palette-blue-grey: mat-palette($mat-blue-grey);
+$palette-maroon: mat-palette($custom-mat-maroon);
 
 $palette-warning: $palette-amber;
 

@@ -60,7 +60,7 @@ html, body {
 .default { @include customTheme($default); }
 .theme-2020 { @include customTheme(mat-light-theme($palette-deep-orange, $palette-blue-grey, $palette-warning)); }
 .theme-2019 { @include customTheme(mat-light-theme($palette-blue, $palette-blue-grey, $palette-warning)); }
-.theme-2018 { @include customTheme(mat-light-theme($palette-red, $palette-blue-grey, $palette-warning)); }
+.theme-2018 { @include customTheme(mat-light-theme($palette-maroon, $palette-blue-grey, $palette-warning)); }
 .theme-2017 { @include customTheme(mat-light-theme($palette-green, $palette-blue-grey, $palette-warning)); }
 .theme-2016 { @include customTheme(mat-light-theme($palette-light-green, $palette-blue-grey, $palette-warning)); }
 .theme-2015 { @include customTheme(mat-light-theme($palette-light-blue, $palette-blue-grey, $palette-warning)); }
