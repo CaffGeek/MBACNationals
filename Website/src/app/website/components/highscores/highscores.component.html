@@ -6,12 +6,21 @@
     <mat-card-content>
         <h4>Men</h4>
         <ul>
-            <li *ngFor="let high in highscores">{{high.Name}} - {{high.Scratch}}</li>
+            <li *ngFor="let high of menScratch">{{high.Scratch}} - {{high.Name}}</li>
+        </ul>
+        <ul *ngIf="division !== 'Tournament'">
+            <li *ngFor="let high of menPoa"> + {{high.POA}} - {{high.Name}}</li>
         </ul>
         
         <h4>Women</h4>
         <ul>
-            
+            <li *ngFor="let high of womenScratch">{{high.Scratch}} - {{high.Name}}</li>
+        </ul>
+        <ul *ngIf="division !== 'Tournament'">
+            <li *ngFor="let high of womenPoa"> + {{high.POA}} - {{high.Name}}</li>
         </ul>
     </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" [routerLink]="'statistics'">More Stats</button>
+    </mat-card-actions>
 </mat-card>

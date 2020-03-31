@@ -5,15 +5,14 @@ import { HighScores } from 'src/app/services/models/highscores';
 import { Match } from 'src/app/services/models/match';
 
 @Component({
-  selector: 'app-highscores[year][division]',
+  selector: 'app-highscores[year][division][limit]',
   templateUrl: './highscores.component.html',
   styleUrls: ['./highscores.component.scss']
 })
 export class HighscoresComponent implements OnChanges {
   @Input() year: number;
-  @Input() limit: 3;
+  @Input() limit: number;
   @Input() division: string;
-  highscores: Match[];
   menScratch: Match[];
   womenScratch: Match[];
   menPoa: Match[];
@@ -27,7 +26,17 @@ export class HighscoresComponent implements OnChanges {
     if (changes && changes.year) {
       this.highscoresService.getHighscores(this.year, this.division)
         .subscribe(highscores => {
-          this.highscores = highscores.Scores.slice(0, this.limit);
+          const mensScores = highscores.Scores
+            .filter(x => x.Gender === 'M')
+            .filter(x => x.POA > 0);
+          const womensScores = highscores.Scores
+            .filter(x => x.Gender !== 'M')
+            .filter(x => x.POA > 0);
+
+          this.menScratch = mensScores.sort((a, b) => b.Scratch - a.Scratch).slice(0, this.limit);
+          this.womenScratch = womensScores.sort((a, b) => b.POA - a.Scratch).slice(0, this.limit);
+          this.menPoa = mensScores.sort((a, b) => b.Scratch - a.Scratch).slice(0, this.limit);
+          this.womenPoa = womensScores.sort((a, b) => b.POA - a.POA).slice(0, this.limit);
         });
     }
   }
