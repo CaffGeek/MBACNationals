@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/theming';
 
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Bebas+Neue:300,400,500');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+
 // always include only once per project
 @include mat-core();
 
@@ -25,8 +29,14 @@ html, body {
         font-size: 1.75em;
     }
 
+    button {
+        border-radius: 0px;
+    }
+
     mat-card {
         margin: .5em;
+        border-radius: 0px;
+        background: mat-color($accent, 50) !important;
         
         mat-card-header {
             margin-left: 0;
