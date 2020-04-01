@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import * as moment from 'moment';
 
 import { TournamentsService } from 'src/app/services/tournaments.service';
 import { Tournament } from 'src/app/services/models/tournament';
@@ -10,6 +11,7 @@ import { Tournament } from 'src/app/services/models/tournament';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
+  now = moment(); // expose the current date
   year: number;
   tournament: Tournament;
 

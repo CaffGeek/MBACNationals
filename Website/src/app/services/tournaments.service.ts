@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, filter } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Tournament } from './models/tournament';
@@ -16,6 +16,10 @@ export class TournamentsService {
     },
     2019: {
       Theme: 'theme-2019',
+      Welcome: `Welcome to the online home of the 2019 Master Bowlers Association of Canada Nationals,
+        taking place June 28 - July 4, 2019 in Gatineau, Quebec.`,
+      // tslint:disable-next-line:max-line-length
+      ScheduleUrl: 'https://www.googleapis.com/calendar/v3/calendars/p7vg564jka9r90qrb4n6unp928@group.calendar.google.com/events?key=AIzaSyAdeUS3weAGDePVRgV5x5B3u5_aHSRNvOY',
       Logo: 'http://mbacnationals.com/2019/images/Logo.png',
       Header: 'http://mbacnationals.com/2019/images/background.jpg',
       Banners: {
@@ -32,11 +36,15 @@ export class TournamentsService {
         location: 'http://mbacnationals.com/2019/images/header_image_location.jpg',
         history: 'http://mbacnationals.com/2019/images/header_image_history.jpg',
       },
-      Welcome: `Welcome to the online home of the 2019 Master Bowlers Association of Canada Nationals,
-        taking place June 28 - July 4, 2019 in Gatineau, Quebec.`,
     },
     2018: {
       Theme: 'theme-2018',
+      TimeZone: 'EDT',
+      Welcome: `Welcome to the online home of the 2018 Master Bowlers Association of Canada Nationals,
+               taking place June 30 - July 4, 2018 in Thunder Bay, ON. <br />
+               <a href="https://www.pscp.tv/MBACNationals2018" target="_blank">Click here for Live Streaming!!!</a>`,
+      // tslint:disable-next-line:max-line-length
+      ScheduleUrl: 'https://www.googleapis.com/calendar/v3/calendars/01bjjf3a3beq7h3ol9rlu4b648@group.calendar.google.com/events?key=AIzaSyAdeUS3weAGDePVRgV5x5B3u5_aHSRNvOY',
       Logo: 'http://mbacnationals.com/2018/images/Logo.png',
       Header: 'http://mbacnationals.com/2018/images/background.jpg',
       Banners: {
@@ -53,12 +61,13 @@ export class TournamentsService {
         location: 'http://mbacnationals.com/2018/images/header_image_location.jpg',
         history: 'http://mbacnationals.com/2018/images/header_image_history.jpg',
       },
-      Welcome: `Welcome to the online home of the 2018 Master Bowlers Association of Canada Nationals,
-               taking place June 30 - July 4, 2018 in Thunder Bay, ON. <br />
-               <a href="https://www.pscp.tv/MBACNationals2018" target="_blank">Click here for Live Streaming!!!</a>`,
     },
     2017: {
       Theme: 'theme-2017',
+      Welcome: `Welcome to the online home of the 2017 Master Bowlers Association of Canada Nationals,
+        taking place June 29 - July 3, 2017 in Regina, SK.`,
+      // tslint:disable-next-line:max-line-length
+      ScheduleUrl: 'https://www.googleapis.com/calendar/v3/calendars/smk8ud28p3nbej0iebr5dum4vc@group.calendar.google.com/events?key=AIzaSyAdeUS3weAGDePVRgV5x5B3u5_aHSRNvOY',
       Logo: 'http://mbacnationals.com/2017/images/Logo.png',
       Header: 'http://mbacnationals.com/2017/images/background.jpg',
       Banners: {
@@ -148,6 +157,14 @@ export class TournamentsService {
       .pipe(
         map(tournaments => tournaments.find(x => x.Year === year)),
         map(tournament => ({ ...this.staticTournamentInfo[year], ...tournament }))
+      );
+  }
+
+  getSchedule(tournament: Tournament): Observable<any[]> {
+    return this.http
+      .get<any>(tournament.ScheduleUrl)
+      .pipe(
+        map(data => ([ ...data.items ]))
       );
   }
 }

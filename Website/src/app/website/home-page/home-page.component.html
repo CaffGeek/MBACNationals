@@ -4,8 +4,7 @@
 
         <div fxLayout="row wrap">
             <app-news fxFlex="100" fxFlex.gt-sm="50" [year]="year" [limit]="3"></app-news>
-
-            <app-schedule fxFlex [year]="year"></app-schedule>
+            <app-schedule fxFlex [tournament]="tournament" [displayDate]="now.format('YYYYMMDD')"></app-schedule>
         </div>
 
         <div fxLayout="row wrap">
@@ -14,6 +13,7 @@
             <app-highscores fxFlex="100" fxFlex.gt-xs="33" [year]="year" limit="3" division="Senior"></app-highscores>
         </div>
     </div>
+
     <div fxFlex="100" fxFlex.gt-sm="25">
         <div fxLayout="row wrap">
             <app-sponsors fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-sm="100" [year]="year" [isRotating]="true"></app-sponsors>

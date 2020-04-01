@@ -1,7 +1,9 @@
 export class Tournament {
     Year: number;
     Theme: string;
+    TimeZone: string;
     Welcome: string;
+    ScheduleUrl: string;
     Logo: string;
     Header: string;
     Banners: {

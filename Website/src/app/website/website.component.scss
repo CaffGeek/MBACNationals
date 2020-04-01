@@ -1,5 +1,9 @@
-mat-sidenav-container, mat-sidenav-content, mat-sidenav {
-    height: calc(100% - 66px - 25px);
+mat-sidenav-container {
+    height: calc(100% - 66px);
+}
+
+mat-sidenav-content, mat-sidenav {
+    height: calc(100% - 1px);
 }
 
 mat-sidenav {
@@ -8,10 +12,9 @@ mat-sidenav {
 }
 
 mat-sidenav-content {
-    max-width: 90%;
-    margin: auto;
-}
-
-main {
-    padding: 10px;
+    main {
+        padding: 10px;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
 }
