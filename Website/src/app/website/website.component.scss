@@ -1,8 +1,5 @@
-$topMenuHeight: 66px;
-$notificationBarHeight: 25px;
-
 mat-sidenav-container, mat-sidenav-content, mat-sidenav {
-    height: calc(100% - $topMenuHeight - $notificationBarHeight);
+    height: calc(100% - 66px - 25px);
 }
 
 mat-sidenav {
