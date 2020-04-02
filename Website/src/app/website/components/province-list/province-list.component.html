@@ -1,0 +1,6 @@
+<mat-nav-list *ngIf="tournament">
+    <a *ngFor="let contingent of tournament.Contingents" mat-list-item [routerLink]="contingent.ProvinceCode">
+        <span fxHide fxShow.gt-sm>{{contingent.Province}}</span>
+        <span fxShow fxHide.gt-sm>{{contingent.ProvinceCode}}</span>
+    </a>
+</mat-nav-list>

@@ -1,1 +1,14 @@
-<p>contingents-page works!</p>
+<div fxLayout="row wrap">
+    <app-province-list [tournament]="tournament" fxFlex="20"></app-province-list>
+
+    <div fxFlex>
+        <mat-card *ngIf="contingent" color="primary">
+            <mat-card-header>
+                <mat-card-title>{{contingent.Province}} Contingent</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

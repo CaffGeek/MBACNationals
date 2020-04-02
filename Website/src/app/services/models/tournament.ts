@@ -1,5 +1,8 @@
+import { Contingent } from './contingent';
+
 export class Tournament {
     Year: number;
+    Contingents: Contingent[];
     Theme: string;
     TimeZone: string;
     Welcome: string;

@@ -10,12 +10,25 @@ import { Tournament } from './models/tournament';
 })
 export class TournamentsService {
   // TODO: CHAD: move this stuff into the tournament response (and add the ability to edit in admin)
+  private provinces = [
+    { Province: 'British Columbia', ProvinceCode: 'BC' },
+    { Province: 'Alberta', ProvinceCode: 'AB' },
+    { Province: 'Saskatchewan', ProvinceCode: 'SK' },
+    { Province: 'Manitoba', ProvinceCode: 'MB' },
+    { Province: 'Northern Ontario', ProvinceCode: 'NO' },
+    { Province: 'Southern Ontario', ProvinceCode: 'SO' },
+    { Province: 'Quebec', ProvinceCode: 'QC' },
+    { Province: 'Newfoundland & Labrador', ProvinceCode: 'NL' },
+  ];
+
   private staticTournamentInfo = {
     2020: {
       Theme: 'theme-2020',
+      Contingents: [ ...this.provinces ],
     },
     2019: {
       Theme: 'theme-2019',
+      Contingents: [ ...this.provinces ],
       Welcome: `Welcome to the online home of the 2019 Master Bowlers Association of Canada Nationals,
         taking place June 28 - July 4, 2019 in Gatineau, Quebec.`,
       Schedule: {
@@ -41,6 +54,7 @@ export class TournamentsService {
     },
     2018: {
       Theme: 'theme-2018',
+      Contingents: [ ...this.provinces ],
       TimeZone: 'EDT',
       Welcome: `Welcome to the online home of the 2018 Master Bowlers Association of Canada Nationals,
                taking place June 30 - July 4, 2018 in Thunder Bay, ON. <br />
@@ -69,6 +83,7 @@ export class TournamentsService {
     },
     2017: {
       Theme: 'theme-2017',
+      Contingents: [ ...this.provinces ],
       Welcome: `Welcome to the online home of the 2017 Master Bowlers Association of Canada Nationals,
         taking place June 29 - July 3, 2017 in Regina, SK.`,
       Schedule: {
@@ -94,6 +109,7 @@ export class TournamentsService {
     },
     2016: {
       Theme: 'theme-2016',
+      Contingents: [ ...this.provinces ],
       Logo: 'http://mbacnationals.com/2016/images/Logo.png',
       Header: 'http://mbacnationals.com/2016/images/background.jpg',
       Banners: {
@@ -113,6 +129,7 @@ export class TournamentsService {
     },
     2015: {
       Theme: 'theme-2015',
+      Contingents: [ ...this.provinces ],
       Logo: 'http://mbacnationals.com/2015/images/2015_logo.png',
       Header: 'http://mbacnationals.com/2015/images/header_bkg.jpg',
       Banners: {
@@ -132,6 +149,7 @@ export class TournamentsService {
     },
     2014: {
       Theme: 'theme-2014',
+      Contingents: [ ...this.provinces ],
       Logo: 'http://mbacnationals.com/2014/images/2014_logo.png',
       Header: 'http://mbacnationals.com/2014/images/header_bkg.jpg',
       Banners: {
