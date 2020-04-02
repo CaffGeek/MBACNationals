@@ -23,10 +23,15 @@ html, body {
 
     @include angular-material-theme($theme); 
 
-    h2 {
-        color: mat-color($primary);
+    h1, h2, h3, h4, h5, h6  {
+        color: mat-color($primary) !important;
         text-transform: uppercase;
-        font-size: 1.75em;
+    }
+
+    h4 {
+        border-bottom-width: 1px;
+        border-bottom-style: dotted;
+        border-bottom-color: mat-color($primary, 900);
     }
 
     button {

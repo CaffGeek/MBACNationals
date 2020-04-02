@@ -8,7 +8,6 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class NewsPageComponent implements OnInit {
   year: number;
-  tournament: any = {};
 
   constructor(
     private route: ActivatedRoute

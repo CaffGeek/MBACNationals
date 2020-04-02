@@ -3,7 +3,10 @@ export class Tournament {
     Theme: string;
     TimeZone: string;
     Welcome: string;
-    ScheduleUrl: string;
+    Schedule: {
+        Url: string;
+        Download: string;
+    };
     Logo: string;
     Header: string;
     Banners: {
