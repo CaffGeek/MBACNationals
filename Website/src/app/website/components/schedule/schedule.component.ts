@@ -23,7 +23,7 @@ export class ScheduleComponent implements OnChanges {
   ) { }
 
   ngOnChanges(changes): void {
-    if (changes && this.tournament.Schedule.Url) {
+    if (changes && this.tournament?.Schedule?.Url) {
       this.scheduleService.getSchedule(this.tournament.Schedule.Url)
         .subscribe((schedules: ScheduleDay[]) => {
           const allDateKeys = schedules.map(x => x.key);

@@ -1,5 +1,5 @@
 <div fxLayout="row wrap">
-    <div fxFlex="20">
+    <div fxFlex="25">
         <mat-list>
             <span *ngFor="let item of dateKeys">
                 <a mat-list-item [routerLink]="['/', year, 'schedule', item.key]"> {{ item.date | date:'MMM dd': tournament.TimeZone }} </a>
@@ -8,7 +8,7 @@
             <a *ngIf="tournament.Schedule.Download" mat-list-item [href]="tournament.Schedule.Download"> Download Schedule </a>
         </mat-list>
     </div>
-    <div fxFlex="80">
+    <div fxFlex="75">
         <app-schedule fxFlex [tournament]="tournament" [displayDate]="displayDate" (dateKeysLoaded)="loadDateKeys($event)"></app-schedule>
     </div>
 </div>

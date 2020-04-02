@@ -1,0 +1,21 @@
+<mat-card color="primary">
+    <mat-card-header>
+        <mat-card-title>Location</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div *ngFor="let hotel of locations">
+            <h4>{{hotel.Name}}</h4>
+            <div fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-xs="25">
+                    <img class="logo" [src]="hotel.LogoUrl" alt="{{hotel.Name}}" border="0" />
+                    <p>Visit their website</p>
+                    <p><a href="{{hotel.Website}}" target="_blank">{{hotel.Name}}</a></p>
+                    <p><a href="tel:{{hotel.PhoneNumber}}" target="_blank">{{hotel.PhoneNumber}}</a></p>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="75">
+                    <img class="image" [src]="hotel.ImageUrl" alt="{{hotel.Name}}" border="0" />
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

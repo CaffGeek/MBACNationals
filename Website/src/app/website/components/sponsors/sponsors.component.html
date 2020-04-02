@@ -3,14 +3,14 @@
         <mat-card-title>Sponsors</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <div *ngIf="sponsors && !isRotating">
-            <a *ngFor="let sponsor of sponsors" [href]="sponsor.Website" target="_blank">
-                <img [src]="sponsor.ImageUrl" style="width:100%;max-height:500px;" alt="" border="0" />
+        <div *ngIf="sponsors && !isRotating" fxLayout="row wrap">
+            <a fxFlex="100" fxFlex.gt-xs="33" *ngFor="let sponsor of sponsors" [href]="sponsor.Website" target="_blank">
+                <img [src]="sponsor.ImageUrl" style="width:100%;max-height:500px;" [alt]="sponsor.Name" border="0" />
             </a>
         </div>
 
         <a *ngIf="sponsor && isRotating" [href]="sponsor.Website" target="_blank">
-            <img [src]="sponsor.ImageUrl" style="width:100%;max-height:500px;" alt="" border="0" />
+            <img [src]="sponsor.ImageUrl" style="width:100%;max-height:500px;" [alt]="sponsor.Name" border="0" />
         </a>
     </mat-card-content>
     <mat-card-actions>

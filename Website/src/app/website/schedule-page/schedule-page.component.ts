@@ -20,13 +20,10 @@ export class SchedulePageComponent implements OnInit {
     private route: ActivatedRoute,
     private tournamentsService: TournamentsService
   ) {
-    console.log('constructor');
   }
 
   ngOnInit(): void {
     this.route.params.subscribe(({ year, displayDate }) => {
-      console.log('params', {year, displayDate});
-
       this.year = year;
       this.displayDate = displayDate;
 

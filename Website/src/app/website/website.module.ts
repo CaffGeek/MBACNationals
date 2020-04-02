@@ -31,6 +31,8 @@ import { SponsorsPageComponent } from './sponsors-page/sponsors-page.component';
 import { CentresPageComponent } from './centres-page/centres-page.component';
 import { LocationPageComponent } from './location-page/location-page.component';
 import { HistoryPageComponent } from './history-page/history-page.component';
+import { LocationComponent } from './components/location/location.component';
+import { CentreComponent } from './components/centre/centre.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,8 @@ import { HistoryPageComponent } from './history-page/history-page.component';
     FacebookComponent,
     HighscoresComponent,
     SponsorsComponent,
+    LocationComponent,
+    CentreComponent,
   ],
   imports: [
     CommonModule,

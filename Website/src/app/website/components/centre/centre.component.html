@@ -1,0 +1,20 @@
+<mat-card color="primary">
+        <mat-card-header>
+            <mat-card-title>Centres</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div *ngFor="let centre of centres">
+                <h4>{{centre.Name}}</h4>
+                <div fxLayout="row wrap">
+                    <div fxFlex="25" fxFlex.gt-xs="25">
+                        <img class="image" [src]="centre.ImageUrl" alt="{{centre.Name}}" border="0" />
+                    </div>
+                    <div fxFlex="75" fxFlex.gt-xs="75">
+                        <p><a href="tel:{{centre.PhoneNumber}}" target="_blank">{{centre.PhoneNumber}}</a></p>
+                        <p>{{centre.Address}}</p>
+                        <p>For more information check out their website: <a href="{{centre.Website}}" target="_blank">{{centre.Name}}</a></p>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
