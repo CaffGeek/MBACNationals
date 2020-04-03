@@ -7,6 +7,7 @@ export class Contingent {
 
     static allParticipants(contingent: Contingent): Participant[] {
         return [
+            ...contingent.Teams.filter(x => x.Coach).map(x => x.Coach),
             ...contingent.Teams.flatMap(x => x.Bowlers),
             ...contingent.Guests,
         ];
@@ -39,6 +40,13 @@ export class Team {
     RequiresBio: boolean;
     RequiresGender: boolean;
     IncludesSeniorRep: string;
+
+    static getAverage(team: Team): number {
+        return team.Bowlers
+            .filter(x => !x.ReplacedBy)
+            .map(x => x.Average)
+            .reduce((sum, x) => sum + x, 0);
+    }
 }
 
 export class Participant {

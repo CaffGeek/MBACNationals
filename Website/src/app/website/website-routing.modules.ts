@@ -23,13 +23,19 @@ const routes: Routes = [
     { path: '', redirectTo: `/${environment.defaultYear}`, pathMatch: 'full'},
     { path: ':year', component: WebsiteComponent, children: [
         { path: '', component: HomePageComponent },
-        { path: 'results', component: ResultsPageComponent },
+        { path: 'results', redirectTo: 'results/standings/Tournament Men Single', pathMatch: 'full' },
+        { path: 'results/standings/:division', component: ResultsPageComponent }, // TODO: CHAD: Change to a specific component
+        { path: 'results/team/:id', component: ResultsPageComponent }, // TODO: CHAD: Change to a specific component
+        { path: 'results/match/:id', component: ResultsPageComponent }, // TODO: CHAD: Change to a specific component
+        { path: 'results/bowler/:id', component: ResultsPageComponent }, // TODO: CHAD: Change to a specific component
+        { path: 'results/stepladder', component: ResultsPageComponent }, // TODO: CHAD: Change to a specific component
         { path: 'statistics', component: StatisticsPageComponent },
         { path: 'news', component: NewsPageComponent },
         { path: 'schedule', component: SchedulePageComponent, pathMatch: 'full' },
         { path: 'schedule/:displayDate', component: SchedulePageComponent },
-        { path: 'lanedraw', component: LaneDrawPageComponent },
-        { path: 'contingents', component: ContingentsPageComponent, pathMatch: 'full' },
+        { path: 'lanedraw', redirectTo: 'lanedraw/Tournament Men Single', pathMatch: 'full' },
+        { path: 'lanedraw/:division', component: LaneDrawPageComponent },
+        { path: 'contingents', redirectTo: 'contingents/BC', pathMatch: 'full' },
         { path: 'contingents/:provinceCode', component: ContingentsPageComponent },
         { path: 'souvenirs', component: SouvenirsPageComponent },
         { path: 'sponsors', component: SponsorsPageComponent },

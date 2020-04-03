@@ -1,4 +1,6 @@
-{{participant.Name}}
-<sup *ngIf="participant.IsRookie">R</sup>
-<sup *ngIf="participant.IsDelegate">D</sup>
-<sup *ngIf="participant.IsManager">M</sup>
+<span [style.text-decoration]="participant.ReplacedBy ? 'line-through' : null">
+    {{participant.Name}}
+    <sup *ngIf="participant.IsRookie">R</sup>
+    <sup *ngIf="participant.IsDelegate">D</sup>
+    <sup *ngIf="participant.IsManager">M</sup>
+</span>

@@ -26,11 +26,16 @@
                 <mat-card class="team">
                     <h4>{{team.Name}}</h4>
                     <ol>
-                        <li *ngIf="team.Coach"><b>Coach:</b> <app-participant-name [participant]="team.Coach"></app-participant-name></li>
-                        <li *ngFor="let bowler of team.Bowlers"><a><app-participant-name [participant]="bowler"></app-participant-name></a></li>
-                        <!-- TODO: CHAD: Average -->
+                        <li *ngIf="team.Coach"><b>Coach:</b>&nbsp;<app-participant-name [participant]="team.Coach"></app-participant-name></li>
+                        <li *ngFor="let bowler of team.Bowlers">
+                            <a><app-participant-name [participant]="bowler"></app-participant-name></a>
+                            <span *ngIf="team.RequiresAverage" class="average">{{bowler.Average}}</span>
+                        </li>
+                        <li>
+                            &nbsp;
+                            <span *ngIf="team.RequiresAverage" class="average"><b>{{getTeamAverage(team)}}</b></span>
+                        </li>
                     </ol>
-                    <!-- TODO: CHAD: Team Average -->
                 </mat-card>
             </div>
         </div>

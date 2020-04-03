@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TournamentsService } from 'src/app/services/tournaments.service';
 import { Tournament } from 'src/app/services/models/tournament';
 import { ContingentsService } from 'src/app/services/contingents.service';
@@ -16,9 +16,11 @@ export class ContingentsPageComponent implements OnInit {
 
   getManager = Contingent.getManager;
   getDelegates = Contingent.getDelegates;
+  getTeamAverage = Team.getAverage;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private tournamentsService: TournamentsService,
     private contingentsService: ContingentsService
   ) {
