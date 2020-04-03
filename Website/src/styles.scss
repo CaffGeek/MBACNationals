@@ -2,7 +2,6 @@
 @import '~@angular/material/theming';
 
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Bebas+Neue:300,400,500');
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
 
 // always include only once per project
@@ -50,7 +49,7 @@ html, body {
                 margin-left: 0;
 
                 mat-card-title {
-                    font-family: 'Bebas Neue';
+                    font-family: 'Roboto';
                     font-size: 1.75em;
                     color: mat-color($primary);
                     text-transform: uppercase;

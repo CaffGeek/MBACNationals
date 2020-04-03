@@ -1,14 +1,38 @@
 <div fxLayout="row wrap">
     <app-province-list [tournament]="tournament" fxFlex="20"></app-province-list>
 
-    <div fxFlex>
-        <mat-card *ngIf="contingent" color="primary">
+    <div fxFlex="80" *ngIf="contingent">
+        <mat-card color="primary">
             <mat-card-header>
                 <mat-card-title>{{contingent.Province}} Contingent</mat-card-title>
             </mat-card-header>
-            <mat-card-content>
-                
+            <mat-card-content fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-xs="33">
+                    <img class="flag" src="http://mbacnationals.com/Content/Images/flags/{{contingent.Province}}.gif" />
+                </div>
+                <div fxFlex="50" fxFlex.gt-xs="33">
+                    <h5>Manager</h5>
+                    <div>{{getManager(contingent).Name}}</div>
+                </div>
+                <div fxFlex="50" fxFlex.gt-xs="33">
+                    <h5>Delegates</h5>
+                    <div *ngFor="let delegate of getDelegates(contingent)">{{delegate.Name}}</div>
+                </div>
             </mat-card-content>
         </mat-card>
+
+        <div fxLayout="row wrap">
+            <div fxFlex="100" fxFlex.gt-xs="50" *ngFor="let team of sortTeams(contingent.Teams)">
+                <mat-card class="team">
+                    <h4>{{team.Name}}</h4>
+                    <ol>
+                        <li *ngIf="team.Coach"><b>Coach:</b> <app-participant-name [participant]="team.Coach"></app-participant-name></li>
+                        <li *ngFor="let bowler of team.Bowlers"><a><app-participant-name [participant]="bowler"></app-participant-name></a></li>
+                        <!-- TODO: CHAD: Average -->
+                    </ol>
+                    <!-- TODO: CHAD: Team Average -->
+                </mat-card>
+            </div>
+        </div>
     </div>
 </div>

@@ -34,6 +34,7 @@ import { HistoryPageComponent } from './history-page/history-page.component';
 import { LocationComponent } from './components/location/location.component';
 import { CentreComponent } from './components/centre/centre.component';
 import { ProvinceListComponent } from './components/province-list/province-list.component';
+import { ParticipantNameComponent } from './components/participant-name/participant-name.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { ProvinceListComponent } from './components/province-list/province-list.
     LocationComponent,
     CentreComponent,
     ProvinceListComponent,
+    ParticipantNameComponent,
   ],
   imports: [
     CommonModule,

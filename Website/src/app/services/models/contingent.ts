@@ -4,6 +4,23 @@ export class Contingent {
     Province: string;
     Teams: Team[];
     Guests: Participant[];
+
+    static allParticipants(contingent: Contingent): Participant[] {
+        return [
+            ...contingent.Teams.flatMap(x => x.Bowlers),
+            ...contingent.Guests,
+        ];
+    }
+
+    static getManager(contingent: Contingent): Participant {
+        return Contingent.allParticipants(contingent)
+            .find(x => x.IsManager) || new Participant();
+    }
+
+    static getDelegates(contingent: Contingent): Participant[] {
+        return Contingent.allParticipants(contingent)
+            .filter(x => x.IsDelegate) || new Array<Participant>();
+    }
 }
 
 export class Team {

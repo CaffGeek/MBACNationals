@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TournamentsService } from 'src/app/services/tournaments.service';
 import { Tournament } from 'src/app/services/models/tournament';
 import { ContingentsService } from 'src/app/services/contingents.service';
-import { Contingent } from 'src/app/services/models/contingent';
+import { Contingent, Team } from 'src/app/services/models/contingent';
 
 @Component({
   selector: 'app-contingents-page',
@@ -13,6 +13,9 @@ import { Contingent } from 'src/app/services/models/contingent';
 export class ContingentsPageComponent implements OnInit {
   tournament: Tournament;
   contingent: Contingent;
+
+  getManager = Contingent.getManager;
+  getDelegates = Contingent.getDelegates;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,4 +34,7 @@ export class ContingentsPageComponent implements OnInit {
     });
   }
 
+  sortTeams(teams: Team[]): Team[] {
+    return teams.sort((a, b) => b.Name.length - a.Name.length);
+  }
 }
