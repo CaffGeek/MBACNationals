@@ -11,11 +11,11 @@
                 <div fxFlex="100" *ngFor="let centre of groupedDraw">
                     <h5>{{centre.Name}}</h5>
                     
-                    <mat-table #table [dataSource]="centre.Games">
-                            <ng-container matColumnDef="number">
-                                <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
-                                <mat-cell *matCellDef="let row">{{ row.Number }}</mat-cell>
-                            </ng-container>
+                    <mat-table #table [dataSource]="centre.Games" ngClass.xs="mobile" ngClass.gt-xs="desktop">
+                        <ng-container matColumnDef="number">
+                            <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+                            <mat-cell *matCellDef="let row">{{ row.Number }}</mat-cell>
+                        </ng-container>
                         <ng-container *ngFor="let provinceCode of provinceColumns; even as accent" [matColumnDef]="provinceCode">
                             <mat-header-cell *matHeaderCellDef [class.accent]="accent">{{ provinceCode }}</mat-header-cell>
                             <mat-cell *matCellDef="let row" [class.accent]="accent">

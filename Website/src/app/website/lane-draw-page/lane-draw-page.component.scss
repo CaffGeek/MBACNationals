@@ -1,9 +1,20 @@
 mat-cell,
 mat-header-cell {
-    font-size: .8em !important;
+    justify-content: center !important;
     padding: 1px !important;
 }
 
-.mat-column-number {
-    width: 1.2em !important;
+mat-header-cell {
+    font-weight: bold;
+}
+
+.mobile {
+    mat-cell,
+    mat-header-cell {
+        font-size: .8em !important;
+    }
+
+    .mat-column-number {
+        width: 1.2em !important;
+    }
 }
