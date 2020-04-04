@@ -37,6 +37,17 @@ html, body {
         border-radius: 0px;
     }
 
+    .sidebar {
+        a {
+            text-decoration-line: none;
+        }
+
+        .mat-list-item-content {
+            color: mat-color($accent, 700) !important;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+    }
     mat-card {
         margin: .5em;
         border-radius: 0px;

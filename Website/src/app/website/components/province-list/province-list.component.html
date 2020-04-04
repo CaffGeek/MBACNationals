@@ -1,4 +1,4 @@
-<mat-nav-list *ngIf="tournament">
+<mat-nav-list class="sidebar" *ngIf="tournament">
     <a *ngFor="let contingent of tournament.Contingents" mat-list-item [routerLink]="['/', tournament.Year, 'contingents', contingent.ProvinceCode]">
         <span fxHide fxShow.gt-sm>{{contingent.Province}}</span>
         <span fxShow fxHide.gt-sm>{{contingent.ProvinceCode}}</span>

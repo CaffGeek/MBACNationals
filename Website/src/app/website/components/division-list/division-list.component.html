@@ -1,0 +1,6 @@
+<mat-nav-list class="sidebar">
+    <a *ngFor="let division of divisions" mat-list-item [routerLink]="['../', division.Name]">
+        <span>{{division.Name}}</span>
+    </a>
+</mat-nav-list>
+    

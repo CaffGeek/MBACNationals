@@ -2,6 +2,7 @@ export class Contingent {
     Id: string;
     Tournament: string;
     Province: string;
+    ProvinceCode: string;
     Teams: Team[];
     Guests: Participant[];
 

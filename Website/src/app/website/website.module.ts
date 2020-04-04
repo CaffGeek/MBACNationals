@@ -35,6 +35,7 @@ import { LocationComponent } from './components/location/location.component';
 import { CentreComponent } from './components/centre/centre.component';
 import { ProvinceListComponent } from './components/province-list/province-list.component';
 import { ParticipantNameComponent } from './components/participant-name/participant-name.component';
+import { DivisionListComponent } from './components/division-list/division-list.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { ParticipantNameComponent } from './components/participant-name/particip
     CentreComponent,
     ProvinceListComponent,
     ParticipantNameComponent,
+    DivisionListComponent,
   ],
   imports: [
     CommonModule,

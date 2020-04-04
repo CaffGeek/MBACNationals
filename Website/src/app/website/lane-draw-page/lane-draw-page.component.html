@@ -1,1 +1,40 @@
-<p>lane-draw-page works!</p>
+<div *ngIf="tournament" fxLayout="row wrap">
+    <app-division-list fxFlex="100" fxFlex.gt-sm="20" [year]="tournament.Year"></app-division-list>
+
+    <div fxFlex="100" fxFlex.gt-sm="80">
+        <mat-card color="primary">
+            <mat-card-header>
+                <mat-card-title>Lane Draw</mat-card-title>
+            </mat-card-header>
+            <mat-card-content fxLayout="row wrap">
+                <h4 fxFlex="100">{{division}}</h4>
+                <div fxFlex="100" *ngFor="let centre of groupedDraw">
+                    <h5>{{centre.Name}}</h5>
+                    
+                    <mat-table #table [dataSource]="centre.Games">
+                            <ng-container matColumnDef="number">
+                                <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
+                                <mat-cell *matCellDef="let row">{{ row.Number }}</mat-cell>
+                            </ng-container>
+                        <ng-container *ngFor="let provinceCode of provinceColumns" [matColumnDef]="provinceCode">
+                            <mat-header-cell *matHeaderCellDef>{{ provinceCode }}</mat-header-cell>
+                            <mat-cell *matCellDef="let row">
+                                <span *ngIf="row[provinceCode].Home === provinceCode">
+                                    <div>vs {{ row[provinceCode].Away }}</div>
+                                    <div>on {{ row[provinceCode].Lane + 1 }}</div>
+                                </span>
+                                <span *ngIf="row[provinceCode].Away === provinceCode">
+                                    <div> @ {{ row[provinceCode].Home }}</div>
+                                    <div>on {{ row[provinceCode].Lane }}</div>
+                                </span>
+                            </mat-cell>
+                        </ng-container>
+
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

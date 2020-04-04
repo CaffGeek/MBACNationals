@@ -1,6 +1,6 @@
 <div fxLayout="row wrap">
     <div fxFlex="25">
-        <mat-list>
+        <mat-list class="sidebar">
             <span *ngFor="let item of dateKeys">
                 <a mat-list-item [routerLink]="['/', year, 'schedule', item.key]"> {{ item.date | date:'MMM dd': tournament.TimeZone }} </a>
             </span>
