@@ -48,6 +48,11 @@ html, body {
             font-weight: 700;
         }
     }
+
+    .accent {
+        background: mat-color($accent, 50) !important;
+    }
+
     mat-card {
         margin: .5em;
         border-radius: 0px;

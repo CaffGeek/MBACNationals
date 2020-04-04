@@ -16,9 +16,9 @@
                                 <mat-header-cell *matHeaderCellDef>#</mat-header-cell>
                                 <mat-cell *matCellDef="let row">{{ row.Number }}</mat-cell>
                             </ng-container>
-                        <ng-container *ngFor="let provinceCode of provinceColumns" [matColumnDef]="provinceCode">
-                            <mat-header-cell *matHeaderCellDef>{{ provinceCode }}</mat-header-cell>
-                            <mat-cell *matCellDef="let row">
+                        <ng-container *ngFor="let provinceCode of provinceColumns; even as accent" [matColumnDef]="provinceCode">
+                            <mat-header-cell *matHeaderCellDef [class.accent]="accent">{{ provinceCode }}</mat-header-cell>
+                            <mat-cell *matCellDef="let row" [class.accent]="accent">
                                 <span *ngIf="row[provinceCode].Home === provinceCode">
                                     <div>vs {{ row[provinceCode].Away }}</div>
                                     <div>on {{ row[provinceCode].Lane + 1 }}</div>

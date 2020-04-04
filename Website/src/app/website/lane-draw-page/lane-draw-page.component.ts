@@ -35,16 +35,6 @@ export class LaneDrawPageComponent implements OnInit {
           this.tournament = tournament;
 
           this.provinceColumns = tournament.Contingents.map(x =>  x.ProvinceCode);
-              // header: x.ProvinceCode,
-
-              // cell: (element: Game) => {
-              //   const match = element[x.ProvinceCode];
-              //   return (x.ProvinceCode === match.Home)
-              //     ? `vs ${match.Away} \n on ${match.Lane + 1}`
-              //     : `@ ${match.Home} \n on ${match.Lane}`;
-              // },
-          //   }))
-          // ];
 
           this.displayedColumns = [ 'number', ...this.provinceColumns];
 
