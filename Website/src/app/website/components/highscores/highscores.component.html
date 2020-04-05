@@ -1,26 +1,30 @@
 
 <mat-card color="primary">
     <mat-card-header>
-        <mat-card-title>{{ division }} Highs</mat-card-title>
+        <mat-card-title>{{ division }}</mat-card-title>
     </mat-card-header>
-    <mat-card-content>
-        <h4>Men</h4>
-        <ul>
-            <li *ngFor="let high of menScratch">{{high.Scratch}} - {{high.Name}}</li>
-        </ul>
-        <ul *ngIf="division !== 'Tournament'">
-            <li *ngFor="let high of menPoa"> + {{high.POA}} - {{high.Name}}</li>
-        </ul>
-        
-        <h4>Women</h4>
-        <ul>
-            <li *ngFor="let high of womenScratch">{{high.Scratch}} - {{high.Name}}</li>
-        </ul>
-        <ul *ngIf="division !== 'Tournament'">
-            <li *ngFor="let high of womenPoa"> + {{high.POA}} - {{high.Name}}</li>
-        </ul>
+    <mat-card-content fxLayout="row wrap">
+        <div fxFlex="100" fxFlex.gt-xs="50">
+            <h4>Men</h4>
+            <ul>
+                <li *ngFor="let high of menScratch">{{high.Scratch}} - <app-participant-name [participant]="high"></app-participant-name></li>
+            </ul>
+            <ul *ngIf="division !== 'Tournament'">
+                <li *ngFor="let high of menPoa"> + {{high.POA}} - <app-participant-name [participant]="high"></app-participant-name></li>
+            </ul>
+        </div>
+
+        <div fxFlex="100" fxFlex.gt-xs="50">
+            <h4>Women</h4>
+            <ul>
+                <li *ngFor="let high of womenScratch">{{high.Scratch}} - <app-participant-name [participant]="high"></app-participant-name></li>
+            </ul>
+            <ul *ngIf="division !== 'Tournament'">
+                <li *ngFor="let high of womenPoa"> + {{high.POA}} - <app-participant-name [participant]="high"></app-participant-name></li>
+            </ul>
+        </div>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-raised-button color="primary" [routerLink]="'statistics'">More Stats</button>
+        <button *ngIf="limit" mat-raised-button color="primary" [routerLink]="'statistics'">More Stats</button>
     </mat-card-actions>
 </mat-card>

@@ -1,7 +1,5 @@
-
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthenticationGuard } from 'microsoft-adal-angular6';
 
 import { environment } from 'src/environments/environment';
 
@@ -18,6 +16,7 @@ import { SponsorsPageComponent } from './sponsors-page/sponsors-page.component';
 import { CentresPageComponent } from './centres-page/centres-page.component';
 import { LocationPageComponent } from './location-page/location-page.component';
 import { HistoryPageComponent } from './history-page/history-page.component';
+import { HighByGameComponent } from './statistics-page/high-by-game/high-by-game.component';
 
 const routes: Routes = [
     { path: '', redirectTo: `/${environment.defaultYear}`, pathMatch: 'full'},
@@ -29,7 +28,10 @@ const routes: Routes = [
         { path: 'results/match/:id', component: ResultsPageComponent }, // TODO: CHAD: Change to a specific component
         { path: 'results/bowler/:id', component: ResultsPageComponent }, // TODO: CHAD: Change to a specific component
         { path: 'results/stepladder', component: ResultsPageComponent }, // TODO: CHAD: Change to a specific component
-        { path: 'statistics', component: StatisticsPageComponent },
+        { path: 'statistics', component: StatisticsPageComponent, children: [
+            { path: '', redirectTo: 'high-by-game', pathMatch: 'full' },
+            { path: 'high-by-game', component: HighByGameComponent }
+        ]},
         { path: 'news', component: NewsPageComponent },
         { path: 'schedule', component: SchedulePageComponent, pathMatch: 'full' },
         { path: 'schedule/:displayDate', component: SchedulePageComponent },

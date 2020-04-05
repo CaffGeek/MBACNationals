@@ -53,6 +53,10 @@ html, body {
         background: mat-color($accent, 50) !important;
     }
 
+    .selected {
+        background: mat-color($primary, 300) !important;
+    }
+
     mat-card {
         margin: .5em;
         border-radius: 0px;

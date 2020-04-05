@@ -36,6 +36,7 @@ import { CentreComponent } from './components/centre/centre.component';
 import { ProvinceListComponent } from './components/province-list/province-list.component';
 import { ParticipantNameComponent } from './components/participant-name/participant-name.component';
 import { DivisionListComponent } from './components/division-list/division-list.component';
+import { HighByGameComponent } from './statistics-page/high-by-game/high-by-game.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { DivisionListComponent } from './components/division-list/division-list.
     ProvinceListComponent,
     ParticipantNameComponent,
     DivisionListComponent,
+    HighByGameComponent,
   ],
   imports: [
     CommonModule,
