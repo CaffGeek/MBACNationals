@@ -7,20 +7,14 @@
         <div fxFlex="100" fxFlex.gt-xs="50">
             <h4>Men</h4>
             <ul>
-                <li *ngFor="let high of menScratch">{{high.Scratch}} - <app-participant-name [participant]="high"></app-participant-name></li>
-            </ul>
-            <ul *ngIf="division !== 'Tournament'">
-                <li *ngFor="let high of menPoa"> + {{high.POA}} - <app-participant-name [participant]="high"></app-participant-name></li>
+                <li *ngFor="let high of men">{{high[stat] | number:'1.0-1'}} - <app-participant-name [participant]="high"></app-participant-name></li>
             </ul>
         </div>
 
         <div fxFlex="100" fxFlex.gt-xs="50">
             <h4>Women</h4>
             <ul>
-                <li *ngFor="let high of womenScratch">{{high.Scratch}} - <app-participant-name [participant]="high"></app-participant-name></li>
-            </ul>
-            <ul *ngIf="division !== 'Tournament'">
-                <li *ngFor="let high of womenPoa"> + {{high.POA}} - <app-participant-name [participant]="high"></app-participant-name></li>
+                <li *ngFor="let high of women">{{high[stat] | number:'1.0-1'}} - <app-participant-name [participant]="high"></app-participant-name></li>
             </ul>
         </div>
     </mat-card-content>

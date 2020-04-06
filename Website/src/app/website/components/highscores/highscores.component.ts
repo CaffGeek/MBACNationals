@@ -1,11 +1,11 @@
 import { Component, OnChanges, Input } from '@angular/core';
 
-import { HighscoresService } from 'src/app/services/highscores.service';
+import { StatisticsService } from 'src/app/services/statistics.service';
 import { HighScores } from 'src/app/services/models/highscores';
 import { Match } from 'src/app/services/models/match';
 
 @Component({
-  selector: 'app-highscores[year][division]',
+  selector: 'app-highscores[year][division][stat]',
   templateUrl: './highscores.component.html',
   styleUrls: ['./highscores.component.scss']
 })
@@ -14,39 +14,48 @@ export class HighscoresComponent implements OnChanges {
   @Input() limit: number;
   @Input() division: string;
   @Input() game: number;
+  @Input() stat: string;
 
-  menScratch: Match[];
-  womenScratch: Match[];
-  menPoa: Match[];
-  womenPoa: Match[];
+  men: any[];
+  women: any[];
 
   constructor(
-    private highscoresService: HighscoresService
+    private highscoresService: StatisticsService
   ) { }
 
   ngOnChanges(changes: any): void {
-    if (!(changes?.year || changes?.game || changes?.division)) {
+    if (!(changes?.stat || changes?.year || changes?.game || changes?.division)) {
       return;
     }
 
-    this.highscoresService.getHighscores(this.year, this.division)
-      .subscribe(highscores => {
-        const filteredByGame = (!!this.game)
-          ? highscores.Scores.filter(x => x.Number === this.game)
-          : highscores.Scores;
+    if (['Wins', 'Average'].includes(this.stat)) {
+      this.highscoresService.getIndividualStats(this.year, this.division)
+        .subscribe(individualStats => {
+          const mens = individualStats
+            .filter(x => x.Gender === 'M');
+          const womens = individualStats
+            .filter(x => x.Gender !== 'M');
 
-        const mensScores = filteredByGame
-          .filter(x => x.Gender === 'M')
-          .filter(x => x.POA > 0);
-        const womensScores = filteredByGame
-          .filter(x => x.Gender !== 'M')
-          .filter(x => x.POA > 0);
+          this.men = mens.sort((a, b) => b[this.stat] - a[this.stat]).slice(0, this.limit || 10);
+          this.women = womens.sort((a, b) => b[this.stat] - a[this.stat]).slice(0, this.limit || 10);
+        });
 
-        this.menScratch = mensScores.sort((a, b) => b.Scratch - a.Scratch).slice(0, this.limit || 10);
-        this.womenScratch = womensScores.sort((a, b) => b.POA - a.POA).slice(0, this.limit || 10);
-        this.menPoa = mensScores.sort((a, b) => b.Scratch - a.Scratch).slice(0, this.limit || 10);
-        this.womenPoa = womensScores.sort((a, b) => b.POA - a.POA).slice(0, this.limit || 10);
-      });
+    } else {
+      this.highscoresService.getHighScores(this.year, this.division)
+        .subscribe(highscores => {
+          const filteredByGame = (!!this.game)
+            ? highscores.Scores.filter(x => x.Number === this.game)
+            : highscores.Scores;
+
+          const mensScores = filteredByGame
+            .filter(x => x.Gender === 'M');
+          const womensScores = filteredByGame
+            .filter(x => x.Gender !== 'M');
+
+          this.men = mensScores.sort((a, b) => b[this.stat] - a[this.stat]).slice(0, this.limit || 10);
+          this.women = womensScores.sort((a, b) => b[this.stat] - a[this.stat]).slice(0, this.limit || 10);
+        });
+      }
   }
 
 }

@@ -1,0 +1,12 @@
+<mat-card color="primary">
+        <mat-card-header>
+            <mat-card-title>High POA</mat-card-title>
+        </mat-card-header>
+        <mat-card-content fxLayout="row wrap">
+            <a fxFlex="4" mat-raised-button color="accent" class="game" [class.selected]="!game" (click)="game = undefined">ALL</a>
+            <a fxFlex="4" *ngFor="let item of [].constructor(21); let i = index" mat-raised-button color="accent" class="game" [class.selected]="game === i + 1" (click)="game = i + 1">{{ i + 1}}</a>
+        </mat-card-content>
+    </mat-card>
+
+    <app-highscores [year]="year" [game]="game" division="Teaching" stat="POA"></app-highscores>
+    <app-highscores [year]="year" [game]="game" division="Senior" stat="POA"></app-highscores>

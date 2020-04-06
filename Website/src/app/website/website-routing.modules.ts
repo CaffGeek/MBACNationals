@@ -17,6 +17,9 @@ import { CentresPageComponent } from './centres-page/centres-page.component';
 import { LocationPageComponent } from './location-page/location-page.component';
 import { HistoryPageComponent } from './history-page/history-page.component';
 import { HighByGameComponent } from './statistics-page/high-by-game/high-by-game.component';
+import { HighAverageComponent } from './statistics-page/high-average/high-average.component';
+import { MostWinsComponent } from './statistics-page/most-wins/most-wins.component';
+import { HighPoaByGameComponent } from './statistics-page/high-poa-by-game/high-poa-by-game.component';
 
 const routes: Routes = [
     { path: '', redirectTo: `/${environment.defaultYear}`, pathMatch: 'full'},
@@ -30,7 +33,10 @@ const routes: Routes = [
         { path: 'results/stepladder', component: ResultsPageComponent }, // TODO: CHAD: Change to a specific component
         { path: 'statistics', component: StatisticsPageComponent, children: [
             { path: '', redirectTo: 'high-by-game', pathMatch: 'full' },
-            { path: 'high-by-game', component: HighByGameComponent }
+            { path: 'high-by-game', component: HighByGameComponent },
+            { path: 'high-poa-by-game', component: HighPoaByGameComponent },
+            { path: 'high-average', component: HighAverageComponent },
+            { path: 'most-wins', component: MostWinsComponent },
         ]},
         { path: 'news', component: NewsPageComponent },
         { path: 'schedule', component: SchedulePageComponent, pathMatch: 'full' },

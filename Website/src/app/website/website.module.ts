@@ -37,6 +37,9 @@ import { ProvinceListComponent } from './components/province-list/province-list.
 import { ParticipantNameComponent } from './components/participant-name/participant-name.component';
 import { DivisionListComponent } from './components/division-list/division-list.component';
 import { HighByGameComponent } from './statistics-page/high-by-game/high-by-game.component';
+import { HighAverageComponent } from './statistics-page/high-average/high-average.component';
+import { MostWinsComponent } from './statistics-page/most-wins/most-wins.component';
+import { HighPoaByGameComponent } from './statistics-page/high-poa-by-game/high-poa-by-game.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +74,9 @@ import { HighByGameComponent } from './statistics-page/high-by-game/high-by-game
     ParticipantNameComponent,
     DivisionListComponent,
     HighByGameComponent,
+    HighAverageComponent,
+    MostWinsComponent,
+    HighPoaByGameComponent,
   ],
   imports: [
     CommonModule,
