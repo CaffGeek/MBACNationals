@@ -16,17 +16,21 @@
                             <th *ngFor="let item of [].constructor(limit); let i = index">
                                 {{i + start}}
                             </th>
+                            <th>Points</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let team of teamResults">
-                            <td>
+                            <th>
                                 <div>{{team.Province}}</div>
                                 <img class="flag" src="http://mbacnationals.com/Content/Images/flags/{{team.Province}}.gif" />
-                            </td>
+                            </th>
                             <td *ngFor="let item of [].constructor(limit); let i = index">
                                 <app-match-box [match]="findMatch(team.Matches, i + start)"></app-match-box>
                             </td>
+                            <th>
+                                {{team.RunningPoints}}
+                            </th>
                         </tr>
                     </tbody>
                 </table>

@@ -13,5 +13,6 @@ export class Match {
     Score: number;
     POA: number;
     Points: number;
+    TotalPoints: number;
     WinLossTie: string;
 }

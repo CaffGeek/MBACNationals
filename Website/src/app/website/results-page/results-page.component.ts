@@ -27,7 +27,7 @@ export class ResultsPageComponent implements OnInit {
       this.year = year;
 
       this.resultsService.getStandings(this.year, this.division)
-        .subscribe(teamResults => this.teamResults = teamResults);
+        .subscribe(teamResults => this.teamResults = teamResults.sort((a, b) => b.RunningPoints - a.RunningPoints));
     });
   }
 
