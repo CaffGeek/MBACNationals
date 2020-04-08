@@ -1,0 +1,23 @@
+.container {
+    height: 100% !important;
+    
+    div {
+        text-align: center;
+    }
+
+    .points {
+        white-space: nowrap !important;
+    }
+}
+
+.win {
+    background: lightgreen !important;
+}
+
+.loss {
+    background: pink !important;
+}
+
+.tie {
+    background: lightgrey !important;
+}

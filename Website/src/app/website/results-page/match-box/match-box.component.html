@@ -1,0 +1,7 @@
+<div class="container"
+    [class.win]="match.WinLossTie === 'W'"
+    [class.loss]="match.WinLossTie === 'L'"
+    [class.tie]="match.WinLossTie === 'T'">
+    <div class="score">{{match.Score}}</div>
+    <div class="points">{{match.Points}} vs {{match.Opponent}}</div>
+</div>
