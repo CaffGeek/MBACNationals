@@ -1,12 +1,12 @@
 import { Component, OnChanges, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-division-list',
+  selector: 'app-division-list[prefix]',
   templateUrl: './division-list.component.html',
   styleUrls: ['./division-list.component.scss']
 })
 export class DivisionListComponent implements OnChanges {
-  @Input() year: string;
+  @Input() prefix: string;
   @Input() includePoaSingles = false;
   divisions = [];
 
@@ -26,7 +26,7 @@ export class DivisionListComponent implements OnChanges {
       { Name: 'Seniors Single', PoaSingle: true },
     ];
 
-    this.divisions = divisions.filter(x => !x.PoaSingle || (this.includePoaSingles && x.PoaSingle))
+    this.divisions = divisions.filter(x => !x.PoaSingle || (this.includePoaSingles && x.PoaSingle));
   }
 
 }

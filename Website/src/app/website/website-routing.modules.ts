@@ -1,3 +1,4 @@
+import { MatchComponent } from './results-page/match/match.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -20,17 +21,20 @@ import { HighByGameComponent } from './statistics-page/high-by-game/high-by-game
 import { HighAverageComponent } from './statistics-page/high-average/high-average.component';
 import { MostWinsComponent } from './statistics-page/most-wins/most-wins.component';
 import { HighPoaByGameComponent } from './statistics-page/high-poa-by-game/high-poa-by-game.component';
+import { StandingsComponent } from './results-page/standings/standings.component';
 
 const routes: Routes = [
     { path: '', redirectTo: `/${environment.defaultYear}`, pathMatch: 'full'},
     { path: ':year', component: WebsiteComponent, children: [
         { path: '', component: HomePageComponent },
-        { path: 'results', redirectTo: 'results/standings/Tournament Men Single', pathMatch: 'full' },
-        { path: 'results/standings/:division', component: ResultsPageComponent }, // TODO: CHAD: Change to a specific component
-        { path: 'results/team/:id', component: ResultsPageComponent }, // TODO: CHAD: Change to a specific component
-        { path: 'results/match/:id', component: ResultsPageComponent }, // TODO: CHAD: Change to a specific component
-        { path: 'results/bowler/:id', component: ResultsPageComponent }, // TODO: CHAD: Change to a specific component
-        { path: 'results/stepladder', component: ResultsPageComponent }, // TODO: CHAD: Change to a specific component
+        { path: 'results', component: ResultsPageComponent, children: [
+            { path: '', redirectTo: 'standings/Tournament Men Single', pathMatch: 'full' },
+            { path: 'standings/:division', component: StandingsComponent },
+            { path: 'match/:id', component: MatchComponent },
+        ]},
+        // { path: 'results/team/:id', component: ResultsPageComponent }, // TODO: CHAD: Change to a specific component
+        // { path: 'results/bowler/:id', component: ResultsPageComponent }, // TODO: CHAD: Change to a specific component
+        // { path: 'results/stepladder', component: ResultsPageComponent }, // TODO: CHAD: Change to a specific component
         { path: 'statistics', component: StatisticsPageComponent, children: [
             { path: '', redirectTo: 'high-by-game', pathMatch: 'full' },
             { path: 'high-by-game', component: HighByGameComponent },

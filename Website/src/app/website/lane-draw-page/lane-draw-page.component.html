@@ -1,5 +1,5 @@
 <div *ngIf="tournament" fxLayout="row wrap">
-    <app-division-list fxFlex="100" fxFlex.gt-sm="20" [year]="tournament.Year"></app-division-list>
+    <app-division-list fxFlex="100" fxFlex.gt-sm="20" prefix="/{{tournament.Year}}/lanedraw/"></app-division-list>
 
     <div fxFlex="100" fxFlex.gt-sm="80">
         <mat-card color="primary">
@@ -19,14 +19,16 @@
                         <ng-container *ngFor="let provinceCode of provinceColumns; even as accent" [matColumnDef]="provinceCode">
                             <mat-header-cell *matHeaderCellDef [class.accent]="accent">{{ provinceCode }}</mat-header-cell>
                             <mat-cell *matCellDef="let row" [class.accent]="accent">
-                                <span *ngIf="row[provinceCode].Home === provinceCode">
-                                    <div>vs {{ row[provinceCode].Away }}</div>
-                                    <div>on {{ row[provinceCode].Lane + 1 }}</div>
-                                </span>
-                                <span *ngIf="row[provinceCode].Away === provinceCode">
-                                    <div> @ {{ row[provinceCode].Home }}</div>
-                                    <div>on {{ row[provinceCode].Lane }}</div>
-                                </span>
+                                <a [routerLink]="['/', tournament.Year, 'results', 'match', row[provinceCode].Id]">
+                                    <span *ngIf="row[provinceCode].Home === provinceCode">
+                                        <div>vs {{ row[provinceCode].Away }}</div>
+                                        <div>on {{ row[provinceCode].Lane + 1 }}</div>
+                                    </span>
+                                    <span *ngIf="row[provinceCode].Away === provinceCode">
+                                        <div> @ {{ row[provinceCode].Home }}</div>
+                                        <div>on {{ row[provinceCode].Lane }}</div>
+                                    </span>
+                                </a>
                             </mat-cell>
                         </ng-container>
 

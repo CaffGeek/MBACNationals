@@ -1,0 +1,41 @@
+<mat-card color="primary">
+    <mat-card-header>
+        <mat-card-title>Standings</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <h4>{{division}}</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th> </th>
+                    <th *ngFor="let item of [].constructor(limit); let i = index">
+                        {{i + start}}
+                    </th>
+                    <th>Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let team of teamResults">
+                    <th>
+                        <div>{{team.Province}}</div>
+                        <img class="flag" src="http://mbacnationals.com/Content/Images/flags/{{team.Province}}.gif" />
+                    </th>
+                    <td *ngFor="let item of [].constructor(limit); let i = index">
+                        <app-match-box [year]="year" [match]="findMatch(team.Matches, i + start)"></app-match-box>
+                    </td>
+                    <th>
+                        {{team.RunningPoints}}
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+
+    </mat-card-content>
+    <mat-card-actions>
+        <h5>Results are Unofficial</h5>
+        <button mat-raised-button color="primary" (click)="start = 1; limit = 7">1-7</button>
+        <button mat-raised-button color="primary" (click)="start = 8; limit = 7">8-14</button>
+        <button mat-raised-button color="primary" (click)="start = 15; limit = 7">15-21</button>
+        <button mat-raised-button color="primary" (click)="start = 1; limit = 21">All</button>
+    </mat-card-actions>
+</mat-card>

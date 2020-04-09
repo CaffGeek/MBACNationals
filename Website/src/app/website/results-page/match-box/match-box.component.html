@@ -2,6 +2,8 @@
     [class.win]="match.WinLossTie === 'W'"
     [class.loss]="match.WinLossTie === 'L'"
     [class.tie]="match.WinLossTie === 'T'">
-    <div class="score">{{match.Score}}</div>
-    <div class="points">{{match.TotalPoints}} vs {{match.Opponent}}</div>
+    <a [routerLink]="['/', year, 'results', 'match', match.Id]">
+        <div class="score">{{match.Score}}</div>
+        <div class="points">{{match.TotalPoints}} vs {{match.Opponent}}</div>
+    </a>
 </div>

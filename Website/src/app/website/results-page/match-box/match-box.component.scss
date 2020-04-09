@@ -1,6 +1,10 @@
 .container {
     height: 100% !important;
-    
+ 
+    a {
+        text-decoration: none;
+    }
+
     div {
         text-align: center;
     }
