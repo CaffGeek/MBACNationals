@@ -1,0 +1,11 @@
+<div class="game">
+    <table class="frame" *ngFor="let frame of game.frames">
+        <tr class="number"><td colspan="3">{{frame.number}}</td></tr>
+        <tr class="shots">
+            <td class="shot">{{frame.shots[0]}}</td>
+            <td class="shot">{{frame.shots[1]}}</td>
+            <td class="shot">{{frame.shots[2]}}</td>
+        </tr>
+        <tr class="score"><td colspan="3">{{frame.runningScore}}</td></tr>
+    </table>
+</div>

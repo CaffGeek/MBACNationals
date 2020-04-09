@@ -46,6 +46,7 @@ import { StandingsComponent } from './results-page/standings/standings.component
 import { TeamResultsComponent } from './results-page/team-results/team-results.component';
 import { BowlerResultsComponent } from './results-page/bowler-results/bowler-results.component';
 import { StepladderComponent } from './results-page/stepladder/stepladder.component';
+import { BowlinggameComponent } from './components/bowlinggame/bowlinggame.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import { StepladderComponent } from './results-page/stepladder/stepladder.compon
     TeamResultsComponent,
     BowlerResultsComponent,
     StepladderComponent,
+    BowlinggameComponent,
   ],
   imports: [
     CommonModule,

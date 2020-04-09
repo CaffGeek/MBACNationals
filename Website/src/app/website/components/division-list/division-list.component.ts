@@ -8,25 +8,29 @@ import { Component, OnChanges, Input } from '@angular/core';
 export class DivisionListComponent implements OnChanges {
   @Input() prefix: string;
   @Input() includePoaSingles = false;
+  @Input() includeStepladder = false;
   divisions = [];
 
   constructor() { }
 
   ngOnChanges(changes: any): void {
     const divisions = [
-      { Name: 'Tournament Men Single' },
-      { Name: 'Tournament Women Single' },
-      { Name: 'Tournament Men' },
-      { Name: 'Tournament Women' },
-      { Name: 'Teaching Men' },
-      { Name: 'Teaching Men Single', PoaSingle: true },
-      { Name: 'Teaching Women' },
-      { Name: 'Teaching Women Single', PoaSingle: true },
-      { Name: 'Seniors' },
-      { Name: 'Seniors Single', PoaSingle: true },
+      { Order: 1, Name: 'Tournament Men Single' },
+      { Order: 2, Name: 'Tournament Women Single' },
+      { Order: 3, Name: 'Tournament Men' },
+      { Order: 4, Name: 'Tournament Women' },
+      { Order: 5, Name: 'Teaching Men' },
+      { Order: 6, Name: 'Teaching Men Single', PoaSingle: true },
+      { Order: 7, Name: 'Teaching Women' },
+      { Order: 8, Name: 'Teaching Women Single', PoaSingle: true },
+      { Order: 9, Name: 'Seniors' },
+      { Order: 10, Name: 'Seniors Single', PoaSingle: true },
     ];
 
-    this.divisions = divisions.filter(x => !x.PoaSingle || (this.includePoaSingles && x.PoaSingle));
+    this.divisions = [
+      ...divisions.filter(x => !x.PoaSingle),
+      ...divisions.filter(x => this.includePoaSingles && x.PoaSingle),
+    ].sort((a, b) => a.Order - b.Order);
   }
 
 }

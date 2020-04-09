@@ -32,6 +32,7 @@ const routes: Routes = [
         { path: '', component: HomePageComponent },
         { path: 'results', component: ResultsPageComponent, children: [
             { path: '', redirectTo: 'standings/Tournament Men Single', pathMatch: 'full' },
+            { path: 'standings/stepladder', redirectTo: 'stepladder' }, // One off route fix
             { path: 'standings/:division', component: StandingsComponent },
             { path: 'match/:id', component: MatchComponent },
             { path: 'team/:id', component: TeamResultsComponent },

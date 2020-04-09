@@ -4,6 +4,8 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { TeamResults } from './models/teamresults';
 import { MatchResult, TeamResult, BowlerResult } from './models/match';
+import { StepladderMatch } from './models/stepladder';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -42,5 +44,22 @@ export class ResultsService {
 
     return this.http
       .get<BowlerResult>(`${environment.apiEndPoint}/Scores/Participant`, { params });
+  }
+
+  getStepladder(year: number): Observable<StepladderMatch[]> {
+    const params = new HttpParams()
+      .set('year', year.toString());
+
+    return this.http
+      .get<any[]>(`${environment.apiEndPoint}/Scores/StepladderMatches`, { params })
+      .pipe<StepladderMatch[]>(
+        map(matches => {
+          return matches.map(x => ({
+            ...x,
+            Created: new Date(x.Created.match(/\d+/)[0] * 1),
+            Updated: new Date(x.Updated.match(/\d+/)[0] * 1),
+          }));
+        })
+      );
   }
 }

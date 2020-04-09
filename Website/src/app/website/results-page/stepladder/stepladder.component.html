@@ -1,1 +1,19 @@
-<p>stepladder works!</p>
+<mat-card color="primary">
+    <mat-card-header>
+        <mat-card-title>Stepladder</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div *ngFor="let match of matches">
+            <h4>{{match.HomeName}}</h4>
+            <app-bowlinggame [shots]="match.HomeShots"></app-bowlinggame>
+
+            <h4>{{match.AwayName}}</h4>
+            <app-bowlinggame [shots]="match.AwayShots"></app-bowlinggame>
+
+            <hr />
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <h5>Results are Unofficial</h5>
+    </mat-card-actions>
+</mat-card>

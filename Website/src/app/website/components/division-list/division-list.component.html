@@ -2,5 +2,8 @@
     <a *ngFor="let division of divisions" mat-list-item [routerLink]="[prefix, division.Name]">
         <span>{{division.Name}}</span>
     </a>
+    <a *ngIf="includeStepladder" mat-list-item [routerLink]="[prefix, 'stepladder']">
+        Stepladder
+    </a>
 </mat-nav-list>
     

@@ -1,0 +1,17 @@
+div.game {
+    text-align: center;
+    margin-right: 0px;
+    margin-left: 0px;
+    display: block;
+
+    table {
+        background: white;
+    }
+
+    .frame {
+        border-collapse: collapse;
+        border: 1px solid black;
+        display: inline-block;
+        width: 9%;  
+    }
+}

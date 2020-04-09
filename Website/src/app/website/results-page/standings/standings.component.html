@@ -17,8 +17,10 @@
             <tbody>
                 <tr *ngFor="let team of teamResults">
                     <th>
-                        <div>{{team.Province}}</div>
-                        <img class="flag" src="http://mbacnationals.com/Content/Images/flags/{{team.Province}}.gif" />
+                        <a [routerLink]="['/', year, 'results', 'team', team.Id]">
+                            <div>{{team.Province}}</div>
+                            <img class="flag" src="http://mbacnationals.com/Content/Images/flags/{{team.Province}}.gif" />
+                        </a>
                     </th>
                     <td *ngFor="let item of [].constructor(limit); let i = index">
                         <app-match-box [year]="year" [match]="findMatch(team.Matches, i + start)"></app-match-box>
