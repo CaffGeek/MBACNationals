@@ -7,14 +7,24 @@
         <div fxFlex="100" fxFlex.gt-xs="50">
             <h4>Men</h4>
             <ul>
-                <li *ngFor="let high of men">{{high[stat] | number:'1.0-1'}} - <app-participant-name [participant]="high"></app-participant-name></li>
+                <li *ngFor="let high of men">
+                    <span *ngIf="stat === 'POA'">
+                        {{high[stat] > 0 ? '+' : ''}}  <!-- if it's a negative, it's already part of the number -->
+                    </span>
+                    {{high[stat] | number:'1.0-1'}} - <app-participant-name [participant]="high"></app-participant-name>
+                </li>
             </ul>
         </div>
 
         <div fxFlex="100" fxFlex.gt-xs="50">
             <h4>Women</h4>
             <ul>
-                <li *ngFor="let high of women">{{high[stat] | number:'1.0-1'}} - <app-participant-name [participant]="high"></app-participant-name></li>
+                <li *ngFor="let high of women">
+                    <span *ngIf="stat === 'POA'">
+                        {{high[stat] > 0 ? '+' : ''}}  <!-- if it's a negative, it's already part of the number -->
+                    </span>
+                    {{high[stat] | number:'1.0-1'}} - <app-participant-name [participant]="high"></app-participant-name>
+                </li>
             </ul>
         </div>
     </mat-card-content>
