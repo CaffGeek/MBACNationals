@@ -1,1 +1,65 @@
-<p>bowler-results works!</p>
+<mat-card color="primary">
+    <mat-card-header>
+        <mat-card-title>
+            {{bowlerResult.Name}}
+        </mat-card-title>
+        <mat-card-subtitle fxLayout="row wrap">
+            <div fxFlex="100" fxFlex.gt-xs="50">
+                <img class="flag" src="http://mbacnationals.com/Content/Images/flags/{{bowlerResult.Province}}.gif" />
+            </div>
+            <div fxFlex="100" fxFlex.gt-xs="50">
+                <ul>
+                    <li>Entry Average: {{bowlerResult.Average}}</li>
+                    <li>National Average: {{bowlerResult.NationalAverage}}</li>
+                    <li>Wins: {{bowlerResult.NationalWins}}</li>
+                    <li>High Score: {{bowlerHighScratch}}</li>
+                    <li *ngIf="bowlerHighPOA">High POA: {{bowlerHighPOA}}</li>
+                </ul>
+            </div>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <table>
+            <tbody *ngFor="let score of bowlerResult.Scores"
+                [class.win]="score.WinLossTie === 'W'"
+                [class.loss]="score.WinLossTie === 'L'"
+                [class.tie]="score.WinLossTie === 'T'">
+                <tr>
+                    <td>
+                        <a [routerLink]="['/', year, 'results', 'match', score.MatchId]">
+                            {{score.Number}}
+                        </a>
+                    </td>
+                    <td>
+                        vs <a [routerLink]="['/', year, 'results', 'bowler', score.OpponentId]">
+                            {{score.OpponentName}}
+                        </a> ({{score.OpponentProvince}})
+                    </td>
+                    <td>
+                        {{score.Centre}} # {{score.Lane}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{score.Scratch}} <span *ngIf="score.IsPOA" [class.negative]="score.POA < 0">({{score.POA}})</span></td>
+                    <td>{{score.OpponentScratch}} <span *ngIf="score.IsPOA" [class.negative]="score.OpponentPOA < 0">({{score.OpponentPOA}})</span></td>
+                    <td>{{score.WinLossTie}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+            </tfoot>
+        </table>
+    </mat-card-content>
+    <mat-card-actions>
+        <h5>Results are Unofficial</h5>
+    </mat-card-actions>
+</mat-card>

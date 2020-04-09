@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { TeamResults } from './models/teamresults';
-import { MatchResult, TeamResult } from './models/match';
+import { MatchResult, TeamResult, BowlerResult } from './models/match';
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +34,13 @@ export class ResultsService {
 
     return this.http
       .get<TeamResult>(`${environment.apiEndPoint}/Scores/Team`, { params });
+  }
+
+  getBowlerScores(id: string): Observable<BowlerResult> {
+    const params = new HttpParams()
+      .set('participantId', id);
+
+    return this.http
+      .get<BowlerResult>(`${environment.apiEndPoint}/Scores/Participant`, { params });
   }
 }

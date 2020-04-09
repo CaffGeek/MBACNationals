@@ -69,3 +69,38 @@ export class TeamResult {
     AverageOpponentScratch: number;
     AverageOpponentPOA: number;
 }
+
+export class BowlerResult {
+    Id: string;
+    Name: string;
+    Province: string;
+    Division: string;
+    Average: number;
+    NationalGames: number;
+    NationalTotal: number;
+    NationalTotalPOA: number;
+    NationalAverage: number;
+    NationalAveragePOA: number;
+    OpponentTotal: number;
+    OpponentTotalPOA: number;
+    OpponentAverage: number;
+    OpponentAveragePOA: number;
+    NationalWins: number;
+    HighScore: number;
+    HighPOA: number;
+    Scores: {
+        MatchId: string;
+        Number: number;
+        Scratch: number;
+        POA: number;
+        WinLossTie: string;
+        Lane: number;
+        Centre: string;
+        OpponentId: string;
+        OpponentName: string;
+        OpponentProvince: string;
+        OpponentScratch: number;
+        OpponentPOA: number;
+        IsPOA: boolean;
+    }[];
+}
