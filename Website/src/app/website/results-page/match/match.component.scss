@@ -1,3 +1,8 @@
+img {
+    width: 100%;
+    max-height: 170px;
+}
+
 table {
     width: 100%;
 
@@ -10,8 +15,4 @@ table {
     th:not(:first-child) {
         text-align: right;
     }
-}
-
-.negative {
-    color: red !important;
 }

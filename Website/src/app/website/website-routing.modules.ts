@@ -22,6 +22,9 @@ import { HighAverageComponent } from './statistics-page/high-average/high-averag
 import { MostWinsComponent } from './statistics-page/most-wins/most-wins.component';
 import { HighPoaByGameComponent } from './statistics-page/high-poa-by-game/high-poa-by-game.component';
 import { StandingsComponent } from './results-page/standings/standings.component';
+import { TeamResultsComponent } from './results-page/team-results/team-results.component';
+import { BowlerResultsComponent } from './results-page/bowler-results/bowler-results.component';
+import { StepladderComponent } from './results-page/stepladder/stepladder.component';
 
 const routes: Routes = [
     { path: '', redirectTo: `/${environment.defaultYear}`, pathMatch: 'full'},
@@ -31,10 +34,10 @@ const routes: Routes = [
             { path: '', redirectTo: 'standings/Tournament Men Single', pathMatch: 'full' },
             { path: 'standings/:division', component: StandingsComponent },
             { path: 'match/:id', component: MatchComponent },
+            { path: 'team/:id', component: TeamResultsComponent },
+            { path: 'bowler/:id', component: BowlerResultsComponent },
+            { path: 'stepladder', component: StepladderComponent },
         ]},
-        // { path: 'results/team/:id', component: ResultsPageComponent }, // TODO: CHAD: Change to a specific component
-        // { path: 'results/bowler/:id', component: ResultsPageComponent }, // TODO: CHAD: Change to a specific component
-        // { path: 'results/stepladder', component: ResultsPageComponent }, // TODO: CHAD: Change to a specific component
         { path: 'statistics', component: StatisticsPageComponent, children: [
             { path: '', redirectTo: 'high-by-game', pathMatch: 'full' },
             { path: 'high-by-game', component: HighByGameComponent },

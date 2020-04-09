@@ -9,7 +9,7 @@
         <div fxLayout="row wrap" fxLayoutGap="25px">
             <div fxFlex="100" fxFlex.gt-xs="45">
                 <img class="flag" src="http://mbacnationals.com/Content/Images/flags/{{matchResult.Away.Province}}.gif" />
-                <h4>{{matchResult.Away.Province}}</h4>
+                <h4><a [routerLink]="['/', year, 'results', 'team', matchResult.Away.Id]">{{matchResult.Away.Province}}</a></h4>
 
                 <table>
                     <thead>
@@ -20,8 +20,8 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let bowler of matchResult.Away.Bowlers">
-                            <td>{{bowler.Name}}</td>
-                            <td >{{bowler.Score}}</td>
+                            <td><a [routerLink]="['/', year, 'results', 'bowler', bowler.Id]">{{bowler.Name}}</a></td>
+                            <td>{{bowler.Score}}</td>
                             <td *ngIf="matchResult.IsPOA" [class.negative]="bowler.POA < 0">{{bowler.POA}}</td>
                             <td>{{bowler.Points}}</td>
                         </tr>
@@ -31,7 +31,7 @@
 
         <div fxFlex="100" fxFlex.gt-xs="45">
                 <img class="flag" src="http://mbacnationals.com/Content/Images/flags/{{matchResult.Home.Province}}.gif" />
-                <h4>{{matchResult.Home.Province}}</h4>
+                <h4><a [routerLink]="['/', year, 'results', 'team', matchResult.Home.Id]">{{matchResult.Home.Province}}</a></h4>
 
                 <table>
                     <thead>
@@ -42,8 +42,8 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let bowler of matchResult.Home.Bowlers">
-                            <td>{{bowler.Name}}</td>
-                            <td >{{bowler.Score}}</td>
+                            <td><a [routerLink]="['/', year, 'results', 'bowler', bowler.Id]">{{bowler.Name}}</a></td>
+                            <td>{{bowler.Score}}</td>
                             <td *ngIf="matchResult.IsPOA" [class.negative]="bowler.POA < 0">{{bowler.POA}}</td>
                             <td>{{bowler.Points}}</td>
                         </tr>

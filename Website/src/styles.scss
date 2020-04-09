@@ -37,11 +37,12 @@ html, body {
         border-radius: 0px;
     }
 
-    .sidebar {
-        a {
-            text-decoration-line: none;
-        }
+    a {
+        text-decoration: none;
+        color: mat-color($accent, 700) !important;
+    }
 
+    .sidebar {
         .mat-list-item-content {
             color: mat-color($accent, 700) !important;
             text-transform: uppercase;
@@ -55,6 +56,28 @@ html, body {
 
     .selected {
         background: mat-color($primary, 300) !important;
+    }
+
+    .negative {
+        color: red !important;
+    }
+
+    .win {
+        background: lightgreen !important;
+    }
+    
+    .loss {
+        background: pink !important;
+    }
+    
+    .tie {
+        background: lightgrey !important;
+    }
+
+    mat-toolbar {
+        a {
+            color: white !important;
+        }
     }
 
     mat-card {

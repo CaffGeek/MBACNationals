@@ -49,3 +49,23 @@ export class MatchBowlerResult {
     POA: number;
     Points: number;
 }
+
+export class TeamResult {
+    Id: string;
+    Name: string;
+    Province: string;
+    Scores: Match[];
+    TotalGames: number;
+    TotalWins: number;
+    TotalLoss: number;
+    TotalScratch: number;
+    TotalOpponentScratch: number;
+    TotalPOA: number;
+    TotalOpponentPOA: number;
+    AverageWinsPerGame: number;
+    AverageLossPerGame: number;
+    AverageScratch: number;
+    AveragePOA: number;
+    AverageOpponentScratch: number;
+    AverageOpponentPOA: number;
+}

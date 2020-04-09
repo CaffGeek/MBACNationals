@@ -1,0 +1,61 @@
+<mat-card color="primary">
+    <mat-card-header>
+        <mat-card-title>
+            <img class="flag" src="http://mbacnationals.com/Content/Images/flags/{{teamResult.Province}}.gif" />
+            <br/>
+            {{teamResult.Province}} {{teamResult.Name}}
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>W/L</th>
+                    <th>Score</th>
+                    <th>vs</th>
+                    <th>Opponent</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let score of teamResult.Scores"
+                    [class.win]="score.WinLossTie === 'W'"
+                    [class.loss]="score.WinLossTie === 'L'"
+                    [class.tie]="score.WinLossTie === 'T'">
+                    <td>{{score.Number}}</td>
+                    <td>
+                        <a [routerLink]="['/', year, 'results', 'match', score.MatchId]">
+                            {{score.WinLossTie}} ({{score.Points}}-{{score.OpponentPoints}})
+                        </a>
+                    </td>
+                    <td>{{score.Scratch}} <span *ngIf="score.IsPOA" [class.negative]="score.POA < 0">({{score.POA}})</span></td>
+                    <td>vs {{score.Opponent}}</td>
+                    <td>{{score.OpponentScratch}} <span *ngIf="score.IsPOA" [class.negative]="score.OpponentPOA < 0">({{score.OpponentPOA}})</span></td>
+                    <td>{{score.Centre}} # {{score.Lane}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>T</th>
+                    <th>{{teamResult.TotalWins}} - {{teamResult.TotalLoss}}</th>
+                    <th>{{teamResult.TotalScratch | number:'1.0'}} <span *ngIf="teamResult.TotalPOA" [class.negative]="teamResult.TotalPOA < 0">({{teamResult.TotalPOA}})</span></th>
+                    <th></th>
+                    <th>{{teamResult.TotalOpponentScratch | number:'1.0'}} <span *ngIf="teamResult.TotalOpponentPOA" [class.negative]="teamResult.TotalOpponentPOA < 0">({{teamResult.TotalOpponentPOA}})</span></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th>A</th>
+                    <th>{{teamResult.AverageWinsPerGame | number:'1.0-2'}} - {{teamResult.AverageLossPerGame | number:'1.0-2'}}</th>
+                    <th>{{teamResult.AverageScratch | number:'1.0-1'}} <span *ngIf="teamResult.AveragePOA" [class.negative]="teamResult.AveragePOA < 0">({{teamResult.AveragePOA | number:'1.0-1'}})</span></th>
+                    <th></th>
+                    <th>{{teamResult.AverageOpponentScratch | number:'1.0-1'}} <span *ngIf="teamResult.AverageOpponentPOA" [class.negative]="teamResult.AverageOpponentPOA < 0">({{teamResult.AverageOpponentPOA | number:'1.0-1'}})</span></th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+    </mat-card-content>
+    <mat-card-actions>
+        <h5>Results are Unofficial</h5>
+    </mat-card-actions>
+</mat-card>

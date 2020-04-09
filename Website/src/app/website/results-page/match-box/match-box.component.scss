@@ -1,10 +1,6 @@
 .container {
     height: 100% !important;
  
-    a {
-        text-decoration: none;
-    }
-
     div {
         text-align: center;
     }
@@ -12,16 +8,4 @@
     .points {
         white-space: nowrap !important;
     }
-}
-
-.win {
-    background: lightgreen !important;
-}
-
-.loss {
-    background: pink !important;
-}
-
-.tie {
-    background: lightgrey !important;
 }

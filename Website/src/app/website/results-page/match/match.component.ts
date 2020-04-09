@@ -9,6 +9,7 @@ import { MatchResult } from 'src/app/services/models/match';
   styleUrls: ['./match.component.scss']
 })
 export class MatchComponent implements OnInit {
+  year: number;
   matchId: string;
   matchResult: MatchResult;
 
@@ -18,7 +19,8 @@ export class MatchComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(({ id }) => {
+    this.route.params.subscribe(({ year, id }) => {
+      this.year = year;
       this.matchId = id;
 
       this.resultsService.getMatch(this.matchId)

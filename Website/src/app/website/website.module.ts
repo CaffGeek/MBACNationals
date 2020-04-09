@@ -43,6 +43,9 @@ import { HighPoaByGameComponent } from './statistics-page/high-poa-by-game/high-
 import { MatchBoxComponent } from './results-page/match-box/match-box.component';
 import { MatchComponent } from './results-page/match/match.component';
 import { StandingsComponent } from './results-page/standings/standings.component';
+import { TeamResultsComponent } from './results-page/team-results/team-results.component';
+import { BowlerResultsComponent } from './results-page/bowler-results/bowler-results.component';
+import { StepladderComponent } from './results-page/stepladder/stepladder.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +86,9 @@ import { StandingsComponent } from './results-page/standings/standings.component
     MatchBoxComponent,
     MatchComponent,
     StandingsComponent,
+    TeamResultsComponent,
+    BowlerResultsComponent,
+    StepladderComponent,
   ],
   imports: [
     CommonModule,
