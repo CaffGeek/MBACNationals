@@ -31,6 +31,10 @@
             $scope.model.allowedTimes = [13, 14, 15];
             $scope.model.practiceLocations = ['Anik', 'Paris', 'Kingpin'];
         }
+        else if (year == 2022) {
+            $scope.model.allowedTimes = [11, 12, 13, 14];
+            $scope.model.practiceLocations = ['Bonnie Doon'];
+        }
 
         if (year && province) {
             dataService.LoadPracticePlan(year, province).
