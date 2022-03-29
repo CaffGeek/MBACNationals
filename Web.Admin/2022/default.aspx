@@ -1,10 +1,10 @@
 ﻿<%@ Language="C#" MasterPageFile="~/MBAC.Master" AutoEventWireup="false" %>
 
 <asp:Content ID="MetaContent" ContentPlaceHolderID="MetaPlaceHolder" runat="server">
-    <meta property="og:url" content="http://mbacnationals.com/2017/index.php" />
-    <meta property="og:image" content="http://mbacnationals.com/2017/images/Logo.png" />
-    <meta property="og:title" content="2017 Master Bowlers Association National Championships :: Regina, SK" />
-    <meta property="og:description" content="Home of the 2017 Master Bowlers Association of Canada Nationals" />
+    <meta property="og:url" content="http://mbacnationals.com/2022" />
+    <meta property="og:image" content="http://mbacnationals.com/2022/images/Logo.png" />
+    <meta property="og:title" content="2022 Master Bowlers Association National Championships :: Edmonton, AB" />
+    <meta property="og:description" content="Home of the 2022 Master Bowlers Association of Canada Nationals" />
 </asp:Content>
 
 <asp:Content ID="HeaderContent" ContentPlaceHolderID="HeaderPlaceholder" runat="server">
@@ -17,7 +17,7 @@
         <div class="row welcome">
             <div class="col-md-12">
                 <h2>Welcome</h2>
-                <p>Welcome to the online home of the 2020 Master Bowlers Association of Canada Nationals, taking place *dates here*, 2020 in St. John's, NL.</p>
+                <p>Welcome to the online home of the 2022 Master Bowlers Association of Canada Nationals, taking place July 1st to 5th, 2022 in Edmonton, AB.</p>
             </div>
         </div>
 
@@ -89,6 +89,8 @@
                 <div id="sib_loading_gif_area" style="position: absolute; z-index: 9999; display: none;">
                     <img src="http://img.mailinblue.com/new_images/loader_sblue.gif" style="display: block; margin-left: auto; margin-right: auto; position: relative; top: 40%;">
                 </div>
+
+<%--
                 <form class="description" id="theform" name="theform" action="https://my.sendinblue.com/users/subscribeembed/js_id/2dew5/id/1" onsubmit="return false;">
                     <input type="hidden" name="js_id" id="js_id" value="2dew5"><input type="hidden" name="listid" id="listid" value="2"><input type="hidden" name="from_url" id="from_url" value="yes"><input type="hidden" name="hdn_email_txt" id="hdn_email_txt" value="">
                     <div class="newsletterSignup">
@@ -119,6 +121,8 @@
                         <div style="clear: both;"></div>
                     </div>
                 </form>
+--%>
+
             </div>
         </div>
         <!-- End : SendinBlue Signup Form HTML Code -->

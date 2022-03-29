@@ -76,6 +76,7 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">History<span class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-menu-right history">
+                            <%--<li><a href="/2022/" target="_blank">2022 - AB - Edmonton</a></li>--%>
                             <li><a href="/2019/" target="_blank">2019 - QC - Gatineau</a></li>
                             <li><a href="/2018/" target="_blank">2018 - NO - Thunder Bay</a></li>
                             <li><a href="/2017/" target="_blank">2017 - SK - Regina</a></li>
