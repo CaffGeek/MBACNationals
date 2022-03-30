@@ -52,6 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\QualifyingPositionFixer.cs" />
+    <Compile Include="Admin\ScheduleBuilder2014.cs" />
+    <Compile Include="Admin\ScheduleBuilder2015.cs" />
+    <Compile Include="Admin\ScheduleBuilder2016.cs" />
+    <Compile Include="Admin\ScheduleBuilder2017.cs" />
+    <Compile Include="Admin\ScheduleBuilder2018.cs" />
+    <Compile Include="Admin\ScheduleBuilder2019.cs" />
     <Compile Include="Contingent\Exceptions\ContingentAlreadyExists.cs" />
     <Compile Include="Contingent\Exceptions\TournamentNotFound.cs" />
     <Compile Include="Emailer.cs" />

@@ -6,7 +6,7 @@ namespace WebFrontend
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Redirect("/2019", true);
+            Response.Redirect("/2022", true);
         }
     }
 }
