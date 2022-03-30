@@ -102,6 +102,8 @@
                     return $http.get('https://www.googleapis.com/calendar/v3/calendars/01bjjf3a3beq7h3ol9rlu4b648@group.calendar.google.com/events?key=AIzaSyAdeUS3weAGDePVRgV5x5B3u5_aHSRNvOY');
                 case "2019":
                     return $http.get('https://www.googleapis.com/calendar/v3/calendars/p7vg564jka9r90qrb4n6unp928@group.calendar.google.com/events?key=AIzaSyAdeUS3weAGDePVRgV5x5B3u5_aHSRNvOY');
+                case "2022":
+                    return $http.get('https://www.googleapis.com/calendar/v3/calendars/g5eelbnljr56imc0vkhah828lo@group.calendar.google.com/events?key=AIzaSyAdeUS3weAGDePVRgV5x5B3u5_aHSRNvOY');                    
             }            
         };
     };
