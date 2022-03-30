@@ -17,4 +17,5 @@ public enum BowlingCentre
     Anik,
     Paris,
     KingPin,
+    BonnieDoon,
 }
