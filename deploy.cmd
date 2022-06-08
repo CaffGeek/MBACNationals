@@ -93,17 +93,17 @@ IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
 
 IF !ERRORLEVEL! NEQ 0 goto error
 
-echo Angular Prod Build
-
-IF EXIST "%DEPLOYMENT_SOURCE%/Website/angular.json" (
-	echo Building Angular App
-	pushd "%DEPLOYMENT_SOURCE%\Website"
-	call :ExecuteCmd npm run build:prod 
-	echo Copy output to %DEPLOYMENT_TEMP%/Website
-	call :ExecuteCmd cp -r ./dist/Website %DEPLOYMENT_TEMP%/Beta
-	IF !ERRORLEVEL! NEQ 0 goto error
-	popd
-)
+echo Angular Prod Build - DISABLED
+:: don't bother with beta for now
+:: IF EXIST "%DEPLOYMENT_SOURCE%/Website/angular.json" (
+:: 	echo Building Angular App
+:: 	pushd "%DEPLOYMENT_SOURCE%\Website"
+:: 	call :ExecuteCmd npm run build:prod 
+:: 	echo Copy output to %DEPLOYMENT_TEMP%/Website
+:: 	call :ExecuteCmd cp -r ./dist/Website %DEPLOYMENT_TEMP%/Beta
+:: 	IF !ERRORLEVEL! NEQ 0 goto error
+:: 	popd
+:: )
 
 echo KuduSync
 
