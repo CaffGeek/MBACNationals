@@ -65,7 +65,7 @@ public static class Emailer
             var client = new SendGridClient(apiKey);
 
             var msg = new SendGridMessage();
-            msg.SetFrom(new EmailAddress("noreply@mbacnationals.com", "NOREPLY! MBAC Nationals"));
+            msg.SetFrom(new EmailAddress("MbacNationalScores@gmail.com", "NOREPLY! MBAC Nationals"));
             
             var recipientEmails = recipients.Select(x => new EmailAddress(x)).ToList();                
             msg.AddTos(recipientEmails);
@@ -76,7 +76,7 @@ public static class Emailer
 
             //TODO: Check result
             var result = client.SendEmailAsync(msg).GetAwaiter().GetResult();
-            Syslog.Info($"result: {result.Body.ToString()}");
+            Syslog.Info($"result: {result.StatusCode}");
         }
         catch (Exception x)
         {
