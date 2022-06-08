@@ -1,5 +1,6 @@
 ﻿using SendGrid;
 using SendGrid.Helpers.Mail;
+using SimpleSyslog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,12 +45,15 @@ public static class Emailer
 
     public static void SendChangeNotification(DateTime cutoff, List<String> recipients, string title, string message)
     {
+        Syslog.Initialize("logs2.papertrailapp.com", 10236);
+
         try {
             if (DateTime.Now < cutoff)
                 return;
             
             if (string.IsNullOrWhiteSpace(apiKey))
             {
+                Syslog.Error("SENDGRID_APIKEY NOT FOUND");
                 System.Diagnostics.Trace.TraceWarning("SENDGRID_APIKEY NOT FOUND");
                 return;
             }
@@ -71,6 +75,7 @@ public static class Emailer
         }
         catch (Exception x)
         {
+            Syslog.Error("Emailer.Send Exception: " + x.ToString());
             System.Diagnostics.Trace.TraceError("Emailer.Send Exception: " + x.ToString());
         }
     }
