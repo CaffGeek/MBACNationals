@@ -76,6 +76,7 @@ public static class Emailer
 
             //TODO: Check result
             var result = client.SendEmailAsync(msg).GetAwaiter().GetResult();
+            Syslog.Info($"result: {result.Body.ToString()}");
         }
         catch (Exception x)
         {
