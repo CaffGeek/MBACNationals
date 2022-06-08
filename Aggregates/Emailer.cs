@@ -46,6 +46,7 @@ public static class Emailer
     public static void SendChangeNotification(DateTime cutoff, List<String> recipients, string title, string message)
     {
         Syslog.Initialize("logs2.papertrailapp.com", 10236);
+        Syslog.Info("change detected");
 
         try {
             if (DateTime.Now < cutoff)
