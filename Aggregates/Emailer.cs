@@ -24,7 +24,8 @@ public static class Emailer
             var client = new SendGridClient(apiKey);
 
             var msg = new SendGridMessage();
-            msg.SetFrom(new EmailAddress("noreply@mbacnationals.com", "NOREPLY! MBAC Nationals"));
+            //msg.SetFrom(new EmailAddress("noreply@mbacnationals.com", "NOREPLY! MBAC Nationals"));
+            msg.SetFrom(new EmailAddress("MbacNationalScores@Gmail.com", "NOREPLY! MBAC Nationals"));
 
             var recipientEmails = recipients.Select(x => new EmailAddress(x)).ToList();
             msg.AddTos(recipientEmails);
