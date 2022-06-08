@@ -29,10 +29,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CD778205-4471-4E87-810E-93F6459FCD0E}"
 	ProjectSection(SolutionItems) = preProject
 		.codeclimate.yml = .codeclimate.yml
-		.deployment = .deployment
+		.deployment.beta = .deployment.beta
 		.gitignore = .gitignore
 		.travis.yml = .travis.yml
-		deploy.cmd = deploy.cmd
+		deploy.cmd.beta = deploy.cmd.beta
 		docker-compose.yml = docker-compose.yml
 		README.md = README.md
 	EndProjectSection
